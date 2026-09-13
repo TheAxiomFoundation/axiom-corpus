@@ -1,0 +1,88 @@
+version: 2026-09-10-snap-state-manual-completion
+documents:
+- source_id: nd-hhs-snap-dhs-policymanuals-snap-content-snap-application-and-review-processing-htm
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/dhs-policymanuals-snap-content-snap-application-and-review-processing-htm
+  title: 'North Dakota SNAP Policy Manual: SNAP Application and Review Processing'
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/SNAP%20Application%20and%20Review%20Processing.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  extraction:
+    html_content_selector: '#mc-main-content'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: policy_manual_section
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    manual_toc_url: https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher TOC https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+- source_id: nd-hhs-snap-dhs-policymanuals-snap-content-acting-on-snap-changes-htm
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/dhs-policymanuals-snap-content-acting-on-snap-changes-htm
+  title: 'North Dakota SNAP Policy Manual: Acting on SNAP Changes'
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Acting%20on%20SNAP%20Changes.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  extraction:
+    html_content_selector: '#mc-main-content'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: policy_manual_section
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    manual_toc_url: https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher TOC https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+- source_id: nd-hhs-snap-release-26-7
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/updates/release-26-7
+  title: North Dakota SNAP Policy Manual Release 26.7 update
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Policy Update Documentation/2026/SNAP Release 26.7 Effective
+    10.1.2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-10-01'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: policy_manual_release
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    release_effective_date: '2026-10-01'
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher Release Log https://www.nd.gov/dhs/policymanuals/SNAP/Content/Release%20Log.htm
+- source_id: nd-hhs-snap-release-26-6
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/updates/release-26-6
+  title: North Dakota SNAP Policy Manual Release 26.6 update
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Policy Update Documentation/2026/SNAP Release 26.6 Effective
+    8.13.2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-08-13'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: policy_manual_release
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    release_effective_date: '2026-08-13'
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher Release Log https://www.nd.gov/dhs/policymanuals/SNAP/Content/Release%20Log.htm

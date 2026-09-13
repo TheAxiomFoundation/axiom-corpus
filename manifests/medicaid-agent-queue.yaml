@@ -1,0 +1,2710 @@
+version: '2026-09-10'
+document_family: medicaid_policy_sources
+program: MEDICAID
+queue_status: in_progress
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+  - sources
+  - inventory
+  - provisions
+  - coverage
+  forbidden_sources:
+  - secondary summaries
+  - State Options Reports
+  - benefitswiki
+  - policy manuals reposted by non-government sites
+  notes:
+  - Drafted 2026-09-10 for the ten board Year 1 programs (ballmer-proposal-2026 encoding-program-list.md).
+  - 'Lead list only: PolicyEngine-US citations extracted offline with the citing path preserved, classified by axiom_corpus.corpus.source_discovery.
+    Not corpus sources; every selected document must be re-fetched from the official publisher.'
+  - The lead list under-names agency manuals and state plans. Reviewers must add them from the official publisher before the
+    queue is agent_ready.
+  - 'policyengine-us 84253b6afafb (2026-08-17); lead file: policyengine-us-committed-program-references.jsonl'
+  - 'Batch 1 (2026-09-10): the two queued state rows plus the eight largest states by population; done-already states are
+    replaced by the next largest. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py.'
+  - 'Batch 2 (2026-09-10): the next ten states by population (WA, AZ, TN, MA, IN, MD, MO, WI, CO, MN); none was already covered
+    by a combined manual, so no replacement was pulled. CA and OH retried once each. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py
+    --batch 2.'
+  - 'Batch 3 (2026-09-10): the next ten states by population (SC, AL, LA, KY, OR, OK, CT, UT, IA, NV) with MS, KS, NM, NE,
+    ID, WV as replacements; each publisher probed once (plain request plus browser impersonation). SC, AL, LA, KY, OR, UT,
+    KS, NM, NE blocked; ID and WV already covered by existing corpus scopes; OK, CT, IA, NV, MS attempted. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py
+    --batch 3.'
+  - 'Batch 4 (2026-09-10): retry of the thirteen blocked_primary_source rows from a US network (CA, OH, AZ, TN, SC, AL, LA,
+    KY, OR, UT, KS, NM, NE), one plain request plus browser impersonation each. OH, AZ, TN, SC, LA, KY, UT, KS, NM attempted;
+    CA and AL still blocked; OR and NE reachable but not ingested (needs_review). Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py
+    --batch 4.'
+  - 'Batch 4 (2026-09-10): retry of the thirteen blocked_primary_source rows from a US network (CA, OH, AZ, TN, SC, AL, LA,
+    KY, OR, UT, KS, NM, NE), one plain request plus browser impersonation each. OH, AZ, TN, SC, LA, KY, UT, KS, NM attempted;
+    CA and AL still blocked; OR and NE reachable but not ingested (needs_review). Then four not-yet-attempted states probed:
+    MT attempted; NH, HI, ME recorded needs_review with the located publisher pages. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py
+    --batch 4.'
+  - 'Batch 5 (2026-09-10/11): the last jurisdictions on the map (AK, DC, DE, ND, RI, SD, VT, WY) plus the five needs_review
+    rows (HI, ME, NE, NH, OR), and the queue repair (us-ma and us-in rows restored; every batch''s rows now survive any --batch
+    N run). Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 5.'
+lead_list:
+  source: policyengine-us
+  commit: 84253b6afafbb1875c65f12e654c6535744728b7
+  committed_at: '2026-08-17T17:54:20-04:00'
+  reference_file: policyengine-us-committed-program-references.jsonl
+  classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
+status_counts:
+  needs_review: 2
+  agent_ready: 41
+  blocked_primary_source: 3
+  done: 6
+states:
+- jurisdiction: us
+  name: Federal
+  queue_status: needs_review
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-435
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-06-25-title-42-part-435
+  lead_counts:
+    ready_for_manifest: 32
+    needs_review: 51
+    excluded_secondary: 38
+  candidate_sources:
+  - url: https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: statute
+    host: docs.legis.wisconsin.gov
+    jurisdiction_inferred: us-wi
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-10/1805-030-10-25
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-20/1805-030-20-20/1805-030-20-20-05
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-10
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-20
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_age_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1830-000-00/1830-010-00/1830-010-05
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-010-00
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-020-00
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid_nfc.py
+  - url: https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-45-income-maximum
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: dssmanuals.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/medicaid_optional_senior_or_disabled_income_limit.py
+  - url: https://ecfr.gov/current/title-42/part-435/section-435.554
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: regulation
+    host: ecfr.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/medicaid_community_engagement_pass_through_eligible.py
+  - url: https://federalregister.gov/d/2016-27424
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2017-24953
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2018-25944
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2019-26207
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2020-26387
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2021-25798
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2022-26390
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2023-25636
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/d/2024-27910
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+  - url: https://federalregister.gov/documents/2026/06/03/2026-11094/medicaid-program-community-engagement-requirement-for-certain-individuals
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/medicaid_community_engagement_pass_through_eligible.py
+  - url: https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/a-520-relationship
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: fhb.hhs.texas.gov
+    jurisdiction_inferred: us-tx
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://govinfo.gov/link/cfr/42/435?link-type=pdf&sectionnum=121&year=mostrecent
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: regulation
+    host: govinfo.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_for_medicaid.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_income_eligible_for_medicaid.py
+  - url: https://medicaid.gov/federal-policy-guidance/downloads
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/was_recently_incarcerated_for_medicaid_ce.py
+  - url: https://medicaid.gov/federal-policy-guidance/downloads/cib04272026.pdf
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml
+  - url: https://medicaid.gov/federal-policy-guidance/downloads/cib05282025.pdf
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml
+  - url: https://medicaid.gov/federal-policy-guidance/downloads/cib11182025.pdf
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml
+  - url: https://medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/work_requirements/applies.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/work_requirements/former_foster_care_age_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/work_requirements/monthly_hours_threshold.yaml
+  - url: https://medicaid.gov/federal-policy-guidance/downloads/cib12092025.pdf
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml
+  - url: https://medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: form
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: us-medicaid-chip-eligibility-levels
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/age_range/in_ca.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/age_range/in_mn.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/age_range/other.yaml
+  - url: https://medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: form
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+  - url: https://nd.gov/dhs/policymanuals/51003/Content/510-03-30-05.htm
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: nd.gov
+    jurisdiction_inferred: us-nd
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://uscode.house.gov/view.xhtml?edition=prelim&num=0&req=granuleid%3AUSC-prelim-title8-section1613
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: statute
+    host: uscode.house.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/bar_exempt_immigration_statuses.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/five_year_bar_years.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py
+  - url: https://admincode.legislature.state.al.us/api/chapter/560-X-25
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: admincode.legislature.state.al.us
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+  - url: https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf
+    source_status: unknown
+    disposition: needs_review
+    document_class: other
+    host: ahca.myflorida.com
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://congress.gov/119/plaws/publ21/PLAW-119publ21.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: congress.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/was_recently_incarcerated_for_medicaid_ce.py
+  - url: https://congress.gov/bill/111th-congress/house-bill/3590/text
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: congress.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/expansion_fmap.yaml
+  - url: https://congress.gov/bill/119th-congress/house-bill/1/text
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: congress.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/work_requirements/age_range.yaml
+  - url: https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: data.medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+  - url: https://dhcs.ca.gov/services/medi-cal/eligibility/Pages/Asset-Limit-Changes-for-Non-MAGI-Medi-Cal.aspx
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dhcs.ca.gov
+    jurisdiction_inferred: us-ca
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/individual.yaml
+  - url: https://dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-14.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dhcs.ca.gov
+    jurisdiction_inferred: us-ca
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/individual.yaml
+  - url: https://dhcs.ca.gov/services/working-disabled-program
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dhcs.ca.gov
+    jurisdiction_inferred: us-ca
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_working_disabled_buy_in_for_medicaid.py
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium.py
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium_person.py
+  - url: https://dhhs.nh.gov/mam_htm/html/230_01_granite_advantage_eligibility_criteria_mam.htm
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dhhs.nh.gov
+    jurisdiction_inferred: us-nh
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://dhs.state.il.us/page.aspx?item=61206
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dhs.state.il.us
+    jurisdiction_inferred: null
+    already_registered: us-il-snap-manual
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dmas.virginia.gov
+    jurisdiction_inferred: us-va
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/parent/medicaid_parent_income_limit.py
+  - url: https://dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dmas.virginia.gov
+    jurisdiction_inferred: us-va
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: download.medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+  - url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ecom.wyo.gov
+    jurisdiction_inferred: us-wy
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://flrules.org/gateway/ruleno.asp?id=65A-1.703
+    source_status: unknown
+    disposition: needs_review
+    document_class: other
+    host: flrules.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: govinfo.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_in_medicaid_community_engagement_treatment_program.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py
+  - url: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: hbx.dc.gov
+    jurisdiction_inferred: us-dc
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml
+  - url: https://hcopub.dhs.state.mn.us/epm/2_2_2_1.htm
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: hcopub.dhs.state.mn.us
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://healthcare.gov/glossary/federal-poverty-level-fpl
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: healthcare.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/tax_unit_medicaid_income_level.py
+  - url: https://healthcare.gov/glossary/modified-adjusted-gross-income-magi
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: healthcare.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/income/modification.yaml
+  - url: https://hfs.illinois.gov/medicalprograms/hbwd.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: hfs.illinois.gov
+    jurisdiction_inferred: us-il
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_working_disabled_buy_in_for_medicaid.py
+  - url: https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: hfs.illinois.gov
+    jurisdiction_inferred: us-il
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium.py
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium_person.py
+  - url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1718-ADULT-GROUP-Final-10-31-16-1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: humanservices.hawaii.gov
+    jurisdiction_inferred: us-hi
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://irs.gov/publications/p501
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: irs.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_person_is_required_to_file.py
+  - url: https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: khap.kdhe.ks.gov
+    jurisdiction_inferred: us-ks
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+  - url: https://legis.iowa.gov/docs/publications/FN/1449063.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: legis.iowa.gov
+    jurisdiction_inferred: us-ia
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+  - url: https://macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: macpac.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml
+  - url: https://macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: macpac.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml
+  - url: https://medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0021-MM1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+  - url: https://medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0019-MM1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0014-MM1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-021-MM1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0008-MM1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://medicaid.gov/medicaid-spa/2025-05-07/179381
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml
+  - url: https://medicaid.gov/medicaid/section-1115-demonstrations
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_premium.py
+  - url: https://medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_for_medicaid.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_income_eligible_for_medicaid.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_ssi_recipient_for_medicaid.py
+  - url: https://medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_income_level.py
+  - url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.ms.gov
+    jurisdiction_inferred: us-ms
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/is_working_disabled_buy_in_for_medicaid.py
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium.py
+    - policyengine-us#variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium_person.py
+  - url: https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.ms.gov
+    jurisdiction_inferred: us-ms
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.nv.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml
+  - url: https://medicaidscreener.com/?p=table
+    source_status: unknown
+    disposition: needs_review
+    document_class: other
+    host: medicaidscreener.com
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+  - url: https://mydss.mo.gov/benefit-program-income-limits
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: mydss.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml
+  - url: https://pamms.dhs.ga.gov/dfcs/medicaid/2162
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: pamms.dhs.ga.gov
+    jurisdiction_inferred: us-ga
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+  - url: https://pamms.dhs.ga.gov/dfcs/medicaid/2255
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: pamms.dhs.ga.gov
+    jurisdiction_inferred: us-ga
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+  - url: https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: portal.ct.gov
+    jurisdiction_inferred: us-ct
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+  - url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: portal.ct.gov
+    jurisdiction_inferred: us-ct
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml
+  - url: https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: portal.ct.gov
+    jurisdiction_inferred: us-ct
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml
+  - url: https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: portal.ct.gov
+    jurisdiction_inferred: us-ct
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml
+  - url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501715010
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/classification/section_1634.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/classification/section_209b.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/classification/ssi_criteria.yaml
+  - url: https://tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: tn.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://files.kff.org/attachment/REPORT-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: files.kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/age_range.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+  - url: https://files.kff.org/attachment/Report-Medicaid-and-CHIP-Eligibility-Enrollment-Renewal-and-Cost-Sharing-Policies-as-of-January-2018
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: files.kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+  - url: https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: files.kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/undocumented_immigrant.yaml
+  - url: https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: files.kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/undocumented_immigrant.yaml
+  - url: https://files.kff.org/attachment/Table-3-State-Adoption-of-Options-to-Cover-Immigrant-Populations-January-2021.pdf
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: files.kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/undocumented_immigrant.yaml
+  - url: https://kff.org/affordable-care-act/state-indicator/medicaid-and-chip-income-eligibility-limits-for-pregnant-women-as-a-percent-of-the-federal-poverty-level?currentTimeframe=0&sortModel=%7B%22colId%22%3A%22Location%22%2C%22sort%22%3A%22asc%22%7D
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml
+  - url: https://kff.org/medicaid/medicaid-financial-eligibility-for-seniors-and-people-with-disabilities-findings-from-a-50-state-survey
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_optional_senior_or_disabled_countable_income.py
+  - url: https://kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-children-ages-1-5?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22%3A%22Location%22%2C%22sort%22%3A%22asc%22%7D
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml
+  - url: https://kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-children-ages-6-18?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22%3A%22Location%22%2C%22sort%22%3A%22asc%22%7D
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml
+  - url: https://kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-infants-ages-0-1?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22%3A%22Location%22%2C%22sort%22%3A%22asc%22%7D
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml
+  - url: https://kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-other-adults?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22%3A%22Location%22%2C%22sort%22%3A%22asc%22%7D
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml
+  - url: https://kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/requires_deprivation.yaml
+  - url: https://kff.org/racial-equity-and-health-policy/fact-sheet/key-facts-on-health-coverage-of-immigrants
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: manual
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medicaid_eligible.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py
+  - url: https://kff.org/report-section/medicaid-eligibility-and-enrollment-policies-for-seniors-and-people-with-disabilities-non-magi-during-the-unwinding-appendix
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/individual.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/individual.yaml
+  - url: https://kff.org/report-section/medicaid-financial-eligibility-for-seniors-and-people-with-disabilities-findings-from-a-50-state-survey-appendix-tables
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/child/child.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/child/child_categories.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/disabled.yaml
+  - url: https://kff.org/tracking-the-medicaid-provisions-in-the-2025-budget-bill
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.1163
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/deemed/from_ineligible_spouse/medicaid_optional_senior_or_disabled_income_deemed_from_ineligible_spouse.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1165
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/deemed/from_ineligible_parent/medicaid_optional_senior_or_disabled_unearned_income_deemed_from_ineligible_parent.py
+  - url: https://law.cornell.edu/cfr/text/42/435.110
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/parent/medicaid_parent_income_limit.py
+  - url: https://law.cornell.edu/cfr/text/42/435.119
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid_nfc.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/medicaid_category.py
+  - url: https://law.cornell.edu/cfr/text/42/435.4
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_age_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml
+  - url: https://law.cornell.edu/cfr/text/42/435.406
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/emergency_medicaid/uses_medicaid_income_thresholds.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/emergency_medicaid/is_emergency_medicaid_eligible.py
+  - url: https://law.cornell.edu/cfr/text/42/435.603
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/household/child_age_limit/non_student.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/household/child_age_limit/student.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/household/uses_full_time_student_under_21_rule.yaml
+  - url: https://law.cornell.edu/cfr/text/42/440.255
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/emergency_medicaid/has_emergency_medical_condition.py
+  - url: https://law.cornell.edu/cfr/text/42/part-435/subpart-B
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/medicaid_category.py
+  - url: https://law.cornell.edu/cfr/text/42/part-435/subpart-D
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/medically_needy/is_medically_needy_for_medicaid.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/medically_needy/medicaid_medically_needy_medical_expenses.py
+  - url: https://law.cornell.edu/regulations/massachusetts/130-CMR-505-002
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml
+  - url: https://law.cornell.edu/uscode/text/26/36B
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/income/modification.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_magi.py
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_magi_person.py
+  - url: https://law.cornell.edu/uscode/text/26/61
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_irs_gross_income.py
+  - url: https://law.cornell.edu/uscode/text/26/62
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicaid/income/medicaid_adjusted_gross_income_person.py
+  - url: https://law.cornell.edu/uscode/text/42/1396
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/covered.yaml
+  - url: https://law.cornell.edu/uscode/text/42/1396a
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/pregnant/postpartum_coverage.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/is_covered.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid.py
+  - url: https://law.cornell.edu/uscode/text/42/1396b
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/emergency_medicaid/enabled.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/emergency_medicaid/uses_medicaid_income_thresholds.yaml
+  - url: https://law.cornell.edu/uscode/text/42/1396d
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/expansion_fmap.yaml
+    - policyengine-us#parameters/gov/hhs/medicaid/cost_share/fmap.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/costs/medicaid_federal_share.py
+  - url: https://law.cornell.edu/uscode/text/42/1396p
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/family_exception/child_age_threshold.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medicaid_long_term_care_eligible.py
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/medicaid_home_equity_limit_family_exception.py
+  - url: https://law.cornell.edu/uscode/text/42/1396u-1
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/categories/parent/requires_deprivation.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid.py
+  - url: https://law.cornell.edu/uscode/text/8/1611
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/emergency_medicaid/enabled.yaml
+  - url: https://law.cornell.edu/uscode/text/8/1641
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml
+    - policyengine-us#variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py
+  notes: 'Batch 1 finding (2026-09-10): 42 CFR part 435 is already in the corpus as us/regulation version 2026-06-25-title-42-part-435
+    (coverage complete, 168 provisions) plus the CMS-2454-IFC community-engagement scopes; 42 CFR part 436 (Puerto Rico, Guam,
+    Virgin Islands eligibility) is NOT in the corpus (no coverage, manifest, or ingest-run note mentions part 436). Nothing
+    federal was re-ingested and none of the federal lead-list URLs were taken in this run. A later run should extract part
+    436 through extract-ecfr --only-title 42 --only-part 436.'
+  index_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C
+  index_document_count: null
+  taken_count: 0
+- jurisdiction: us-ak
+  name: Alaska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_topics
+  primary_source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/500_overview_of_aged,_disabled_and_long_term_care_medicaid/500.htm
+  target_manifest: manifests/us-ak-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+  index_document_count: 394
+  taken_count: 127
+  index_families:
+    manual_topic_html:
+      found: 394
+      taken: 127
+  notes: 'Batch 5 (2026-09-11): 127 documents taken from the publisher''s own index (394 documents inventoried across 1 families;
+    127 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.
+    Alaska''s MAGI Medicaid Eligibility Manual is already in the corpus under us-ak/manual/dpa/magi-medicaid (today''s CHIP
+    branch, version 2026-09-10-chip-state-eligibility-manual); this row adds the non-MAGI Aged, Disabled and Long Term Care
+    (ADLTC) Medicaid manual under us-ak/manual/dpa/adltc (no path collision).'
+- jurisdiction: us-al
+  name: Alabama
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://medicaid.alabama.gov/content/9.0_Resources/9.4_Forms_Library/9.4.11_Eligibility_Manual.aspx
+  index_url: https://medicaid.alabama.gov/content/9.0_Resources/9.4_Forms_Library/9.4.11_Eligibility_Manual.aspx
+  index_document_count: null
+  taken_count: 0
+  notes: 'Blocked 2026-09-10: Probed 2026-09-10 (plain request plus curl-cffi chrome120 browser impersonation, 20 s timeouts):
+    medicaid.alabama.gov does not answer TCP from this network (requests ConnectTimeout and curl 28 ''Connection timed out
+    after 20002 milliseconds'' for both requests). No workaround attempted. Index inventory not possible. Retried 2026-09-10T21:35Z
+    from a US network (plain request plus curl-cffi chrome120 browser impersonation, 20 s timeouts), same failure: medicaid.alabama.gov
+    now accepts TCP but the TLS handshake never completes (curl 28 ''Connection timed out after 20002 milliseconds'' after
+    the Client Hello for curl and curl-cffi chrome120; python requests gets an SSL EOF / ''unable to get local issuer certificate''
+    within 0.4 s, i.e. no server certificate is delivered). No workaround attempted.'
+  target_manifest: manifests/us-al-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+- jurisdiction: us-ar
+  name: Arkansas
+  queue_status: agent_ready
+  source_kind: official_pdf_manual
+  primary_source_url: https://humanservices.arkansas.gov/wp-content/uploads/MS-Policy-9.26-New.pdf
+  target_manifest: manifests/us-ar-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ar
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  lead_counts:
+    ready_for_manifest: 1
+    needs_review: 1
+    excluded_secondary: 3
+  candidate_sources:
+  - url: https://medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: form
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/age_range.yaml
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/applies.yaml
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/income_limit.yaml
+  - url: https://medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicaid.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/applies.yaml
+    - policyengine-us#variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_eligible.py
+    - policyengine-us#variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_subject.py
+  - url: https://kff.org/medicaid/issue-brief/an-early-look-at-implementation-of-medicaid-work-requirements-in-arkansas
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/monthly_hours_threshold.yaml
+  - url: https://kff.org/medicaid/issue-brief/state-data-for-medicaid-work-requirements-in-arkansas
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: kff.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/age_range.yaml
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/dependent_age_limit.yaml
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/income_limit.yaml
+  - url: https://law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ar/dhs/medicaid/work_requirements/dependent_age_limit.yaml
+    - policyengine-us#variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_eligible.py
+  notes: 'Batch 1 (2026-09-10): 2 manual documents taken from the publisher''s own index (13 documents inventoried across
+    2 families; 2 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+  index_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/division-policies/
+  index_document_count: 13
+  taken_count: 2
+  index_families:
+    medical_services_manual_pdf:
+      found: 2
+      taken: 2
+    other_program_manual_pdf:
+      found: 11
+      taken: 0
+- jurisdiction: us-az
+  name: Arizona
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_topics
+  primary_source_url: https://epm.azahcccs.gov/EligibilityPolicyManual/Introduction/Home.htm
+  target_manifest: manifests/us-az-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-az
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://epm.azahcccs.gov/EligibilityPolicyManual/index.html
+  index_document_count: 2375
+  taken_count: 743
+  notes: 'Batch 4 (2026-09-10): 743 manual documents taken from the publisher''s own index (2375 documents inventoried across
+    2 families; 743 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  index_families:
+    manual_topic_html:
+      found: 743
+      taken: 743
+    toc_repeat_of_listed_topic:
+      found: 1632
+      taken: 0
+- jurisdiction: us-ca
+  name: California
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_pdf_manual_articles
+  primary_source_url: https://www.dhcs.ca.gov/services/medi-cal/eligibility/Pages/MEPM.aspx
+  target_manifest: manifests/us-ca-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.dhcs.ca.gov/services/medi-cal/eligibility/Pages/MEPM.aspx
+  index_document_count: null
+  taken_count: 0
+  notes: 'Blocked 2026-09-10: the DHCS Medi-Cal Eligibility Procedures Manual (MEPM) index returns HTTP 403 with an Imperva/Incapsula
+    ''Request unsuccessful'' interstitial (incident id 648000110623365723-464410415712436979) for the Axiom user agent, a
+    plain browser user agent, and curl-cffi impersonation profiles chrome120, chrome131, safari17_0, firefox133 and edge101
+    (the existing manifest browser_impersonation option). No workaround attempted. Index inventory not possible. Retried 2026-09-10T18:36Z
+    (plain request) and 2026-09-10T18:37Z (curl-cffi chrome120 browser impersonation, 20 s timeouts), same failure: HTTP 403
+    Incapsula interstitial (incident id 648000110658208525-192905496909841125) for both requests. Retried 2026-09-10T21:35Z
+    from a US network (plain request plus curl-cffi chrome120 browser impersonation, 20 s timeouts), same failure: the MEPM
+    index now answers HTTP 200 (848-byte body) that is only the Imperva/Incapsula ''Request unsuccessful'' challenge iframe
+    (incident id 491000040177845619-389699386573783349) to both requests; no manual content and no index inventory. No workaround
+    attempted.'
+- jurisdiction: us-co
+  name: Colorado
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_ccr_rule
+  primary_source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2918&deptID=7&agencyID=69&deptName=Department
+    of Health Care Policy and Financing&agencyName=Medical Services Board (Volume 8; Medical Assistance, Children's Health
+    Plan)&seriesNum=10 CCR 2505-10 8.100
+  target_manifest: manifests/us-co-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-co
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=7&deptName=2505,1305%20Department%20of%20Health%20Care%20Policy%20and%20Financing&agencyID=69&agencyName=2505%20Medical%20Services%20Board%20(Volume%208;%20Medical%20Assistance,%20Children's%20Health%20Plan)
+  index_document_count: 21
+  taken_count: 1
+  index_families:
+    medical_assistance_eligibility_rule_pdf:
+      found: 1
+      taken: 1
+    other_volume_8_rule:
+      found: 20
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 1 manual documents taken from the publisher''s own index (21 documents inventoried across
+    2 families; 1 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-ct
+  name: Connecticut
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_word_manual_sections
+  primary_source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/upms/upm0---table-of-contents/0100.doc?rev=604b1d16087e4279a4a2ec52983229f7
+  target_manifest: manifests/us-ct-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://portal.ct.gov/dss/lists/uniform-policy-manual
+  index_document_count: 1898
+  taken_count: 1632
+  index_families:
+    upm_section_doc:
+      found: 1632
+      taken: 1632
+    upm_chapter_pdf:
+      found: 0
+      taken: 0
+    policy_transmittal_doc:
+      found: 266
+      taken: 0
+  notes: 'Batch 3 (2026-09-10): 1632 manual documents taken from the publisher''s own index (1898 documents inventoried across
+    3 families; 1632 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-3.md.'
+- jurisdiction: us-dc
+  name: District of Columbia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_doc_dcmr_sections
+  primary_source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={8DF642E2-391B-427A-90A6-0EE161D41BE6}
+  target_manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://dcregs.dc.gov/Common/DCMR/ChapterList.aspx?TitleNum=29
+  index_document_count: 24
+  taken_count: 23
+  index_families:
+    medicaid_eligibility_section_doc:
+      found: 23
+      taken: 23
+    reserved_or_repealed_section:
+      found: 1
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): 23 documents taken from the publisher''s own index (24 documents inventoried across 2 families;
+    23 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-de
+  name: Delaware
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_admin_code_chapters
+  primary_source_url: https://regulations.delaware.gov/api/AdminCode/title16/14000/6364e167-8775-458a-a3e9-ccbf77467652
+  target_manifest: manifests/us-de-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://regulations.delaware.gov/AdminCode/title16
+  index_document_count: 13
+  taken_count: 7
+  index_families:
+    medicaid_eligibility_chapter_pdf:
+      found: 7
+      taken: 7
+    other_dssm_medicaid_chapter:
+      found: 6
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): 7 documents taken from the publisher''s own index (13 documents inventoried across 2 families;
+    7 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-fl
+  name: Florida
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_html_combined_manual
+  primary_source_url: https://www.myflfamilies.com/services/public-assistance/ess-program-policy-manual
+  target_manifest: manifests/us-fl-ess-manual.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: manual
+    version: 2026-05-27-fl-ess-manual-r2026-07-15-self-contained
+  index_url: null
+  index_document_count: null
+  taken_count: 0
+  notes: 'Already in corpus: Florida DCF ESS Program Policy Manual (manifests/us-fl-ess-manual.yaml, 48 documents) carries
+    the Medicaid eligibility chapters (1400/1600/1800 MFAM-MSSI, 2000 Coverage Groups, 2200 Standard Filing Unit, 2400 Budgeting,
+    2600 Calculation of Benefits, Appendix A-7 Family-Related Medicaid income limits, A-9 SSI-related standards, A-9.1 MSP).
+    Not duplicated in batch 1; does not count toward the batch, Michigan pulled instead (itself already covered), then New
+    Jersey.'
+- jurisdiction: us-ga
+  name: Georgia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_sections
+  primary_source_url: https://pamms.dhs.ga.gov/dfcs/medicaid/2000/
+  target_manifest: manifests/us-ga-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://pamms.dhs.ga.gov/dfcs/medicaid/
+  index_document_count: 428
+  taken_count: 251
+  index_families:
+    manual_section_html:
+      found: 240
+      taken: 240
+    appendix_html:
+      found: 11
+      taken: 11
+    toc_page_html:
+      found: 6
+      taken: 0
+    pdf_export:
+      found: 1
+      taken: 0
+    mt_cover_letter_pdf:
+      found: 169
+      taken: 0
+    section_already_in_us_ga_ssp_manual_scope:
+      found: 1
+      taken: 0
+  notes: 'Batch 1 (2026-09-10): 251 manual documents taken from the publisher''s own index (428 documents inventoried across
+    6 families; 251 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-hi
+  name: Hawaii
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_har_chapters
+  primary_source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1700.1-060613-LA-LH-LA-LY-LB-EM-FINAL.pdf
+  index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+  index_document_count: 75
+  taken_count: 44
+  notes: 'Batch 5 (2026-09-11): 44 documents taken from the publisher''s own index (75 documents inventoried across 4 families;
+    44 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+  target_manifest: manifests/us-hi-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: regulation
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    medquest_chapter_pdf:
+      found: 44
+      taken: 44
+    in_chip_scope:
+      found: 2
+      taken: 0
+    repealed_chapter:
+      found: 27
+      taken: 0
+    dead_index_link:
+      found: 2
+      taken: 0
+- jurisdiction: us-ia
+  name: Iowa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://hhs.iowa.gov/media/4007/download?inline
+  target_manifest: manifests/us-ia-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+  index_document_count: 88
+  taken_count: 14
+  index_families:
+    title_8_medicaid_chapter_pdf:
+      found: 14
+      taken: 14
+    title_8_omnibus_pdf:
+      found: 1
+      taken: 0
+    other_title_chapter_or_appendix_pdf:
+      found: 71
+      taken: 0
+    other_title_omnibus_pdf:
+      found: 2
+      taken: 0
+  notes: 'Batch 3 (2026-09-10): 14 manual documents taken from the publisher''s own index (88 documents inventoried across
+    4 families; 14 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-3.md.'
+- jurisdiction: us-id
+  name: Idaho
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_pdf_idapa_rules
+  primary_source_url: https://adminrules.idaho.gov/current-rules/
+  target_manifest: manifests/us-id-aabd-rules.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: regulation
+    version: 2026-07-04-id-aabd-rules
+  index_url: https://adminrules.idaho.gov/current-rules/
+  index_document_count: 21
+  taken_count: 0
+  index_families:
+    medicaid_eligibility_rule_pdf:
+      found: 2
+      taken: 0
+    other_title_16_rule_pdf:
+      found: 19
+      taken: 0
+  notes: 'Already in corpus: Idaho publishes no separate Medicaid eligibility manual; eligibility is IDAPA 16.03.01 (Medicaid
+    for families and children) and 16.03.05 (AABD), published by the Office of the Administrative Rules Coordinator (adminrules.idaho.gov
+    current-rules listing probed 2026-09-10: 21 Title 16 rule PDFs, 2 of them the eligibility chapters). Both chapters are
+    already in the corpus at section granularity as document_class regulation: us-id/regulation/idapa/16/03/05 (manifests/us-id-aabd-rules.yaml,
+    version 2026-07-04-id-aabd-rules, 286 provisions, coverage complete) and us-id/regulation/idapa/16/03/01 (today''s CHIP
+    batch, version 2026-09-10-chip-state-eligibility-manual, 75 provisions, coverage complete, unsigned). Pulled as the fifteenth
+    state of batch 3, found covered; not re-ingested as manual at page granularity (reviewer judgment, the IL/WV precedent).
+    Does not count toward the batch.'
+- jurisdiction: us-il
+  name: Illinois
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_html_combined_manual
+  primary_source_url: https://www.dhs.state.il.us/page.aspx?item=13473
+  target_manifest: manifests/us-il-snap-manual.yaml
+  target_scope:
+    jurisdiction: us-il
+    document_class: manual
+    version: 2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained
+  index_url: null
+  index_document_count: null
+  taken_count: 0
+  notes: 'Already in corpus: Illinois DHS Cash, SNAP and Medical Manual (manifests/us-il-snap-manual.yaml, 4,750 documents)
+    includes PM/WAG 15 Eligibility for Medical Only Programs, PM/WAG 20 Medical Program and the medical-program sub-sections.
+    Not duplicated in batch 1; does not count toward the batch, North Carolina pulled instead.'
+- jurisdiction: us-in
+  name: Indiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://www.in.gov/dA/7e89cc3dcc/Medicaid_PM_1000.pdf?language_id=1
+  target_manifest: manifests/us-in-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-in
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+  index_document_count: 35
+  taken_count: 22
+  index_families:
+    manual_chapter_pdf:
+      found: 22
+      taken: 22
+    combined_manual_pdf:
+      found: 1
+      taken: 0
+    transmittal_pdf:
+      found: 12
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 22 manual documents taken from the publisher''s own index (35 documents inventoried across
+    3 families; 22 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.
+    Row restored 2026-09-11 by the batch-5 generator from the committed manifest and the batch-2 run note (the row was lost
+    inside the batch-2 session before its commit, and rows of skipped builders could not be rebuilt without a live crawl);
+    see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-ks
+  name: Kansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_pages
+  primary_source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=01000
+  index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+  index_document_count: 164
+  taken_count: 117
+  notes: 'Batch 4 (2026-09-10): 117 manual documents taken from the publisher''s own index (164 documents inventoried across
+    3 families; 117 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  target_manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    kfmam_current_chapter_html:
+      found: 8
+      taken: 8
+    mkeesm_current_topic_html:
+      found: 109
+      taken: 109
+    mkeesm_prior_edition_link:
+      found: 47
+      taken: 0
+- jurisdiction: us-ky
+  name: Kentucky
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_volumes
+  primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLIVA.pdf
+  index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+  index_document_count: 12
+  taken_count: 2
+  notes: 'Batch 4 (2026-09-10): 2 manual documents taken from the publisher''s own index (12 documents inventoried across
+    2 families; 2 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  target_manifest: manifests/us-ky-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    medicaid_volume_pdf:
+      found: 2
+      taken: 2
+    other_program_volume_pdf:
+      found: 10
+      taken: 0
+- jurisdiction: us-la
+  name: Louisiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_sections
+  primary_source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/PREFACE.pdf
+  index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+  index_document_count: 99
+  taken_count: 99
+  notes: 'Batch 4 (2026-09-10): 99 manual documents taken from the publisher''s own index (99 documents inventoried across
+    1 families; 99 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  target_manifest: manifests/us-la-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    manual_section_pdf:
+      found: 99
+      taken: 99
+- jurisdiction: us-ma
+  name: Massachusetts
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_cmr_chapters
+  primary_source_url: https://www.mass.gov/regulations/130-CMR-501000-masshealth-general-policies
+  target_manifest: manifests/us-ma-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.mass.gov/law-library/130-cmr
+  index_document_count: 71
+  taken_count: 14
+  index_families:
+    member_eligibility_regulation_pdf:
+      found: 14
+      taken: 14
+    other_130_cmr_regulation:
+      found: 57
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 14 manual documents taken from the publisher''s own index (71 documents inventoried across
+    2 families; 14 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.
+    Row restored 2026-09-11 by the batch-5 generator from the committed manifest and the batch-2 run note (the row was lost
+    inside the batch-2 session before its commit, and rows of skipped builders could not be rebuilt without a live crawl);
+    see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-md
+  name: Maryland
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_sections
+  primary_source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Beginning%20of%20Manual.pdf
+  target_manifest: manifests/us-md-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-md
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+  index_document_count: 32
+  taken_count: 19
+  index_families:
+    manual_section_pdf:
+      found: 19
+      taken: 19
+    manual_supplement_action_transmittal_pdf:
+      found: 10
+      taken: 0
+    coverage_group_guide_pdf:
+      found: 3
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 19 manual documents taken from the publisher''s own index (32 documents inventoried across
+    3 families; 19 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-me
+  name: Maine
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_docx_manual_parts
+  primary_source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+  index_document_count: 20
+  taken_count: 16
+  notes: 'Batch 5 (2026-09-11): 16 documents taken from the publisher''s own index (20 documents inventoried across 2 families;
+    16 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+  target_manifest: manifests/us-me-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: regulation
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    manual_part_docx:
+      found: 18
+      taken: 16
+    in_chip_or_ssi_scope:
+      found: 2
+      taken: 0
+- jurisdiction: us-mi
+  name: Michigan
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_pdf_combined_manual
+  primary_source_url: https://mdhhs-pres-prod.michigan.gov/OLMWeb/ex/BP/Public/BEM/000.pdf
+  target_manifest: manifests/us-mi-bridges-manual.yaml
+  target_scope:
+    jurisdiction: us-mi
+    document_class: manual
+    version: 2026-07-17-mi-bridges-manual
+  index_url: null
+  index_document_count: null
+  taken_count: 0
+  notes: 'Already in corpus: Michigan Bridges Eligibility Manual (manifests/us-mi-bridges-manual.yaml, 196 documents) carries
+    the MA chapters BEM 105-174, 211, 260, 402, 405, 530-547. Pulled as the replacement for Florida, found covered, so New
+    Jersey was pulled next. Does not count toward the batch.'
+- jurisdiction: us-mn
+  name: Minnesota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_topics
+  primary_source_url: https://hcopub.dhs.state.mn.us/epm/1.htm
+  target_manifest: manifests/us-mn-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://hcopub.dhs.state.mn.us/epm/home.htm
+  index_document_count: 348
+  taken_count: 344
+  index_families:
+    manual_topic_html:
+      found: 345
+      taken: 344
+    home_page_bulletin_pdf:
+      found: 3
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 344 manual documents taken from the publisher''s own index (348 documents inventoried across
+    2 families; 344 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-mo
+  name: Missouri
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_sections
+  primary_source_url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/
+  target_manifest: manifests/us-mo-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/
+  index_document_count: 568
+  taken_count: 565
+  index_families:
+    magi_manual_page_html:
+      found: 245
+      taken: 245
+    magi_appendix_pdf:
+      found: 7
+      taken: 7
+    magi_appendix_spreadsheet:
+      found: 3
+      taken: 0
+    mhabd_manual_page_html:
+      found: 309
+      taken: 309
+    mhabd_appendix_pdf:
+      found: 4
+      taken: 4
+    mhabd_appendix_spreadsheet:
+      found: 0
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 565 manual documents taken from the publisher''s own index (568 documents inventoried across
+    6 families; 565 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-ms
+  name: Mississippi
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-100-General-Provisions-revised-July-2025v2.pdf
+  target_manifest: manifests/us-ms-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+  index_document_count: 29
+  taken_count: 29
+  index_families:
+    chapter_pdf:
+      found: 7
+      taken: 7
+    appendix_pdf:
+      found: 22
+      taken: 22
+    other_upload:
+      found: 0
+      taken: 0
+  notes: 'Batch 3 (2026-09-10): 29 manual documents taken from the publisher''s own index (29 documents inventoried across
+    3 families; 29 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-3.md.'
+- jurisdiction: us-mt
+  name: Montana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_sections
+  primary_source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMATOC.pdf
+  target_manifest: manifests/us-mt-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-mt
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+  index_document_count: 137
+  taken_count: 125
+  index_families:
+    manual_section_pdf:
+      found: 125
+      taken: 125
+    other_site_pdf:
+      found: 12
+      taken: 0
+  notes: 'Batch 4 (2026-09-10): 125 manual documents taken from the publisher''s own index (137 documents inventoried across
+    2 families; 125 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+- jurisdiction: us-nc
+  name: North Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_sections
+  primary_source_url: https://policies.ncdhhs.gov/wp-content/uploads/abd-toc-1-1.pdf
+  target_manifest: manifests/us-nc-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/
+  index_document_count: 996
+  taken_count: 149
+  index_families:
+    abd_manual_section_pdf:
+      found: 79
+      taken: 79
+    fcm_manual_section_pdf:
+      found: 69
+      taken: 69
+    basic_manual_section_pdf:
+      found: 1
+      taken: 1
+    abd_administrative_letters:
+      found: 117
+      taken: 0
+    abd_change_notices:
+      found: 126
+      taken: 0
+    fcm_administrative_letters:
+      found: 118
+      taken: 0
+    fcm_change_notices:
+      found: 81
+      taken: 0
+    dhb_forms:
+      found: 400
+      taken: 0
+    eligibility_information_system:
+      found: 5
+      taken: 0
+  notes: 'Batch 1 (2026-09-10): 149 manual documents taken from the publisher''s own index (996 documents inventoried across
+    9 families; 149 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-nd
+  name: North Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_pages
+  primary_source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_05.htm
+  target_manifest: manifests/us-nd-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-nd
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+  index_document_count: 195
+  taken_count: 189
+  index_families:
+    policy_topic_html:
+      found: 189
+      taken: 189
+    site_page_html:
+      found: 6
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): 189 documents taken from the publisher''s own index (195 documents inventoried across 2 families;
+    189 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.
+    North Dakota Service Chapter 510-03 (ACA Medicaid) is already in the corpus under us-nd/manual/hhs/aca-medicaid (today''s
+    CHIP branch); this row adds Service Chapter 510-05 (Eligibility Factors, non-MAGI Medicaid) under us-nd/manual/hhs/medicaid
+    (no path collision).'
+- jurisdiction: us-ne
+  name: Nebraska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_pdf_nac_chapters
+  primary_source_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+  index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+  index_document_count: null
+  taken_count: 0
+  notes: 'Batch 5 (2026-09-11): blocked. Nebraska Title 477 NAC (Medicaid Eligibility) is served through the Secretary of
+    State rules site API (rules.nebraska.gov/api/chapter/GetByTitleId/232 for the chapter listing, /api/fileStorage/GetAsByteArray/chapter-pdfs/...
+    for the chapter PDFs), the same API the us-ne SNAP (475 NAC), TANF (468 NAC), SSI (469 NAC) and CHIP (477 NAC ch.19) scopes
+    used earlier today. Retried 2026-09-11 from the US network (plain request plus curl-cffi chrome120 browser impersonation,
+    20 s, REQUESTS_CA_BUNDLE set to the DigiCert bundle in data/certs): the host now answers HTTP 403 ''Access Denied / Forbidden''
+    (2,174-byte body, server Microsoft-Azure-Application-Gateway/v2) to every client for the chapter-listing API, the chapter
+    PDF API and the site root; the Title 477 Appendix host dhhs.ne.gov does not complete TCP (ConnectTimeout at 25 s). The
+    publisher began blocking between the earlier same-day scopes and this run; no workaround attempted, TLS verification never
+    disabled. Follow-on: retry Title 477 chapters 1-30 plus the 40 appendix PDFs when the SOS API answers again.'
+  target_manifest: manifests/us-ne-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    title_477_chapter_listing_sos:
+      found: 1
+      taken: 0
+    title_477_appendix_pdf:
+      found: 47
+      taken: 0
+- jurisdiction: us-nh
+  name: New Hampshire
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_pages
+  primary_source_url: https://www.dhhs.nh.gov/mam_htm/html/introduction_mam.htm
+  index_url: https://www.dhhs.nh.gov/mam_htm/newmam.htm
+  index_document_count: 601
+  taken_count: 601
+  notes: 'Batch 5 (2026-09-11): 601 documents taken from the publisher''s own index (601 documents inventoried across 1 families;
+    601 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+  target_manifest: manifests/us-nh-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    manual_section_html:
+      found: 601
+      taken: 601
+- jurisdiction: us-nj
+  name: New Jersey
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_njac_chapters
+  primary_source_url: https://www.nj.gov/humanservices/notices/documents/rules-and-regulations/NJAC 10_69 AFDC-RELATED MEDICAID.PDF
+  target_manifest: manifests/us-nj-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
+  index_document_count: 115
+  taken_count: 6
+  index_families:
+    medicaid_eligibility_chapter_pdf:
+      found: 6
+      taken: 6
+    other_title_10_chapter_pdf:
+      found: 109
+      taken: 0
+  notes: 'Batch 1 (2026-09-10): 6 manual documents taken from the publisher''s own index (115 documents inventoried across
+    2 families; 6 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-nm
+  name: New Mexico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_nmac_parts
+  primary_source_url: https://www.srca.nm.gov/parts/title08/08.291.0400.html
+  index_url: https://www.hca.nm.gov/lookingforinformation/medical-assistance-division-1/
+  index_document_count: 90
+  taken_count: 90
+  notes: 'Batch 4 (2026-09-10): 90 manual documents taken from the publisher''s own index (90 documents inventoried across
+    2 families; 90 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  target_manifest: manifests/us-nm-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    nmac_eligibility_part_8_2xx:
+      found: 90
+      taken: 90
+    nmac_other_part:
+      found: 0
+      taken: 0
+- jurisdiction: us-nv
+  name: Nevada
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Table%20of%20Contents.pdf
+  target_manifest: manifests/us-nv-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-nv
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.dss.nv.gov/programs/medical/medical-assistance-manual/
+  index_document_count: 105
+  taken_count: 33
+  index_families:
+    manual_chapter_pdf:
+      found: 23
+      taken: 23
+    table_of_contents_pdf:
+      found: 1
+      taken: 1
+    appendix_pdf:
+      found: 9
+      taken: 9
+    manual_transmittal_letter_pdf:
+      found: 72
+      taken: 0
+  notes: 'Batch 3 (2026-09-10): 33 manual documents taken from the publisher''s own index (105 documents inventoried across
+    4 families; 33 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-3.md.'
+- jurisdiction: us-ny
+  name: New York
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/mrg-intro.pdf
+  target_manifest: manifests/us-ny-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+  index_document_count: 22
+  taken_count: 8
+  index_families:
+    manual_chapter_pdf:
+      found: 8
+      taken: 8
+    full_manual_pdf:
+      found: 1
+      taken: 0
+    update_archive_pdf_or_html:
+      found: 13
+      taken: 0
+  notes: 'Batch 1 (2026-09-10): 8 manual documents taken from the publisher''s own index (22 documents inventoried across
+    3 families; 8 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-oh
+  name: Ohio
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_oac_rules
+  primary_source_url: https://codes.ohio.gov/ohio-administrative-code/rule-5160:1-1-01
+  target_manifest: manifests/us-oh-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://codes.ohio.gov/ohio-administrative-code/5160:1
+  index_document_count: 102
+  taken_count: 96
+  notes: 'Batch 4 (2026-09-10): 96 manual documents taken from the publisher''s own index (102 documents inventoried across
+    2 families; 96 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  index_families:
+    oac_rule_html:
+      found: 96
+      taken: 96
+    chapter_landing_page:
+      found: 6
+      taken: 0
+- jurisdiction: us-ok
+  name: Oklahoma
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_rule_sections
+  primary_source_url: https://oklahoma.gov/ohca/policies-and-rules/xpolicy/medical-assistance-for-adults-and-children-eligibility/general-provisions/purpose.html
+  target_manifest: manifests/us-ok-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ok
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://oklahoma.gov/ohca/policies-and-rules/xpolicy/medical-assistance-for-adults-and-children-eligibility.html
+  index_document_count: 396
+  taken_count: 350
+  index_families:
+    section_html:
+      found: 350
+      taken: 350
+    subchapter_landing_page:
+      found: 17
+      taken: 0
+    part_landing_page:
+      found: 29
+      taken: 0
+  notes: 'Batch 3 (2026-09-10): 350 manual documents taken from the publisher''s own index (396 documents inventoried across
+    3 families; 350 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-3.md.'
+- jurisdiction: us-or
+  name: Oregon
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_html_oar_rules
+  primary_source_url: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=1742
+  index_url: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=1742
+  index_document_count: 43
+  taken_count: 41
+  notes: 'Batch 5 (2026-09-11): done by pointer. Oregon''s Medicaid eligibility rules are OAR chapter 410 division 200 (Eligibility
+    for Health Systems Division Medical Programs), already in the corpus as us-or/regulation/chapter-410/division-200 (today''s
+    CHIP branch, version 2026-09-10-chip-state-eligibility-manual, 41 rules), extracted with the existing extract-oregon-admin-rules
+    adapter. Re-running that adapter for division 410-200 under a Medicaid version would reproduce the identical us-or/regulation/chapter-410/division-200/*
+    citation paths and collide with the CHIP scope, and the adapter also emits a shared container row at the bare us-or/regulation
+    root common to every Oregon regulation scope (TANF chapter 461, CHIP 410-200) that release coverage validation flags as
+    a cross-scope shared row. Not re-extracted (reviewer judgment); the division is the Medicaid eligibility rule set and
+    it is already served. The live OARD division lists 43 rule numbers; the CHIP extraction took 41 (the unwinding-period
+    rules 410-200-0505/0510/0520, transitional through 2025-02-28, are the delta and are a follow-on for the OARD adapter
+    owner).'
+  target_manifest: manifests/us-or-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    oar_410_200_rule_html:
+      found: 43
+      taken: 41
+- jurisdiction: us-pa
+  name: Pennsylvania
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_handbook_topics
+  primary_source_url: http://services.dpw.state.pa.us/oimpolicymanuals/ma/303_General_Information/303_Title.htm
+  target_manifest: manifests/us-pa-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-pa
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: http://services.dpw.state.pa.us/oimpolicymanuals/ma/index.htm
+  index_document_count: 384
+  taken_count: 380
+  index_families:
+    handbook_topic_html:
+      found: 380
+      taken: 380
+    forms_opsmemo_policy_clarification_catalog_html:
+      found: 4
+      taken: 0
+  notes: 'Batch 1 (2026-09-10): 380 manual documents taken from the publisher''s own index (384 documents inventoried across
+    2 families; 380 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-ri
+  name: Rhode Island
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_ricr_parts
+  primary_source_url: https://rules.sos.ri.gov/regulations/Part/210-10-00-1
+  target_manifest: manifests/us-ri-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://rules.sos.ri.gov/organizations/title/210
+  index_document_count: 35
+  taken_count: 34
+  index_families:
+    medicaid_rule_part_pdf:
+      found: 34
+      taken: 34
+    repealed_part:
+      found: 1
+      taken: 0
+    no_pdf_part:
+      found: 0
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): 34 documents taken from the publisher''s own index (35 documents inventoried across 3 families;
+    34 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-sc
+  name: South Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_docx_manual_sections
+  primary_source_url: https://img1.scdhhs.gov/mppm/SCMPPM/Section_100.docx
+  index_url: https://www.scdhhs.gov/providers/manuals/sc-medicaid-policy-and-procedures-manual
+  index_document_count: 28
+  taken_count: 18
+  notes: 'Batch 4 (2026-09-10): 18 manual documents taken from the publisher''s own index (28 documents inventoried across
+    3 families; 18 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  target_manifest: manifests/us-sc-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    mppm_section_or_chapter_docx:
+      found: 18
+      taken: 18
+    miap_manual_docx:
+      found: 1
+      taken: 0
+    staff_training_or_forms_link:
+      found: 9
+      taken: 0
+- jurisdiction: us-sd
+  name: South Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_json_arsd_chapters
+  primary_source_url: https://sdlegislature.gov/api/Rules/67:46:01
+  target_manifest: manifests/us-sd-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://sdlegislature.gov/Rules/Administrative/67:46
+  index_document_count: 15
+  taken_count: 14
+  index_families:
+    medicaid_eligibility_chapter_json:
+      found: 14
+      taken: 14
+    nonmedicaid_chip_chapter:
+      found: 1
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): 14 documents taken from the publisher''s own index (15 documents inventoried across 2 families;
+    14 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-tn
+  name: Tennessee
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://www.tn.gov/content/dam/tn/tenncare/documents/ConfidentialityAndPrivacy.pdf
+  target_manifest: manifests/us-tn-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-tn
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.tn.gov/tenncare/policy-guidelines/eligibility-policy.html
+  index_document_count: 92
+  taken_count: 88
+  notes: 'Batch 4 (2026-09-10): 88 manual documents taken from the publisher''s own index (92 documents inventoried across
+    3 families; 88 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  index_families:
+    manual_chapter_pdf:
+      found: 88
+      taken: 88
+    consolidated_manual_pdf:
+      found: 1
+      taken: 0
+    manual_landing_page:
+      found: 3
+      taken: 0
+- jurisdiction: us-tx
+  name: Texas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_handbook_sections
+  primary_source_url: https://fhb.hhs.texas.gov/handbooks/medicaid-elderly-people-disabilities-handbook/a-1000-general-information
+  target_manifest: manifests/us-tx-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://fhb.hhs.texas.gov/handbooks/medicaid-elderly-people-disabilities-handbook
+  index_document_count: 1015
+  taken_count: 712
+  index_families:
+    mepd_chapter_landing_html:
+      found: 18
+      taken: 0
+    mepd_section_html:
+      found: 502
+      taken: 502
+    mepd_section_landing_html:
+      found: 72
+      taken: 0
+    mepd_appendix_html:
+      found: 53
+      taken: 53
+    mepd_appendix_landing_html:
+      found: 2
+      taken: 0
+    mepd_glossary_html:
+      found: 1
+      taken: 1
+    mepd_forms_notices_revisions_bulletins_pages:
+      found: 5
+      taken: 0
+    twh_part_landing_html:
+      found: 10
+      taken: 0
+    twh_part_a_section_html:
+      found: 156
+      taken: 156
+    twh_part_a_section_landing_html:
+      found: 26
+      taken: 0
+    twh_part-b_chapters_html:
+      found: 14
+      taken: 0
+    twh_part-c_chapters_html:
+      found: 14
+      taken: 0
+    twh_part-d_chapters_html:
+      found: 23
+      taken: 0
+    twh_part-e_chapters_html:
+      found: 24
+      taken: 0
+    twh_part-f_chapters_html:
+      found: 24
+      taken: 0
+    twh_part-m_chapters_html:
+      found: 24
+      taken: 0
+    twh_part-r_chapters_html:
+      found: 0
+      taken: 0
+    twh_part-w_chapters_html:
+      found: 24
+      taken: 0
+    twh_part-x_chapters_html:
+      found: 23
+      taken: 0
+  notes: 'Batch 1 (2026-09-10): 712 manual documents taken from the publisher''s own index (1015 documents inventoried across
+    19 families; 712 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-ut
+  name: Utah
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_topics
+  primary_source_url: https://oepmanuals.dhhs.utah.gov/Whats_New.htm
+  index_url: https://oepmanuals.dhhs.utah.gov/
+  index_document_count: 2446
+  taken_count: 639
+  notes: 'Batch 4 (2026-09-10): 639 manual documents taken from the publisher''s own index (2446 documents inventoried across
+    2 families; 639 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-4.md.'
+  target_manifest: manifests/us-ut-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_families:
+    manual_topic_html:
+      found: 639
+      taken: 639
+    obsolete_policy_topic_html:
+      found: 1807
+      taken: 0
+- jurisdiction: us-va
+  name: Virginia
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://www.dmas.virginia.gov/media/4824/m000-table-of-contents-7-2022.pdf
+  target_manifest: manifests/us-va-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  lead_counts:
+    needs_review: 1
+  candidate_sources:
+  - url: https://dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dmas.virginia.gov
+    jurisdiction_inferred: us-va
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/va/dmas/medicaid/lifc/in_effect.yaml
+    - policyengine-us#parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group1/additional.yaml
+    - policyengine-us#parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group1/main.yaml
+  notes: 'Batch 1 (2026-09-10): 21 manual documents taken from the publisher''s own index (22 documents inventoried across
+    2 families; 21 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+  index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+  index_document_count: 22
+  taken_count: 21
+  index_families:
+    manual_chapter_pdf:
+      found: 21
+      taken: 21
+    other_pdf:
+      found: 1
+      taken: 0
+- jurisdiction: us-vt
+  name: Vermont
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_rule_parts
+  primary_source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-1-General-Provisions-and-Definitions.pdf
+  target_manifest: manifests/us-vt-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+  index_document_count: 26
+  taken_count: 7
+  index_families:
+    hbee_eligibility_part_pdf:
+      found: 7
+      taken: 7
+    other_hbee_page_pdf:
+      found: 19
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): 7 documents taken from the publisher''s own index (26 documents inventoried across 2 families;
+    7 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-5.md.'
+- jurisdiction: us-wa
+  name: Washington
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_pages
+  primary_source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-help-others-apply-and-access-apple-health/address-confidentiality-program-acp-domestic-violence-victims
+  target_manifest: manifests/us-wa-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-wa
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.hca.wa.gov/health-care-services-supports/program-administration/apple-health-eligibility-manual
+  index_document_count: 212
+  taken_count: 202
+  index_families:
+    general_manual_page_html:
+      found: 63
+      taken: 63
+    non-magi_manual_page_html:
+      found: 46
+      taken: 46
+    magi_manual_page_html:
+      found: 16
+      taken: 16
+    ltss_manual_page_html:
+      found: 77
+      taken: 77
+    hub_landing_page_html:
+      found: 4
+      taken: 0
+    additional_tool_manual_page_html:
+      found: 2
+      taken: 0
+    additional_tool_other_page_or_form:
+      found: 4
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 202 manual documents taken from the publisher''s own index (212 documents inventoried across
+    7 families; 202 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-wi
+  name: Wisconsin
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_handbook_releases
+  primary_source_url: https://www.dhs.wisconsin.gov/publications/p10030-26-03.pdf
+  target_manifest: manifests/us-wi-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.dhs.wisconsin.gov/library/collection/p-10030
+  index_document_count: 50
+  taken_count: 2
+  index_families:
+    meh_current_release_pdf:
+      found: 1
+      taken: 1
+    meh_prior_release_pdf:
+      found: 24
+      taken: 0
+    badgercare-plus-handbook_current_release_pdf:
+      found: 1
+      taken: 1
+    badgercare-plus-handbook_prior_release_pdf:
+      found: 24
+      taken: 0
+  notes: 'Batch 2 (2026-09-10): 2 manual documents taken from the publisher''s own index (50 documents inventoried across
+    4 families; 2 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-wv
+  name: West Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_pdf_combined_manual
+  primary_source_url: https://bfa.wv.gov/income-maintenance-manual
+  target_manifest: manifests/us-wv-manuals.yaml
+  target_scope:
+    jurisdiction: us-wv
+    document_class: manual
+    version: 2026-07-21-wv-income-maintenance-manual
+  index_url: null
+  index_document_count: null
+  taken_count: 0
+  notes: 'Already in corpus: West Virginia BFA Income Maintenance Manual (manifests/us-wv-manuals.yaml, one integrated PDF
+    effective 2026-07-01, 2,276 page provisions, 923 of them mentioning Medicaid) carries the Medicaid eligibility chapters
+    alongside SNAP and WV WORKS. Pulled as the sixteenth state of batch 3, found covered; no further replacement was available
+    within the sixteen-state probe cap. Does not count toward the batch.'
+- jurisdiction: us-wy
+  name: Wyoming
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: official_html_manual_pages
+  primary_source_url: https://ecom.wyo.gov/
+  target_manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-wy
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://ecom.wyo.gov/
+  index_document_count: 124
+  taken_count: 0
+  index_families:
+    manual_policy_page_html:
+      found: 107
+      taken: 0
+    eligibility_table_html:
+      found: 17
+      taken: 0
+  notes: 'Batch 5 (2026-09-11): needs_review. Wyoming''s Medicaid eligibility manual is the WDH Eligibility Online Manual
+    (EOM) at ecom.wyo.gov, confirmed on the WDH Medicaid programs-and-eligibility page; the index was inventoried in full
+    (107 M-series policy pages plus 17 eligibility Tables; the Home/Welcome/What''s New/Fact Sheets pages are not policy).
+    The EOM is published on Google Sites, whose page body is span-and-div soup with generated class names; the official-documents
+    HTML extractor''s block-text model reduces each page to the site title (''Eligibility Online Manual'') rather than the
+    policy text, so the pages are not cleanly extractable through the generic path and no hollow provisions were kept. Reviewer
+    judgment: not a publisher block (the site answers HTTP 200) and not worth a one-state Google-Sites text adapter in this
+    batch; recorded needs_review with the index located and inventoried. Follow-on: a Google-Sites content adapter, or a WDH-provided
+    export, then take the 124 pages under us-wy/manual/wdh/medicaid.'

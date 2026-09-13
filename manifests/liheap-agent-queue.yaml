@@ -1,0 +1,1009 @@
+version: '2026-09-10'
+document_family: liheap_policy_sources
+program: LIHEAP
+queue_status: in_progress
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+  - sources
+  - inventory
+  - provisions
+  - coverage
+  forbidden_sources:
+  - secondary summaries
+  - State Options Reports
+  - benefitswiki
+  - policy manuals reposted by non-government sites
+  notes:
+  - Drafted 2026-09-10 for the ten board Year 1 programs (ballmer-proposal-2026 encoding-program-list.md).
+  - 'Lead list only: PolicyEngine-US citations extracted offline with the citing path preserved, classified by axiom_corpus.corpus.source_discovery.
+    Not corpus sources; every selected document must be re-fetched from the official publisher.'
+  - The lead list under-names agency manuals and state plans. Reviewers must add them from the official publisher before the
+    queue is agent_ready.
+  - 'policyengine-us 84253b6afafb (2026-08-17); lead file: policyengine-us-committed-program-references.jsonl'
+lead_list:
+  source: policyengine-us
+  commit: 84253b6afafbb1875c65f12e654c6535744728b7
+  committed_at: '2026-08-17T17:54:20-04:00'
+  reference_file: policyengine-us-committed-program-references.jsonl
+  classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
+status_counts:
+  needs_review: 1
+  agent_ready: 55
+states:
+- jurisdiction: us
+  name: Federal
+  queue_status: needs_review
+  source_kind: null
+  primary_source_url: null
+  target_manifest: manifests/us-liheap-sources.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: null
+    version: null
+  lead_counts:
+    ready_for_manifest: 1
+  candidate_sources:
+  - url: https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: regulation
+    host: acf.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/liheap/smi_limit.yaml
+  notes: Drafted from the lead list; a reviewer must confirm the primary official source, add agency manuals the lead list
+    does not cite, set source_kind and target_scope, then move queue_status to agent_ready.
+- jurisdiction: us-ak
+  name: Alaska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/AK_Plan_2026.pdf
+  target_manifest: manifests/us-ak-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-al
+  name: Alabama
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/AL_Plan_2026.pdf
+  target_manifest: manifests/us-al-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ar
+  name: Arkansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/AR_Plan_2026.pdf
+  target_manifest: manifests/us-ar-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ar
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2026/state-plans/AS_Plan_2026.pdf
+  target_manifest: manifests/us-as-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-as
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-az
+  name: Arizona
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/AZ_Plan_2026.pdf
+  target_manifest: manifests/us-az-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-az
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ca
+  name: California
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/CA_Plan_2026.pdf
+  target_manifest: manifests/us-ca-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-co
+  name: Colorado
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/CO_Plan_2026.pdf
+  target_manifest: manifests/us-co-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-co
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ct
+  name: Connecticut
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/CT_Plan_2026.pdf
+  target_manifest: manifests/us-ct-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-dc
+  name: District of Columbia
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/DC_Plan_2026.pdf
+  target_manifest: manifests/us-dc-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: policy
+    version: '2026-09-10'
+  lead_counts:
+    needs_review: 3
+  candidate_sources:
+  - url: https://doee.dc.gov/liheap
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: doee.dc.gov
+    jurisdiction_inferred: us-dc
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/states/dc/doee/liheap/dc_liheap_eligible.py
+  - url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DC%20DOEE%20-%20FY26%20LIHEAP%20Benefit%20Matrix.docx
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: doee.dc.gov
+    jurisdiction_inferred: us-dc
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/dc/doee/liheap/income_level_increment.yaml
+    - policyengine-us#parameters/gov/states/dc/doee/liheap/payment/electricity.yaml
+    - policyengine-us#parameters/gov/states/dc/doee/liheap/payment/gas.yaml
+  - url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DOEE%20FY24%20LIHEAP_REGULAR_Benefits_Table-Matrix.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: doee.dc.gov
+    jurisdiction_inferred: us-dc
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/dc/doee/liheap/income_level_increment.yaml
+    - policyengine-us#parameters/gov/states/dc/doee/liheap/payment/electricity.yaml
+    - policyengine-us#parameters/gov/states/dc/doee/liheap/payment/gas.yaml
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-de
+  name: Delaware
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/DE_Plan_2026.pdf
+  target_manifest: manifests/us-de-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-fl
+  name: Florida
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/FL_Plan_2026.pdf
+  target_manifest: manifests/us-fl-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ga
+  name: Georgia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/GA_Plan_2026.pdf
+  target_manifest: manifests/us-ga-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2026/state-plans/GU_Plan_2026.pdf
+  target_manifest: manifests/us-gu-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-gu
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-hi
+  name: Hawaii
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/HI_Plan_2026.pdf
+  target_manifest: manifests/us-hi-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ia
+  name: Iowa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/IA_Plan_2026.pdf
+  target_manifest: manifests/us-ia-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-id
+  name: Idaho
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/ID_Plan_2026.pdf
+  target_manifest: manifests/us-id-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-il
+  name: Illinois
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/IL_Plan_2026.pdf
+  target_manifest: manifests/us-il-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-il
+    document_class: policy
+    version: '2026-09-10'
+  lead_counts:
+    needs_review: 7
+  candidate_sources:
+  - url: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dceo.illinois.gov
+    jurisdiction_inferred: us-il
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/eligibility/fpg_limit.yaml
+    - policyengine-us#variables/gov/states/il/dceo/liheap/eligibility/il_liheap_eligible.py
+    - policyengine-us#variables/gov/states/il/dceo/liheap/eligibility/il_liheap_eligible_for_crisis_assistance.py
+  - url: https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dceo.illinois.gov
+    jurisdiction_inferred: us-il
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/eligibility/rent_rate.yaml
+  - url: https://dceo.illinois.gov/content/dam/soi/en/web/dceo/communityservices/utilitybillassistance/documents/py25-liheap-state-plan--submitted-detailed-model-plan-liheap-10.01.24.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dceo.illinois.gov
+    jurisdiction_inferred: us-il
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/crisis_amount/max.yaml
+  - url: https://liheapch.acf.gov/docs/2024/benefits-matricies/IL_BenefitMatrix_2024.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: liheapch.acf.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/income_bracket.yaml
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml
+  - url: https://liheapch.acf.gov/docs/2024/state-plans/IL_Plan_2024_rev1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: liheapch.acf.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/crisis_amount/max.yaml
+  - url: https://liheapch.acf.gov/docs/2025/benefits-matricies/IL_BenefitMatrix_2025.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: liheapch.acf.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/nat_gas.yaml
+  - url: https://liheapch.acf.gov/docs/2026/benefits-matricies/IL_BenefitMatrix_Heat-Cool_2026.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: liheapch.acf.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml
+    - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/nat_gas.yaml
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-in
+  name: Indiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/IN_Plan_2026.pdf
+  target_manifest: manifests/us-in-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-in
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ks
+  name: Kansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf
+  target_manifest: manifests/us-ks-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ky
+  name: Kentucky
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/KY_Plan_2026.pdf
+  target_manifest: manifests/us-ky-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-la
+  name: Louisiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/LA_Plan_2026.pdf
+  target_manifest: manifests/us-la-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ma
+  name: Massachusetts
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MA_Plan_2026.pdf
+  target_manifest: manifests/us-ma-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: policy
+    version: '2026-09-10'
+  lead_counts:
+    needs_review: 6
+    excluded_secondary: 1
+  candidate_sources:
+  - url: https://commteam.org/wp-content/uploads/2024/03/FY-2024-LIHEAP-Income-Eligibility-and-Benefit-Chart_Incomes-March-2024-Increase.pdf
+    source_status: unknown
+    disposition: needs_review
+    document_class: other
+    host: commteam.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/benefit_level.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml
+  - url: https://liheapch.acf.gov/tables/subsidize.htm
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: liheapch.acf.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/eligibility/rent_threshold_subsidized_housing.yaml
+    - policyengine-us#variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_eligible.py
+    - policyengine-us#variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_eligible_subsidized_housing.py
+  - url: https://mass.gov/doc/fy-2023-liheap-income-eligibility-and-benefit-level-chart-october-2022/download
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: mass.gov
+    jurisdiction_inferred: us-ma
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/benefit_level.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml
+  - url: https://mass.gov/doc/fy-2025-heap-income-eligibility-benefit-chart-may-8-2025/download
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: mass.gov
+    jurisdiction_inferred: us-ma
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/benefit_level.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml
+  - url: https://mass.gov/doc/fy2025-heap-state-plan-draft/download
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: mass.gov
+    jurisdiction_inferred: us-ma
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/eligibility/rent_threshold_subsidized_housing.yaml
+  - url: https://mass.gov/info-details/learn-about-home-energy-assistance-heap
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: mass.gov
+    jurisdiction_inferred: us-ma
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/eligibility/prior_year_cost_threshold.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/standard/amount/non_subsidized.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/standard/amount/subsidized.yaml
+  - url: https://masslegalservices.org/system/files/blog/FY_2022_LIHEAP_Income_Eligibility_and_Benefit_Chart_APRIL_2022_UTILITY_Increase.pdf
+    source_status: analytical_or_report
+    disposition: excluded_secondary
+    document_class: other
+    host: masslegalservices.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/benefit_level.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml
+    - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-md
+  name: Maryland
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MD_Plan_2026.pdf
+  target_manifest: manifests/us-md-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-md
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-me
+  name: Maine
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/ME_Plan_2026.pdf
+  target_manifest: manifests/us-me-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-mi
+  name: Michigan
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MI_Plan_2026.pdf
+  target_manifest: manifests/us-mi-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-mi
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-mn
+  name: Minnesota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MN_Plan_2026.pdf
+  target_manifest: manifests/us-mn-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-mo
+  name: Missouri
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MO_Plan_2026.pdf
+  target_manifest: manifests/us-mo-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2026/state-plans/MP_Plan_2026.pdf
+  target_manifest: manifests/us-mp-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-mp
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ms
+  name: Mississippi
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MS_Plan_2026.pdf
+  target_manifest: manifests/us-ms-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-mt
+  name: Montana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/MT_Plan_2026.pdf
+  target_manifest: manifests/us-mt-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-mt
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-nc
+  name: North Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NC_Plan_2026.pdf
+  target_manifest: manifests/us-nc-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-nd
+  name: North Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/ND_Plan_2026.pdf
+  target_manifest: manifests/us-nd-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-nd
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ne
+  name: Nebraska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NE_Plan_2026.pdf
+  target_manifest: manifests/us-ne-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-nh
+  name: New Hampshire
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NH_Plan_2026.pdf
+  target_manifest: manifests/us-nh-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-nj
+  name: New Jersey
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NJ_Plan_2026.pdf
+  target_manifest: manifests/us-nj-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-nm
+  name: New Mexico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NM_Plan_2026.pdf
+  target_manifest: manifests/us-nm-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-nv
+  name: Nevada
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NV_Plan_2026.pdf
+  target_manifest: manifests/us-nv-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-nv
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ny
+  name: New York
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/NY_Plan_2026.pdf
+  target_manifest: manifests/us-ny-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-oh
+  name: Ohio
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/OH_Plan_2026.pdf
+  target_manifest: manifests/us-oh-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ok
+  name: Oklahoma
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/OK_Plan_2026.pdf
+  target_manifest: manifests/us-ok-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ok
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-or
+  name: Oregon
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/OR_Plan_2026.pdf
+  target_manifest: manifests/us-or-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-pa
+  name: Pennsylvania
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/PA_Plan_2026.pdf
+  target_manifest: manifests/us-pa-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-pa
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/sites/default/files/webfiles/docs/2026/state-plans/PR_Plan_2026.pdf
+  target_manifest: manifests/us-pr-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-pr
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ri
+  name: Rhode Island
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/RI_Plan_2026.pdf
+  target_manifest: manifests/us-ri-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-sc
+  name: South Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/SC_Plan_2026.pdf
+  target_manifest: manifests/us-sc-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-sd
+  name: South Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/SD_Plan_2026.pdf
+  target_manifest: manifests/us-sd-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-tn
+  name: Tennessee
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/TN_Plan_2026.pdf
+  target_manifest: manifests/us-tn-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-tn
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-tx
+  name: Texas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/TX_Plan_2026.pdf
+  target_manifest: manifests/us-tx-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-ut
+  name: Utah
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/UT_Plan_2026.pdf
+  target_manifest: manifests/us-ut-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-va
+  name: Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/VA_Plan_2026.pdf
+  target_manifest: manifests/us-va-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-vt
+  name: Vermont
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/VT_Plan_2026.pdf
+  target_manifest: manifests/us-vt-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-wa
+  name: Washington
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/WA_Plan_2026.pdf
+  target_manifest: manifests/us-wa-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-wa
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-wi
+  name: Wisconsin
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/WI_Plan_2026.pdf
+  target_manifest: manifests/us-wi-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-wv
+  name: West Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/WV_Plan_2026.pdf
+  target_manifest: manifests/us-wv-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-wv
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-wy
+  name: Wyoming
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://liheapch.acf.gov/docs/2026/state-plans/WY_Plan_2026.pdf
+  target_manifest: manifests/us-wy-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-wy
+    document_class: policy
+    version: '2026-09-10'
+  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
+    publisher's index; agency policy manuals listed there are a separate, later document family.

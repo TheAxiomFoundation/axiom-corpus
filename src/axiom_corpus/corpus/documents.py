@@ -1368,6 +1368,11 @@ def _extract_labeled_pdf_section_blocks(
 def _extract_docx_blocks(
     content: bytes, *, extraction: dict[str, Any] | None
 ) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "styled_labeled_sections":
+        return _extract_styled_labeled_docx_section_blocks(
+            content,
+            extraction=extraction or {},
+        )
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_docx_section_blocks(
             content,
@@ -1804,6 +1809,154 @@ def _extract_labeled_docx_section_blocks(
             current_body.append(line)
     flush()
     return tuple(sections)
+
+
+_STYLED_LABELED_CONTINUATION_SUFFIX = r"\s*\((?:Continued|Cont\.)\)\s*$"
+
+
+def _extract_styled_labeled_docx_section_blocks(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[_DocumentBlock, ...]:
+    """Extract DOCX sections that start at Word heading-styled paragraphs.
+
+    Only paragraphs carrying a Word heading style (``Heading1``, ``Title`` ...)
+    are candidate section starts unless ``heading_paragraphs_only`` is false,
+    in which case any body paragraph (never a table cell) is a candidate; they
+    must match ``section_heading_pattern`` (named groups ``label`` and
+    ``heading``) and, when ``heading_text_pattern`` is set, the heading text
+    must match it too (for example an all-caps requirement). Every other
+    paragraph and every table row belongs to the body of the open section, so
+    section numbers quoted in body text or relocation tables never start a new
+    section. A heading whose
+    label was already seen (page-break restatements such as ``44-207 INCOME
+    ELIGIBILITY (Continued)``) is merged into the existing section, keeping
+    the first heading; ``heading_continuation_suffix_pattern`` (default
+    ``(Continued)``/``(Cont.)``) is stripped before matching. ``drop_lines``,
+    ``drop_line_patterns``, ``start_after_pattern`` and ``stop_text_pattern``
+    behave as in ``labeled_sections``.
+    """
+    heading_pattern = extraction.get("section_heading_pattern")
+    if heading_pattern is None:
+        raise ValueError(
+            "styled_labeled_sections DOCX extraction requires section_heading_pattern"
+        )
+    section_heading_re = re.compile(str(heading_pattern))
+    label_template = extraction.get("section_label_template")
+    label_replacements = _section_label_replacements(extraction)
+    continuation_re = re.compile(
+        str(
+            extraction.get(
+                "heading_continuation_suffix_pattern",
+                _STYLED_LABELED_CONTINUATION_SUFFIX,
+            )
+        )
+    )
+    start_after_pattern = extraction.get("start_after_pattern")
+    start_after_re = (
+        re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
+    )
+    stop_pattern = extraction.get("stop_text_pattern")
+    stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
+    drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
+    drop_line_patterns = tuple(
+        re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
+    )
+    merge_repeated = bool(extraction.get("merge_repeated_labels", True))
+    heading_paragraphs_only = bool(extraction.get("heading_paragraphs_only", True))
+    heading_text_pattern = extraction.get("heading_text_pattern")
+    heading_text_re = (
+        re.compile(str(heading_text_pattern)) if heading_text_pattern is not None else None
+    )
+
+    with zipfile.ZipFile(BytesIO(content)) as document:
+        xml = document.read("word/document.xml")
+    root = ElementTree.fromstring(xml)
+    body = root.find("w:body", _WORD_NS)
+    if body is None:
+        return ()
+
+    sections: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    current_label: str | None = None
+    started = start_after_re is None
+    stopped = False
+
+    def keep_line(line: str) -> bool:
+        return not _drop_pdf_line(line, drop_lines, drop_line_patterns)
+
+    for child in body:
+        if stopped:
+            break
+        if child.tag == _word_tag("p"):
+            text = _docx_paragraph_text(child)
+            if not text:
+                continue
+            if not started:
+                if start_after_re is not None and start_after_re.search(text):
+                    started = True
+                continue
+            if stop_re is not None and stop_re.search(text):
+                stopped = True
+                break
+            if heading_paragraphs_only is False or _docx_paragraph_is_heading(child):
+                heading_line = continuation_re.sub("", text).strip()
+                match = _match_labeled_pdf_section(
+                    heading_line,
+                    section_heading_re,
+                    None,
+                    label_template=str(label_template) if label_template is not None else None,
+                    label_replacements=label_replacements,
+                )
+                if (
+                    match is not None
+                    and heading_text_re is not None
+                    and not heading_text_re.match(match[1])
+                ):
+                    match = None
+                if match is not None:
+                    label, heading_text = match
+                    if label in sections:
+                        if not merge_repeated:
+                            raise ValueError(
+                                f"styled_labeled_sections: repeated section label {label!r}"
+                            )
+                        sections[label]["occurrences"] += 1
+                    else:
+                        sections[label] = {
+                            "heading": f"{label} {heading_text}".strip(),
+                            "body": [],
+                            "occurrences": 1,
+                        }
+                        order.append(label)
+                    current_label = label
+                    continue
+            if current_label is not None and keep_line(text):
+                sections[current_label]["body"].append(text)
+        elif child.tag == _word_tag("tbl"):
+            if not started or current_label is None:
+                continue
+            table_text = _docx_table_text(child)
+            rows = [row for row in table_text.splitlines() if row and keep_line(row)]
+            if rows:
+                sections[current_label]["body"].append("\n".join(rows))
+
+    blocks: list[_DocumentBlock] = []
+    for label in order:
+        section = sections[label]
+        blocks.append(
+            _DocumentBlock(
+                kind="section",
+                ordinal=len(blocks) + 1,
+                heading=section["heading"],
+                body=_normalize_text("\n\n".join(section["body"])),
+                metadata={
+                    "citation_suffix": label,
+                    "section_label": label,
+                    "heading_occurrences": section["occurrences"],
+                },
+            )
+        )
+    return tuple(blocks)
 
 
 def _docx_lines(content: bytes) -> tuple[str, ...]:

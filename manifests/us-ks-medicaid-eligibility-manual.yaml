@@ -1,0 +1,2494 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-ks-medicaid-kfmam-01000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 01000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=01000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-01000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '01000'
+- source_id: us-ks-medicaid-kfmam-02000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 02000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=02000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-02000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '02000'
+- source_id: us-ks-medicaid-kfmam-03000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 03000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=03000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-03000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '03000'
+- source_id: us-ks-medicaid-kfmam-04000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 04000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=04000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-04000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '04000'
+- source_id: us-ks-medicaid-kfmam-05000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 05000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=05000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-05000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '05000'
+- source_id: us-ks-medicaid-kfmam-06000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 06000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=06000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-06000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '06000'
+- source_id: us-ks-medicaid-kfmam-07000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 07000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=07000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-07000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: '07000'
+- source_id: us-ks-medicaid-kfmam-08000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 08000'
+  source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=08000
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/kfmam-08000
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - .left-content-small
+    - '#left-content-small'
+    - .search
+    - '#search'
+    - .breadcrumbs
+    - '#breadcrumbs'
+    - .menu
+    - '#menu'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_chapter_html
+    program: MEDICAID
+    manual: Kansas Family Medical Assistance Manual (KFMAM)
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    chapter: 08000
+- source_id: us-ks-medicaid-mkeesm-07-2026-welcome
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 07-2026 Welcome'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/07-2026-Welcome.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-07-2026-welcome
+  extraction: &id001
+    html_content_selector: body
+    html_drop_selectors:
+    - '#rh-topic-header'
+    - '#rh-topic-header-shadow'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1100-1110-program-descriptions
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1110 Program Descriptions'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1100/1110-Program-Descriptions.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1100-1110-program-descriptions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1100-1120-general-information
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1120 General Information'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1100/1120-General-Information.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1100-1120-general-information
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1200-1211-rights-of-the-applicant-recipient
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1211 Rights of the Applicant/Recipient'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1200/1211-Rights-of-the-Applicant-Recipient.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1200-1211-rights-of-the-applicant-recipient
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1200-1212-responsibilities-of-applicant-recipient
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1212 Responsibilities
+    of Applicant/Recipient'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1200/1212-Responsibilities-of-Applicant-Recipient.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1200-1212-responsibilities-of-applicant-recipient
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1200-1213-responsibilities-of-the-agency
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1213 Responsibilities
+    of the Agency'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1200/1213-Responsibilities-of-the-Agency.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1200-1213-responsibilities-of-the-agency
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1200-1220-availability-and-confidentiality-of-information
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1220 Availability and
+    Confidentiality of Information'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1200/1220-Availability-and-Confidentiality-of-Information.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1200-1220-availability-and-confidentiality-of-information
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1300-1310-prudent-person
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1310 Prudent Person'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1300/1310-Prudent-Person.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1300-1310-prudent-person
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1300-1320-simplified-eligibility-and-verification
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1320 Simplified Eligibility
+    and Verification'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1300/1320-Simplified-Eligibility-and-Verification.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1300-1320-simplified-eligibility-and-verification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1300-1322-verification-provisions
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1322 Verification Provisions'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1300/1322-Verification-Provisions.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1300-1322-verification-provisions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1300-1323-information-known-to-the-agency
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1323 Information Known
+    to the Agency'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1300/1323-Information-Known-to-the-Agency.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1300-1323-information-known-to-the-agency
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1400-1410-application-process
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1410 Application Process'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1400/1410-Application-Process.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1400-1410-application-process
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1400-1414-disposition-of-application
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1414 Disposition of Application'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1400/1414-Disposition-of-Application.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1400-1414-disposition-of-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1400-1420-case-disposition
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1420 Case Disposition'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1400/1420-Case-Disposition.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1400-1420-case-disposition
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1400-1430-written-change-of-case-action
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1430 Written Change of
+    Case Action'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1400/1430-Written-Change-of-Case-Action.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1400-1430-written-change-of-case-action
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1600-1610-request-for-a-hearing
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1610 Request for a Hearing'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1600/1610-Request-for-a-Hearing.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1600-1610-request-for-a-hearing
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1600-1620-complaint-procedures
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1620 Complaint Procedures'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1600/1620-Complaint-Procedures.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1600-1620-complaint-procedures
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1600-1630-civil-rights-complaints
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1630 Civil Rights Complaints'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1600/1630-Civil-Rights-Complaints.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1600-1630-civil-rights-complaints
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1700-1710-case-records
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1710 Case Records'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1700/1710-Case-Records.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1700-1710-case-records
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1700-1711-disposition-of-obsolete-case-record-material
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1711 Disposition of Obsolete
+    Case Record Material'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1700/1711-Disposition-of-Obsolete-Case-Record-Material.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1700-1711-disposition-of-obsolete-case-record-material
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1700-1720-general-information-related-to-other-programs
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1720 General Information
+    Related to Other Programs'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1700/1720-General-Information-Related-to-Other-Programs.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1700-1720-general-information-related-to-other-programs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1700-1725-estate-recovery-program
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1725 Estate Recovery
+    Program'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1700/1725-Estate-Recovery-Program.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1700-1725-estate-recovery-program
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1700-1731-voter-registration
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1731 Voter Registration'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1700/1731-Voter-Registration.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1700-1731-voter-registration
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-1000-1700-1732-quality-assurance
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 1732 Quality Assurance'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/1000/1700/1732-Quality-Assurance.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-1000-1700-1732-quality-assurance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2000-general-eligibility-requirements
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2000 General Eligibility
+    Requirements'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2000-General-Eligibility-Requirements.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2000-general-eligibility-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2110-act-in-own-behalf
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2110 Act in Own Behalf'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2110-Act-in-Own-Behalf.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2110-act-in-own-behalf
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2111-adults
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2111 Adults'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2111-Adults.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2111-adults
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2112-minors
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2112 Minors'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2112-Minors.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2112-minors
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2120-cooperation
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2120 Cooperation'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2120-Cooperation.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2120-cooperation
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2130-social-security-numbers
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2130 Social Security
+    Numbers'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2130-Social-Security-Numbers.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2130-social-security-numbers
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2140-citizenship-and-alien-status
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2140 Citizenship and
+    Alien Status'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2140-Citizenship-and-Alien-Status.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2140-citizenship-and-alien-status
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2144-victims-of-trafficking
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2144 Victims of Trafficking'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2144-Victims-of-Trafficking.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2144-victims-of-trafficking
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2145-us-citizenship-and-identity
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2145 U.S. Citizenship
+    and Identity'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2145-US-Citizenship-and-Identity.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2145-us-citizenship-and-identity
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2146-documentation-of-legal-status
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2146 Documentation of
+    Legal Status'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2146-Documentation-of-Legal-Status.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2146-documentation-of-legal-status
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2150-residence
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2150 Residence'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2150-Residence.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2150-residence
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2168-voluntary-child-support-referral
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2168 Voluntary Child
+    Support Referral'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2168-Voluntary-Child-Support-Referral.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2168-voluntary-child-support-referral
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2100-2181-not-receiving-ssi
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2181 Not Receiving SSI'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2100/2181_Not_Receiving_SSI.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2100-2181-not-receiving-ssi
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2610-general-program-information
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2610 General Program
+    Information'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2610-General-Program-Information.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2610-general-program-information
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2630-ssi-recipients
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2630 SSI Recipients (SI)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2630-SSI-Recipients.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2630-ssi-recipients
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2640-medikan
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2640 MediKan'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2640-MediKan.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2640-medikan
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2650-continuous-eligibility-for-medicaid-children
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2650 Continuous Eligibility
+    for Medicaid Children'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2650-Continuous-Eligibility-for-Medicaid-Children.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2650-continuous-eligibility-for-medicaid-children
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2660-medical-only-coverage-related-to-the-ssi-program
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2660 Medical Only Coverage
+    Related to the SSI Program'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2660-Medical-Only-Coverage-Related-to-the-SSI-Program.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2660-medical-only-coverage-related-to-the-ssi-program
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2662-related-to-disability-including-blindness
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2662 Related to Disability,
+    Including Blindness'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2662-Related-to-Disability-Including-Blindness.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2662-related-to-disability-including-blindness
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2663-presumptive-medicaid-disability
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2663 Presumptive Medicaid
+    Disability (PMD)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2663-Presumptive-Medicaid-Disability.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2663-presumptive-medicaid-disability
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2664-working-healthy
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2664 Working Healthy
+    (WH)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2664-Working-Healthy.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2664-working-healthy
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2665-working-healthy-medically-improved
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2665 Working Healthy
+    Medically Improved'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2665-Working-Healthy-Medically-Improved.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2665-working-healthy-medically-improved
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2666-child-in-an-institution
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2666 Child in an Institution'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2666-Child-in-an-Institution.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2666-child-in-an-institution
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2670-restricted-coverage-for-medicare-beneficiaries
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2670 Restricted Coverage
+    for Medicare Beneficiaries (QMB/LMB/QWD)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2670-Restricted-Coverage-for-Medicare-Beneficiaries.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2670-restricted-coverage-for-medicare-beneficiaries
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2680-protected-medical-groups
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2680 Protected Medical
+    Groups (Pickle Amendment, Early/Disabled Widows and Widowers, etc.)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2680-Protected-Medical-Groups.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2680-protected-medical-groups
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2600-2690-other-protected-groups
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2690 Other Protected
+    Groups'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2600/2690-Other-Protected-Groups.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2600-2690-other-protected-groups
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2900-2910-third-party-resources
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2910 Third-Party Resources'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2900/2910-Third-Party-Resources.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2900-2910-third-party-resources
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2900-2911-medicare-and-medicare-buy-in
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2911 Medicare and Medicare
+    Buy-In'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2900/2911-Medicare-and-Medicare-Buy-In.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2900-2911-medicare-and-medicare-buy-in
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2900-2912-health-insurance-premium-payment-system
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2912 Health Insurance
+    Premium Payment System (HIPPS)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2900/2912-Health-Insurance-Premium-Payment-System.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2900-2912-health-insurance-premium-payment-system
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2900-2920-certificates-of-creditable-coverage
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2920 Certificates of
+    Creditable Coverage'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2900/2920-Certificates-of-Creditable-Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2900-2920-certificates-of-creditable-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-2000-2900-2930-notice-of-privacy-practice
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 2930 Notice of Privacy
+    Practice'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/2000/2900/2930-Notice-of-Privacy-Practice.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-2000-2900-2930-notice-of-privacy-practice
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-3000-3000-reserved
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 3000 Reserved'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/3000/3000-Reserved.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-3000-3000-reserved
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-4000-4310-assistance-planning
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 4310 Assistance Planning'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/4000/4310-Assistance-Planning.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-4000-4310-assistance-planning
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5000-resources
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5000 Resources'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5000-Resources.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5000-resources
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5200-general-guidelines
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5200 General Guidelines'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5200-General-Guidelines.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5200-general-guidelines
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5300-real-property
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5300 Real Property'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5300-Real-Property.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5300-real-property
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5400-personal-property
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5400 Personal Property'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5400-Personal-Property.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5400-personal-property
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5500-vehicle
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5500 Vehicle'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5500-Vehicle.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5500-vehicle
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5600-trust-funds-and-annuities
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5600 Trust Funds and
+    Annuities'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5600-Trust-Funds-and-Annuities.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5600-trust-funds-and-annuities
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5700-5720-transfer-of-property
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5720 Transfer of Property'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5700/5720-Transfer-of-Property.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5700-5720-transfer-of-property
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5700-5721-exempt-transfers
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5721 Exempt Transfers'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5700/5721-Exempt-Transfers.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5700-5721-exempt-transfers
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5700-5722-transfers-of-specific-resources
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5722 Transfers of Specific
+    Resources'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5700/5722-Transfers-of-Specific-Resources.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5700-5722-transfers-of-specific-resources
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5700-5723-transfer-determination
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5723 Transfer Determination'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5700/5723-Transfer-Determination.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5700-5723-transfer-determination
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5700-5724-transfer-of-property-penalty
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5724 Transfer of Property
+    Penalty'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5700/5724-Transfer-of-Property-Penalty.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5700-5724-transfer-of-property-penalty
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-5000-5700-5725-hardship
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 5725 Hardship'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/5000/5700/5725-Hardship.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-5000-5700-5725-hardship
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-6000-6000-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 6000 Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/6000/6000-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-6000-6000-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-6000-6100-general-guidelines
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 6100 General Guidelines'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/6000/6100-General-Guidelines.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-6000-6100-general-guidelines
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-6000-6200-unearned-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 6200 Unearned Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/6000/6200-Unearned-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-6000-6200-unearned-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-6000-6300-earned-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 6300 Earned Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/6000/6300-Earned-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-6000-6300-earned-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-6000-6400-exempt-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 6400 Exempt Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/6000/6400-Exempt-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-6000-6400-exempt-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-6000-6500-treatment-of-income-and-deductions
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 6500 Treatment of Income
+    and Deductions'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/6000/6500-Treatment-of-Income-and-Deductions.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-6000-6500-treatment-of-income-and-deductions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-7000-7100-budgeting-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 7100 Budgeting Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/7000/7100-Budgeting-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-7000-7100-budgeting-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-7000-7200-deductions-from-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 7200 Deductions from
+    Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/7000/7200-Deductions-from-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-7000-7200-deductions-from-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-7000-7300-establishing-eligibility-periods
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 7300 Establishing Eligibility
+    Periods'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/7000/7300-Establishing-Eligibility-Periods.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-7000-7300-establishing-eligibility-periods
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-7000-7400-standards-for-budgetary-requirements
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 7400 Standards for Budgetary
+    Requirements'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/7000/7400-Standards-for-Budgetary-Requirements.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-7000-7400-standards-for-budgetary-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-7000-7500-determination-of-financial-eligibility
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 7500 Determination of
+    Financial Eligibility'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/7000/7500-Determination-of-Financial-Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-7000-7500-determination-of-financial-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8110-types-of-institutional-arrangements-and-care
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8110 Types of Institutional
+    Arrangements and Care'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8110-Types-of-Institutional-Arrangements-and-Care.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8110-types-of-institutional-arrangements-and-care
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8120-assistance-planning
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8120 Assistance Planning'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8120-Assistance-Planning.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8120-assistance-planning
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8130-establishing-base-period
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8130 Establishing Base
+    Period'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8130-Establishing-Base-Period.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8130-establishing-base-period
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8140-treatment-of-resources-and-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8140 Treatment of Resources
+    and Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8140-Treatment-of-Resources-and-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8140-treatment-of-resources-and-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8150-determination-of-countable-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8150 Determination of
+    Countable Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8150-Determination-of-Countable-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8150-determination-of-countable-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8160-income-standards
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8160 Income Standards'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8160-Income-Standards.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8160-income-standards
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8170-financial-eligibility
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8170 Financial Eligibility'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8170-Financial-Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8170-financial-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8100-8180-special-topics-related-to-long-term-care
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8180 Special Topics Related
+    to Long Term Care'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8100/8180-Special-Topics-Related-to-Long-Term-Care.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8100-8180-special-topics-related-to-long-term-care
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8200-hcbs
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8200 HCBS'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8200-HCBS.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8200-hcbs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8210-description-of-waiver-programs
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8210 Description of Waiver
+    Programs'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8210-Description-of-Waiver-Programs.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8210-description-of-waiver-programs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8220-assistance-planning
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8220 Assistance Planning'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8220-Assistance-Planning.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8220-assistance-planning
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8230-establishing-base-periods
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8230 Establishing Base
+    Periods'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8230-Establishing-Base-Periods.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8230-establishing-base-periods
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8240-treatment-of-resources-and-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8240 Treatment of Resources
+    and Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8240-Treatment-of-Resources-and-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8240-treatment-of-resources-and-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8250-determination-of-countable-income
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8250 Determination of
+    Countable Income'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8250-Determination-of-Countable-Income.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8250-determination-of-countable-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8260-income-standards
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8260 Income Standards'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8260-Income-Standards.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8260-income-standards
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8200-8270-financial-eligibility
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8270 Financial Eligibility'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8200/8270-Financial-Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8200-8270-financial-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8300-8300-pace
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8300 PACE'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8300/8300-PACE.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8300-8300-pace
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8300-8310-general-eligibility
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8310 General Eligibility'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8300/8310-General-Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8300-8310-general-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8300-8320-financial-eligibility
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8320 Financial Eligibility'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8300/8320-Financial-Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8300-8320-financial-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8300-8330-effective-date-of-coverage
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8330 Effective Date of
+    Coverage'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8300/8330-Effective-Date-of-Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8300-8330-effective-date-of-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8300-8340-changes-in-eligibility
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8340 Changes in Eligibility'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8300/8340-Changes-in-Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8300-8340-changes-in-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8300-8350-processing-deadlines
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8350 Processing Deadlines'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8300/8350-Processing-Deadlines.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8300-8350-processing-deadlines
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-8000-8400-work
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 8400 Work Opportunities
+    Reward Kansans (WORK)'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/8000/8400-WORK.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-8000-8400-work
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-9000-9100-household-responsibility-to-report-changes
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 9100 Household Responsibility
+    to Report Changes'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/9000/9100-Household-Responsibility-to-Report-Changes.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-9000-9100-household-responsibility-to-report-changes
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-9000-9200-reserved
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 9200 Reserved'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/9000/9200-Reserved.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-9000-9200-reserved
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-9000-9300-reviews
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 9300 Reviews'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/9000/9300-Reviews.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-9000-9300-reviews
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-10000-10000-reserved
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 10000 Reserved'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/10000/10000-Reserved.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-10000-10000-reserved
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-11000-11000-incorrect-coverage
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 11000 Incorrect Coverage'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/11000/11000-Incorrect-Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-11000-11000-incorrect-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual
+- source_id: us-ks-medicaid-mkeesm-11000-11200-determination-of-fraud
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition: 11200 Determination of
+    Fraud'
+  source_url: https://khap.kdhe.ks.gov/KEESM/July_2026_Output/11000/11200-Determination-of-Fraud.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-ks/manual/kdhe/medicaid/mkeesm-11000-11200-determination-of-fraud
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Kansas Medical Kansas Economic and Employment Services Manual (MKEESM), July 2026 edition
+    manual_index_url: https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    source_discovery_group: us-ks/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.kancare.ks.gov/data-policy/policy/eligibility/manuals
+    edition: July 2026 MKEESM Manual

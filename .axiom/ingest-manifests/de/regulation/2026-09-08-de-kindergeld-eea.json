@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-08-de-kindergeld-eea.json",
+      "sha256": "63c322e6f98d2982b326a6fd36f6e61dfb5e5a8dc0be204d029a83f4faffe298"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-08-de-kindergeld-eea.json",
+      "sha256": "c3bd7372757fdbe1f25e7caf47b14e233688e94b5e9096a915c731f2937c2558"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-08-de-kindergeld-eea.jsonl",
+      "sha256": "5d8089d89a8e2403bd0612430add225790580f37eaeba8db7f69f6ed0ca7075b"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-eea/official-documents/de-kindergeld-eea-agreement.pdf",
+      "sha256": "b59a696b19ccc7277580ac4abae6e42f10fd14c59093221b43eed327a059b1e4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-08T14:21:50.090709+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TC/2iG14x7LzwQx3RNunAWL8WFub9M+oPW69+c2lBMdX9bdfnVjcGt2WIn8E56N97aLZgFtyxbVlB4KS/5CyCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-eea"
+}

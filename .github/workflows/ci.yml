@@ -199,6 +199,12 @@ jobs:
         run: |
           pytest -v tests/test_atomic_release_postgres.py
 
+      - name: Test work queue claims in PostgreSQL
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+        run: |
+          pytest -v tests/test_ops_work_queue_postgres.py
+
   verify-release-coverage:
     name: Verify release coverage
     # Skip on PRs:

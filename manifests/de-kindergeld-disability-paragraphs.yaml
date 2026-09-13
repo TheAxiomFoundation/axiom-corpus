@@ -1,0 +1,69 @@
+{
+  "documents": [
+    {
+      "source_id": "de-sgbix2-absatz1-2001",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/sgb-9/fassung-2001-07-01/2/absatz-1",
+      "title": "SGB IX §2 Absatz1 (2001-07-01)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2001_07_01.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-11",
+      "expression_date": "2001-07-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#tab-content",
+        "segmentation": "anchor_range",
+        "html_start_selector": ":scope > p:nth-of-type(1)",
+        "html_stop_selector": ":scope > p:nth-of-type(2)",
+        "section_label": "inhalt",
+        "section_heading": "SGB IX §2 Absatz1 (2001-07-01)"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2001-07-01",
+        "valid_until": "2017-12-31",
+        "snapshot_sha256": "9e2991c8d89911da844ba1ef49bdc0c13b07aa7a2c2a2bc46bc59236e1e69f16",
+        "source_note": "Complete paragraph1 selected by native HTML content selector from the unchanged official dated normative page. Every sentence is retained, including threatened disability. The whole section with paragraphs2and3 remains separately captured. No manual text edit or inference that threatened disability alone satisfies Kindergeld.",
+        "full_section_citation_path": "de/statute/sgb-9/fassung-2001-07-01/2/inhalt",
+        "paragraph": 1
+      }
+    },
+    {
+      "source_id": "de-sgbix2-absatz1-2018",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/sgb-9-2018/2/absatz-1",
+      "title": "SGB IX §2 Absatz1 (2018-01-01)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2018_01_01.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-11",
+      "expression_date": "2018-01-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#tab-content",
+        "segmentation": "anchor_range",
+        "html_start_selector": ":scope > p:nth-of-type(1)",
+        "html_stop_selector": ":scope > p:nth-of-type(2)",
+        "section_label": "inhalt",
+        "section_heading": "SGB IX §2 Absatz1 (2018-01-01)"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2018-01-01",
+        "snapshot_sha256": "9df302e8acfb73706f3716b430f0f9795c1699f0b11497781e3827638ba59ff0",
+        "source_note": "Complete paragraph1 selected by native HTML content selector from the unchanged official dated normative page. Every sentence is retained, including threatened disability. The whole section with paragraphs2and3 remains separately captured. No manual text edit or inference that threatened disability alone satisfies Kindergeld.",
+        "full_section_citation_path": "de/statute/sgb-9-2018/fassung-2018-01-01/2/inhalt",
+        "paragraph": 1
+      }
+    }
+  ]
+}

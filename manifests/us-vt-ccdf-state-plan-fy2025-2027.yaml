@@ -1,0 +1,53 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-vt-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-vt
+  document_class: policy
+  title: Vermont CCDF Plan, FFY 2025-2027
+  source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Approved.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-vt/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: '^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>CCDF\ Leadership|CCDF\ Policy\ Decision\ Authority|Consultation\
+      in\ the\ Development\ of\ the\ CCDF\ Plan|Reducing\ Barriers\ to\ Family\ Enrollment\ and\ Redetermination|Eligible\
+      Children\ and\ Families|Prioritizing\ Services\ for\ Vulnerable\ Children\ and\ Families|Promoting\ Continuity\ of\
+      Care|Family\ Co\-payments|Calculation\ of\ Co\-Payment|Waiving\ Family\ Co\-payment|Access\ to\ Full\ Range\ of\ Provider\
+      Options|Assess\ Market\ Rates\ and\ Analyze\ the\ Cost\ of\ Child\ Care|Adequate\ Payment\ Rates|Payment\ Practices\
+      to\ Providers|Supply\ Building|Licensing\ Requirements|Ratios,\ Group\ Size,\ and\ Qualifications\ for\ CCDF\ Providers|Health\
+      and\ Safety\ Standards\ for\ CCDF\ Providers|Pre\-Service\ or\ Orientation\ Training\ on\ Health\ and\ Safety\ Standards|Monitoring\
+      and\ Enforcement\ of\ Licensing\ and\ Health\ and\ Safety\ Requirements|Ongoing\ Health\ and\ Safety\ Training|Comprehensive\
+      Background\ Checks|Exemptions\ for\ Relative\ Providers|Supporting\ the\ Child\ Care\ Workforce|Professional\ Development\
+      Framework|Ongoing\ Training\ and\ Professional\ Development|Early\ Learning\ and\ Developmental\ Guidelines|Quality\
+      Activities\ Needs\ Assessment|Use\ of\ Quality\ Set\-Aside\ Funds|Coordination\ with\ Partners\ to\ Expand\ Accessibility\
+      and\ Continuity\ of\ Care|Optional\ Use\ of\ Combined\ Funds,\ CCDF\ Matching,\ and\ Maintenance\-of\-Effort\ Funds|Coordination\
+      with\ Child\ Care\ Resource\ and\ Referral\ Systems|Public\-Private\ Partnerships|Disaster\ Preparedness\ and\ Response\
+      Plan|Parental\ Complaint\ Process|Consumer\ Education\ Website|Increasing\ Engagement\ and\ Access\ to\ Information|Providing\
+      Information\ on\ Developmental\ Screenings|Effective\ Internal\ Controls|Fraud\ Investigation,\ Payment\ Recovery,\
+      and\ Sanctions|Lead Agency Outreach to Families Experiencing Homelessness, Families with Limited(?: English)?)\s*$'
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: Approved as of 2024-11-09 ('CCDF-Plan-2025-2027-Approved'; the PDF answered HTTP 200 on retry 2 2026-09-10T21:35Z
+      from a US network after HTTP 403 on the first two passes; the plan embeds Vermont's child care licensing rules inside
+      section 5.3, whose numbered rule headings (5.3, 5.6, 9.1-9.4, 13.1) collide with the preprint labels, so the section
+      pattern is restricted to the 41 preprint headings)
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://dcf.vermont.gov/CDD/CCDF
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/VT-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-vt/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

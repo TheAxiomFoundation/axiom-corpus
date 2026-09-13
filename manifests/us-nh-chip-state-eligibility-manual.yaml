@@ -1,0 +1,26 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: nh-gencourt-he-w-800
+  jurisdiction: us-nh
+  document_class: regulation
+  title: New Hampshire Code of Administrative Rules Chapter He-W 800 Eligibility for Medical Assistance
+  source_url: https://gc.nh.gov/rules/state_agencies/he-w800.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-01'
+  citation_path: us-nh/regulation/he-w-800
+  extraction:
+    html_content_selector: .WordSection1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<prefix>He-W)\s+(?P<part>\d+)\s*\.\s*(?P<section>\d+)\s*(?:[-–]\s*)?(?P<heading>.*?)(?:\s+\.\s+(?P<body>.+))?\.?$
+    section_label_template: '{prefix} {part}.{section}'
+    stop_text_pattern: ^APPENDIX A
+  metadata:
+    primary_source: true
+    source_authority: New Hampshire General Court, Office of Legislative Services Administrative Rules (DHHS He-W 800)
+    document_subtype: administrative_code
+    program: CHIP
+    source_discovery_group: us-nh/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    legal_identifier: He-W 800
+    latest_effective: '2025-10-01'

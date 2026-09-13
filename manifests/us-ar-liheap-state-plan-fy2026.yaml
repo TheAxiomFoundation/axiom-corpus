@@ -1,0 +1,35 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ar-acf-liheap-plan-fy2026
+  jurisdiction: us-ar
+  document_class: policy
+  title: Arkansas LIHEAP Detailed Model Plan, FY 2026
+  source_url: https://liheapch.acf.gov/docs/2026/state-plans/AR_Plan_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-01'
+  citation_path: us-ar/policy/acf/liheap-plan/fy2026
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^Section (?P<label>\d{1,2})\s*[-:]\s*(?P<heading>\S.*)$
+    drop_line_patterns:
+    - ^Page \d+ of \d+$
+    - ^August 1987, revised .*$
+    - ^U\.S\. DEPARTMENT OF HEALTH AND HUMAN SERVICES$
+    - ^ADMINISTRATION FOR CHILDREN AND FAMILIES$
+    - ^OMB Clearance No\.?:.*$
+    - ^Expiration Date:.*$
+    - ^LOW INCOME HOME ENERGY ASSISTANCE PROGRAM ?\(LIHEAP\)$
+    - ^MODEL PLAN$
+    - ^DETAILED MODEL PLAN \(LIHEAP\)$
+    start_after_pattern: ^(?:\d+\.\s*)?Plan Attachments$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)
+    document_subtype: state_plan_pdf
+    program: LIHEAP
+    fiscal_year: '2026'
+    report_period: 2025-10-01 to 2026-09-30
+    source_discovery_group: us-ar/policy/liheap
+    discovered_via: manual-review:liheap-agent-queue; index https://liheapch.acf.gov/stateplans.htm
+    tls_note: server omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem

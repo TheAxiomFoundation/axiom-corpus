@@ -1,0 +1,251 @@
+version: 2026-09-10-medicare-cms-iom-100-01
+documents:
+- source_id: us-cms-iom-100-01-chapter-1
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 1 - General Overview
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-12-21'
+  citation_path: us/manual/cms/iom/100-01/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^80\ \-\ CMS\ Managed\ Modules\ for\ Software\ Programs\ and\ Pricing/Coding\ Files$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 1
+    chapter_title: General Overview
+    latest_transmittal: Rev. 12425, issued 2023-12-21
+    expression_date_source: 'TOC header transmittal line ''(Rev. 12425; Issued: 12-21-23)'''
+    pdf_page_count: 21
+    toc_section_count: 30
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    http_last_modified: Tue, 02 Jan 2024 14:21:15 GMT
+- source_id: us-cms-iom-100-01-chapter-2
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 2 - Hospital Insurance and
+    Supplementary Medical Insurance
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c02.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-05-18'
+  citation_path: us/manual/cms/iom/100-01/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^60\ \-\ Medicare\ Part\ C,\ Medicare\+Choice$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 2
+    chapter_title: Hospital Insurance and Supplementary Medical Insurance
+    latest_transmittal: Rev. 12046, issued 2023-05-18
+    expression_date_source: TOC header transmittal line '(Rev. 12046, 05-18-23)'
+    pdf_page_count: 30
+    toc_section_count: 59
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    http_last_modified: Wed, 21 Jun 2023 15:17:15 GMT
+- source_id: us-cms-iom-100-01-chapter-3
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 3 - Deductibles, Coinsurance
+    Amounts and Payment Limitations
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-11-25'
+  citation_path: us/manual/cms/iom/100-01/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^40\ \-\ Limitation\ on\ Physical\ Therapy,\ Occupational\ Therapy\ and\ Speech\-Language\ Pathology\
+      Services$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 3
+    chapter_title: Deductibles, Coinsurance Amounts and Payment Limitations
+    latest_transmittal: Rev. 12980, issued 2024-11-25
+    expression_date_source: 'TOC header transmittal line ''(Rev. 12980; Issued: 11-25-24)'''
+    pdf_page_count: 21
+    toc_section_count: 28
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    http_last_modified: Fri, 17 Jan 2025 15:34:41 GMT
+- source_id: us-cms-iom-100-01-chapter-4
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 4 - Physician Certification
+    and Recertification of Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-12-21'
+  citation_path: us/manual/cms/iom/100-01/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^80\ \-\ Summary\ Table\ for\ Certifications/Recertifications$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 4
+    chapter_title: Physician Certification and Recertification of Services
+    latest_transmittal: Rev. 12425, issued 2023-12-21
+    expression_date_source: 'TOC header transmittal line ''(Rev. 12425; Issued: 12-21-23)'''
+    pdf_page_count: 22
+    toc_section_count: 31
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    http_last_modified: Tue, 02 Jan 2024 14:24:18 GMT
+- source_id: us-cms-iom-100-01-chapter-5
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 5 - Definitions
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-12-21'
+  citation_path: us/manual/cms/iom/100-01/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^90\.4\ \-\ Group\ Practice\ Defined$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 5
+    chapter_title: Definitions
+    latest_transmittal: Rev. 12425, issued 2023-12-21
+    expression_date_source: 'TOC header transmittal line ''(Rev. 12425; Issued: 12-21-23)'''
+    pdf_page_count: 40
+    toc_section_count: 60
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    http_last_modified: Tue, 02 Jan 2024 14:25:17 GMT
+- source_id: us-cms-iom-100-01-chapter-6
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 6 - Disclosure of Information
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c06.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2019-05-17'
+  citation_path: us/manual/cms/iom/100-01/chapter-6
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Information\ Form$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 6
+    chapter_title: Disclosure of Information
+    latest_transmittal: Rev. 124, issued 2019-05-17
+    expression_date_source: TOC header transmittal line '(Rev. 124, 05-17-19)'
+    pdf_page_count: 68
+    toc_section_count: 60
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+- source_id: us-cms-iom-100-01-chapter-7
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-01 Medicare General Information, Eligibility and Entitlement Manual, Chapter 7 - Contract Administrative
+    Requirements
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ge101c07.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-17'
+  citation_path: us/manual/cms/iom/100-01/chapter-7
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[A-Za-z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^90\ \-\ IDR\ Claims\ Sourcing\ from\ Shared\ Systems$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-01
+    publication_title: Medicare General Information, Eligibility and Entitlement Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter: 7
+    chapter_title: Contract Administrative Requirements
+    latest_transmittal: Rev. 13175, issued 2025-04-17
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13175; Issued: 04-17-25)'''
+    pdf_page_count: 100
+    toc_section_count: 60
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-01
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    http_last_modified: Wed, 04 Jun 2025 11:28:36 GMT

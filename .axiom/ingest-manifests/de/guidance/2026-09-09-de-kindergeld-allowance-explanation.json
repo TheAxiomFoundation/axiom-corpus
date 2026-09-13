@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-allowance-explanation.json",
+      "sha256": "72fcfd2f11ea38e7b9e6e82169c00c929665786ae93a7734b6a64082f5d88a28"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-allowance-explanation.json",
+      "sha256": "0ff6f48069381b5e5c02392eceddd7495e450d4f0bb60f6f667fbf89d407504a"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-allowance-explanation.jsonl",
+      "sha256": "9fa16911f8963b2f3bc97bb78495d84a4571a1a3b21b2e5a5ba8d54bad220e97"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-allowance-explanation/official-documents/de-bt-drs-20-12778-kindergeld-explanation.pdf",
+      "sha256": "e88696d40b46f2841ec0b7cc0ce56fe8bfaf269aa1cb67c4e5bc6ab5aadb26ee"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9d8633e193d4eb6e150f2e2ea83731c0d52d5114",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src python -m axiom_corpus.corpus.cli extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-allowance-explanation --manifest /private/tmp/de-kindergeld-closure/allowance-explanation-replay.json --source-as-of 2026-09-09 --expression-date 2024-09-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T22:24:25.496393+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-09-de-kindergeld-allowance-explanation.md",
+      "sha256": "490dd65eb551332b696ad1ceba04a07415073df838424e46ad17c788413edf14"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "N16qIApmswRbnCfHim7Abi/1H+rKmjRWrUXrl4sVS0SWKR2OpD6KrLSJhdEMOaD2lqdmveLT5wWjfHrBZt2sBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-allowance-explanation"
+}

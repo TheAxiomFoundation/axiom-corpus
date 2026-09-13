@@ -1,0 +1,37 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-pa-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-pa
+  document_class: policy
+  title: Pennsylvania CCDF Plan, FFY 2025-2027
+  source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dhs/documents/services/children/documents/2025-2027-ocdel-ccdf-state-plan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-pa/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: 'Approved as of 2024-11-09 (located on retry 2026-09-10: the ACF index link redirects to the generic pa.gov
+      DHS agency page; the plan is linked as ''2025-2027 Pennsylvania State Plan for Child Care Development Block Grant Report
+      (CCDBG)'' on the DHS ''Early Learning & Child Care'' resources page; no amendments or Appendix posted there)'
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.pa.gov/agencies/dhs/resources/early-learning-child-care
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/PA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-pa/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

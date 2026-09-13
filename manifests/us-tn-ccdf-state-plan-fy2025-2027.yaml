@@ -1,0 +1,38 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-tn-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-tn
+  document_class: policy
+  title: Tennessee CCDF Plan, FFY 2025-2027
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/CCDF%20State%20Plan%20FFY%202025-2027%20Tennessee.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-tn/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: Approved as of 2024-11-09 ('CCDF State Plan FFY 2025-2027' on the TDHS Reports and Information page; Appendix
+      1 and two transitional waiver approvals are posted separately, not taken; located on retry 2 2026-09-10T21:35Z from
+      a US network after HTTP 403 awselb on the first two passes; one of three page requests on the retry ended with an SSL
+      unexpected EOF, the others answered 200)
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/TN-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    source_discovery_group: us-tn/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

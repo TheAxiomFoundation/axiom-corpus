@@ -1,0 +1,1 @@
+A status line that goes on after its repeal marker — ITO §127's `(בוטל; בסעיף זה נקבע … משנת 1992, 0%).` — now yields the marker alone as the section's body; OpenLaw's history of what the repealed section used to say stays in `metadata.editorial_notes`. Regressions cover the parse and the committed pilot row.

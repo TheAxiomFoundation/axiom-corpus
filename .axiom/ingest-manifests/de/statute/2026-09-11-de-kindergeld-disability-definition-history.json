@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-11-de-kindergeld-disability-definition-history.json",
+      "sha256": "2a770f7767839ff9b732107a5e8d0a65083000b6ef2c3e812c719c702cce86cb"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-11-de-kindergeld-disability-definition-history.json",
+      "sha256": "353dd48419738279b8b3bd160b9a02d7efe529abd2c3f7b4ddd1c519b6aab40a"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-11-de-kindergeld-disability-definition-history.jsonl",
+      "sha256": "85687c1ad7bac3b92cd141cb368d890d3ebede896ccb95f3aadc42e2e2917034"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-11-de-kindergeld-disability-definition-history/official-documents/de-sgbix-2-2001-history.html",
+      "sha256": "9e2991c8d89911da844ba1ef49bdc0c13b07aa7a2c2a2bc46bc59236e1e69f16"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-11-de-kindergeld-disability-definition-history/official-documents/de-sgbix-2-2018-history.html",
+      "sha256": "9df302e8acfb73706f3716b430f0f9795c1699f0b11497781e3827638ba59ff0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d869121832409169e27862e347e94b1fad4ff795",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native source replay documented in docs/ingest-runs/2026-09-11-de-kindergeld-disability-definition.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-11T19:57:31.521290+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-11-de-kindergeld-disability-definition-audit.json",
+      "sha256": "8fd87f7e7cc6a88a2a4812587fba1c0ccdbf55f201347790d37459741a1f925f"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vdoJIBFaabTjCj8+IiNTTfQdu/Yw72WhyQIHSsHiHQVDhnUKHcOHQQeAKs19PrwL0Akd4aV3u21pqmmNk5UFDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-disability-definition-history"
+}

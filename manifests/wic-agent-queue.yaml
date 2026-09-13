@@ -1,0 +1,1447 @@
+version: '2026-09-10'
+document_family: wic_policy_sources
+program: WIC
+queue_status: in_progress
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+  - sources
+  - inventory
+  - provisions
+  - coverage
+  forbidden_sources:
+  - secondary summaries
+  - State Options Reports
+  - benefitswiki
+  - policy manuals reposted by non-government sites
+  notes:
+  - Drafted 2026-09-10 for the ten board Year 1 programs (ballmer-proposal-2026 encoding-program-list.md).
+  - 'Lead list only: PolicyEngine-US citations extracted offline with the citing path preserved, classified by axiom_corpus.corpus.source_discovery.
+    Not corpus sources; every selected document must be re-fetched from the official publisher.'
+  - The lead list under-names agency manuals and state plans. Reviewers must add them from the official publisher before the
+    queue is agent_ready.
+  - 'policyengine-us 84253b6afafb (2026-08-17); lead file: policyengine-us-committed-program-references.jsonl'
+lead_list:
+  source: policyengine-us
+  commit: 84253b6afafbb1875c65f12e654c6535744728b7
+  committed_at: '2026-08-17T17:54:20-04:00'
+  reference_file: policyengine-us-committed-program-references.jsonl
+  classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
+status_counts:
+  agent_ready: 22
+  blocked_primary_source: 30
+states:
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: official_agency_guidance_pdf_and_federal_register_html
+  primary_source_url: https://www.fna.usda.gov/wic/agency
+  target_manifest: manifests/us-wic-fns-guidance.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-09-10-wic-fns-guidance
+  lead_counts:
+    needs_review: 6
+    excluded_secondary: 3
+  candidate_sources:
+  - url: https://fns-prod.azureedge.net/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: fns-prod.azureedge.net
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/usda/wic/wic.py
+    - policyengine-us#variables/gov/usda/wic/wic_if_takes_up.py
+  - url: https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: fns-prod.azureedge.us
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/usda/wic/value.yaml
+  - url: https://fns.usda.gov/wic/2024-cash-value-voucher-benefit-amounts
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: fns.usda.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/usda/wic/cvb/current.yaml
+    - policyengine-us#parameters/gov/usda/wic/cvb/replaces_included_value.yaml
+  - url: https://fns.usda.gov/wic/agency/cvvb-fy26
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: fns.usda.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/usda/wic/cvb/current.yaml
+    - policyengine-us#parameters/gov/usda/wic/cvb/replaces_included_value.yaml
+  - url: https://fns.usda.gov/wic/food-packages
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: fns.usda.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/usda/wic/cvb/included_in_value.yaml
+    - policyengine-us#variables/gov/usda/wic/wic.py
+    - policyengine-us#variables/gov/usda/wic/wic_if_takes_up.py
+  - url: https://fns.usda.gov/wic/income-eligibility-guidelines-2025-26
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: fns.usda.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/usda/wic/wic_income_limit.py
+  - url: https://law.cornell.edu/cfr/text/7/246.10
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/usda/wic/is_wic_fully_breastfeeding.py
+    - policyengine-us#variables/gov/usda/wic/wic.py
+    - policyengine-us#variables/gov/usda/wic/wic_breastfeeding_infant_count.py
+  - url: https://law.cornell.edu/cfr/text/7/246.7
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/usda/wic/income/sources.yaml
+    - policyengine-us#variables/gov/usda/wic/is_wic_eligible.py
+    - policyengine-us#variables/gov/usda/wic/wic.py
+  - url: https://law.cornell.edu/uscode/text/42/1786
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/usda/wic/is_wic_at_nutritional_risk.py
+    - policyengine-us#variables/gov/usda/wic/meets_wic_categorical_eligibility.py
+    - policyengine-us#variables/gov/usda/wic/meets_wic_categorical_eligibility.py
+  notes: 'FNS became the Food and Nutrition Administration on 2026-06-01; www.fns.usda.gov and www.fna.usda.gov answer 403
+    to every client, so the index and memo pages were read from the publisher''s origin host fns-prod.azureedge.us and the
+    memo PDFs from the USDA guidance portal with browser impersonation. Taken: FY2025 memos #2025-1..#2025-5, FY2026 memos
+    #2026-1, #2026-2, #2026-4, #2026-5 (no #2026-3 is listed), and the 2025-2026 and 2026-2027 Income Eligibility Guidelines
+    Federal Register notices from govinfo. 7 CFR 246 is already in the corpus (data/corpus/provisions/us/regulation/2026-07-13-recovery-r2026-07-17-dedup.jsonl,
+    268 provisions under us/regulation/7/246) and was not re-ingested.'
+  index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+  index_document_count: 154
+  taken_count: 11
+  index_inventory:
+    first_page_rows:
+    - date: 04/29/2026
+      title: Publication of 2026-2027 WIC Income Eligibility Guidelines
+      href: /wic/agency/ieg-2026-27
+    - date: 03/30/2026
+      title: 'WIC Policy Memorandum #2026-4: Dietary Guidelines for Americans, 2025-2030 – Eat Real Food'
+      href: /wic/agency/dgas-eat-real-food
+    - date: 02/06/2026
+      title: Information for WIC State Agencies on Executive Order 14218
+      href: /wic/agency/executive-order14218
+    - date: 12/10/2025
+      title: 'WIC Policy Memorandum #2026-2: FY 2026 Cash-Value Voucher/Benefit Amounts'
+      href: /wic/agency/cvvb-fy26
+    - date: 12/05/2025
+      title: 'WIC Policy Memo #2026-1: Temporary Increase to the Maximum Monthly Allowance of Fluid Milk'
+      href: /wic/agency/increase-mma-fluidmilk
+    - date: 09/25/2025
+      title: Promoting Stronger Vendor Integrity and Oversight in WIC
+      href: /wic/vendor-integrity
+    - date: 08/19/2025
+      title: State Agency Options and Select Federal Requirements
+      href: /wic/revised-food-packages-flexibilities/options-requirements
+    - date: 08/19/2025
+      title: 'Implementing Revisions to the WIC Food Packages: Flexibilities to Support Healthy Choices, Healthy Outcomes,
+        and Healthy Families'
+      href: /wic/revised-food-packages-flexibilities
+    - date: 03/27/2025
+      title: WIC Income Eligibility Guidelines (2025-2026)
+      href: /wic/income-eligibility-guidelines-2025-26
+    - date: 01/10/2025
+      title: Use of Banked Human Breastmilk in WIC
+      href: /wic/banked-human-breastmilk
+    year_facets:
+      '2026': 3
+      '2025': 7
+      '2024': 11
+      '2023': 6
+      '2022': 9
+      '2021': 8
+      '2020': 3
+      '2019': 6
+      '2018': 1
+      '2017': 1
+      '2016': 5
+      '2015': 5
+      '2014': 7
+      '2013': 4
+      '2012': 2
+      '2011': 5
+      '2010': 2
+      '2009': 3
+      '2008': 4
+      '2007': 4
+      '2006': 4
+      '2005': 3
+      '2004': 4
+      '2003': 4
+      '2002': 1
+      '2001': 4
+      '2000': 1
+      '1999': 4
+      '1998': 5
+      '1997': 2
+      '1996': 1
+      '1995': 7
+      '1994': 7
+      '1993': 4
+      '1992': 6
+      '1991': 1
+      total: 154
+- jurisdiction: us-ak
+  name: Alaska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ak-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: manual
+    version: null
+  index_url: https://health.alaska.gov/en/services/division-of-public-assistance-dpa-services/wic/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Alaska Department of Health, Division of Public Assistance, WIC Program: The Alaska WIC policy manual is not published
+    on health.alaska.gov: the WIC program page (the legacy dpa/Pages/nutri/wic/default.aspx URL redirects to it; first probe
+    2026-09-10T22:58Z from a US network, HTTP 200 to the plain client) links applications, vendor newsletters, WIC Vendor
+    Forms, WIC Approved Foods, WIC Clinics by Region, the Farmers Market program and the WIC Vendor Management page; that
+    page links ''WIC Authorized Vendors'' only to the learn.dhss.alaska.gov login and lists no manual; the Nutrition topic
+    page lists none; the legacy manual.aspx and policy.aspx paths and an /en/resources/wic-policy-and-procedure-manual/ guess
+    answer 404. No page lists a policy manual or a local-agency section. Selected in the fifth batch as one of the last five
+    jurisdictions without a queue row (AK, DC, ND, VT, WY).'
+- jurisdiction: us-al
+  name: Alabama
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-al-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: manual
+    version: null
+  index_url: https://www.alabamapublichealth.gov/wic/index.html
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Alabama Department of Public Health: The Alabama WIC Procedure Manual (cited as ''Procedure Manual 5.3'' by the
+    agency''s own WIC formulary) is not published on alabamapublichealth.gov: the WIC home, Health Care Providers and Health
+    Provider Standards pages link only the formulary, prescription forms, a certification-process handout, two stand-alone
+    policy PDFs (IID policy, informal resolution process) and the FY2027 state-plan public notice; no page lists the manual.
+    Selected in the third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT). re-probed
+    2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+- jurisdiction: us-ar
+  name: Arkansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ar-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ar
+    document_class: manual
+    version: null
+  index_url: https://healthy.arkansas.gov/programs-services/community-family-child-health/wic-women-infants-children/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Arkansas Department of Health: healthy.arkansas.gov answers HTTP 403 (Cloudflare) to the first probe of the WIC
+    page for the plain client and one curl_cffi chrome124 impersonation attempt (20 s timeouts), so no manual index could
+    be read from the publisher. Replacement for a blocked batch-3 state. No mirror was used. Selected in the third batch as
+    a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. retried 2026-09-10T21:34Z from
+    US network, same failure (HTTP 403 Cloudflare for the WIC page and the site root).'
+- jurisdiction: us-az
+  name: Arizona
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-az-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-az
+    document_class: manual
+    version: null
+  index_url: https://www.azdhs.gov/prevention/azwic/local-agencies/index.php
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Arizona Department of Health Services: azdhs.gov answered every request with a Cloudflare HTTP 403 in batch 2. Retried
+    2026-09-10T21:34Z from a US network: the host now answers 200, but the batch-2 Local Agencies URL (local-agencies/index.php)
+    is a soft 404 (''Page or Document Not Found'') and the relocated Local Agencies page (prevention/azwic/agencies/index.php)
+    links ''WIC Manuals'' to an in-page anchor (#manuals) that the served page does not contain, for the plain client and
+    one curl_cffi impersonation alike; candidate manuals sub-pages are the same soft 404 and the documents/prevention/azwic/manuals/policy/
+    directory answers 403. No manual index is published on the site as served. No mirror was used. Selected in the second
+    batch as one of the next ten states by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-checked 2026-09-10T23:00Z
+    from US network: the relocated Local Agencies page (prevention/azwic/agencies/index.php) still answers 200 (80,005 bytes)
+    with the ''WIC Manuals'' sidebar link to #manuals and no element with that id, to the plain client and to one curl_cffi
+    chrome120 impersonation alike; same finding.'
+- jurisdiction: us-ca
+  name: California
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.cdph.ca.gov/Programs/CFH/DWICSN/Pages/LocalAgencies/PoliciesandPolicyResources/WPPM.aspx
+  target_manifest: manifests/us-ca-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.cdph.ca.gov/Programs/CFH/DWICSN/Pages/LocalAgencies/PoliciesandPolicyResources/WPPM.aspx
+  index_document_count: 147
+  taken_count: 138
+  index_inventory:
+    wppm_policy_pdf: 138
+    other_link: 9
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-co
+  name: Colorado
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.coloradowic.gov/policies-procedures/manuals/wic-policy-manual
+  target_manifest: manifests/us-co-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-co
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.coloradowic.gov/policies-procedures/manuals/wic-policy-manual
+  index_document_count: 111
+  taken_count: 110
+  index_inventory:
+    policy_pdf_on_agency_google_drive: 110
+    compiled_manual_pdf: 1
+    compiled_manual_links: 12
+    duplicate_policy_title:
+    - Nutrition Education Plan -> nutrition-education-plan-2
+    section_without_policies:
+    - 'Section 6: Food Funds'
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
+    SC, AL, LA, KY, OR, OK, CT, UT).
+- jurisdiction: us-ct
+  name: Connecticut
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://portal.ct.gov/dph/wic/ct-wic-state-plan
+  target_manifest: manifests/us-ct-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://portal.ct.gov/dph/wic/ct-wic-state-plan
+  index_document_count: 208
+  taken_count: 118
+  index_inventory:
+    policy_pdf: 115
+    policy_addendum_pdf: 3
+    table_of_contents_pdf: 9
+    numbered_attachment_pdf: 42
+    numbered_attachment_non_pdf: 7
+    unnumbered_form_guidance_or_translation_pdf: 30
+    unnumbered_non_pdf: 0
+    state_plan_section_1_pdf: 2
+    series_pages:
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-100
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-101
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-102
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-104
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-105
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-106
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-200
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-300
+    - https://portal.ct.gov/dph/wic/state-plan-policies---wic-400
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
+    SC, AL, LA, KY, OR, OK, CT, UT).
+- jurisdiction: us-dc
+  name: District of Columbia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.dcwic.org/policies-forms
+  target_manifest: manifests/us-dc-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.dcwic.org/policies-forms
+  index_document_count: 192
+  taken_count: 92
+  index_inventory:
+    policy_pdf: 92
+    policy_attachment_file: 57
+    clinical_manual_pdf: 2
+    style_guide_pdf: 2
+    admin_forms_tab_file: 22
+    assessment_tools_tab_file: 8
+    substance_use_resources_tab_file: 5
+    teletask_messaging_guides_tab_file: 4
+    chapters:
+      '2': Nutrition Services
+      '3': MIS
+      '4': Organization and Management
+      '5': Nutrition Services Administration
+      '7': Caseload Management
+      '8': Certification and Eligibility
+      '9': Food Delivery
+      '10': Monitoring and Audits
+      '11': Civil Rights
+      '12': Administrative Procedures
+    duplicate_link_same_file: 1
+    duplicate_policy_number: []
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the fifth batch as one of the last five jurisdictions without a queue
+    row (AK, DC, ND, VT, WY).
+- jurisdiction: us-de
+  name: Delaware
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-de-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: manual
+    version: null
+  index_url: https://www.dhss.delaware.gov/dhss/dph/chs/wichome.html
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Delaware Division of Public Health, WIC Program: www.dhss.delaware.gov answers HTTP 403 to the plain client with
+    a browser User-Agent for the WIC home page and the site root (first probe, 2026-09-10T21:47Z from a US network); one curl_cffi
+    chrome120 impersonation fails TLS verification (''self signed certificate in certificate chain''), which was not disabled.
+    No manual index could be read from the publisher. No mirror was used. Selected in the fourth batch (retry) as one of the
+    next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). re-checked 2026-09-10T23:00Z
+    from US network: www.dhss.delaware.gov still answers HTTP 403 (''Web App - Unavailable'', 1,892 bytes) to the plain client
+    for the WIC home page, and one curl_cffi chrome120 impersonation still fails TLS verification (curl 60: self signed certificate
+    in certificate chain), which was not disabled; same failure.'
+- jurisdiction: us-fl
+  name: Florida
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-fl-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: manual
+    version: null
+  index_url: https://www.floridahealth.gov/individual-family-health/womens-health/wic/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Florida Department of Health: The Florida WIC Procedure Manual (DHM 150-24) is not published on floridahealth.gov:
+    the WIC and health-care-provider pages link only forms, the vendor handbook and outreach material; the manual is referenced
+    by number in county documents but no state index or PDF is available. Selected in the first batch as one of the ten largest
+    states by population. re-checked 2026-09-10T18:47Z, still not published. re-probed 2026-09-10T21:38Z from US network,
+    still not published (page reachable, no manual link).'
+- jurisdiction: us-ga
+  name: Georgia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://dph.georgia.gov/WIC/wic-policy-and-procedures-manual
+  target_manifest: manifests/us-ga-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://dph.georgia.gov/WIC/wic-policy-and-procedures-manual
+  index_document_count: 150
+  taken_count: 127
+  index_inventory:
+    policy_pdf: 127
+    section_outline_pdf: 11
+    combined_section_pdf: 1
+    policy_link_404_on_publisher:
+    - NS-200.03
+    - NS-200.10
+    - NS-210.14
+    - NS-220.02
+    - CT-800.01
+    - CT-820.03
+    - CT-820.05
+    - CT-860.01
+    - CT-860.04
+    - FD-940.01
+    policy_link_403_on_publisher:
+    - CT-800.13
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-hi
+  name: Hawaii
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-hi-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: manual
+    version: null
+  index_url: https://health.hawaii.gov/wic/wic-la-information/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Hawaii Department of Health, WIC Services Branch: The Hawaii WIC policy and procedure manual is not published on
+    health.hawaii.gov: the ''Information for WIC Local Agencies'' page links only the federal and state cost-principles documents,
+    the WIC Nutrition Services Standards and FNS Instruction 113-1; no page lists a manual. Selected in the fourth batch (retry)
+    as one of the next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+- jurisdiction: us-ia
+  name: Iowa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://hhs.iowa.gov/wic-portal/policies
+  target_manifest: manifests/us-ia-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://hhs.iowa.gov/wic-portal/policies
+  index_document_count: 234
+  taken_count: 169
+  index_inventory:
+    policy_pdf: 147
+    procedure_pdf: 21
+    definitions_pdf: 1
+    form_or_booklet_pdf: 63
+    non_pdf_file: 2
+    duplicate_link_same_file: 1
+    duplicate_policy_title:
+    - 'PROGRAM INTEGRITY: 450.40 Sanctions -> 450.40-sanctions-2'
+    - 'PROGRAM INTEGRITY: 450.60 Dual Participation -> 450.60-dual-participation-2'
+    image_only_pdf_ocr:
+    - 'I. VENDOR AND FARMER MANAGEMENT: 450.70 SNAP WIC MOU -> 450.70-snap-wic-mou'
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as a replacement (in order IA, NV, AR, MS, KS, NM)
+    for a blocked or non-publishing state.
+- jurisdiction: us-id
+  name: Idaho
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-id-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: manual
+    version: null
+  index_url: https://healthandwelfare.idaho.gov/services-programs/food-assistance/about-wic
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Idaho Department of Health and Welfare: The Idaho WIC Program Policy Manual is not published on healthandwelfare.idaho.gov:
+    the batch-2-era WIC URLs (services-programs/food-assistance/wic, .../children-families/women-infants-and-children-wic,
+    /wic, providers/wic) all answer 404, and the current About WIC page links only the vendor page and the public health districts;
+    no page lists a manual. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states by population
+    (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+- jurisdiction: us-il
+  name: Illinois
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-il-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-il
+    document_class: manual
+    version: null
+  index_url: https://www.dhs.state.il.us/page.aspx?item=36418
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Illinois Department of Human Services: The IDHS ''WIC Policy and Procedure Manual'' page (item=36418) now redirects
+    to ''Page Not Found'' (item=27893); the WIC program page (item=31907) links no manual. One chapter PDF (onenetlibrary/27896/.../wic/ppm/3_certificationstandards.pdf,
+    issue date May 2006) is still served, but there is no publisher index from which the current manual can be confirmed.
+    Selected in the first batch as one of the ten largest states by population. re-checked 2026-09-10T18:47Z, still not published.
+    retried 2026-09-10T21:34Z from US network: www.dhs.state.il.us did not resolve (NameResolutionError, twice), so the page
+    could not be re-read.'
+- jurisdiction: us-in
+  name: Indiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-in-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-in
+    document_class: manual
+    version: null
+  index_url: https://www.in.gov/health/wic/wic-staff
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Indiana Department of Health: The Indiana WIC Policy and Procedure Manual is not published on in.gov: the WIC Staff
+    page links only the Indiana WIC Disaster Plan, and the WIC home, eligibility and vendor pages link only the vendor manual
+    and participant material. Selected in the second batch as one of the next ten states by population (NJ, VA, WA, AZ, TN,
+    MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+- jurisdiction: us-ks
+  name: Kansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ks-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: manual
+    version: null
+  index_url: https://www.kdhe.ks.gov/1149/Information-for-WIC-Local-Agencies
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Kansas Department of Health and Environment: www.kdhe.ks.gov answered HTTP 403 (Cloudflare) in batch 3. Retried
+    2026-09-10T21:34Z from a US network: the host now answers 200 and the For Local WIC Agencies page links the Policy & Procedure
+    Manual folder (DocumentCenter/Index/903), but that page is an empty React shell whose document list is fetched from an
+    admin-area endpoint (Admin/DocumentCenter/.../Document_AjaxBinding); the endpoint returned the site HTML to the plain
+    client and, after five requests, a Cloudflare ''Just a moment'' HTTP 429 challenge, which was not worked around. The manual
+    policies demonstrably exist on the host (DocumentCenter/View/<id>/<POLICY>-PDF) but no static index lists them. No mirror
+    was used. Selected in the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing
+    state.'
+- jurisdiction: us-ky
+  name: Kentucky
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.chfs.ky.gov/agencies/dph/dmch/nsb/Pages/wic.aspx
+  target_manifest: manifests/us-ky-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.chfs.ky.gov/agencies/dph/dmch/nsb/Pages/wic.aspx
+  index_document_count: 13
+  taken_count: 10
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
+    SC, AL, LA, KY, OR, OK, CT, UT).
+  index_inventory:
+    policy_group_pdf: 10
+    summary_of_policy_changes_pdf: 1
+    other_pdf_under_manual_heading:
+    - Medical Necessity Forms
+    - Kentucky WIC Referral Form
+- jurisdiction: us-la
+  name: Louisiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-la-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: manual
+    version: null
+  index_url: https://ldh.la.gov/bureau-of-nutrition-services/women-infants-children-program
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Louisiana Department of Health: ldh.la.gov answered HTTP 403 (Cloudflare) in batch 3. Retried 2026-09-10T21:34Z
+    from a US network: the host now answers 200, but the Bureau of Nutrition Services WIC page, the LDH Forms & Policies page
+    and the agency''s louisianawic.org site (participant, vendor, medical-provider pages) link no Policy & Procedure Manual;
+    the one chapter known on the host (assets/docs/LegisReports/Act542/WIC_Chapter11.pdf) is a legislative-report attachment,
+    not an index. No mirror was used. Selected in the third batch as one of the next ten states by population (CO, MN, SC,
+    AL, LA, KY, OR, OK, CT, UT).'
+- jurisdiction: us-ma
+  name: Massachusetts
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ma-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: manual
+    version: null
+  index_url: https://www.mass.gov/orgs/women-infants-children-nutrition-program
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Massachusetts Department of Public Health: The Massachusetts WIC Program Manual (PM) is named in the FFY 2027 WIC
+    state plan as the document the state office updates, but it is not published on mass.gov: the WIC organization page, the
+    providers page and the state-plan page link no manual (the state plans are a different document family). mass.gov also
+    answers 403 to non-browser clients. Selected in the second batch as one of the next ten states by population (NJ, VA,
+    WA, AZ, TN, MA, IN, MD, MO, WI). retried 2026-09-10T21:34Z from US network, same failure (HTTP 403 for the WIC organization
+    page).'
+- jurisdiction: us-md
+  name: Maryland
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://health.maryland.gov/phpa/wic/Pages/wic-policy.aspx
+  target_manifest: manifests/us-md-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-md
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://health.maryland.gov/phpa/wic/Pages/wic-policy.aspx
+  index_document_count: 8
+  taken_count: 8
+  index_inventory:
+    chapter_pdf: 8
+    other_pdf: 0
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the second batch as one of the next ten states by population (NJ, VA,
+    WA, AZ, TN, MA, IN, MD, MO, WI).
+- jurisdiction: us-me
+  name: Maine
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.maine.gov/dhhs/mecdc/healthy-living/wic/wic-administration-and-policies/wic-policies
+  target_manifest: manifests/us-me-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.maine.gov/dhhs/mecdc/healthy-living/wic/wic-administration-and-policies/wic-policies
+  index_document_count: 193
+  taken_count: 111
+  index_inventory:
+    policy_pdf: 111
+    appendix_file: 79
+    other_file:
+    - Word
+    - OM 1A WIC State Agency Organization
+    - VM-Appendix-2-C Vendor Training Guide
+    duplicate_policy_code: []
+    series:
+      BFPC: 7
+      BF: 8
+      CM: 4
+      CE: 6
+      CR: 7
+      FM: 18
+      FMNP: 8
+      FD: 5
+      IS: 5
+      MA: 2
+      NS: 6
+      OM: 21
+      VM: 14
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states
+    by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).
+- jurisdiction: us-mi
+  name: Michigan
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.michigan.gov/mdhhs/assistance-programs/wic/wic-staff/wicpolicymanual/mi-wic-policy-manual-table-of-contents
+  target_manifest: manifests/us-mi-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-mi
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.michigan.gov/mdhhs/assistance-programs/wic/wic-staff/wicpolicymanual/mi-wic-policy-manual-table-of-contents
+  index_document_count: 127
+  taken_count: 115
+  index_inventory:
+    numbered_policy_or_exhibit_pdf: 115
+    unnumbered_attachment_pdf: 12
+    policy_index_pdf: 0
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-mn
+  name: Minnesota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.health.state.mn.us/people/wic/localagency/mom.html
+  target_manifest: manifests/us-mn-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.health.state.mn.us/people/wic/localagency/mom.html
+  index_document_count: 150
+  taken_count: 83
+  index_inventory:
+    chapter_section_pdf: 83
+    chapter_section_compilation_pdf: 2
+    draft_section_pdf: 1
+    exhibit_pdf: 46
+    exhibit_docx: 17
+    draft_exhibit_pdf: 1
+    duplicate_link_same_file: 4
+    link_text_number_differs_from_filename: []
+    chapters:
+      '1': Administration
+      '2': Financial Management
+      '3': Caseload Management
+      '4': Local Agency Management and Staffing
+      '5': Certification
+      '6': Nutrition Education
+      '7': Food Package
+      '8': WIC Cards
+      '9': Information System Operations
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
+    SC, AL, LA, KY, OR, OK, CT, UT).
+- jurisdiction: us-mo
+  name: Missouri
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-mo-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: manual
+    version: null
+  index_url: https://health.mo.gov/providers/manuals/wic-operations-manual-wom/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Missouri Department of Health and Senior Services: The WIC Operations Manual (WOM) is published only behind the
+    WIC Local Agency Portal login: the manual index and every section URL (e.g. .../wic-operations-manual-wom/usda-definitions-and-justifications/100s-10)
+    redirect to health.mo.gov/topic/781/login, and the public WIC pages link no manual. Selected in the second batch as one
+    of the next ten states by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network:
+    the manual URL still redirects to health.mo.gov/topic/781/login.'
+- jurisdiction: us-ms
+  name: Mississippi
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ms-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: manual
+    version: null
+  index_url: https://msdh.ms.gov/page/41,0,128,1081.html
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Mississippi State Department of Health: The MSDH WIC Policy and Procedure Manual is not published on msdh.ms.gov:
+    the WIC Local Agencies page says sites must operate under the manual but links only the local-agency application and site-requirements
+    PDFs, and the WIC program pages link no manual. Replacement for a blocked batch-3 state. Selected in the third batch as
+    a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. re-probed 2026-09-10T21:38Z from
+    US network, still not published (page reachable, no manual link).'
+- jurisdiction: us-mt
+  name: Montana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-mt-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-mt
+    document_class: manual
+    version: null
+  index_url: https://dphhs.mt.gov/ecfsd/wic/wicstateplan
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Montana Department of Public Health and Human Services, WIC Program: Montana publishes no separate WIC policy manual:
+    the WIC page''s ''State Plan Program Policies'' link is the 2026 Montana WIC State Plan page (section drawers with State
+    Plan attachments under assets/ecfsd/WIC/StatePlan/), which is the state-plan document family, not a policy/procedure manual
+    index. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states by population (NE, WV, ID,
+    HI, NH, ME, MT, RI, DE, SD).'
+- jurisdiction: us-nc
+  name: North Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.ncdhhs.gov/divisions/child-and-family-well-being/community-nutrition-services-section/wic/staff/wic-local-agency-resources
+  target_manifest: manifests/us-nc-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.ncdhhs.gov/divisions/child-and-family-well-being/community-nutrition-services-section/wic/staff/wic-local-agency-resources
+  index_document_count: 24
+  taken_count: 23
+  index_inventory:
+    chapter_pdf: 23
+    complete_manual_pdf: 1
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-nd
+  name: North Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-nd-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-nd
+    document_class: manual
+    version: null
+  index_url: https://www.hhs.nd.gov/food-programs/WIC
+  index_document_count: 0
+  taken_count: 0
+  notes: 'North Dakota Health and Human Services, WIC Program: The North Dakota WIC policy manual is not published on hhs.nd.gov:
+    the WIC program page (reached via www.hhs.nd.gov/wic; the health/wic, health/family-health/wic and health/nutrition/wic
+    paths answer 404; first probe 2026-09-10T22:58Z from a US network) and its sub-pages (Common Questions, Apply, Eligible,
+    Pick-WIC Paper, About, Free Food, Appointment, eWIC for Families, eWIC for Stores, New Participant Training, Referrals,
+    Breastfeeding Resources) are participant- and store-facing; eWIC for Stores links one PDF (approved infant formula suppliers)
+    and the site search for ''WIC policy manual'' returns only those pages. No page lists a manual or a local-agency section.
+    Selected in the fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY).'
+- jurisdiction: us-ne
+  name: Nebraska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ne-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: manual
+    version: null
+  index_url: https://dhhs.ne.gov/Pages/WIC-Policies-and-Procedures.aspx
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Nebraska Department of Health and Human Services: The Nebraska WIC policy manual is not published on dhhs.ne.gov:
+    the Local Agency Staff page''s ''Policies, Procedures & Forms'' page lists three policy memos (hospital certification,
+    Afghan refugees, eWIC Journey use), budget templates, forms and two vendor letter templates from a ''WIC Procedure Manuals''
+    folder, but no manual index or chapter PDFs. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted
+    states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+- jurisdiction: us-nh
+  name: New Hampshire
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-nh-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: manual
+    version: null
+  index_url: https://www.dhhs.nh.gov/programs-services/health-care/nutrition-services/wic
+  index_document_count: 0
+  taken_count: 0
+  notes: 'New Hampshire Department of Health and Human Services: www.dhhs.nh.gov answers HTTP 403 to the plain client with
+    a browser User-Agent for the WIC page and for the site root (first probe, 2026-09-10T21:47Z from a US network); one curl_cffi
+    chrome120 impersonation of the WIC URL answers 404, so the page has also moved and no manual index could be read from
+    the publisher. No mirror was used. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states
+    by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+- jurisdiction: us-nj
+  name: New Jersey
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.nj.gov/health/fhs/wic/vendors/policies.shtml
+  target_manifest: manifests/us-nj-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.nj.gov/health/fhs/wic/vendors/policies.shtml
+  index_document_count: 10
+  taken_count: 9
+  index_inventory:
+    vendor_management_policy_pdf: 9
+    other_pdf: 1
+  notes: 'Current WIC policy manual confirmed on the state WIC agency''s own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Partial: only the vendor-management functional area of the manual is published.
+    Selected in the second batch as one of the next ten states by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI).'
+- jurisdiction: us-nm
+  name: New Mexico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-nm-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: manual
+    version: null
+  index_url: https://www.nmwic.org/nm-wic-staff/policy-procedures/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'New Mexico Department of Health, New Mexico WIC: The NM WIC Policies & Procedures page on the agency site (nmwic.org)
+    lists the manual''s series headings (100 Introduction through 1400 Vendor Management, Appendices, Peer Counselor Policies)
+    but links no documents under them; the only links in that section point at the department intranet (http://chilenet/...).
+    The manual is not published. Replacement for a blocked batch-3 state. Selected in the third batch as a replacement (in
+    order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. re-probed 2026-09-10T21:38Z from US network: the
+    Policies & Procedures page still links only the intranet.'
+- jurisdiction: us-nv
+  name: Nevada
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-nv-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-nv
+    document_class: manual
+    version: null
+  index_url: https://nevadawic.org/staff/policy-and-procedures/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Nevada Department of Health and Human Services, Nevada WIC: The Nevada WIC Policy & Procedure Manual page on the
+    agency site (nevadawic.org, Staff > Policy and Procedures) is password-protected (''This content is password-protected.
+    To view it, please enter the password below.''), so the manual index cannot be read; individual policy PDFs exist under
+    wp-content/uploads but no public index lists them. Replacement for a blocked batch-3 state. Selected in the third batch
+    as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. re-probed 2026-09-10T21:38Z
+    from US network: the Policy and Procedures page is still password-protected.'
+- jurisdiction: us-ny
+  name: New York
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ny-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: manual
+    version: null
+  index_url: https://www.health.ny.gov/prevention/nutrition/wic/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'New York State Department of Health: The NYS WIC Program Manual is not published on health.ny.gov: the WIC pages
+    link no manual, the only copies on the host are inactive procurement attachments (funding/ifb/inactive/16429/wic_program_manual_*.pdf),
+    and current copies exist only as reposts on non-government sites (nwica.org, thewichub.org), which the queue forbids.
+    Selected in the first batch as one of the ten largest states by population. re-checked 2026-09-10T18:47Z, still not published.
+    re-probed 2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+- jurisdiction: us-oh
+  name: Ohio
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-oh-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: manual
+    version: null
+  index_url: https://odh.ohio.gov/know-our-programs/Women-Infants-Children/Local-Staff
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Ohio Department of Health: The Ohio WIC Policy and Procedure Manual is not published on odh.ohio.gov: the Local
+    Staff and program pages link no manual; the only public copy is a July 2015 repost by a county health department, which
+    is neither current nor the publisher. Selected in the first batch as one of the ten largest states by population. re-checked
+    2026-09-10T18:47Z, still not published. re-probed 2026-09-10T21:38Z from US network: the Local Staff page and the Women-Infants-Children
+    program page both answer 404; still not published.'
+- jurisdiction: us-ok
+  name: Oklahoma
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-ok-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ok
+    document_class: manual
+    version: null
+  index_url: https://oklahoma.gov/health/services/children-family-health/wic.html
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Oklahoma State Department of Health: The Oklahoma WIC policy and procedures manual is not published on oklahoma.gov:
+    the WIC program page and its Health Partners, WIC Forms, Formula Information, Health & Nutrition and Caseload Data subpages
+    link only the formulary, income guidelines, clinic list, assessment forms and formula documents; no page lists a manual.
+    Selected in the third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT). re-probed
+    2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+- jurisdiction: us-or
+  name: Oregon
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.oregon.gov/OHA/PH/HEALTHYPEOPLEFAMILIES/WIC/Pages/wicpolicy.aspx
+  target_manifest: manifests/us-or-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.oregon.gov/OHA/PH/HEALTHYPEOPLEFAMILIES/WIC/Pages/wicpolicy.aspx
+  index_document_count: 111
+  taken_count: 88
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
+    SC, AL, LA, KY, OR, OK, CT, UT).
+  index_inventory:
+    policy_pdf: 88
+    policy_update_release_notes_pdf: 23
+    duplicate_policy_number: []
+    sections:
+      '100': Introduction
+      '200': State Operations
+      '300': Fiscal Services
+      '400': Local Operations
+      '500': Local Operations
+      '600': Certification
+      '700': Nutrition Services
+      '800': Nutrition Education
+      '900': Data Systems
+      '1000': Vendor
+      '1100': Farm Direct
+- jurisdiction: us-pa
+  name: Pennsylvania
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+  target_manifest: manifests/us-pa-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-pa
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+  index_document_count: 56
+  taken_count: 44
+  index_inventory:
+    policy_pdf: 44
+    policy_index_pdf: 1
+    other_pdf: 11
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-ri
+  name: Rhode Island
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://health.ri.gov/programs/wic/
+  target_manifest: manifests/us-ri-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://health.ri.gov/programs/wic/
+  index_document_count: 75
+  taken_count: 2
+  index_inventory:
+    compiled_manual_pdf: 1
+    vendor_policies_pdf: 1
+    other_pdf_on_program_page: 73
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states
+    by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).
+- jurisdiction: us-sc
+  name: South Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-sc-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: manual
+    version: null
+  index_url: https://dph.sc.gov/health-wellness/family-planning/women-infants-and-children-wic-nutrition-program
+  index_document_count: 0
+  taken_count: 0
+  notes: 'South Carolina Department of Public Health: dph.sc.gov answered HTTP 403 (CloudFront) in batch 3. Retried 2026-09-10T21:34Z
+    from a US network: the host now answers 200, but the WIC program page and its WIC Resources, Healthcare Providers & Formulas
+    and South Carolina WIC subpages link only participant, formula, food-guide and referral material, and the linked apps.dhec.sc.gov/Health/WIC
+    is a participant sign-in portal; no policy manual index is published on the site. No mirror was used. Selected in the
+    third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT).'
+- jurisdiction: us-sd
+  name: South Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-sd-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: manual
+    version: null
+  index_url: https://doh.sd.gov/programs/wic/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'South Dakota Department of Health, WIC Program: The South Dakota WIC policy manual is not published on doh.sd.gov:
+    the WIC program page links only the sd.gov/wic participant portal (approved foods, eligibility, news), the Family Nutrition
+    Services page and the grocery-store lookup; no page lists a manual. Selected in the fourth batch (retry) as one of the
+    next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+- jurisdiction: us-tn
+  name: Tennessee
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-tn-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-tn
+    document_class: manual
+    version: null
+  index_url: https://www.tn.gov/health/health-program-areas/fhw/wic.html
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Tennessee Department of Health: www.tn.gov answered HTTP 403 (awselb/2.0) or timed out for every client in batch
+    2. Retried 2026-09-10T21:34Z from a US network: the host now answers (two of six requests still failed with a TLS EOF),
+    the batch-2 WIC URL (health-program-areas/fhw/wic.html) is 404 and the relocated WIC page (health/wic.html) links participant,
+    vendor and nutrition-education material, the WIC state rule (1200-15-02) and the vendor Food Package Policy but no Policy
+    & Procedures Manual index; individual manual policies still exist under content/dam/tn/health/program-areas/wic/ (FY2022-ADM-01-03-02
+    answers 200 to HEAD) but no page lists them. No mirror was used. Selected in the second batch as one of the next ten states
+    by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI).'
+- jurisdiction: us-tx
+  name: Texas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.hhs.texas.gov/providers/wic-providers/wic-policy-procedures-manual
+  target_manifest: manifests/us-tx-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.hhs.texas.gov/providers/wic-providers/wic-policy-procedures-manual
+  index_document_count: 147
+  taken_count: 146
+  index_inventory:
+    policy_pdf: 137
+    policy_pdf_working_draft: 9
+    complete_manual_pdf: 1
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-ut
+  name: Utah
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://wic.utah.gov/about/wic-policies/
+  target_manifest: manifests/us-ut-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://wic.utah.gov/about/wic-policies/
+  index_document_count: 107
+  taken_count: 107
+  index_inventory:
+    policy_pdf: 107
+    functional_area_without_policies:
+    - VI. Food Funds Management
+    duplicate_policy_title: []
+    fy2027_state_plan_section_ii_draft_pdf_on_separate_page: 110
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
+    SC, AL, LA, KY, OR, OK, CT, UT).
+- jurisdiction: us-va
+  name: Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://www.vdh.virginia.gov/wic/wic-policy-and-procedures-manual/
+  target_manifest: manifests/us-va-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://www.vdh.virginia.gov/wic/wic-policy-and-procedures-manual/
+  index_document_count: 200
+  taken_count: 147
+  index_inventory:
+    policy_pdf: 146
+    overview_pdf: 1
+    toc_pdf: 1
+    form_pdf: 39
+    appendix_pdf: 12
+    glossary_pdf: 1
+    duplicate_link_same_file: 1
+    policy_pdf_labeled_by_title:
+    - Remote WIC Services -> remote-wic-services
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the second batch as one of the next ten states by population (NJ, VA,
+    WA, AZ, TN, MA, IN, MD, MO, WI).
+- jurisdiction: us-vt
+  name: Vermont
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-vt-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: manual
+    version: null
+  index_url: https://www.healthvermont.gov/family/wic
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Vermont Department of Health, WIC Program: The Vermont WIC policy manual is not published on healthvermont.gov:
+    the WIC section (first probe 2026-09-10T22:58Z from a US network) has fourteen sub-pages (Apply, Check Your Balance, Information
+    for Grocers, Resources for Health Professionals, Shopping, Basics, Breastfeeding, Community Resources, Discounts, Eligibility,
+    Nutrition, Plans & Reports, Remote Appointments, Rights & Concerns) and none is a policy or local-agency page; Plans &
+    Reports links the ''2025 State Plan Goals and Objectives'' PDF (WIC State Plan, a different document family; MT precedent)
+    and data reports; Information for Grocers links the Vermont WIC Grocer Handbook and vendor forms (vendor family); the
+    site search for ''WIC policy manual'' returns only those pages. Selected in the fifth batch as one of the last five jurisdictions
+    without a queue row (AK, DC, ND, VT, WY).'
+- jurisdiction: us-wa
+  name: Washington
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://doh.wa.gov/public-health-provider-resources/public-health-system-resources-and-services/local-health-resources-and-tools/wic/policy-procedures
+  target_manifest: manifests/us-wa-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-wa
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://doh.wa.gov/public-health-provider-resources/public-health-system-resources-and-services/local-health-resources-and-tools/wic/policy-procedures
+  index_document_count: 134
+  taken_count: 33
+  index_inventory:
+    chapter_pdf: 31
+    chapter_section_required_guidance_pdf: 2
+    revision_table_pdf: 25
+    policy_revision_pdf: 1
+    post_phe_guidance_pdf: 27
+    required_local_agency_policies_pdf: 1
+    staff_tool_form_or_other_file: 47
+    vacant_chapter:
+    - volume-1-chapter-4
+    - volume-1-chapter-13
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the second batch as one of the next ten states by population (NJ, VA,
+    WA, AZ, TN, MA, IN, MD, MO, WI).
+- jurisdiction: us-wi
+  name: Wisconsin
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-wi-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: manual
+    version: null
+  index_url: https://www.dhs.wisconsin.gov/wic/professionals.htm
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Wisconsin Department of Health Services: The Wisconsin WIC Policy and Procedure Manual is not published on dhs.wisconsin.gov:
+    the WIC home, Providers and Professionals and local-project pages link no manual and candidate /wic/ppm*, /wic/local-agency*
+    paths answer 404; the only policy-like PDFs on the host (wic/certification-eligibility-coordination.pdf, wic/caseload-management.pdf)
+    are FY 2025 state-plan sections, not a manual index. Selected in the second batch as one of the next ten states by population
+    (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network, still not published (page reachable,
+    no manual link).'
+- jurisdiction: us-wv
+  name: West Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual_pdf_per_section
+  primary_source_url: https://dhhr.wv.gov/WIC/policyprocedure/Pages/Default.aspx
+  target_manifest: manifests/us-wv-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-wv
+    document_class: manual
+    version: 2026-09-10-wic-state-policy-manual
+  index_url: https://dhhr.wv.gov/WIC/policyprocedure/Pages/Default.aspx
+  index_document_count: 272
+  taken_count: 140
+  index_inventory:
+    policy_pdf: 140
+    attachment_pdf: 117
+    chapter_index_table_pdf: 1
+    other_chapter_page_file:
+    - '2.0: Chapter 2 Policy Index'
+    - '2.0: '
+    - '2.0: '
+    - '3.0: Chapter 3 Policy Index'
+    - '4.0: Chapter 4 Policy Index'
+    - '5.0: Chapter 5 Policy Index'
+    - '6.0: Chapter 6 Policy Index'
+    - '7.0: Chapter 7 Table of Contents'
+    - '8.0: Chapter 8 Policy Index'
+    - '11.0: Chapter 11 Policy Index'
+    state_plan_page: 2
+    participant_agreement_pdf: 2
+    duplicate_link_same_file:
+    - 3.16 Special Formula Distribution System
+    duplicate_policy_number: []
+    chapters:
+      '1': General Administration
+      '2': Eligibility and Certification
+      '3': Food Delivery System
+      '4': Food Package Description Tailoring
+      '5': Nutrition Services
+      '6': Financial Management
+      '7': Outreach
+      '8': Vendor Management
+      '9': Local Agency Monitoring
+      '10': Coordination of Services
+      '11': Training
+  notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
+    listed there, single_block extraction. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states
+    by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).
+- jurisdiction: us-wy
+  name: Wyoming
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-wy-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-wy
+    document_class: manual
+    version: null
+  index_url: https://health.wyo.gov/publichealth/wic/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Wyoming Department of Health, WIC Program: The Wyoming WIC policy manual is not published on health.wyo.gov: the
+    WIC program page (first probe 2026-09-10T22:58Z from a US network) and its sub-pages (Learn About WIC, Apply, Clinic Locator,
+    Appointment FAQ, Medical Documentation, Forms & Documents, Breastfeeding Support, Nutrition Education, Food Shopping Guide,
+    Where Can I Shop, Yearly Savings, Vendor Services, Complaints and Fraud) list no policy manual or local-agency section;
+    Vendor Services links a ''Vendor Manual'', minimum stocking requirements and a price survey as Google Docs (vendor family,
+    not the program policy manual); the site search for ''WIC policy manual'' returns only the program page. Selected in the
+    fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY).'

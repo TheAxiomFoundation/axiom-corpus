@@ -1,0 +1,748 @@
+version: '2026-09-10'
+document_family: medicare_policy_sources
+program: MEDICARE
+queue_status: in_progress
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+  - sources
+  - inventory
+  - provisions
+  - coverage
+  forbidden_sources:
+  - secondary summaries
+  - State Options Reports
+  - benefitswiki
+  - policy manuals reposted by non-government sites
+  notes:
+  - Drafted 2026-09-10 for the ten board Year 1 programs (ballmer-proposal-2026 encoding-program-list.md).
+  - 'Lead list only: PolicyEngine-US citations extracted offline with the citing path preserved, classified by axiom_corpus.corpus.source_discovery.
+    Not corpus sources; every selected document must be re-fetched from the official publisher.'
+  - The lead list under-names agency manuals and state plans. Reviewers must add them from the official publisher before the
+    queue is agent_ready.
+  - 'policyengine-us 84253b6afafb (2026-08-17); lead file: policyengine-us-committed-program-references.jsonl'
+lead_list:
+  source: policyengine-us
+  commit: 84253b6afafbb1875c65f12e654c6535744728b7
+  committed_at: '2026-08-17T17:54:20-04:00'
+  reference_file: policyengine-us-committed-program-references.jsonl
+  classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
+status_counts:
+  agent_ready: 1
+states:
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_chapters
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  lead_counts:
+    ready_for_manifest: 2
+    needs_review: 17
+    excluded_secondary: 13
+  candidate_sources:
+  - url: https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: statute
+    host: legislature.maine.gov
+    jurisdiction_inferred: us-me
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml
+  - url: https://mass.gov/doc/eom-24-03-medicare-savings-programs-formerly-known-as-masshealth-senior-buy-in-and-masshealth-buy-in-programs-0/download
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: form
+    host: mass.gov
+    jurisdiction_inferred: us-ma
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml
+  - url: https://cms.gov/medicare
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/costs/medicare_cost.py
+    - policyengine-us#variables/gov/hhs/medicare/costs/medicare_enrolled.py
+    - policyengine-us#variables/gov/hhs/medicare/costs/medicare_gross_cost.py
+  - url: https://cms.gov/medicare/enrollment-renewal/health-plans/original-part-a-b
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/eligibility/is_medicare_eligible.py
+  - url: https://cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/full_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/reduced_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_b/base_premium.yaml
+  - url: https://cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/full_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/reduced_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_b/base_premium.yaml
+  - url: https://cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/deductible.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/full_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/reduced_premium.yaml
+  - url: https://cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/deductible.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/full_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/reduced_premium.yaml
+  - url: https://cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/full_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/reduced_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_b/base_premium.yaml
+  - url: https://cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/full_premium.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_b/base_premium.yaml
+  - url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: downloads.cms.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml
+  - url: https://dss.mo.gov/fsd/iman/medasst/0865-010-15.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: dss.mo.gov
+    jurisdiction_inferred: us-mo
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml
+  - url: https://medicare.gov/basics/costs/help/medicare-savings-programs
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicare.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml
+  - url: https://medicare.gov/basics/costs/medicare-costs
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicare.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/qmb/cost_sharing_rate.yaml
+    - policyengine-us#variables/gov/hhs/medicare/eligibility/part_a/medicare_part_a_premium.py
+  - url: https://medicare.gov/basics/costs/medicare-costs/part-a-costs
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicare.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/premium_free_quarters_threshold.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_a/reduced_premium_quarters_threshold.yaml
+    - policyengine-us#variables/gov/hhs/medicare/eligibility/part_a/is_premium_free_part_a.py
+  - url: https://medicare.gov/your-medicare-costs/part-b-costs
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: medicare.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/eligibility/part_b/gross_medicare_part_b_premium.py
+    - policyengine-us#variables/gov/hhs/medicare/eligibility/part_b/gross_medicare_part_b_premium_if_enrolled.py
+    - policyengine-us#variables/gov/hhs/medicare/eligibility/part_b/medicare_part_b_premium.py
+  - url: https://medicareinteractive.org/understanding-medicare
+    source_status: unknown
+    disposition: needs_review
+    document_class: other
+    host: medicareinteractive.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/eligibility/msp_asset_eligible.py
+  - url: https://medicareinteractive.org/understanding-medicare/cost-saving-programs/medicare-savings-programs-qmb-slmb-qi/medicare-savings-program-income-and-asset-limits
+    source_status: unknown
+    disposition: needs_review
+    document_class: other
+    host: medicareinteractive.org
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/applies.yaml
+  - url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501715010
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/couple.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/asset/individual.yaml
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/income/msp_countable_income.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1163
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/income/msp_countable_income.py
+  - url: https://law.cornell.edu/cfr/text/42/423.286
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml
+  - url: https://law.cornell.edu/cfr/text/42/435.123
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/category/is_qmb_eligible.py
+  - url: https://law.cornell.edu/cfr/text/42/435.124
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/category/is_slmb_eligible.py
+  - url: https://law.cornell.edu/cfr/text/42/435.125
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/category/is_qi_eligible.py
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/eligibility/msp_income_eligible.py
+  - url: https://law.cornell.edu/uscode/text/42/1382b
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/eligibility/msp_asset_eligible.py
+  - url: https://law.cornell.edu/uscode/text/42/1395r
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml
+  - url: https://law.cornell.edu/uscode/text/42/1395w-113
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/head_of_household.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/joint.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/part_d/irmaa/separate.yaml
+  - url: https://law.cornell.edu/uscode/text/42/1396a
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/income/qi/fpl_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/income/qmb/fpl_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/income/slmb/fpl_limit.yaml
+  - url: https://law.cornell.edu/uscode/text/42/1396b
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/msp_federal_cost.py
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/msp_state_cost.py
+  - url: https://law.cornell.edu/uscode/text/42/1396d
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/eligibility/income/qmb/fpl_limit.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/qmb/cost_sharing_rate.yaml
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/category/msp_category.py
+  - url: https://law.cornell.edu/uscode/text/42/1396u-3
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/savings_programs/qi/federal_share.yaml
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/msp_federal_cost.py
+    - policyengine-us#variables/gov/hhs/medicare/savings_programs/msp_state_cost.py
+  - url: https://law.cornell.edu/uscode/text/42/426
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/hhs/medicare/eligibility/min_age.yaml
+    - policyengine-us#parameters/gov/hhs/medicare/eligibility/min_months_receiving_social_security_disability.yaml
+  notes: 'Family: CMS Internet-Only Manuals. Pub 100-01 (Medicare General Information, Eligibility and Entitlement Manual)
+    taken in full: 7 chapter PDFs from the publication page listed on the IOM index; the Crosswalks PDF on the same page is
+    a finding aid, not a chapter, and is not taken. The existing us/guidance/cms/original-medicare-part-a-b scope is not re-ingested.
+    Pub 100-02 (Benefit Policy), Pub 100-04 (Claims Processing) and Pub 45 (State Medicaid Manual) are candidate later families;
+    cms.gov fact sheets, medicare.gov pages, SSA POMS and state pages on the lead list are not CMS manuals and stay out of
+    this family. Pub 100-24 (State Payment of Medicare Premiums, the Part A/Part B buy-in manual) taken in full: 6 chapter
+    PDFs from its publication page; the ''100-24 Table of Contents'' PDF on the same page is a finding aid, not a chapter,
+    and is not taken. Its appendices (1.A-1.D, 5.A-5.D, 6.A-6.B) are bold sections with their own transmittal lines and are
+    emitted as sections labeled by appendix code.'
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 25
+  taken_count: 2
+  publication_page:
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    document_count: 8
+    chapter_count: 7
+    chapters_taken: 7
+    not_taken:
+    - Crosswalks
+  index_inventory:
+  - publication: '100'
+    title: Introduction
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms018890
+    chapter_count: 0
+    other_document_count: 1
+    other_documents:
+    - Pub 100 - Introduction
+    taken: false
+  - publication: 100-01
+    title: Medicare General Information, Eligibility and Entitlement Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+    chapter_count: 7
+    other_document_count: 1
+    other_documents:
+    - Crosswalks
+    taken: true
+  - publication: 100-02
+    title: Medicare Benefit Policy Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter_count: 17
+    other_document_count: 16
+    other_documents:
+    - 16 per-chapter crosswalks
+    taken: false
+  - publication: 100-03
+    title: Medicare National Coverage Determinations (NCD) Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    chapter_count: 4
+    other_document_count: 2
+    other_documents:
+    - Crosswalk from CIM to NCD Manual
+    - Crosswalk from NCD Manual to Coverage Issues Manual (CIM)
+    taken: false
+  - publication: 100-04
+    title: Medicare Claims Processing Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms018912
+    chapter_count: 41
+    other_document_count: 29
+    other_documents:
+    - 29 per-chapter crosswalks
+    taken: false
+  - publication: 100-05
+    title: Medicare Secondary Payer Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter_count: 8
+    other_document_count: 8
+    other_documents:
+    - Chapter 5.1 - ECRS Web User Guide
+    - Chapter 5.2 - ECRS Quick Reference Card
+    - 6 per-chapter crosswalks
+    taken: false
+  - publication: 100-06
+    title: Medicare Financial Management Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019018
+    chapter_count: 11
+    other_document_count: 0
+    other_documents: []
+    taken: false
+  - publication: 100-07
+    title: State Operations Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms1201984
+    chapter_count: 10
+    other_document_count: 1
+    other_documents:
+    - SOM Appendix
+    taken: false
+  - publication: 100-08
+    title: Medicare Program Integrity Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019033
+    chapter_count: 15
+    other_document_count: 3
+    other_documents:
+    - Chapter 15.4-Processing Guide-855O
+    - Chapter 15.5-Processing Guide-855R
+    - Exhibits
+    taken: false
+  - publication: 100-09
+    title: Medicare Contractor Beneficiary and Provider Communications Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019034
+    chapter_count: 5
+    other_document_count: 1
+    other_documents:
+    - Crosswalk
+    taken: false
+  - publication: 100-10
+    title: Quality Improvement Organization Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019035
+    chapter_count: 12
+    other_document_count: 0
+    other_documents: []
+    taken: false
+  - publication: 100-11
+    title: Programs of All-Inclusive Care for the Elderly (PACE)Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019036
+    chapter_count: 17
+    other_document_count: 2
+    other_documents:
+    - Table of Contents
+    - 'Appendix I: Glossary'
+    taken: false
+  - publication: 100-12
+    title: State Medicaid Manual (The new manual is under development. Please continue to use the Paper-Based Manual to make
+      your selection.)
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050483
+    chapter_count: 0
+    other_document_count: 0
+    other_documents: []
+    taken: false
+  - publication: 100-13
+    title: Medicaid State Childrens Health Insurance Program (Under Development)
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms1249728
+    chapter_count: 0
+    other_document_count: 0
+    other_documents: []
+    taken: false
+  - publication: 100-15
+    title: Medicaid Program Integrity Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms1238527
+    chapter_count: 5
+    other_document_count: 1
+    other_documents:
+    - mpi115_Appendices
+    taken: false
+  - publication: 100-16
+    title: Medicare Managed Care Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter_count: 15
+    other_document_count: 10
+    other_documents:
+    - Chapter 16a - Subchapter A - Private Fee-for-Service (PFFS) Plans
+    - Chapter 16b - Subchapter B - Special Needs Plans
+    - Chapter 17a - Subchapter A - TEFRA Cost Based Payment Processes and Principles
+    - Chapter 17b - Subchapter B - Payment Principles for Cost-Based HMOs and CMPs
+    - Chapter 17c - Subchapter C - Cost Apportionment for Cost-Based HMOs and CMPs
+    - Chapter 17d - Subchapter D - Medicare Cost Plan Enrollment and Disenrollment Instructions
+    - Chapter 17f - Subchapter F - Benefits and Beneficiary Protections
+    - Chapter 18a - Subchapter A - Cost-Based Payment Process and Principles
+    - Chapter 18b - Subchapter B - Payment Principles for Cost-Based HMOs and CMPs
+    - Chapter 18c - Subchapter C - Cost Apportionment for Cost-Based HMO/CMPs
+    taken: false
+  - publication: 100-17
+    title: CMS/Business Partners Systems Security Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019466
+    chapter_count: 0
+    other_document_count: 2
+    other_documents:
+    - Pub 100-17 - CMS/Business Partners Systems Security Manual
+    - Pub 100-17 - CMS Acceptable Risk Safeguards (ARS)
+    taken: false
+  - publication: 100-18
+    title: Medicare Prescription Drug Benefit Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter_count: 0
+    other_document_count: 1
+    other_documents:
+    - Pub 100-18 - Medicare Prescription Drug Benefit Manual
+    taken: false
+  - publication: 100-19
+    title: Demonstrations
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms020107
+    chapter_count: 0
+    other_document_count: 1
+    other_documents:
+    - Pub100_19
+    taken: false
+  - publication: 100-20
+    title: One-Time Notification
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms020095
+    chapter_count: 0
+    other_document_count: 1
+    other_documents:
+    - Pub100_20 - One-Time Notification
+    taken: false
+  - publication: 100-21
+    title: Reserved
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms020351
+    chapter_count: 0
+    other_document_count: 1
+    other_documents:
+    - Pub 100-21 - Reserved
+    taken: false
+  - publication: 100-22
+    title: Medicare Quality Reporting Incentive programs Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms1236946
+    chapter_count: 3
+    other_document_count: 0
+    other_documents: []
+    taken: false
+  - publication: 100-23
+    title: Payment Error Rate Measurement (Under Development)
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/pub100_23
+    chapter_count: 0
+    other_document_count: 0
+    other_documents: []
+    taken: false
+  - publication: 100-24
+    title: State Payment of Medicare Premiums
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter_count: 6
+    other_document_count: 1
+    other_documents:
+    - 100-24 Table of Contents
+    taken: true
+  - publication: 100-25
+    title: Information Security Acceptable Risk Safeguards Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms1248023
+    chapter_count: 0
+    other_document_count: 1
+    other_documents:
+    - Pub 100-25 - Information Security Acceptable Risk Safeguards Manual
+    taken: false
+  paper_based_manuals:
+    index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/paper-based-manuals
+    publications:
+    - publication: 15-1
+      title: The Provider Reimbursement Manual - Part 1
+      url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/paper-based-manuals-items/cms021929
+      chapter_count: 26
+      other_document_count: 0
+      taken: false
+    - publication: 15-2
+      title: The Provider Reimbursement Manual - Part 2
+      url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/paper-based-manuals-items/cms021935
+      chapter_count: 37
+      other_document_count: 1
+      taken: false
+    - publication: '45'
+      title: The State Medicaid Manual
+      url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/paper-based-manuals-items/cms021927
+      chapter_count: 12
+      other_document_count: 0
+      taken: false
+  publications:
+  - publication: 100-24
+    title: State Payment of Medicare Premiums
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    target_manifest: manifests/us-cms-iom-100-24.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-10-medicare-cms-iom-100-24
+    document_count: 7
+    chapter_count: 6
+    chapters_taken: 6
+    not_taken:
+    - 100-24 Table of Contents
+    heading_style: bold 'N.N Title' / 'N.N - Title' headings and bold 'Appendix N.X - Title' appendices; the body starts after
+      the table of contents
+    run_note: docs/ingest-runs/2026-09-10-medicare-cms-iom-100-24.md
+  index_families:
+  - publication: '100'
+    title: Introduction
+    chapter_count: 0
+    status: whole_manual_download_only
+  - publication: 100-01
+    title: Medicare General Information, Eligibility and Entitlement Manual
+    chapter_count: 7
+    status: taken
+  - publication: 100-02
+    title: Medicare Benefit Policy Manual
+    chapter_count: 17
+    status: candidate_later_family
+  - publication: 100-03
+    title: Medicare National Coverage Determinations (NCD) Manual
+    chapter_count: 4
+    status: not_taken
+  - publication: 100-04
+    title: Medicare Claims Processing Manual
+    chapter_count: 41
+    status: candidate_later_family
+  - publication: 100-05
+    title: Medicare Secondary Payer Manual
+    chapter_count: 8
+    status: not_taken
+  - publication: 100-06
+    title: Medicare Financial Management Manual
+    chapter_count: 11
+    status: not_taken
+  - publication: 100-07
+    title: State Operations Manual
+    chapter_count: 10
+    status: not_taken
+  - publication: 100-08
+    title: Medicare Program Integrity Manual
+    chapter_count: 15
+    status: not_taken
+  - publication: 100-09
+    title: Medicare Contractor Beneficiary and Provider Communications Manual
+    chapter_count: 5
+    status: not_taken
+  - publication: 100-10
+    title: Quality Improvement Organization Manual
+    chapter_count: 12
+    status: not_taken
+  - publication: 100-11
+    title: Programs of All-Inclusive Care for the Elderly (PACE)Manual
+    chapter_count: 17
+    status: not_taken
+  - publication: 100-12
+    title: State Medicaid Manual (The new manual is under development. Please continue to use the Paper-Based Manual to make
+      your selection.)
+    chapter_count: 0
+    status: no_documents
+  - publication: 100-13
+    title: Medicaid State Childrens Health Insurance Program (Under Development)
+    chapter_count: 0
+    status: no_documents
+  - publication: 100-15
+    title: Medicaid Program Integrity Manual
+    chapter_count: 5
+    status: not_taken
+  - publication: 100-16
+    title: Medicare Managed Care Manual
+    chapter_count: 15
+    status: not_taken
+  - publication: 100-17
+    title: CMS/Business Partners Systems Security Manual
+    chapter_count: 0
+    status: whole_manual_download_only
+  - publication: 100-18
+    title: Medicare Prescription Drug Benefit Manual
+    chapter_count: 0
+    status: whole_manual_download_only
+  - publication: 100-19
+    title: Demonstrations
+    chapter_count: 0
+    status: whole_manual_download_only
+  - publication: 100-20
+    title: One-Time Notification
+    chapter_count: 0
+    status: whole_manual_download_only
+  - publication: 100-21
+    title: Reserved
+    chapter_count: 0
+    status: whole_manual_download_only
+  - publication: 100-22
+    title: Medicare Quality Reporting Incentive programs Manual
+    chapter_count: 3
+    status: not_taken
+  - publication: 100-23
+    title: Payment Error Rate Measurement (Under Development)
+    chapter_count: 0
+    status: no_documents
+  - publication: 100-24
+    title: State Payment of Medicare Premiums
+    chapter_count: 6
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-24.yaml
+    version: 2026-09-10-medicare-cms-iom-100-24
+  - publication: 100-25
+    title: Information Security Acceptable Risk Safeguards Manual
+    chapter_count: 0
+    status: whole_manual_download_only

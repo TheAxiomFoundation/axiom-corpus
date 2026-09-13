@@ -1,0 +1,252 @@
+version: '2026-09-10'
+documents:
+- source_id: us-va-dss-tanf-manual-chapter-100
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 100 - General Information
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-100---General-Information.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-100
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 100
+    official_listing_title: Chapter 100 - General Information
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-200
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 200 - Categorical Eligibility Requirements
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-200---Categorical-Eligibility-Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-200
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 200
+    official_listing_title: Chapter 200 - Categorical Eligibility Requirements
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-300
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 300 - Need and Amount of Assistance
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-300---Need-and-Amount-of-Assistance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-300
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 300
+    official_listing_title: Chapter 300 - Need and Amount of Assistance
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-400
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 400 - TANF Basic Requirements Regarding Applications
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-400---TANF-Basic-Requirements-Regarding-Applications.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-400
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 400
+    official_listing_title: Chapter 400 - TANF Basic Requirements Regarding Applications
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-500
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 500 - Authorization and Payment
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-500---Authorization-and-Payment.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-500
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 500
+    official_listing_title: Chapter 500 - Authorization and Payment
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-600
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 600 - Support and Legally Responsible Persons
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-600---Support-and-Legally-Responsible-Persons_10-22.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-600
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 600
+    official_listing_title: Chapter 600 - Support and Legally Responsible Persons
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-700
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 700 - TANF-UP Unemployed Parent Program
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-700---TANF-UP-Unemployed-Parent-Program.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-700
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 700
+    official_listing_title: Chapter 700 - TANF-UP Unemployed Parent Program
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-800
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 800 - Diversionary Assistance Program
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/tanf/Chapter-800---Diversionary-Assistance-Program.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-800
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 800
+    official_listing_title: Chapter 800 - Diversionary Assistance Program
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-900
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 900 - (VIEW) - Eligibility Factors
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/view/Chapter-900---The-Virginia-Initiative-for-Education-and-Work-(VIEW)-Program.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-900
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 900
+    official_listing_title: Chapter 900 - (VIEW) - Eligibility Factors
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head
+- source_id: us-va-dss-tanf-manual-chapter-1000
+  jurisdiction: us-va
+  document_class: manual
+  title: Virginia TANF Manual Chapter 1000 - (VIEW) - Employment Services
+  source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/tanfx2fview/view/Chapter-1000---The-Virginia-Initiative-for-Education-and-Work-Program---Employment-Services.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-21'
+  citation_path: us-va/manual/dss/tanf/chapter-1000
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: policy_manual_chapter
+    program: TANF
+    state_program: Virginia TANF
+    federal_program: TANF
+    manual_landing_page: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    source_discovery_group: us-va/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.dss.virginia.gov/relief/tanf/tanf-manual/
+    chapter_number: 1000
+    official_listing_title: Chapter 1000 - (VIEW) - Employment Services
+    extraction_granularity: pdf_page
+    extraction_note: page-level; each page carries a transmittal date (e.g. 10/23) in its running head

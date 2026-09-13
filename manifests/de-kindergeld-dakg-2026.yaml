@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "source_id": "de-bzst-dakg-2026",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bzst-dakg-2026",
+      "title": "Dienstanweisung zum Kindergeld nach dem Einkommensteuergesetz (DA-KG) — Stand 2026",
+      "source_url": "https://www.bzst.de/SharedDocs/Downloads/DE/Kindergeldberechtigte/da_kg_2024_randstrichfassung.pdf?__blob=publicationFile&v=2",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2026-09-09",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "segmentation": "single_block"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundeszentralamt für Steuern",
+        "snapshot_sha256": "29cf1e1b24708f0bb1680c031bad97e79d87cab805c9a74b6379caa4d5196e9c",
+        "source_note": "Entire 173-page official PDF. Its actual cover and preface identify Stand 2026 despite the legacy da_kg_2024_randstrichfassung endpoint name. The preface describes rules since 2026-01-01 and application to non-final cases subject to explicit temporal restrictions. This capture does not replace DA-KG 2025 or assert blanket applicability to the 2025 certificate period. Expression date records the actual capture date; the edition year is separate metadata. No exact issuance day is inferred from PDF metadata.",
+        "edition_year": "2026"
+      }
+    }
+  ]
+}

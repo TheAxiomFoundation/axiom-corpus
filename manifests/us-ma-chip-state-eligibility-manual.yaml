@@ -1,0 +1,63 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ma-eohhs-130-cmr-505
+  jurisdiction: us-ma
+  document_class: regulation
+  title: '130 CMR 505.000: MassHealth: Coverage Types'
+  source_url: https://www.mass.gov/doc/130-cmr-505000-masshealth-coverage-types-5/download
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-02-13'
+  citation_path: us-ma/regulation/130-cmr/505
+  request: &id001
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 2
+    section_heading_pattern: ^505\.(?P<section>\d{3}):\s+(?P<heading>[^,]+|Medicare Savings Program \(MSP, also called Buy-in\))$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^130 CMR:\s+DIVISION OF MEDICAL ASSISTANCE$
+    - ^Trans\. by E\.L\.
+    - ^Rev\.
+    - '^130 CMR 505\.000:'
+    - ^\d+$
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Executive Office of Health and Human Services, MassHealth
+    document_subtype: administrative_regulation
+    program: CHIP
+    source_discovery_group: us-ma/regulation/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    legal_identifier: 130 CMR 505.000
+    regulation_page: https://www.mass.gov/regulations/130-CMR-505000-masshealth-coverage-types
+- source_id: ma-eohhs-130-cmr-506
+  jurisdiction: us-ma
+  document_class: regulation
+  title: '130 CMR 506.000: MassHealth: Financial Requirements'
+  source_url: https://www.mass.gov/doc/130-cmr-506000-masshealth-financial-requirements-4/download
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-01-30'
+  citation_path: us-ma/regulation/130-cmr/506
+  request: *id001
+  extraction:
+    segmentation: labeled_sections
+    start_page: 2
+    section_heading_pattern: ^506\.(?P<section>\d{3}):\s+(?P<heading>[^,]+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^130 CMR:\s+DIVISION OF MEDICAL ASSISTANCE$
+    - ^Trans\. by E\.L\.
+    - ^Rev\.
+    - '^130 CMR 506\.000:'
+    - ^\d+$
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Executive Office of Health and Human Services, MassHealth
+    document_subtype: administrative_regulation
+    program: CHIP
+    source_discovery_group: us-ma/regulation/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    legal_identifier: 130 CMR 506.000
+    regulation_page: https://www.mass.gov/regulations/130-CMR-506000-masshealth-financial-requirements
