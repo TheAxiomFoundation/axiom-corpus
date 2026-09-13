@@ -86,13 +86,13 @@ jurisdiction was blocked (medicaid.gov answered every listing and document reque
 Extraction seconds are wall seconds of the `extract-official-documents` command per scope (driver log), run while
 another agent's extraction shared the corpus root.
 
-**Progress checkpoint (partial, 37 of 102 scopes extracted at the time of this commit; the driver is still running in the background on the controller machine; rows with '-' seconds and MISSING coverage are not yet extracted; the note is rewritten when the run completes).**
+**Progress checkpoint (partial, 52 of 102 scopes extracted at the time of this commit; the driver is still running in the background on the controller machine; rows with '-' seconds and MISSING coverage are not yet extracted; the note is rewritten when the run completes).**
 
 ### Medicaid per state
 
 | Jurisdiction | SPA records on CMS index | Index pages | Eligibility-bearing records | Documents (PDFs) | Provisions | Coverage | Seconds |
 | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |
-| us-ak | 164 | 2 | 29 | 37 (35) | 0 | MISSING | - |
+| us-ak | 164 | 2 | 29 | 37 (35) | 393 | complete | 36 |
 | us-al | 187 | 2 | 25 | 35 (32) | 0 | MISSING | - |
 | us-ar | 226 | 3 | 30 | 33 (27) | 0 | MISSING | - |
 | us-az | 319 | 4 | 27 | 45 (41) | 0 | MISSING | - |
@@ -143,9 +143,9 @@ another agent's extraction shared the corpus root.
 | us-wi | 303 | 4 | 53 | 67 (62) | 0 | MISSING | - |
 | us-wv | 128 | 2 | 19 | 23 (21) | 0 | MISSING | - |
 | us-wy | 146 | 2 | 22 | 24 (21) | 0 | MISSING | - |
-| **total** | 16,489 | 189 | 1,786 | 2,294 (2,080) | 0 | 0/0 complete | 0 |
+| **total** | 16,489 | 189 | 1,786 | 2,294 (2,080) | 393 | 1/1 complete | 36 |
 
-Verification (medicaid): 0 scopes on disk, 0 coverage-complete, 0 document roots, 0 page provisions, 0 empty non-root bodies, 0 duplicate citation paths, 0 rows without expression_date.
+Verification (medicaid): 1 scopes on disk, 1 coverage-complete, 37 document roots, 354 page provisions, 0 empty non-root bodies, 0 duplicate citation paths, 0 rows without expression_date.
 
 
 ### Chip per state
@@ -189,23 +189,23 @@ Verification (medicaid): 0 scopes on disk, 0 coverage-complete, 0 document roots
 | us-ny | 34 | 1 | 28 | 36 (35) | 1,245 | complete | 118 |
 | us-oh | 8 | 1 | 7 | 9 (8) | 414 | complete | 9 |
 | us-ok | 18 | 1 | 14 | 15 (14) | 484 | complete | 48 |
-| us-or | 28 | 1 | 22 | 30 (29) | 0 | MISSING | - |
-| us-pa | 21 | 1 | 13 | 15 (14) | 0 | MISSING | - |
-| us-ri | 20 | 1 | 16 | 19 (18) | 0 | MISSING | - |
-| us-sc | 5 | 1 | 5 | 8 (7) | 0 | MISSING | - |
-| us-sd | 18 | 1 | 18 | 20 (19) | 0 | MISSING | - |
-| us-tn | 24 | 1 | 17 | 19 (18) | 0 | MISSING | - |
-| us-tx | 23 | 1 | 18 | 21 (20) | 0 | MISSING | - |
-| us-ut | 30 | 1 | 21 | 23 (22) | 0 | MISSING | - |
-| us-va | 28 | 1 | 21 | 23 (22) | 0 | MISSING | - |
-| us-vt | 8 | 1 | 8 | 13 (12) | 0 | MISSING | - |
-| us-wa | 19 | 1 | 16 | 20 (19) | 0 | MISSING | - |
-| us-wi | 24 | 1 | 16 | 17 (16) | 0 | MISSING | - |
-| us-wv | 21 | 1 | 17 | 19 (18) | 0 | MISSING | - |
-| us-wy | 11 | 1 | 7 | 10 (9) | 0 | MISSING | - |
-| **total** | 1,006 | 51 | 779 | 935 (884) | 23,856 | 37/37 complete | 1,992 |
+| us-or | 28 | 1 | 22 | 30 (29) | 1,367 | complete | 65 |
+| us-pa | 21 | 1 | 13 | 15 (14) | 912 | complete | 56 |
+| us-ri | 20 | 1 | 16 | 19 (18) | 573 | complete | 38 |
+| us-sc | 5 | 1 | 5 | 8 (7) | 130 | complete | 8 |
+| us-sd | 18 | 1 | 18 | 20 (19) | 678 | complete | 69 |
+| us-tn | 24 | 1 | 17 | 19 (18) | 839 | complete | 37 |
+| us-tx | 23 | 1 | 18 | 21 (20) | 844 | complete | 31 |
+| us-ut | 30 | 1 | 21 | 23 (22) | 340 | complete | 44 |
+| us-va | 28 | 1 | 21 | 23 (22) | 919 | complete | 74 |
+| us-vt | 8 | 1 | 8 | 13 (12) | 361 | complete | 14 |
+| us-wa | 19 | 1 | 16 | 20 (19) | 1,318 | complete | 45 |
+| us-wi | 24 | 1 | 16 | 17 (16) | 987 | complete | 35 |
+| us-wv | 21 | 1 | 17 | 19 (18) | 574 | complete | 78 |
+| us-wy | 11 | 1 | 7 | 10 (9) | 173 | complete | 12 |
+| **total** | 1,006 | 51 | 779 | 935 (884) | 33,871 | 51/51 complete | 2,598 |
 
-Verification (chip): 37 scopes on disk, 37 coverage-complete, 678 document roots, 23,141 page provisions, 0 empty non-root bodies, 0 duplicate citation paths, 0 rows without expression_date.
+Verification (chip): 51 scopes on disk, 51 coverage-complete, 935 document roots, 32,885 page provisions, 0 empty non-root bodies, 0 duplicate citation paths, 0 rows without expression_date.
 
 
 ### Medicaid SPA topics across the 51 indexes (records found / records taken)
@@ -350,7 +350,6 @@ Verification (chip): 37 scopes on disk, 37 coverage-complete, 678 document roots
 | Maternal Health | 1 | 1 |
 | Disaster Relief Activation | 1 | 1 |
 | Enrollment | 1 | 1 |
-
 
 ### Publisher access record
 
