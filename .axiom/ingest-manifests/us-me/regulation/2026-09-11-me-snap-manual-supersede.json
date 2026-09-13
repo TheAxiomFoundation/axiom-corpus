@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-09-11-me-snap-manual-supersede.json",
+      "sha256": "d066dd127a1984baabaab75d6b86900e9a6e4013d8175775bfd691a8b52a52c0"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-09-11-me-snap-manual-supersede.json",
+      "sha256": "eea7869faafff22d664b58886039add8b12f5089308e14d623a936aba8717c66"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-09-11-me-snap-manual-supersede.jsonl",
+      "sha256": "3ea05c30ef6c42e321af3133bec24e5e8b2d4a3845538b3f58aa34583b4f4a90"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-11-me-snap-manual-supersede/official-documents/me-ofi-snap-et-rules-chapter-609.docx",
+      "sha256": "1da7e06516b872d8e2c605d435b3ecb96d995b8889e2655bd9ab4b17cc5951c1"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-11-me-snap-manual-supersede/official-documents/me-ofi-snap-rules-chapter-301.docx",
+      "sha256": "45ee047d0e2a888dc78ba28dfe64db152db76ffc3682e4b1a6f15ddd6cdb7bb0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-me-snap-manual-supersede (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 223,
+    "missing_count": 0,
+    "provision_count": 223,
+    "source_count": 223
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:37:56.179763+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ca1VDu+bukLrbhpFMV5RSH2FKoX3Er2mUnl3t+2SqEKBrSMOIro0bEEvdevIz8r6lFp3rA88ykhYoMlieW1jCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-me-snap-manual-supersede"
+}

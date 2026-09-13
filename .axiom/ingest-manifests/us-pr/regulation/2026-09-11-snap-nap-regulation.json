@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pr/regulation/2026-09-11-snap-nap-regulation.json",
+      "sha256": "c6b1696554aa20b7e0d61d19169d18fa2436b67af56e2445b3fdabd79287c0d5"
+    },
+    {
+      "path": "data/corpus/inventory/us-pr/regulation/2026-09-11-snap-nap-regulation.json",
+      "sha256": "ccf8ee31ff4f1a49c5398c3f41bf43b357cbcc2b0e92d60575472986370268b3"
+    },
+    {
+      "path": "data/corpus/provisions/us-pr/regulation/2026-09-11-snap-nap-regulation.jsonl",
+      "sha256": "76b8cc7c20f53b0520b7e3a86772aa87b2f6103bdd358a20b272ac75108f57e7"
+    },
+    {
+      "path": "data/corpus/sources/us-pr/regulation/2026-09-11-snap-nap-regulation/official-documents/us-pr-adsef-reglamento-8684-pan.pdf",
+      "sha256": "206916d8ffb77d0f5a855636086fa2addeb0121daf7f8ae7f74d942b0f8aaee4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-snap-nap-regulation --manifest manifests/us-pr-nap-eligibility-regulation.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 128,
+    "missing_count": 0,
+    "provision_count": 128,
+    "source_count": 128
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:43:22.078841+00:00",
+  "jurisdiction": "us-pr",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RCATmmMZq6fWpQVPceRM+Wki1lXVfkFch+66XieIrCCn1X5g7ZblfOqX6ujSc8gueI5ozAcVdnaFJXpFIOa8CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-snap-nap-regulation"
+}
