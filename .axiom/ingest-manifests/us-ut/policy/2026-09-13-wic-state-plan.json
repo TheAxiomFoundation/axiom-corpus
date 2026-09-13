@@ -1,0 +1,673 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "774aa29ce80b9b4adbed30273f27cb5fe8b7890f815fdf342ef3f7fa1285621f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "009d8b7af6d32911b079d610c4eb3140bf8e8187f04ac567838bc5a3bac0b083"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/policy/2026-09-13-wic-state-plan.jsonl",
+      "sha256": "1c13f267117da0ff38de01f696574872be2de5c3e47be69e706ea21f34c5de3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-i-goals-fy2027.pdf",
+      "sha256": "c85a5f4d9dcb6fcd5a1ce09c88de5ad9f8ab1e05ada13e52c84d33ef9ec6a131"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-ad-hoc-reports.pdf",
+      "sha256": "1926083f6c142976bb1c5e0f880cbf56e84a38856cb804c62e3a69b900952696"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-adjunct-eligibility.pdf",
+      "sha256": "aa9dabb35392858b2404cef7d90c6b90423aaa37238d79e1d5dfe1564ac1214f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-anthro-and-biochemical-procedures.pdf",
+      "sha256": "8f40e29a916a21e24d2a4fd07337e623773756c19e3bab49b2f3e4b4b5f99548"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-appeals.pdf",
+      "sha256": "aea0e34af1b95c1d0ce20dabf7c513ef863a51cab66dd95b1a730db6b41bc399"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-breastfeeding-aids.pdf",
+      "sha256": "a6b80be6164d179bf6e0659e617cbb4be0551caaaea6469cdb4a2f3b5758388a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-breastfeeding-and-the-nutrition-interview.pdf",
+      "sha256": "cf7ece43afcc94f3daeccf069c532c035c79d5df9af7981f1b0201bc960985c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-breastfeeding-counseling.pdf",
+      "sha256": "104f9ce3589142e38d5d8d7891f2671cb841e905a3de7a7f9efb6c550e7616bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-breastfeeding-descriptions.pdf",
+      "sha256": "0ba273c6dbf75dddc4ea1f5661d83f3c9736441a97408f5a1f3e4cad32694764"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-breastfeeding-positive-peer-influence.pdf",
+      "sha256": "f0810cf505692d3b586a38463378ce903bc554953b4dd8e84220e4ef7060f538"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-breastfeeding-promotion-and-support.pdf",
+      "sha256": "af479fe5b3c0c63b86c07e0ac45f2c3b68c613a98e8cbd3482f8ef0bb93015fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-card-inventory.pdf",
+      "sha256": "09ae6a47b69de8abfe407ca90b0c60abd9d7d288c68b3ce53f23666277c0a72e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-categories-and-certification-periods.pdf",
+      "sha256": "36d110766f5e96a4ee874b97364af4dbda81f0bee306f7e4a28fe073f581a90d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-certification-health-assessment.pdf",
+      "sha256": "ebc37f012d686e5d63871abf6ec51a95cad6bd9b278b6e2d759595bff36c3e51"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-civil-rights-reviews.pdf",
+      "sha256": "b5c83fe4a5c496f82e22e7943cb0c9968e6e2ea7a688b7ec3ccf9daa825f63a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-civil-rights-training.pdf",
+      "sha256": "962128d09dd6a067eb7287de73f5408f1b34e5f2084c6879f9fbc5d503036691"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-clinic-forms-and-supplies-ordering-uci.pdf",
+      "sha256": "93147a6a9222accfad51ef0abc3b8b7f941ce7a4be97ec7397fed1c6a668a40d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-collection-of-racial-and-ethnic-data.pdf",
+      "sha256": "f6bc4dfdfa077706b61fb5ef0891f469af78644d257b19a2a29cb0a1efbd8dc5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-communication-methods.pdf",
+      "sha256": "b156448a5269dae5bb497a3cc8175a00fb84b549409b8eb86dfd8c33622e94b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-complaint-handling.pdf",
+      "sha256": "8b1decbd42276439f28b9815bc042785da8029f518a2bfc70abe2e8b641e6d10"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-complaints-against-vendors.pdf",
+      "sha256": "88357d28e5b340f33fad142eaab33b41a35f032e239b5985ce797ed91ea70fda"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-complaints-of-discrimination.pdf",
+      "sha256": "41c0797fb3e62a1f1d062dbcd9b7c13e50b881fc2f5a5aa65a186cce86e4c14d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-computer-hardware.pdf",
+      "sha256": "b2526cc7b003663d7dbcf3a36f1aff7ccc4d10f5d40f76520757d47620802086"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-confidentiality.pdf",
+      "sha256": "e193ccf999905c6496999dc15935c3e809f2e8eaf7c139641f808e002a86fbeb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-conflict-of-interest.pdf",
+      "sha256": "e89e2b72e3d47b86965457749ad6a1feec74a975fcfc4eebfa81bf33af0c84eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-direct-and-indirect-cost.pdf",
+      "sha256": "67a073690817e579c1e542198958d1c75bf901eddad2afd8e7ef52e003d07969"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-documentation.pdf",
+      "sha256": "5b87a88903ea8f2fc15bd11583a66efc26b13368b4da64a25eb5ea0c8f080e5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-emergency-planning.pdf",
+      "sha256": "666bac9175f8af4b29f1c8009f79c4dd175ba8aeb8090aeb5d2b34ccff1d295c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-equipment-inventory.pdf",
+      "sha256": "73bcb08ed04ff13c696b8e6fc1d688f8d5c33082eb244e62609a5599ebd08f7e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-equipment-purchasing.pdf",
+      "sha256": "158ffb31ab2e5e0dddf084281daa8340fea71b2052500cb4d03229ca3ed8c863"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-fiscal-audits.pdf",
+      "sha256": "6b4adb7d5a6e0407d5ef149928dbce623434ef15b1301a067663dfb67968780a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-food-and-nsa-expenses.pdf",
+      "sha256": "f3bc4ce6ec3e5e12e2f73c3c541e27cc5ee37aa4340e38007aba40df0aa18341"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-food-packages.pdf",
+      "sha256": "b5b31a71444f69e9c8a3020e0fe5e5c5de15e81c87819a8c7f2c1aa3ef6b572f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-foods-that-are-authorized.pdf",
+      "sha256": "827e4abddd16c9278bf2ce5d500831d620df8a5ed0aa3711e4a64733c042cd5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-formula-and-food-authorization-form.pdf",
+      "sha256": "176f64b132e047b579dbced10bb626676b88e43e686c5fd64c912f6ba212f41a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-formula-and-food-returns.pdf",
+      "sha256": "953e2cc488d5aaddf09afbf6dc2787042c86774f678980479518e1d4dcf39c69"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-funding-committee.pdf",
+      "sha256": "18ec1bc6383fe51adf92ef65067441e28db82e99491793e79a2539b6d86a7dff"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-funding-formula.pdf",
+      "sha256": "77410d4a1bc46b4c2e53e52a1c3dfa659a34af6b991c891254c70dd6f4be7157"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-healthcare-referrals.pdf",
+      "sha256": "a06cdbc31f7b282fc32f1c5ced393d0d7a14aa4ad9f33c25684e2d3991cf8c8c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-high-risk-protocols.pdf",
+      "sha256": "2b609680cc5e76b44f06208417fcc9bc9637184f0b794df49a8e477c1ef3a5fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-homeless-applicants.pdf",
+      "sha256": "b4d0e57de77b4f2ac5717da4e14745d398c05310f9d3958c9d567726a9e26aeb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-homeless-shelters-and-domestic-violence-shelters.pdf",
+      "sha256": "32a8a0c8e324fd40c16072e014ec43e3167299123c87850081441dce16fe9c3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-households.pdf",
+      "sha256": "9026f40baea6592c8ab53c876479f167994542df7a69feb2c42122500e50f536"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-income-documentation.pdf",
+      "sha256": "44e75821d42201e900ea81ea20b0e59a6591451e071947a17c1be0d729fd1453"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-income-exclusions.pdf",
+      "sha256": "da8262e15f77e648ad6cf928b7c7984d7356fb5f59fc563a2932eeb2e61ae91e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-income-guidelines.pdf",
+      "sha256": "2bd16bffad26d975ea80bdbb6f821eacc72975e4fdb151be5f28d64f4efe0986"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-income-reassessment.pdf",
+      "sha256": "e6b577898fe28232333712f3ff24ec360e660b97e579dd17201547d7ff22e6dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-income-types.pdf",
+      "sha256": "0d6ae1f9f61b47a01dd5d89f2eac80c837db6cce8f0464e7c19bc2e3f02f0aa4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-ineligible-applicants.pdf",
+      "sha256": "18e8bb94ea4e58da2486c8e5d4320f64a7a7dc364a480234c2d2f1190f565377"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-info-reports.pdf",
+      "sha256": "7d759050c6055b813637c2e02c755335188cbd91625b9a048f17f6c16ca751eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-info-system-planning.pdf",
+      "sha256": "d5a06d30f8e868950613cca4ac8721b2327924e0db1bdc8bb0b5e341e298d77b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-instructions-to-participants.pdf",
+      "sha256": "1aa30ad0696eb357eb9a2da275f43f37c10ebe5ab0806fc79835960cfc8ded4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-medicaid.pdf",
+      "sha256": "5f24d13410e0b3686579c3bbb8e4ea30ae24a0b3ccdefa7534473dfb6e0e0ac9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-meetings.pdf",
+      "sha256": "7183abda15b758e4aaf346fdf6dadc5820ba37d3d60249a9780f74a260335c86"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-memos.pdf",
+      "sha256": "d0a23d2fa2d3f556e8d6aba27d7e7c94ef3904b236da9d96b279cd2283ac5a71"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-midcertification-health-assessments.pdf",
+      "sha256": "d3194e760f9f7ac439057b1ccd1b13c0e3a97268e6f5996d20ed553c301479d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-migrant-applicants.pdf",
+      "sha256": "37781c41675eec9c4c82cd8a9870ed57d2f80e122ae300779209ac47bd354081"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-missed-appointments.pdf",
+      "sha256": "d5e5d2b752f1f91bff5f757ac9304628e224a1077ceb50c6fa05318bf581fabc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-monitoring-of-nutrition-ed-costs.pdf",
+      "sha256": "a097892fcd880eefb2b991336de107a6e4fad9bff1226eb0977361499e394a6c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-monitoring-of-staff.pdf",
+      "sha256": "90ed8ef4932af1afb6fd9c4347148ca00fc2b483d17f068160d7958147376fe6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-nondiscrimination-statement.pdf",
+      "sha256": "2496a095f11b50485f5c550162a0c26be00f60cab5e5b4833dd5efc5ea551d83"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-nutrition-education.pdf",
+      "sha256": "f9b9072ca334cb6a8a4ca2cc208687eb5c91578ba342cdf0513aa5f9d80d3558"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-nutrition-risk-manual.pdf",
+      "sha256": "0edbce68a9af95675d5ffdc1d9f34928839f2966f3e310e119330a431e707d71"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-ordering-formula-from-state.pdf",
+      "sha256": "af297f846dd399d6e4f8a57c37cfe3c5d5a3766862e6d01037853ab403ddae11"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-outreach.pdf",
+      "sha256": "367a0a9cf64bf39e74b8f995d305283627ddcd351c5a408759d80542aaeeccf6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-parent-guardians-and-proxies.pdf",
+      "sha256": "ea0b8532055b36fc70748a3cef540e2a50661866fe9d0eff1efcc1b2777a527a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-participant-portal.pdf",
+      "sha256": "83969fb4d522f588793b70307aacf46810db4f13eaca5c39ae610a4410f1452e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-persons-with-disabilities.pdf",
+      "sha256": "8dbe546eae4e7f7c0a0c78a52df9cab26b947405e49e6da386904d68244fa15b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-presence-at-certification.pdf",
+      "sha256": "90055b3b58d5f5d1f83c300973eff4fdd735652fc6d0281a4875fd701c1f7935"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-processing-standards.pdf",
+      "sha256": "2ab41520e31b77de1e57f5438e44e68f5c2af000a23c75df7704a1c739b6d4a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-proof-of-identity.pdf",
+      "sha256": "f25f9af53e93b57974def621b24992a138b0be19961049f5e2d8ed2bd3b7f20f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-proof-of-residency.pdf",
+      "sha256": "7cb9bf929ef0235e0cf6c2fb347373cfb1577622388e433045419e72fda81a9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-proration.pdf",
+      "sha256": "6bbddfa812f3d805733eff57c7bf14b06ab8e858f0897be931a0f961867d5366"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-provisional-certification.pdf",
+      "sha256": "de50f2426ce37ba7c7caae2fe900ed350581495fb75c6f1c98c7c6ff7279e73b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-public-notification.pdf",
+      "sha256": "b18ecec356af1b6337097933ae9cae56493ff5978d9ddb9bda20e11e47189e45"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-record-retention.pdf",
+      "sha256": "80226ddf51da07740b82c4fe325865da01d7e383efe0679bd389cf360c698c12"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-replacing-cards.pdf",
+      "sha256": "e604d1f265d14714872b54192bdb755e7c0d4ad249f06608088fbfcf36c5e40d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-reporting-participant-shopping-problems.pdf",
+      "sha256": "a6f46445971abffbdd9d75799325098be9673f77bcbf68ae295a327452922401"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-required-reports.pdf",
+      "sha256": "181e6b8bf6f6ba4dc06cda1914e46e4c06dda0bba78bf67e2422606858dc1e3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-rights-and-responsibilities-procedures.pdf",
+      "sha256": "4e4e89115409c36f8844d936bc653de1c86ad31f95c179863d857a3f7eb80690"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-sharepoint.pdf",
+      "sha256": "489faf57f96f9d0455c4f0254d7c63912cf6edbd47a511a499b2f0d1be498914"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-special-income-situations.pdf",
+      "sha256": "12af0d8e9d169f3eabd01cb24c31ec83e3547da2258f7528b9aa51e79ecce801"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-staff-training.pdf",
+      "sha256": "bf5fdece74f2e59db6f4c39ee21b889b6f47dc51b645080faa4a3add4b4189c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-staffing-requirements.pdf",
+      "sha256": "0b4d288fc564345cedbbd82d160635ae01b59cd6ad272afc13b07d65c316715b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-state-and-local-responsibilities.pdf",
+      "sha256": "88873a1a698790932a7aeb5dfa8178e548e3f97c56252deb86d192f2ff3efbf8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-state-management-evaluations.pdf",
+      "sha256": "855dd7c07f29f1990f557ffcdc2975a52c3ced9c0a8e9f849e2b5e6f83bc5912"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-state-plan-process.pdf",
+      "sha256": "5abf4a791985071b95e58dacb36ff70fce5eefc88969bc1bd89011cf2a2b4727"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-system-security.pdf",
+      "sha256": "2330c47465e6c728a3745834330a920f0c450e65a9df1289eec1a34350728be8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-tailoring-food-packages.pdf",
+      "sha256": "66575b3190809c47fe911708cd3662d3e38a1b533918a77480f35d0396a58fa3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-technical-assistance-visits.pdf",
+      "sha256": "37d48bc641a66268ce5f4a577c4a50b13180db7f25921d61b5912cf634da912b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-termination.pdf",
+      "sha256": "8f48825975cea6fa3beda0cb9797f69024770df94284022fb5fb8573f142d7eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-time-studies.pdf",
+      "sha256": "85535ef243060e49fd87c8987436f341126e6f4f0495d67a2a7647c0e5ecef19"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-transfers.pdf",
+      "sha256": "bd80d6364f49f7253152da965a4ef60948a76cecab9cc18836c39c7cf54f5384"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-usda-management-evaluations.pdf",
+      "sha256": "dc0758b7ffd8934eb1fe5aa774b5f55fbac81af96bf7f2503d0f645a90c5093d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-vendor-authorization.pdf",
+      "sha256": "2fb1d2e1971854c08c7dbcea68a29cfa7566c55edca895e369dec9a72fe9af53"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-vendor-files.pdf",
+      "sha256": "730b97548247c296a15501ad4acc5ddb661d1e5975e7ebe2c2e65821a01af77d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-vendor-monitoring.pdf",
+      "sha256": "7e9f74afd0394a0287f13d82090b48367b232f11479cc67c32c8fda5a4e57077"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-vendor-training.pdf",
+      "sha256": "f0d05d5487c6a5b57c834464ead0152f9210a82bcfb2a0a73db9513014297ef9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-voter-registration.pdf",
+      "sha256": "07d0e7d050024e0491862c9362be5f6b1232139ded4c6c6176fbee92bd72c76b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-ii-waiting-lists.pdf",
+      "sha256": "87916f33b751bfdd7f6a92a8099538e257020d9fbe5b8bc04281d3b929b225ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-account-balance-corrections-and-vendor-payment-adjustments.pdf",
+      "sha256": "88726b24d224c6105c0c6da7bf08bc3582bca179714f7def62367554f4fd4c0e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-administrative-review.pdf",
+      "sha256": "abdc4bb77d1ee5401f83bce8079fc4c64888d9c21bf1974de74cf8f4f3dbc720"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-anthro-and-lab-procedures.pdf",
+      "sha256": "dda61365efe4b1616bac1f30ab15537d14fad06c3c5e1d0a9167188320269e54"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-bf-aids.pdf",
+      "sha256": "72d17a42e9e7a644f96f7b2abd456f973c6f92e961802db6da57169040e5ed28"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-bf-descriptions.pdf",
+      "sha256": "abdd6a6f3fb91385feb10e28567386f63e21f62c057a8023c7a572998896f98a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-bf-interview.pdf",
+      "sha256": "4281cc9c869ab20f652d3766a17d42f124d50b778ab4add108f683b7af999451"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-bf-positive-peer-influence.pdf",
+      "sha256": "2db782212b47b5238e42436c9adb95bc61e0337e767b1c7e4e424d20ab0a7cc8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-bf-promotion-and-support.pdf",
+      "sha256": "29a98906a643c9b37a32af261ea310e704e83f29b0d1e28d65f1b6801dc8d6e0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-cash-value-benefits.pdf",
+      "sha256": "04c281c6ead31b68b3727947c3fc8d07e8a84daa762e8ff626b22128cce936e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-certification-health-assessment.pdf",
+      "sha256": "260585898dc849c80c84b8c98d27ee7efbae749c6f7e3178531ca56316868ad9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-clinic-fraud-and-abuse.pdf",
+      "sha256": "5c6877ce9119d7cb2a466d85c0590536245f477f6fdc9c287f89e4438476142a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-compliance-purchases-and-inventory-audits.pdf",
+      "sha256": "1c80c2c792203316b1c05b964cd0d8f88d8dae50b5f1817e86f53564447070ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-confidentiality-of-vendor-information.pdf",
+      "sha256": "16c9f11d122ab82568bd01fc28d5d7178db5765c52b918f0bcc64534fdd66c76"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-conflict-of-interest.pdf",
+      "sha256": "06ad0ca94ad5a7be46d1bed592af65819469d773693f7d52843b5ea3300ee8b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-counseling.pdf",
+      "sha256": "37877d487b627c4f69d159d5ba2839cae47a65d95bc2cfc4db588479aaeeb94d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-disaster-plan.pdf",
+      "sha256": "0106a9c58e3376d9b6712eafd26a10140bf149145226bcafb8294dfdefcf1352"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-estimated-participation.pdf",
+      "sha256": "25b9b2a85236b61465f30eea002e85146dbf2abd2613db49ce9aba6514765f40"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-evaluation-of-authorized-vendors.pdf",
+      "sha256": "dc30aef61bfac79bfd81aa5dbeb2d9ae80556ecbe14086074f8ea4a9de12811e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-fair-hearing-procedures.pdf",
+      "sha256": "a1ae372dd2fe8d9dff2d19d382221db402050b9037b5f8c3762055f7a9c3289f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-financial-reporting.pdf",
+      "sha256": "eef8ad7750a2b74b141506ecb3093ee8167d29c422814d222c36fa3a42d16d39"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-food-delivery-system-and-transaction-procedures-2.pdf",
+      "sha256": "c9ca29b5e3c95a852595a78c2e1d25873caab11fe91d4c30e52defb6ed365511"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-food-delivery-system-and-transaction-procedures.pdf",
+      "sha256": "72b9037e550a86eaeddf892075327a4c8bb8d63d0ffedd5c2cf38f71dd415bd7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-food-inventory-requirements.pdf",
+      "sha256": "ad3759992f1871f8f8d08a347f25900c14c6bc202637eea46587e98a4b7c3ae0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-food-packages.pdf",
+      "sha256": "bd111b84e96f1b85083f47fb513aeec6ac1fedf9edf993d575fe40a8f91323a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-food-price-reporting-list.pdf",
+      "sha256": "c430e772284ee4d31e4c83d3db81b7d84c92b145a0196b7a45b4a9661dd6cbda"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-foods-authorized.pdf",
+      "sha256": "b235057426888cb3215f8c45cbc331bc4fe576c4ffb61d98c180c21753e5bca2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-health-care-referrals.pdf",
+      "sha256": "653c003102cf22f493c4359652e17121375c13b42706aae60f9947249be1aa19"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-interstate-dual-enrollment.pdf",
+      "sha256": "6e7e6f95909833adf3e199c1faeadc02bdf20f295157ec365609538e617a67e0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-lost-e-wic-cards-at-vendor.pdf",
+      "sha256": "4f8fc5ef1111ee8d84b70e9cf00c6a426ca3c2c899fc5e508aa5ab2e513b20c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-medicaid.pdf",
+      "sha256": "4667d9b165347af3a0addc5ca688f3f34e23b619f831e45c55585191cc1b264e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-midcertification-health-assessments.pdf",
+      "sha256": "46b0d690be828cf52e4d74e8fee710794ed820c87b086824e0b388afaf794881"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-monitoring-and-nep.pdf",
+      "sha256": "bb7b1df01fe05246fda8cabcafe9f408268a1d68e64696687f55e6024e4aea4d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-names-of-companies-in-food-delivery.pdf",
+      "sha256": "6a326a1d63d9f2476a81d53c4362d955474ee125f8725c6f0139f2ab1b539768"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-notification-of-program-changes.pdf",
+      "sha256": "f8623cc2f6da637e5d9dd157275e3ee5c55706879959a734cd1aac0d8d8e37be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-nutrition-education.pdf",
+      "sha256": "d80f5c25c80c9e238b48cb7b235e7841120c08ba73fd48eec99c7ef03659a3d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-nutrition-risk-factor-mini-manual.pdf",
+      "sha256": "352999616d115c379aeb349f3df2ac45e4568445a28583757c04c85caba00df0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-ordering-formula-from-the-state.pdf",
+      "sha256": "52ad42a30cd3cf3fb1dff6b254179d05b60273379c54df2d8452abb198ab2d2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-payment-disputes-and-appeals.pdf",
+      "sha256": "9b1b88f55476a8857cbffa0f6afe8f614b43fa82ea0071afb8b14821dfed5eb3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-peer-group-descriptions.pdf",
+      "sha256": "c53e4e686a8639a8f34738e39a90d6273195b11484ff0d917b53f4f7676367f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-positive-bf-clinic-environment.pdf",
+      "sha256": "ee33cf710effa1850d563479d42d73b33caf5e65c949fa11518a4733f7f3a0c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-purchase-of-infant-formula.pdf",
+      "sha256": "cd2f8d56a04e3951ae3ca4ecf38e95ec6129b353943f5186520f8fef7a0dcb52"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-reimbursement-and-claims.pdf",
+      "sha256": "f9560bf77b62814d46db940cdb05fddd2c1286c4984997924308ed92f4be1dfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-renewal-of-the-vendor-agreement.pdf",
+      "sha256": "1713f3369cd9f75f987210450158c04760148941ce3dad80c0cd6b7869b8b534"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-state-staffing-requirements-and-training.pdf",
+      "sha256": "fc29ff0e22e4b3679652c7d1c876519d4db6e9209b8a6aa28a9fb3bf32ed7cfc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-tailoring-food-packages.pdf",
+      "sha256": "a1bb06bc96d2c56f4084e5ad88bc48579f1e7184823ef6a78b972b6374b66ec6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-transaction-processing.pdf",
+      "sha256": "88bdd021e044b02b65ca541651d6a8dc8b4308e7a9959cc43fa65d70a9814239"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-use-of-incentives-and-promotions.pdf",
+      "sha256": "0277c2827968f419672e5f7f1357d0089bb2c85f061138ee357bc8fa1cb0ac70"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-use-of-the-wic-acronym-and-logo.pdf",
+      "sha256": "c1255acab65980a3965e159ee9d893ed3fa39417d04022efd25b2dd734a3e552"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-utah-state-drug-policy.pdf",
+      "sha256": "1f034f82693dc12ad02193baf9b2702946db5945effc85bd057a4639714dd585"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vena-and-nutrition-risk.pdf",
+      "sha256": "90a71848a71e926b1d11a65068ebbc6b9005e2757924fcf689ae93f88b884afa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vendor-authorization.pdf",
+      "sha256": "cc244db4b0c7d2e752b47c5564968446d534d655304a60dbd588706d6a39a12e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vendor-complaints.pdf",
+      "sha256": "a00ae4626a6c3e8b58647b5169b29000c04c8a128b327128015bcaf8a0ba89ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vendor-monitoring.pdf",
+      "sha256": "b65dcb650bf546cae99be062dbf76a58053f511fa71f65bca0aa004b2da892b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vendor-payment-reconciliation.pdf",
+      "sha256": "c216ad3d195be84435254ffb8744a4b69af1cc00680938dffafd306d0db95840"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vendor-training.pdf",
+      "sha256": "92d2ba45d7290f6437dd47188b79b17a0db75ef9f3f50839531fada857ebea5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-vendor-violations-and-sanctions.pdf",
+      "sha256": "51ed37b1b496357f67a1543b5a1eb11e294873896196023912f33760ff98d78c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/policy/2026-09-13-wic-state-plan/official-documents/ut-wic-state-plan-fy2027-section-iii-wic-card-control-process.pdf",
+      "sha256": "e6272a0d8bf83f137e0ea2dd5c1fd3c897c2a4dd2c99f2998a4e7fe765cb7112"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1270,
+    "missing_count": 0,
+    "provision_count": 1270,
+    "source_count": 1270
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:22:06.181901+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C8/ySfPiKq0iXKrbdQdvh03OyLfyAn9EXaYEDKzy4S2DhkJ3s4xbNs4n6xLa0bsnNl3M0VCO+LJizNc5/h78Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-state-plan"
+}
