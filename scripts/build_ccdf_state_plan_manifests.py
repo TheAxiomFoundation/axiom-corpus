@@ -343,11 +343,373 @@ def refresh_rows_only(codes: list[str]) -> dict[str, int]:
     return queue["status_counts"]
 
 
+
+# --------------------------------------------------------------------------------------
+# 2026-09-13 follow-up families (docs/ingest-runs/2026-09-13-acf-state-plans.md).
+# The closure check (docs/coverage/needs-closure-2026-09-11/ccdf.md) found the ACF-hosted
+# Appendix 1 PDFs inventoried but never taken (ccdf-s27, 51 states), the separately posted
+# amended plans not taken (ccdf-s28) and the current-year rate and copay schedules not
+# inventoried (ccdf-s30). ``--family appendices|amendments|rate-schedules`` builds those
+# manifests and records them on the existing queue rows under ``additional_families`` so
+# the queue keeps one row per jurisdiction.
+# --------------------------------------------------------------------------------------
+FOLLOWUP_AS_OF = "2026-09-13"
+APPENDIX_VERSION = f"{FOLLOWUP_AS_OF}-ccdf-state-plan-appendices"
+AMENDMENT_VERSION = f"{FOLLOWUP_AS_OF}-ccdf-state-plan-amendments"
+RATE_VERSION = f"{FOLLOWUP_AS_OF}-ccdf-rate-schedules"
+STATES_51 = sorted(code for name, code in CODES.items() if code not in {"as", "gu", "mp", "pr", "vi"})
+
+# Appendix 1 (Lead Agency implementation plan for federal non-compliances) is a CARS export
+# with one all-caps "AREA:TOPIC" finding heading per non-compliance. The 40 headings that occur
+# across the 51 PDFs (read 2026-09-13) map to slug-safe citation segments; a heading outside
+# this vocabulary would surface as an uppercase path and fail the post-extraction check.
+APPENDIX_FINDING_SLUGS = {
+    "COMPREHENSIVE BACKGROUND CHECK:BACKGROUND CHECK PROCESSES": "comprehensive-background-check-background-check-processes",
+    "COMPREHENSIVE BACKGROUND CHECK:DISQUALIFICATIONS FOR EMPLOYMENT": "comprehensive-background-check-disqualifications-for-employment",
+    "COMPREHENSIVE BACKGROUND CHECK:IN-STATE": "comprehensive-background-check-in-state",
+    "COMPREHENSIVE BACKGROUND CHECK:INTER-STATE": "comprehensive-background-check-inter-state",
+    "COMPREHENSIVE BACKGROUND CHECK:NATIONAL FINGERPRINT": "comprehensive-background-check-national-fingerprint",
+    "COMPREHENSIVE BACKGROUND CHECK:NATIONAL NAME-BASED": "comprehensive-background-check-national-name-based",
+    "COMPREHENSIVE BACKGROUND CHECK:PRE-SERVICE CHECK REQUIREMENTS": "comprehensive-background-check-pre-service-check-requirements",
+    "COMPREHENSIVE BACKGROUND CHECK:5 YEAR RENEWAL": "comprehensive-background-check-5-year-renewal",
+    "CONSUMER EDUCATION:WEBSITE AND RESOURCES FOR PARENTS": "consumer-education-website-and-resources-for-parents",
+    "ELIGIBILITY AND ENROLLMENT:CONTINUITY OF CARE (12-MONTH ELIGIBILITY)": "eligibility-and-enrollment-continuity-of-care-12-month-eligibility",
+    "ELIGIBILITY AND ENROLLMENT:ELIGIBILITY": "eligibility-and-enrollment-eligibility",
+    "ELIGIBILITY AND ENROLLMENT:PRIORITIZATION OF POPULATIONS": "eligibility-and-enrollment-prioritization-of-populations",
+    "EQUAL ACCESS:AFFORDABILITY": "equal-access-affordability",
+    "EQUAL ACCESS:PAYMENT PRACTICES": "equal-access-payment-practices",
+    "EQUAL ACCESS:PAYMENT RATES": "equal-access-payment-rates",
+    "EQUAL ACCESS:PROVIDER OPTIONS FOR PARENTS": "equal-access-provider-options-for-parents",
+    "EQUAL ACCESS:SUPPLY BUILDING STRATEGIES": "equal-access-supply-building-strategies",
+    "HEALTH AND SAFETY:ADMINISTRATION OF MEDICATION": "health-and-safety-administration-of-medication",
+    "HEALTH AND SAFETY:BUILDING AND PHYSICAL PREMISES SAFETY": "health-and-safety-building-and-physical-premises-safety",
+    "HEALTH AND SAFETY:CHILD DEVELOPMENT": "health-and-safety-child-development",
+    "HEALTH AND SAFETY:EMERGENCY PREPAREDNESS AND RESPONSE PLANNING": "health-and-safety-emergency-preparedness-and-response-planning",
+    "HEALTH AND SAFETY:FIRE STANDARDS": "health-and-safety-fire-standards",
+    "HEALTH AND SAFETY:HANDLING AND STORAGE OF HAZARDOUS MATERIALS AND": "health-and-safety-handling-and-storage-of-hazardous-materials-and-disposal-of-biocontaminants",
+    "HEALTH AND SAFETY:IDENTIFICATION AND REPORTING OF CHILD ABUSE": "health-and-safety-identification-and-reporting-of-child-abuse",
+    "HEALTH AND SAFETY:INSPECTION OF IN-HOME CARE": "health-and-safety-inspection-of-in-home-care",
+    "HEALTH AND SAFETY:INSPECTORS": "health-and-safety-inspectors",
+    "HEALTH AND SAFETY:ONGOING TRAINING": "health-and-safety-ongoing-training",
+    "HEALTH AND SAFETY:PEDIATRIC FIRST AID AND PEDIATRIC CPR": "health-and-safety-pediatric-first-aid-and-pediatric-cpr",
+    "HEALTH AND SAFETY:POSTING INSPECTION REPORTS": "health-and-safety-posting-inspection-reports",
+    "HEALTH AND SAFETY:PRECAUTIONS IN TRANSPORTING CHILDREN": "health-and-safety-precautions-in-transporting-children",
+    "HEALTH AND SAFETY:PREVENTION AND CONTROL OF INFECTIOUS DISEASES": "health-and-safety-prevention-and-control-of-infectious-diseases",
+    "HEALTH AND SAFETY:PREVENTION AND RESPONSE TO EMERGENCIES FROM FOOD": "health-and-safety-prevention-and-response-to-emergencies-from-food-and-allergic-reactions",
+    "HEALTH AND SAFETY:PREVENTION OF SHAKEN BABY SYNDROME, ABUSIVE HEAD": "health-and-safety-prevention-of-shaken-baby-syndrome-abusive-head-trauma-and-child-maltreatment",
+    "HEALTH AND SAFETY:RATIOS AND GROUP SIZE FOR CCDF PROVIDERS": "health-and-safety-ratios-and-group-size-for-ccdf-providers",
+    "HEALTH AND SAFETY:RELATIVE EXEMPTIONS": "health-and-safety-relative-exemptions",
+    "HEALTH AND SAFETY:SUDDEN INFANT DEATH SYNDROME AND SAFE SLEEP": "health-and-safety-sudden-infant-death-syndrome-and-safe-sleep",
+    "LEAD AGENCY RESPONSIBILITIES:PROGRAM ADMINISTRATION, PLAN DEVELOPMENT,": "lead-agency-responsibilities-program-administration-plan-development-and-program-funding-coordination",
+    "PROGRAM INTEGRITY:EFFECTIVE FISCAL MANAGEMENT PRACTICES": "program-integrity-effective-fiscal-management-practices",
+    "PROGRAM INTEGRITY:EFFECTIVE INTERNAL CONTROLS": "program-integrity-effective-internal-controls",
+    "PROGRAM INTEGRITY:FRAUD INVESTIGATION, PAYMENT RECOVERY, AND": "program-integrity-fraud-investigation-payment-recovery-and-sanctions",
+    "WORKFORCE:PROFESSIONAL DEVELOPMENT": "workforce-professional-development",
+}
+APPENDIX_EXTRACTION = {
+    "segmentation": "labeled_sections",
+    # One finding per all-caps "AREA:TOPIC" line; wrapped headings continue on the next
+    # all-caps line ("TRAUMA, AND CHILD MALTREATMENT", "(PROVISIONAL HIRE)").
+    "section_heading_pattern": r"^(?P<label>[A-Z][A-Z0-9 ,&/()'’-]*:[A-Z][A-Z0-9 ,&/()'’-]*)$",
+    "heading_continuation_pattern": r"^(?P<heading>[A-Z(][A-Z0-9 ,&/()'’-]*)$",
+    "section_label_replacements": APPENDIX_FINDING_SLUGS,
+    "start_after_pattern": r"^Plan Status: .*$",
+}
+
+# Separately posted FFY 2025-2027 amendments (consolidated CARS prints unless noted), read from
+# the Lead Agency pages on 2026-09-13. MI posts Amendment 1 and 2 but its taken plan already is the
+# Amendment 2 print (2026-09-10 run); MO's amendments sit behind the blocked dese.mo.gov media path.
+# (label, url, version text, approved-as-of date, extra)
+AMENDMENTS: dict[str, dict] = {
+    "ca": {"index": "https://www.cdss.ca.gov/inforesources/child-care-and-development/fund-state-plan", "docs": [
+        ("amendment-1", "https://www.cdss.ca.gov/Portals/9/CCDD/2025-27 CCDF State Plan – Amendments 1.pdf", "Amendment 1", None,
+         {"extraction": CA_EXTRACTION, "note": "state Word export (CA_EXTRACTION); the print carries no CARS Plan Status line"})]},
+    "dc": {"index": "https://osse.dc.gov/publication/dc-child-care-and-development-fund", "docs": [
+        ("amendment-1-approval-letter", "https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20FFY%202025-2027%20CCDF%20Plan%20Amendment%201%20Approval%20Letter.pdf", "Amendment 1 approval letter", "2024-10-01", {"letter": True}),
+        ("amendment-2-approval-letter", "https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20FFY%202025-2027%20CCDF%20Plan%20Amendment%202%20Approval%20Letter_0.pdf", "Amendment 2 approval letter", "2026-05-28", {"letter": True})]},
+    "ma": {"index": "https://www.mass.gov/lists/child-care-and-development-fund-ccdf-state-plans", "impersonation": True, "docs": [
+        ("amendment-1", "https://www.mass.gov/doc/ma-eec-ccdf-state-plan-ffy-2025-2027-amend-1/download", "Amendment 1", "2026-03-02", {}),
+        ("amendment-2", "https://www.mass.gov/doc/ma-eec-ccdf-state-plan-ffy-2025-2027-amend-2/download", "Amendment 2", "2026-04-27", {})]},
+    "me": {"index": "https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers", "docs": [
+        ("amendment-1", "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/ACF-118%20CCDF%20FFY%202025-2027%20For%20Maine_Amendment%201.pdf", "Amendment 1", "2025-05-27", {}),
+        ("amendment-2", "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/ACF-118%20CCDF%20FFY%202025-2027%20For%20Maine_Amendment%202.pdf", "Amendment 2", "2025-08-18", {}),
+        ("amendment-3", "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/ACF-118%20CCDF%20FFY%202025-2027%20For%20Maine_Amendment%203.pdf", "Amendment 3", "2025-12-18", {})],
+        "not_taken": "Amendment #4 (6.26.26) link answers HTTP 200 application/pdf with a 0-byte body for plain and browser clients (2026-09-13); not taken"},
+    "nc": {"index": "https://ncchildcare.ncdhhs.gov/Services/Child-Care-Development-Fund-CCDF", "docs": [
+        ("amendment-2", "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/A/ACF-118_CCDF_FFY_2025-2027_For_North_Carolina.pdf?ver=qMH8KP5I8Z-D2B1zTmbO-w%3d", "Amendment 2", "2026-03-12",
+         {"note": "the page's 'with Amendment 1' and 'with Amendment 2' links resolve to the same file (byte-identical, Version: Amendment 2)"})]},
+    "nd": {"index": "https://www.hhs.nd.gov/cfs/early-childhood-services/child-care-development-fund", "docs": [
+        ("amendment-1", "https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-amendment1-archived.pdf", "Amendment 1", "2025-08-12", {}),
+        ("amendment-2", "https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-amendment2-archived.pdf", "Amendment 2", "2026-04-10", {})]},
+    "oh": {"index": "https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan", "docs": [
+        ("amendment-1", "https://dam.assets.ohio.gov/image/upload/v1720530796/childrenandyouth.ohio.gov/For%20Providers/CCDF/CCDF_FFY_2025-2027_For_Ohio.pdf", "Amendment 1", "2025-12-18", {}),
+        ("amendment-2", "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Partners%20and%20Providers/CCDF/Amendment%20Approvals/State_Plan_FFY_2025-2027_Amendment_2.pdf", "Amendment 2", "2026-07-16", {})]},
+    "or": {"index": "https://www.oregon.gov/delc/about-us/pages/state-plans.aspx", "docs": [
+        ("amendment-1", "https://www.oregon.gov/delc/about-us/Documents/ACF-118%20CCDF%20FFY%202025-2027%20For%20Oregon%20Amendment%201.pdf", "Amendment 1", "2025-11-14", {})]},
+    "sd": {"index": "https://dss.sd.gov/childcare/stateplan/default.aspx", "docs": [
+        ("amendment-1", "https://dss.sd.gov/docs/childcare/state_plan/2025-2027/Amendment_1.pdf", "Amendment 1", "2025-07-09", {}),
+        ("amendment-2", "https://dss.sd.gov/docs/childcare/state_plan/2025-2027/Amendment_2.pdf", "Amendment 2", "2026-02-05", {}),
+        ("amendment-3", "https://dss.sd.gov/docs/childcare/state_plan/2025-2027/Amendment_3.pdf", "Amendment 3", "2026-05-29", {})]},
+    "vt": {"index": "https://dcf.vermont.gov/CDD/CCDF", "docs": [
+        ("amendment-1-approval-letter", "https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Amendment-1-Approval-Letter.pdf", "Amendment 1 approval letter", "2024-10-07", {"letter": True})]},
+    "wa": {"index": "https://www.dcyf.wa.gov/about/government-affairs/ccdf", "docs": [
+        ("amendment-1", "https://www.dcyf.wa.gov/sites/default/files/pdf/2025-2027-CCDF-Amend1.pdf", "Amendment 1", "2026-05-29", {})]},
+}
+
+# Current-year payment rate and copayment schedules posted by the Lead Agency (ccdf-s30). Of the
+# 17 publisher pages the 2026-09-10 run notes flagged, 4 post schedules (ME, ID, TN, SC); the other 13
+# post market rate survey or narrow cost analysis reports only (the basis for rates, not the
+# schedule) and are not taken. NC's Subsidy Services page (one hop from its CCDF page) posts the
+# subsidized child care market rate tables and is added.
+# (slug, url, title, effective date, source_format, extra)
+RATE_SCHEDULES: dict[str, dict] = {
+    "id": {"index": "https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources", "agency": "Idaho Department of Health and Welfare, Idaho Child Care Program (ICCP)", "docs": [
+        ("iccp-copay-chart-2025-10-01", "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=4671&dbid=0&repo=PUBLIC-DOCUMENTS", "Idaho Child Care Copay Chart, effective October 1, 2025", "2025-10-01", "pdf", {"note": "Laserfiche WebLink DocView id=4671 served through the repository's ElectronicFile endpoint"}),
+        ("iccp-local-market-rates-2025-07-01", "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=19508&dbid=0&repo=PUBLIC-DOCUMENTS", "Idaho Child Care Program Local Market Rates, effective July 1, 2025", "2025-07-01", "pdf", {"note": "Laserfiche WebLink DocView id=19508"})]},
+    "me": {"index": "https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers", "agency": "Maine DHHS Office of Child and Family Services, Child Care Affordability Program (CCAP)", "docs": [
+        ("child-care-market-rates-2025-05-19", "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/5.19.25%20Child%20Care%20Market%20Rates.pdf", "Maine Child Care Market Rates (maximum rates by county and setting), May 19, 2025", "2025-05-19", "pdf", {}),
+        ("ccap-parent-fee-guide-fy26", "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/CCAP%20Parent%20Fee%20Guide%20%28FY26%29.pdf", "CCAP Parent Fee Guide (FY26), effective April 18, 2026", "2026-04-18", "pdf", {}),
+        ("ccap-income-guidelines-2026-04-18", "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/4.18.26%20125%20CCAP%20income%20guidelines.docx", "CCAP Current Income Guidelines (125% SMI), April 18, 2026", "2026-04-18", "docx", {"note": "posted as a Word document; the page labels the link (PDF)"})]},
+    "nc": {"index": "https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates", "agency": "North Carolina DHHS Division of Child Development and Early Education, Subsidized Child Care Assistance", "docs": [
+        ("subsidized-market-rates-centers-2023-10-01", "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/M/Market_Rates_Centers_Eff_10-1.pdf?ver=9w52alSPhmrmo0N9gGVMEw%3d%3d", "Subsidized Child Care Market Rates for Child Care Centers, effective October 1, 2023 (current)", "2023-10-01", "pdf", {}),
+        ("subsidized-market-rates-homes-2023-10-01", "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/M/Mkt_Rates_Homes_eff_10-1.pdf?ver=baC5Yg7ZMrQ5fck2y9CcvA%3d%3d", "Subsidized Child Care Market Rates for Family Child Care Homes, effective October 1, 2023 (current)", "2023-10-01", "pdf", {}),
+        ("subsidized-market-rates-centers-2026-10-01", "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/S/SCCA_Centers_Market_Rates_Eff__10-01-26_Revised_8-18-26.pdf?ver=4UnzSmTrx2JM-mBPjTDgtQ%3d%3d", "Subsidized Child Care Market Rates for Child Care Centers, effective October 1, 2026 (revised August 18, 2026)", "2026-10-01", "pdf", {}),
+        ("subsidized-market-rates-homes-2026-10-01", "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/S/SCCA_Homes_Market_Rates_Eff__10-01-26_Revised_8-18-26.pdf?ver=XOzbwZaQgjWdrte2IHJd3w%3d%3d", "Subsidized Child Care Market Rates for Family Child Care Homes, effective October 1, 2026 (revised August 18, 2026)", "2026-10-01", "pdf", {})]},
+    "sc": {"index": "https://scchildcare.org/resources/", "agency": "South Carolina Department of Social Services, SC Child Care Scholarship Program", "docs": [
+        ("scholarship-fee-scale-2025-2026", "https://scchildcare.org/media/ih2mrjw5/fee-scale-2025-2026.pdf", "SC Child Care Scholarship Program Fee Scale, October 1, 2025 - September 30, 2026", "2025-10-01", "pdf", {}),
+        ("scholarship-maximum-payments-ffy2026", "https://scchildcare.org/media/gpok20jb/maxrates.pdf", "SC Child Care Scholarship Maximum Payments Allowed, October 1, 2025 - September 30, 2026", "2025-10-01", "pdf", {"note": "the page labels it FFY 2025; the document covers 10/1/2025-9/30/2026"}),
+        ("child-care-income-standards-2025-2026", "https://scchildcare.org/media/pskhwthx/income-guidelines-2025-2026.pdf", "Child Care Income Standards, 2025-2026", "2025-10-01", "pdf", {})]},
+    "tn": {"index": "https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html", "agency": "Tennessee Department of Human Services, Child Care Certificate Program", "docs": [
+        ("income-eligibility-limits-and-copay-fees-2025-10-01", "https://www.tn.gov/content/dam/tn/human-services/documents/Income%20Eligibility%20Limits%20and%20CoPay%20Chart%2010.1.25.pdf", "Child Care Certificate Program Income Eligibility Limits and Parent Co-Pay Fees, effective October 1, 2025", "2025-10-01", "pdf", {}),
+        ("provider-reimbursement-rates-2026-01-01", "https://www.tn.gov/content/dam/tn/human-services/documents/Reimbursement_Rate_Chart_1.1.26.pdf", "Child Care Certificate Program Provider Weekly Reimbursement Rates including QRIS Scorecard Bonus Payments, effective January 1, 2026", "2026-01-01", "pdf", {})]},
+}
+# The 12 other run-note pages list market rate survey / narrow cost analysis reports only.
+RATE_PAGES_REPORTS_ONLY = {
+    "ky": "market rate surveys (2017, 2020, 2023) on the DCC page; no rate or copay schedule",
+    "ut": "2021 and 2024 Child Care Market Rate Studies on the OCC Plans and Reports page; no schedule",
+    "mn": "dcyf.mn.gov page (impersonated) lists the plan and the QPR only; no schedule",
+    "nj": "childcarenj.gov home lists CCAP application pages only; the 2017-18 and 2021-22 MRS reports the run note recorded were not on the page read 2026-09-13; no schedule",
+    "co": "2021-22 Colorado Market Rate Survey Report (Google Drive) on the CDEC State Plans page; no schedule",
+    "ct": "2024 Market Rate Survey and Methodology Report, 2022 MRS and analysis on the OEC CCDF page; no schedule",
+    "la": "2017, 2020, 2023 Louisiana Child Care Market Rate Surveys on the LDOE policy guidance page; no schedule",
+    "or": "2022 alternate rate-setting structure legislative report on the DELC State Plans page; no schedule",
+    "va": "the Virginia child care plan page lists the plan only (AkamaiGHost 403 to plain clients); no schedule",
+    "ri": "the DHS State Plans page lists CCDF plans and amendments only; no schedule",
+    "pa": "the DHS Early Learning and Child Care resources page lists the plan; the 2025 MRS report the run note recorded is a survey, not a schedule",
+    "ms": "2021/2024 market rate surveys and the 2024 Narrow Cost Analysis on the ECCD Reports and Archives page; no schedule",
+    "vt": "Child Care Market Rate Survey 2024 on the CDD CCDF page; no schedule",
+}
+
+
+def _followup_metadata(jur: str, *, subtype: str, index: str, discovered: str) -> dict:
+    return {
+        "primary_source": True,
+        "source_authority": AUTHORITY,
+        "document_subtype": subtype,
+        "program": "CCDF",
+        "form": "ACF-118",
+        "fiscal_years": FY,
+        "plan_period": "2024-10-01 to 2027-09-30",
+        "central_index_url": INDEX,
+        "publisher_index_url": index,
+        "source_discovery_group": f"{jur}/policy/ccdf",
+        "discovered_via": discovered,
+    }
+
+
+def attach_family(queue: dict, jurisdiction: str, entry: dict) -> None:
+    """Record a follow-up family on the jurisdiction's existing plan row (one row per jurisdiction)."""
+    rows = [s for s in queue["states"] if s["jurisdiction"] == jurisdiction
+            and (s.get("target_scope") or {}).get("document_class") == "policy"]
+    if not rows:
+        raise SystemExit(f"{jurisdiction}: no plan row in the queue")
+    row = rows[0]
+    families = [f for f in row.get("additional_families", []) if f.get("family") != entry["family"]]
+    families.append(entry)
+    row["additional_families"] = families
+
+
+def build_appendices(queue: dict, appendix_urls: dict[str, str]) -> int:
+    written = 0
+    for code in STATES_51:
+        jur = f"us-{code}"
+        name = next(n for n, c in CODES.items() if c == code)
+        url = appendix_urls[code]
+        doc = {
+            "source_id": f"{jur}-acf-ccdf-plan-fy{FY}-appendix-1",
+            "jurisdiction": jur,
+            "document_class": "policy",
+            "title": f"{name} CCDF Plan FFY {FY}, Appendix 1: Lead Agency Implementation Plan",
+            "source_url": url,
+            "source_format": "pdf",
+            "source_as_of": FOLLOWUP_AS_OF,
+            "expression_date": EXPRESSION_DATE,
+            "citation_path": f"{jur}/policy/acf/ccdf-plan/fy{FY}-appendix-1",
+            # acf.gov answers non-browser User-Agents with HTTP 202 and an empty body.
+            "request": {"browser_user_agent": True},
+            "extraction": APPENDIX_EXTRACTION,
+            "metadata": _followup_metadata(jur, subtype="state_plan_appendix_pdf", index=INDEX,
+                                           discovered=f"manual-review:ccdf-agent-queue additional_families; index {INDEX}"),
+        }
+        doc["metadata"]["appendix"] = "Appendix 1: Lead Agency Implementation Plan for federal non-compliances (ACF-hosted accepted copy)"
+        doc["metadata"]["closure_elements"] = ["ccdf-s27"]
+        manifest = {"version": APPENDIX_VERSION, "documents": [doc]}
+        stem = f"{jur}-ccdf-state-plan-appendix-fy{FY}"
+        (ROOT / "manifests" / f"{stem}.yaml").write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
+        written += 1
+        attach_family(queue, jur, {
+            "family": "ccdf_plan_appendix_1",
+            "queue_status": "agent_ready",
+            "index_url": INDEX,
+            "primary_source_url": url,
+            "target_manifest": f"manifests/{stem}.yaml",
+            "target_scope": {"jurisdiction": jur, "document_class": "policy", "version": APPENDIX_VERSION},
+            "taken_count": 1,
+            "notes": f"ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027 index; taken {FOLLOWUP_AS_OF} (closure ccdf-s27). One provision per finding heading plus the document root.",
+        })
+    return written
+
+
+def build_amendments(queue: dict) -> int:
+    written = 0
+    for code, spec in AMENDMENTS.items():
+        jur = f"us-{code}"
+        name = next(n for n, c in CODES.items() if c == code)
+        docs = []
+        for label, url, version_text, approved, extra in spec["docs"]:
+            letter = bool(extra.get("letter"))
+            doc = {
+                "source_id": f"{jur}-acf-ccdf-plan-fy{FY}-{label}",
+                "jurisdiction": jur,
+                "document_class": "policy",
+                "title": f"{name} CCDF Plan FFY {FY}, {version_text}",
+                "source_url": url,
+                "source_format": "pdf",
+                "source_as_of": FOLLOWUP_AS_OF,
+                "expression_date": approved or EXPRESSION_DATE,
+                "citation_path": f"{jur}/policy/acf/ccdf-plan/fy{FY}-{label}",
+            }
+            if spec.get("impersonation"):
+                doc["request"] = {"browser_impersonation": True}
+            doc["extraction"] = {"segmentation": "single_block"} if letter else extra.get("extraction", CARS_EXTRACTION)
+            doc["metadata"] = _followup_metadata(jur, subtype="amendment_approval_letter_pdf" if letter else "state_plan_amendment_pdf",
+                                                 index=spec["index"], discovered=f"manual-review:ccdf-agent-queue additional_families; index {spec['index']}")
+            doc["metadata"]["plan_version"] = version_text
+            doc["metadata"]["plan_status"] = (f"ACF approval letter effective {approved}" if letter
+                                              else f"Approved as of {approved}" if approved else "Approved (no CARS Plan Status line in the state export)")
+            if extra.get("note"):
+                doc["metadata"]["source_note"] = extra["note"]
+            doc["metadata"]["closure_elements"] = ["ccdf-s28"]
+            docs.append(doc)
+        manifest = {"version": AMENDMENT_VERSION, "documents": docs}
+        stem = f"{jur}-ccdf-state-plan-amendments-fy{FY}"
+        (ROOT / "manifests" / f"{stem}.yaml").write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
+        written += 1
+        note = (f"Separately posted FFY {FY} amendments taken {FOLLOWUP_AS_OF} (closure ccdf-s28): "
+                + "; ".join(v for _l, _u, v, _a, _e in spec["docs"]) + ".")
+        if spec.get("not_taken"):
+            note += " " + spec["not_taken"] + "."
+        attach_family(queue, jur, {
+            "family": "ccdf_plan_amendments",
+            "queue_status": "agent_ready",
+            "index_url": spec["index"],
+            "primary_source_urls": [u for _l, u, _v, _a, _e in spec["docs"]],
+            "target_manifest": f"manifests/{stem}.yaml",
+            "target_scope": {"jurisdiction": jur, "document_class": "policy", "version": AMENDMENT_VERSION},
+            "taken_count": len(docs),
+            "notes": note,
+        })
+    return written
+
+
+def build_rate_schedules(queue: dict) -> int:
+    written = 0
+    for code, spec in RATE_SCHEDULES.items():
+        jur = f"us-{code}"
+        name = next(n for n, c in CODES.items() if c == code)
+        docs = []
+        for slug, url, title, effective, fmt, extra in spec["docs"]:
+            doc = {
+                "source_id": f"{jur}-ccdf-rate-schedule-{slug}",
+                "jurisdiction": jur,
+                "document_class": "policy",
+                "title": f"{name}: {title}",
+                "source_url": url,
+                "source_format": fmt,
+                "source_as_of": FOLLOWUP_AS_OF,
+                "expression_date": effective,
+                "citation_path": f"{jur}/policy/ccdf/rate-schedules/{slug}",
+            }
+            if fmt == "pdf":
+                doc["extraction"] = {"segmentation": "single_block"}
+            doc["metadata"] = {
+                "primary_source": True,
+                "source_authority": spec["agency"],
+                "document_subtype": "rate_or_copay_schedule",
+                "program": "CCDF",
+                "publisher_index_url": spec["index"],
+                "source_discovery_group": f"{jur}/policy/ccdf",
+                "discovered_via": f"manual-review:ccdf-agent-queue additional_families; index {spec['index']}",
+                "closure_elements": ["ccdf-s30"],
+            }
+            if extra.get("note"):
+                doc["metadata"]["source_note"] = extra["note"]
+            docs.append(doc)
+        manifest = {"version": RATE_VERSION, "documents": docs}
+        stem = f"{jur}-ccdf-rate-schedules"
+        (ROOT / "manifests" / f"{stem}.yaml").write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
+        written += 1
+        attach_family(queue, jur, {
+            "family": "ccdf_rate_and_copay_schedules",
+            "queue_status": "agent_ready",
+            "index_url": spec["index"],
+            "primary_source_urls": [u for _s, u, _t, _e, _f, _x in spec["docs"]],
+            "target_manifest": f"manifests/{stem}.yaml",
+            "target_scope": {"jurisdiction": jur, "document_class": "policy", "version": RATE_VERSION},
+            "taken_count": len(docs),
+            "notes": f"Current-year rate and copay schedules posted by the Lead Agency, taken {FOLLOWUP_AS_OF} (closure ccdf-s30): " + "; ".join(t for _s, _u, t, _e, _f, _x in spec["docs"]) + ".",
+        })
+    for code, reason in RATE_PAGES_REPORTS_ONLY.items():
+        attach_family(queue, f"us-{code}", {
+            "family": "ccdf_rate_and_copay_schedules",
+            "queue_status": "needs_review",
+            "target_manifest": None,
+            "taken_count": 0,
+            "notes": f"Reviewed {FOLLOWUP_AS_OF}: {reason}. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.",
+        })
+    return written
+
+
+def run_family(family: str) -> int:
+    queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
+    queue = yaml.safe_load(queue_path.read_text())
+    if family == "appendices":
+        rows = fetch_index()
+        urls = {r["code"]: r["appendix_url"] for r in rows if r["appendix_url"]}
+        missing = [c for c in STATES_51 if c not in urls]
+        if missing:
+            print(f"index lists no Appendix for {missing}", file=sys.stderr)
+            return 1
+        written = build_appendices(queue, urls)
+    elif family == "amendments":
+        written = build_amendments(queue)
+    else:
+        written = build_rate_schedules(queue)
+    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    print(f"{family}: wrote {written} manifests; queue rows annotated under additional_families")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--only", help="comma-separated jurisdiction codes (as,mp,...) whose non-extracted rows are "
                         "refreshed from RESOLUTIONS; every other row and manifest is left untouched")
+    parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
+                        help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
+                             "queue rows (additional_families) instead of rebuilding the plan rows")
     args = parser.parse_args()
+    if args.family:
+        return run_family(args.family)
     if args.only:
         print(f"queue {refresh_rows_only(args.only.split(','))}")
         return 0

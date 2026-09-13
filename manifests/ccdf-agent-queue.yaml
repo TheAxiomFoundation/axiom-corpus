@@ -222,6 +222,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved (state PDF prefixed with the ACF approval letter; 301 pages))
     located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is
     a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/AL-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-al-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-al
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ak
   name: Alaska
   queue_status: needs_review
@@ -243,6 +256,19 @@ states:
     (Attachment.aspx?id=148401, 213 pages, Microsoft Word export dated 2024-05-24, no CARS Plan Status line, text refers to
     ''this draft CCDF Plan'' posted for public comment); the Department of Health Child Care Program Office page lists no
     CCDF plan; no approved or certified FFY 2025-2027 plan is posted, so not extracted. Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/AK-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ak-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ak
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-as
   name: American Samoa
   queue_status: blocked_primary_source
@@ -285,6 +311,19 @@ states:
   notes: 'Publisher blocked: HTTP 403 (cloudflare) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101;
     retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare
     for plain requests and chrome impersonation). Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/AZ-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-az-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-az
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ar
   name: Arkansas
   queue_status: agent_ready
@@ -304,6 +343,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Amendment 2; Approved as of 2026-05-13 (only FFY 2025-2027 version posted)) located
     on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate
     document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/AR-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ar-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ar
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ca
   name: California
   queue_status: agent_ready
@@ -323,6 +375,31 @@ states:
   notes: 'FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved (state Word export, not the CARS print template; amendments
     #1 posted separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted
     Appendix on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/CA-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-ca-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ca
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://www.cdss.ca.gov/inforesources/child-care-and-development/fund-state-plan
+    primary_source_urls:
+    - https://www.cdss.ca.gov/Portals/9/CCDD/2025-27 CCDF State Plan – Amendments 1.pdf
+    target_manifest: manifests/us-ca-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ca
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 1
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1.'
 - jurisdiction: us-co
   name: Colorado
   queue_status: agent_ready
@@ -344,6 +421,26 @@ states:
     and Development Fund State Plan' and links it on Google Drive, fetched through the extractor's existing Google Drive download
     path)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index
     is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/CO-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-co-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-co
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: 2021-22 Colorado Market Rate Survey Report (Google Drive) on the CDEC State Plans page; no
+      schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+      not taken.'
 - jurisdiction: us-ct
   name: Connecticut
   queue_status: agent_ready
@@ -366,6 +463,26 @@ states:
     implementation summaries and public comment report are posted separately, not taken)) located on the Lead Agency page
     linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not
     taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/CT-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ct-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ct
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: 2024 Market Rate Survey and Methodology Report, 2022 MRS and analysis on the OEC CCDF page;
+      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+      not taken.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -384,6 +501,19 @@ states:
   taken_count: 1
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09) located on the Lead Agency page linked
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/DE-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-de-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-de
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-dc
   name: District of Columbia
   queue_status: agent_ready
@@ -403,6 +533,33 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (amendment 1 and 2 approval letters posted
     separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix
     on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/DC-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-dc-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-dc
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://osse.dc.gov/publication/dc-child-care-and-development-fund
+    primary_source_urls:
+    - https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20FFY%202025-2027%20CCDF%20Plan%20Amendment%201%20Approval%20Letter.pdf
+    - https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20FFY%202025-2027%20CCDF%20Plan%20Amendment%202%20Approval%20Letter_0.pdf
+    target_manifest: manifests/us-dc-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-dc
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 2
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1 approval letter; Amendment
+      2 approval letter.'
 - jurisdiction: us-fl
   name: Florida
   queue_status: agent_ready
@@ -421,6 +578,19 @@ states:
   taken_count: 1
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09) located on the Lead Agency page linked
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/FL-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-fl-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-fl
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ga
   name: Georgia
   queue_status: blocked_primary_source
@@ -440,6 +610,19 @@ states:
   notes: 'Publisher blocked: connection reset by peer (curl 56) from www.decal.ga.gov for plain curl and curl_cffi; retried
     2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (remote end closed connection
     without response / curl 52 empty reply). Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/GA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ga-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ga
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-gu
   name: Guam
   queue_status: agent_ready
@@ -478,6 +661,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (state labels the link 'Conditional Approval'))
     located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is
     a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/HI-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-hi-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-hi
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-id
   name: Idaho
   queue_status: agent_ready
@@ -499,6 +695,33 @@ states:
     links the Laserfiche WebLink DocView page id=32013, whose viewer serves the file from the same repository''s ElectronicFile.aspx
     endpoint, taken as source_url)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted
     Appendix on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/ID-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-id-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-id
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: agent_ready
+    index_url: https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources
+    primary_source_urls:
+    - https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=4671&dbid=0&repo=PUBLIC-DOCUMENTS
+    - https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=19508&dbid=0&repo=PUBLIC-DOCUMENTS
+    target_manifest: manifests/us-id-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-id
+      document_class: policy
+      version: 2026-09-13-ccdf-rate-schedules
+    taken_count: 2
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Idaho Child
+      Care Copay Chart, effective October 1, 2025; Idaho Child Care Program Local Market Rates, effective July 1, 2025.'
 - jurisdiction: us-il
   name: Illinois
   queue_status: agent_ready
@@ -518,6 +741,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Published as an HTML page (no PDF on the publisher's index)) located
     on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate
     document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/IL-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-il-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-il
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-in
   name: Indiana
   queue_status: needs_review
@@ -540,6 +776,19 @@ states:
     bytes, Last-Modified 2026-06-19), 1 of 41 labels after the Overview start, the carefinder index lists the same 11 documents;
     retried 2026-09-10T21:35Z from US network: same page (the plan plus 9 CAP and letter documents), same file (HTTP 200,
     7,742,708 bytes, Last-Modified 2026-06-19); approved print still not posted. Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/IN-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-in-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-in
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ia
   name: Iowa
   queue_status: agent_ready
@@ -559,6 +808,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Amendment 1; Approved as of 2026-03-26 (only FFY 2025-2027 version posted)) located
     on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate
     document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/IA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ia-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ia
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ks
   name: Kansas
   queue_status: agent_ready
@@ -581,6 +843,19 @@ states:
     ''FFY 2025-2027 CCDF Initial CCDF Plan'' was located with the publisher''s own site search, which also lists the Initial
     Plan Approval Letter and the Waiver Approval Letter, not taken)) located on the Lead Agency page linked from the ACF index;
     extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/KS-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ks-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ks
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ky
   name: Kentucky
   queue_status: agent_ready
@@ -601,6 +876,25 @@ states:
     Plan'; located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 on the first two passes; the state-hosted
     Appendix and the Preliminary Draft are posted separately, not taken)) located on the Lead Agency page linked from the
     ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/KY-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ky-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ky
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: market rate surveys (2017, 2020, 2023) on the DCC page; no rate or copay schedule. Market
+      rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-la
   name: Louisiana
   queue_status: agent_ready
@@ -623,6 +917,26 @@ states:
     403 cloudflare on the first two passes; the ACF index link on louisianabelieves.com redirects to this doe.louisiana.gov
     page)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index
     is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/LA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-la-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-la
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: 2017, 2020, 2023 Louisiana Child Care Market Rate Surveys on the LDOE policy guidance page;
+      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+      not taken.'
 - jurisdiction: us-me
   name: Maine
   queue_status: agent_ready
@@ -645,6 +959,51 @@ states:
     the Notice of Compliance are posted separately, not taken; approved print not posted)) located on the Lead Agency page
     linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not
     taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/ME-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-me-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    primary_source_urls:
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/ACF-118%20CCDF%20FFY%202025-2027%20For%20Maine_Amendment%201.pdf
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/ACF-118%20CCDF%20FFY%202025-2027%20For%20Maine_Amendment%202.pdf
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/ACF-118%20CCDF%20FFY%202025-2027%20For%20Maine_Amendment%203.pdf
+    target_manifest: manifests/us-me-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 3
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2; Amendment
+      3. Amendment #4 (6.26.26) link answers HTTP 200 application/pdf with a 0-byte body for plain and browser clients (2026-09-13);
+      not taken.'
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: agent_ready
+    index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    primary_source_urls:
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/5.19.25%20Child%20Care%20Market%20Rates.pdf
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/CCAP%20Parent%20Fee%20Guide%20%28FY26%29.pdf
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/4.18.26%20125%20CCAP%20income%20guidelines.docx
+    target_manifest: manifests/us-me-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: policy
+      version: 2026-09-13-ccdf-rate-schedules
+    taken_count: 3
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Maine Child
+      Care Market Rates (maximum rates by county and setting), May 19, 2025; CCAP Parent Fee Guide (FY26), effective April
+      18, 2026; CCAP Current Income Guidelines (125% SMI), April 18, 2026.'
 - jurisdiction: us-md
   name: Maryland
   queue_status: blocked_primary_source
@@ -665,6 +1024,19 @@ states:
     returns HTTP 403 ''Access denied''; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network,
     same failure (HTTP 403 cloudflare on the 2025-2027-ccdf-plan page for plain and impersonated requests; the about/ccdf-state-plan
     landing page answers 200 and links only that page). Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MD-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-md-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-md
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: agent_ready
@@ -684,6 +1056,32 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (amendment 1 and 2 consolidated plans posted
     separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix
     on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ma-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ma
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://www.mass.gov/lists/child-care-and-development-fund-ccdf-state-plans
+    primary_source_urls:
+    - https://www.mass.gov/doc/ma-eec-ccdf-state-plan-ffy-2025-2027-amend-1/download
+    - https://www.mass.gov/doc/ma-eec-ccdf-state-plan-ffy-2025-2027-amend-2/download
+    target_manifest: manifests/us-ma-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ma
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 2
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: agent_ready
@@ -703,6 +1101,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Amendment 2; Approved as of 2026-03-12 (state posts Amendment 1 and 2 consolidated
     plans and the Appendix; initial approved plan not posted)) located on the Lead Agency page linked from the ACF index;
     extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MI-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-mi-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-mi
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-mn
   name: Minnesota
   queue_status: agent_ready
@@ -725,6 +1136,25 @@ states:
     still redirected to the validate.perfdrive.com challenge, curl_cffi chrome impersonation now completes TLS verification
     and receives the page and the PDF)) located on the Lead Agency page linked from the ACF index; extraction proven. The
     ACF-hosted Appendix on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MN-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-mn-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-mn
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: dcyf.mn.gov page (impersonated) lists the plan and the QPR only; no schedule. Market rate
+      survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-ms
   name: Mississippi
   queue_status: agent_ready
@@ -746,6 +1176,26 @@ states:
     Reports & Archives'' page, whose /document/2025-2027-ccdf-triennial-state-plan/ landing URL 302s to this PDF; the Appendix
     is posted separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted
     Appendix on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MS-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ms-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ms
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: 2021/2024 market rate surveys and the 2024 Narrow Cost Analysis on the ECCD Reports and Archives
+      page; no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule,
+      and were not taken.'
 - jurisdiction: us-mo
   name: Missouri
   queue_status: blocked_primary_source
@@ -767,6 +1217,19 @@ states:
     retried 2026-09-10T21:35Z from US network, same failure (HTTP 200 text/html Drupal antibot form with an Incapsula script
     instead of the PDF, plain and impersonated; the landing page also lists Amendment #1 and ''Current'' Amendment #2 behind
     the same media path). Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MO-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-mo-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-mo
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-mt
   name: Montana
   queue_status: agent_ready
@@ -785,6 +1248,19 @@ states:
   taken_count: 1
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09) located on the Lead Agency page linked
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/MT-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-mt-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-mt
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ne
   name: Nebraska
   queue_status: agent_ready
@@ -805,6 +1281,19 @@ states:
     on retry 2 2026-09-10T21:35Z from a US network after TCP connect timeouts on the first two passes)) located on the Lead
     Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document
     family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NE-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ne-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ne
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-nv
   name: Nevada
   queue_status: agent_ready
@@ -824,6 +1313,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (dwss.nv.gov index link redirects to dss.nv.gov))
     located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is
     a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NV-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-nv-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nv
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -843,6 +1345,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Certified as of 2024-09-26 (submitted version linked directly from
     the ACF index; approved print not posted)) located on the Lead Agency page linked from the ACF index; extraction proven.
     The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NH-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-nh-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nh
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-nj
   name: New Jersey
   queue_status: agent_ready
@@ -863,6 +1378,26 @@ states:
     the ACF index; approved print not posted; the PDF answered HTTP 200 on retry 2 2026-09-10T21:35Z from a US network after
     HTTP 403 cloudflare on the first two passes)) located on the Lead Agency page linked from the ACF index; extraction proven.
     The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NJ-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-nj-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nj
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: childcarenj.gov home lists CCAP application pages only; the 2017-18 and 2021-22 MRS reports
+      the run note recorded were not on the page read 2026-09-13; no schedule. Market rate survey and cost analysis reports
+      are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-nm
   name: New Mexico
   queue_status: agent_ready
@@ -881,6 +1416,19 @@ states:
   taken_count: 1
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09) located on the Lead Agency page linked
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NM-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-nm-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nm
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ny
   name: New York
   queue_status: blocked_primary_source
@@ -900,6 +1448,19 @@ states:
   notes: 'Publisher blocked: ocfs.ny.gov returns an F5/Shape JavaScript bot-challenge page (TSPD) instead of the index; retried
     2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (F5/Shape TSPD JavaScript challenge
     page, 7.5 KB, plain and impersonated). Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NY-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ny-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ny
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-nc
   name: North Carolina
   queue_status: agent_ready
@@ -919,6 +1480,50 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (Amendment 2 consolidated plan and the Appendix
     posted separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted
     Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/NC-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-nc-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nc
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://ncchildcare.ncdhhs.gov/Services/Child-Care-Development-Fund-CCDF
+    primary_source_urls:
+    - https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/A/ACF-118_CCDF_FFY_2025-2027_For_North_Carolina.pdf?ver=qMH8KP5I8Z-D2B1zTmbO-w%3d
+    target_manifest: manifests/us-nc-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nc
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 1
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 2.'
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: agent_ready
+    index_url: https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    primary_source_urls:
+    - https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/M/Market_Rates_Centers_Eff_10-1.pdf?ver=9w52alSPhmrmo0N9gGVMEw%3d%3d
+    - https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/M/Mkt_Rates_Homes_eff_10-1.pdf?ver=baC5Yg7ZMrQ5fck2y9CcvA%3d%3d
+    - https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/S/SCCA_Centers_Market_Rates_Eff__10-01-26_Revised_8-18-26.pdf?ver=4UnzSmTrx2JM-mBPjTDgtQ%3d%3d
+    - https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/S/SCCA_Homes_Market_Rates_Eff__10-01-26_Revised_8-18-26.pdf?ver=XOzbwZaQgjWdrte2IHJd3w%3d%3d
+    target_manifest: manifests/us-nc-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-nc
+      document_class: policy
+      version: 2026-09-13-ccdf-rate-schedules
+    taken_count: 4
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Subsidized
+      Child Care Market Rates for Child Care Centers, effective October 1, 2023 (current); Subsidized Child Care Market Rates
+      for Family Child Care Homes, effective October 1, 2023 (current); Subsidized Child Care Market Rates for Child Care
+      Centers, effective October 1, 2026 (revised August 18, 2026); Subsidized Child Care Market Rates for Family Child Care
+      Homes, effective October 1, 2026 (revised August 18, 2026).'
 - jurisdiction: us-nd
   name: North Dakota
   queue_status: agent_ready
@@ -938,6 +1543,32 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (Amendment 1, Amendment 2 and Appendix posted
     separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix
     on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/ND-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-nd-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nd
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://www.hhs.nd.gov/cfs/early-childhood-services/child-care-development-fund
+    primary_source_urls:
+    - https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-amendment1-archived.pdf
+    - https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-amendment2-archived.pdf
+    target_manifest: manifests/us-nd-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-nd
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 2
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   queue_status: blocked_primary_source
@@ -978,6 +1609,32 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (amendments 1 and 2 posted separately, not
     taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index
     is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/OH-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-oh-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-oh
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan
+    primary_source_urls:
+    - https://dam.assets.ohio.gov/image/upload/v1720530796/childrenandyouth.ohio.gov/For%20Providers/CCDF/CCDF_FFY_2025-2027_For_Ohio.pdf
+    - https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Partners%20and%20Providers/CCDF/Amendment%20Approvals/State_Plan_FFY_2025-2027_Amendment_2.pdf
+    target_manifest: manifests/us-oh-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-oh
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 2
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2.'
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
@@ -997,6 +1654,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (linked directly from the ACF index)) located
     on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate
     document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/OK-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ok-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-or
   name: Oregon
   queue_status: agent_ready
@@ -1018,6 +1688,38 @@ states:
     waiver request are posted separately, not taken; www.oregon.gov resolved and answered on retry 2 2026-09-10T21:35Z from
     a US network)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on
     the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/OR-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-or-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-or
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://www.oregon.gov/delc/about-us/pages/state-plans.aspx
+    primary_source_urls:
+    - https://www.oregon.gov/delc/about-us/Documents/ACF-118%20CCDF%20FFY%202025-2027%20For%20Oregon%20Amendment%201.pdf
+    target_manifest: manifests/us-or-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-or
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 1
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1.'
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: 2022 alternate rate-setting structure legislative report on the DELC State Plans page; no
+      schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+      not taken.'
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: agent_ready
@@ -1039,6 +1741,26 @@ states:
     Care Development Block Grant Report (CCDBG)'' on the DHS ''Early Learning & Child Care'' resources page; no amendments
     or Appendix posted there)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted
     Appendix on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/PA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-pa-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-pa
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: the DHS Early Learning and Child Care resources page lists the plan; the 2025 MRS report
+      the run note recorded is a survey, not a schedule. Market rate survey and cost analysis reports are the basis for rates,
+      not the operative schedule, and were not taken.'
 - jurisdiction: us-pr
   name: Puerto Rico
   queue_status: needs_review
@@ -1082,6 +1804,25 @@ states:
     FFY25-27'; located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 cloudflare on the first two passes))
     located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is
     a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/RI-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ri-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ri
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: the DHS State Plans page lists CCDF plans and amendments only; no schedule. Market rate survey
+      and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: agent_ready
@@ -1103,6 +1844,35 @@ states:
     retry 2 2026-09-10T21:35Z from a US network after TCP connect timeouts on the first two passes)) located on the Lead Agency
     page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family,
     not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/SC-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-sc-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-sc
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: agent_ready
+    index_url: https://scchildcare.org/resources/
+    primary_source_urls:
+    - https://scchildcare.org/media/ih2mrjw5/fee-scale-2025-2026.pdf
+    - https://scchildcare.org/media/gpok20jb/maxrates.pdf
+    - https://scchildcare.org/media/pskhwthx/income-guidelines-2025-2026.pdf
+    target_manifest: manifests/us-sc-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-sc
+      document_class: policy
+      version: 2026-09-13-ccdf-rate-schedules
+    taken_count: 3
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): SC Child
+      Care Scholarship Program Fee Scale, October 1, 2025 - September 30, 2026; SC Child Care Scholarship Maximum Payments
+      Allowed, October 1, 2025 - September 30, 2026; Child Care Income Standards, 2025-2026.'
 - jurisdiction: us-sd
   name: South Dakota
   queue_status: agent_ready
@@ -1122,6 +1892,34 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Certified as of 2024-09-24 ('original'; Amendments 1-3 consolidated
     plans posted separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The
     ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/SD-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-sd-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-sd
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://dss.sd.gov/childcare/stateplan/default.aspx
+    primary_source_urls:
+    - https://dss.sd.gov/docs/childcare/state_plan/2025-2027/Amendment_1.pdf
+    - https://dss.sd.gov/docs/childcare/state_plan/2025-2027/Amendment_2.pdf
+    - https://dss.sd.gov/docs/childcare/state_plan/2025-2027/Amendment_3.pdf
+    target_manifest: manifests/us-sd-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-sd
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 3
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1; Amendment 2; Amendment
+      3.'
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: agent_ready
@@ -1143,6 +1941,34 @@ states:
     located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 awselb on the first two passes; one of three page
     requests on the retry ended with an SSL unexpected EOF, the others answered 200)) located on the Lead Agency page linked
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/TN-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-tn-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-tn
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: agent_ready
+    index_url: https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
+    primary_source_urls:
+    - https://www.tn.gov/content/dam/tn/human-services/documents/Income%20Eligibility%20Limits%20and%20CoPay%20Chart%2010.1.25.pdf
+    - https://www.tn.gov/content/dam/tn/human-services/documents/Reimbursement_Rate_Chart_1.1.26.pdf
+    target_manifest: manifests/us-tn-ccdf-rate-schedules.yaml
+    target_scope:
+      jurisdiction: us-tn
+      document_class: policy
+      version: 2026-09-13-ccdf-rate-schedules
+    taken_count: 2
+    notes: 'Current-year rate and copay schedules posted by the Lead Agency, taken 2026-09-13 (closure ccdf-s30): Child Care
+      Certificate Program Income Eligibility Limits and Parent Co-Pay Fees, effective October 1, 2025; Child Care Certificate
+      Program Provider Weekly Reimbursement Rates including QRIS Scorecard Bonus Payments, effective January 1, 2026.'
 - jurisdiction: us-tx
   name: Texas
   queue_status: blocked_primary_source
@@ -1163,6 +1989,19 @@ states:
     retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure class (HTTP 202 with
     an AWS WAF JavaScript challenge body instead of the page, plain and impersonated; the first two passes saw 403 CloudFront).
     Nothing was worked around.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/TX-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-tx-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-tx
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-ut
   name: Utah
   queue_status: agent_ready
@@ -1183,6 +2022,25 @@ states:
     and Reports page; the state-hosted Appendix is posted separately, not taken; located on retry 2 2026-09-10T21:35Z from
     a US network after HTTP 403 awselb on the first two passes)) located on the Lead Agency page linked from the ACF index;
     extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/UT-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-ut-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-ut
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: 2021 and 2024 Child Care Market Rate Studies on the OCC Plans and Reports page; no schedule.
+      Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready
@@ -1205,6 +2063,37 @@ states:
     with the preprint labels, so the section pattern is restricted to the 41 preprint headings)) located on the Lead Agency
     page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family,
     not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/VT-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-vt-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://dcf.vermont.gov/CDD/CCDF
+    primary_source_urls:
+    - https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Amendment-1-Approval-Letter.pdf
+    target_manifest: manifests/us-vt-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 1
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1 approval letter.'
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: Child Care Market Rate Survey 2024 on the CDD CCDF page; no schedule. Market rate survey
+      and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.'
 - jurisdiction: us-vi
   name: Virgin Islands
   queue_status: needs_review
@@ -1249,6 +2138,26 @@ states:
     2 2026-09-10T21:35Z from a US network: plain requests still get HTTP 403 AkamaiGHost, curl_cffi chrome impersonation receives
     the page and the PDF)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix
     on the index is a separate document family, not taken.'
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/VA-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-va-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-va
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_rate_and_copay_schedules
+    queue_status: needs_review
+    target_manifest: null
+    taken_count: 0
+    notes: 'Reviewed 2026-09-13: the Virginia child care plan page lists the plan only (AkamaiGHost 403 to plain clients);
+      no schedule. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were
+      not taken.'
 - jurisdiction: us-wa
   name: Washington
   queue_status: agent_ready
@@ -1268,6 +2177,31 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Certified as of 2024-09-25 ('2025-2027 CCDF Plan'; Amendment 1 posted
     separately, not taken)) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix
     on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/WA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-wa-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-wa
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
+  - family: ccdf_plan_amendments
+    queue_status: agent_ready
+    index_url: https://www.dcyf.wa.gov/about/government-affairs/ccdf
+    primary_source_urls:
+    - https://www.dcyf.wa.gov/sites/default/files/pdf/2025-2027-CCDF-Amend1.pdf
+    target_manifest: manifests/us-wa-ccdf-state-plan-amendments-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-wa
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-amendments
+    taken_count: 1
+    notes: 'Separately posted FFY 2025-2027 amendments taken 2026-09-13 (closure ccdf-s28): Amendment 1.'
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: agent_ready
@@ -1287,6 +2221,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (linked directly from the ACF index)) located
     on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate
     document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/WV-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-wv-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-wv
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: agent_ready
@@ -1306,6 +2253,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (file name says draft-10-2024; content is
     the approved print, linked directly from the ACF index)) located on the Lead Agency page linked from the ACF index; extraction
     proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/WI-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
+    target_manifest: manifests/us-wi-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-wi
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-wy
   name: Wyoming
   queue_status: agent_ready
@@ -1325,6 +2285,19 @@ states:
   notes: FFY 2025-2027 ACF-118 CCDF Plan (Initial Plan; Approved as of 2024-11-09 (dfs.wyo.gov links the plan on Google Drive;
     fetched through the extractor's Google Drive download path)) located on the Lead Agency page linked from the ACF index;
     extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
+  additional_families:
+  - family: ccdf_plan_appendix_1
+    queue_status: agent_ready
+    index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    primary_source_url: https://acf.gov/sites/default/files/documents/occ/WY-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    target_manifest: manifests/us-wy-ccdf-state-plan-appendix-fy2025-2027.yaml
+    target_scope:
+      jurisdiction: us-wy
+      document_class: policy
+      version: 2026-09-13-ccdf-state-plan-appendices
+    taken_count: 1
+    notes: ACF-hosted Appendix 1 (Lead Agency implementation plan for federal non-compliances) listed on the FY 2025-2027
+      index; taken 2026-09-13 (closure ccdf-s27). One provision per finding heading plus the document root.
 - jurisdiction: us-in
   name: Indiana (CCDF Policy Manual, FSSA Office of Early Childhood and Out-of-School Learning)
   queue_status: needs_review

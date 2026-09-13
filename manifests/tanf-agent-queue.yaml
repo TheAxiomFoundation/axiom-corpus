@@ -435,6 +435,23 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: Alaska ATAP regulations (7 AAC 45, adopted rule) and ATAP standards (guidance, 2026-07-01-ak-atap-standards)
     already ingested. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://health.alaska.gov/en/services/alaska-temporary-assistance/
+    primary_source_urls:
+    - https://health.alaska.gov/media/hgja52sa/alaska-tanf-state-plan-2026-2028.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ak-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ak
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Alaska TANF State Plan 2026-2028, plan effective December
+      31, 2025 (Office of the Governor and Department of Health). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-al
   name: Alabama
   queue_status: done
@@ -518,6 +535,27 @@ states:
   lead_counts: null
   candidate_sources: []
   notes: 'Batch 2 check: Arkansas TEA official documents already ingested. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/temporary-assistance-for-needy-families/
+    primary_source_urls:
+    - https://humanservices.arkansas.gov/wp-content/uploads/TANF-State-Plan-2023-Signed-DWS.pdf
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-ar-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ar
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Arkansas State Plan for Title IV-A, signed 2023 (DWS signature
+      copy); the DWS site posts the same 45-page plan as AR-TANF-State-Plan-03152023-CLEAN.pdf. ACF OFA posts no state plan
+      index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the
+      plan is the state agency''s own publication. humanservices.arkansas.gov and dws.arkansas.gov answer every page request
+      with HTTP 403 (WAF) to plain and browser clients while serving the PDF itself with HTTP 200; the plan was located with
+      a web search and its listing page could not be read. Both hosts omit the Sectigo Public Server Authentication CA OV
+      R36 intermediate; REQUESTS_CA_BUNDLE = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem, no verification
+      disabled.'
 - jurisdiction: us-as
   name: American Samoa
   queue_status: blocked_primary_source
@@ -626,6 +664,22 @@ states:
     - policyengine-us#parameters/gov/states/az/hhs/tanf/income/deductions/percentage.yaml
   notes: Arizona DES FAA policy manual (combined CA/NA) already ingested; recovery scope 2026-07-17-faa5-recovery also exists.
     Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: blocked_primary_source
+    index_url: https://des.az.gov/services/basic-needs/cash-assistance-ca
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-az
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Publisher blocked: des.az.gov answers the TANF State Plan PDF (https://des.az.gov/sites/default/files/dl/tanf_state_plan_oct_2026.pdf,
+      ''State of Arizona TANF State Plan'', October 2026 per the search index) and the Cash Assistance pages with HTTP 403
+      cloudflare ''Just a moment'' challenges for plain and browser-impersonated clients (2026-09-13), the same wall the CCDF
+      run recorded. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
 - jurisdiction: us-ca
   name: California
   queue_status: agent_ready
@@ -1001,6 +1055,23 @@ states:
   index_url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/Eligibility-and-Assistance-Standards
   index_document_count: 27
   taken_count: 13
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.cdss.ca.gov/inforesources/data-portal/state-plans/tanf-state-plan
+    primary_source_urls:
+    - https://www.cdss.ca.gov/Portals/9/DSSDB/acf-approved-tanf-state-plan-2022.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ca-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ca
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): ACF Approved TANF State Plan 2022, effective October 1, 2022
+      (the newest plan the CDSS TANF State Plan page posts; the 2019 plan and addendum are also listed). ACF OFA posts no
+      state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13);
+      the plan is the state agency''s own publication.'
 - jurisdiction: us-co
   name: Colorado
   queue_status: agent_ready
@@ -1051,6 +1122,23 @@ states:
   index_url: https://www.coloradosos.gov/CCR/DisplayRule.do?action=ruleinfo&ruleId=3145&deptID=9&agencyID=53&deptName=Department+of+Human+Services&agencyName=Income+Maintenance+(Volume+3)&seriesNum=9+CCR+2503-6
   index_document_count: 31
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://cdhs.colorado.gov/colorado-works
+    primary_source_urls:
+    - https://drive.google.com/open?id=1eP8saG82zJe141J7s5wpAPAvtyNwzJbc
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-co-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-co
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Colorado State Plan TANF effective July 1, 2018: the newest
+      TANF State Plan the Colorado Works page links (2018, 2015, 2012, 2009, all on Google Drive); later renewals are not
+      posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
+      2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ct
   name: Connecticut
   queue_status: done
@@ -1064,6 +1152,22 @@ states:
   lead_counts: null
   candidate_sources: []
   notes: 'Batch 2 check: Connecticut DSS Uniform Policy Manual (TFA) and standards already ingested. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://portal.ct.gov/dss/knowledge-base/articles/state-plans-and-federal-reports/tanf-state-plans-and-federal-reports
+    primary_source_urls:
+    - https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/state-plans-and-federal-reports/tanf-state-plan/ct-tanf-state-plan-2024---2026---41524-amendment.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ct-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ct
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): CT TANF State Plan FFY 2024-2026 (October 1, 2023 through
+      September 30, 2026), 4/15/24 amendment print. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
+      library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-dc
   name: District of Columbia
   queue_status: agent_ready
@@ -1269,6 +1373,22 @@ states:
   index_url: https://dhs.dc.gov/publication/esa-policy-manuals
   index_document_count: 2
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dhs.dc.gov/service/temporary-cash-assistance-needy-families-tanf
+    primary_source_urls:
+    - https://dhs.dc.gov/sites/default/files/dc/sites/dhs/service_content/attachments/DC%20TANF%20State%20Plan_Oct-2023.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-dc-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-dc
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): 2023 District of Columbia State Plan for Administration of
+      the TANF Block Grant, effective October 1, 2023. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the
+      resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: done
@@ -1374,6 +1494,22 @@ states:
     - policyengine-us#parameters/gov/states/de/dhss/tanf/income/deductions/child_support.yaml
     - policyengine-us#parameters/gov/states/de/dhss/tanf/income/deductions/dependent_care.yaml
   notes: Delaware DSSM 3000 TANF rules (state-published adopted rule) already ingested. Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dhss.delaware.gov/dss/division-of-social-services/forms-and-publications/
+    primary_source_urls:
+    - https://dhss.delaware.gov/wp-content/uploads/sites/2/2026/06/Delaware-TANF-State-Plan-2023-2026.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-de-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-de
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Delaware TANF State Plan 10-1-23 to 09-30-26 (listed as ''Delaware
+      TANF State Plan 2023-2026 (PUBLIC NOTICE)''). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
+      library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-fl
   name: Florida
   queue_status: done
@@ -1481,6 +1617,22 @@ states:
     - policyengine-us#parameters/gov/states/fl/dcf/tanf/payment_standard/low_shelter.yaml
   notes: 'Florida DCF ESS Program Policy Manual is the combined FS/TCA/Medicaid manual (48 chapters incl. 1400/1800 TCA chapters,
     2600 benefit calculation). Reviewer judgment: combined manual counts as the TCA policy manual; not re-ingested.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.myflfamilies.com/services/public-assistance/temporary-cash-assistance
+    primary_source_urls:
+    - https://www.myflfamilies.com/documents/Florida%20TANF%20State%20Plan%202026-2028.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-fl-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-fl
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Florida TANF State Plan 2026-2028 (effective July 1, 2026).
+      ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
+      and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ga
   name: Georgia
   queue_status: done
@@ -1619,6 +1771,23 @@ states:
     - policyengine-us#parameters/gov/states/ga/dfcs/tanf/resources/limit.yaml
     - policyengine-us#variables/gov/states/ga/dfcs/tanf/eligibility/ga_tanf_resources_eligible.py
   notes: Georgia DFCS TANF Policy Manual already ingested. Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dfcs.georgia.gov/services/temporary-assistance-needy-families
+    primary_source_urls:
+    - https://dfcs.georgia.gov/document/document/georgias-tanf-state-plan-renewal-fy2026pdf/download
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ga-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ga
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Georgia''s TANF State Plan Renewal FY2026, effective January
+      2026 (the earlier ''draft'' renewal file is also posted, not taken). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-gu
   name: Guam
   queue_status: agent_ready
@@ -1728,6 +1897,23 @@ states:
     - policyengine-us#parameters/gov/states/hi/dhs/tanf/deductions/eidr_rate.yaml
     - policyengine-us#parameters/gov/states/hi/dhs/tanf/deductions/flat_amount.yaml
   notes: Hawaii HAR TANF rules already ingested. Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://humanservices.hawaii.gov/tanf-strategic-plans/
+    primary_source_urls:
+    - https://humanservices.hawaii.gov/wp-content/uploads/2024/12/Hawaii_TANF_State_Plan_Signed_Certified-Eff_20231001.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-hi-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-hi
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Hawaii TANF State Plan effective October 1, 2023 (signed,
+      certified); a plan ''Effective 2025Oct01, Certified 2025Dec23'' is in the search index but its URL answers HTTP 404
+      and the TANF Strategic Plans page does not list it. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and
+      the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ia
   name: Iowa
   queue_status: done
@@ -1741,6 +1927,23 @@ states:
   lead_counts: null
   candidate_sources: []
   notes: 'Batch 2 check: Iowa FIP administrative rules (441 IAC, adopted rule) already ingested. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://hhs.iowa.gov/assistance-programs/cash-assistance/tanf
+    primary_source_urls:
+    - https://hhs.iowa.gov/media/17445/download?inline
+    - https://hhs.iowa.gov/media/17446/download?inline
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ia-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ia
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 2
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Iowa''s TANF State Plan, effective October 1, 2025 - September
+      30, 2028, with its attachments volume. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
+      library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-id
   name: Idaho
   queue_status: agent_ready
@@ -1760,6 +1963,23 @@ states:
   index_url: https://adminrules.idaho.gov/current-rules/
   index_document_count: 371
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://healthandwelfare.idaho.gov/services-programs/financial-assistance/about-tafi
+    primary_source_urls:
+    - https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=35475&dbid=0&repo=PUBLIC-DOCUMENTS
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-id-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-id
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Idaho State Plan Renewal for TANF FY2026-FY2028, effective
+      October 1, 2025 (Laserfiche WebLink DocView id=35475, served by the repository''s ElectronicFile endpoint). ACF OFA
+      posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
+      and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-il
   name: Illinois
   queue_status: done
@@ -2005,6 +2225,23 @@ states:
     - policyengine-us#variables/gov/states/il/dhs/tanf/eligibility/il_tanf_eligible_child.py
   notes: 'Illinois DHS Cash, SNAP and Medical Manual (combined; PM chapters incl. cash/TANF) already ingested as us-il/manual/dhs/csmm.
     Reviewer judgment: combined manual counts; not re-ingested.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.dhs.state.il.us/page.aspx?item=56061
+    primary_source_urls:
+    - https://www.dhs.state.il.us/page.aspx?item=172771
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-il-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-il
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan for January 1, 2023 - June 30, 2025, published
+      as an HTML page (the newest approved plan; the 01/01/2026 renewal is posted only as a public-comment draft PDF, not
+      taken). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
+      2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-in
   name: Indiana
   queue_status: done
@@ -2121,6 +2358,22 @@ states:
     - policyengine-us#parameters/gov/states/in/fssa/tanf/resources/vehicle_exemption/amount.yaml
   notes: 'Indiana FSSA/DFR SNAP/TANF Program Policy Manual (combined) already ingested at page granularity. Reviewer judgment:
     combined manual counts; chapter-level re-segmentation is a later improvement, not a batch item.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://www.in.gov/fssa/dfr/tanf-cash-assistance/about-tanf/
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-in
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the DFR page posts the ''2026 TANF State Plan - Renewal Draft'' for public comment (to 2025-12-20)
+      and an undated ''Indiana TANF State Plan amendment'' (WIOA combined-plan TANF section text, 18 pages); no certified
+      or approved current plan is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library
+      carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was
+      worked around.'
 - jurisdiction: us-ks
   name: Kansas
   queue_status: done
@@ -2332,6 +2585,24 @@ states:
     discovered_via:
     - policyengine-us#variables/gov/states/ks/dcf/tanf/eligibility/ks_tanf_eligible.py
   notes: Kansas KEESM (combined) already ingested. Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.dcf.ks.gov/search/Pages/SearchResults.aspx?k=TANF%20state%20plan
+    primary_source_urls:
+    - https://www.dcf.ks.gov/services/ees/Documents/Reports/TANF%20State%20Plan%20FFY%202024%20-%202026.pdf
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-ks-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ks
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): State of Kansas TANF State Plan effective October 1, 2023
+      - September 30, 2026; the DCF site search lists the ''TANF State Plan completion letter'' and the EES pages list no
+      plan, so the file was located with a web search on the same host. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-ky
   name: Kentucky
   queue_status: agent_ready
@@ -2358,6 +2629,22 @@ states:
   index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
   index_document_count: 12
   taken_count: 2
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/fssb/Pages/default.aspx
+    primary_source_urls:
+    - https://www.chfs.ky.gov/agencies/dcbs/dfs/fssb/Documents/Kentucky%20TANF%20State%20Plan%202023.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ky-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ky
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Kentucky TANF State Plan 2023 (10/1/2023-09/30/2026, DocuSign
+      copy). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
+      2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-la
   name: Louisiana
   queue_status: agent_ready
@@ -2385,6 +2672,22 @@ states:
   index_url: https://public.powerdms.com/LADCFS/tree
   index_document_count: 3809
   taken_count: 292
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://www.dcfs.louisiana.gov/page/56
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-la
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the DCFS ''TANF State Plan'' page (page/56) renders no plan link or plan text to plain or browser clients
+      (230 KB of navigation only); the plan PDFs search engines index are the 2011-2012 and 2012 renewals and the WIOA combined-plan
+      TANF portion (undated); no current plan is reachable. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and
+      the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.
+      Nothing was worked around.'
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: done
@@ -2399,6 +2702,23 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: Massachusetts DTA TAFDC regulations 106 CMR 701-707 (adopted rule published by DTA) already ingested.
     Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.mass.gov/doc/tanf-massachusetts-state-plan-2024-pdf
+    primary_source_urls:
+    - https://www.mass.gov/doc/tanf-massachusetts-state-plan-2024-pdf/download
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ma-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ma
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF Massachusetts State Plan 2024 (renewal; the document
+      states no effective date, FFY 2025 start assumed for expression_date). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-md
   name: Maryland
   queue_status: done
@@ -2412,6 +2732,22 @@ states:
   lead_counts: null
   candidate_sources: []
   notes: 'Batch 2 check: Maryland TCA COMAR 07.03.03 (adopted rule), TCA guidance and statutes already ingested. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://dhs.maryland.gov/business-center/documents/fia/
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-md
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the FIA documents page''s ''State Plans'' folder holds the SNAP E&T FY25 plan and a 2017 web capture
+      of the WIOA State Plan; the Temporary Cash Assistance page links no plan; no current TANF state plan is posted (the
+      plan is part of Maryland''s WIOA combined plan filed on the federal portal). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication. Nothing was worked around.'
 - jurisdiction: us-me
   name: Maine
   queue_status: done
@@ -2520,6 +2856,23 @@ states:
     - policyengine-us#variables/gov/states/me/dhhs/tanf/income/deductions/me_tanf_child_care_deduction.py
   notes: Maine TANF rule (10-144 CMR ch. 331) and rule 125A already ingested; Maine publishes its TANF policy as adopted rules.
     Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.maine.gov/dhhs/ofi/about-us/data-reports
+    primary_source_urls:
+    - https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/Maine%20TANF%20State%20Plan%20%28signed%29%202024-26.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-me-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Maine TANF State Plan (signed) 2024-2026, effective January
+      1, 2024 (Data and Reports page, ''Other Reports and Analysis''). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: done
@@ -2534,6 +2887,22 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: Michigan MDHHS Bridges Eligibility Manual (combined, incl. FIP) and RFT 248 already ingested. Reviewer
     judgment: combined manual counts. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.michigan.gov/mdhhs/inside-mdhhs/state-plans-and-amendments
+    primary_source_urls:
+    - https://www.michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Inside-MDHHS/Reports-and-Statistics---Human-Services/State-Plans-and-Federal-Regulations/TANF_State_Plan_Effective_01-01-26.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-mi-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mi
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan Effective January 1, 2026 (the 2023 plan
+      and its 2024/2025 revisions are also listed). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
+      library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-mn
   name: Minnesota
   queue_status: done
@@ -2548,6 +2917,22 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: Minnesota DHS Combined Manual (MFIP) already ingested. Reviewer judgment: combined manual counts.
     Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: blocked_primary_source
+    index_url: https://dcyf.mn.gov/economic-assistance/minnesota-family-investment-program
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-mn
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Publisher blocked: dcyf.mn.gov (Lead Agency since 2025) redirects plain clients to the validate.perfdrive.com
+      bot challenge and refused the curl_cffi impersonated TLS handshake on 2026-09-13; the legacy mn.gov/dhs MFIP pages answer
+      404; Minnesota''s TANF plan is the MFIP section of the WIOA combined plan (federal portal), not a state-hosted document
+      reachable here. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan
+      links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
 - jurisdiction: us-mo
   name: Missouri
   queue_status: agent_ready
@@ -2739,6 +3124,22 @@ states:
   index_url: https://dssmanuals.mo.gov/temporary-assistance-case-management/
   index_document_count: 486
   taken_count: 486
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://dss.mo.gov/fsd/tanfstplan.htm
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-mo
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the DSS ''What is the TANF State Plan?'' page indexed by search engines (FFY 2026-2027 modifications,
+      comments through 2026-01-09) answers HTTP 404, as do dss.mo.gov/fsd/pdf/mo-tanf-plan-ffy2021-2023.pdf, tanf-wioa-2024-2027.pdf
+      and the Temporary Assistance pages'' plan paths (2026-09-13); no plan is reachable on the publisher''s site. ACF OFA
+      posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
+      and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   queue_status: blocked_primary_source
@@ -2853,6 +3254,23 @@ states:
   index_url: https://www.mdhs.ms.gov/help/tanf/
   index_document_count: 2
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.mdhs.ms.gov/reports/plans/
+    primary_source_urls:
+    - https://www.sos.ms.gov/adminsearch/ACCode/00000566c.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ms-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ms
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan (Economic Assistance) as filed in the Mississippi
+      Administrative Code, Title 18 Part 19 (period beginning July 1, 2020); the MDHS State Plans page links the Secretary
+      of State copy. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-mt
   name: Montana
   queue_status: agent_ready
@@ -3083,6 +3501,23 @@ states:
   index_url: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
   index_document_count: 93
   taken_count: 93
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    primary_source_urls:
+    - https://dphhs.mt.gov/assets/hcsd/TANF/TANFStatePlan.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-mt-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mt
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan 1/2024-12/2026 (effective January 1, 2024
+      to December 31, 2026), listed on the TANF Policy Manual page. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-nc
   name: North Carolina
   queue_status: done
@@ -3141,6 +3576,23 @@ states:
   notes: 'North Carolina Work First Manual section 114 (Income and Budgeting) already ingested. Reviewer judgment: done per
     the prior-ingest list, but only section 114 of the manual is in the corpus; the remaining Work First manual sections are
     a follow-up, not a batch-1 item.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.ncdhhs.gov/divisions/social-services/publications/temporary-assistance-needy-families-state-plan
+    primary_source_urls:
+    - https://ncdhhs.gov/2026-2028-tanf-state-plan-162026/download?attachment=
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-nc-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nc
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): North Carolina TANF State Plan FFY 2026-FFY 2028 (effective
+      October 1, 2025 - September 30, 2028), hosted at ncdhhs.gov/2026-2028-tanf-state-plan-162026; the publications page
+      still lists only the 2022-2025 signed plan. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
+      library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-nd
   name: North Dakota
   queue_status: agent_ready
@@ -3289,6 +3741,21 @@ states:
   index_url: https://www.nd.gov/dhs/policymanuals/40019/40019.htm
   index_document_count: 310
   taken_count: 310
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://www.hhs.nd.gov/applyforhelp/tanf
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-nd
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the TANF page links no plan; the two plan files search engines index (draft-2022-ND-TANF-State-Plan.pdf,
+      EA/draft-tanf-state-plan-2025.pdf) are public-comment drafts and the 2025 one answers HTTP 404 (2026-09-13); no certified
+      plan is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan
+      links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
 - jurisdiction: us-ne
   name: Nebraska
   queue_status: agent_ready
@@ -3312,6 +3779,24 @@ states:
   index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=223
   index_document_count: 5
   taken_count: 5
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dhhs.ne.gov/Pages/TANF.aspx
+    primary_source_urls:
+    - https://dhhs.ne.gov/Documents/Nebraska-State-TANF-Plan-2024.pdf
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-ne-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ne
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Nebraska State TANF Plan 2024 (WIOA combined state plan TANF
+      section, year 2024), hosted at dhhs.ne.gov/Documents; the TANF page lists the Work Verification Plan and the 2025 TANF
+      Expenditure Plan but not this file; the ''2026 WIOA Nebraska State Plan Modification for TANF'' URL answers 404. ACF
+      OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
+      and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -3331,6 +3816,22 @@ states:
   index_url: https://www.dhhs.nh.gov/fam_htm/newfam.htm
   index_document_count: 715
   taken_count: 715
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.dhhs.nh.gov/temporary-assistance-needy-families-tanf
+    primary_source_urls:
+    - https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/tanf-state-plan.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-nh-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nh
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan Renewal October 2023 (effective October 1,
+      2023). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked
+      2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-nj
   name: New Jersey
   queue_status: done
@@ -3345,6 +3846,22 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: New Jersey WFNJ rules N.J.A.C. 10:90 (adopted rule) are in the corpus in the page-level 2026-07-13-recovery
     scope. Done with that caveat.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://nj.gov/humanservices/wfnj/
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-nj
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the Work First New Jersey and DFD pages link no plan; the only plan files on nj.gov are public-comment
+      drafts under providers/grants/public/publicnoticefiles (FFY 2018-2020, FFY 2021-2023, FFY 2024-2026), and the FFY 2024-2026
+      draft URL answers HTTP 404 (2026-09-13). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
+      library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication. Nothing
+      was worked around.'
 - jurisdiction: us-nm
   name: New Mexico
   queue_status: agent_ready
@@ -3367,6 +3884,22 @@ states:
   index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
   index_document_count: 85
   taken_count: 17
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+    primary_source_urls:
+    - https://www.hca.nm.gov/wp-content/uploads/TANF-Final-State-Plan-2024-to-2026.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-nm-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nm
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): FFY 2024-2026 Final TANF State Plan (July 2024; period July
+      1, 2024 through June 30, 2026). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library
+      carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-nv
   name: Nevada
   queue_status: done
@@ -3495,6 +4028,22 @@ states:
     - policyengine-us#parameters/gov/states/nv/dwss/tanf/income/work_expense_disregard/rate.yaml
   notes: 'Nevada DWSS Eligibility and Payments Manual (combined TANF/SNAP/Medicaid, 51 chapter PDFs) already ingested. Reviewer
     judgment: combined manual counts as the TANF policy manual; not re-ingested.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.dss.nv.gov/programs/tanf/documents-and-links/
+    primary_source_urls:
+    - https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/TANF/FFY24%20Nevada%20TANF%20State%20Plan.%20effective%2012.31.23%20FINAL.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-nv-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nv
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): FFY24 Nevada TANF State Plan, effective December 31, 2023
+      (final). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ny
   name: New York
   queue_status: blocked_primary_source
@@ -3666,6 +4215,24 @@ states:
   index_url: https://codes.ohio.gov/ohio-administrative-code/5101:1
   index_document_count: 63
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://jfs.ohio.gov/public-assistance/cash-assistance
+    primary_source_urls:
+    - https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/OWF/tanf/2024%20TANF%20State%20Plan%20Combined.pdf
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-oh-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-oh
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): 2024 TANF State Plan Combined (State Title IV-A Plan submitted
+      under 42 U.S.C. 602; the print says ''Effective Date: TBD''), hosted on the ODJFS asset host; the Cash Assistance page
+      links no plan, located with a web search; expression_date is the FFY 2025 start and should be reviewed. ACF OFA posts
+      no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and
+      2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
@@ -3778,6 +4345,23 @@ states:
   index_url: https://rules.ok.gov/home
   index_document_count: 190
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://oklahoma.gov/okdhs/services/tanf/tanfhome.html
+    primary_source_urls:
+    - https://oklahoma.gov/content/dam/ok/en/okdhs/documents/okdhs-pdf-library/adult-and-family-services/OklahomaTANFPlan.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-ok-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan (2023 renewal effective December 1, 2023,
+      with the August 1, 2024 transmittal letter to ACF OFA). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-or
   name: Oregon
   queue_status: agent_ready
@@ -3950,6 +4534,21 @@ states:
   index_url: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=90
   index_document_count: 541
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://www.oregon.gov/odhs/cash/pages/tanf.aspx
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-or
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the ODHS TANF Cash Benefits page links no plan and the FFY 2023 plan URL search engines index (odhs/data/sspdata/2022-10-01-tanf-state-plan-fy23.pdf)
+      answers HTTP 404 (2026-09-13); the ODHS data page (odhs/data/pages/ssp.aspx) answers 404; no current plan is posted.
+      ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
+      and 2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'
 - jurisdiction: us-pa
   name: Pennsylvania
   queue_status: agent_ready
@@ -4107,6 +4706,22 @@ states:
   index_url: http://services.dpw.state.pa.us/oimpolicymanuals/cash/index.htm
   index_document_count: 365
   taken_count: 365
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.pa.gov/agencies/dhs/resources/cash-assistance/tanf/tanf-state-plan
+    primary_source_urls:
+    - https://www.pa.gov/content/dam/copapwp-pagov/en/dhs/documents/services/assistance/documents/tanf/tanf-state-plan-effective-october-1-2024.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-pa-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-pa
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): 2024 Pennsylvania TANF State Plan, effective October 1, 2024
+      (submitted to HHS December 2024). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library
+      carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-pr
   name: Puerto Rico
   queue_status: agent_ready
@@ -4152,6 +4767,22 @@ states:
   index_url: https://rules.sos.ri.gov/organizations/chapter/218-20
   index_document_count: 8
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://dhs.ri.gov/regulations/state-plans
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-ri
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the DHS State Plans page''s ''TANF state plan within WIOA plan'' link (media/2731) is the 180-page
+      WIOA Policy Manual (State, updated 03/18/2021), which mentions TANF eleven times and carries no TANF plan text; the
+      RI Works page links no plan; no TANF state plan is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication. Nothing was worked around.'
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: agent_ready
@@ -4207,6 +4838,23 @@ states:
   index_url: https://dss.sc.gov/about/data-and-resources/manuals/
   index_document_count: 27
   taken_count: 1
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dss.sc.gov/assistance-programs/tanf/
+    primary_source_urls:
+    - https://dss.sc.gov/media/ebfb3wuo/sc-tanf-state-plan-12-2025.pdf
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-sc-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-sc
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): South Carolina TANF State Plan December 2025 (effective October
+      2025), hosted on dss.sc.gov; the TANF program and TANF data pages do not list it (located with a web search). ACF OFA
+      posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10
+      and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-sd
   name: South Dakota
   queue_status: agent_ready
@@ -4360,6 +5008,23 @@ states:
   index_url: https://sdlegislature.gov/Rules/Administrative/67:10
   index_document_count: 181
   taken_count: 153
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dss.sd.gov/economicassistance/tanf.aspx
+    primary_source_urls:
+    - https://dss.sd.gov/docs/economicassistance/tanf/TANFStatePlan.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-sd-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-sd
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): South Dakota State Plan for TANF effective October 1, 2023
+      through September 30, 2026 (scanned image-only PDF, 21 pages; Tesseract page OCR). ACF OFA posts no state plan index
+      (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan
+      is the state agency''s own publication.'
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: agent_ready
@@ -4382,6 +5047,23 @@ states:
   index_url: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
   index_document_count: 106
   taken_count: 19
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://www.tn.gov/humanservices/for-families/families-first-tanf.html
+    primary_source_urls:
+    - https://www.tn.gov/content/dam/tn/human-services/documents/TANF%20State%20Plan%202024%20Signed%207.2.2024.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-tn-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-tn
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): TANF State Plan 2024, signed 7/2/2024 (WIOA combined state
+      plan TANF program-specific requirements, effective July 1, 2024). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-tx
   name: Texas
   queue_status: done
@@ -4734,6 +5416,22 @@ states:
     discovered_via:
     - policyengine-us#variables/gov/states/tx/tanf/eligibility/tx_tanf_eligible.py
   notes: Texas Works Handbook (combined) already ingested. Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://www.hhs.texas.gov/about/reports-presentations
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-tx
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: hhs.texas.gov posts only the ''Texas State Plan for TANF Renewal'' dated October 1, 2025 as a draft
+      (texas-tanf-state-plan-draft-2025.pdf; HTTP 403 to plain clients, served to a browser-impersonated client) and the superseded
+      October 2019 plan; no certified renewal is posted. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and
+      the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.
+      Nothing was worked around.'
 - jurisdiction: us-ut
   name: Utah
   queue_status: done
@@ -4747,6 +5445,23 @@ states:
   lead_counts: null
   candidate_sources: []
   notes: 'Batch 2 check: Utah FEP rules R986 (adopted rule) and the DWS eligibility manual already ingested. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://jobs.utah.gov/edo/stateplans/
+    primary_source_urls:
+    - https://jobs.utah.gov/edo/stateplans/tanfstateplan.pdf
+    listed_on_publisher_index: false
+    target_manifest: manifests/us-ut-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ut
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Utah TANF State Plan (effective October 2022); jobs.utah.gov
+      answers the state plans directory with HTTP 403 and the FEP pages with HTTP 500 to this client, so the listing page
+      could not be read (located with a web search). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the
+      resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-va
   name: Virginia
   queue_status: agent_ready
@@ -4878,6 +5593,22 @@ states:
   index_url: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
   index_document_count: 12
   taken_count: 10
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://www.dss.virginia.gov/relief/tanf/
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-va
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the VDSS TANF pages (program, manual, data, VIEW) link the TANF Manual, forms and Title IV-A of the
+      Social Security Act but no state plan; web search finds no TANF state plan on dss.virginia.gov (Virginia''s plan is
+      filed within the WIOA combined plan on the federal portal). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication. Nothing was worked around.'
 - jurisdiction: us-vi
   name: Virgin Islands
   queue_status: blocked_primary_source
@@ -4922,6 +5653,22 @@ states:
   index_url: https://dcf.vermont.gov/esd/laws-rules/current
   index_document_count: 14
   taken_count: 6
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dcf.vermont.gov/esd/resources/reports
+    primary_source_urls:
+    - https://outside.vermont.gov/dept/DCF/Shared%20Documents/Benefits/VT-TANF-State-Plan-2024-2027.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-vt-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Vermont TANF State Plan Renewal October 1, 2024 through December
+      31, 2027. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-wa
   name: Washington
   queue_status: done
@@ -5142,6 +5889,24 @@ states:
     discovered_via:
     - policyengine-us#variables/gov/states/wa/dshs/tanf/eligibility/wa_tanf_immigration_status_eligible.py
   notes: Washington EA-Z Manual (combined) already ingested. Done per the prior-ingest list.
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://workfirst.wa.gov/tanf
+    primary_source_urls:
+    - https://workfirst.wa.gov/sites/default/files/public/WA_TANF%20State%20Plan%202026%20FINAL.pdf
+    - https://workfirst.wa.gov/sites/default/files/public/SIGNED%20-%20WA%20TANF%20State%20Plan%20Certifications%202026.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-wa-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wa
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 2
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Washington''s TANF State Plan Components, August 1, 2026
+      (Talent and Prosperity for All WIOA combined plan, TANF-only portion) with the signed 2026 certifications. ACF OFA posts
+      no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and
+      2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: agent_ready
@@ -5162,6 +5927,24 @@ states:
   index_url: https://dcf.wisconsin.gov/manuals/w-2-manual/Production/default.htm
   index_document_count: 291
   taken_count: 291
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://dcf.wisconsin.gov/w2/researchers/state-plans
+    primary_source_urls:
+    - https://dcf.wisconsin.gov/files/w2/tanf-state-plans/2026-tanf-section-wioa-combined-plan-modifications.pdf
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-wi-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wi
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Wisconsin''s Combined State Plan under WIOA, Section VII
+      TANF, PY 2024-2027, effective July 1, 2024, modifications March 15, 2026; the index labels the file ''Proposed Modifications
+      to the Current TANF State Plan'' (the stand-alone FFY 2021-2023 plan is the newest non-WIOA print). ACF OFA posts no
+      state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13);
+      the plan is the state agency''s own publication.'
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: done
@@ -5176,6 +5959,23 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: West Virginia Income Maintenance Manual (combined, incl. WV WORKS) already ingested. Reviewer judgment:
     combined manual counts. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: agent_ready
+    index_url: https://bfa.wv.gov/state-plans
+    primary_source_urls:
+    - https://bfa.wv.gov/media/39875/download?inline=
+    listed_on_publisher_index: true
+    target_manifest: manifests/us-wv-tanf-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wv
+      document_class: policy
+      version: 2026-09-13-tanf-state-plan
+    taken_count: 1
+    notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Temporary Assistance for Needy Families State Plan FFY2024
+      (October 1, 2024 - September 30, 2026, effective October 1, 2024). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
+      and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
+      publication.'
 - jurisdiction: us-wy
   name: Wyoming
   queue_status: done
@@ -5190,3 +5990,18 @@ states:
   candidate_sources: []
   notes: 'Batch 2 check: Wyoming SNAP and POWER Policy Manual (combined) already ingested. Reviewer judgment: combined manual
     counts. Done.'
+  additional_families:
+  - family: tanf_state_plan
+    queue_status: needs_review
+    index_url: https://dfs.wyo.gov/assistance-programs/cash-assistance/
+    primary_source_url: null
+    target_manifest: null
+    target_scope:
+      jurisdiction: us-wy
+      document_class: policy
+      version: null
+    taken_count: 0
+    notes: 'Not taken: the DFS Cash Assistance pages and the SNAP and POWER Policy Manual page link no TANF state plan (the
+      ''2025.2026 State Model Plan Draft'' is the LIHEAP model plan); web search finds none on dfs.wyo.gov. ACF OFA posts
+      no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links, checked 2026-09-10 and
+      2026-09-13); the plan is the state agency''s own publication. Nothing was worked around.'

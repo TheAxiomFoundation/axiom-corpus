@@ -1,0 +1,39 @@
+version: 2026-09-13-ccdf-state-plan-amendments
+documents:
+- source_id: us-ca-acf-ccdf-plan-fy2025-2027-amendment-1
+  jurisdiction: us-ca
+  document_class: policy
+  title: California CCDF Plan FFY 2025-2027, Amendment 1
+  source_url: https://www.cdss.ca.gov/Portals/9/CCDD/2025-27 CCDF State Plan – Amendments 1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ca/policy/acf/ccdf-plan/fy2025-2027-amendment-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])(?:\s+(?P<heading>[A-Z]\S.*))?$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+    label_only_heading_pattern: ^[A-Z][A-Za-z].*$
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_amendment_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.cdss.ca.gov/inforesources/child-care-and-development/fund-state-plan
+    source_discovery_group: us-ca/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.cdss.ca.gov/inforesources/child-care-and-development/fund-state-plan
+    plan_version: Amendment 1
+    plan_status: Approved (no CARS Plan Status line in the state export)
+    source_note: state Word export (CA_EXTRACTION); the print carries no CARS Plan Status line
+    closure_elements:
+    - ccdf-s28
