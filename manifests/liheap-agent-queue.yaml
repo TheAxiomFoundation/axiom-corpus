@@ -30,7 +30,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 1
-  agent_ready: 55
+  agent_ready: 56
   blocked_primary_source: 1
 states:
 - jurisdiction: us
@@ -57,6 +57,30 @@ states:
     - policyengine-us#parameters/gov/hhs/liheap/smi_limit.yaml
   notes: Drafted from the lead list; a reviewer must confirm the primary official source, add agency manuals the lead list
     does not cite, set source_kind and target_scope, then move queue_status to agent_ready.
+- jurisdiction: us
+  name: Federal statute (42 U.S.C., uscode.house.gov USLM)
+  queue_status: agent_ready
+  source_kind: federal_statute_uscode_uslm
+  primary_source_url: https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: statute
+    version: 2026-09-13-liheap-statute-chapter-94-title-42
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 8621-8630, every
+    section of chapter 94 subchapter II (8621, 8622, 8623, 8624, 8625, 8626, 8626a, 8626b, 8627, 8628, 8628a, 8629, 8630).
+    Extracted with extract-usc from the official OLRC USLM release point Public Law 119-103 (09/02/2026), USLM XML created
+    2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip; the zip and its usc42.xml
+    member are retained under sources/us/statute/2026-09-13-liheap-statute-chapter-94-title-42/). 13 section rows, 269 provision
+    rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section rows are self-contained (the
+    title row us/statute/42 stays in its released consolidated scope; detached parents are recorded in metadata.detached_parent_citation_path).
+    No selected scope carries any of these paths. Closes needs-closure elements LIHEAP-F-USC-8621 through LIHEAP-F-USC-8630
+    (10).'
+  index_url: https://uscode.house.gov/download/download.shtml
+  index_document_count: 13
+  taken_count: 269
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}
