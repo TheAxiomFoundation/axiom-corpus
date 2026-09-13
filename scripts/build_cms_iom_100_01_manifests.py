@@ -1,8 +1,9 @@
 """Build the corpus manifest for one CMS Internet-Only Manual (IOM) publication
 (every chapter PDF), inventory the CMS IOM index, and update the Medicare agent
 queue. Publications: Pub 100-01 Medicare General Information, Eligibility, and
-Entitlement Manual (the default, the first family ingested) and Pub 100-24 State
-Payment of Medicare Premiums (the Part A/Part B buy-in manual).
+Entitlement Manual (the default, the first family ingested), Pub 100-24 State
+Payment of Medicare Premiums (the Part A/Part B buy-in manual), Pub 100-02
+Medicare Benefit Policy Manual and Pub 100-04 Medicare Claims Processing Manual.
 
 Primary official source: the CMS IOM index,
 https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
@@ -23,12 +24,32 @@ the last table-of-contents line. The heading shape differs per publication:
   labeled by the printed appendix code ("5.A"). Requiring the heading text to
   start with an upper-case letter or "(" keeps bold wrapped cross-references
   ("1.7 and 1.11 for more information ...", "00805.385 at https://...") out.
+* Pub 100-02 and Pub 100-04 print "10.1 - Title" like Pub 100-01 in most
+  sections, but individual chapters also print "100.1 Definition of AKI" (no
+  dash), "40.7- Individuals ..." and "230.2.1– Chronic ..." (dash attached to
+  the label), "20.3 -End Stage ..." (dash attached to the heading) and
+  "20.4.3 -- TPNIES ..." (double dash), all bold and all followed by their
+  transmittal line, so their pattern accepts every dash form and no dash. Top
+  labels are one to three digits (Pub 100-04 chapter 1 opens with "01 -
+  Foreword"), which keeps bold years ("2014 - ...") and HCPCS codes in tables
+  out; a chapter whose table of contents lists no single-digit section gets a
+  two-to-three-digit top label so bold table cells such as "1 - Community
+  Early" (Pub 100-04 chapter 10) are not sections. Chapters whose bold tables
+  still collide with the pattern carry an explicit override (Pub 100-04
+  chapter 26 place-of-service codes, chapter 27 CWF response codes, chapter 32
+  MSN message 23.17) and three chapters carry text replacements for labels the
+  PDF prints with a stray space or dot ("30.2. 8 -", "100.6.1.", "40.8. -").
+  The body may start before the first repeated label (Pub 100-02 chapter 17's
+  TOC omits section 10; Pub 100-04 chapter 1's TOC ends with 130.7 while the
+  body opens with 01 - Foreword), so the body also starts at the first bold
+  heading followed by its transmittal line, whichever comes first.
 
 cms.gov serves both HTML and PDF to the corpus user agent over a complete TLS
 chain; no certificate bundle or browser impersonation is needed.
 
     uv run python scripts/build_cms_iom_100_01_manifests.py \
-        [--publication 100-01|100-24] [--download-dir ~/.axiom/cache/cms-iom-<pub>]
+        [--publication 100-01|100-24|100-02|100-04] \
+        [--download-dir ~/.axiom/cache/cms-iom-<pub>]
 """
 from __future__ import annotations
 
@@ -37,7 +58,7 @@ import datetime as dt
 import html
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -50,7 +71,6 @@ BASE = "https://www.cms.gov"
 INDEX = f"{BASE}/medicare/regulations-guidance/manuals/internet-only-manuals-ioms"
 PAPER_INDEX = f"{BASE}/medicare/regulations-guidance/manuals/paper-based-manuals"
 SOURCE_AS_OF = "2026-09-10"
-FALLBACK_EXPRESSION_DATE = SOURCE_AS_OF
 USER_AGENT = "axiom-corpus/0.1 (source discovery)"
 # site-wide footer link present on every cms.gov page; not a manual document
 SITE_WIDE_LINKS = ("/files/document/agent/broker-help-desks.pdf",)
@@ -71,6 +91,36 @@ DASHED_HEADING_PATTERN = r"^(?P<label>\d+(?:\.\d+)*)\s+[-–—]\s*(?P<heading>[
 DOTTED_HEADING_PATTERN = (
     r"^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$"
 )
+# Pub 100-02 / 100-04: "10.1 - Title", "100.1 Title", "40.7- Title",
+# "20.3 -Title", "20.4.3 -- Title". The heading must start with an upper-case
+# letter or "(" so "10-foot", "1-800-MEDICARE", "100-01 - General Information"
+# and bold enumerations ("1. Content: ...") never match.
+IOM_SEPARATORS = {
+    "any": r"(?:\s*[-–—]+\s*|\s+)",
+    "dash": r"\s*[-–—]+\s*",
+    "spaced_dash": r"\s+[-–—]+\s+",
+}
+TOP_LABEL_ANY = r"\d{1,3}"
+TOP_LABEL_TWO_PLUS = r"\d{2,3}"
+
+
+def iom_heading_pattern(
+    *,
+    top_label: str = TOP_LABEL_ANY,
+    form: str = "any",
+    exclude_labels: tuple[str, ...] = (),
+    heading_optional: bool = False,
+) -> str:
+    """Section-heading regex for the Pub 100-02 / 100-04 label shapes."""
+    guard = "".join(rf"(?!{re.escape(label)}\b)" for label in exclude_labels)
+    label = rf"(?P<label>{top_label}(?:\.\d+)*)"
+    tail = rf"{IOM_SEPARATORS[form]}(?P<heading>[A-Z(].*)"
+    if heading_optional:
+        tail = f"(?:{tail})?"
+    return rf"^{guard}{label}{tail}$"
+
+
+IOM_HEADING_PATTERN = iom_heading_pattern()
 # A wrapped heading continues on the next line in Title Case ("Payer (D-SEP)",
 # "or After October 1, 1983 Under PPS", "(Contractors)", "Services - General",
 # "... Services - A Brief Description", "Columbia - General", "(MARx UI)"). The
@@ -87,24 +137,54 @@ _JOIN = (
 _WORD = rf"(?:\(?[A-Z0-9][^\s]*|[-–—]|{_JOIN}\b[^\s]*)"
 
 
-def continuation_pattern(*, allow_single_letter_line: bool) -> str:
+DASHED_NEXT_HEADING_GUARD = r"(?!\d+(?:\.\d+)*\s+[-–—])"
+# Pub 100-02 / 100-04 headings may follow the label with no dash, so a line
+# shaped like "120- Title", "100.1 Title" or "20.3 -Title" is a heading too.
+IOM_NEXT_HEADING_GUARD = r"(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))"
+
+
+def continuation_pattern(
+    *, allow_single_letter_line: bool, next_heading_guard: str = DASHED_NEXT_HEADING_GUARD
+) -> str:
     """Heading-continuation regex; the all-caps guard rejects bold captions
     ("POLICY", "NOTE"). Pub 100-24 chapter 2 wraps one heading onto a bare
     "A" line ("... Premium-Free Part" / "A"), so its variant lets a single
     capital letter through while still rejecting two or more."""
     caps_guard = r"(?![A-Z]{2,}:?$)" if allow_single_letter_line else r"(?![A-Z]+:?$)"
     return (
-        rf"^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b){caps_guard}(?![A-Z][A-Z ]+$)"
+        rf"^(?P<heading>(?!\(Rev\b){next_heading_guard}(?![A-Z][.)\-–]\s)(?!NOTE\b){caps_guard}(?![A-Z][A-Z ]+$)"
         rf"{_WORD}(?:\s+{_WORD})*)$"
     )
 
 
 HEADING_CONTINUATION_PATTERN = continuation_pattern(allow_single_letter_line=False)
 SINGLE_LETTER_HEADING_CONTINUATION_PATTERN = continuation_pattern(allow_single_letter_line=True)
-REV_RE = re.compile(
-    r"\(Rev\.?\s*:?\s*(?P<rev>\d+)\s*[;,]\s*(?:Issued:?\s*)?(?P<date>\d{1,2}-\d{1,2}-\d{2,4})"
+IOM_HEADING_CONTINUATION_PATTERN = continuation_pattern(
+    allow_single_letter_line=False, next_heading_guard=IOM_NEXT_HEADING_GUARD
 )
+# TOC header transmittals: "(Rev. 12425; Issued: 12-21-23)", "(Rev. 4, 08-21-20)",
+# "(Rev. 12421; Issued; 12-21-23)" (Pub 100-02 ch. 6), "(Rev. 12425 Issued:
+# 12-21-23)" (ch. 7, no separator), "(Rev. 198, 11- 06-14)" (ch. 14, space in
+# the date).
+REV_RE = re.compile(
+    r"\(Rev\.?\s*:?\s*(?P<rev>\d+)\s*[;,:]?\s*(?:Issued\s*[:;]?\s*)?(?P<date>\d{1,2}-\s?\d{1,2}-\d{2,4})"
+)
+# "Transmittals for Chapter N"; Pub 100-02 chapter 8 prints "Transmittals
+# Issued for this Chapter".
+TRANSMITTALS_RE = re.compile(r"^Transmittals (?:Issued )?for (?:this )?Chapter")
 CHAPTER_LINK_RE = re.compile(r"^Chapter\s*(?P<number>\d+)\s*[-–—]+\s*(?P<title>\S.*)$", re.I)
+
+
+@dataclass(frozen=True)
+class ChapterOverride:
+    """Per-chapter extraction settings a publication needs beyond the computed
+    defaults; `reason` is recorded in the document metadata."""
+
+    reason: str
+    heading_form: str = "any"
+    exclude_labels: tuple[str, ...] = ()
+    heading_optional: bool = False
+    extraction: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -115,7 +195,29 @@ class Publication:
     heading_continuation_pattern: str
     heading_style: str
     queue_note: str
+    source_as_of: str = SOURCE_AS_OF
+    run_note: str | None = None
+    # Build each chapter's heading pattern from its TOC (two-to-three-digit top
+    # labels when the TOC lists no single-digit section) and the overrides
+    # below; False keeps section_heading_pattern verbatim (Pub 100-01, 100-24).
+    adaptive_heading_pattern: bool = False
+    chapter_overrides: dict[int, ChapterOverride] = field(default_factory=dict)
 
+
+IOM_100_02_QUEUE_NOTE = (
+    "Pub 100-02 (Medicare Benefit Policy Manual, the benefit coverage rules) taken in full: 17 chapter PDFs "
+    "from its publication page; the 16 per-chapter crosswalk PDFs on the same page are finding aids and are "
+    "not taken. Chapter 7's TOC lists 30.2.8 Facsimile Signatures and chapter 11's TOC lists 100.6.1 Dialysis "
+    "Modality; both are printed in the body with a stray space or dot in the label and are recovered with text "
+    "replacements."
+)
+IOM_100_04_QUEUE_NOTE = (
+    "Pub 100-04 (Medicare Claims Processing Manual) taken: 39 chapter PDFs (chapters 1-39) from its publication "
+    "page; the two 'Chapter 21 - Medicare Summary Notices - English/Spanish Exhibits' links are ZIP bundles of "
+    "MSN exhibit images, not chapter text, and the 29 per-chapter crosswalk PDFs are finding aids; none of those "
+    "are taken. Several chapter TOCs list sections the body no longer prints (for example chapter 8's 50.1.5 to "
+    "100.3 and chapter 18's 1 and 1.1); the body governs."
+)
 
 PUBLICATIONS = {
     "100-01": Publication(
@@ -149,6 +251,86 @@ PUBLICATIONS = {
             "finding aid, not a chapter, and is not taken. Its appendices (1.A-1.D, 5.A-5.D, 6.A-6.B) are bold "
             "sections with their own transmittal lines and are emitted as sections labeled by appendix code."
         ),
+    ),
+    "100-02": Publication(
+        number="100-02",
+        version="2026-09-11-medicare-cms-iom-100-02",
+        section_heading_pattern=IOM_HEADING_PATTERN,
+        heading_continuation_pattern=IOM_HEADING_CONTINUATION_PATTERN,
+        heading_style=(
+            "bold 'N - Title' headings (a few chapters print 'N Title', 'N- Title' or 'N -- Title'); "
+            "the body starts after the table of contents"
+        ),
+        queue_note=IOM_100_02_QUEUE_NOTE,
+        source_as_of="2026-09-11",
+        run_note="docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md",
+        adaptive_heading_pattern=True,
+        chapter_overrides={
+            7: ChapterOverride(
+                reason="the body prints section 30.2.8 as '30.2. 8 - Facsimile Signatures' (space inside the label)",
+                extraction={"text_replacements": {"30.2. 8 - Facsimile Signatures": "30.2.8 - Facsimile Signatures"}},
+            ),
+            11: ChapterOverride(
+                reason="the body prints section 100.6.1 as '100.6.1. Dialysis Modality' (trailing dot on the label)",
+                extraction={"text_replacements": {"100.6.1. Dialysis Modality": "100.6.1 - Dialysis Modality"}},
+            ),
+            15: ChapterOverride(
+                reason=(
+                    "section 320.7.1 prints its bold label alone with '- Determining Qualifying Home Infusion "
+                    "Drugs' on the next line; a bare label is a heading only when the next line starts with a dash"
+                ),
+                heading_optional=True,
+                extraction={
+                    "label_only_heading_pattern": r"^[-–—]\s*[A-Z(].*$",
+                    "label_only_requires_heading": True,
+                },
+            ),
+        },
+    ),
+    "100-04": Publication(
+        number="100-04",
+        version="2026-09-11-medicare-cms-iom-100-04",
+        section_heading_pattern=IOM_HEADING_PATTERN,
+        heading_continuation_pattern=IOM_HEADING_CONTINUATION_PATTERN,
+        heading_style=(
+            "bold 'N - Title' headings (some chapters print 'N Title', 'N- Title' or 'N -Title'; chapter 1 "
+            "opens with '01 - Foreword'); the body starts after the table of contents"
+        ),
+        queue_note=IOM_100_04_QUEUE_NOTE,
+        source_as_of="2026-09-11",
+        run_note="docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md",
+        adaptive_heading_pattern=True,
+        chapter_overrides={
+            12: ChapterOverride(
+                reason="the body prints section 40.8 as '40.8. - Claims for Co-Surgeons ...' (trailing dot on the label)",
+                extraction={
+                    "text_replacements": {
+                        "40.8. - Claims for Co-Surgeons and Team Surgeons": "40.8 - Claims for Co-Surgeons and Team Surgeons"
+                    }
+                },
+            ),
+            26: ChapterOverride(
+                reason=(
+                    "the place-of-service code table prints bold 'NN Name (date)' rows; every section heading in "
+                    "this chapter uses a dash, so the dash is required"
+                ),
+                heading_form="dash",
+            ),
+            27: ChapterOverride(
+                reason=(
+                    "the CWF response-code table prints bold 'NN -Description' rows and a bold '837 Professional "
+                    "Claims' caption; every section heading in this chapter uses a spaced dash, so it is required"
+                ),
+                heading_form="spaced_dash",
+            ),
+            32: ChapterOverride(
+                reason=(
+                    "MSN message 23.17 is printed bold in English and Spanish under the surgical-error denial "
+                    "instructions; it is a message number, not a section"
+                ),
+                exclude_labels=("23.17",),
+            ),
+        },
     ),
 }
 
@@ -199,62 +381,143 @@ def publication_documents(page: str) -> tuple[list[tuple[str, str]], list[tuple[
     return chapters, other
 
 
-def normalized_lines(document: fitz.Document) -> list[tuple[str, int]]:
-    """Text lines the same way the official-documents extractor sees them."""
+def normalized_lines(document: fitz.Document) -> list[tuple[str, int, bool]]:
+    """Text lines the same way the official-documents extractor sees them, with
+    the bold flag of each line's first span (paired by occurrence, as the
+    extractor does for section_heading_requires_bold)."""
     out = []
     for page_index, page in enumerate(document, start=1):
+        styles: dict[str, list[bool]] = {}
+        for block in page.get_text("dict").get("blocks", ()):
+            for span_line in block.get("lines", ()):
+                spans = span_line.get("spans", ())
+                first_span = next((span for span in spans if str(span.get("text", "")).strip()), None)
+                if first_span is None:
+                    continue
+                text = " ".join("".join(str(span.get("text", "")) for span in spans).split())
+                if text:
+                    styles.setdefault(text, []).append(bool(int(first_span.get("flags", 0)) & fitz.TEXT_FONT_BOLD))
+        occurrences: dict[str, int] = {}
         for raw in page.get_text("text").splitlines():
             line = " ".join(raw.split())
-            if line and not re.match(r"^Page \d+$", line):
-                out.append((line, page_index))
+            if not line:
+                continue
+            occurrence = occurrences.get(line, 0)
+            occurrences[line] = occurrence + 1
+            if re.match(r"^Page \d+$", line):
+                continue
+            line_styles = styles.get(line, ())
+            out.append((line, page_index, line_styles[occurrence] if occurrence < len(line_styles) else False))
     return out
 
 
 def chapter_facts(pdf_path: Path, heading_re: re.Pattern[str]) -> dict[str, Any]:
-    """Latest TOC transmittal, last TOC line, and page count of one chapter PDF."""
+    """Latest TOC transmittal, last TOC line, TOC labels and page count of one
+    chapter PDF."""
     with fitz.open(pdf_path) as document:
         page_count = len(document)
         lines = normalized_lines(document)
     # The TOC header (before "Transmittals for Chapter N") prints the chapter's
     # latest transmittal; Pub 100-01 chapter 6 prints two, so take the latest
     # issued date.
-    header_end = next(
-        (i for i, (line, _) in enumerate(lines) if re.match(r"^Transmittals for Chapter", line)),
-        None,
-    )
+    header_end = next((i for i, (line, _, _) in enumerate(lines) if TRANSMITTALS_RE.match(line)), None)
     if header_end is None:
         raise RuntimeError(f"{pdf_path.name}: no 'Transmittals for Chapter' line in the TOC header")
     transmittals = []
-    for line, _ in lines[:header_end]:
+    for line, _, _ in lines[:header_end]:
         for match in REV_RE.finditer(line):
-            month, day, year = match.group("date").split("-")
+            month, day, year = match.group("date").replace(" ", "").split("-")
             year_full = int(year) if len(year) == 4 else 2000 + int(year)
             transmittals.append((dt.date(year_full, int(month), int(day)), int(match.group("rev")), line))
-    # The body starts where the first TOC heading label reappears; the line
-    # before that is the last TOC line, the start_after anchor.
+    # The TOC repeats every heading, so the body starts where the first TOC
+    # heading label reappears. When the TOC omits the chapter's first sections
+    # (Pub 100-02 chapter 17 lists nothing before section 20) or its order
+    # differs from the body (Pub 100-04 chapter 1's TOC ends with 130.7 while
+    # the body opens with "01 - Foreword"), the body starts at the first bold
+    # heading followed by its "(Rev. ...)" transmittal line, allowing up to
+    # two wrapped heading lines in between but no further heading-shaped line
+    # (recently added TOC entries are bold too, and the last one sits right
+    # above the first body heading and its transmittal line); the earlier of
+    # the two wins. The line before is the last TOC line, the start_after
+    # anchor.
     seen: dict[str, int] = {}
-    body_start = None
-    for i, (line, _) in enumerate(lines):
+    first_repeat = None
+    for i, (line, _, _) in enumerate(lines):
         match = heading_re.match(line)
         if match is None:
             continue
         if match.group("label") in seen:
-            body_start = i
+            first_repeat = i
             break
         seen[match.group("label")] = i
-    if body_start is None:
+    def followed_by_transmittal(index: int) -> bool:
+        for j in range(index + 1, min(index + 4, len(lines))):
+            if lines[j][0].startswith("(Rev"):
+                return True
+            if heading_re.match(lines[j][0]):
+                return False
+        return False
+
+    first_bold_with_transmittal = next(
+        (
+            i
+            for i in range(header_end + 1, len(lines))
+            if lines[i][2] and heading_re.match(lines[i][0]) and followed_by_transmittal(i)
+        ),
+        None,
+    )
+    candidates = [i for i in (first_repeat, first_bold_with_transmittal) if i is not None]
+    if not candidates:
         raise RuntimeError(f"{pdf_path.name}: could not find where the body restarts after the TOC")
+    body_start = min(candidates)
     last_toc_line = lines[body_start - 1][0]
-    earlier = sum(1 for line, _ in lines[:body_start - 1] if line == last_toc_line)
+    earlier = sum(1 for line, _, _ in lines[:body_start - 1] if line == last_toc_line)
     if earlier:
         raise RuntimeError(f"{pdf_path.name}: last TOC line {last_toc_line!r} also appears earlier")
+    toc_labels = [label for label, index in seen.items() if index < body_start]
     return {
         "page_count": page_count,
-        "toc_section_count": len(seen),
+        "toc_section_count": len(toc_labels),
+        "toc_labels": toc_labels,
         "body_start_page": lines[body_start][1],
+        "body_start_rule": (
+            "first repeated label"
+            if body_start == first_repeat
+            else "first bold heading followed by its transmittal line"
+        ),
         "last_toc_line": last_toc_line,
         "transmittals": sorted(transmittals),
     }
+
+
+def chapter_heading_settings(
+    publication: Publication, number: int, facts: dict[str, Any]
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """The chapter's section-heading extraction keys and the metadata that
+    explains them."""
+    override = publication.chapter_overrides.get(number)
+    if not publication.adaptive_heading_pattern:
+        if override is not None:
+            raise ValueError(f"chapter overrides need adaptive_heading_pattern (Pub {publication.number})")
+        return {"section_heading_pattern": publication.section_heading_pattern}, {}
+    single_digit_toc = any(re.match(r"^\d(?:\.|$)", label) for label in facts["toc_labels"])
+    top_label = TOP_LABEL_ANY if single_digit_toc else TOP_LABEL_TWO_PLUS
+    extraction: dict[str, Any] = {
+        "section_heading_pattern": iom_heading_pattern(
+            top_label=top_label,
+            form=override.heading_form if override else "any",
+            exclude_labels=override.exclude_labels if override else (),
+            heading_optional=override.heading_optional if override else False,
+        )
+    }
+    metadata: dict[str, Any] = {
+        "toc_lists_single_digit_sections": single_digit_toc,
+        "heading_label_form": "one to three digit top label" if single_digit_toc else "two to three digit top label",
+    }
+    if override is not None:
+        extraction.update(override.extraction)
+        metadata["extraction_override"] = override.reason
+    return extraction, metadata
 
 
 def build_documents(
@@ -263,16 +526,24 @@ def build_documents(
     pub_row: dict[str, str],
     chapter_links: list[tuple[str, str]],
     download_dir: Path,
-) -> list[dict[str, Any]]:
-    """One manifest document per chapter PDF of the publication page."""
+) -> tuple[list[dict[str, Any]], list[tuple[str, str]]]:
+    """One manifest document per chapter PDF of the publication page, plus the
+    chapter-labelled links that are not chapter PDFs (with the reason)."""
     heading_re = re.compile(publication.section_heading_pattern)
     download_dir.mkdir(parents=True, exist_ok=True)
     documents = []
+    skipped: list[tuple[str, str]] = []
     for href, text in chapter_links:
         match = CHAPTER_LINK_RE.match(text)
         assert match is not None
         number = int(match.group("number"))
         chapter_title = match.group("title").strip()
+        if not href.lower().endswith(".pdf"):
+            # Pub 100-04 lists "Chapter 21 - ... English/Spanish Exhibits" ZIP
+            # bundles beside the chapter PDFs; the extractor reads PDF only and
+            # the exhibits are MSN images, not chapter text.
+            skipped.append((text, f"{href.rsplit('.', 1)[-1].upper()} bundle, not a chapter PDF"))
+            continue
         pdf_path = download_dir / href.rsplit("/", 1)[-1]
         last_modified = None
         if not pdf_path.exists():
@@ -291,9 +562,10 @@ def build_documents(
             expression_source = f"TOC header transmittal line {rev_line!r}"
             latest_transmittal = f"Rev. {rev}, issued {issued.isoformat()}"
         else:
-            expression_date = FALLBACK_EXPRESSION_DATE
+            expression_date = publication.source_as_of
             expression_source = "no transmittal date printed in the TOC header; source_as_of used"
             latest_transmittal = None
+        heading_extraction, heading_metadata = chapter_heading_settings(publication, number, facts)
         metadata = {
             "primary_source": True,
             "source_authority": "Centers for Medicare & Medicaid Services",
@@ -307,7 +579,10 @@ def build_documents(
             "latest_transmittal": latest_transmittal,
             "expression_date_source": expression_source,
             "pdf_page_count": facts["page_count"],
+            "body_start_page": facts["body_start_page"],
             "toc_section_count": facts["toc_section_count"],
+            "body_start_rule": facts["body_start_rule"],
+            **heading_metadata,
             "extraction_granularity": "numbered_section",
             "source_discovery_group": f"us/manual/cms-iom-{publication.number}",
             "discovered_via": f"manual-review:medicare-agent-queue; index {INDEX}; publication page {pub_row['url']}",
@@ -322,12 +597,12 @@ def build_documents(
                 "title": f"CMS Pub {publication.number} {pub_row['title']}, Chapter {number} - {chapter_title}",
                 "source_url": href,
                 "source_format": "pdf",
-                "source_as_of": SOURCE_AS_OF,
+                "source_as_of": publication.source_as_of,
                 "expression_date": expression_date,
                 "citation_path": f"us/manual/cms/iom/{publication.number}/chapter-{number}",
                 "extraction": {
                     "segmentation": "labeled_sections",
-                    "section_heading_pattern": publication.section_heading_pattern,
+                    **heading_extraction,
                     "section_heading_requires_bold": True,
                     "heading_continuation_pattern": publication.heading_continuation_pattern,
                     # skip the table of contents, which repeats every heading
@@ -337,7 +612,7 @@ def build_documents(
             }
         )
     documents.sort(key=lambda doc: doc["metadata"]["chapter"])
-    return documents
+    return documents, skipped
 
 
 def family_status(entry: dict[str, Any], taken: set[str]) -> str:
@@ -358,6 +633,7 @@ def update_queue(
     pub_row: dict[str, str],
     chapter_links: list[tuple[str, str]],
     other_links: list[tuple[str, str]],
+    skipped_chapters: list[tuple[str, str]],
     documents: list[dict[str, Any]],
     manifest_name: str,
     publications_on_index: int,
@@ -382,9 +658,10 @@ def update_queue(
         "document_count": len(chapter_links) + len(other_links),
         "chapter_count": len(chapter_links),
         "chapters_taken": len(documents),
-        "not_taken": [text for _href, text in other_links],
+        "not_taken": [text for _href, text in other_links]
+        + [f"{text} ({reason})" for text, reason in skipped_chapters],
         "heading_style": publication.heading_style,
-        "run_note": f"docs/ingest-runs/{publication.version}.md",
+        "run_note": publication.run_note or f"docs/ingest-runs/{publication.version}.md",
     }
     publications = [p for p in row.get("publications", []) if p["publication"] != publication.number]
     publications.append(publication_record)
@@ -501,7 +778,7 @@ def main() -> int:
 
     # 2. The publication: one document per chapter PDF.
     pub_row, chapter_links, other_links = taken_row
-    documents = build_documents(session, publication, pub_row, chapter_links, download_dir)
+    documents, skipped_chapters = build_documents(session, publication, pub_row, chapter_links, download_dir)
     manifest_path = ROOT / "manifests" / f"us-cms-iom-{publication.number}.yaml"
     manifest_path.write_text(
         yaml.safe_dump(
@@ -516,6 +793,7 @@ def main() -> int:
         pub_row,
         chapter_links,
         other_links,
+        skipped_chapters,
         documents,
         manifest_path.name,
         len(publications),
@@ -529,10 +807,15 @@ def main() -> int:
     )
     for doc in documents:
         meta = doc["metadata"]
+        extra = f"; {meta['heading_label_form']}" if "heading_label_form" in meta else ""
+        extra += f"; override: {meta['extraction_override']}" if "extraction_override" in meta else ""
         print(
             f"  chapter {meta['chapter']}: {meta['toc_section_count']} TOC sections, "
-            f"{meta['pdf_page_count']} pages, expression {doc['expression_date']} ({meta['latest_transmittal']})"
+            f"{meta['pdf_page_count']} pages, expression {doc['expression_date']} ({meta['latest_transmittal']}); "
+            f"body start p{meta['body_start_page']} by {meta['body_start_rule']}{extra}"
         )
+    for text, reason in skipped_chapters:
+        print(f"  not taken: {text} ({reason})")
     return 0
 
 

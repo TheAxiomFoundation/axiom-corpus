@@ -381,10 +381,17 @@ states:
     this family. Pub 100-24 (State Payment of Medicare Premiums, the Part A/Part B buy-in manual) taken in full: 6 chapter
     PDFs from its publication page; the ''100-24 Table of Contents'' PDF on the same page is a finding aid, not a chapter,
     and is not taken. Its appendices (1.A-1.D, 5.A-5.D, 6.A-6.B) are bold sections with their own transmittal lines and are
-    emitted as sections labeled by appendix code.'
+    emitted as sections labeled by appendix code. Pub 100-02 (Medicare Benefit Policy Manual, the benefit coverage rules)
+    taken in full: 17 chapter PDFs from its publication page; the 16 per-chapter crosswalk PDFs on the same page are finding
+    aids and are not taken. Chapter 7''s TOC lists 30.2.8 Facsimile Signatures and chapter 11''s TOC lists 100.6.1 Dialysis
+    Modality; both are printed in the body with a stray space or dot in the label and are recovered with text replacements.
+    Pub 100-04 (Medicare Claims Processing Manual) taken: 39 chapter PDFs (chapters 1-39) from its publication page; the two
+    ''Chapter 21 - Medicare Summary Notices - English/Spanish Exhibits'' links are ZIP bundles of MSN exhibit images, not
+    chapter text, and the 29 per-chapter crosswalk PDFs are finding aids; none of those are taken. Several chapter TOCs list
+    sections the body no longer prints (for example chapter 8''s 50.1.5 to 100.3 and chapter 18''s 1 and 1.1); the body governs.'
   index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
   index_document_count: 25
-  taken_count: 2
+  taken_count: 4
   publication_page:
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
     document_count: 8
@@ -416,7 +423,7 @@ states:
     other_document_count: 16
     other_documents:
     - 16 per-chapter crosswalks
-    taken: false
+    taken: true
   - publication: 100-03
     title: Medicare National Coverage Determinations (NCD) Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
@@ -433,7 +440,7 @@ states:
     other_document_count: 29
     other_documents:
     - 29 per-chapter crosswalks
-    taken: false
+    taken: true
   - publication: 100-05
     title: Medicare Secondary Payer Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
@@ -626,6 +633,83 @@ states:
       other_document_count: 0
       taken: false
   publications:
+  - publication: 100-02
+    title: Medicare Benefit Policy Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    target_manifest: manifests/us-cms-iom-100-02.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-11-medicare-cms-iom-100-02
+    document_count: 33
+    chapter_count: 17
+    chapters_taken: 17
+    not_taken:
+    - Chapter 1 Crosswalk
+    - Chapter 2 Crosswalk
+    - Chapter 3 Crosswalk
+    - Chapter 4 Crosswalk
+    - Chapter 5 Crosswalk
+    - Chapter 6 Crosswalk
+    - Chapter 7 Crosswalk
+    - Chapter 8 Crosswalk
+    - Chapter 9 Crosswalk
+    - Chapter 10 Crosswalk
+    - Chapter 11 Crosswalk
+    - Chapter 12 Crosswalk
+    - Chapter 13 Crosswalk
+    - Chapter 14 Crosswalk
+    - Chapter 15 Crosswalk
+    - Chapter 16 Crosswalk
+    heading_style: bold 'N - Title' headings (a few chapters print 'N Title', 'N- Title' or 'N -- Title'); the body starts
+      after the table of contents
+    run_note: docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md
+  - publication: 100-04
+    title: Medicare Claims Processing Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms018912
+    target_manifest: manifests/us-cms-iom-100-04.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-11-medicare-cms-iom-100-04
+    document_count: 70
+    chapter_count: 41
+    chapters_taken: 39
+    not_taken:
+    - Chapter 1 Crosswalk
+    - Chapter 2 Crosswalk
+    - Chapter 3 Crosswalk
+    - Chapter 4 Crosswalk
+    - Chapter 5 Crosswalk
+    - Chapter 6 Crosswalk
+    - Chapter 7 Crosswalk
+    - Chapter 8 Crosswalk
+    - Chapter 9 Crosswalk
+    - Chapter 10 Crosswalk
+    - Chapter 11 Crosswalk
+    - Chapter 12 Crosswalk
+    - Chapter 13 Crosswalk
+    - Chapter 14 Crosswalk
+    - Chapter 15 Crosswalk
+    - Chapter 16 Crosswalk
+    - Chapter 17 Crosswalk
+    - Chapter 18 Crosswalk
+    - Chapter 20 Crosswalk
+    - Chapter 21 Crosswalk
+    - Chapter 22 Crosswalk
+    - Chapter 23 Crosswalk
+    - Chapter 24 Crosswalk
+    - Chapter 25 Crosswalk
+    - Chapter 26 Crosswalk
+    - Chapter 28 Crosswalk
+    - Chapter 29 Crosswalk
+    - Chapter 30 Crosswalk
+    - Chapter 31 Crosswalk
+    - Chapter 21 - Medicare Summary Notices - English Exhibits (ZIP bundle, not a chapter PDF)
+    - Chapter 21 - Medicare Summary Notices - Spanish Exhibits (ZIP bundle, not a chapter PDF)
+    heading_style: bold 'N - Title' headings (some chapters print 'N Title', 'N- Title' or 'N -Title'; chapter 1 opens with
+      '01 - Foreword'); the body starts after the table of contents
+    run_note: docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md
   - publication: 100-24
     title: State Payment of Medicare Premiums
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
@@ -654,7 +738,9 @@ states:
   - publication: 100-02
     title: Medicare Benefit Policy Manual
     chapter_count: 17
-    status: candidate_later_family
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-02.yaml
+    version: 2026-09-11-medicare-cms-iom-100-02
   - publication: 100-03
     title: Medicare National Coverage Determinations (NCD) Manual
     chapter_count: 4
@@ -662,7 +748,9 @@ states:
   - publication: 100-04
     title: Medicare Claims Processing Manual
     chapter_count: 41
-    status: candidate_later_family
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-04.yaml
+    version: 2026-09-11-medicare-cms-iom-100-04
   - publication: 100-05
     title: Medicare Secondary Payer Manual
     chapter_count: 8
