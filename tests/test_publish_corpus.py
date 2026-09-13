@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import sys
 from base64 import b64decode, b64encode
+from io import StringIO
 from pathlib import Path
 
 import pytest
@@ -557,10 +559,10 @@ def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
         target_selector = selector.with_name("nz-rulespec-2026-07-11.json")
         target_selector.write_text(
             json.dumps(
-                    {
-                        "name": "nz-rulespec-2026-07-11",
-                        "quality_profile": "complete-expression-dates-v1",
-                        "scopes": [
+                {
+                    "name": "nz-rulespec-2026-07-11",
+                    "quality_profile": "complete-expression-dates-v1",
+                    "scopes": [
                         {
                             "jurisdiction": scope[0],
                             "document_class": scope[1],
@@ -839,3 +841,228 @@ def test_signed_validation_evidence_is_retry_stable(tmp_path: Path) -> None:
     )
 
     assert first == retry
+
+
+_PHASES_IN_ORDER = (
+    "preflight-deep-validation",
+    "release-content",
+    "r2-staging",
+    "released-scope-lookup",
+    "local-provision-load",
+    "provision-staging",
+    "navigation-staging",
+    "staged-evidence",
+    "post-readback-deep-validation",
+    "sign-release-object",
+    "release-object-upload",
+)
+
+
+def _stub_external_boundaries(monkeypatch, base: Path, scope, *, captured: dict) -> None:
+    def stage_artifacts(*args, **kwargs):
+        captured["stage_kwargs"] = kwargs
+        return _readback_for(kwargs["release_content"])
+
+    monkeypatch.setattr(publish, "stage_release_artifacts", stage_artifacts)
+
+    def load_provisions(*args, **kwargs):
+        captured["load_kwargs"] = kwargs
+        return SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1)
+
+    monkeypatch.setattr(publish, "load_provisions_to_supabase", load_provisions)
+
+    def write_navigation(*args, **kwargs):
+        captured["navigation_kwargs"] = kwargs
+        return NavigationSupabaseWriteReport(1, 1, 1, (scope,), 0, 0)
+
+    monkeypatch.setattr(publish, "write_navigation_nodes_to_supabase", write_navigation)
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_signed_release_object",
+        lambda release_object, **kwargs: (
+            f"releases/{release_object['release']}/{release_object['content_sha256']}.json"
+        ),
+    )
+
+
+def test_publish_passes_r2_workers_and_progress_stream_to_every_phase(
+    tmp_path: Path, monkeypatch
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    captured: dict = {}
+    _stub_external_boundaries(monkeypatch, base, scope, captured=captured)
+    stream = StringIO()
+
+    report = publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+        r2_workers=7,
+        progress_stream=stream,
+    )
+
+    assert captured["stage_kwargs"]["workers"] == 7
+    assert captured["stage_kwargs"]["progress_stream"] is stream
+    assert captured["load_kwargs"]["progress_stream"] is stream
+    assert captured["navigation_kwargs"]["progress_stream"] is stream
+
+    lines = stream.getvalue().splitlines()
+    stamp = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z ")
+    assert all(stamp.match(line) for line in lines), lines
+    assert "publication start: release=nz-rulespec-2026-07-10 scopes=1 r2_workers=7" in lines[0]
+    assert (
+        f"publication end: release=nz-rulespec-2026-07-10 content_sha256={report.content_sha256}"
+        in lines[-1]
+    )
+    assert lines[-1].rstrip().split("elapsed=")[1].endswith("s")
+
+    # Every phase opens and closes exactly once, in publication order, with a
+    # measured elapsed time on the closing line.
+    starts = [re.search(r"phase (\S+) start", line) for line in lines]
+    started = [match.group(1) for match in starts if match]
+    assert started == list(_PHASES_IN_ORDER)
+    ends = [re.search(r"phase (\S+) end elapsed=\d+\.\d+s", line) for line in lines]
+    ended = [match.group(1) for match in ends if match]
+    assert ended == list(_PHASES_IN_ORDER)
+    assert not any("failed" in line for line in lines)
+
+    # Counts on the phase lines describe the release, not placeholders.
+    by_phase = {
+        phase: next(line for line in lines if f"phase {phase} end" in line)
+        for phase in _PHASES_IN_ORDER
+    }
+    assert "artifacts=4" in by_phase["release-content"]
+    assert "provision_rows=1" in by_phase["release-content"]
+    assert "verified=4" in by_phase["r2-staging"]
+    assert "uploaded=4 reused=0" in by_phase["r2-staging"]
+    assert "released_scopes=0 unreleased_scopes=1" in by_phase["released-scope-lookup"]
+    assert "rows_loaded=1" in by_phase["provision-staging"]
+    assert "rows_loaded=1" in by_phase["navigation-staging"]
+    assert "provision_rows=1 navigation_rows=1" in by_phase["staged-evidence"]
+    assert f"content_sha256={report.content_sha256}" in by_phase["sign-release-object"]
+    assert "key=releases/nz-rulespec-2026-07-10/" in by_phase["release-object-upload"]
+
+    # Progress is operational logging, never signed content.
+    assert "phase" not in json.dumps(report.release_object)
+
+
+def test_publish_progress_names_the_failed_phase(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    captured: dict = {}
+    _stub_external_boundaries(monkeypatch, base, scope, captured=captured)
+    evidence = _scope_evidence(base, scope)
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {
+            scope: StagedScopeEvidence(
+                0, 0, evidence.provision_projection_sha256, evidence.navigation_projection_sha256
+            )
+        },
+    )
+    stream = StringIO()
+
+    with pytest.raises(ReleaseManifestError, match="exact staged provision/navigation projection"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+            progress_stream=stream,
+        )
+
+    lines = stream.getvalue().splitlines()
+    assert any(
+        re.search(
+            r"phase staged-evidence failed elapsed=\d+\.\d+s error=ReleaseManifestError", line
+        )
+        for line in lines
+    ), lines
+    assert not any("phase staged-evidence end" in line for line in lines)
+    assert not any("sign-release-object" in line for line in lines)
+    assert not any("publication end" in line for line in lines)
+
+
+def test_publish_is_silent_without_progress_stream(tmp_path: Path, monkeypatch, capsys) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    captured: dict = {}
+    _stub_external_boundaries(monkeypatch, base, scope, captured=captured)
+
+    publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+    )
+
+    assert captured["stage_kwargs"]["workers"] == publish.DEFAULT_R2_STAGING_WORKERS
+    assert captured["stage_kwargs"]["progress_stream"] is None
+    assert capsys.readouterr() == ("", "")
+
+
+def test_publish_rejects_nonpositive_r2_workers_before_external_writes(
+    tmp_path: Path, monkeypatch
+) -> None:
+    root, base, selector, _scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: pytest.fail("invalid worker count must not reach R2"),
+    )
+    with pytest.raises(ValueError, match="r2_workers must be positive"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+            r2_workers=0,
+        )
+
+
+def test_cli_r2_workers_defaults_to_ci_pool_and_rejects_zero(capsys) -> None:
+    args = publish.build_parser().parse_args(["--release", "nz-rulespec-2026-07-10"])
+    assert args.r2_workers == publish.DEFAULT_R2_STAGING_WORKERS == 16
+    assert (
+        publish.build_parser()
+        .parse_args(["--release", "nz-rulespec-2026-07-10", "--r2-workers", "4"])
+        .r2_workers
+        == 4
+    )
+    with pytest.raises(SystemExit) as exc:
+        publish.main(["--release", "nz-rulespec-2026-07-10", "--r2-workers", "0"])
+    assert exc.value.code == 2
+    assert "--r2-workers must be at least 1" in capsys.readouterr().err
