@@ -30,8 +30,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 6
-  agent_ready: 45
-  blocked_primary_source: 8
+  agent_ready: 47
+  blocked_primary_source: 6
 states:
 - jurisdiction: us
   name: Federal
@@ -241,7 +241,10 @@ states:
     openssl reports the self-signed CN=cmaster70 certificate with verify return code 10 (certificate has expired), curl 60
     for the plain client and for curl_cffi chrome120 alike; the plain-HTTP site http://dhss.as/index.html answers 200 but
     its Child Care, ASNAP and ASWIC menu entries all point at the ''coming.html'' placeholder, so no plan is posted there
-    either. Nothing was worked around.'
+    either; re-probed 2026-09-13T19:57Z from a US network with the plain extractor client, same failure (SSLCertVerificationError:
+    self-signed certificate, 0.6 s; the plain-HTTP index still answers HTTP 200, 12,095 bytes, 1.0 s with the placeholder
+    menu); durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10
+    and 2026-09-13), so the dashboard should treat the cell as not available rather than pending. Nothing was worked around.'
 - jurisdiction: us-az
   name: Arizona
   queue_status: blocked_primary_source
@@ -260,7 +263,10 @@ states:
   taken_count: 0
   notes: 'Publisher blocked: HTTP 403 (cloudflare) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101;
     retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare
-    for plain requests and chrome impersonation). Nothing was worked around.'
+    for plain requests and chrome impersonation); re-probed 2026-09-13T19:57Z from a US network with the plain extractor client,
+    same failure (HTTP 403, 5,958 bytes, 0.1 s, Cloudflare ''Just a moment...'' challenge page); durable block: the same failure
+    from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13), so the dashboard should
+    treat the cell as not available rather than pending. Nothing was worked around.'
 - jurisdiction: us-ar
   name: Arkansas
   queue_status: agent_ready
@@ -399,23 +405,27 @@ states:
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
 - jurisdiction: us-ga
   name: Georgia
-  queue_status: blocked_primary_source
+  queue_status: agent_ready
   index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
   index_document_count: 2
   index_plan_link: http://www.decal.ga.gov/BftS/CCDFPlan.aspx
   index_appendix_url: https://acf.gov/sites/default/files/documents/occ/GA-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
-  publisher_index_url: http://www.decal.ga.gov/BftS/CCDFPlan.aspx
+  publisher_index_url: https://www.decal.ga.gov/BftS/CCDFPlan.aspx
   target_scope:
     jurisdiction: us-ga
     document_class: policy
-    version: 2026-09-10-ccdf-plan-fy2025-2027
-  source_kind: official_state_plan_page
-  primary_source_url: null
+    version: 2026-09-13-ccdf-plan-fy2025-2027
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://www.decal.ga.gov/documents/attachments/CCDFStatePlan25-27.pdf
   target_manifest: manifests/us-ga-ccdf-state-plan-fy2025-2027.yaml
-  taken_count: 0
-  notes: 'Publisher blocked: connection reset by peer (curl 56) from www.decal.ga.gov for plain curl and curl_cffi; retried
-    2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (remote end closed connection
-    without response / curl 52 empty reply). Nothing was worked around.'
+  taken_count: 1
+  notes: FFY 2025-2027 ACF-118 CCDF Plan (Amendment 2; Approved as of 2026-02-13 ('Child Care and Development Fund (CCDF)
+    State Plan FFY 2025-2027' on the DECAL CCDF Plan page, the only FFY 2025-2027 plan version posted; the CARS print carries
+    'Amendment 2'; the FFY 2025 executive summary, public-hearing notice, acronym list and QPRs are posted separately, not
+    taken; located on the 2026-09-13T19:57Z re-probe from a US network with the plain extractor client (HTTP 200, 81,837 bytes,
+    0.7 s; the PDF 3,483,574 bytes, Last-Modified 2026-02-25) after connection resets on all three 2026-09-10 passes)) located
+    on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate
+    document family, not taken.
 - jurisdiction: us-gu
   name: Guam
   queue_status: agent_ready
@@ -640,7 +650,11 @@ states:
   notes: 'Publisher blocked: landing page 200; the linked plan page https://earlychildhood.marylandpublicschools.org/2025-2027-ccdf-plan
     returns HTTP 403 ''Access denied''; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network,
     same failure (HTTP 403 cloudflare on the 2025-2027-ccdf-plan page for plain and impersonated requests; the about/ccdf-state-plan
-    landing page answers 200 and links only that page). Nothing was worked around.'
+    landing page answers 200 and links only that page); re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client, same failure (landing page HTTP 200, 117,379 bytes, 0.5 s; the 2025-2027-ccdf-plan page HTTP 403, 107,539 bytes,
+    ''Access denied'' page served by cloudflare); durable block: the same failure from two networks (the 2026-09-10 non-US
+    and US exits) on two dates (2026-09-10 and 2026-09-13), so the dashboard should treat the cell as not available rather
+    than pending. Nothing was worked around.'
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: agent_ready
@@ -742,7 +756,11 @@ states:
     antibot form (HTTP 200) instead of the PDF for requests and curl_cffi chrome120; retried 2026-09-10T18:36Z, same failure;
     retried 2026-09-10T21:35Z from US network, same failure (HTTP 200 text/html Drupal antibot form with an Incapsula script
     instead of the PDF, plain and impersonated; the landing page also lists Amendment #1 and ''Current'' Amendment #2 behind
-    the same media path). Nothing was worked around.'
+    the same media path); re-probed 2026-09-13T19:57Z from a US network with the plain extractor client, same failure (landing
+    page HTTP 200, 81,955 bytes, 0.1 s, with the Incapsula script; the plan media path HTTP 200 text/html 52,900 bytes and
+    the Amendment #2 media path HTTP 200 text/html 60,052 bytes, both the Drupal antibot form instead of a PDF); durable block:
+    the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13), so the
+    dashboard should treat the cell as not available rather than pending. Nothing was worked around.'
 - jurisdiction: us-mt
   name: Montana
   queue_status: agent_ready
@@ -875,7 +893,10 @@ states:
   taken_count: 0
   notes: 'Publisher blocked: ocfs.ny.gov returns an F5/Shape JavaScript bot-challenge page (TSPD) instead of the index; retried
     2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (F5/Shape TSPD JavaScript challenge
-    page, 7.5 KB, plain and impersonated). Nothing was worked around.'
+    page, 7.5 KB, plain and impersonated); re-probed 2026-09-13T19:57Z from a US network with the plain extractor client,
+    same failure class (connection reset by peer after 0.1 s, no response); durable block: the same failure from two networks
+    (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13), so the dashboard should treat the cell
+    as not available rather than pending. Nothing was worked around.'
 - jurisdiction: us-nc
   name: North Carolina
   queue_status: agent_ready
@@ -934,7 +955,10 @@ states:
     2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx); retried 2026-09-11T21:15Z
     from a US network (territories pass), same failure (HTTP 403, server nginx/1.29.8, 358-byte body, for the plain browser
     UA and curl_cffi chrome120; the parent Department of Community and Cultural Affairs site www.dcca.gov.mp answers the same
-    403). Nothing was worked around.'
+    403); re-probed 2026-09-13T19:57Z from a US network with the plain extractor client, same failure (HTTP 403, 358 bytes,
+    2.5 s, nginx/1.29.8 ''403 Forbidden''); durable block: the same failure from two networks (the 2026-09-10 non-US and US
+    exits) on two dates (2026-09-10 and 2026-09-13), so the dashboard should treat the cell as not available rather than pending.
+    Nothing was worked around.'
 - jurisdiction: us-oh
   name: Ohio
   queue_status: agent_ready
@@ -1121,7 +1145,7 @@ states:
     from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.
 - jurisdiction: us-tx
   name: Texas
-  queue_status: blocked_primary_source
+  queue_status: agent_ready
   index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
   index_document_count: 2
   index_plan_link: https://www.twc.texas.gov/programs/child-care/data-reports-plans
@@ -1130,15 +1154,18 @@ states:
   target_scope:
     jurisdiction: us-tx
     document_class: policy
-    version: 2026-09-10-ccdf-plan-fy2025-2027
-  source_kind: official_state_plan_page
-  primary_source_url: null
+    version: 2026-09-13-ccdf-plan-fy2025-2027
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://www.twc.texas.gov/sites/default/files/ccel/docs/ffy-2025-2027-ccdf-state-plan-amendment-1-accessible.pdf
   target_manifest: manifests/us-tx-ccdf-state-plan-fy2025-2027.yaml
-  taken_count: 0
-  notes: 'Publisher blocked: HTTP 403 (CloudFront) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101;
-    retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure class (HTTP 202 with
-    an AWS WAF JavaScript challenge body instead of the page, plain and impersonated; the first two passes saw 403 CloudFront).
-    Nothing was worked around.'
+  taken_count: 1
+  notes: FFY 2025-2027 ACF-118 CCDF Plan (Amendment 1; Approved as of 2026-07-01 ('Child Care and Development Fund 2025-2027
+    State Plan Amendment 1' on the TWC Child Care Data, Reports & Plans page, the only FFY 2025-2027 plan version posted;
+    the page links the ACF-hosted Appendix separately, not taken; located on the 2026-09-13T19:57Z re-probe from a US network
+    with the plain extractor client (HTTP 200, 122,911 bytes, 0.2 s; the PDF 2,910,861 bytes, Last-Modified 2026-08-03) after
+    HTTP 403 CloudFront and an HTTP 202 AWS WAF challenge on the three 2026-09-10 passes)) located on the Lead Agency page
+    linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not
+    taken.
 - jurisdiction: us-ut
   name: Utah
   queue_status: agent_ready

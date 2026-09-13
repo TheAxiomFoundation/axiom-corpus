@@ -391,7 +391,10 @@ states:
     50 states, DC, Guam, Puerto Rico and the Virgin Islands (ACF OFA TANF program pages and the OPRE Welfare Rules Databook
     territory coverage). The Department of Human and Social Services site (http://dhss.as; the https host presents a self-signed,
     expired certificate, verification not disabled) lists no TANF program and its program pages are ''coming.html'' placeholders.
-    No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 territories pass.)'
+    No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 territories pass.) Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: http://dhss.as/index.html answers HTTP 200 (12,095 bytes, 1.0 s) with
+    the same placeholder menu and 42 U.S.C. 619 on uscode.house.gov HTTP 200 (146,988 bytes, 10.1 s). Not applicable on two
+    dates; nothing to take.'
   program_applicability: not_applicable
   index_url: http://dhss.as/index.html
   index_document_count: 0
@@ -2611,7 +2614,9 @@ states:
     619(5) defines ''State'' for title IV-A as the 50 States, the District of Columbia, Puerto Rico, the Virgin Islands, Guam
     and American Samoa; the Northern Mariana Islands is not a TANF jurisdiction and receives no TANF block grant (42 U.S.C.
     619 is not in the corpus; cited from uscode.house.gov). No territory TANF document exists to inventory; nothing was fetched.
-    (2026-09-11 territories pass.)'
+    (2026-09-11 territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: 42 U.S.C.
+    619 on uscode.house.gov answers HTTP 200 (146,988 bytes, 10.1 s); the statutory definition is unchanged. Not applicable
+    on two dates; nothing to take.'
   program_applicability: not_applicable
   index_url: null
   index_document_count: null
@@ -3494,7 +3499,10 @@ states:
     Retried 2026-09-10T20:37+02:00 (batch 2: one plain curl HEAD, connection reset by peer; one curl-cffi chrome/firefox GET,
     HTTP 200 text/html 5.5 KB challenge page; 15 s timeouts), same failure. Retried 2026-09-10T21:34Z from a US network (batch
     4: one plain requests GET, ''Remote end closed connection without response''; one curl-cffi chrome GET, HTTP 200 text/html
-    7.6 KB bot-challenge page (window[''bobcmn''] ... TSPD); 20 s timeouts), same failure.'
+    7.6 KB bot-challenge page (window[''bobcmn''] ... TSPD); 20 s timeouts), same failure. Re-probed 2026-09-13T19:57Z from
+    a US network with the plain extractor client, same failure: connection reset by peer after 0.1 s, no response. Durable
+    block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13);
+    the dashboard should treat the cell as not available rather than pending.'
   index_url: https://otda.ny.gov/programs/temporary-assistance/
   index_document_count: 1
   taken_count: 0
@@ -4750,7 +4758,9 @@ states:
     (HTTP 200 to the plain client) lists 24 PDFs: SNAP application packets and forms, the FY 2026 SNAP income-limits chart
     and simplified-reporting notice, the SNAP E&T plan and handbook, ABAWD flyers, ECAP forms, waivers and one TANF brochure
     (participant leaflet). No TANF policy manual, adopted rule or state plan is posted; the TANF state plan is filed with
-    ACF through OLDC and not published by the territory. 0 taken. Nothing was worked around.'
+    ACF through OLDC and not published by the territory. 0 taken. Nothing was worked around. Re-probed 2026-09-13T19:57Z from
+    a US network with the plain extractor client: the Family Assistance page answers HTTP 200 (137,037 bytes, 3.0 s) and still
+    lists no TANF policy manual, adopted rule or state plan. Publisher posts nothing; confirmed on two dates.'
   index_url: https://dhs.vi.gov/family-assistance-programs/
   index_document_count: 24
   taken_count: 0

@@ -960,7 +960,11 @@ states:
     and the /sites/default/files/webfiles/ variant) answer 404. The grantee, the Virgin Islands Department of Human Services,
     Division of Family Assistance (HTTP 200 to the plain client 2026-09-11T21:15Z from a US network), runs LIHEAP as the Energy
     Crisis Assistance Program (ECAP) and posts only the ECAP Checklist and Criteria and the ECAP Intake Form (application
-    family); no plan, manual or policy document is posted. Nothing was worked around.'
+    family); no plan, manual or policy document is posted. Nothing was worked around. Re-probed 2026-09-13T19:57Z from a US
+    network with the plain extractor client (docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md): the Clearinghouse
+    index answers HTTP 200 (53,615 bytes, 0.5 s) with no Virgin Islands plan in the territory table, and the grantee''s Family
+    Assistance page HTTP 200 (137,037 bytes, 3.0 s) still posts the ECAP forms only. Publisher posts nothing; confirmed on
+    two dates.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}
