@@ -5,12 +5,15 @@ from __future__ import annotations
 import hashlib
 import json
 import mimetypes
+import time
 from collections.abc import Iterator, Mapping
+from concurrent.futures import Future, ThreadPoolExecutor, as_completed
 from contextlib import closing, contextmanager
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from tempfile import SpooledTemporaryFile
-from typing import Any
+from typing import Any, TextIO
 
 from botocore.exceptions import ClientError
 
@@ -31,6 +34,11 @@ _CONDITIONAL_WRITE_CONFLICT_CODES = {
     "PreconditionFailed",
 }
 _MAX_CONDITIONAL_WRITE_ATTEMPTS = 3
+# Publication drives R2 from a bounded thread pool. Sixteen workers keep a
+# 17,000-object release inside one CI job without approaching R2's per-bucket
+# request limits; ``publish_corpus.py --r2-workers`` overrides it.
+DEFAULT_R2_STAGING_WORKERS = 16
+_R2_PROGRESS_INTERVAL_SECONDS = 30.0
 
 
 @dataclass(frozen=True)
@@ -53,19 +61,51 @@ class R2ReadbackReport:
         }
 
 
+@dataclass(frozen=True)
+class _ArtifactEntry:
+    """One validated release artifact, ready to stage."""
+
+    index: int
+    path_value: str
+    path: Path
+    key: str
+    sha256: str
+    size: int
+
+
+@dataclass(frozen=True)
+class _StagedArtifact:
+    index: int
+    key: str
+    size: int
+    uploaded: bool
+
+
 def stage_release_artifacts(
     repo_root: Path,
     *,
     release_content: Mapping[str, Any],
     config: R2Config,
     client: Any | None = None,
+    workers: int = 1,
+    progress_stream: TextIO | None = None,
 ) -> R2ReadbackReport:
     """Upload missing content objects and hash their downloaded bytes.
 
     Existing objects are never overwritten. A byte mismatch at a SHA-256 key is
     a storage-integrity failure and aborts publication.
+
+    ``workers`` bounds a thread pool over the per-artifact sequence (snapshot
+    and hash locally, read the existing object, conditionally write, read back,
+    verify bytes and hash). Every artifact still runs that whole sequence on
+    its own; the first failure cancels the remaining work and is re-raised.
+    ``verified_keys`` keeps the artifact order of ``release_content`` regardless
+    of completion order, so the signed readback evidence is identical for any
+    worker count. ``progress_stream`` receives flushed, timestamped progress.
     """
-    r2 = client or make_r2_client(config)
+    if workers < 1:
+        raise ValueError("workers must be positive")
+    r2 = client or make_r2_client(config, max_pool_connections=workers)
     artifacts = release_content.get("artifacts")
     if not isinstance(artifacts, list) or not artifacts:
         raise ReleaseManifestError("release content has no artifacts to stage")
@@ -74,88 +114,170 @@ def stage_release_artifacts(
         raise ReleaseManifestError("release content R2 bucket does not match publication target")
 
     root = repo_root.resolve()
-    uploaded = 0
-    reused = 0
-    total_bytes = 0
-    verified: list[str] = []
-    for raw_entry in artifacts:
-        if not isinstance(raw_entry, dict):
-            raise ReleaseManifestError("release content contains a non-object artifact")
-        path_value = raw_entry.get("path")
-        key = raw_entry.get("r2_key")
-        digest = raw_entry.get("sha256")
-        expected_bytes = raw_entry.get("bytes")
-        if (
-            not isinstance(path_value, str)
-            or not path_value.startswith("data/corpus/")
-            or not isinstance(key, str)
-        ):
-            raise ReleaseManifestError("release artifact is missing path or R2 key")
-        if (
-            not isinstance(digest, str)
-            or not isinstance(expected_bytes, int)
-            or isinstance(expected_bytes, bool)
-            or expected_bytes < 0
-        ):
-            raise ReleaseManifestError(f"release artifact metadata is invalid: {path_value}")
-        if key != content_addressed_r2_key(digest):
-            raise ReleaseManifestError(
-                f"release artifact R2 key is not content-addressed: {path_value}"
-            )
-        if raw_entry.get("r2_bucket") != config.bucket:
-            raise ReleaseManifestError(f"release artifact uses the wrong R2 bucket: {path_value}")
-        path = canonical_corpus_artifact_file(root, path_value)
-        with _snapshot_file(path) as (snapshot, actual_digest, actual_bytes):
-            # Hash, size, and upload all refer to this one immutable snapshot.
-            # In particular, the repository path is never reopened after the
-            # digest has been computed.
-            if actual_bytes != expected_bytes:
-                raise ReleaseManifestError(
-                    f"local artifact byte count mismatch for {path_value}: "
-                    f"expected {expected_bytes}, got {actual_bytes}"
-                )
-            if actual_digest != digest:
-                raise ReleaseManifestError(
-                    f"local artifact sha256 mismatch for {path_value}: "
-                    f"expected {digest}, got {actual_digest}"
-                )
-
-            remote = _read_object_or_none(r2, bucket=config.bucket, key=key)
-            if remote is None:
-                was_uploaded = _put_snapshot_if_absent(
-                    r2,
-                    bucket=config.bucket,
-                    key=key,
-                    snapshot=snapshot,
-                    filename=path.name,
-                    sha256=digest,
-                    size=expected_bytes,
-                )
-                if was_uploaded:
-                    uploaded += 1
-                else:
-                    reused += 1
-            else:
-                _verify_bytes(remote, sha256=digest, size=expected_bytes, label=key)
-                reused += 1
-
-        # Always read after the upload decision. Metadata, ETags, and upload
-        # return values are not evidence that R2 persisted the expected bytes.
-        readback = _read_object_or_none(r2, bucket=config.bucket, key=key)
-        if readback is None:
-            raise ReleaseManifestError(f"R2 readback is missing after staging: {key}")
-        _verify_bytes(readback, sha256=digest, size=expected_bytes, label=key)
-        total_bytes += expected_bytes
-        verified.append(key)
-
-    return R2ReadbackReport(
-        bucket=config.bucket,
-        artifact_count=len(artifacts),
-        artifact_bytes=total_bytes,
-        uploaded_count=uploaded,
-        reused_count=reused,
-        verified_keys=tuple(verified),
+    # Every entry is checked before the first network request: a malformed
+    # manifest fails closed without staging anything.
+    entries = tuple(
+        _validated_artifact_entry(root, index, raw_entry, bucket=config.bucket)
+        for index, raw_entry in enumerate(artifacts)
     )
+    expected_bytes = sum(entry.size for entry in entries)
+    started = time.monotonic()
+    emit_progress(
+        progress_stream,
+        f"r2 staging start: artifacts={len(entries)} bytes={expected_bytes} workers={workers}",
+    )
+
+    staged: dict[int, _StagedArtifact] = {}
+    last_report = started
+
+    def _report(force: bool = False) -> None:
+        nonlocal last_report
+        now = time.monotonic()
+        if not force and now - last_report < _R2_PROGRESS_INTERVAL_SECONDS:
+            return
+        last_report = now
+        done_bytes = sum(item.size for item in staged.values())
+        uploaded_so_far = sum(1 for item in staged.values() if item.uploaded)
+        emit_progress(
+            progress_stream,
+            f"r2 staging progress: verified={len(staged)}/{len(entries)} "
+            f"bytes={done_bytes}/{expected_bytes} uploaded={uploaded_so_far} "
+            f"reused={len(staged) - uploaded_so_far} elapsed={now - started:.1f}s",
+        )
+
+    if workers == 1:
+        for entry in entries:
+            staged[entry.index] = _stage_one_artifact(r2, bucket=config.bucket, entry=entry)
+            _report()
+    else:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            futures: list[Future[_StagedArtifact]] = [
+                executor.submit(_stage_one_artifact, r2, bucket=config.bucket, entry=entry)
+                for entry in entries
+            ]
+            try:
+                for future in as_completed(futures):
+                    # The first failure propagates unchanged; pending work is
+                    # cancelled so a storage-integrity error stops staging.
+                    result = future.result()
+                    staged[result.index] = result
+                    _report()
+            except BaseException:
+                for pending in futures:
+                    pending.cancel()
+                raise
+
+    if len(staged) != len(entries) or set(staged) != {entry.index for entry in entries}:
+        raise ReleaseManifestError("R2 staging did not verify every release artifact")
+    ordered = [staged[entry.index] for entry in entries]
+    uploaded = sum(1 for item in ordered if item.uploaded)
+    report = R2ReadbackReport(
+        bucket=config.bucket,
+        artifact_count=len(entries),
+        artifact_bytes=sum(item.size for item in ordered),
+        uploaded_count=uploaded,
+        reused_count=len(ordered) - uploaded,
+        verified_keys=tuple(item.key for item in ordered),
+    )
+    emit_progress(
+        progress_stream,
+        f"r2 staging end: verified={report.artifact_count} bytes={report.artifact_bytes} "
+        f"uploaded={report.uploaded_count} reused={report.reused_count} "
+        f"elapsed={time.monotonic() - started:.1f}s",
+    )
+    return report
+
+
+def _validated_artifact_entry(
+    root: Path,
+    index: int,
+    raw_entry: object,
+    *,
+    bucket: str,
+) -> _ArtifactEntry:
+    if not isinstance(raw_entry, dict):
+        raise ReleaseManifestError("release content contains a non-object artifact")
+    path_value = raw_entry.get("path")
+    key = raw_entry.get("r2_key")
+    digest = raw_entry.get("sha256")
+    expected_bytes = raw_entry.get("bytes")
+    if (
+        not isinstance(path_value, str)
+        or not path_value.startswith("data/corpus/")
+        or not isinstance(key, str)
+    ):
+        raise ReleaseManifestError("release artifact is missing path or R2 key")
+    if (
+        not isinstance(digest, str)
+        or not isinstance(expected_bytes, int)
+        or isinstance(expected_bytes, bool)
+        or expected_bytes < 0
+    ):
+        raise ReleaseManifestError(f"release artifact metadata is invalid: {path_value}")
+    if key != content_addressed_r2_key(digest):
+        raise ReleaseManifestError(
+            f"release artifact R2 key is not content-addressed: {path_value}"
+        )
+    if raw_entry.get("r2_bucket") != bucket:
+        raise ReleaseManifestError(f"release artifact uses the wrong R2 bucket: {path_value}")
+    path = canonical_corpus_artifact_file(root, path_value)
+    return _ArtifactEntry(
+        index=index,
+        path_value=path_value,
+        path=path,
+        key=key,
+        sha256=digest,
+        size=expected_bytes,
+    )
+
+
+def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _StagedArtifact:
+    """Stage one artifact: snapshot, hash, conditional write, exact readback."""
+    with _snapshot_file(entry.path) as (snapshot, actual_digest, actual_bytes):
+        # Hash, size, and upload all refer to this one immutable snapshot.
+        # In particular, the repository path is never reopened after the
+        # digest has been computed.
+        if actual_bytes != entry.size:
+            raise ReleaseManifestError(
+                f"local artifact byte count mismatch for {entry.path_value}: "
+                f"expected {entry.size}, got {actual_bytes}"
+            )
+        if actual_digest != entry.sha256:
+            raise ReleaseManifestError(
+                f"local artifact sha256 mismatch for {entry.path_value}: "
+                f"expected {entry.sha256}, got {actual_digest}"
+            )
+
+        remote = _read_object_or_none(client, bucket=bucket, key=entry.key)
+        if remote is None:
+            was_uploaded = _put_snapshot_if_absent(
+                client,
+                bucket=bucket,
+                key=entry.key,
+                snapshot=snapshot,
+                filename=entry.path.name,
+                sha256=entry.sha256,
+                size=entry.size,
+            )
+        else:
+            _verify_bytes(remote, sha256=entry.sha256, size=entry.size, label=entry.key)
+            was_uploaded = False
+
+    # Always read after the upload decision. Metadata, ETags, and upload
+    # return values are not evidence that R2 persisted the expected bytes.
+    readback = _read_object_or_none(client, bucket=bucket, key=entry.key)
+    if readback is None:
+        raise ReleaseManifestError(f"R2 readback is missing after staging: {entry.key}")
+    _verify_bytes(readback, sha256=entry.sha256, size=entry.size, label=entry.key)
+    return _StagedArtifact(index=entry.index, key=entry.key, size=entry.size, uploaded=was_uploaded)
+
+
+def emit_progress(stream: TextIO | None, message: str) -> None:
+    """Write one flushed, UTC-timestamped progress line to ``stream``."""
+    if stream is None:
+        return
+    stamp = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+    print(f"{stamp} {message}", file=stream, flush=True)
 
 
 def stage_signed_release_object(

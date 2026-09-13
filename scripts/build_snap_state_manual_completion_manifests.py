@@ -1566,6 +1566,44 @@ SUPERSEDE_NOTE = (
     "superseding one). Document-level citation paths are identical to the released scopes; page/block sub-paths move where a "
     "revised edition changed its page or block count. See " + RUN_NOTE_SUPERSEDE + "."
 )
+# Re-probe of every blocked_primary_source row (2026-09-13T19:57Z, one plain GET of the recorded URL with the extractor
+# client from a US network; docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md). Appended to the row notes.
+REPROBE_STAMP = "2026-09-13T19:57Z"
+RUN_NOTE_REPROBE = "docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md"
+REPROBE_NOTE = (
+    "Re-probe (2026-09-13, US network): every blocked_primary_source row's recorded URL fetched once with the plain extractor client. "
+    "AZ's FAA5 index now answers the first requests of a session (TOC read: 80 pages, 56 not yet in the corpus) but Cloudflare "
+    "challenges the third request onward, including the extractor's own fetch, so nothing was taken; NY and the OH eManuals host fail "
+    "exactly as on 2026-09-10 (durable blocks); AS, GU and VI still post no SNAP manual or plan of operation. See " + RUN_NOTE_REPROBE + "."
+)
+DURABLE_BLOCK = (" Durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates "
+                 "(2026-09-10/11 and 2026-09-13); the dashboard should treat the cell as not available rather than pending.")
+REPROBE_NOTES: dict[str, str] = {
+    "us-az": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the FAA5 index answered HTTP 200 (115,281 "
+              "bytes, 0.5 s; the real WebWorks table of contents, 80 section pages, of which 24 already have citation paths in the "
+              "us-az manual scopes and 56 do not, including two pages added since 2025-10-30: FFY 2027 NA COLA Changes and Electronic "
+              "Benefit Transfer (EBT) Screens) and one section page answered HTTP 200 (6,511 bytes), but from the third request of the "
+              "session onward the host answers HTTP 403 with a 5,811-byte Cloudflare 'Just a moment...' challenge (Cf-Mitigated: "
+              "challenge), including the official-documents extractor's own fetch of the first completion page at 20:03Z and a re-check "
+              "at 20:06Z. No completion scope was built and nothing was worked around. Durable block: a bot challenge on two networks "
+              "and two dates (F5/TSPD on 2026-09-10/11, Cloudflare on 2026-09-13) even though the first requests now pass; the dashboard "
+              "should treat the cell as not available rather than pending. The 56-page inventory is in the run note."),
+    "us-ny": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: connection reset by peer "
+              "after 0.2 s, no response." + DURABLE_BLOCK),
+    "us-oh": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: codes.ohio.gov answers HTTP 200 (14,653 "
+              "bytes, 0.3 s; OAC 5101:4 unchanged and complete in the corpus) while emanuals.jfs.ohio.gov/FoodAssistance/ still does "
+              "not answer (ConnectTimeout after 20.1 s)." + DURABLE_BLOCK.replace("Durable block", "Durable block for the eManuals family")),
+    "us-as": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the FNA NAP page answers HTTP 200 (53,561 "
+              "bytes, 0.8 s) and http://dhss.as/index.html HTTP 200 (12,095 bytes, 1.0 s) with the same 'coming.html' placeholders; "
+              "the https host still fails TLS verification (self-signed certificate). Publisher posts nothing; confirmed on two dates."),
+    "us-gu": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Bureau of Economic Security page "
+              "answers HTTP 200 (106,725 bytes, 3.7 s) and still lists no SNAP policy manual or plan of operation. Publisher posts "
+              "nothing; confirmed on two dates."),
+    "us-vi": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Family Assistance page answers HTTP "
+              "200 (137,037 bytes, 3.0 s) and still lists no SNAP policy manual or plan of operation. Publisher posts nothing; "
+              "confirmed on two dates."),
+}
+
 # Applied after the batch-3 static rows: keys are merged into the row and `notes_suffix` is appended to the row's notes.
 SUPERSEDING_SCOPES: dict[str, dict[str, Any]] = {
     "us-nc": {
@@ -1688,7 +1726,13 @@ def main() -> int:
         },
         "states": [],
     }
-    rows = {s["jurisdiction"]: s for s in queue.get("states", [])}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue.get("states", []):
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     summary: dict[str, Any] = {}
     built: set[str] = set()
     for jur, build in BUILDERS.items():
@@ -1751,11 +1795,17 @@ def main() -> int:
         row = rows.get(jur) or {"jurisdiction": jur, "name": NAMES[jur]}
         row.update({"name": NAMES[jur], **static})
         rows[jur] = row
+    for jur, suffix in REPROBE_NOTES.items():
+        row = rows.get(jur)
+        if row is None or (args.only and jur not in args.only and jur in STATIC_ROWS_TERRITORIES):
+            continue
+        if row.get("queue_status") == "blocked_primary_source" and suffix.strip() not in (row.get("notes") or ""):
+            row["notes"] = (row.get("notes") or "").rstrip() + suffix
     notes = queue.setdefault("policy", {}).setdefault("notes", [])
-    for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE, SUPERSEDE_NOTE, TERRITORIES_NOTE):
+    for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE, SUPERSEDE_NOTE, TERRITORIES_NOTE, REPROBE_NOTE):
         if note not in notes:
             notes.append(note)
-    queue["states"] = [rows[j] for j in sorted(rows)]
+    queue["states"] = [row for j in sorted(rows) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1

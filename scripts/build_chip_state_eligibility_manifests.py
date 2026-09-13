@@ -1704,6 +1704,43 @@ RETRY_NOTES_BATCH4: dict[str, str] = {
     ),
 }
 
+# --- re-probe of every blocked row, 2026-09-13T19:57Z (docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md):
+# one plain GET of the recorded URL with the extractor client from a US network; appended to the still-blocked notes.
+REPROBE_STAMP = "2026-09-13T19:57Z"
+DURABLE_BLOCK = (" Durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates "
+                 "(2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available rather than pending.")
+RETRY_NOTES_REPROBE: dict[str, str] = {
+    "us-ca": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: the MEPM index answers "
+              "HTTP 200 with a 212-byte Imperva/Incapsula challenge body (0.2 s), no manual content." + DURABLE_BLOCK),
+    "us-mt": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the ARM 37.79 gateway URL redirects to "
+              "https://rules.mt.gov, HTTP 200, 894 bytes, 0.2 s (CloudFront), the 'Montana SOS' single-page-application shell with no "
+              "rule text or links (the 2026-09-10 'Human Verification' CAPTCHA is gone but no fetchable rule text exists)."
+              + DURABLE_BLOCK.replace("the same failure", "no fetchable rule text")),
+    "us-fl": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: floridakidcare.org now answers HTTP 403 "
+              "(5,669 bytes, 0.3 s, Cloudflare 'Just a moment...'; it published no manual when it answered on 2026-09-10) and "
+              "ahca.myflorida.com/medicaid/florida-kidcare is still HTTP 404 (1,620 bytes, 0.1 s, 'WebContentNotFound'). No eligibility "
+              "manual located on two dates." + DURABLE_BLOCK),
+    "us-dc": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the 29 DCMR Chapter 95 rule list answers "
+              "HTTP 200 (58,700 bytes, 1.0 s) with the same ASP.NET __doPostBack structure and no GET URL for rule text. Not a network "
+              "block: the publisher's rule text is not fetchable on two dates; treat the cell as not available rather than pending."),
+    "us-wy": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: rules.wyo.gov answers HTTP 200 (33,505 bytes, "
+              "0.5 s) with the same ASP.NET postback search and no GET listing or file URL; health.wyo.gov/healthcarefin/chip answers "
+              "HTTP 200 (218,761 bytes, 0.2 s) with member pages only. Not a network block: the rules are not fetchable from an index on "
+              "two dates; treat the cell as not available rather than pending."),
+}
+TERRITORY_REPROBE: dict[str, str] = {
+    "us-as": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: medicaid.as.gov has no DNS "
+              "record (NameResolutionError after 0.2 s). Nothing is posted to take; confirmed on two dates."),
+    "us-gu": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Medicare/Medicaid page answers HTTP 200 "
+              "(93,777 bytes, 3.6 s) and still lists no CHIP or Medicaid eligibility document. Publisher posts nothing; confirmed on two dates."),
+    "us-mp": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Eligibility & Enrollment page answers "
+              "HTTP 200 (223,772 bytes, 0.3 s) and still lists no eligibility document. Publisher posts nothing; confirmed on two dates."),
+    "us-pr": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Guias page answers HTTP 200 (195,309 "
+              "bytes, 1.0 s, provider-enrollment files only). Publisher posts nothing; confirmed on two dates."),
+    "us-vi": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Office of Medicaid page answers HTTP 200 "
+              "(141,356 bytes, 3.0 s) with application forms and the provider manual only. Publisher posts nothing; confirmed on two dates."),
+}
+
 UT_CHIP_BASE = "https://oepmanuals-chip.dhhs.utah.gov/"
 AK_MAGI_BASE = "http://dpaweb.hss.state.ak.us/manuals/MAGI2/"
 ND_ACA_BASE = "https://www.nd.gov/dhs/policymanuals/51003/Content/"
@@ -2645,7 +2682,7 @@ def territory_chip_row(jur: str) -> dict:
             "eligibility is set in the Medicaid state plan and the Medicaid eligibility documents, and the territory "
             f"publishes no separate CHIP manual, handbook or rule. The Medicaid finding of the same pass applies: {finding}. "
             f"CMS's CHIP State Plan Amendments page ({CMS_CHIP_SPA_INDEX}) hosts SPA approval packages and the title XXI "
-            "template, not territory CHIP plans. 0 taken. Nothing was worked around."
+            "template, not territory CHIP plans. 0 taken. Nothing was worked around." + TERRITORY_REPROBE.get(jur, "")
         ),
     }
 
@@ -2703,7 +2740,8 @@ def main() -> int:
             "index_document_count": spec["index_document_count"],
             "taken_count": 0,
             "notes": spec["notes"] + (f" {RETRY_NOTES[jur]}" if jur in RETRY_NOTES else "")
-            + (f" {RETRY_NOTES_BATCH4[jur]}" if jur in RETRY_NOTES_BATCH4 else ""),
+            + (f" {RETRY_NOTES_BATCH4[jur]}" if jur in RETRY_NOTES_BATCH4 else "")
+            + (f" {RETRY_NOTES_REPROBE[jur]}" if jur in RETRY_NOTES_REPROBE else ""),
         })
     for jur, spec in {**DONE, **DONE_BATCH2, **DONE_BATCH3, **DONE_BATCH4}.items():
         row = rows[jur]

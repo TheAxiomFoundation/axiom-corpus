@@ -412,7 +412,9 @@ states:
     set in the Medicaid state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP manual,
     handbook or rule. The Medicaid finding of the same pass applies: the American Samoa Medicaid State Agency site medicaid.as.gov
     has no DNS A record and cannot be reached. CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa)
-    hosts SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
+    hosts SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client, same failure: medicaid.as.gov has no DNS
+    record (NameResolutionError after 0.2 s). Nothing is posted to take; confirmed on two dates.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -452,13 +454,16 @@ states:
   index_url: https://www.dhcs.ca.gov/services/medi-cal/eligibility/Pages/MEPM.aspx
   index_document_count: null
   taken_count: 0
-  notes: Blocked. California's CHIP is Title XXI-funded Medi-Cal for children (Optional Targeted Low-Income Children) plus
+  notes: 'Blocked. California''s CHIP is Title XXI-funded Medi-Cal for children (Optional Targeted Low-Income Children) plus
     MCAP and county CCHIP; the eligibility manual is the DHCS Medi-Cal Eligibility Procedures Manual. www.dhcs.ca.gov returns
     HTTP 403 with an empty 772-byte body for the MEPM index and for the site root, to a plain client, the WebFetch client
     and the chrome120 browser-impersonation client. 22 CCR is vendor-hosted (Westlaw) and was not used. No existing us-ca
     scope carries Medi-Cal or CHIP eligibility text. 0 taken. retried 2026-09-10T21:35Z from US network, same failure (HTTP
-    200 with an Incapsula 'Request unsuccessful' JavaScript-challenge iframe, 843-byte body, plain and chrome120; no MEPM
-    index reachable).
+    200 with an Incapsula ''Request unsuccessful'' JavaScript-challenge iframe, 843-byte body, plain and chrome120; no MEPM
+    index reachable). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client, same failure: the MEPM
+    index answers HTTP 200 with a 212-byte Imperva/Incapsula challenge body (0.2 s), no manual content. Durable block: the
+    same failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard
+    should treat the cell as not available rather than pending.'
 - jurisdiction: us-co
   name: Colorado
   lead_counts: {}
@@ -547,7 +552,10 @@ states:
     HTTP 200) and the section pages (SectionList.aspx, RuleDetail.aspx, e.g. R0054304 effective 2024-03-08) answer, but every
     rule text and PDF is served only through ASP.NET __doPostBack form posts with no GET URL, which the official-documents
     extractor cannot fetch and this run will not emulate. dhcf.dc.gov requires JavaScript and publishes no eligibility manual.
-    0 taken.'
+    0 taken. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the 29 DCMR Chapter 95 rule list
+    answers HTTP 200 (58,700 bytes, 1.0 s) with the same ASP.NET __doPostBack structure and no GET URL for rule text. Not
+    a network block: the publisher''s rule text is not fetchable on two dates; treat the cell as not available rather than
+    pending.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -619,7 +627,12 @@ states:
     Required!'' plain and chrome120). retried 2026-09-10T21:35Z from US network, different failure (ahca.myflorida.com now
     answers; the Florida KidCare page returns HTTP 404 ''WebContentNotFound'' at /medicaid/florida-kidcare, /medicaid/florida-kidcare.html
     and under medicaid-policy-quality-and-operations; the Medicaid and Medicaid Policy, Quality and Operations pages carry
-    no KidCare or Title XXI eligibility manual or rule link). No eligibility manual located; still blocked_primary_source.'
+    no KidCare or Title XXI eligibility manual or rule link). No eligibility manual located; still blocked_primary_source.
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: floridakidcare.org now answers HTTP 403
+    (5,669 bytes, 0.3 s, Cloudflare ''Just a moment...''; it published no manual when it answered on 2026-09-10) and ahca.myflorida.com/medicaid/florida-kidcare
+    is still HTTP 404 (1,620 bytes, 0.1 s, ''WebContentNotFound''). No eligibility manual located on two dates. Durable block:
+    the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the
+    dashboard should treat the cell as not available rather than pending.'
   index_url: https://www.floridakidcare.org/
   index_document_count: 14
   taken_count: 0
@@ -701,7 +714,10 @@ states:
     state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP manual, handbook or rule.
     The Medicaid finding of the same pass applies: Guam DPHSS''s Medicare/Medicaid and BHCFA pages are text-only with no document
     links, and the 2019 state plan and handbook PDFs answer 404. CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa)
-    hosts SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
+    hosts SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the Medicare/Medicaid page answers HTTP
+    200 (93,777 bytes, 3.6 s) and still lists no CHIP or Medicaid eligibility document. Publisher posts nothing; confirmed
+    on two dates.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1200,7 +1216,9 @@ states:
     & Enrollment page links two application packets and an FAQ on Google Drive and describes income limits only as percentages
     of the SSI Federal Benefit Rate; its SPA page links a Google Sheet and the medicaid.gov SPA index. CMS''s CHIP State Plan
     Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa) hosts SPA approval packages and the
-    title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
+    title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around. Re-probed 2026-09-13T19:57Z from a US
+    network with the plain extractor client: the Eligibility & Enrollment page answers HTTP 200 (223,772 bytes, 0.3 s) and
+    still lists no eligibility document. Publisher posts nothing; confirmed on two dates.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -1247,7 +1265,11 @@ states:
     to the chrome120 client, and no document endpoint is discoverable. dphhs.mt.gov/hmk answers (HTTP 200) but publishes only
     the member guide and evidence of coverage, not an eligibility manual or rule. 0 taken. retried 2026-09-10T21:35Z from
     US network, same failure (rules.mt.gov now answers HTTP 405 with a ''Human Verification'' CAPTCHA page requiring JavaScript,
-    plain and chrome120).'
+    plain and chrome120). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the ARM 37.79 gateway
+    URL redirects to https://rules.mt.gov, HTTP 200, 894 bytes, 0.2 s (CloudFront), the ''Montana SOS'' single-page-application
+    shell with no rule text or links (the 2026-09-10 ''Human Verification'' CAPTCHA is gone but no fetchable rule text exists).
+    Durable block: no fetchable rule text from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10
+    and 2026-09-13); the dashboard should treat the cell as not available rather than pending.'
 - jurisdiction: us-nc
   name: North Carolina
   lead_counts: {}
@@ -1635,7 +1657,9 @@ states:
     completed with the committed DigiCert G2 intermediate) publishes applicant document lists, a pre-screening calculator
     and 138 provider-enrollment files, no eligibility manual or reglamento; Plan Vital (ASES) pages are insurer and plan information.
     CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa) hosts SPA approval
-    packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
+    packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around. Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: the Guias page answers HTTP 200 (195,309 bytes, 1.0 s, provider-enrollment
+    files only). Publisher posts nothing; confirmed on two dates.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -1852,7 +1876,9 @@ states:
     handbook or rule. The Medicaid finding of the same pass applies: the Virgin Islands DHS Office of Medicaid page lists
     nine application forms and the Providers General Information Manual (provider family), no eligibility manual or state
     plan. CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa) hosts
-    SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
+    SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around. Re-probed
+    2026-09-13T19:57Z from a US network with the plain extractor client: the Office of Medicaid page answers HTTP 200 (141,356
+    bytes, 3.0 s) with application forms and the provider manual only. Publisher posts nothing; confirmed on two dates.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}
@@ -1981,4 +2007,8 @@ states:
     Secretary of State at rules.wyo.gov (agency 048): the site answers HTTP 200 but its agency listing, search and rule downloads
     are ASP.NET postbacks with no GET listing or file URL, so the rules cannot be confirmed from a fetchable index. health.wyo.gov/healthcarefin/chip/
     (HTTP 200) publishes only member pages (Does My Child Qualify, copays, renewal, FAQ, handbooks) and no eligibility manual
-    or rule text; the programs-and-eligibility page is 404. 0 taken.'
+    or rule text; the programs-and-eligibility page is 404. 0 taken. Re-probed 2026-09-13T19:57Z from a US network with the
+    plain extractor client: rules.wyo.gov answers HTTP 200 (33,505 bytes, 0.5 s) with the same ASP.NET postback search and
+    no GET listing or file URL; health.wyo.gov/healthcarefin/chip answers HTTP 200 (218,761 bytes, 0.2 s) with member pages
+    only. Not a network block: the rules are not fetchable from an index on two dates; treat the cell as not available rather
+    than pending.'
