@@ -30,7 +30,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 6
-  agent_ready: 45
+  agent_ready: 46
   blocked_primary_source: 8
 states:
 - jurisdiction: us
@@ -179,6 +179,30 @@ states:
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-45.json
   index_document_count: 73
   taken_count: 73
+- jurisdiction: us
+  name: Federal statute (42 U.S.C., uscode.house.gov USLM)
+  queue_status: agent_ready
+  source_kind: federal_statute_uscode_uslm
+  primary_source_url: https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: statute
+    version: 2026-09-13-ccdf-statute-ccdbg-title-42
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 9857, 9858, 9858a-9858r,
+    every section of chapter 105 subchapter II-B (CCDBG Act sections 658A-658T; 9857a is not a distinct USLM section, the
+    goals are 9857(b)). Extracted with extract-usc from the official OLRC USLM release point Public Law 119-103 (09/02/2026),
+    USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip; the
+    zip and its usc42.xml member are retained under sources/us/statute/2026-09-13-ccdf-statute-ccdbg-title-42/). 20 section
+    rows, 543 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section rows are
+    self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded in
+    metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements ccdf-f-usc-1
+    through ccdf-f-usc-7 (7).'
+  index_url: https://uscode.house.gov/download/download.shtml
+  index_document_count: 20
+  taken_count: 543
 - jurisdiction: us-al
   name: Alabama
   queue_status: agent_ready
