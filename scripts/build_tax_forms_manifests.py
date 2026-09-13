@@ -987,7 +987,13 @@ def main() -> int:
 
     queue_path = manifests_dir / "tax-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
-    rows = {row["jurisdiction"]: row for row in queue["states"]}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     for jur, name in TERRITORY_NAMES.items():
         if only and jur not in only:
             continue
@@ -1099,7 +1105,7 @@ def main() -> int:
             row["queue_status"] = "needs_review"
             row["notes"] = f"Not in batch 1 or 2; waits for a later batch. {BATCH_NOTES[2]}"
 
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     counts: dict[str, int] = {}
     for row in queue["states"]:
         counts[row["queue_status"]] = counts.get(row["queue_status"], 0) + 1

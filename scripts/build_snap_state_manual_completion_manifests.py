@@ -1688,7 +1688,13 @@ def main() -> int:
         },
         "states": [],
     }
-    rows = {s["jurisdiction"]: s for s in queue.get("states", [])}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue.get("states", []):
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     summary: dict[str, Any] = {}
     built: set[str] = set()
     for jur, build in BUILDERS.items():
@@ -1755,7 +1761,7 @@ def main() -> int:
     for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE, SUPERSEDE_NOTE, TERRITORIES_NOTE):
         if note not in notes:
             notes.append(note)
-    queue["states"] = [rows[j] for j in sorted(rows)]
+    queue["states"] = [row for j in sorted(rows) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
