@@ -27,10 +27,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     # Large union releases perform deep validation plus content-addressed R2 and
-    # Supabase readback for every scope. Keep the job bounded, but allow enough
-    # time for a source-complete U.S. release to finish its trust-boundary work.
-    timeout-minutes: 120
+    # Supabase readback for every selected object and scope, and that work grows
+    # with the whole release, not with what is new in it. A 274-scope /
+    # 12,500-object release took 101 minutes serially and a 536-scope /
+    # 17,000-object release was killed at the previous 120-minute limit before
+    # finishing (run 34775035418). R2 staging now runs on a bounded thread pool
+    # (--r2-workers) and every phase logs timestamped progress, but the ceiling
+    # is GitHub's maximum so a slow R2 or Supabase day fails on a real error
+    # instead of a timeout. Keep the job bounded: never remove this line.
+    timeout-minutes: 360
     env:
+      # Publication progress lines go to stderr; keep them ordered with stdout in
+      # the Actions log so a killed run shows the phase it was in.
+      PYTHONUNBUFFERED: "1"
       R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
       R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
       R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
@@ -116,6 +125,7 @@ jobs:
             output="$RUNNER_TEMP/$(basename "$selector" .json)-release-object.json"
             python scripts/publish_corpus.py \
               --release "$selector" \
+              --r2-workers 16 \
               --output "$output"
             mapfile -t identity < <(python - "$output" <<'PY'
           import json
