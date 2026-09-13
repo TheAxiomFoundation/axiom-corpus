@@ -1,0 +1,63 @@
+version: 2026-09-13-ccdf-state-plan-amendments
+documents:
+- source_id: us-oh-acf-ccdf-plan-fy2025-2027-amendment-1
+  jurisdiction: us-oh
+  document_class: policy
+  title: Ohio CCDF Plan FFY 2025-2027, Amendment 1
+  source_url: https://dam.assets.ohio.gov/image/upload/v1720530796/childrenandyouth.ohio.gov/For%20Providers/CCDF/CCDF_FFY_2025-2027_For_Ohio.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-12-18'
+  citation_path: us-oh/policy/acf/ccdf-plan/fy2025-2027-amendment-1
+  extraction: &id001
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_amendment_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan
+    source_discovery_group: us-oh/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan
+    plan_version: Amendment 1
+    plan_status: Approved as of 2025-12-18
+    closure_elements:
+    - ccdf-s28
+- source_id: us-oh-acf-ccdf-plan-fy2025-2027-amendment-2
+  jurisdiction: us-oh
+  document_class: policy
+  title: Ohio CCDF Plan FFY 2025-2027, Amendment 2
+  source_url: https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Partners%20and%20Providers/CCDF/Amendment%20Approvals/State_Plan_FFY_2025-2027_Amendment_2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-16'
+  citation_path: us-oh/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_amendment_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan
+    source_discovery_group: us-oh/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan
+    plan_version: Amendment 2
+    plan_status: Approved as of 2026-07-16
+    closure_elements:
+    - ccdf-s28
