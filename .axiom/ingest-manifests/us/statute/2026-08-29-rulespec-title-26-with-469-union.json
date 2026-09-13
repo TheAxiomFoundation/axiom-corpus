@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-29-rulespec-title-26-with-469-union.json",
+      "sha256": "05d8e5be077f609ba7b34c0e92dcdecb44a384e92334977a4fd86d29916e7eca"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-29-rulespec-title-26-with-469-union.json",
+      "sha256": "39cf06c716e56bb0f8a01a50d4dd27f136d4c099cb92d8ee89245b3aac5b6a13"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-29-rulespec-title-26-with-469-union.jsonl",
+      "sha256": "c637d05347c512e0d42fde9275597adc700b8862fa4025698003e3dd33733552"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-19-rulespec-title-26-consolidated/2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained/official-documents/release-scope-us-statute-2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained",
+      "sha256": "ce8b0ed86616c74c2b3926b516b5c42a8f7419157e4623ee9d05c392764c546e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-19-rulespec-title-26-consolidated/2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained/provenance/release-scope-us-statute-2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained.json",
+      "sha256": "c91540f00b6f2d15e85f96beb05d958ef2f07bb1a470b6e283c35784cc937397"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-19-rulespec-title-26-consolidated/2026-07-16-hr6644-dependencies-current-law-title-26/uslm/usc26.xml",
+      "sha256": "d334ed90f58a35e3c0df48e73e7e6352e36d36412f8b1b486c3d7c04ccc3bdd4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-27-usc-63-repair-165-title-26/olrc/xml_usc26@119-102not101.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-27-usc-63-repair-165-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-27-usc-amt-ftc-sections-title-26/olrc/xml_usc26@119-102not101.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-03-rulespec-title-26-current-union/2026-07-27-usc-amt-ftc-sections-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-29-usc-469-title-26/olrc/xml_usc26@119-102.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-rulespec-title-26-with-469-union/2026-08-29-usc-469-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "aaf2f766c982ac3bbf3d127f57237fbf121578f2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us --document-class statute --source-version 2026-08-03-rulespec-title-26-current-union --source-version 2026-08-29-usc-469-title-26 --target-version 2026-08-29-rulespec-title-26-with-469-union --prefer-duplicate-carrier us/statute/26=2026-08-03-rulespec-title-26-current-union"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 967,
+    "missing_count": 0,
+    "provision_count": 967,
+    "source_count": 967
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-29T23:26:24.055213+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XmD8wa9CbZ/yzqNUZ5ezjZPiEipfIJwaUJEZdxCLv8nJDD7gFuIf5AxifnuT9kPm/PDZZgzgD92dm7rfFjBdCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-29-rulespec-title-26-with-469-union"
+}

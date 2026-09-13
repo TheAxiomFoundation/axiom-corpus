@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-29-usc-469-title-26.json",
+      "sha256": "552942cfb72974237e807d05109829a60a4e850e0c3039571bc004cb288178b3"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-29-usc-469-title-26.json",
+      "sha256": "21483e31a557e9a2955a61b5d72bc7739f176bdfbb042115e2456c5cbff7ee35"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-29-usc-469-title-26.jsonl",
+      "sha256": "5d74a0612a8a45d558d4461bd3a82688f15effe4a640aa46d485273efbd730a3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-usc-469-title-26/olrc/xml_usc26@119-102.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-29-usc-469-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "aaf2f766c982ac3bbf3d127f57237fbf121578f2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_usc_469.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 164,
+    "missing_count": 0,
+    "provision_count": 164,
+    "source_count": 164
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-29T23:26:23.200715+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tjD++v403hyWADDlCdhvYjdPUfTdRr0DW0YWZKCvclJn41YLUD/OEzZY5DNCI/D3+wTyCXuKy1a96sZoPXdFBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-29-usc-469-title-26"
+}
