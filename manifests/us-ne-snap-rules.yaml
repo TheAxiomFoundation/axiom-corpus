@@ -4,12 +4,11 @@ documents:
     document_class: regulation
     citation_path: us-ne/regulation/title-475/chapter-1
     title: "Nebraska Title 475 NAC Chapter 1: General Provisions"
-    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/475%20NAC%201%20%2812-24-2025%29_Official.pdf
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/475%20NAC%201%20%2812-24-2025%29.pdf
     source_format: pdf
-    source_as_of: "2026-07-17"
+    source_as_of: "2026-09-11"
     expression_date: "2025-12-24"
     request:
-      verify_tls: false
       range_fetch: true
       range_backend: curl
       browser_user_agent: true
@@ -56,8 +55,8 @@ documents:
       pdf_container_name: chapter-pdfs
       pdf_blob_name: 475 NAC 1 (12-24-2025).pdf
       official_pdf_blob_name: 475 NAC 1 (12-24-2025)_Official.pdf
-      source_sha256: 6f4bd4f9dbde088114e9e5336d4d77cf2c110642b3eebea089be04a97db35d3f
-      page_count: 30
+      source_sha256: 3d04637590545de92aa2af625fef7aea6d27dc16a4f5cc67dc4b0c7246653dfb
+      page_count: 33
       provision_count: 181
       toc_order: 1
       source_discovery_group: us-ne/regulation/snap
@@ -68,12 +67,11 @@ documents:
     document_class: regulation
     citation_path: us-ne/regulation/title-475/chapter-2
     title: "Nebraska Title 475 NAC Chapter 2: Household Processing"
-    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/475%20NAC%202%20%2809-17-2024%29.pdf
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/475%20NAC%202%20%2807-28-2026%29.pdf
     source_format: pdf
-    source_as_of: "2026-07-17"
-    expression_date: "2024-09-17"
+    source_as_of: "2026-09-11"
+    expression_date: "2026-07-28"
     request:
-      verify_tls: false
       range_fetch: true
       range_backend: curl
       browser_user_agent: true
@@ -100,14 +98,14 @@ documents:
       chapter_id: 1742
       chapter_number: "2"
       chapter_name: HOUSEHOLD PROCESSING
-      effective_date: "2024-09-17"
+      effective_date: "2026-07-28"
       date_filed: "2024-09-12"
       pdf_container_name: chapter-pdfs
-      pdf_blob_name: 475 NAC 2 (09-17-2024).pdf
-      official_pdf_blob_name: null
-      source_sha256: 1da1d723c81097d4198fe1436d08cec1fb25de8adadd72957e2273594aa813c0
-      page_count: 27
-      provision_count: 133
+      pdf_blob_name: 475 NAC 2 (07-28-2026).pdf
+      official_pdf_blob_name: 475 NAC 2 (07-28-2026)_Official.pdf
+      source_sha256: 40c4ae3ce48e012d52d3a5a303f6a2fa5394db5889cc7c348076290ec3c51f73
+      page_count: 28
+      provision_count: 140
       toc_order: 2
       source_discovery_group: us-ne/regulation/snap
       discovered_via: official-rules-api:title-475
@@ -117,12 +115,11 @@ documents:
     document_class: regulation
     citation_path: us-ne/regulation/title-475/chapter-3
     title: "Nebraska Title 475 NAC Chapter 3: Eligibility"
-    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/475%20NAC%203%20%2809-17-2024%29.pdf
+    source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/475%20NAC%203%20%2807-28-2026%29.pdf
     source_format: pdf
-    source_as_of: "2026-07-17"
-    expression_date: "2024-09-17"
+    source_as_of: "2026-09-11"
+    expression_date: "2026-07-28"
     request:
-      verify_tls: false
       range_fetch: true
       range_backend: curl
       browser_user_agent: true
@@ -149,14 +146,14 @@ documents:
       chapter_id: 1743
       chapter_number: "3"
       chapter_name: ELIGIBILITY
-      effective_date: "2024-09-17"
+      effective_date: "2026-07-28"
       date_filed: "2024-09-12"
       pdf_container_name: chapter-pdfs
-      pdf_blob_name: 475 NAC 3 (09-17-2024).pdf
-      official_pdf_blob_name: null
-      source_sha256: 2308cf07c587ab4caff57388319fc2b0cb996502ad0807cac2ed1aea46b313e9
-      page_count: 70
-      provision_count: 284
+      pdf_blob_name: 475 NAC 3 (07-28-2026).pdf
+      official_pdf_blob_name: 475 NAC 3 (07-28-2026)_Official.pdf
+      source_sha256: fd30f11381ca761e767fb48648447c3a613e4c0c5da50cb778f16966745cddcd
+      page_count: 61
+      provision_count: 229
       toc_order: 3
       source_discovery_group: us-ne/regulation/snap
       discovered_via: official-rules-api:title-475
@@ -171,7 +168,6 @@ documents:
     source_as_of: "2026-07-17"
     expression_date: "2024-09-17"
     request:
-      verify_tls: false
       range_fetch: true
       range_backend: curl
       browser_user_agent: true
@@ -220,7 +216,6 @@ documents:
     source_as_of: "2026-07-17"
     expression_date: "2020-07-04"
     request:
-      verify_tls: false
       range_fetch: true
       range_backend: curl
       browser_user_agent: true
