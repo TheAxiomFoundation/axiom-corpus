@@ -1,0 +1,186 @@
+documents:
+  - source_id: nsf-pappg-24-1-chapter-i-submission-security
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/pappg/24-1/chapter-i
+    title: "PAPPG 24-1 Chapter I: Pre-Submission Information"
+    source_url: https://www.nsf.gov/policies/pappg/24-1/ch-1-pre-submission
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2024-05-20"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".layout__region--main > .block-inline-blockcomponent-accordion"
+        - ".region-sidebar-first"
+        - ".print"
+      segmentation: anchor_range
+      anchor_ranges:
+        - html_start_selector: "#ch1G1"
+          html_stop_selector: "#ch1G2"
+          section_label: submission-instructions
+          section_heading: "Chapter I.G.1 Submission Instructions"
+        - html_start_selector: "#ch1G2"
+          html_stop_selector: "#ch1G2 ~ h3:not([id])"
+          section_label: uei-and-sam
+          section_heading: "Chapter I.G.2 UEI and SAM Requirements"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: proposal_policy
+      document_number: NSF 24-1 Chapter I.G.1-G.2
+
+  - source_id: nsf-pappg-24-1-supplement-1-proposal-security
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/pappg/24-1/supplement-1
+    title: "PAPPG 24-1 Supplement 1: DMSP and Research Security Revisions"
+    source_url: https://www.nsf.gov/policies/document/pappg24-1-supplement-1
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2025-12-08"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".print"
+        - "s"
+      segmentation: anchor_range
+      anchor_ranges:
+        - html_start_selector: "div.block-layout-builder:has(#dmsp)"
+          html_stop_selector: "div.block-layout-builder:has(#revision-thresholds)"
+          section_label: dmsp
+          section_heading: "Supplement 1, section 5: Data Management and Sharing Plans"
+        - html_start_selector: "div.block-layout-builder:has(#research-security)"
+          html_stop_selector: "div.block-layout-builder:has(#equipment)"
+          section_label: research-security
+          section_heading: "Supplement 1, section 12: Research Security"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: proposal_policy_notice
+      document_number: NSF 26-200
+
+  - source_id: nsf-pappg-24-1-supplement-2-dmsp
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/pappg/24-1/supplement-2
+    title: "PAPPG 24-1 Supplement 2: Current Data Management and Sharing Plan Workflow"
+    source_url: https://www.nsf.gov/policies/document/pappg24-1-supplement-2
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2026-01-22"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".print"
+        - "s"
+      segmentation: anchor_range
+      html_start_selector: "div.block-layout-builder:has(#dmsp)"
+      html_stop_selector: "div.block-layout-builder:has(a[name='footnote-1'])"
+      section_label: dmsp
+      section_heading: "Supplement 2, section 3: Data Management and Sharing Plan"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: proposal_policy_notice
+      document_number: PAPPG 24-1 Supplement 2
+      research_gov_dmsp_tool_operational_date: "2026-04-27"
+
+  - source_id: nsf-important-notice-149-proposal-security
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/important-notice/149-research-security
+    title: "Important Notice No. 149: Updates to NSF Research Security Policies"
+    source_url: https://www.nsf.gov/notices/important/important-notice-no-149-updates-nsf-research-security/in149
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2025-11-24"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".print"
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>[1-4])\.\s+(?P<heading>.+)$'
+      stop_text_pattern: '^5\.'
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: important_notice
+      document_number: Important Notice No. 149
+      mixed_effective_dates: true
+
+  - source_id: nsf-important-notice-149-implementation-faq
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/important-notice/149-implementation-faq
+    title: "Important Notice No. 149 Implementation FAQ"
+    source_url: https://www.nsf.gov/research-security/important-notice-no-149-implementation-faq
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2025-11-24"
+    extraction:
+      html_content_selector: "main article.node--type-faq"
+      segmentation: anchor_range
+      anchor_ranges:
+        - html_start_selector: "#question-1"
+          html_stop_selector: "#question-2"
+          section_label: question-1
+          section_heading: "FAQ 1: Purpose of Important Notice No. 149"
+        - html_start_selector: "#question-2"
+          html_stop_selector: "#question-3"
+          section_label: question-2
+          section_heading: "FAQ 2: Delayed implementation"
+        - html_start_selector: "#question-3"
+          html_stop_selector: "#question-4"
+          section_label: question-3
+          section_heading: "FAQ 3: Proposals during the transition"
+        - html_start_selector: "#question-4"
+          html_stop_selector: "#question-5"
+          section_label: question-4
+          section_heading: "FAQ 4: Near-term proposal deadlines"
+        - html_start_selector: "#question-5"
+          html_stop_selector: "#question-6"
+          section_label: question-5
+          section_heading: "FAQ 5: Required certifications"
+        - html_start_selector: "#question-6"
+          html_stop_selector: "#question-7"
+          section_label: question-6
+          section_heading: "FAQ 6: Proposal certification documentation"
+        - html_start_selector: "#question-7"
+          html_stop_selector: "#question-8"
+          section_label: question-7
+          section_heading: "FAQ 7: Certification scope"
+        - html_start_selector: "#question-8"
+          html_stop_selector: "#question-9"
+          section_label: question-8
+          section_heading: "FAQ 8: Effective dates"
+        - html_start_selector: "#question-9"
+          section_label: question-9
+          section_heading: "FAQ 9: Additional questions"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: implementation_faq
+      document_number: Important Notice No. 149 FAQ
+
+  - source_id: nsf-tip-person-entity-of-concern-prohibition
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/research-security/tip-person-entity-of-concern
+    title: "NSF TIP Person or Entity of Concern Prohibition"
+    source_url: https://www.nsf.gov/research-security/person-or-entity-concern-prohibition
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2026-08-30"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      segmentation: anchor_range
+      html_start_selector: ".block-inline-blockcomponent-text"
+      section_label: implementation
+      section_heading: "NSF TIP person or entity of concern implementation"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: research_security_implementation
+      dynamic_external_lists: true
+      prohibited_entity_names_must_not_be_encoded: true
