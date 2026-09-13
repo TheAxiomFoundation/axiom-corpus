@@ -99,7 +99,7 @@ ignore = ["E501", "B008"]  # B008: FastAPI Query() in defaults is idiomatic
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["N802", "N806", "SIM117", "B017", "F811"]
 # Closure-check builders: analysis scripts kept for reproducibility, not library code.
-"docs/coverage/*" = ["B007", "B023", "B905", "C405", "C416", "E701", "E702", "E741", "F841", "N802", "N806", "SIM102", "SIM115", "UP031"]
+"docs/coverage/*" = ["B007", "C408", "B023", "B905", "C405", "C416", "E701", "E702", "E741", "F841", "N802", "N806", "SIM102", "SIM115", "UP031"]
 
 [tool.mypy]
 python_version = "3.14"
