@@ -112,8 +112,10 @@ def extract_uk_legislation_sections(
 
     Local ``source_xmls`` are always parsed as legislation.gov.uk CLML. Remote
     ``citations`` are fetched from CLML by default, or from the Lex API when
-    ``source="lex"``. Lex citations may be act-level (e.g. ``ukpga/2007/3``) to
-    ingest every section of an instrument, or section-level to ingest one.
+    ``source="lex"``. Citations may be act-level (e.g. ``ukpga/2007/3``) to
+    ingest every section of an instrument — CLML enumerates the contents feed
+    (sections and schedules), Lex its provision list (sections only) — or
+    section-level to ingest one.
     """
     if not source_xmls and not citations:
         raise ValueError("at least one source XML path or citation is required")
@@ -496,16 +498,57 @@ def _iter_source_xmls(source_xmls: Iterable[str | Path]) -> Iterable[tuple[str, 
         yield path.name, path.read_bytes()
 
 
+# Provision IdURIs in a legislation.gov.uk contents feed. Operative
+# provisions (sections in acts; regulations, articles, and rules in
+# instruments) match exactly; schedules match bare ("schedule",
+# "schedule/1") but not their internal parts/crossheadings — a
+# whole-schedule fetch captures those, and contents feeds don't list
+# schedule paragraphs.
+_CONTENTS_PROVISION_URI_RE = re.compile(
+    r'IdURI="https?://www\.legislation\.gov\.uk/id/'
+    r"([a-z]{2,5}/\d{4}/\d+/"
+    r"(?:(?:section|regulation|article|rule)/[0-9A-Za-z.–-]+"
+    r'|schedule(?:/[0-9A-Za-z.–-]+)?))"'
+)
+
+
+async def _enumerate_act_provision_citations(
+    fetcher: UKLegislationFetcher, citation: UKCitation
+) -> list[str]:
+    """Expand an act-level citation into every section and schedule
+    listed by the instrument's legislation.gov.uk contents feed, in
+    document order."""
+    contents_url = (
+        f"https://www.legislation.gov.uk/{citation.type}/{citation.year}/"
+        f"{citation.number}/contents/data.xml"
+    )
+    xml = await fetcher._fetch_xml(contents_url)
+    seen: dict[str, None] = {}
+    for match in _CONTENTS_PROVISION_URI_RE.finditer(xml):
+        seen.setdefault(match.group(1))
+    return list(seen)
+
+
 async def _fetch_citation_xmls(citations: Sequence[str]) -> list[tuple[str, bytes]]:
     fetcher = UKLegislationFetcher()
-    fetched: list[tuple[str, bytes]] = []
+    expanded: list[UKCitation] = []
     for raw_citation in citations:
         citation = UKCitation.from_string(raw_citation)
-        if not _citation_addresses_provision(citation):
+        if _citation_addresses_provision(citation):
+            expanded.append(citation)
+            continue
+        # Act-level citation: enumerate the instrument's provisions
+        # from its contents feed, mirroring the Lex backend's act
+        # expansion but keeping CLML's cleaner operative text.
+        provision_refs = await _enumerate_act_provision_citations(fetcher, citation)
+        if not provision_refs:
             raise ValueError(
-                "section, regulation, article, schedule, or appendix required: "
-                f"{raw_citation}"
+                f"contents feed lists no sections or schedules for {raw_citation}"
             )
+        expanded.extend(UKCitation.from_string(ref) for ref in provision_refs)
+
+    fetched: list[tuple[str, bytes]] = []
+    for citation in expanded:
         url = fetcher.build_url(citation)
         xml = await fetcher._fetch_xml(url)
         fetched.append((_source_relative_name_from_citation(citation), xml.encode()))
