@@ -1340,6 +1340,99 @@ STATIC_ROWS_BATCH3: dict[str, dict[str, Any]] = {
 }
 
 
+RUN_NOTE_SUPERSEDE = "docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md"
+SUPERSEDE_NOTE = (
+    "Superseding batch 1 (2026-09-11, US network): the revised editions recorded by batches 1-3 for NC, GA, TN, OK, MI and KY "
+    "were taken as whole-manual re-extractions of the released manifests under new version strings "
+    "2026-09-11-<state>-snap-manual-supersede (released scopes untouched; the next selector swaps the released version for the "
+    "superseding one). Document-level citation paths are identical to the released scopes; page/block sub-paths move where a "
+    "revised edition changed its page or block count. See " + RUN_NOTE_SUPERSEDE + "."
+)
+# Applied after the batch-3 static rows: keys are merged into the row and `notes_suffix` is appended to the row's notes.
+SUPERSEDING_SCOPES: dict[str, dict[str, Any]] = {
+    "us-nc": {
+        "superseding_manifest": "manifests/us-nc-fns-manuals.yaml",
+        "superseding_scope": {"jurisdiction": "us-nc", "document_class": "manual", "version": "2026-09-11-nc-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-nc/manual/2026-09-11-nc-snap-manual-supersede (79 documents, 725 provisions, coverage complete) "
+            "re-extracts the whole manifest with FNS 212, 215, 340 and 515 pointed at the August 2026 files (expression dates "
+            "2026-08-17, 2026-08-04, 2026-08-04, 2026-08-13); the other 75 documents extract byte-identically to the released scope. "
+            "Sub-paths: FNS 212 gains page-10..12, FNS 340 loses page-29."
+        ),
+    },
+    "us-ga": {
+        "superseding_manifest": "manifests/us-ga-snap-manual.yaml",
+        "superseding_scope": {"jurisdiction": "us-ga", "document_class": "manual", "version": "2026-09-11-ga-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-ga/manual/2026-09-11-ga-snap-manual-supersede (100 documents, 1,207 provisions, coverage "
+            "complete). The 18 MT 87 items carry 2026-06-01; 3025 (ADA and Section 504) is a further revised edition not on MT 87 "
+            "(DFCS Civil Rights Policy Manual policy 3601, effective June 15, 2026; expression date 2026-06-15); 3030 differs only by "
+            "two backtick characters around its policy number (dates unchanged); the other 80 documents extract byte-identically. "
+            "Sub-paths: 3025 collapses from 24 to 10 blocks; 3205, 3335, 3405, 3515, 3614, 3715 and 3805 gain one block each. "
+            "Release validation flagged 3614/block-12 against the released us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup scope "
+            "(an orphan July page-split fragment of 3614 that survived the July dedup because the May edition had 11 blocks); "
+            "its 12-row successor us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup drops that "
+            "fragment (scripts/consolidate_release_scopes.py, --include-citation-from for the other 12 rows) and the selector "
+            "swaps both Georgia scopes."
+        ),
+        "superseding_companion_scope": {
+            "jurisdiction": "us-ga", "document_class": "manual",
+            "version": "2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup",
+            "replaces": "2026-07-13-recovery-r2026-07-17-dedup",
+        },
+    },
+    "us-tn": {
+        "superseding_manifest": "manifests/us-tn-snap-policies.yaml",
+        "superseding_scope": {"jurisdiction": "us-tn", "document_class": "manual", "version": "2026-09-11-tn-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-tn/manual/2026-09-11-tn-snap-manual-supersede (27 documents, 233 provisions, coverage "
+            "complete, citation-path set identical to the released scope). 24.31 carries 2026-06-01 (effective June 1, 2026; last "
+            "review May 26, 2026); the other 26 sections extract byte-identically."
+        ),
+    },
+    "us-ok": {
+        "superseding_manifest": "manifests/us-ok-snap-policy.yaml",
+        "superseding_scope": {"jurisdiction": "us-ok", "document_class": "policy", "version": "2026-09-11-ok-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-ok/policy/2026-09-11-ok-snap-manual-supersede (10 documents, 113 provisions, coverage "
+            "complete, citation-path set identical). Appendix D-4-C is a new file (Last-Modified 2026-08-28, source_as_of updated) "
+            "whose extracted text is identical to the released edition, still dated 7/9/2025 on its pages (expression date kept); "
+            "all ten documents extract byte-identically, the C-3 landing page again differing only in raw site menu HTML."
+        ),
+    },
+    "us-mi": {
+        "superseding_manifest": "manifests/us-mi-bridges-manual.yaml",
+        "superseding_scope": {"jurisdiction": "us-mi", "document_class": "manual", "version": "2026-09-11-mi-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-mi/manual/2026-09-11-mi-snap-manual-supersede (196 documents, 2,317 provisions, coverage "
+            "complete). 20 files changed since the released 2026-07-17 fetch, not 9: the nine August bulletins items (BEM 000, 106, "
+            "230B, 554, 630, BAM 000, 220, 401E, BPB log; BPB 2026-019 to -024, effective 8-1-2026) plus eleven chapters re-served on "
+            "2026-07-20 as their BPB 2026-006/2026-007 editions (BAM 120, 200; BEM 171, 227, 400, 405, 500, 503, 550, 617, 800; "
+            "effective 3-1-2026 and 4-1-2026, later than the editions the released scope held). source_revision, source_sha256, "
+            "source_as_of (Last-Modified) and expression_date (bulletin effective date) updated for all 20; the other 176 documents "
+            "extract byte-identically. Sub-paths: BEM 106 loses page-11; BAM 220, BAM 401E, BEM 500 and BEM 503 gain pages."
+        ),
+    },
+    "us-ky": {
+        "superseding_manifest": "manifests/us-ky-snap-manual.yaml",
+        "superseding_scope": {"jurisdiction": "us-ky", "document_class": "manual", "version": "2026-09-11-ky-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-ky/manual/2026-09-11-ky-snap-manual-supersede (2 documents, 405 provisions, coverage "
+            "complete) re-extracts Volumes II and IIA; the batch-2 completion scope (Volume I) is unaffected. Volume II moved again "
+            "after the batch-2 probe: OMTL-708, sections revised through R. 9/1/26, Last-Modified 2026-09-11 (released OMTL-701); "
+            "Volume IIA is OMTL-707, R. 9/1/26, Last-Modified 2026-09-09 (released OMTL-683). Sub-paths: Volume II gains "
+            "page-347..349, Volume IIA gains page-53..54."
+        ),
+    },
+}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--only", action="append", default=[], metavar="JURISDICTION",
@@ -1426,8 +1519,14 @@ def main() -> int:
         row = rows.get(jur) or {"jurisdiction": jur, "name": NAMES[jur]}
         row.update({"name": NAMES[jur], **static})
         rows[jur] = row
+    for jur, overlay in SUPERSEDING_SCOPES.items():
+        row = rows[jur]
+        suffix = overlay["notes_suffix"]
+        row.update({key: value for key, value in overlay.items() if key != "notes_suffix"})
+        if suffix.strip() not in (row.get("notes") or ""):
+            row["notes"] = (row.get("notes") or "").rstrip() + suffix
     notes = queue.setdefault("policy", {}).setdefault("notes", [])
-    for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE):
+    for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE, SUPERSEDE_NOTE):
         if note not in notes:
             notes.append(note)
     queue["states"] = [rows[j] for j in sorted(rows)]

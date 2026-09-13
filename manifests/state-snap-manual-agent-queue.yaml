@@ -145,6 +145,13 @@ states:
       jurisdiction: us-ga
       document_class: manual
       version: 2026-05-27-ga-snap-manual-r2026-07-15-self-contained
+    superseding_manifest: manifests/us-ga-snap-manual.yaml
+    superseding_scope:
+      jurisdiction: us-ga
+      document_class: manual
+      version: 2026-09-11-ga-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (MT 87 (June 1, 2026) revised 18 items and 3025 became Civil Rights Policy 3601 (June 15, 2026)); the next release selector swaps the released version for this one and the released us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup scope for its 12-row successor 2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup, which drops the orphan 3614/block-12 fragment that collided with this scope. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
   - jurisdiction: us-hi
     name: Hawaii
     queue_status: published_current
@@ -216,6 +223,13 @@ states:
       jurisdiction: us-ky
       document_class: manual
       version: 2026-07-17-ky-snap-manual
+    superseding_manifest: manifests/us-ky-snap-manual.yaml
+    superseding_scope:
+      jurisdiction: us-ky
+      document_class: manual
+      version: 2026-09-11-ky-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (Volumes II (OMTL-708, R. 9/1/26) and IIA (OMTL-707, R. 9/1/26) revised); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
     notes: Current scope retains every page of the official DFS Volume II SNAP manual and Volume IIA SNAP work-requirements manual. Volume IX is all-program transmittal history and Volume X contains no SNAP material, so neither is misclassified as current SNAP policy.
   - jurisdiction: us-la
     name: Louisiana
@@ -279,6 +293,13 @@ states:
       jurisdiction: us-mi
       document_class: manual
       version: 2026-07-17-mi-bridges-manual
+    superseding_manifest: manifests/us-mi-bridges-manual.yaml
+    superseding_scope:
+      jurisdiction: us-mi
+      document_class: manual
+      version: 2026-09-11-mi-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (20 BEM/BAM documents, both TOCs and the bulletin log revised by BPB 2026-006/007 re-service and BPB 2026-019 to -024); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
     notes: Current scope retains all 183 chapters listed in the official current-effective
       BAM and BEM PDF tables of contents, both tables of contents, the Bridges bulletin log
       and glossary, and the FAP reference tables and 2026 issuance schedule. The MDHHS HTML
@@ -427,6 +448,13 @@ states:
       jurisdiction: us-nc
       document_class: manual
       version: 2026-05-27-nc-fns-manuals-r2026-07-15-self-contained
+    superseding_manifest: manifests/us-nc-fns-manuals.yaml
+    superseding_scope:
+      jurisdiction: us-nc
+      document_class: manual
+      version: 2026-09-11-nc-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (FNS 212, 215, 340 and 515 revised in August 2026); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
   - jurisdiction: us-nd
     name: North Dakota
     queue_status: published_current
@@ -464,6 +492,13 @@ states:
       jurisdiction: us-ok
       document_class: policy
       version: 2026-07-21-ok-snap-policy
+    supporting_superseding_manifest: manifests/us-ok-snap-policy.yaml
+    supporting_superseding_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-09-11-ok-snap-manual-supersede
+    supporting_superseding_queue_status: agent_ready
+    supporting_superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (Appendix D-4-C re-served 2026-08-28 (text unchanged)); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
     supporting_queue_status: published_current
     notes: The regulation target retains the complete public rules.ok.gov production API response for OAC 340 Chapter 50. The separately published support scope retains the current OKDHS appendices, full Appendix C-3 allotment CSV, and complete OAC Chapter 2, 10, and 65 API responses while extracting only cited active dependency sections. Appendix B is not currently published by OKDHS; its referenced formula is retained in OAC 340:50-9-1 in the regulation scope.
   - jurisdiction: us-or
@@ -534,6 +569,13 @@ states:
       jurisdiction: us-tn
       document_class: manual
       version: 2026-05-27-tn-snap-policies-r2026-07-15-self-contained
+    superseding_manifest: manifests/us-tn-snap-policies.yaml
+    superseding_scope:
+      jurisdiction: us-tn
+      document_class: manual
+      version: 2026-09-11-tn-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (24.31 revised effective June 1, 2026); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
   - jurisdiction: us-tx
     name: Texas
     queue_status: published_current

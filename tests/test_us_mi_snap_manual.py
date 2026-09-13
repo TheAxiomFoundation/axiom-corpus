@@ -21,9 +21,17 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage" / "us-mi" / "manual" / f"{VERSION}.json
 
 EXPECTED_DOCUMENT_COUNT = 196
 EXPECTED_SNAP_DOCUMENT_COUNT = 95
+# Superseding edition (2026-09-11): 20 documents re-pinned to the files served after the
+# released 2026-07-17 fetch (BPB 2026-006/007 re-service on 2026-07-20; BPB 2026-019 to -024).
 EXPECTED_SOURCE_SET_SHA256 = (
-    "7f556800e839027ee6bc227e730df9ddc7208034c577f1ee7e91a4e81261f43a"
+    "3b4cc386045d59c3b63d5d2c735157056ffda6416a8e0945b2b00561a5c581a3"
 )
+EXPECTED_SOURCE_AS_OF_COUNTS = {
+    "2026-07-17": 176,
+    "2026-07-20": 11,
+    "2026-08-03": 6,
+    "2026-08-17": 3,
+}
 REQUIRED_SNAP_SUPPORT_SOURCES = {
     "mi-mdhhs-bridges-glossary",
     "mi-mdhhs-rfs-305",
@@ -60,9 +68,11 @@ def test_michigan_manifest_pins_current_complete_bridges_manual() -> None:
         document["metadata"]["contains_snap_policy"] for document in documents
     ) == EXPECTED_SNAP_DOCUMENT_COUNT
     assert source_ids >= REQUIRED_SNAP_SUPPORT_SOURCES
-    assert all(document["source_as_of"] == "2026-07-17" for document in documents)
+    assert dict(Counter(document["source_as_of"] for document in documents)) == (
+        EXPECTED_SOURCE_AS_OF_COUNTS
+    )
     assert all(
-        date.fromisoformat(document["expression_date"]) <= date(2026, 7, 17)
+        date.fromisoformat(document["expression_date"]) <= date(2026, 8, 17)
         for document in documents
     )
     assert all(

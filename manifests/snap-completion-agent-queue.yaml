@@ -37,6 +37,11 @@ policy:
     since the released scopes are recorded for superseding scopes. Ohio''s OAC 5101:4 is complete (82 of 82 rules) and its
     eManuals host does not answer (blocked_primary_source for the manual family). Generator: scripts/build_snap_state_manual_completion_manifests.py
     --static-only.'
+  - 'Superseding batch 1 (2026-09-11, US network): the revised editions recorded by batches 1-3 for NC, GA, TN, OK, MI and
+    KY were taken as whole-manual re-extractions of the released manifests under new version strings 2026-09-11-<state>-snap-manual-supersede
+    (released scopes untouched; the next selector swaps the released version for the superseding one). Document-level citation
+    paths are identical to the released scopes; page/block sub-paths move where a revised edition changed its page or block
+    count. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
 states:
 - jurisdiction: us-al
   name: Alabama
@@ -236,7 +241,27 @@ states:
     landing page. Nothing new to take. Reviewer: Manual Transmittal 87 (dated June 1, 2026, after the released 2026-05-27
     scope) revised sections 3035, 3105, 3110, 3205, 3335, 3350, 3405, 3420, 3515, 3614, 3617, 3710, 3715, 3725, 3730 and 3805
     and Appendices E and F (18 items); their citation paths exist, so a superseding GA scope is needed (MT 86 of January 3,
-    2026 and MT 85 of November 1, 2025 predate the release). #680''s 110 ''captured'' is the document count plus queue rows.'
+    2026 and MT 85 of November 1, 2025 predate the release). #680''s 110 ''captured'' is the document count plus queue rows.
+    Superseded 2026-09-11: us-ga/manual/2026-09-11-ga-snap-manual-supersede (100 documents, 1,207 provisions, coverage complete).
+    The 18 MT 87 items carry 2026-06-01; 3025 (ADA and Section 504) is a further revised edition not on MT 87 (DFCS Civil
+    Rights Policy Manual policy 3601, effective June 15, 2026; expression date 2026-06-15); 3030 differs only by two backtick
+    characters around its policy number (dates unchanged); the other 80 documents extract byte-identically. Sub-paths: 3025
+    collapses from 24 to 10 blocks; 3205, 3335, 3405, 3515, 3614, 3715 and 3805 gain one block each. Release validation flagged
+    3614/block-12 against the released us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup scope (an orphan July page-split
+    fragment of 3614 that survived the July dedup because the May edition had 11 blocks); its 12-row successor us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup
+    drops that fragment (scripts/consolidate_release_scopes.py, --include-citation-from for the other 12 rows) and the selector
+    swaps both Georgia scopes.'
+  superseding_manifest: manifests/us-ga-snap-manual.yaml
+  superseding_scope:
+    jurisdiction: us-ga
+    document_class: manual
+    version: 2026-09-11-ga-snap-manual-supersede
+  superseding_queue_status: agent_ready
+  superseding_companion_scope:
+    jurisdiction: us-ga
+    document_class: manual
+    version: 2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup
+    replaces: 2026-07-13-recovery-r2026-07-17-dedup
 - jurisdiction: us-hi
   name: Hawaii
   queue_status: done
@@ -369,7 +394,18 @@ states:
       taken: 0
   notes: 'Batch 2 (2026-09-10, #680): 1 documents taken from the publisher''s own index (23 documents inventoried across 5
     families; 1 taken; citation paths checked against every us-ky provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
-    Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-2.md.'
+    Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-2.md.
+    Superseded 2026-09-11: us-ky/manual/2026-09-11-ky-snap-manual-supersede (2 documents, 405 provisions, coverage complete)
+    re-extracts Volumes II and IIA; the batch-2 completion scope (Volume I) is unaffected. Volume II moved again after the
+    batch-2 probe: OMTL-708, sections revised through R. 9/1/26, Last-Modified 2026-09-11 (released OMTL-701); Volume IIA
+    is OMTL-707, R. 9/1/26, Last-Modified 2026-09-09 (released OMTL-683). Sub-paths: Volume II gains page-347..349, Volume
+    IIA gains page-53..54.'
+  superseding_manifest: manifests/us-ky-snap-manual.yaml
+  superseding_scope:
+    jurisdiction: us-ky
+    document_class: manual
+    version: 2026-09-11-ky-snap-manual-supersede
+  superseding_queue_status: agent_ready
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: done
@@ -510,7 +546,20 @@ states:
     family. Nothing new to take. Reviewer: the six August 2026 bulletins (BPB 2026-019 to 2026-024, after the released 2026-07-01
     TOC edition) revised BEM 106, 230B, 554 and 630, BAM 220 and 401E, both TOCs and the log (9 revised editions); RFT 000
     (RFB 2026-006, 5-1-2026) and RFS 000 (RFB 2026-003, 1-1-2026) are the released editions. Their citation paths exist, so
-    a superseding MI scope is needed. #680''s 196 ''captured'' is the document count; the manual is complete.'
+    a superseding MI scope is needed. #680''s 196 ''captured'' is the document count; the manual is complete. Superseded 2026-09-11:
+    us-mi/manual/2026-09-11-mi-snap-manual-supersede (196 documents, 2,317 provisions, coverage complete). 20 files changed
+    since the released 2026-07-17 fetch, not 9: the nine August bulletins items (BEM 000, 106, 230B, 554, 630, BAM 000, 220,
+    401E, BPB log; BPB 2026-019 to -024, effective 8-1-2026) plus eleven chapters re-served on 2026-07-20 as their BPB 2026-006/2026-007
+    editions (BAM 120, 200; BEM 171, 227, 400, 405, 500, 503, 550, 617, 800; effective 3-1-2026 and 4-1-2026, later than the
+    editions the released scope held). source_revision, source_sha256, source_as_of (Last-Modified) and expression_date (bulletin
+    effective date) updated for all 20; the other 176 documents extract byte-identically. Sub-paths: BEM 106 loses page-11;
+    BAM 220, BAM 401E, BEM 500 and BEM 503 gain pages.'
+  superseding_manifest: manifests/us-mi-bridges-manual.yaml
+  superseding_scope:
+    jurisdiction: us-mi
+    document_class: manual
+    version: 2026-09-11-mi-snap-manual-supersede
+  superseding_queue_status: agent_ready
 - jurisdiction: us-mt
   name: Montana
   queue_status: done
@@ -579,7 +628,16 @@ states:
     headers; the self-contained release object keeps no per-file hashes). Their citation paths exist, so a superseding NC
     scope is needed, not a completion scope. The FNS Administrative Letters page (367 documents, 2002-2020) and FNS Change
     Notices page (312 documents, 2022-2026; FNS-CN-01..03-2026 carry the four revised sections as attachments) are the transmittal
-    and change-summary families, not the manual. #680''s 79 ''captured'' is the document count.'
+    and change-summary families, not the manual. #680''s 79 ''captured'' is the document count. Superseded 2026-09-11: us-nc/manual/2026-09-11-nc-snap-manual-supersede
+    (79 documents, 725 provisions, coverage complete) re-extracts the whole manifest with FNS 212, 215, 340 and 515 pointed
+    at the August 2026 files (expression dates 2026-08-17, 2026-08-04, 2026-08-04, 2026-08-13); the other 75 documents extract
+    byte-identically to the released scope. Sub-paths: FNS 212 gains page-10..12, FNS 340 loses page-29.'
+  superseding_manifest: manifests/us-nc-fns-manuals.yaml
+  superseding_scope:
+    jurisdiction: us-nc
+    document_class: manual
+    version: 2026-09-11-nc-snap-manual-supersede
+  superseding_queue_status: agent_ready
 - jurisdiction: us-nd
   name: North Dakota
   queue_status: agent_ready
@@ -843,7 +901,17 @@ states:
     SHA-256, Last-Modified 2026-08-28); the C-3 landing page differs only in the site menu, the C-3 table is still the 10/01/2025
     edition (no 10012026 page yet, HTTP 404), and the three dependency-chapter API responses are content-identical to the
     released files. D-4-C''s citation path exists, so a superseding OK policy scope is needed. Nothing new to take. #680''s
-    87 ''captured'' is 77 sections plus the policy rows.'
+    87 ''captured'' is 77 sections plus the policy rows. Superseded 2026-09-11: us-ok/policy/2026-09-11-ok-snap-manual-supersede
+    (10 documents, 113 provisions, coverage complete, citation-path set identical). Appendix D-4-C is a new file (Last-Modified
+    2026-08-28, source_as_of updated) whose extracted text is identical to the released edition, still dated 7/9/2025 on its
+    pages (expression date kept); all ten documents extract byte-identically, the C-3 landing page again differing only in
+    raw site menu HTML.'
+  superseding_manifest: manifests/us-ok-snap-policy.yaml
+  superseding_scope:
+    jurisdiction: us-ok
+    document_class: policy
+    version: 2026-09-11-ok-snap-manual-supersede
+  superseding_queue_status: agent_ready
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: done
@@ -874,7 +942,16 @@ states:
     is a revised edition (Last-Modified 2026-06-01, after the release; the other 26 files are dated 2026-04-24 and unchanged);
     its citation path exists, so a superseding TN scope is needed. The TN regulation scope (Tenn. Comp. R. & Regs. 1240-01)
     is republished by Cornell LII (primary_source false); a primary Secretary of State edition is a separate follow-on family.
-    #680''s 180 ''captured'' is the manual plus regulation section count; the manual is complete, as the issue noted.'
+    #680''s 180 ''captured'' is the manual plus regulation section count; the manual is complete, as the issue noted. Superseded
+    2026-09-11: us-tn/manual/2026-09-11-tn-snap-manual-supersede (27 documents, 233 provisions, coverage complete, citation-path
+    set identical to the released scope). 24.31 carries 2026-06-01 (effective June 1, 2026; last review May 26, 2026); the
+    other 26 sections extract byte-identically.'
+  superseding_manifest: manifests/us-tn-snap-policies.yaml
+  superseding_scope:
+    jurisdiction: us-tn
+    document_class: manual
+    version: 2026-09-11-tn-snap-manual-supersede
+  superseding_queue_status: agent_ready
 - jurisdiction: us-tx
   name: Texas
   queue_status: agent_ready
