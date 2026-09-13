@@ -2048,13 +2048,14 @@ states:
     35, 53, 66, 71 [repealed], 72, 101, 103, 108, 117, 121, 125, 129, 132, 135, 137, 139, 162, 215 [repealed], 217, 401, 402,
     403, 415, 457, 461, 469, 529, 529A, 530, 1001, 1012, 1014, 1015, 1016, 1250, 6072, 6081, 6654 (42 sections for the 31
     tax closure elements). Extracted with extract-usc from the official OLRC USLM release point Public Law 119-103 (09/02/2026),
-    USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc26@119-103.zip; the
-    zip and its usc26.xml member are retained under sources/us/statute/2026-09-13-tax-statute-closure-31-title-26/). 42 section
-    rows, 4299 provision rows, coverage complete; citation paths us/statute/26/<section>[/<subsection>...]. Section rows are
-    self-contained (the title row us/statute/26 stays in its released consolidated scope; detached parents are recorded in
-    metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements F007,
-    F012, F024, F035, F036, F037, F052, F053, F056, F058, F060, F062, F063, F064, F065, F066, F067, F068, F069, F072, F083,
-    F092, F094, F095, F096, F097, F098, F101, F102, F113, F114 (31).'
+    USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc26@119-103.zip, retained
+    byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-tax-statute-closure-31-title-26/olrc/ via extract-usc
+    --source-zip; the usc26.xml member is parsed in memory and named in metadata.source_archive_member). 42 section rows,
+    4299 provision rows, coverage complete; citation paths us/statute/26/<section>[/<subsection>...]. Section rows are self-contained
+    (the title row us/statute/26 stays in its released consolidated scope; detached parents are recorded in metadata.detached_parent_citation_path).
+    No selected scope carries any of these paths. Closes needs-closure elements F007, F012, F024, F035, F036, F037, F052,
+    F053, F056, F058, F060, F062, F063, F064, F065, F066, F067, F068, F069, F072, F083, F092, F094, F095, F096, F097, F098,
+    F101, F102, F113, F114 (31).'
   index_url: https://uscode.house.gov/download/download.shtml
   index_document_count: 42
   taken_count: 4299

@@ -292,8 +292,9 @@ states:
   notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 601-619, every
     section of chapter 7 subchapter IV part A (601, 602, 603, 603a [transferred], 604, 604a, 605, 606, 607, 608, 608a, 609,
     610, 611, 611a, 612, 613, 614 [repealed], 615, 616, 617, 618, 619). Extracted with extract-usc from the official OLRC
-    USLM release point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip;
-    the zip and its usc42.xml member are retained under sources/us/statute/2026-09-13-tanf-statute-part-a-title-42/). 23 section
+    USLM release point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip,
+    retained byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-tanf-statute-part-a-title-42/olrc/ via
+    extract-usc --source-zip; the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 23 section
     rows, 1101 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section rows are
     self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded in
     metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements tanf-f-usc-601

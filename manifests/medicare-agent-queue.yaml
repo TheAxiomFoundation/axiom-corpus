@@ -851,9 +851,10 @@ states:
     1395d, 1395e, 1395i-2, 1395i-2a, 1395k, 1395l, 1395o, 1395p, 1395q, 1395r, 1395s, 1395v, 1395w-21, 1395w-22, 1395w-101,
     1395w-102, 1395w-113, 1395w-114, 1396u-3 (the household-facing eligibility, enrollment, premium and cost-sharing sections
     of subchapter XVIII plus the QI allotment section; 426 stays in the released 2026-06-23 scope). Extracted with extract-usc
-    from the official OLRC USLM release point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip;
-    the zip and its usc42.xml member are retained under sources/us/statute/2026-09-13-medicare-statute-eligibility-premiums-title-42/).
-    21 section rows, 2335 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
+    from the official OLRC USLM release point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip,
+    retained byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-medicare-statute-eligibility-premiums-title-42/olrc/
+    via extract-usc --source-zip; the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 21
+    section rows, 2335 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
     rows are self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded
     in metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements
     MED-F-USC-426-1, MED-F-USC-1395c through MED-F-USC-1395w-114 (20), MED-F-USC-1396u-3 (21); MED-F-USC-1396a and MED-F-USC-1396d

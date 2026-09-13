@@ -72,8 +72,9 @@ states:
   notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 8621-8630, every
     section of chapter 94 subchapter II (8621, 8622, 8623, 8624, 8625, 8626, 8626a, 8626b, 8627, 8628, 8628a, 8629, 8630).
     Extracted with extract-usc from the official OLRC USLM release point Public Law 119-103 (09/02/2026), USLM XML created
-    2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip; the zip and its usc42.xml
-    member are retained under sources/us/statute/2026-09-13-liheap-statute-chapter-94-title-42/). 13 section rows, 269 provision
+    2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip, retained byte-for-byte
+    as the inventoried source at sources/us/statute/2026-09-13-liheap-statute-chapter-94-title-42/olrc/ via extract-usc --source-zip;
+    the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 13 section rows, 269 provision
     rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section rows are self-contained (the
     title row us/statute/42 stays in its released consolidated scope; detached parents are recorded in metadata.detached_parent_citation_path).
     No selected scope carries any of these paths. Closes needs-closure elements LIHEAP-F-USC-8621 through LIHEAP-F-USC-8630

@@ -149,8 +149,9 @@ def _row(program: str, spec: dict[str, object], base: Path) -> dict[str, object]
     provisions, sections = _scope_counts(base, version)
     note = (
         f"2026-09-13 federal statute layer ({RUN_NOTE}): {spec['sections']}. Extracted with extract-usc from the "
-        f"official OLRC USLM release point {RELEASE_POINT} ({ZIP_URL.format(title=title)}; the zip and its usc{title}.xml "
-        f"member are retained under sources/us/statute/{version}/). {sections} section rows, {provisions} provision rows, "
+        f"official OLRC USLM release point {RELEASE_POINT} ({ZIP_URL.format(title=title)}, retained byte-for-byte as the "
+        f"inventoried source at sources/us/statute/{version}/olrc/ via extract-usc --source-zip; the usc{title}.xml member "
+        f"is parsed in memory and named in metadata.source_archive_member). {sections} section rows, {provisions} provision rows, "
         f"coverage complete; citation paths us/statute/{title}/<section>[/<subsection>...]. Section rows are "
         f"self-contained (the title row us/statute/{title} stays in its released consolidated scope; detached parents "
         f"are recorded in metadata.detached_parent_citation_path). No selected scope carries any of these paths. "

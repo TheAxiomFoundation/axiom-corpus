@@ -42,10 +42,12 @@ point as **Public Law 119-103 (09/02/2026)**; both titles' USLM XML carries
 | 42 | `https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip` | 18,161,900 | `28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388` | `usc42.xml` | 113,735,961 | `70f0b76581baf998f5d7ff6d1e798f3e95772db4509628c5033c79d56a9f358b` |
 | 26 | `https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc26@119-103.zip` | 8,290,374 | `285b9862808f26055c3eed16c2aca1d8de1fae96b581f44a55cfedb907a46eff` | `usc26.xml` | 55,871,474 | `ab999da948658a2265f762abfedd72413a3f7828d34659ff27ed8240fcd956e4` |
 
-Each scope retains the publisher's zip byte-for-byte under `olrc/` and the unzipped member under
-`uslm/usc<title>.xml` (the layout of the 2026-07-24 and 2026-07-27 Title 26 scopes); the member was
-`cmp`-checked against the downloaded zip before extraction, and `extract-usc` retains it raw (no
-reserialized excerpt). `--source-as-of 2026-09-02 --expression-date 2026-09-02` is the release
+Each scope retains the publisher's zip byte-for-byte under `olrc/xml_usc<title>@119-103.zip` as its
+only retained file and its inventoried source: every inventory item and provision row has
+`source_path` pointing at the zip, `sha256` equal to the zip's, and
+`metadata.source_archive_member: usc<title>.xml` naming the member that was parsed in memory
+(`extract-usc --source-zip`, added in this run; see "Decisions" below). No reserialized excerpt is
+written. `--source-as-of 2026-09-02 --expression-date 2026-09-02` is the release
 point's currency date, the convention of the 2026-07-24 repair ("current through PL 119-102 as of
 2026-07-12"); the XML creation date 2026-09-09 is in every row's `metadata.created_date`.
 
@@ -171,10 +173,9 @@ released recovery scope.
 
 ```bash
 B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
-# per scope: retain the publisher zip and its member inside the scope's source tree, then extract
-V=2026-09-13-wic-statute-1786; T=42; RUN_ID=$V-title-$T; SRC=$B/sources/us/statute/$RUN_ID
-mkdir -p $SRC/olrc $SRC/uslm && cp xml_usc$T@119-103.zip $SRC/olrc/ && unzip -q $SRC/olrc/xml_usc$T@119-103.zip -d $SRC/uslm
-uv run axiom-corpus-ingest extract-usc --base $B --version $V --source-xml $SRC/uslm/usc$T.xml --title $T \
+# per scope: the downloaded release-point zip is the source; extract-usc retains it under olrc/
+V=2026-09-13-wic-statute-1786; T=42; RUN_ID=$V-title-$T
+uv run axiom-corpus-ingest extract-usc --base $B --version $V --source-zip xml_usc$T@119-103.zip --title $T \
   --source-as-of 2026-09-02 --expression-date 2026-09-02 \
   --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc$T@119-103.zip \
   --section 1786
@@ -210,6 +211,7 @@ uv run axiom-corpus-ingest validate-release --base $B --release <draft.json> --i
 | follow-up + WIC | 557 | `ok: true`, 0 errors, 546 warnings | 79 |
 | follow-up + WIC, TANF, CCDF, SSI, LIHEAP | 561 | `ok: true`, 0 errors, 546 warnings | 53 |
 | follow-up + all eight | 564 | `ok: true`, 0 errors, 546 warnings | 44 |
+| follow-up + all eight, after the `--source-zip` re-extraction | 564 | `ok: true`, 0 errors, 546 warnings | 46 |
 
 The 546 warnings are the pre-existing ones (541 `missing_parent_id` in
 `us-ca/regulation/2026-07-13-recovery`, 5 `unsectioned_document_body`); none names a
@@ -233,8 +235,12 @@ the count line only. SNAP has no agent queue file and needed no row.
 - `uv run pytest -q tests/test_self_contain_usc_scope.py`: 2 passed.
 - Focused selection in the sparse worktree (`-m "not integration and not slow" -k "manifest or
   official_documents or discovery or usc or self_contain"`): 341 passed, 2 skipped, 20 failed in 49 s. Every failure opens a retained `data/corpus` artifact the sparse worktree does not have (`FileNotFoundError` on `data/corpus/...`, `KeyError` on a path read from a missing provisions file, `missing_inventory` in the BE promotion validate, "Israel source directory does not exist"): the ten the gotchas note lists (BE rulespec promotion, NY TANF compatibility x2, BE source promotion, AK/CT/MI/MT/ND/NY SNAP manuals) plus the ten the wider `usc` keyword pulls in (`test_corpus_usc` official Title 26 x2, `test_us_usc_amt_ftc_sections` x2, `test_recover_ingest` uscode-olrc-xml x2, `test_us_release_immutable_scope_successors`, `test_sc_act110_successor`, `test_armenia_arlis`, `test_israel_openlaw`). Not re-run in the main checkout, which was left untouched.
-- Disk: 20 GB free at start, 7.3 GB after the eight scopes (other agents' worktrees consumed most of
-  the difference; the eight scopes hold 943 MB of sources, 7 x 126 MB Title 42 and 61 MB Title 26).
+- `uv run pytest -q tests/test_corpus_usc.py`: 30 passed, 2 failed (the two official-Title-26 tests that
+  open retained `data/corpus` sources; same failures on the unpatched worktree); the three new
+  `--source-zip` tests pass. `mypy` on `usc.py` and `cli.py`: clean.
+- Disk: 20 GB free at start, 7.3 GB after the first extraction (other agents' worktrees consumed most
+  of the difference), 5.3 GB after the re-extraction; the eight scopes now hold 135 MB of sources
+  (7 x 18.2 MB Title 42 zip, 1 x 8.3 MB Title 26 zip) instead of 943 MB.
 
 ## Controller
 
@@ -251,21 +257,32 @@ Selector additions (no swaps; no released scope superseded; no unreleased scope 
 {"document_class": "statute", "jurisdiction": "us", "version": "2026-09-13-tax-statute-closure-31-title-26"}
 ```
 
-Decisions needed before signing:
+## Decisions
 
-1. **Retained Title 42 XML is 113.7 MB per scope, above GitHub's 100 MB hard limit.** Since the
-   2026-07-26 change (`a0978c30`) canonical `extract-usc` retains the raw source bytes, and the only
-   scopes cut under that rule were Title 26 (55.9 MB). Seven Title 42 scopes here each retain
-   `uslm/usc42.xml` (113,735,961 bytes) plus the 18 MB publisher zip; `sign_release_scopes.sh`
-   would try to commit 7 x 132 MB and the push would be rejected for the XML. Options: (a) an
-   `extract-usc --source-zip` variant that retains the publisher zip as the inventory source
-   (sha256 of the zip; the recovery tooling already verifies single-member USLM archives) and parses
-   the member in memory, then re-run the eight extractions (about 6 minutes; the zips are already in
-   place under `olrc/`); (b) Git LFS for `data/corpus/sources/us/statute/*/uslm/usc42.xml`; (c) one
-   Title 42 scope for all seven programs (still one 113.7 MB file, so it does not help alone). The
-   pre-2026-07-26 derived excerpt (`_source_artifact_bytes`, still in `usc.py` with a test) is the
-   shape of every released Title 42 scope but is a reserialization and was deprecated on purpose.
-   Both the zip and the raw member are retained so any option can be taken without re-downloading.
+1. **Retained Title 42 source size (decided: option (a), done in this run).** Canonical
+   `extract-usc` had retained the raw source bytes since `a0978c30` (2026-07-26); the Title 42 USLM
+   member is 113,735,961 bytes, above GitHub's 100 MB hard limit, so the first cut of the seven
+   Title 42 scopes could not have been committed by `sign_release_scopes.sh`. The coordinator chose
+   an `extract-usc --source-zip` variant. Implemented minimally in `src/axiom_corpus/corpus/usc.py`
+   (`read_uslm_zip`, the `source_zip` argument of `extract_usc`, and an explicit `source_path` for
+   `build_usc_inventory_from_xml`) and `src/axiom_corpus/corpus/cli.py` (`--source-xml` /
+   `--source-zip` mutually exclusive, one required): the publisher's single-member zip is retained
+   byte-for-byte at `sources/us/statute/<run_id>/olrc/<zip>` as the inventoried source (inventory
+   and provision `source_path` and `sha256` point at the zip), the sole `.xml` member is parsed in
+   memory, and `metadata.source_archive_member` records the member on every inventory item and
+   provision row. A zip with anything but exactly one XML member is refused. Unit tests:
+   `test_extract_usc_source_zip_retains_the_zip_as_the_inventoried_source`,
+   `test_extract_usc_source_zip_refuses_ambiguous_archives`, `test_extract_usc_requires_exactly_one_source`.
+   Impact by hand (GitNexus unavailable): `extract_usc` is called by the CLI and six tests, all with
+   `source_xml`, which keeps its behaviour; `build_usc_inventory_from_xml` gains an optional
+   keyword only (callers in `cli.py`, `usc.py`, `scripts/recover_ingest*.py`,
+   `scripts/slim_us_recovery_statutes.py`, tests unaffected). All eight scopes were then re-run under
+   the same version strings and section filters (re-extraction 38, 33, 32, 34, 36, 35, 35, 17 s); the
+   previously extracted `uslm/usc<title>.xml` members were removed from the scope source trees.
+   Result: row counts unchanged (622, 1,101, 543, 475, 269, 2,335, 824, 4,299), coverage complete
+   for all eight, **largest retained file 18,161,900 bytes** (`xml_usc42@119-103.zip`; the Title 26
+   zip is 8,290,374 bytes), draft selector `ok: true`, 0 errors, 546 warnings. `docs/corpus-pipeline.md`
+   documents the flag.
 2. Version-string order (`...-<qualifier>-title-<n>`) is the adapter's; rename only if the pattern
    matters downstream.
 3. Optional follow-ups outside the work order: 42 U.S.C. 1396d(s) (QDWI definition) is in no scope;

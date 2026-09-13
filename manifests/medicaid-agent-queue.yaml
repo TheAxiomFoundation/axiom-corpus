@@ -1286,9 +1286,10 @@ states:
     (a)(17), (a)(25), (a)(34), (a)(47), (k), (r); 1396d(b), (y), (z); 1396p(b), (c), (d) (the released 2026-06-26 Medicaid
     scope keeps 1396a(a)(10), (e), (f), (l), (m); 1396b(f), (v); 1396d(a), (n), (p), (q); 1396p(f); 1396u-1, and the PL 119-21
     scope keeps 1396a(xx); no citation path is carried twice). Extracted with extract-usc from the official OLRC USLM release
-    point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip;
-    the zip and its usc42.xml member are retained under sources/us/statute/2026-09-13-medicaid-statute-closure-title-42/).
-    10 section rows, 824 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
+    point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip,
+    retained byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-medicaid-statute-closure-title-42/olrc/
+    via extract-usc --source-zip; the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 10
+    section rows, 824 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
     rows are self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded
     in metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements
     M-ST-1396a-a17, M-ST-1396a-a34, M-ST-1396a-a47, M-ST-1396a-k, M-ST-1396d-b-y, M-ST-1396o, M-ST-1396p-b, M-ST-1396p-c,
