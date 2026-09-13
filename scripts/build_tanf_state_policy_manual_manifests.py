@@ -38,6 +38,7 @@ import sys
 import time
 from pathlib import Path
 from typing import Any
+from urllib.parse import urljoin
 
 import yaml
 from curl_cffi import requests as curl_requests
@@ -60,11 +61,15 @@ BATCH_3 = ("us-oh", "us-ri", "us-tn", "us-vt", "us-wi")
 # Batch 4 (docs/ingest-runs/2026-09-10-tanf-state-policy-manuals-batch-4-retry.md): retry of every
 # blocked_primary_source row and the NM needs_review row from a US network.
 BATCH_4 = ("us-ny", "us-or", "us-sc", "us-ky", "us-ne", "us-oh", "us-tn", "us-vt", "us-nm")
+# Territories pass (docs/ingest-runs/2026-09-11-territories-ten-programs.md): PR and GU extracted, VI
+# publishes no manual, AS operates no TANF program, MP is outside the statutory definition of State.
+BATCH_5 = ("us-pr", "us-gu", "us-vi", "us-as", "us-mp")
 BATCH_LABEL = {
     **dict.fromkeys(BATCH_1, "Batch 1"),
     **dict.fromkeys(BATCH_2, "Batch 2"),
     **dict.fromkeys(BATCH_3, "Batch 3"),
     **dict.fromkeys(BATCH_4, "Batch 4 (retry)"),
+    **dict.fromkeys(BATCH_5, "Territories pass (2026-09-11)"),
 }
 # Rows added to the queue by batches 2 and 3 (not on the lead list): name per jurisdiction.
 NEW_ROWS = {
@@ -91,6 +96,11 @@ NEW_ROWS = {
     "us-wi": "Wisconsin",
     "us-wv": "West Virginia",
     "us-wy": "Wyoming",
+    "us-pr": "Puerto Rico",
+    "us-gu": "Guam",
+    "us-vi": "Virgin Islands",
+    "us-as": "American Samoa",
+    "us-mp": "Northern Mariana Islands",
 }
 
 # States whose TANF cash-assistance policy manual (or state-published adopted rule)
@@ -260,6 +270,60 @@ BLOCKED: dict[str, dict[str, Any]] = {
 
 # Rows attempted but neither extracted nor blocked by the publisher (index needs a reviewer decision).
 NEEDS_REVIEW: dict[str, dict[str, Any]] = {}  # NM moved to BUILDERS in batch 4 (HCA/ISD parts index found)
+
+# Territories pass (2026-09-11; first probes 2026-09-11T21:15Z from a US network). Rows with no
+# territory document: the publisher posts nothing (VI) or the program is not operated there (AS, MP).
+# The queue schema has no not-applicable status; AS and MP are blocked_primary_source with the
+# statutory reason and program_applicability: not_applicable.
+USC_619_URL = "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section619&num=0&edition=prelim"
+NOT_PUBLISHED: dict[str, dict[str, Any]] = {
+    "us-vi": {
+        "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": None,
+        "index_url": "https://dhs.vi.gov/family-assistance-programs/",
+        "index_document_count": 24,
+        "document_class": "manual",
+        "notes": (
+            "Territories pass (2026-09-11): the Virgin Islands Department of Human Services, Division of Family "
+            "Assistance page (HTTP 200 to the plain client) lists 24 PDFs: SNAP application packets and forms, the "
+            "FY 2026 SNAP income-limits chart and simplified-reporting notice, the SNAP E&T plan and handbook, ABAWD "
+            "flyers, ECAP forms, waivers and one TANF brochure (participant leaflet). No TANF policy manual, adopted "
+            "rule or state plan is posted; the TANF state plan is filed with ACF through OLDC and not published by "
+            "the territory. 0 taken. Nothing was worked around."
+        ),
+    },
+}
+NOT_APPLICABLE: dict[str, dict[str, Any]] = {
+    "us-as": {
+        "source_kind": "program_not_operated",
+        "primary_source_url": USC_619_URL,
+        "index_url": "http://dhss.as/index.html",
+        "index_document_count": 0,
+        "notes": (
+            "Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable "
+            "status): American Samoa is a 'State' for TANF under 42 U.S.C. 619(5) but has never operated a TANF "
+            "program; ACF's TANF grantees are the 50 states, DC, Guam, Puerto Rico and the Virgin Islands (ACF OFA "
+            "TANF program pages and the OPRE Welfare Rules Databook territory coverage). The Department of Human and "
+            "Social Services site (http://dhss.as; the https host presents a self-signed, expired certificate, "
+            "verification not disabled) lists no TANF program and its program pages are 'coming.html' placeholders. "
+            "No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 territories pass.)"
+        ),
+    },
+    "us-mp": {
+        "source_kind": "federal_statute_excludes_jurisdiction",
+        "primary_source_url": USC_619_URL,
+        "index_url": None,
+        "index_document_count": None,
+        "notes": (
+            "Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable "
+            "status): 42 U.S.C. 619(5) defines 'State' for title IV-A as the 50 States, the District of Columbia, "
+            "Puerto Rico, the Virgin Islands, Guam and American Samoa; the Northern Mariana Islands is not a TANF "
+            "jurisdiction and receives no TANF block grant (42 U.S.C. 619 is not in the corpus; cited from "
+            "uscode.house.gov). No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 "
+            "territories pass.)"
+        ),
+    },
+}
 
 
 DROP_EAS = [
@@ -2136,7 +2200,145 @@ def build_oh() -> dict[str, Any]:
     }
 
 
+# --------------------------------------------------------------------------- GU (territories pass)
+GU_BES_INDEX = "https://dphss.guam.gov/bureau-economic-security-bes"
+TERRITORY_PLAN_VERSION = "2026-09-11-tanf-territory-state-plan"
+TERRITORY_REGULATION_VERSION = "2026-09-11-tanf-territory-regulation"
+
+
+def build_gu() -> dict[str, Any]:
+    """Guam DPHSS Bureau of Economic Security: the certified TANF State Plan renewal for FY 2024-2026
+    ("FY26 TANF State Plan" under Program State Plans). The same page's "FY26 SNAP State Plan" entry
+    carries no link (commented-out anchor); the SNAP E&T plan and the application/change-report forms
+    are other families. Guam publishes no TANF policy manual; the plan is its primary policy document."""
+    page = fetch(GU_BES_INDEX).text
+    pdfs = list({h: (h, t) for h, t in links(page) if h.lower().endswith(".pdf")}.values())  # unique by href
+    target = [h for h, t in pdfs if "TANF State Plan" in t]
+    if len(target) != 1:
+        raise RuntimeError(f"expected one TANF State Plan link on the BES page, found {target}")
+    url = urljoin(GU_BES_INDEX, target[0])
+    head = fetch(url, head=True)
+    modified = http_date(head.headers.get("last-modified"))
+    doc = base_doc(
+        source_id="us-gu-dphss-tanf-state-plan-fy2024-2026",
+        jurisdiction="us-gu",
+        document_class="policy",
+        title="Guam TANF State Plan Renewal, FY 2024-2026 (final, certified)",
+        source_url=url,
+        source_format="pdf",
+        citation_path="us-gu/policy/acf/tanf-plan/fy2024-2026",
+        expression_date="2023-10-01",
+        authority="Guam Department of Public Health and Social Services, Division of Public Welfare, Bureau of Economic Security",
+        subtype="state_plan_pdf",
+        state_program="Guam TANF (Cash Assistance Program)",
+        index_url=GU_BES_INDEX,
+        extraction={"ocr": True},
+        extra={
+            "plan_period": "2023-10-01 to 2026-09-30",
+            "plan_status": "final certified renewal submitted to ACF OFA (cover letters dated December 2023)",
+            "source_last_modified": modified,
+            "extraction_granularity": "pdf_page",
+            "ocr_note": "scanned image-only PDF; Tesseract (eng) page OCR",
+        },
+    )
+    return {
+        "docs": [doc],
+        "index_url": GU_BES_INDEX,
+        "index_document_count": len(pdfs),
+        "inventory": (
+            f"{len(pdfs)} PDFs on the Bureau of Economic Security page: Application for Public Benefits, SNAP change "
+            "report forms and self-employment income form (application family), FY26 SNAP Employment and Training "
+            "State Plan (E&T family), FY26 TANF State Plan (the FY 2024-2026 certified renewal); the 'FY26 SNAP State "
+            "Plan' entry has no link; taken 1"
+        ),
+        "source_kind": "official_pdf_state_plan",
+        "document_class": "policy",
+        "primary_source_url": url,
+        "version": TERRITORY_PLAN_VERSION,
+        "proven": "2026-09-11",
+    }
+
+
+# --------------------------------------------------------------------------- PR (territories pass)
+PR_ADSEF_REGLAMENTOS = "https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento"
+
+
+def build_pr() -> dict[str, Any]:
+    """Puerto Rico ADSEF (Administracion de Desarrollo Socioeconomico de la Familia): the Reglamentos
+    page of the agency's own site lists the two adopted eligibility regulations, PAN 8684 and TANF 7653.
+    TANF 7653 (Reglamento de Normas de Certificacion para la Determinacion de Elegibilidad a Solicitantes
+    y Participantes del Programa de Ayuda Temporal para Familias Necesitadas) is the territory's TANF
+    eligibility rule; ADSEF's 2024 transition memorandum says a revised TANF regulation is in final
+    review, but 7653 is the regulation the publisher posts. The scan is image-only and stored rotated,
+    so the extractor runs Tesseract with automatic orientation detection (ocr_psm 1)."""
+    page = fetch(PR_ADSEF_REGLAMENTOS).text
+    pdfs = list({h: (h, t) for h, t in links(page) if h.lower().endswith(".pdf")}.values())  # unique by href
+    target = [h for h, t in pdfs if t.strip().upper().startswith("TANF")]
+    if len(target) != 1:
+        raise RuntimeError(f"expected one TANF reglamento link on the ADSEF Reglamentos page, found {target}")
+    url = urljoin(PR_ADSEF_REGLAMENTOS, target[0])
+    head = fetch(url, head=True)
+    modified = http_date(head.headers.get("last-modified"))
+    doc = base_doc(
+        source_id="us-pr-adsef-reglamento-7653-tanf",
+        jurisdiction="us-pr",
+        document_class="regulation",
+        title=(
+            "Reglamento Num. 7653: Normas de Certificacion para la Determinacion de Elegibilidad a Solicitantes y "
+            "Participantes del Programa de Ayuda Temporal para Familias Necesitadas (TANF)"
+        ),
+        source_url=url,
+        source_format="pdf",
+        citation_path="us-pr/regulation/adsef/reglamento-7653",
+        expression_date=SOURCE_AS_OF,
+        authority="Puerto Rico Department of the Family, Administracion de Desarrollo Socioeconomico de la Familia (ADSEF)",
+        subtype="adopted_regulation_pdf",
+        state_program="Puerto Rico TANF (Programa de Ayuda Temporal para Familias Necesitadas)",
+        index_url=PR_ADSEF_REGLAMENTOS,
+        extraction={"ocr": True, "ocr_psm": 1},
+        extra={
+            "regulation_number": "7653",
+            "source_last_modified": modified,
+            "extraction_granularity": "pdf_page",
+            "expression_date_note": (
+                "current regulation as posted on the fetch date; the promulgation date is on a scanned cover the "
+                "OCR did not read reliably (PDF creation date 2010-04-07)"
+            ),
+            "ocr_note": (
+                "scanned image-only PDF stored rotated (/Rotate 270); Tesseract automatic page segmentation with "
+                "orientation detection (ocr_psm 1); only the eng traineddata is installed, so Spanish diacritics are "
+                "approximate"
+            ),
+        },
+    )
+    families = {
+        "adsef_reglamento_pdf": len([1 for _h, t in pdfs if t.strip().upper().startswith(("PAN", "TANF"))]),
+        "program_state_plan_pdf": len([1 for _h, t in pdfs if "State Plan" in t or "STATE PLAN" in t]),
+        "form_pdf": len([1 for h, _t in pdfs if "/documents/" in h and ".sl-" in h]),
+    }
+    return {
+        "docs": [doc],
+        "index_url": PR_ADSEF_REGLAMENTOS,
+        "index_document_count": len(pdfs),
+        "inventory": (
+            f"{len(pdfs)} PDFs on the ADSEF Reglamentos page: {families['adsef_reglamento_pdf']} adopted regulations "
+            "(PAN 8684, taken by the SNAP/NAP territories row; TANF 7653, taken here), "
+            f"{families['program_state_plan_pdf']} program state plans (TEFAP 2025, CSFP 2025, NAP 2023), "
+            f"{families['form_pdf']} application and certification forms, and public notices (LIHEAP benefits, TANF "
+            "services convocatoria, NAP-to-SNAP transition RFP); taken 1"
+        ),
+        "source_kind": "official_pdf_regulation",
+        "document_class": "regulation",
+        "primary_source_url": url,
+        "version": TERRITORY_REGULATION_VERSION,
+        "proven": "2026-09-11",
+    }
+
+
+
 BUILDERS = {
+    "us-gu": build_gu,
+    "us-pr": build_pr,
     "us-ca": build_ca,
     "us-co": build_co,
     "us-dc": build_dc,
@@ -2190,6 +2392,8 @@ def main() -> int:
         )
     selected = args.only or list(BUILDERS)
     for jur in selected:
+        if jur not in BUILDERS:
+            continue  # static-row jurisdictions (territories pass) are applied below
         builder = BUILDERS[jur]
         result = builder(args.mo_title_cache) if jur == "us-mo" else builder()
         stem = f"{jur}-tanf-state-policy-manual"
@@ -2213,7 +2417,7 @@ def main() -> int:
                 "index_url": result["index_url"],
                 "index_document_count": result["index_document_count"],
                 "taken_count": len(result["docs"]),
-                "notes": f"{BATCH_LABEL[jur]}. Primary source confirmed from the publisher's own index. Inventory: {result['inventory']}. Extraction proven 2026-09-10 (coverage complete, 0 missing/extra/duplicate).",
+                "notes": f"{BATCH_LABEL[jur]}. Primary source confirmed from the publisher's own index. Inventory: {result['inventory']}. Extraction proven {result.get('proven', '2026-09-10')} (coverage complete, 0 missing/extra/duplicate).",
             }
         )
         print(f"{jur}: {len(result['docs'])} documents -> manifests/{stem}.yaml", file=sys.stderr)
@@ -2247,6 +2451,41 @@ def main() -> int:
                     "document_class": info["document_class"],
                     "version": VERSION,
                 },
+                "index_url": info["index_url"],
+                "index_document_count": info["index_document_count"],
+                "taken_count": 0,
+                "notes": info["notes"],
+            }
+        )
+    for jur, info in NOT_PUBLISHED.items():
+        if args.only and jur not in args.only:
+            continue
+        row = rows[jur]
+        row.update(
+            {
+                "queue_status": "blocked_primary_source",
+                "source_kind": info["source_kind"],
+                "primary_source_url": info["primary_source_url"],
+                "target_manifest": f"manifests/{jur}-tanf-state-policy-manual.yaml",
+                "target_scope": {"jurisdiction": jur, "document_class": info["document_class"], "version": None},
+                "index_url": info["index_url"],
+                "index_document_count": info["index_document_count"],
+                "taken_count": 0,
+                "notes": info["notes"],
+            }
+        )
+    for jur, info in NOT_APPLICABLE.items():
+        if args.only and jur not in args.only:
+            continue
+        row = rows[jur]
+        row.update(
+            {
+                "queue_status": "blocked_primary_source",
+                "program_applicability": "not_applicable",
+                "source_kind": info["source_kind"],
+                "primary_source_url": info["primary_source_url"],
+                "target_manifest": None,
+                "target_scope": {"jurisdiction": jur, "document_class": None, "version": None},
                 "index_url": info["index_url"],
                 "index_document_count": info["index_document_count"],
                 "taken_count": 0,

@@ -39,6 +39,10 @@ FEDERAL_FORMS_VERSION = "2026-09-10-tax-irs-forms-ty2025"
 FEDERAL_GUIDANCE_VERSION = "2026-09-10-tax-irs-guidance"
 STATE_FORMS_VERSION = "2026-09-10-tax-state-forms-ty2025"
 STATE_GUIDANCE_VERSION = "2026-09-10-tax-state-guidance-ty2025"
+# Territories pass (2026-09-11): PR, GU and MP publish their own TY2025 returns; VI's index links the
+# IRS Form 1040 (done by pointer); AS posts Form 390 only as an Excel workbook (needs_review).
+TERRITORY_FORMS_VERSION = "2026-09-11-tax-territory-forms-ty2025"
+TERRITORY_SOURCE_AS_OF = "2026-09-11"
 # Batch-3 retry of the publisher-blocked CO/IN/UT hosts from a US network exit.
 US_NETWORK_RETRY = "2026-09-10T21:35:30Z"
 
@@ -625,6 +629,91 @@ STATES: dict[str, dict[str, Any]] = {
             {"id": "special-notice-capital-gains-tiered-rates", "title": "Special Notice: New tiered rates for Washington's capital gains tax (tax year 2025)", "url": "https://dor.wa.gov/forms-publications/publications-subject/special-notices/new-tiered-rates-washingtons-capital-gains-tax", "subtype": "special_notice", "format": "html", "extraction": WA_DOR_HTML},
         ],
     },
+    # Territories pass (2026-09-11; every URL confirmed on the publisher's own forms index that day).
+    "us-pr": {
+        "name": "Puerto Rico",
+        "agency": "hacienda",
+        "authority": "Puerto Rico Department of the Treasury (Departamento de Hacienda)",
+        "batch": 4,
+        "version": TERRITORY_FORMS_VERSION,
+        "source_as_of": TERRITORY_SOURCE_AS_OF,
+        "source_family": "territory-resident-individual-income-tax-forms-ty2025",
+        "index_url": "https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes",
+        "index_document_count": 6,
+        "index_families": [
+            "2025 individual return, informative print (2): Formulario 482 (Spanish, rev. 20 jun 25) and Form 482.0 (English, rev. Jul 18 25); the return itself must be e-filed",
+            "2025 instructions booklets (2): Spanish (rev. 1 abr 26; the 'Instrucciones para Radicar la Planilla' page separately links the 27 feb 26 revision) and English",
+            "2025 Anejo CT / Schedule CT, informative print (2): Spanish and English; not taken",
+        ],
+        "inventory": (
+            "Hacienda's '2025 Planilla de Contribucion sobre Ingresos de Individuos (para propositos informativos)' document "
+            "page links six PDFs: the Spanish and English informative prints of the individual return (Formulario 482 / "
+            "Form 482.0), the Spanish and English instructions booklets and the Spanish and English Schedule CT. "
+            "Taken: both returns and both instructions booklets."
+        ),
+        "documents": [
+            ("formulario-482", "Formulario 482, Planilla de Contribucion sobre Ingresos de Individuos 2025 (para propositos informativos)", "https://hacienda.pr.gov/sites/default/files/individuos_2025_rev._20_jun_25_informativo.pdf", "form"),
+            ("formulario-482-instrucciones", "Folleto de Instrucciones, Planilla de Contribucion sobre Ingresos de Individuos 2025 (rev. 1 abr 26)", "https://hacienda.pr.gov/sites/default/files/inst_individuos_2025_1_abr_26.pdf", "instructions"),
+            ("form-482-0", "Form 482.0, Individual Income Tax Return 2025 (for information purposes)", "https://hacienda.pr.gov/sites/default/files/individuals_2025_rev._jul_18_25_informative.pdf", "form"),
+            ("form-482-0-instructions", "Instructions Booklet, Individual Income Tax Return 2025", "https://hacienda.pr.gov/sites/default/files/inst_individuals_2025.pdf", "instructions"),
+        ],
+    },
+    "us-gu": {
+        "name": "Guam",
+        "agency": "drt",
+        "authority": "Guam Department of Revenue and Taxation",
+        "batch": 4,
+        "version": TERRITORY_FORMS_VERSION,
+        "source_as_of": TERRITORY_SOURCE_AS_OF,
+        "source_family": "territory-resident-individual-income-tax-forms-ty2025",
+        "index_url": "https://www.guamtax.com/forms/",
+        "index_document_count": 59,
+        "index_families": [
+            "Guam individual income tax returns 2019-2025 (12): Form 1040 Guam and Form 1040-SR Guam per year",
+            "business privilege tax, gross receipts tax and other DRT forms and instructions (47); not taken",
+        ],
+        "inventory": (
+            "The DRT Forms & Publications page lists 59 PDFs; the Income Tax section carries the Guam prints of Form 1040 "
+            "and Form 1040-SR for 2019-2025. Guam applies the Internal Revenue Code as the Guam Territorial Income Tax "
+            "(48 U.S.C. 1421i) and DRT publishes no Guam instructions booklet: its filing-season notices refer taxpayers "
+            "to the IRS instructions, which are in the corpus as us/form/irs/ty2025/i1040gi. Taken: the 2025 Form 1040 "
+            "Guam and 2025 Form 1040-SR Guam."
+        ),
+        "documents": [
+            ("form-1040-guam", "Form 1040 Guam, Guam Individual Income Tax Return (2025)", "https://www.guamtax.com/forms/2025GUAM1040TaxForm.pdf", "form"),
+            ("form-1040-sr-guam", "Form 1040-SR Guam, Guam Income Tax Return for Seniors (2025)", "https://www.guamtax.com/forms/2025GUAM1040SRTaxForm.pdf", "form"),
+        ],
+    },
+    "us-mp": {
+        "name": "Northern Mariana Islands",
+        "agency": "drt",
+        "authority": "CNMI Department of Finance, Division of Revenue and Taxation",
+        "batch": 4,
+        "version": TERRITORY_FORMS_VERSION,
+        "source_as_of": TERRITORY_SOURCE_AS_OF,
+        "source_family": "territory-resident-individual-income-tax-forms-ty2025",
+        "index_url": "https://www.finance.gov.mp/forms.php",
+        "index_document_count": 170,
+        "index_families": [
+            "2025 Revenue and Taxation forms (14): 1040CM, 1040NMI, 1040NR-CM, 1040-CM-X, Schedule 1CM, Schedule ETC, Schedule WSD, OS-3710, W-2CM, W-2GCM, 1120CM, 1120F-CM, 1120S, 1065-CM",
+            "2025 Revenue and Taxation instructions and publications (7): Publication IOC (W-2CM code reference), OS-3710/W-2 supplemental instructions, electronic filing specifications and templates, withholding guidelines; no 2025 Form 1040CM instructions (the last posted i1040-CM is tax year 2020 under prior-year forms)",
+            "prior-year (2019-2024) income tax forms and IRS links on the same page and the prior-year page (149); not taken",
+        ],
+        "inventory": (
+            "The Department of Finance Forms page lists 170 file links across its divisions; the Revenue and Taxation "
+            "2025 block carries the Northern Marianas Territorial Income Tax return (Form 1040CM), the wage and salary "
+            "tax return (Form 1040NMI), the nonresident and amended returns and the 1040CM schedules 1CM, ETC and WSD, "
+            "and links IRS Schedules 8812 and EIC, the IRS Form 1040 instructions and tax tables for the mirrored "
+            "code. Taken: Form 1040CM, Form 1040NMI, Schedule 1CM, Schedule ETC and Schedule WSD for 2025."
+        ),
+        "documents": [
+            ("form-1040cm", "Form 1040CM, Northern Marianas Territorial Income Tax Return (2025)", "https://www.finance.gov.mp/division-forms/revenue-taxation/2025/f1040cm--2025.pdf", "form"),
+            ("form-1040nmi", "Form 1040NMI, Employee's Annual Wage and Salary and Earnings Tax Return (2025)", "https://www.finance.gov.mp/division-forms/revenue-taxation/2025/f1040nmi--2025.pdf", "form"),
+            ("schedule-1cm", "Schedule 1CM (Form 1040CM), Additional Income and Adjustments to Income (2025)", "https://www.finance.gov.mp/division-forms/revenue-taxation/2025/s1cm--2025.pdf", "schedule"),
+            ("schedule-etc", "Schedule ETC (Form 1040CM), Education Tax Credit (2025)", "https://www.finance.gov.mp/division-forms/revenue-taxation/2025/setc--2025.pdf", "schedule"),
+            ("schedule-wsd", "Schedule WSD (Form 1040CM), Wage and Salary Deduction (2025)", "https://www.finance.gov.mp/division-forms/revenue-taxation/2025/swsd--2025.pdf", "schedule"),
+        ],
+    },
 }
 
 BATCH_1 = tuple(j for j, s in STATES.items() if s.get("batch", 1) == 1)  # AL .. MT in queue order
@@ -632,10 +721,69 @@ BATCH_2 = tuple(j for j, s in STATES.items() if s.get("batch") == 2)  # NH, NJ, 
 # Batch 3 re-ran the batch-1/2 states whose publishers blocked the European exit;
 # ``batch`` keeps their original membership so batch-1/2 rows stay byte-identical.
 BATCH_3 = tuple(j for j, s in STATES.items() if s.get("retry_batch") == 3)  # CO, IN, UT
+BATCH_4 = tuple(j for j, s in STATES.items() if s.get("batch") == 4)  # PR, GU, MP (territories)
+TERRITORY_NAMES = {"us-pr": "Puerto Rico", "us-gu": "Guam", "us-vi": "Virgin Islands", "us-as": "American Samoa",
+                   "us-mp": "Northern Mariana Islands"}
 BATCH_NOTES = {
     1: "Batch 1 (2026-09-10) = the first ten queue-order states without a current-year resident return ingest: " + ", ".join(BATCH_1) + ".",
     2: "Batch 2 (2026-09-10) = the remaining queue-order states without a current-year resident return ingest, starting at NH: " + ", ".join(BATCH_2) + " (seven; the queue held no further states).",
     3: "Batch 3 (2026-09-10) = retry of the publisher-blocked batch-1/2 states from a US network: " + ", ".join(BATCH_3) + ".",
+    4: "Territories pass (2026-09-11) = the five inhabited territories: " + ", ".join(BATCH_4) + " built here; us-vi done by pointer (its publisher's index links the IRS Form 1040); us-as needs_review (Form 390 posted only as an Excel workbook).",
+}
+
+# Territory rows without a manifest (territories pass). VI: the Bureau of Internal Revenue's own forms
+# index links the IRS Form 1040 for tax year 2025 (mirror code, 48 U.S.C. 1397), already in the corpus.
+# AS: the Tax Office posts the 2025 Form 390 only as an Excel workbook of fillable form sheets, which the
+# official-documents xlsx path (tabular header/row extraction) cannot represent.
+TERRITORY_POINTER_ROWS: dict[str, dict[str, Any]] = {
+    "us-vi": {
+        "queue_status": "done",
+        "source_kind": "official_index_points_to_irs_form",
+        "primary_source_url": "https://bir.vi.gov/Form",
+        "target_manifest": "manifests/us-irs-individual-income-tax-forms-ty2025.yaml",
+        "target_scope": {"jurisdiction": "us", "document_class": "form", "version": FEDERAL_FORMS_VERSION},
+        "index_url": "https://bir.vi.gov/Form",
+        "index_document_count": 131,
+        "taken_count": 0,
+        "index_families": [
+            "individual income tax returns, tax years 2011-2025 (14): every '1040 U.S. Individual Income Tax Return' entry links the IRS PDF (2025: https://www.irs.gov/pub/irs-prior/f1040--2025.pdf)",
+            "Form 1040 INFO, Non-Virgin Islands Source Income of Virgin Islands Residents, tax years 2016-2025 (10): BIR's own attachment form (2025 revision 2025-01-08); not taken",
+            "Form 8689 Allocation of Individual Income Tax to the U.S. Virgin Islands (13, IRS PDFs), gross receipts, withholding, excise and other BIR forms (94); not taken",
+        ],
+        "notes": (
+            "Territories pass (2026-09-11): done by pointer. Bona fide Virgin Islands residents file the federal Form 1040 "
+            "with the Bureau of Internal Revenue under the mirror code (48 U.S.C. 1397); the Bureau's Forms page "
+            "(https://bir.vi.gov/Form, an application whose listing is served by the publisher's own /api/form/find "
+            "endpoint, 131 entries) links the tax year 2025 Form 1040 entry to the IRS PDF and posts no Virgin Islands "
+            "return or instructions booklet of its own. The IRS TY2025 Form 1040 and instructions are in the corpus as "
+            "us/form/irs/ty2025/f1040 and i1040gi (version 2026-09-10-tax-irs-forms-ty2025). BIR's own TY2025 product is "
+            "Form 1040 INFO (a residents' attachment, not the return), recorded and not taken. 0 taken."
+        ),
+    },
+    "us-as": {
+        "queue_status": "needs_review",
+        "source_kind": "official_xlsx_forms_workbook",
+        "primary_source_url": "https://www.americansamoa.gov/_files/ugd/4bfff9_a3bcba04ed65461ba9c6e20f503a8725.xlsx?dn=2025%20Tax%20Forms%20Updated-V3-%204.11.2026.xlsx",
+        "target_manifest": "manifests/us-as-individual-income-tax-forms-ty2025.yaml",
+        "target_scope": {"jurisdiction": "us-as", "document_class": "form", "version": None},
+        "index_url": "https://www.americansamoa.gov/tax-office",
+        "index_document_count": 15,
+        "taken_count": 0,
+        "index_families": [
+            "Form 390 American Samoa Individual Income Tax Return workbooks, tax years 2020-2025 (7 xlsx): the 2025 workbook (updated V3, 4.11.2026) holds sheets 390, Sch. T8812, 8812(2001), Sch. TEITC, Sch A & B, Sch. C, 390X, 390A, Direct Deposit",
+            "'IRS 2000 Tax Table and Instructions' PDFs (2): the IRS 2000 booklet reposted because American Samoa applies the Internal Revenue Code as of 2000-12-31; an IRS publication, not taken",
+            "other Tax Office files (6): ARPA child tax credit FAQ, Form T15323, stimulus FAQ, REAL ID policy, driver licence guide, workmen's compensation travel allowance; not taken",
+        ],
+        "notes": (
+            "Territories pass (2026-09-11): needs_review. The American Samoa Government Tax Office page (HTTP 200) "
+            "publishes the 2025 Form 390 A.S. Individual Income Tax Return only as an Excel workbook of fillable form "
+            "sheets (no PDF, no American Samoa instructions; the page reposts the IRS 2000 tax table and instructions "
+            "because the territory applies the Internal Revenue Code as of 2000-12-31, 48 U.S.C. 1661 and A.S.C.A. "
+            "11.0403). The official-documents extractor's xlsx path is a header-row table reader and would not "
+            "represent a form layout, so nothing was extracted; reviewer to decide on a form-workbook extraction or a "
+            "PDF print. 0 taken."
+        ),
+    },
 }
 
 # States whose current-year resident individual income tax return material was
@@ -698,6 +846,8 @@ def _state_class(state: dict[str, Any]) -> str:
 
 
 def _state_version(state: dict[str, Any]) -> str:
+    if state.get("version"):
+        return str(state["version"])
     return STATE_FORMS_VERSION if _state_class(state) == "form" else STATE_GUIDANCE_VERSION
 
 
@@ -717,7 +867,7 @@ def _state_document(
     landing = spec.get("landing")
     if document_class == "form":
         citation_path = f"{jurisdiction}/form/{state['agency']}/ty{TAX_YEAR}/{spec['id']}"
-        source_family = "state-resident-individual-income-tax-forms-ty2025"
+        source_family = state.get("source_family", "state-resident-individual-income-tax-forms-ty2025")
     else:
         citation_path = f"{jurisdiction}/{document_class}/{state['agency']}/{spec['id']}"
         source_family = f"state-individual-income-tax-{document_class}-ty2025"
@@ -728,7 +878,7 @@ def _state_document(
         "title": spec["title"],
         "source_url": landing or spec["url"],
         "source_format": spec.get("format", "pdf"),
-        "source_as_of": SOURCE_AS_OF,
+        "source_as_of": state.get("source_as_of", SOURCE_AS_OF),
         "expression_date": TY_EXPRESSION_DATE,
         "citation_path": citation_path,
         "extraction": spec.get("extraction", SINGLE_BLOCK),
@@ -751,9 +901,9 @@ def _state_document(
     return doc
 
 
-def _write_manifest(path: Path, documents: list[dict[str, Any]]) -> None:
+def _write_manifest(path: Path, documents: list[dict[str, Any]], version: str = SOURCE_AS_OF) -> None:
     path.write_text(
-        yaml.safe_dump({"version": SOURCE_AS_OF, "documents": documents}, sort_keys=False, allow_unicode=True, width=120)
+        yaml.safe_dump({"version": version, "documents": documents}, sort_keys=False, allow_unicode=True, width=120)
     )
 
 
@@ -803,7 +953,10 @@ def _verify(documents: list[dict[str, Any]]) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--verify", action="store_true", help="probe every download URL; write nothing")
+    parser.add_argument("--only", help="comma-separated territory jurisdictions whose queue rows are added or "
+                        "refreshed (state rows are always rewritten from the static tables)")
     args = parser.parse_args()
+    only = set(args.only.split(",")) if args.only else None
 
     manifests_dir = ROOT / "manifests"
     federal_forms_path = manifests_dir / "us-irs-individual-income-tax-forms-ty2025.yaml"
@@ -828,13 +981,17 @@ def main() -> int:
         document_class = _state_class(STATES[jur])
         kind = "forms" if document_class == "form" else document_class
         path = manifests_dir / f"{jur}-individual-income-tax-{kind}-ty2025.yaml"
-        _write_manifest(path, docs)
+        _write_manifest(path, docs, str(STATES[jur].get("source_as_of", SOURCE_AS_OF)))
         state_manifest_paths[jur] = path
         written.append(path.name)
 
     queue_path = manifests_dir / "tax-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
     rows = {row["jurisdiction"]: row for row in queue["states"]}
+    for jur, name in TERRITORY_NAMES.items():
+        if only and jur not in only:
+            continue
+        rows.setdefault(jur, {"jurisdiction": jur, "name": name, "lead_counts": {}, "candidate_sources": []})
 
     federal = rows["us"]
     federal.update(
@@ -864,6 +1021,9 @@ def main() -> int:
 
     for jur, row in rows.items():
         if jur == "us":
+            continue
+        if jur in TERRITORY_POINTER_ROWS:
+            row.update(TERRITORY_POINTER_ROWS[jur])
             continue
         if jur in STATES:
             state = STATES[jur]

@@ -2033,3 +2033,46 @@ def test_build_ecfr_inventory_skips_missing_titles_in_full_mode(monkeypatch):
 
     assert inventory.title_count == 1
     assert len(inventory.items) == 3
+
+
+def test_fetch_ecfr_api_bytes_offers_and_decodes_gzip(monkeypatch):
+    import gzip
+    import io
+
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    seen: dict[str, object] = {}
+
+    class FakeResponse(io.BytesIO):
+        headers = {"Content-Encoding": "gzip"}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            self.close()
+            return False
+
+    def fake_urlopen(req, timeout):
+        seen["accept_encoding"] = req.get_header("Accept-encoding")
+        seen["user_agent"] = req.get_header("User-agent")
+        seen["timeout"] = timeout
+        return FakeResponse(gzip.compress(b"<DIV5 N=\"98\" TYPE=\"PART\"/>"))
+
+    monkeypatch.setattr(ecfr.urllib.request, "urlopen", fake_urlopen)
+
+    xml = ecfr.fetch_ecfr_part_xml(45, "98", "2026-09-09")
+
+    assert xml == '<DIV5 N="98" TYPE="PART"/>'
+    assert seen["accept_encoding"] == "gzip, deflate"
+    assert seen["user_agent"] == ecfr.USER_AGENT
+    assert seen["timeout"] == 180
+
+
+def test_decode_content_encoding_rejects_unknown_encoding():
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    assert ecfr._decode_content_encoding(b"plain", "") == b"plain"
+    assert ecfr._decode_content_encoding(b"plain", "identity") == b"plain"
+    with pytest.raises(ValueError, match="unsupported eCFR content encoding"):
+        ecfr._decode_content_encoding(b"x", "br")

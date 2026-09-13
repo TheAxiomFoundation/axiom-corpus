@@ -43,6 +43,9 @@ policy:
   - 'Batch 5 (2026-09-10/11): the last jurisdictions on the map (AK, DC, DE, ND, RI, SD, VT, WY) plus the five needs_review
     rows (HI, ME, NE, NH, OR), and the queue repair (us-ma and us-in rows restored; every batch''s rows now survive any --batch
     N run). Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 5.'
+  - 'Batch 6 (2026-09-11, territories pass): the five inhabited territories PR, GU, VI, AS, MP, each publisher probed once
+    from a US network; none publishes an eligibility manual (AS unreachable: no DNS record). Static rows only. Generator:
+    scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 6 [--only us-xx].'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -51,8 +54,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 2
-  agent_ready: 41
-  blocked_primary_source: 3
+  agent_ready: 42
+  blocked_primary_source: 8
   done: 6
 states:
 - jurisdiction: us
@@ -1240,10 +1243,32 @@ states:
     (coverage complete, 168 provisions) plus the CMS-2454-IFC community-engagement scopes; 42 CFR part 436 (Puerto Rico, Guam,
     Virgin Islands eligibility) is NOT in the corpus (no coverage, manifest, or ingest-run note mentions part 436). Nothing
     federal was re-ingested and none of the federal lead-list URLs were taken in this run. A later run should extract part
-    436 through extract-ecfr --only-title 42 --only-part 436.'
+    436 through extract-ecfr --only-title 42 --only-part 436. 2026-09-11: 42 CFR part 436 extracted as us/regulation/2026-09-11-title-42-part-436
+    (see the eCFR row below).'
   index_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C
   index_document_count: null
   taken_count: 0
+- jurisdiction: us
+  name: Federal (42 CFR part 436, eCFR)
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-436
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-11-title-42-part-436
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): 42 CFR part 436 (Medicaid
+    eligibility in Guam, Puerto Rico and the Virgin Islands) extracted with extract-ecfr --only-title 42 --only-part 436 from
+    the eCFR Versioner API at as-of 2026-09-09. 87 rows = 1 part + 11 live subparts + 75 live sections; the reserved units
+    (subpart H; 436.402, 436.408, 436.604-436.608) and the 12 subject-group headings are not rows, as in the released 42 CFR
+    435 scope; coverage complete; citation paths us/regulation/42/436/<section>. No released scope carries any us/regulation/42/436
+    path; part 435 stays in 2026-06-25-title-42-part-435.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-42.json
+  index_document_count: 87
+  taken_count: 87
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}
@@ -1369,6 +1394,25 @@ states:
     other_program_manual_pdf:
       found: 11
       taken: 0
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_publisher_unreachable
+  primary_source_url: https://medicaid.as.gov/
+  target_manifest: manifests/us-as-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-as
+    document_class: manual
+    version: null
+  index_url: https://medicaid.as.gov/
+  index_document_count: null
+  taken_count: 0
+  notes: 'Blocked (2026-09-11 territories pass): the American Samoa Medicaid State Agency site medicaid.as.gov has no DNS
+    A record (the zone is delegated to ns3-5.linode.com; NOERROR with an empty answer from the local resolver and from 8.8.8.8;
+    www.medicaid.as.gov is a CNAME to the same name), so the publisher cannot be reached by any client (curl 6, plain http
+    and https). Index inventory not possible; no workaround attempted.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -1575,6 +1619,33 @@ states:
       taken: 0
   notes: 'Batch 1 (2026-09-10): 251 manual documents taken from the publisher''s own index (428 documents inventoried across
     6 families; 251 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: https://dphss.guam.gov/services/medicaremedicaid
+  target_manifest: manifests/us-gu-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-gu
+    document_class: manual
+    version: null
+  index_url: https://dphss.guam.gov/services/medicaremedicaid
+  index_document_count: 0
+  taken_count: 0
+  index_families:
+    medicare_medicaid_service_page_html:
+      found: 1
+      taken: 0
+    eligibility_manual_or_state_plan_pdf:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): Guam DPHSS (Division of Public Welfare, Bureau of Health Care Financing Administration)
+    publishes no Medicaid eligibility manual: the Medicare/Medicaid services page and the BHCFA bureau page are text-only
+    program descriptions with no document links (HTTP 200), and the 2019 ''Guam Medicaid State Plan'' (1-of-2, 2-of-2) and
+    ''Guam Medicaid Handbook'' PDFs that search engines still index under wp-content/uploads/2019 answer HTTP 404 on the current
+    site. 0 taken. Nothing was worked around.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1941,6 +2012,37 @@ states:
       taken: 0
   notes: 'Batch 2 (2026-09-10): 565 manual documents taken from the publisher''s own index (568 documents inventoried across
     6 families; 565 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-2.md.'
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: https://www.cnmimedicaid.org/departments/eligibility-enrollment
+  target_manifest: manifests/us-mp-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-mp
+    document_class: manual
+    version: null
+  index_url: https://www.cnmimedicaid.org/departments/eligibility-enrollment
+  index_document_count: 3
+  taken_count: 0
+  index_families:
+    application_packet_google_drive:
+      found: 2
+      taken: 0
+    eligibility_faq_google_drive:
+      found: 1
+      taken: 0
+    eligibility_manual_or_state_plan:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): the Commonwealth Medicaid Agency site (cnmimedicaid.org, Google Sites, HTTP 200)
+    publishes no eligibility manual: the Eligibility & Enrollment page links two application packets and an FAQ on Google
+    Drive, lists the documents required and states only that income limits are percentages of the SSI Federal Benefit Rate
+    by household size and category (no figures); the State Plan Amendments page links a Google Sheet listing and the medicaid.gov
+    SPA index (CMS posts SPAs, not the plan); the legacy host medicaid.cnmi.mp does not answer. 0 taken. Nothing was worked
+    around.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -2325,6 +2427,44 @@ states:
       taken: 0
   notes: 'Batch 1 (2026-09-10): 380 manual documents taken from the publisher''s own index (384 documents inventoried across
     2 families; 380 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-1.md.'
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: https://medicaid.pr.gov/
+  target_manifest: manifests/us-pr-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-pr
+    document_class: manual
+    version: null
+  index_url: https://medicaid.pr.gov/CMS/5
+  index_document_count: 138
+  taken_count: 0
+  index_families:
+    provider_enrollment_checklist_pdf:
+      found: 69
+      taken: 0
+    provider_enrollment_policy_pdf:
+      found: 25
+      taken: 0
+    provider_communication_pdf:
+      found: 36
+      taken: 0
+    provider_form_pdf_xlsx:
+      found: 8
+      taken: 0
+    eligibility_manual_or_regulation:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): the Puerto Rico Medicaid Program (Departamento de Salud, medicaid.pr.gov; the host
+    omits its DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate, completed with the committed data/certs copy via REQUESTS_CA_BUNDLE,
+    verification never disabled) publishes no eligibility manual or reglamento: the Solicitante page (/CMS/34) lists the documents
+    an applicant must bring and links the pre-screening calculator at prod-ua.preeservices.com, the Beneficiarios page (/CMS/4)
+    and the Guias page (/CMS/5) carry 138 provider-enrollment files (checklists, PRV/AP/CLM policies, communications, forms),
+    the Department of Health program page (salud.pr.gov/CMS/85) has no documents and ASES (Plan Vital) publishes insurer and
+    plan pages. 0 taken. Nothing was worked around.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -2565,6 +2705,37 @@ states:
     other_pdf:
       found: 1
       taken: 0
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: https://dhs.vi.gov/office-of-medicaid/
+  target_manifest: manifests/us-vi-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-vi
+    document_class: manual
+    version: null
+  index_url: https://dhs.vi.gov/office-of-medicaid/
+  index_document_count: 10
+  taken_count: 0
+  index_families:
+    application_form_pdf:
+      found: 9
+      taken: 0
+    provider_general_information_manual_pdf:
+      found: 1
+      taken: 0
+    eligibility_manual_or_state_plan_pdf:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): the Virgin Islands Department of Human Services, Office of Medicaid (Medical Assistance
+    Program) page (HTTP 200) lists nine application-family PDFs (hospital presumptive eligibility application, application
+    flyer, documents required, application, room and board statement, authorized representative, statement of circumstances,
+    employment wage and self-employment income forms) and the Providers General Information Manual (2026-01-21; provider family,
+    with a public-comment notice for the Provider Enrollment and General Information manuals); no eligibility manual or state
+    plan. 0 taken. Nothing was worked around.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

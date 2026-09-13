@@ -1,0 +1,103 @@
+version: '2026-09-11'
+documents:
+- source_id: us-mp-drt-form-1040cm-ty2025
+  jurisdiction: us-mp
+  document_class: form
+  title: Form 1040CM, Northern Marianas Territorial Income Tax Return (2025)
+  source_url: https://www.finance.gov.mp/division-forms/revenue-taxation/2025/f1040cm--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-mp/form/drt/ty2025/form-1040cm
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: CNMI Department of Finance, Division of Revenue and Taxation
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mp/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.finance.gov.mp/forms.php
+    discovered_via: manual-review:tax-agent-queue; index https://www.finance.gov.mp/forms.php
+- source_id: us-mp-drt-form-1040nmi-ty2025
+  jurisdiction: us-mp
+  document_class: form
+  title: Form 1040NMI, Employee's Annual Wage and Salary and Earnings Tax Return (2025)
+  source_url: https://www.finance.gov.mp/division-forms/revenue-taxation/2025/f1040nmi--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-mp/form/drt/ty2025/form-1040nmi
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: CNMI Department of Finance, Division of Revenue and Taxation
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mp/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.finance.gov.mp/forms.php
+    discovered_via: manual-review:tax-agent-queue; index https://www.finance.gov.mp/forms.php
+- source_id: us-mp-drt-schedule-1cm-ty2025
+  jurisdiction: us-mp
+  document_class: form
+  title: Schedule 1CM (Form 1040CM), Additional Income and Adjustments to Income (2025)
+  source_url: https://www.finance.gov.mp/division-forms/revenue-taxation/2025/s1cm--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-mp/form/drt/ty2025/schedule-1cm
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: CNMI Department of Finance, Division of Revenue and Taxation
+    document_subtype: schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mp/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.finance.gov.mp/forms.php
+    discovered_via: manual-review:tax-agent-queue; index https://www.finance.gov.mp/forms.php
+- source_id: us-mp-drt-schedule-etc-ty2025
+  jurisdiction: us-mp
+  document_class: form
+  title: Schedule ETC (Form 1040CM), Education Tax Credit (2025)
+  source_url: https://www.finance.gov.mp/division-forms/revenue-taxation/2025/setc--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-mp/form/drt/ty2025/schedule-etc
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: CNMI Department of Finance, Division of Revenue and Taxation
+    document_subtype: schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mp/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.finance.gov.mp/forms.php
+    discovered_via: manual-review:tax-agent-queue; index https://www.finance.gov.mp/forms.php
+- source_id: us-mp-drt-schedule-wsd-ty2025
+  jurisdiction: us-mp
+  document_class: form
+  title: Schedule WSD (Form 1040CM), Wage and Salary Deduction (2025)
+  source_url: https://www.finance.gov.mp/division-forms/revenue-taxation/2025/swsd--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-mp/form/drt/ty2025/schedule-wsd
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: CNMI Department of Finance, Division of Revenue and Taxation
+    document_subtype: schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mp/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.finance.gov.mp/forms.php
+    discovered_via: manual-review:tax-agent-queue; index https://www.finance.gov.mp/forms.php

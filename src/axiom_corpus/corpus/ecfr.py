@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import gzip
 import json
 import re
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import zlib
 from collections.abc import Callable, Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -98,29 +100,54 @@ def ecfr_run_id(
 _scoped_run_id = ecfr_run_id
 
 
+def _fetch_ecfr_api_bytes(url: str, *, timeout: int) -> bytes:
+    """Fetch one eCFR Versioner API resource.
+
+    Since September 2026 the ``full`` XML endpoint answers ``406 Not Acceptable``
+    (support code 11, "This endpoint requires response compression") unless the
+    request advertises a compressed encoding, so every API fetch offers gzip and
+    deflate and transparently decodes whatever the publisher chose.
+    """
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept-Encoding": "gzip, deflate"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        data = bytes(resp.read())
+        headers = getattr(resp, "headers", None)
+        encoding = (headers.get("Content-Encoding") if headers is not None else None) or ""
+    return _decode_content_encoding(data, encoding)
+
+
+def _decode_content_encoding(data: bytes, encoding: str) -> bytes:
+    normalized = encoding.strip().lower()
+    if normalized == "gzip" or normalized == "x-gzip":
+        return gzip.decompress(data)
+    if normalized == "deflate":
+        try:
+            return zlib.decompress(data)
+        except zlib.error:
+            return zlib.decompress(data, -zlib.MAX_WBITS)
+    if normalized in ("", "identity"):
+        return data
+    raise ValueError(f"unsupported eCFR content encoding: {encoding!r}")
+
+
 def fetch_ecfr_structure(title: int, as_of: str) -> dict[str, Any]:
     url = f"{ECFR_API_BASE}/structure/{as_of}/title-{title}.json"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read())
+    data = json.loads(_fetch_ecfr_api_bytes(url, timeout=60))
     return cast(dict[str, Any], data)
 
 
 def fetch_ecfr_title_xml(title: int, as_of: str) -> str:
     url = f"{ECFR_API_BASE}/full/{as_of}/title-{title}.xml"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        data = resp.read()
-    return bytes(data).decode("utf-8")
+    return _fetch_ecfr_api_bytes(url, timeout=600).decode("utf-8")
 
 
 def fetch_ecfr_part_xml(title: int, part: str, as_of: str) -> str:
     part_query = urllib.parse.quote(part, safe="")
     url = f"{ECFR_API_BASE}/full/{as_of}/title-{title}.xml?part={part_query}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=180) as resp:
-        data = resp.read()
-    return bytes(data).decode("utf-8")
+    return _fetch_ecfr_api_bytes(url, timeout=180).decode("utf-8")
 
 
 def fetch_ecfr_graphic(identifier: str) -> bytes:

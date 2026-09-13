@@ -31,6 +31,7 @@ failed the same way (plain request plus curl_cffi impersonation, 20 s). Vermont 
 """
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import html
 import re
@@ -175,7 +176,7 @@ RESOLUTIONS: dict[str, dict] = {
     "ak": {"status": "needs_review", "index": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=215530",
                "reason": "retry 2 2026-09-10T21:35Z from a US network: aws.state.ak.us now answers (first two passes: TCP connect timeout); the Online Public Notice the ACF index links carries one attachment, '2025-2027 CCDF State Plan 052424.pdf' (Attachment.aspx?id=148401, 213 pages, Microsoft Word export dated 2024-05-24, no CARS Plan Status line, text refers to 'this draft CCDF Plan' posted for public comment); the Department of Health Child Care Program Office page lists no CCDF plan; no approved or certified FFY 2025-2027 plan is posted, so not extracted"},
     "as": {"status": "blocked_primary_source", "index": "https://www.dhss.as/index.html",
-               "reason": "TLS: www.dhss.as presents a self-signed, expired certificate (CN=cmaster70); verification impossible, not disabled; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (SSLCertVerificationError / curl 60 self-signed, expired certificate)"},
+               "reason": "TLS: www.dhss.as presents a self-signed, expired certificate (CN=cmaster70); verification impossible, not disabled; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (SSLCertVerificationError / curl 60 self-signed, expired certificate); retried 2026-09-11T21:15Z from a US network (territories pass), same failure: openssl reports the self-signed CN=cmaster70 certificate with verify return code 10 (certificate has expired), curl 60 for the plain client and for curl_cffi chrome120 alike; the plain-HTTP site http://dhss.as/index.html answers 200 but its Child Care, ASNAP and ASWIC menu entries all point at the 'coming.html' placeholder, so no plan is posted there either"},
     "az": {"status": "blocked_primary_source", "index": "https://des.az.gov/services/child-and-family/child-care/child-care-and-development-fund-state-plan",
                "reason": "HTTP 403 (cloudflare) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare for plain requests and chrome impersonation)"},
     "ar": {"status": "agent_ready", "url": "https://dese.ade.arkansas.gov/Files/ACF-118_CCDF_FFY_2025-2027_For_Arkansas_OEC.pdf",
@@ -250,7 +251,7 @@ RESOLUTIONS: dict[str, dict] = {
     "nd": {"status": "agent_ready", "url": "https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-initial-archived.pdf",
                "index": "https://www.hhs.nd.gov/cfs/early-childhood-services/child-care-development-fund", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (Amendment 1, Amendment 2 and Appendix posted separately, not taken)"},
     "mp": {"status": "blocked_primary_source", "index": "https://www.childcare.gov.mp/",
-               "reason": "HTTP 403 (nginx) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx)"},
+               "reason": "HTTP 403 (nginx) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx); retried 2026-09-11T21:15Z from a US network (territories pass), same failure (HTTP 403, server nginx/1.29.8, 358-byte body, for the plain browser UA and curl_cffi chrome120; the parent Department of Community and Cultural Affairs site www.dcca.gov.mp answers the same 403)"},
     "oh": {"status": "agent_ready", "url": "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Providers/CCDF/Approved_State_Plan_2025-2027.pdf",
                "index": "https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (amendments 1 and 2 posted separately, not taken)"},
     "ok": {"status": "agent_ready", "url": "https://oklahoma.gov/content/dam/ok/en/okdhs/documents/okdhs-pdf-library/child-care-services/ACF-118%20CCDF%20FFY%202025-2027%20For%20Oklahoma.pdf",
@@ -261,7 +262,7 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://www.pa.gov/agencies/dhs/resources/early-learning-child-care", "version": "Initial Plan",
                "plan_status": "Approved as of 2024-11-09 (located on retry 2026-09-10: the ACF index link redirects to the generic pa.gov DHS agency page; the plan is linked as '2025-2027 Pennsylvania State Plan for Child Care Development Block Grant Report (CCDBG)' on the DHS 'Early Learning & Child Care' resources page; no amendments or Appendix posted there)"},
     "pr": {"status": "needs_review", "index": "https://www.acuden.pr.gov/documentos",
-               "reason": "publisher's documents page lists only 'Borrador Plan Estatal Child Care 2025-2027' (draft) plus hearing notices and supporting studies; no approved plan; retried 2026-09-10: unchanged (draft, hearing notice, 'Fee Scale State Plan 2025-2027' supporting document, emergency plan); no approved or certified plan"},
+               "reason": "publisher's documents page lists only 'Borrador Plan Estatal Child Care 2025-2027' (draft) plus hearing notices and supporting studies; no approved plan; retried 2026-09-10: unchanged (draft, hearing notice, 'Fee Scale State Plan 2025-2027' supporting document, emergency plan); no approved or certified plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the documents page (84 file links) still lists only the 'Borrador Plan Estatal Child Care 2025-2027' draft with its hearing notice, fee-scale study and emergency-plan attachments, plus the Child Care 2026-27 proposal guide and forms and the adopted Reglamento del Programa Child Care (Num. 8687 de 2016), which is a separate regulation family"},
     "ri": {"status": "agent_ready", "url": "https://dhs.ri.gov/media/8381/download?language=en",
                "index": "https://dhs.ri.gov/regulations/state-plans", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 ('Child Care Development Fund State Plan FFY25-27'; located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 cloudflare on the first two passes)"},
     "sc": {"status": "agent_ready", "url": "https://scchildcare.org/media/bxkiasbl/acf-118-ccdf-ffy-2025-2027-for-south-carolina-approved-state-plan.pdf",
@@ -277,7 +278,7 @@ RESOLUTIONS: dict[str, dict] = {
     "vt": {"status": "agent_ready", "url": "https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Approved.pdf",
                "index": "https://dcf.vermont.gov/CDD/CCDF", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 ('CCDF-Plan-2025-2027-Approved'; the PDF answered HTTP 200 on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 on the first two passes; the plan embeds Vermont's child care licensing rules inside section 5.3, whose numbered rule headings (5.3, 5.6, 9.1-9.4, 13.1) collide with the preprint labels, so the section pattern is restricted to the 41 preprint headings)", "extraction": VT_EXTRACTION},
     "vi": {"status": "needs_review", "index": "https://dhs.vi.gov/child-care-regulatory/",
-               "reason": "publisher's site lists only a CCDF preprint draft for FFY 2019-2021; no FFY 2025-2027 plan found; retried 2026-09-10: the home page still lists the 2019-2021 preprint draft and the Office of Child Care & Regulatory Services page lists the FFY 2022-2024 plan (submitted 2021-09-17), policy memoranda and the 2022 market rate survey; site search for 'CCDF 2025' returns nothing; no FFY 2025-2027 plan"},
+               "reason": "publisher's site lists only a CCDF preprint draft for FFY 2019-2021; no FFY 2025-2027 plan found; retried 2026-09-10: the home page still lists the 2019-2021 preprint draft and the Office of Child Care & Regulatory Services page lists the FFY 2022-2024 plan (submitted 2021-09-17), policy memoranda and the 2022 market rate survey; site search for 'CCDF 2025' returns nothing; no FFY 2025-2027 plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the Office of Child Care & Regulatory Services page (36 PDFs) lists the FFY 2022-2024 plan (submitted 9-17-2021), the 2019 policy memoranda 101-106, the subsidy rules, the 2022 market rate survey and the ACF-218 QPR for FFY 2022; no FFY 2025-2027 plan"},
     "va": {"status": "agent_ready", "url": "https://www.childcare.virginia.gov/home/showpublisheddocument/55566/638647472799800000",
                "index": "https://www.childcare.virginia.gov/reports-resources/administrative-program-manuals-reports-and-data/virginia-child-care-plan", "version": "Initial Plan", "plan_status": "Certified as of 2024-10-01 (the publisher labels it \"Virginia's Approved 2025-2027 CCDF State Plan\"; the CARS print carries Plan Status Certified and no approval print is posted; retry 2 2026-09-10T21:35Z from a US network: plain requests still get HTTP 403 AkamaiGHost, curl_cffi chrome impersonation receives the page and the PDF)", "impersonation": True},
     "wa": {"status": "agent_ready", "url": "https://www.dcyf.wa.gov/sites/default/files/pdf/2025-2027-CCDF-Current-Plan.pdf",
@@ -317,7 +318,39 @@ def fetch_index() -> list[dict]:
     return rows
 
 
+
+def refresh_rows_only(codes: list[str]) -> dict[str, int]:
+    """Refresh the queue rows of non-extracted jurisdictions from RESOLUTIONS without fetching the
+    ACF index or rewriting any manifest (territories pass, 2026-09-11: AS, MP, PR, VI re-probed)."""
+    queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
+    queue = yaml.safe_load(queue_path.read_text())
+    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    for code in codes:
+        res = RESOLUTIONS[code]
+        if res["status"] == "agent_ready":
+            raise SystemExit(f"{code}: extracted rows are rebuilt by the full run, not --only")
+        row = rows[f"us-{code}"]
+        row["queue_status"] = res["status"]
+        row["publisher_index_url"] = res["index"]
+        row["notes"] = (
+            ("Publisher blocked: " if res["status"] == "blocked_primary_source" else "Not extracted: ")
+            + res["reason"] + ". Nothing was worked around."
+        )
+    queue["status_counts"] = {}
+    for s in queue["states"]:
+        queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
+    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--only", help="comma-separated jurisdiction codes (as,mp,...) whose non-extracted rows are "
+                        "refreshed from RESOLUTIONS; every other row and manifest is left untouched")
+    args = parser.parse_args()
+    if args.only:
+        print(f"queue {refresh_rows_only(args.only.split(','))}")
+        return 0
     bundle = ca_bundle()
     rows = fetch_index()
     if len(rows) != 56 or {r["code"] for r in rows} != set(RESOLUTIONS):

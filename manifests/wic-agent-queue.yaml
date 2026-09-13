@@ -30,7 +30,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   agent_ready: 22
-  blocked_primary_source: 30
+  blocked_primary_source: 35
 states:
 - jurisdiction: us
   name: Federal
@@ -282,6 +282,27 @@ states:
     be read from the publisher. Replacement for a blocked batch-3 state. No mirror was used. Selected in the third batch as
     a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. retried 2026-09-10T21:34Z from
     US network, same failure (HTTP 403 Cloudflare for the WIC page and the site root).'
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-as-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-as
+    document_class: manual
+    version: null
+  index_url: https://aswic.com/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'American Samoa Department of Human and Social Services, WIC Program: The American Samoa WIC policy manual is not
+    published: the program site aswic.com (the address FNA''s WIC contact page gives for the agency; HTTP 200) carries program
+    descriptions, clinic information and the USDA complaint form only; the department site www.dhss.as presents a self-signed,
+    expired certificate (verification not disabled; curl 60 plain and curl_cffi chrome120) and its plain-HTTP ASWIC menu entry
+    is the ''coming.html'' placeholder. No page lists a manual. Selected in the territories pass (2026-09-11): the five inhabited
+    territories PR, GU, VI, AS, MP.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -507,6 +528,26 @@ states:
     - CT-800.13
   notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
     listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-gu-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-gu
+    document_class: manual
+    version: null
+  index_url: https://dphss.guam.gov/dphss-programs/women-infants-children-wic-program
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Guam Department of Public Health and Social Services, WIC Program: The Guam WIC policy manual is not published on
+    dphss.guam.gov (HTTP 200): the WIC program page and the WIC services page are text-only program descriptions with no document
+    links (0 PDFs), and the only WIC PDF located on the host is the 2024-2025 income eligibility guidelines in the retired
+    wp-content path. No page lists a manual. Selected in the territories pass (2026-09-11): the five inhabited territories
+    PR, GU, VI, AS, MP.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -844,6 +885,25 @@ states:
     redirect to health.mo.gov/topic/781/login, and the public WIC pages link no manual. Selected in the second batch as one
     of the next ten states by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network:
     the manual URL still redirects to health.mo.gov/topic/781/login.'
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-mp-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-mp
+    document_class: manual
+    version: null
+  index_url: https://www.chcc.health/cnmi-wic.php
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Commonwealth Healthcare Corporation, CNMI WIC Program: The CNMI WIC policy manual is not published on chcc.health
+    (HTTP 200): the CNMI WIC page lists referral, medical-documentation and employment-verification forms, the WIC food list
+    booklet and two National WIC Association handouts (7 PDFs); no manual or local-agency section. Selected in the territories
+    pass (2026-09-11): the five inhabited territories PR, GU, VI, AS, MP.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -1144,6 +1204,26 @@ states:
     other_pdf: 11
   notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
     listed there, single_block extraction. Selected in the first batch as one of the ten largest states by population.
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-pr-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-pr
+    document_class: manual
+    version: null
+  index_url: https://wic.pr.gov/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Puerto Rico Department of Health, WIC Program: The Puerto Rico WIC policy manual is not published on wic.pr.gov
+    (HTTP 200): the site is a single-page Angular application whose server response is the app-root shell with no document
+    links or text, and the Department of Health site www.salud.pr.gov lists no WIC manual; the client-side application was
+    not driven. No mirror was used. Selected in the territories pass (2026-09-11): the five inhabited territories PR, GU,
+    VI, AS, MP.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -1300,6 +1380,27 @@ states:
   notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
     listed there, single_block extraction. Selected in the second batch as one of the next ten states by population (NJ, VA,
     WA, AZ, TN, MA, IN, MD, MO, WI).
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-vi-wic-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-vi
+    document_class: manual
+    version: null
+  index_url: https://doh.vi.gov/programs/women-infants-and-children/more-wic-information/
+  index_document_count: 0
+  taken_count: 0
+  notes: 'Virgin Islands Department of Health, WIC Program: The Virgin Islands WIC policy manual is not published on doh.vi.gov
+    (HTTP 200): the More WIC Information page lists nine participant PDFs (eligibility checklist, medical referral and formula
+    prescription forms, mobile-app sheet, rights and responsibilities forms in English and Spanish, eWIC card guides, brochure)
+    and the department''s news item opens the FY 2027 WIC State Plan of Operations for public comment (state-plan family,
+    MT precedent); no page lists a manual or local-agency section. Selected in the territories pass (2026-09-11): the five
+    inhabited territories PR, GU, VI, AS, MP.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

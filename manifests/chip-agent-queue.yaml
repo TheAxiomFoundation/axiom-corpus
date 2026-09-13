@@ -31,7 +31,7 @@ lead_list:
 status_counts:
   done: 14
   agent_ready: 33
-  blocked_primary_source: 5
+  blocked_primary_source: 10
 states:
 - jurisdiction: us
   name: Federal
@@ -388,6 +388,31 @@ states:
     artifacts share data/corpus in the main checkout. Nothing separate to add.
   pointer: us-ar/manual/dco/medicaid/policy-manual (DCO Medical Services Policy Manual, 563 page provisions; ARKids First-B
     is determined under it)
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_medicaid_expansion_chip_no_separate_document
+  primary_source_url: https://medicaid.as.gov/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-as
+    document_class: manual
+    version: null
+  index_url: https://medicaid.as.gov/
+  index_document_count: null
+  taken_count: 0
+  index_families:
+    separate_chip_eligibility_document:
+      found: 0
+      taken: 0
+  notes: 'Blocked (2026-09-11 territories pass; first probe 2026-09-11T21:15Z from a US network). American Samoa''s CHIP is
+    a Medicaid-expansion CHIP (all five territories per the medicaid.gov CHIP Program by State map), so CHIP eligibility is
+    set in the Medicaid state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP manual,
+    handbook or rule. The Medicaid finding of the same pass applies: the American Samoa Medicaid State Agency site medicaid.as.gov
+    has no DNS A record and cannot be reached. CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa)
+    hosts SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -652,6 +677,31 @@ states:
   index_url: https://pamms.dhs.ga.gov/dfcs/medicaid/
   index_document_count: 241
   taken_count: 1
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_medicaid_expansion_chip_no_separate_document
+  primary_source_url: https://dphss.guam.gov/services/medicaremedicaid
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-gu
+    document_class: manual
+    version: null
+  index_url: https://dphss.guam.gov/services/medicaremedicaid
+  index_document_count: 0
+  taken_count: 0
+  index_families:
+    separate_chip_eligibility_document:
+      found: 0
+      taken: 0
+  notes: 'Blocked (2026-09-11 territories pass; first probe 2026-09-11T21:15Z from a US network). Guam''s CHIP is a Medicaid-expansion
+    CHIP (all five territories per the medicaid.gov CHIP Program by State map), so CHIP eligibility is set in the Medicaid
+    state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP manual, handbook or rule.
+    The Medicaid finding of the same pass applies: Guam DPHSS''s Medicare/Medicaid and BHCFA pages are text-only with no document
+    links, and the 2019 state plan and handbook PDFs answer 404. CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa)
+    hosts SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1124,6 +1174,33 @@ states:
   index_url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/
   index_document_count: 28
   taken_count: 2
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_medicaid_expansion_chip_no_separate_document
+  primary_source_url: https://www.cnmimedicaid.org/departments/eligibility-enrollment
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-mp
+    document_class: manual
+    version: null
+  index_url: https://www.cnmimedicaid.org/departments/eligibility-enrollment
+  index_document_count: 3
+  taken_count: 0
+  index_families:
+    separate_chip_eligibility_document:
+      found: 0
+      taken: 0
+  notes: 'Blocked (2026-09-11 territories pass; first probe 2026-09-11T21:15Z from a US network). Northern Mariana Islands''s
+    CHIP is a Medicaid-expansion CHIP (all five territories per the medicaid.gov CHIP Program by State map), so CHIP eligibility
+    is set in the Medicaid state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP
+    manual, handbook or rule. The Medicaid finding of the same pass applies: the Commonwealth Medicaid Agency''s Eligibility
+    & Enrollment page links two application packets and an FAQ on Google Drive and describes income limits only as percentages
+    of the SSI Federal Benefit Rate; its SPA page links a Google Sheet and the medicaid.gov SPA index. CMS''s CHIP State Plan
+    Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa) hosts SPA approval packages and the
+    title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -1532,6 +1609,33 @@ states:
     chip_state_plan_pdf: 1
     privacy_notice_pdf: 1
     program_web_page: 12
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_medicaid_expansion_chip_no_separate_document
+  primary_source_url: https://medicaid.pr.gov/CMS/5
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-pr
+    document_class: manual
+    version: null
+  index_url: https://medicaid.pr.gov/CMS/5
+  index_document_count: 138
+  taken_count: 0
+  index_families:
+    separate_chip_eligibility_document:
+      found: 0
+      taken: 0
+  notes: 'Blocked (2026-09-11 territories pass; first probe 2026-09-11T21:15Z from a US network). Puerto Rico''s CHIP is a
+    Medicaid-expansion CHIP (all five territories per the medicaid.gov CHIP Program by State map), so CHIP eligibility is
+    set in the Medicaid state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP manual,
+    handbook or rule. The Medicaid finding of the same pass applies: the Puerto Rico Medicaid Program (medicaid.pr.gov, chain
+    completed with the committed DigiCert G2 intermediate) publishes applicant document lists, a pre-screening calculator
+    and 138 provider-enrollment files, no eligibility manual or reglamento; Plan Vital (ASES) pages are insurer and plan information.
+    CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa) hosts SPA approval
+    packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -1723,6 +1827,32 @@ states:
     2026-09-10-medicaid-state-eligibility-manual). Manifest lives on the parallel Medicaid branch (discovery/ingest-medicaid);
     artifacts share data/corpus in the main checkout. Nothing separate to add.
   pointer: us-va/manual/dmas/medicaid/m21 (Chapter M21 FAMIS, 22 provisions; also m22 FAMIS MOMS, m23 FAMIS Prenatal)
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_medicaid_expansion_chip_no_separate_document
+  primary_source_url: https://dhs.vi.gov/office-of-medicaid/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-vi
+    document_class: manual
+    version: null
+  index_url: https://dhs.vi.gov/office-of-medicaid/
+  index_document_count: 10
+  taken_count: 0
+  index_families:
+    separate_chip_eligibility_document:
+      found: 0
+      taken: 0
+  notes: 'Blocked (2026-09-11 territories pass; first probe 2026-09-11T21:15Z from a US network). Virgin Islands''s CHIP is
+    a Medicaid-expansion CHIP (all five territories per the medicaid.gov CHIP Program by State map), so CHIP eligibility is
+    set in the Medicaid state plan and the Medicaid eligibility documents, and the territory publishes no separate CHIP manual,
+    handbook or rule. The Medicaid finding of the same pass applies: the Virgin Islands DHS Office of Medicaid page lists
+    nine application forms and the Providers General Information Manual (provider family), no eligibility manual or state
+    plan. CMS''s CHIP State Plan Amendments page (https://www.medicaid.gov/chip/state-program-information/chip-spa) hosts
+    SPA approval packages and the title XXI template, not territory CHIP plans. 0 taken. Nothing was worked around.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

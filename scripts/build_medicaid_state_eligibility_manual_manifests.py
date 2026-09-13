@@ -2433,6 +2433,96 @@ STATIC_ROWS: dict[str, dict[str, Any]] = {
 }
 
 
+# ---------------------------------------------------------------- batch 6: territories (2026-09-11)
+# First probes 2026-09-11T21:15Z from a US network, one plain request with a browser User-Agent per page
+# (curl_cffi chrome120 only where noted). None of the five territory Medicaid agencies publishes an
+# eligibility manual, handbook or adopted eligibility rule; nothing was worked around and no mirror was used.
+BUILDERS_BATCH6: dict[str, Any] = {}
+NAMES_BATCH6 = {"us-pr": "Puerto Rico", "us-gu": "Guam", "us-vi": "Virgin Islands", "us-as": "American Samoa",
+                "us-mp": "Northern Mariana Islands"}
+SOURCE_KIND_BATCH6: dict[str, str] = {}
+STATIC_ROWS_BATCH6: dict[str, dict[str, Any]] = {
+    "us-pr": {
+        "queue_status": "blocked_primary_source", "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": "https://medicaid.pr.gov/", "target_manifest": "manifests/us-pr-medicaid-eligibility-manual.yaml",
+        "target_scope": {"jurisdiction": "us-pr", "document_class": "manual", "version": None},
+        "index_url": "https://medicaid.pr.gov/CMS/5", "index_document_count": 138, "taken_count": 0,
+        "index_families": {"provider_enrollment_checklist_pdf": {"found": 69, "taken": 0},
+                           "provider_enrollment_policy_pdf": {"found": 25, "taken": 0},
+                           "provider_communication_pdf": {"found": 36, "taken": 0},
+                           "provider_form_pdf_xlsx": {"found": 8, "taken": 0},
+                           "eligibility_manual_or_regulation": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): the Puerto Rico Medicaid Program (Departamento de Salud, medicaid.pr.gov; "
+                  "the host omits its DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate, completed with the committed "
+                  "data/certs copy via REQUESTS_CA_BUNDLE, verification never disabled) publishes no eligibility manual or "
+                  "reglamento: the Solicitante page (/CMS/34) lists the documents an applicant must bring and links the "
+                  "pre-screening calculator at prod-ua.preeservices.com, the Beneficiarios page (/CMS/4) and the Guias page "
+                  "(/CMS/5) carry 138 provider-enrollment files (checklists, PRV/AP/CLM policies, communications, forms), "
+                  "the Department of Health program page (salud.pr.gov/CMS/85) has no documents and ASES (Plan Vital) "
+                  "publishes insurer and plan pages. 0 taken. Nothing was worked around."),
+    },
+    "us-gu": {
+        "queue_status": "blocked_primary_source", "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": "https://dphss.guam.gov/services/medicaremedicaid",
+        "target_manifest": "manifests/us-gu-medicaid-eligibility-manual.yaml",
+        "target_scope": {"jurisdiction": "us-gu", "document_class": "manual", "version": None},
+        "index_url": "https://dphss.guam.gov/services/medicaremedicaid", "index_document_count": 0, "taken_count": 0,
+        "index_families": {"medicare_medicaid_service_page_html": {"found": 1, "taken": 0},
+                           "eligibility_manual_or_state_plan_pdf": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): Guam DPHSS (Division of Public Welfare, Bureau of Health Care Financing "
+                  "Administration) publishes no Medicaid eligibility manual: the Medicare/Medicaid services page and the "
+                  "BHCFA bureau page are text-only program descriptions with no document links (HTTP 200), and the 2019 "
+                  "'Guam Medicaid State Plan' (1-of-2, 2-of-2) and 'Guam Medicaid Handbook' PDFs that search engines still "
+                  "index under wp-content/uploads/2019 answer HTTP 404 on the current site. 0 taken. Nothing was worked around."),
+    },
+    "us-vi": {
+        "queue_status": "blocked_primary_source", "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": "https://dhs.vi.gov/office-of-medicaid/",
+        "target_manifest": "manifests/us-vi-medicaid-eligibility-manual.yaml",
+        "target_scope": {"jurisdiction": "us-vi", "document_class": "manual", "version": None},
+        "index_url": "https://dhs.vi.gov/office-of-medicaid/", "index_document_count": 10, "taken_count": 0,
+        "index_families": {"application_form_pdf": {"found": 9, "taken": 0},
+                           "provider_general_information_manual_pdf": {"found": 1, "taken": 0},
+                           "eligibility_manual_or_state_plan_pdf": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): the Virgin Islands Department of Human Services, Office of Medicaid "
+                  "(Medical Assistance Program) page (HTTP 200) lists nine application-family PDFs (hospital presumptive "
+                  "eligibility application, application flyer, documents required, application, room and board statement, "
+                  "authorized representative, statement of circumstances, employment wage and self-employment income "
+                  "forms) and the Providers General Information Manual (2026-01-21; provider family, with a public-comment "
+                  "notice for the Provider Enrollment and General Information manuals); no eligibility manual or state plan. "
+                  "0 taken. Nothing was worked around."),
+    },
+    "us-as": {
+        "queue_status": "blocked_primary_source", "source_kind": "official_publisher_unreachable",
+        "primary_source_url": "https://medicaid.as.gov/", "target_manifest": "manifests/us-as-medicaid-eligibility-manual.yaml",
+        "target_scope": {"jurisdiction": "us-as", "document_class": "manual", "version": None},
+        "index_url": "https://medicaid.as.gov/", "index_document_count": None, "taken_count": 0,
+        "notes": ("Blocked (2026-09-11 territories pass): the American Samoa Medicaid State Agency site medicaid.as.gov "
+                  "has no DNS A record (the zone is delegated to ns3-5.linode.com; NOERROR with an empty answer from the "
+                  "local resolver and from 8.8.8.8; www.medicaid.as.gov is a CNAME to the same name), so the publisher "
+                  "cannot be reached by any client (curl 6, plain http and https). Index inventory not possible; no "
+                  "workaround attempted."),
+    },
+    "us-mp": {
+        "queue_status": "blocked_primary_source", "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": "https://www.cnmimedicaid.org/departments/eligibility-enrollment",
+        "target_manifest": "manifests/us-mp-medicaid-eligibility-manual.yaml",
+        "target_scope": {"jurisdiction": "us-mp", "document_class": "manual", "version": None},
+        "index_url": "https://www.cnmimedicaid.org/departments/eligibility-enrollment", "index_document_count": 3,
+        "taken_count": 0,
+        "index_families": {"application_packet_google_drive": {"found": 2, "taken": 0},
+                           "eligibility_faq_google_drive": {"found": 1, "taken": 0},
+                           "eligibility_manual_or_state_plan": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): the Commonwealth Medicaid Agency site (cnmimedicaid.org, Google Sites, "
+                  "HTTP 200) publishes no eligibility manual: the Eligibility & Enrollment page links two application "
+                  "packets and an FAQ on Google Drive, lists the documents required and states only that income limits are "
+                  "percentages of the SSI Federal Benefit Rate by household size and category (no figures); the State Plan "
+                  "Amendments page links a Google Sheet listing and the medicaid.gov SPA index (CMS posts SPAs, not the "
+                  "plan); the legacy host medicaid.cnmi.mp does not answer. 0 taken. Nothing was worked around."),
+    },
+}
+
+
 BATCHES = {
     "1": (BUILDERS, STATIC_ROWS, NAMES, SOURCE_KIND,
           "Batch 1 (2026-09-10): the two queued state rows plus the eight largest states by population; done-already states "
@@ -2456,6 +2546,10 @@ BATCHES = {
           "Batch 5 (2026-09-10/11): the last jurisdictions on the map (AK, DC, DE, ND, RI, SD, VT, WY) plus the five needs_review rows "
           "(HI, ME, NE, NH, OR), and the queue repair (us-ma and us-in rows restored; every batch's rows now survive any --batch N run). "
           "Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 5."),
+    "6": (BUILDERS_BATCH6, STATIC_ROWS_BATCH6, NAMES_BATCH6, SOURCE_KIND_BATCH6,
+          "Batch 6 (2026-09-11, territories pass): the five inhabited territories PR, GU, VI, AS, MP, each publisher probed once "
+          "from a US network; none publishes an eligibility manual (AS unreachable: no DNS record). Static rows only. Generator: "
+          "scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 6 [--only us-xx]."),
 }
 BATCH1_RETRY_DETAILS = {
     "us-ca": "HTTP 403 Incapsula interstitial (incident id 648000110658208525-192905496909841125) for both requests.",
@@ -2468,14 +2562,23 @@ BATCH1_RETRY_DETAILS = {
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--batch", choices=["1", "2", "3", "4", "5", "all"], default="all",
+    parser.add_argument("--batch", choices=["1", "2", "3", "4", "5", "6", "all"], default="all",
                         help="which batch's builders and static rows to (re)build; rows of the other batch are left untouched")
     parser.add_argument("--only", action="append", default=[], metavar="JURISDICTION",
                         help="restrict live builders to these jurisdictions (static rows of the batch are still applied)")
     args = parser.parse_args()
-    batches = ["1", "2", "3", "4", "5"] if args.batch == "all" else [args.batch]
+    batches = ["1", "2", "3", "4", "5", "6"] if args.batch == "all" else [args.batch]
     queue = yaml.safe_load(QUEUE.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    # The first row of a jurisdiction is the one the batches address; later rows of the same jurisdiction (the
+    # federal eCFR follow-on row of docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md) are carried through
+    # untouched and written back right after that first row.
+    rows: dict[str, dict[str, Any]] = {}
+    extra_rows: dict[str, list[dict[str, Any]]] = {}
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     loaded = set(rows)
     summary: dict[str, Any] = {}
     for batch in batches:
@@ -2511,6 +2614,8 @@ def main() -> int:
             rows[jur] = row
             print(f"{jur}: {len(docs)} documents; index families {info['families']}")
         for jur, static in static_rows.items():
+            if batch == "6" and args.only and jur not in args.only:
+                continue  # territory rows are static; --only selects which of them to (re)apply
             row = rows.get(jur) or {"jurisdiction": jur, "name": names.get(jur, "Federal"), "lead_counts": {}, "candidate_sources": []}
             row.update(static)
             rows[jur] = row
@@ -2532,7 +2637,7 @@ def main() -> int:
     if lost := loaded - set(rows):
         print(f"queue rows would be dropped: {sorted(lost)}", file=sys.stderr)
         return 1
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1

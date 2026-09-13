@@ -1549,6 +1549,51 @@ BLOCKED = {
     ),
 }
 
+# Territories (2026-09-11 pass; first probes 2026-09-11T21:15Z from a US network, one plain request each with a
+# browser User-Agent; nothing was worked around). None of the five WIC State agencies publishes a policy manual.
+TERRITORY_BLOCKED = {
+    "us-pr": (
+        "Puerto Rico Department of Health, WIC Program",
+        "https://wic.pr.gov/",
+        "The Puerto Rico WIC policy manual is not published on wic.pr.gov (HTTP 200): the site is a single-page Angular "
+        "application whose server response is the app-root shell with no document links or text, and the Department of "
+        "Health site www.salud.pr.gov lists no WIC manual; the client-side application was not driven. No mirror was used.",
+    ),
+    "us-gu": (
+        "Guam Department of Public Health and Social Services, WIC Program",
+        "https://dphss.guam.gov/dphss-programs/women-infants-children-wic-program",
+        "The Guam WIC policy manual is not published on dphss.guam.gov (HTTP 200): the WIC program page and the WIC "
+        "services page are text-only program descriptions with no document links (0 PDFs), and the only WIC PDF located "
+        "on the host is the 2024-2025 income eligibility guidelines in the retired wp-content path. No page lists a manual.",
+    ),
+    "us-vi": (
+        "Virgin Islands Department of Health, WIC Program",
+        "https://doh.vi.gov/programs/women-infants-and-children/more-wic-information/",
+        "The Virgin Islands WIC policy manual is not published on doh.vi.gov (HTTP 200): the More WIC Information page "
+        "lists nine participant PDFs (eligibility checklist, medical referral and formula prescription forms, mobile-app "
+        "sheet, rights and responsibilities forms in English and Spanish, eWIC card guides, brochure) and the department's "
+        "news item opens the FY 2027 WIC State Plan of Operations for public comment (state-plan family, MT precedent); "
+        "no page lists a manual or local-agency section.",
+    ),
+    "us-as": (
+        "American Samoa Department of Human and Social Services, WIC Program",
+        "https://aswic.com/",
+        "The American Samoa WIC policy manual is not published: the program site aswic.com (the address FNA's WIC "
+        "contact page gives for the agency; HTTP 200) carries program descriptions, clinic information and the USDA "
+        "complaint form only; the department site www.dhss.as presents a self-signed, expired certificate (verification "
+        "not disabled; curl 60 plain and curl_cffi chrome120) and its plain-HTTP ASWIC menu entry is the 'coming.html' "
+        "placeholder. No page lists a manual.",
+    ),
+    "us-mp": (
+        "Commonwealth Healthcare Corporation, CNMI WIC Program",
+        "https://www.chcc.health/cnmi-wic.php",
+        "The CNMI WIC policy manual is not published on chcc.health (HTTP 200): the CNMI WIC page lists referral, "
+        "medical-documentation and employment-verification forms, the WIC food list booklet and two National WIC "
+        "Association handouts (7 PDFs); no manual or local-agency section.",
+    ),
+}
+BLOCKED.update(TERRITORY_BLOCKED)
+
 STATE_NAMES = {"us-ca": "California", "us-tx": "Texas", "us-fl": "Florida", "us-ny": "New York", "us-pa": "Pennsylvania",
                "us-il": "Illinois", "us-oh": "Ohio", "us-ga": "Georgia", "us-nc": "North Carolina", "us-mi": "Michigan",
                "us-nj": "New Jersey", "us-va": "Virginia", "us-wa": "Washington", "us-az": "Arizona", "us-tn": "Tennessee",
@@ -1558,7 +1603,9 @@ STATE_NAMES = {"us-ca": "California", "us-tx": "Texas", "us-fl": "Florida", "us-
                "us-ia": "Iowa", "us-nv": "Nevada", "us-ar": "Arkansas", "us-ms": "Mississippi", "us-ks": "Kansas", "us-nm": "New Mexico",
                "us-ne": "Nebraska", "us-wv": "West Virginia", "us-id": "Idaho", "us-hi": "Hawaii", "us-nh": "New Hampshire",
                "us-me": "Maine", "us-mt": "Montana", "us-ri": "Rhode Island", "us-de": "Delaware", "us-sd": "South Dakota",
-               "us-ak": "Alaska", "us-dc": "District of Columbia", "us-nd": "North Dakota", "us-vt": "Vermont", "us-wy": "Wyoming"}
+               "us-ak": "Alaska", "us-dc": "District of Columbia", "us-nd": "North Dakota", "us-vt": "Vermont", "us-wy": "Wyoming",
+               "us-pr": "Puerto Rico", "us-gu": "Guam", "us-vi": "Virgin Islands", "us-as": "American Samoa",
+               "us-mp": "Northern Mariana Islands"}
 
 BATCH_NOTE = {
     1: "Selected in the first batch as one of the ten largest states by population.",
@@ -1567,6 +1614,7 @@ BATCH_NOTE = {
     4: "Selected in the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state.",
     5: "Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).",
     6: "Selected in the fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY).",
+    7: "Selected in the territories pass (2026-09-11): the five inhabited territories PR, GU, VI, AS, MP.",
 }
 BATCH = dict.fromkeys(("us-ca", "us-tx", "us-fl", "us-ny", "us-pa", "us-il", "us-oh", "us-ga", "us-nc", "us-mi"), 1)
 BATCH.update(dict.fromkeys(("us-nj", "us-va", "us-wa", "us-az", "us-tn", "us-ma", "us-in", "us-md", "us-mo", "us-wi"), 2))
@@ -1574,6 +1622,7 @@ BATCH.update(dict.fromkeys(("us-co", "us-mn", "us-sc", "us-al", "us-la", "us-ky"
 BATCH.update(dict.fromkeys(("us-ia", "us-nv", "us-ar", "us-ms", "us-ks", "us-nm"), 4))
 BATCH.update(dict.fromkeys(("us-ne", "us-wv", "us-id", "us-hi", "us-nh", "us-me", "us-mt", "us-ri", "us-de", "us-sd"), 5))
 BATCH.update(dict.fromkeys(("us-ak", "us-dc", "us-nd", "us-vt", "us-wy"), 6))
+BATCH.update(dict.fromkeys(("us-pr", "us-gu", "us-vi", "us-as", "us-mp"), 7))
 
 # Batch-1 blocked rows re-checked once during batch 2 (agency site only; nothing else was tried).
 RECHECKED = {"us-ny": "2026-09-10T18:47Z", "us-fl": "2026-09-10T18:47Z", "us-il": "2026-09-10T18:47Z", "us-oh": "2026-09-10T18:47Z"}

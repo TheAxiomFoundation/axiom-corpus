@@ -423,6 +423,26 @@ def _download_document(
     )
 
 
+def _browser_impersonation_headers(
+    headers: dict[str, str] | None,
+    *,
+    impersonate: str,
+) -> dict[str, str]:
+    """Headers for a curl_cffi fetch that stay consistent with the impersonated browser.
+
+    Chromium profiles (the default ``chrome120``, ``edge``) keep the official Chrome
+    User-Agent. For a Safari or Firefox profile no User-Agent is forced: a Chrome
+    User-Agent on a Safari TLS fingerprint is itself a bot signal (Cloudflare answers
+    HTTP 403 to it), so curl_cffi sends the profile's own User-Agent instead.
+    """
+    request_headers = dict(headers or {})
+    if impersonate.startswith(("chrome", "edge")):
+        request_headers.setdefault("User-Agent", OFFICIAL_DOCUMENT_BROWSER_USER_AGENT)
+    else:
+        request_headers.pop("User-Agent", None)
+    return request_headers
+
+
 def _download_document_by_browser_impersonation(
     source: OfficialDocumentSource,
     download_url: str,
@@ -437,10 +457,7 @@ def _download_document_by_browser_impersonation(
     except ImportError as exc:  # pragma: no cover - exercised only in incomplete installs
         raise RuntimeError("browser_impersonation official-document fetches require curl-cffi") from exc
 
-    request_headers = {
-        "User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
-        **(headers or {}),
-    }
+    request_headers = _browser_impersonation_headers(headers, impersonate=impersonate)
     for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
         try:
             response = curl_requests.get(

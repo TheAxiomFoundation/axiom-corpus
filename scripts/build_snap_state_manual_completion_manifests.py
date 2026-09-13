@@ -132,13 +132,17 @@ def registered_citation_paths(*manifests: str) -> set[str]:
     return paths
 
 
-def corpus_citation_paths(corpus_base: Path | None, jurisdiction: str) -> set[str]:
+def corpus_citation_paths(corpus_base: Path | None, jurisdiction: str, *, exclude_version: str | None = None) -> set[str]:
     """Every citation_path in every provisions JSONL of the jurisdiction (all document
-    classes, all versions). Empty when no corpus base is available (sparse worktree)."""
+    classes, all versions). Empty when no corpus base is available (sparse worktree).
+    ``exclude_version`` leaves out the scope a builder is regenerating, so re-running a
+    generator after its own extraction does not count its own rows as collisions."""
     if corpus_base is None:
         return set()
     paths: set[str] = set()
     for jsonl in sorted((corpus_base / "provisions" / jurisdiction).glob("*/*.jsonl")):
+        if exclude_version and jsonl.stem == exclude_version:
+            continue
         with jsonl.open() as handle:
             for line in handle:
                 if line.strip():
@@ -668,10 +672,214 @@ def build_nd() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     return docs, {"index_url": landing, "families": families, "existing_citation_paths_skipped": sorted(existing)}
 
 
+
+# --------------------------------------------------------------------------- territories (2026-09-11)
+# Puerto Rico, American Samoa and the Northern Mariana Islands run block-grant nutrition assistance
+# instead of SNAP (7 U.S.C. 2012(r) counts Guam and the Virgin Islands as States; 7 U.S.C. 2028 funds
+# NAP for Puerto Rico and American Samoa; the CNMI NAP runs under an FNS memorandum of understanding).
+# Guam and the Virgin Islands run SNAP. Each publisher was probed 2026-09-11T21:15Z from a US network.
+RUN_NOTE_TERRITORIES = "docs/ingest-runs/2026-09-11-territories-ten-programs.md"
+PR_ADSEF_REGLAMENTOS = "https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento"
+PR_NAP_VERSION = "2026-09-11-snap-nap-regulation"
+MP_NAP_INDEX = "https://cnminap.gov.mp/"
+MP_NAP_VERSION = "2026-09-11-snap-nap-mou"
+TERRITORY_BROWSER_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36"
+)
+
+
+def fetch_territory_index(url: str, *, must_contain: str, attempts: int = 4) -> str:
+    """GET a territory publisher index with a cookie-keeping browser session; retry when the host
+    answers a transient redirect loop (serviciosenlinea.adsef.pr.gov, ASP.NET) or a page that lacks
+    the expected link text (cnminap.gov.mp occasionally serves a truncated page). TLS stays on."""
+    last: Exception | None = None
+    for attempt in range(attempts):
+        session = requests.Session()
+        session.headers.update({"User-Agent": TERRITORY_BROWSER_UA})
+        try:
+            page = fetch(url, session=session)
+            if must_contain in page:
+                return page
+            last = RuntimeError(f"{url}: page without {must_contain!r} ({len(page)} bytes)")
+        except requests.RequestException as exc:  # TooManyRedirects, HTTPError, timeouts
+            last = exc
+        time.sleep(3 * (attempt + 1))
+    raise RuntimeError(f"territory index fetch failed after {attempts} attempts: {last}")
+
+
+def build_pr_nap() -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Puerto Rico NAP (Programa de Asistencia Nutricional, PAN): ADSEF's Reglamentos page lists the two
+    adopted eligibility regulations, PAN 8684 and TANF 7653. Reglamento 8684 (28 de diciembre de 2015),
+    'Reglamento para establecer las normas de elegibilidad del Programa de Asistencia Nutricional', is the
+    territory's NAP eligibility rule and is taken here (regulation, scanned image-only PDF, page OCR).
+    The 2023 NAP State Plan of Operations on the same page (scanned, 86 pages) and the FNA-hosted FY 2026
+    plan approval letter are the plan family, recorded and not taken; the TANF regulation is taken by the
+    TANF territories row."""
+    page = fetch_territory_index(PR_ADSEF_REGLAMENTOS, must_contain="ReglamentoPAN")
+    items = links(page, PR_ADSEF_REGLAMENTOS)
+    pdfs = list({h: (h, t) for h, t in items if h.lower().endswith(".pdf")}.values())  # unique by href
+    target = [h for h, t in pdfs if t.strip().upper().startswith("PAN")]
+    if len(target) != 1:
+        raise RuntimeError(f"expected one PAN reglamento link on the ADSEF Reglamentos page, found {target}")
+    url = target[0]
+    families = {
+        "adsef_reglamento_pdf": {"found": len([1 for _h, t in pdfs if t.strip().upper().startswith(("PAN", "TANF"))]), "taken": 1},
+        "nap_state_plan_of_operations_pdf": {"found": len([1 for _h, t in pdfs if "NAP STATE PLAN" in t.upper()]), "taken": 0},
+        "other_program_state_plan_pdf": {"found": len([1 for _h, t in pdfs if "State Plan" in t and "NAP" not in t]), "taken": 0},
+        "application_and_certification_form_pdf": {"found": len([1 for h, _t in pdfs if ".sl-" in h]), "taken": 0},
+        "public_notice_and_rfp_pdf": {"found": len([1 for h, t in pdfs if ".sl-" not in h and not t.strip().upper().startswith(("PAN", "TANF")) and "State Plan" not in t and "STATE PLAN" not in t]), "taken": 0},
+    }
+    doc = {
+        "source_id": "us-pr-adsef-reglamento-8684-pan",
+        "jurisdiction": "us-pr",
+        "document_class": "regulation",
+        "citation_path": "us-pr/regulation/adsef/reglamento-8684",
+        "title": "Reglamento Num. 8684: Reglamento para establecer las normas de elegibilidad del Programa de Asistencia Nutricional (PAN)",
+        "source_url": url,
+        "source_format": "pdf",
+        "source_as_of": SOURCE_AS_OF,
+        "expression_date": "2015-12-28",
+        "extraction": {"ocr": True},
+        "metadata": {
+            "primary_source": True,
+            "source_authority": "Puerto Rico Department of the Family, Administracion de Desarrollo Socioeconomico de la Familia (ADSEF)",
+            "document_subtype": "adopted_regulation_pdf",
+            "program": "NAP",
+            "federal_program": "NAP block grant (7 U.S.C. 2028), in lieu of SNAP",
+            "regulation_number": "8684",
+            "regulation_date": "2015-12-28",
+            "manual_landing_page": PR_ADSEF_REGLAMENTOS,
+            "source_discovery_group": "us-pr/regulation/nap",
+            "discovered_via": f"manual-review:snap-completion-agent-queue territories pass; publisher index {PR_ADSEF_REGLAMENTOS}",
+            "extraction_granularity": "pdf_page",
+            "ocr_note": "scanned image-only PDF; Tesseract page OCR with the eng traineddata (the only one installed), so Spanish diacritics are approximate",
+        },
+    }
+    return [doc], {"index_url": PR_ADSEF_REGLAMENTOS, "families": families, "version": PR_NAP_VERSION,
+                   "stem": "us-pr-nap-eligibility-regulation"}
+
+
+def build_mp_nap() -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """CNMI NAP (Department of Community and Cultural Affairs): the program's own site lists the signed
+    FFY 2025 NAP block-grant Memorandum of Understanding between the CNMI and USDA FNS (the governing
+    document: funding, benefit levels, financial and nonfinancial eligibility criteria), the 2026 DNAP
+    application and checklist and the Summer EBT waiver; the Application Center lists forms, the 2021
+    Nutrition Assistance Program Guide (self-screening leaflet) and the 2025 applicant orientation paper.
+    The MOU is taken (policy, scanned image-only PDF, page OCR); the leaflets are participant guidance."""
+    page = fetch_territory_index(MP_NAP_INDEX, must_contain="Memorandum of Understanding")
+    items = links(page, MP_NAP_INDEX)
+    pdfs = [(h, t) for h, t in items if h.lower().endswith(".pdf")]
+    target = [h for h, t in pdfs if "Memorandum of Understanding" in t]
+    if len(target) != 1:
+        raise RuntimeError(f"expected one MOU link on the CNMI NAP home page, found {target}")
+    url = target[0].replace("http://", "https://", 1)
+    apps = fetch_territory_index(MP_NAP_INDEX + "application-center/", must_contain="NAP-Application")
+    app_pdfs = {h for h, _t in links(apps, MP_NAP_INDEX) if h.lower().endswith(".pdf")}
+    families = {
+        "nap_block_grant_mou_pdf": {"found": 1, "taken": 1},
+        "disaster_nap_application_and_checklist_pdf": {"found": len([1 for _h, t in pdfs if "DNAP" in t]), "taken": 0},
+        "summer_ebt_waiver_pdf": {"found": len([1 for _h, t in pdfs if "EBT" in t]), "taken": 0},
+        "application_center_forms_guides_and_reports_pdf": {"found": len(app_pdfs), "taken": 0},
+    }
+    doc = {
+        "source_id": "us-mp-dcca-nap-mou-ffy2025",
+        "jurisdiction": "us-mp",
+        "document_class": "policy",
+        "citation_path": "us-mp/policy/fns/nap-mou/fy2025",
+        "title": "CNMI Nutrition Assistance Program: FFY 2025 NAP Block Grant Memorandum of Understanding between the CNMI and USDA Food and Nutrition Service (version 6, signed 2024-12-03)",
+        "source_url": url,
+        "source_format": "pdf",
+        "source_as_of": SOURCE_AS_OF,
+        "expression_date": "2024-10-01",
+        "extraction": {"ocr": True},
+        "metadata": {
+            "primary_source": True,
+            "source_authority": "CNMI Department of Community and Cultural Affairs, Nutrition Assistance Program (signed with USDA Food and Nutrition Service)",
+            "document_subtype": "block_grant_memorandum_of_understanding_pdf",
+            "program": "NAP",
+            "federal_program": "NAP block grant (USDA FNS memorandum of understanding), in lieu of SNAP",
+            "plan_period": "2024-10-01 to 2025-09-30 (funds available through 2026-09-30)",
+            "manual_landing_page": MP_NAP_INDEX,
+            "source_discovery_group": "us-mp/policy/nap",
+            "discovered_via": f"manual-review:snap-completion-agent-queue territories pass; publisher index {MP_NAP_INDEX}",
+            "extraction_granularity": "pdf_page",
+            "url_note": "the publisher links the file over http; fetched over https on the same host with TLS verification",
+            "ocr_note": "scanned image-only PDF (DCCA transmittal memorandum plus the MOU); Tesseract page OCR",
+        },
+    }
+    return [doc], {"index_url": MP_NAP_INDEX, "families": families, "version": MP_NAP_VERSION,
+                   "stem": "us-mp-nap-mou-fy2025"}
+
+
+STATIC_ROWS_TERRITORIES: dict[str, dict[str, Any]] = {
+    "us-gu": {
+        "queue_status": "blocked_primary_source",
+        "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": "https://dphss.guam.gov/bureau-economic-security-bes",
+        "target_manifest": "manifests/us-gu-snap-manual-completion.yaml",
+        "target_scope": {"jurisdiction": "us-gu", "document_class": "manual", "version": None},
+        "index_url": "https://dphss.guam.gov/bureau-economic-security-bes",
+        "index_document_count": 6, "taken_count": 0,
+        "index_families": {"application_and_change_report_form_pdf": {"found": 4, "taken": 0},
+                           "snap_employment_and_training_state_plan_pdf": {"found": 1, "taken": 0},
+                           "tanf_state_plan_pdf": {"found": 1, "taken": 0},
+                           "snap_state_plan_or_manual": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): Guam runs SNAP (7 U.S.C. 2012(r)) through DPHSS's Bureau of Economic "
+                  "Security, whose page (HTTP 200) lists the Application for Public Benefits, change-report and "
+                  "self-employment forms, the FY26 SNAP Employment and Training State Plan and the FY26 TANF State Plan; "
+                  "its 'FY26 SNAP State Plan' entry carries no link (the anchor is commented out in the page source) and "
+                  "the SNAP services page is a text-only description. No SNAP policy manual or plan of operation is "
+                  "published. 0 taken. Nothing was worked around."),
+    },
+    "us-vi": {
+        "queue_status": "blocked_primary_source",
+        "source_kind": "official_state_agency_manual_not_published",
+        "primary_source_url": "https://dhs.vi.gov/family-assistance-programs/",
+        "target_manifest": "manifests/us-vi-snap-manual-completion.yaml",
+        "target_scope": {"jurisdiction": "us-vi", "document_class": "manual", "version": None},
+        "index_url": "https://dhs.vi.gov/family-assistance-programs/",
+        "index_document_count": 24, "taken_count": 0,
+        "index_families": {"snap_application_packet_and_form_pdf": {"found": 10, "taken": 0},
+                           "fy2026_snap_income_limits_and_simplified_reporting_pdf": {"found": 2, "taken": 0},
+                           "snap_employment_and_training_plan_and_handbook_pdf": {"found": 2, "taken": 0},
+                           "abawd_flyer_and_form_pdf": {"found": 4, "taken": 0},
+                           "summer_ebt_and_child_nutrition_waiver_pdf": {"found": 3, "taken": 0},
+                           "ecap_tanf_and_nondiscrimination_pdf": {"found": 3, "taken": 0},
+                           "snap_policy_manual_or_plan_of_operation": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): the Virgin Islands runs SNAP (7 U.S.C. 2012(r)) through the Department of "
+                  "Human Services, Division of Family Assistance, whose page (HTTP 200) lists 24 PDFs: application packets "
+                  "and forms, the FY 2026 income-eligibility limits chart and simplified-reporting notice, the FY 2026 SNAP "
+                  "E&T plan and handbook, ABAWD flyers, Summer EBT and child-nutrition waivers, ECAP forms and a TANF "
+                  "brochure. No SNAP policy manual or plan of operation is published (the 'Plan for Operations Management' "
+                  "file on the page is the FY 2025 Summer EBT iPOM). 0 taken. Nothing was worked around."),
+    },
+    "us-as": {
+        "queue_status": "blocked_primary_source",
+        "source_kind": "official_state_agency_document_not_published",
+        "primary_source_url": "http://dhss.as/index.html",
+        "target_manifest": "manifests/us-as-nap-plan.yaml",
+        "target_scope": {"jurisdiction": "us-as", "document_class": "policy", "version": None},
+        "index_url": "https://fns-prod.azureedge.us/nap/nutrition-assistance-program-block-grants",
+        "index_document_count": 1, "taken_count": 0,
+        "index_families": {"fna_nap_summary_factsheet_pdf": {"found": 1, "taken": 0},
+                           "asnap_plan_of_operation_or_manual": {"found": 0, "taken": 0}},
+        "notes": ("Territories pass (2026-09-11): American Samoa runs the ASNAP block grant instead of SNAP (7 U.S.C. "
+                  "2028). The administering agency, the Department of Human and Social Services, presents a self-signed, "
+                  "expired certificate on https://www.dhss.as (verification not disabled; curl 60 plain and curl_cffi "
+                  "chrome120) and its plain-HTTP site http://dhss.as/index.html (HTTP 200) has 'coming.html' placeholders "
+                  "for ASNAP, ASWIC and Child Care; FNA's NAP page hosts only the FY 2025 American Samoa NAP summary "
+                  "factsheet and links the DHSS site. No plan of operation or eligibility manual is published. 0 taken. "
+                  "Nothing was worked around."),
+    },
+}
+
+
 # --------------------------------------------------------------------------- queue rows
 
-BUILDERS = {"us-tx": build_tx, "us-nh": build_nh, "us-ky": build_ky, "us-wy": build_wy, "us-nd": build_nd}
-BATCH = {"us-tx": 1, "us-nh": 1, "us-ky": 2, "us-wy": 2, "us-nd": 2}
+BUILDERS = {"us-tx": build_tx, "us-nh": build_nh, "us-ky": build_ky, "us-wy": build_wy, "us-nd": build_nd,
+            "us-pr": build_pr_nap, "us-mp": build_mp_nap}
+BATCH = {"us-tx": 1, "us-nh": 1, "us-ky": 2, "us-wy": 2, "us-nd": 2, "us-pr": 4, "us-mp": 4}
+RUN_NOTES = {1: RUN_NOTE, 2: RUN_NOTE_BATCH2, 4: RUN_NOTE_TERRITORIES}
 NAMES = {
     "us-fl": "Florida", "us-al": "Alabama", "us-md": "Maryland", "us-ma": "Massachusetts", "us-tx": "Texas",
     "us-ca": "California", "us-ny": "New York", "us-nh": "New Hampshire", "us-ky": "Kentucky", "us-me": "Maine",
@@ -679,10 +887,13 @@ NAMES = {
     "us-nm": "New Mexico", "us-vt": "Vermont", "us-nv": "Nevada", "us-nd": "North Dakota", "us-id": "Idaho",
     "us-nc": "North Carolina", "us-oh": "Ohio", "us-mt": "Montana", "us-ok": "Oklahoma", "us-ga": "Georgia",
     "us-tn": "Tennessee", "us-mi": "Michigan",
+    "us-pr": "Puerto Rico", "us-gu": "Guam", "us-vi": "Virgin Islands", "us-as": "American Samoa",
+    "us-mp": "Northern Mariana Islands",
 }
 SOURCE_KIND = {
     "us-tx": "official_html_handbook_sections", "us-nh": "official_html_webhelp_manual_topics",
     "us-ky": "official_pdf_manual_volume", "us-wy": "official_html_manual_subpages", "us-nd": "official_html_manual_topics_and_release_pdfs",
+    "us-pr": "official_pdf_regulation", "us-mp": "official_pdf_block_grant_mou",
 }
 BATCH_NOTE = (
     "Batch 1 (2026-09-10, axiom-corpus#680): ingestion-gap states FL, AL, MD, MA diagnosed against the released "
@@ -704,6 +915,13 @@ BATCH3_NOTE = (
     "released scopes are recorded for superseding scopes. Ohio's OAC 5101:4 is complete (82 of 82 rules) and its eManuals host "
     "does not answer (blocked_primary_source for the manual family). Generator: "
     "scripts/build_snap_state_manual_completion_manifests.py --static-only."
+)
+
+TERRITORIES_NOTE = (
+    "Territories pass (2026-09-11, US network): PR (Reglamento 8684, the NAP eligibility regulation) and MP (FFY 2025 NAP "
+    "block-grant MOU) extracted; GU and VI (SNAP) and AS (ASNAP) publish no manual or plan. Generator: "
+    "scripts/build_snap_state_manual_completion_manifests.py --only us-pr --only us-mp --only us-gu --only us-vi --only us-as "
+    "--corpus-base <corpus>."
 )
 
 STATIC_ROWS: dict[str, dict[str, Any]] = {
@@ -1340,6 +1558,99 @@ STATIC_ROWS_BATCH3: dict[str, dict[str, Any]] = {
 }
 
 
+RUN_NOTE_SUPERSEDE = "docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md"
+SUPERSEDE_NOTE = (
+    "Superseding batch 1 (2026-09-11, US network): the revised editions recorded by batches 1-3 for NC, GA, TN, OK, MI and KY "
+    "were taken as whole-manual re-extractions of the released manifests under new version strings "
+    "2026-09-11-<state>-snap-manual-supersede (released scopes untouched; the next selector swaps the released version for the "
+    "superseding one). Document-level citation paths are identical to the released scopes; page/block sub-paths move where a "
+    "revised edition changed its page or block count. See " + RUN_NOTE_SUPERSEDE + "."
+)
+# Applied after the batch-3 static rows: keys are merged into the row and `notes_suffix` is appended to the row's notes.
+SUPERSEDING_SCOPES: dict[str, dict[str, Any]] = {
+    "us-nc": {
+        "superseding_manifest": "manifests/us-nc-fns-manuals.yaml",
+        "superseding_scope": {"jurisdiction": "us-nc", "document_class": "manual", "version": "2026-09-11-nc-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-nc/manual/2026-09-11-nc-snap-manual-supersede (79 documents, 725 provisions, coverage complete) "
+            "re-extracts the whole manifest with FNS 212, 215, 340 and 515 pointed at the August 2026 files (expression dates "
+            "2026-08-17, 2026-08-04, 2026-08-04, 2026-08-13); the other 75 documents extract byte-identically to the released scope. "
+            "Sub-paths: FNS 212 gains page-10..12, FNS 340 loses page-29."
+        ),
+    },
+    "us-ga": {
+        "superseding_manifest": "manifests/us-ga-snap-manual.yaml",
+        "superseding_scope": {"jurisdiction": "us-ga", "document_class": "manual", "version": "2026-09-11-ga-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-ga/manual/2026-09-11-ga-snap-manual-supersede (100 documents, 1,207 provisions, coverage "
+            "complete). The 18 MT 87 items carry 2026-06-01; 3025 (ADA and Section 504) is a further revised edition not on MT 87 "
+            "(DFCS Civil Rights Policy Manual policy 3601, effective June 15, 2026; expression date 2026-06-15); 3030 differs only by "
+            "two backtick characters around its policy number (dates unchanged); the other 80 documents extract byte-identically. "
+            "Sub-paths: 3025 collapses from 24 to 10 blocks; 3205, 3335, 3405, 3515, 3614, 3715 and 3805 gain one block each. "
+            "Release validation flagged 3614/block-12 against the released us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup scope "
+            "(an orphan July page-split fragment of 3614 that survived the July dedup because the May edition had 11 blocks); "
+            "its 12-row successor us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup drops that "
+            "fragment (scripts/consolidate_release_scopes.py, --include-citation-from for the other 12 rows) and the selector "
+            "swaps both Georgia scopes."
+        ),
+        "superseding_companion_scope": {
+            "jurisdiction": "us-ga", "document_class": "manual",
+            "version": "2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup",
+            "replaces": "2026-07-13-recovery-r2026-07-17-dedup",
+        },
+    },
+    "us-tn": {
+        "superseding_manifest": "manifests/us-tn-snap-policies.yaml",
+        "superseding_scope": {"jurisdiction": "us-tn", "document_class": "manual", "version": "2026-09-11-tn-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-tn/manual/2026-09-11-tn-snap-manual-supersede (27 documents, 233 provisions, coverage "
+            "complete, citation-path set identical to the released scope). 24.31 carries 2026-06-01 (effective June 1, 2026; last "
+            "review May 26, 2026); the other 26 sections extract byte-identically."
+        ),
+    },
+    "us-ok": {
+        "superseding_manifest": "manifests/us-ok-snap-policy.yaml",
+        "superseding_scope": {"jurisdiction": "us-ok", "document_class": "policy", "version": "2026-09-11-ok-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-ok/policy/2026-09-11-ok-snap-manual-supersede (10 documents, 113 provisions, coverage "
+            "complete, citation-path set identical). Appendix D-4-C is a new file (Last-Modified 2026-08-28, source_as_of updated) "
+            "whose extracted text is identical to the released edition, still dated 7/9/2025 on its pages (expression date kept); "
+            "all ten documents extract byte-identically, the C-3 landing page again differing only in raw site menu HTML."
+        ),
+    },
+    "us-mi": {
+        "superseding_manifest": "manifests/us-mi-bridges-manual.yaml",
+        "superseding_scope": {"jurisdiction": "us-mi", "document_class": "manual", "version": "2026-09-11-mi-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-mi/manual/2026-09-11-mi-snap-manual-supersede (196 documents, 2,317 provisions, coverage "
+            "complete). 20 files changed since the released 2026-07-17 fetch, not 9: the nine August bulletins items (BEM 000, 106, "
+            "230B, 554, 630, BAM 000, 220, 401E, BPB log; BPB 2026-019 to -024, effective 8-1-2026) plus eleven chapters re-served on "
+            "2026-07-20 as their BPB 2026-006/2026-007 editions (BAM 120, 200; BEM 171, 227, 400, 405, 500, 503, 550, 617, 800; "
+            "effective 3-1-2026 and 4-1-2026, later than the editions the released scope held). source_revision, source_sha256, "
+            "source_as_of (Last-Modified) and expression_date (bulletin effective date) updated for all 20; the other 176 documents "
+            "extract byte-identically. Sub-paths: BEM 106 loses page-11; BAM 220, BAM 401E, BEM 500 and BEM 503 gain pages."
+        ),
+    },
+    "us-ky": {
+        "superseding_manifest": "manifests/us-ky-snap-manual.yaml",
+        "superseding_scope": {"jurisdiction": "us-ky", "document_class": "manual", "version": "2026-09-11-ky-snap-manual-supersede"},
+        "superseding_queue_status": "agent_ready",
+        "notes_suffix": (
+            " Superseded 2026-09-11: us-ky/manual/2026-09-11-ky-snap-manual-supersede (2 documents, 405 provisions, coverage "
+            "complete) re-extracts Volumes II and IIA; the batch-2 completion scope (Volume I) is unaffected. Volume II moved again "
+            "after the batch-2 probe: OMTL-708, sections revised through R. 9/1/26, Last-Modified 2026-09-11 (released OMTL-701); "
+            "Volume IIA is OMTL-707, R. 9/1/26, Last-Modified 2026-09-09 (released OMTL-683). Sub-paths: Volume II gains "
+            "page-347..349, Volume IIA gains page-53..54."
+        ),
+    },
+}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--only", action="append", default=[], metavar="JURISDICTION",
@@ -1387,7 +1698,7 @@ def main() -> int:
         if not docs:
             print(f"{jur}: no documents found; index layout changed?", file=sys.stderr)
             return 1
-        in_corpus = corpus_citation_paths(corpus_base, jur)
+        in_corpus = corpus_citation_paths(corpus_base, jur, exclude_version=info.get("version", VERSION))
         skipped = sorted(d["citation_path"] for d in docs if d["citation_path"] in in_corpus)
         if skipped:
             docs = [d for d in docs if d["citation_path"] not in in_corpus]
@@ -1399,9 +1710,10 @@ def main() -> int:
             dupes = sorted({p for p in paths if paths.count(p) > 1})
             print(f"{jur}: duplicate citation paths {dupes}", file=sys.stderr)
             return 1
-        stem = f"{jur}-snap-manual-completion"
+        stem = info.get("stem", f"{jur}-snap-manual-completion")
+        version = info.get("version", VERSION)
         (ROOT / "manifests" / f"{stem}.yaml").write_text(
-            yaml.safe_dump({"version": VERSION, "documents": docs}, sort_keys=False, allow_unicode=True, width=120))
+            yaml.safe_dump({"version": version, "documents": docs}, sort_keys=False, allow_unicode=True, width=120))
         found = sum(f["found"] for f in info["families"].values())
         taken = sum(f["taken"] for f in info["families"].values())
         summary[jur] = {"documents": len(docs), **info}
@@ -1409,13 +1721,14 @@ def main() -> int:
         row.update({
             "name": NAMES[jur], "queue_status": "agent_ready", "source_kind": SOURCE_KIND[jur],
             "primary_source_url": info["index_url"], "target_manifest": f"manifests/{stem}.yaml",
-            "target_scope": {"jurisdiction": jur, "document_class": docs[0]["document_class"], "version": VERSION},
+            "target_scope": {"jurisdiction": jur, "document_class": docs[0]["document_class"], "version": version},
             "index_url": info["index_url"], "index_document_count": found, "taken_count": taken,
             "index_families": info["families"],
-            "notes": (f"Batch {BATCH[jur]} (2026-09-10, #680): {len(docs)} documents taken from the publisher's own index ({found} documents "
+            "notes": (("Territories pass (2026-09-11): " if BATCH[jur] == 4 else f"Batch {BATCH[jur]} (2026-09-10, #680): ")
+                      + f"{len(docs)} documents taken from the publisher's own index ({found} documents "
                       f"inventoried across {len(info['families'])} families; {taken} taken; citation paths checked against every "
                       f"{jur} provisions file{' in ' + str(corpus_base) if corpus_base else ''}). Extraction proven with the "
-                      f"official-documents extractor; see {RUN_NOTE if BATCH[jur] == 1 else RUN_NOTE_BATCH2}."),
+                      f"official-documents extractor; see {RUN_NOTES[BATCH[jur]]}."),
         })
         rows[jur] = row
         built.add(jur)
@@ -1426,8 +1739,20 @@ def main() -> int:
         row = rows.get(jur) or {"jurisdiction": jur, "name": NAMES[jur]}
         row.update({"name": NAMES[jur], **static})
         rows[jur] = row
+    for jur, overlay in SUPERSEDING_SCOPES.items():
+        row = rows[jur]
+        suffix = overlay["notes_suffix"]
+        row.update({key: value for key, value in overlay.items() if key != "notes_suffix"})
+        if suffix.strip() not in (row.get("notes") or ""):
+            row["notes"] = (row.get("notes") or "").rstrip() + suffix
+    for jur, static in STATIC_ROWS_TERRITORIES.items():
+        if args.only and jur not in args.only:
+            continue  # territory static rows follow --only so each territory can be committed on its own
+        row = rows.get(jur) or {"jurisdiction": jur, "name": NAMES[jur]}
+        row.update({"name": NAMES[jur], **static})
+        rows[jur] = row
     notes = queue.setdefault("policy", {}).setdefault("notes", [])
-    for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE):
+    for note in (BATCH_NOTE, BATCH2_NOTE, BATCH3_NOTE, SUPERSEDE_NOTE, TERRITORIES_NOTE):
         if note not in notes:
             notes.append(note)
     queue["states"] = [rows[j] for j in sorted(rows)]

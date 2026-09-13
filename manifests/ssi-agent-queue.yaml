@@ -34,6 +34,9 @@ policy:
   - '2026-09-11 SSI state-supplement batch 3: scripts/build_ssi_state_supplement_manifests.py --batch 3; the six states with
     no optional supplement (AR, AZ, MS, ND, TN, WV) added as done rows pointing at POMS SI 01415.010; MO, WI, SD, AK extracted;
     WY blocked (script-rendered Drive embed); OK re-probed and extracted from the rules.ok.gov segments API; docs/ingest-runs/2026-09-10-ssi-state-supplements-batch-3.md.'
+  - '2026-09-11 SSI territories pass: scripts/build_ssi_state_supplement_manifests.py --batch 4; MP done (SSI applies, no
+    supplement; POMS SI 00501.410 pointer); PR, GU, VI, AS not applicable under 42 U.S.C. 1382c(e), recorded as blocked_primary_source;
+    docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -41,9 +44,9 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 28
-  done: 22
-  blocked_primary_source: 2
+  agent_ready: 29
+  done: 23
+  blocked_primary_source: 6
 states:
 - jurisdiction: us
   name: Federal
@@ -584,10 +587,32 @@ states:
     lists. 42 USC 1381-1382j (2026-06-20 run) and the 20 CFR 416 deeming slice (2026-07-23 run, 14 rows) already exist and
     are not re-ingested; the rest of 20 CFR 416 remains a separate follow-up. Sibling POMS documents already under us/guidance
     (SI 01415.058 2026, SI PHI01415.009 from the DC run) keep their guidance citation paths; the manual family re-takes them
-    under the section-number path.'
+    under the section-number path. 2026-09-11: the rest of 20 CFR 416 is now the full-part scope us/regulation/2026-09-11-title-20-part-416
+    (see the eCFR row below).'
   index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
   index_document_count: 1693
   taken_count: 915
+- jurisdiction: us
+  name: Federal (20 CFR part 416, eCFR)
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-20/chapter-III/part-416
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-11-title-20-part-416
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): the full 20 CFR part 416 extracted
+    with extract-ecfr --only-title 20 --only-part 416 from the eCFR Versioner API at as-of 2026-09-09. 622 rows = 1 part +
+    22 subparts + 599 live sections (8 reserved sections skipped; the Appendix to Subpart K is not a supported adapter shape
+    and is not taken); coverage complete; citation paths us/regulation/20/416/<section>. The 14-row 2026-07-23-title-20-part-416
+    deeming slice is signed but selected by no release, so no released scope carries a us/regulation/20/416 path; the two
+    scopes are mutually exclusive in a selector and the full part is the one to select.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
+  index_document_count: 622
+  taken_count: 622
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}
@@ -654,6 +679,30 @@ states:
     administered mandatory supplement only). Done with that finding: the governing text is the federal POMS row, already in
     the corpus as us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory
     and nothing was fetched. (2026-09-11 state-supplement batch 3.)'
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-as
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in American Samoa. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
+    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    American Samoa operates no adult assistance program under titles I, X, XIV or XVI. No territory SSI document exists to
+    inventory and nothing was fetched. (2026-09-11 territories pass.)'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -809,6 +858,31 @@ states:
   taken_count: null
   administration: S
   notes: '2026-06 run: Georgia DFCS Medicaid Policy Manual 2578 and 2136 (us-ga/manual).'
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-gu
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in Guam. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District of Columbia
+    (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    Guam administers Old Age Assistance, Aid to the Blind and Aid to the Permanently and Totally Disabled through DPHSS (SSA
+    titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
+    territories pass.)'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1111,6 +1185,28 @@ states:
     Manual section pages (dssmanuals.mo.gov sitemap): 42 found / 0 taken; other DSS manuals on the site index (childrens-services-policy-manual,
     family-mo-healthnet-magi, food-stamps, forms-manual, independent-living-rehabilitation-policy-manual, mo-healthnet-for-the-aged-blind-and-disabled,
     prevention-of-blindness-policy-manual, temporary-assistance-case-management): 8 found / 0 taken'
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500501410
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 00501.410 Residency / United States definition (SSI applies in the NMI): 1 found / 1 taken in the
+    federal family; POMS SI 01415.010 state table: no Northern Mariana Islands row; no territory document family exists'
+  administration: N
+  notes: 'SSI applies in the Northern Mariana Islands (Covenant to Establish a Commonwealth, section 502(a)(1), 48 U.S.C.
+    1801 note); POMS SI 00501.410 (3. United States) and SI 00501.415 state that for SSI purposes the United States includes
+    only the 50 States, the District of Columbia and the Northern Mariana Islands, and both sections are already in the corpus
+    (us/manual/ssa/poms/si/00501.410, 00501.415; version 2026-09-10-ssi-poms-si). No optional state supplement: POMS SI 01415.010''s
+    state table carries no Northern Mariana Islands row and the CNMI government sites reviewed 2026-09-11 (cnmimedicaid.org,
+    finance.gov.mp, dcca.gov.mp) list no supplement program. Done with that finding; nothing was fetched. (2026-09-11 territories
+    pass.)'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -1406,6 +1502,30 @@ states:
     2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
     (subsection K), us/manual/ssa/poms/si/phi01415.010. No separate state extraction. F/S: the state also administers part
     of its program itself; that state-administered part is not covered here.'
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-pr
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in Puerto Rico. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
+    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    Puerto Rico administers Aid to the Aged, Blind and Disabled under SSA titles I, X and XIV (42 U.S.C. 1308 ceiling), a
+    separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.)'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -1564,6 +1684,31 @@ states:
   index_families: 'Auxiliary Grant Program Manual chapters: 12 found / 12 taken; manual transmittals: 1 found / 0 taken; provider
     manuals, agreements, certification and forms: 8 found / 0 taken; 22VAC30-80 Auxiliary Grants Program sections on Virginia
     LIS (https://law.lis.virginia.gov/admincode/title22/agency30/chapter80/; separate index): 12 found / 0 taken'
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-vi
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in Virgin Islands. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
+    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    the Virgin Islands Department of Human Services administers Old Age Assistance, Aid to the Blind and Aid to the Disabled
+    (SSA titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
+    territories pass.)'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

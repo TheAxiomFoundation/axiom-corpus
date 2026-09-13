@@ -2207,6 +2207,114 @@ def update_queue_batch3(results: dict[str, dict]) -> dict:
     return queue["status_counts"]
 
 
+
+# ---------------------------------------------------------------- batch 4: territories (2026-09-11)
+# SSI applies in the Northern Mariana Islands (Covenant section 502(a)(1), 48 U.S.C. 1801 note; POMS
+# SI 00501.410 and SI 00501.415 define the United States for SSI as the 50 States, DC and the NMI) and
+# nowhere else in the territories: 42 U.S.C. 1382c(e) limits "United States" to the 50 States and DC,
+# so Puerto Rico, Guam, the Virgin Islands and American Samoa are outside title XVI. The queue schema
+# has no not-applicable status; those four rows are blocked_primary_source with the statutory reason
+# and carry program_applicability: not_applicable.
+POMS_SI_00501_410_URL = "https://secure.ssa.gov/apps10/poms.nsf/lnx/0500501410"
+POMS_SI_00501_INDEX_URL = "https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005"
+USC_1382C_URL = "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim"
+TERRITORY_NAMES_4 = {
+    "PR": "Puerto Rico", "GU": "Guam", "VI": "Virgin Islands", "AS": "American Samoa", "MP": "Northern Mariana Islands",
+}
+# Adult assistance under SSA titles I, X, XIV and the pre-1972 title XVI that PR, GU and VI still run
+# (42 U.S.C. 1308 ceilings) is a separate family, not SSI, and is only named in the row note.
+NOT_APPLICABLE_ROWS_4 = {
+    "PR": "Puerto Rico administers Aid to the Aged, Blind and Disabled under SSA titles I, X and XIV (42 U.S.C. 1308 ceiling), a separate family",
+    "GU": "Guam administers Old Age Assistance, Aid to the Blind and Aid to the Permanently and Totally Disabled through DPHSS (SSA titles I, X and XIV), a separate family",
+    "VI": "the Virgin Islands Department of Human Services administers Old Age Assistance, Aid to the Blind and Aid to the Disabled (SSA titles I, X and XIV), a separate family",
+    "AS": "American Samoa operates no adult assistance program under titles I, X, XIV or XVI",
+}
+
+
+def update_queue_batch4(only: set[str] | None = None) -> dict:
+    """Add the five territory rows (no builders: nothing is fetched)."""
+    queue = yaml.safe_load(QUEUE.read_text())
+    rows: dict[str, dict] = {}
+    for row in queue["states"]:
+        # first row per jurisdiction: the federal POMS row precedes the 20 CFR 416 eCFR follow-on row
+        rows.setdefault(row["jurisdiction"], row)
+    federal_scope = rows["us"]["target_scope"]
+    for code, name in TERRITORY_NAMES_4.items():
+        jurisdiction = f"us-{code.lower()}"
+        if only and code not in only:
+            continue
+        row = rows.get(jurisdiction)
+        if row is None:
+            row = {"jurisdiction": jurisdiction, "name": name, "lead_counts": {}, "candidate_sources": []}
+            queue["states"].append(row)
+            rows[jurisdiction] = row
+        if code == "MP":
+            row.update(
+                {
+                    "queue_status": "done",
+                    "source_kind": "ssa_poms_section",
+                    "primary_source_url": POMS_SI_00501_410_URL,
+                    "target_manifest": "manifests/us-ssa-poms-si-2026-09-10.yaml",
+                    "target_scope": federal_scope,
+                    "index_url": POMS_SI_00501_INDEX_URL,
+                    "index_document_count": 1,
+                    "taken_count": 1,
+                    "index_families": "POMS SI 00501.410 Residency / United States definition (SSI applies in the NMI): 1 found / 1 taken in the federal family; POMS SI 01415.010 state table: no Northern Mariana Islands row; no territory document family exists",
+                    "administration": "N",
+                    "notes": (
+                        "SSI applies in the Northern Mariana Islands (Covenant to Establish a Commonwealth, section "
+                        "502(a)(1), 48 U.S.C. 1801 note); POMS SI 00501.410 (3. United States) and SI 00501.415 state "
+                        "that for SSI purposes the United States includes only the 50 States, the District of Columbia "
+                        "and the Northern Mariana Islands, and both sections are already in the corpus "
+                        "(us/manual/ssa/poms/si/00501.410, 00501.415; version 2026-09-10-ssi-poms-si). No optional "
+                        "state supplement: POMS SI 01415.010's state table carries no Northern Mariana Islands row and "
+                        "the CNMI government sites reviewed 2026-09-11 (cnmimedicaid.org, finance.gov.mp, "
+                        "dcca.gov.mp) list no supplement program. Done with that finding; nothing was fetched. "
+                        "(2026-09-11 territories pass.)"
+                    ),
+                }
+            )
+            continue
+        row.update(
+            {
+                "queue_status": "blocked_primary_source",
+                "program_applicability": "not_applicable",
+                "source_kind": "federal_statute_excludes_jurisdiction",
+                "primary_source_url": USC_1382C_URL,
+                "target_manifest": None,
+                "target_scope": {"jurisdiction": jurisdiction, "document_class": None, "version": None},
+                "index_url": POMS_SI_00501_INDEX_URL,
+                "index_document_count": 0,
+                "taken_count": 0,
+                "index_families": "no SSI document family: the jurisdiction is outside the SSI program",
+                "administration": None,
+                "notes": (
+                    f"Not applicable (recorded as blocked_primary_source because the queue schema has no "
+                    f"not-applicable status): SSI does not operate in {name}. 42 U.S.C. 1382c(e) defines 'United "
+                    "States' for title XVI as the 50 States and the District of Columbia (in the corpus as "
+                    "us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-"
+                    "r2026-07-17-dedup), and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana "
+                    f"Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si). {NOT_APPLICABLE_ROWS_4[code]}. "
+                    "No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.)"
+                ),
+            }
+        )
+    queue["states"].sort(key=lambda row: (row["jurisdiction"] != "us", row["jurisdiction"]))
+    queue["status_counts"] = {}
+    for row in queue["states"]:
+        queue["status_counts"][row["queue_status"]] = queue["status_counts"].get(row["queue_status"], 0) + 1
+    note = (
+        "2026-09-11 SSI territories pass: scripts/build_ssi_state_supplement_manifests.py --batch 4; MP done "
+        "(SSI applies, no supplement; POMS SI 00501.410 pointer); PR, GU, VI, AS not applicable under 42 U.S.C. "
+        "1382c(e), recorded as blocked_primary_source; docs/ingest-runs/2026-09-11-territories-ten-programs.md."
+    )
+    notes = queue.setdefault("policy", {}).setdefault("notes", [])
+    if note not in notes:
+        notes.append(note)
+    QUEUE.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def index_markdown(code: str, index: dict) -> str:
     lines = [f"**us-{code.lower()}** — {index['index_url']}", "", "| Family | Found | Taken |", "| --- | ---: | ---: |"]
     for fam in index["families"]:
@@ -2221,9 +2329,13 @@ def main() -> int:
     parser.add_argument("--only", help="comma-separated state codes to build (default: all extractable states)")
     parser.add_argument("--print-index", action="store_true", help="print each publisher index inventory as markdown")
     parser.add_argument("--skip-queue", action="store_true", help="do not rewrite manifests/ssi-agent-queue.yaml")
-    parser.add_argument("--batch", type=int, choices=(1, 2, 3), default=3,
-                        help="which batch's builders and queue rows to run (default 3; earlier batches' states are never regenerated by default)")
+    parser.add_argument("--batch", type=int, choices=(1, 2, 3, 4), default=3,
+                        help="which batch's builders and queue rows to run (default 3; earlier batches' states are never regenerated by default; 4 = territories, queue rows only)")
     args = parser.parse_args()
+    if args.batch == 4:
+        only = {c.strip().upper() for c in args.only.split(",")} if args.only else None
+        print("queue status_counts:", update_queue_batch4(only))
+        return 0
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT})
     builders = {1: BUILDERS, 2: BUILDERS_2, 3: BUILDERS_3}[args.batch]

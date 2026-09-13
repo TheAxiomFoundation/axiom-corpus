@@ -31,6 +31,7 @@ lead_list:
 status_counts:
   needs_review: 1
   agent_ready: 55
+  blocked_primary_source: 1
 states:
 - jurisdiction: us
   name: Federal
@@ -937,6 +938,29 @@ states:
     version: '2026-09-10'
   notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
     publisher's index; agency policy manuals listed there are a separate, later document family.
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: official_state_plan_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-vi-liheap-state-plan-fy2026.yaml
+  target_scope:
+    jurisdiction: us-vi
+    document_class: policy
+    version: null
+  index_url: https://liheapch.acf.gov/stateplans.htm
+  index_document_count: 0
+  publisher_index_url: https://dhs.vi.gov/family-assistance-programs/
+  taken_count: 0
+  notes: 'Blocked 2026-09-11 (territories pass): the ACF LIHEAP Clearinghouse index carries a ''Territory LIHEAP Plans'' table
+    (last updated 11/14/2025) with FY 2026 Detailed Model Plans for American Samoa, Guam, the Northern Mariana Islands and
+    Puerto Rico only; no Virgin Islands plan is listed and the index''s file paths for VI (/docs/2026/state-plans/VI_Plan_2026.pdf
+    and the /sites/default/files/webfiles/ variant) answer 404. The grantee, the Virgin Islands Department of Human Services,
+    Division of Family Assistance (HTTP 200 to the plain client 2026-09-11T21:15Z from a US network), runs LIHEAP as the Energy
+    Crisis Assistance Program (ECAP) and posts only the ECAP Checklist and Criteria and the ECAP Intake Form (application
+    family); no plan, manual or policy document is posted. Nothing was worked around.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

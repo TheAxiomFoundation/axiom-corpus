@@ -29,8 +29,9 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 18
-  done: 34
+  agent_ready: 21
+  done: 35
+  needs_review: 1
 states:
 - jurisdiction: us
   name: Federal
@@ -3104,6 +3105,34 @@ states:
   index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
   index_document_count: 49
   taken_count: 3
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: official_xlsx_forms_workbook
+  primary_source_url: https://www.americansamoa.gov/_files/ugd/4bfff9_a3bcba04ed65461ba9c6e20f503a8725.xlsx?dn=2025%20Tax%20Forms%20Updated-V3-%204.11.2026.xlsx
+  target_manifest: manifests/us-as-individual-income-tax-forms-ty2025.yaml
+  target_scope:
+    jurisdiction: us-as
+    document_class: form
+    version: null
+  index_url: https://www.americansamoa.gov/tax-office
+  index_document_count: 15
+  taken_count: 0
+  index_families:
+  - 'Form 390 American Samoa Individual Income Tax Return workbooks, tax years 2020-2025 (7 xlsx): the 2025 workbook (updated
+    V3, 4.11.2026) holds sheets 390, Sch. T8812, 8812(2001), Sch. TEITC, Sch A & B, Sch. C, 390X, 390A, Direct Deposit'
+  - '''IRS 2000 Tax Table and Instructions'' PDFs (2): the IRS 2000 booklet reposted because American Samoa applies the Internal
+    Revenue Code as of 2000-12-31; an IRS publication, not taken'
+  - 'other Tax Office files (6): ARPA child tax credit FAQ, Form T15323, stimulus FAQ, REAL ID policy, driver licence guide,
+    workmen''s compensation travel allowance; not taken'
+  notes: 'Territories pass (2026-09-11): needs_review. The American Samoa Government Tax Office page (HTTP 200) publishes
+    the 2025 Form 390 A.S. Individual Income Tax Return only as an Excel workbook of fillable form sheets (no PDF, no American
+    Samoa instructions; the page reposts the IRS 2000 tax table and instructions because the territory applies the Internal
+    Revenue Code as of 2000-12-31, 48 U.S.C. 1661 and A.S.C.A. 11.0403). The official-documents extractor''s xlsx path is
+    a header-row table reader and would not represent a form layout, so nothing was extracted; reviewer to decide on a form-workbook
+    extraction or a PDF print. 0 taken.'
 - jurisdiction: us-az
   name: Arizona
   queue_status: done
@@ -6677,6 +6706,31 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_forms_instructions
+  primary_source_url: https://www.guamtax.com/forms/2025GUAM1040TaxForm.pdf
+  target_manifest: manifests/us-gu-individual-income-tax-forms-ty2025.yaml
+  target_scope:
+    jurisdiction: us-gu
+    document_class: form
+    version: 2026-09-11-tax-territory-forms-ty2025
+  index_url: https://www.guamtax.com/forms/
+  index_document_count: 59
+  taken_count: 2
+  notes: 'Territories pass (2026-09-11) = the five inhabited territories: us-pr, us-gu, us-mp built here; us-vi done by pointer
+    (its publisher''s index links the IRS Form 1040); us-as needs_review (Form 390 posted only as an Excel workbook). TY2025
+    resident individual income tax return material confirmed from the Guam Department of Revenue and Taxation index. The DRT
+    Forms & Publications page lists 59 PDFs; the Income Tax section carries the Guam prints of Form 1040 and Form 1040-SR
+    for 2019-2025. Guam applies the Internal Revenue Code as the Guam Territorial Income Tax (48 U.S.C. 1421i) and DRT publishes
+    no Guam instructions booklet: its filing-season notices refer taxpayers to the IRS instructions, which are in the corpus
+    as us/form/irs/ty2025/i1040gi. Taken: the 2025 Form 1040 Guam and 2025 Form 1040-SR Guam. Extraction proven 2026-09-10.'
+  index_families:
+  - 'Guam individual income tax returns 2019-2025 (12): Form 1040 Guam and Form 1040-SR Guam per year'
+  - business privilege tax, gross receipts tax and other DRT forms and instructions (47); not taken
 - jurisdiction: us-hi
   name: Hawaii
   queue_status: done
@@ -14385,6 +14439,36 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_forms_instructions
+  primary_source_url: https://www.finance.gov.mp/division-forms/revenue-taxation/2025/f1040cm--2025.pdf
+  target_manifest: manifests/us-mp-individual-income-tax-forms-ty2025.yaml
+  target_scope:
+    jurisdiction: us-mp
+    document_class: form
+    version: 2026-09-11-tax-territory-forms-ty2025
+  index_url: https://www.finance.gov.mp/forms.php
+  index_document_count: 170
+  taken_count: 5
+  notes: 'Territories pass (2026-09-11) = the five inhabited territories: us-pr, us-gu, us-mp built here; us-vi done by pointer
+    (its publisher''s index links the IRS Form 1040); us-as needs_review (Form 390 posted only as an Excel workbook). TY2025
+    resident individual income tax return material confirmed from the CNMI Department of Finance, Division of Revenue and
+    Taxation index. The Department of Finance Forms page lists 170 file links across its divisions; the Revenue and Taxation
+    2025 block carries the Northern Marianas Territorial Income Tax return (Form 1040CM), the wage and salary tax return (Form
+    1040NMI), the nonresident and amended returns and the 1040CM schedules 1CM, ETC and WSD, and links IRS Schedules 8812
+    and EIC, the IRS Form 1040 instructions and tax tables for the mirrored code. Taken: Form 1040CM, Form 1040NMI, Schedule
+    1CM, Schedule ETC and Schedule WSD for 2025. Extraction proven 2026-09-10.'
+  index_families:
+  - '2025 Revenue and Taxation forms (14): 1040CM, 1040NMI, 1040NR-CM, 1040-CM-X, Schedule 1CM, Schedule ETC, Schedule WSD,
+    OS-3710, W-2CM, W-2GCM, 1120CM, 1120F-CM, 1120S, 1065-CM'
+  - '2025 Revenue and Taxation instructions and publications (7): Publication IOC (W-2CM code reference), OS-3710/W-2 supplemental
+    instructions, electronic filing specifications and templates, withholding guidelines; no 2025 Form 1040CM instructions
+    (the last posted i1040-CM is tax year 2020 under prior-year forms)'
+  - prior-year (2019-2024) income tax forms and IRS links on the same page and the prior-year page (149); not taken
 - jurisdiction: us-ms
   name: Mississippi
   queue_status: agent_ready
@@ -19524,6 +19608,34 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_forms_instructions
+  primary_source_url: https://hacienda.pr.gov/sites/default/files/individuos_2025_rev._20_jun_25_informativo.pdf
+  target_manifest: manifests/us-pr-individual-income-tax-forms-ty2025.yaml
+  target_scope:
+    jurisdiction: us-pr
+    document_class: form
+    version: 2026-09-11-tax-territory-forms-ty2025
+  index_url: https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+  index_document_count: 6
+  taken_count: 4
+  notes: 'Territories pass (2026-09-11) = the five inhabited territories: us-pr, us-gu, us-mp built here; us-vi done by pointer
+    (its publisher''s index links the IRS Form 1040); us-as needs_review (Form 390 posted only as an Excel workbook). TY2025
+    resident individual income tax return material confirmed from the Puerto Rico Department of the Treasury (Departamento
+    de Hacienda) index. Hacienda''s ''2025 Planilla de Contribucion sobre Ingresos de Individuos (para propositos informativos)''
+    document page links six PDFs: the Spanish and English informative prints of the individual return (Formulario 482 / Form
+    482.0), the Spanish and English instructions booklets and the Spanish and English Schedule CT. Taken: both returns and
+    both instructions booklets. Extraction proven 2026-09-10.'
+  index_families:
+  - '2025 individual return, informative print (2): Formulario 482 (Spanish, rev. 20 jun 25) and Form 482.0 (English, rev.
+    Jul 18 25); the return itself must be e-filed'
+  - '2025 instructions booklets (2): Spanish (rev. 1 abr 26; the ''Instrucciones para Radicar la Planilla'' page separately
+    links the 27 feb 26 revision) and English'
+  - '2025 Anejo CT / Schedule CT, informative print (2): Spanish and English; not taken'
 - jurisdiction: us-ri
   name: Rhode Island
   queue_status: done
@@ -21750,6 +21862,34 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_index_points_to_irs_form
+  primary_source_url: https://bir.vi.gov/Form
+  target_manifest: manifests/us-irs-individual-income-tax-forms-ty2025.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: form
+    version: 2026-09-10-tax-irs-forms-ty2025
+  index_url: https://bir.vi.gov/Form
+  index_document_count: 131
+  taken_count: 0
+  index_families:
+  - 'individual income tax returns, tax years 2011-2025 (14): every ''1040 U.S. Individual Income Tax Return'' entry links
+    the IRS PDF (2025: https://www.irs.gov/pub/irs-prior/f1040--2025.pdf)'
+  - 'Form 1040 INFO, Non-Virgin Islands Source Income of Virgin Islands Residents, tax years 2016-2025 (10): BIR''s own attachment
+    form (2025 revision 2025-01-08); not taken'
+  - Form 8689 Allocation of Individual Income Tax to the U.S. Virgin Islands (13, IRS PDFs), gross receipts, withholding,
+    excise and other BIR forms (94); not taken
+  notes: 'Territories pass (2026-09-11): done by pointer. Bona fide Virgin Islands residents file the federal Form 1040 with
+    the Bureau of Internal Revenue under the mirror code (48 U.S.C. 1397); the Bureau''s Forms page (https://bir.vi.gov/Form,
+    an application whose listing is served by the publisher''s own /api/form/find endpoint, 131 entries) links the tax year
+    2025 Form 1040 entry to the IRS PDF and posts no Virgin Islands return or instructions booklet of its own. The IRS TY2025
+    Form 1040 and instructions are in the corpus as us/form/irs/ty2025/f1040 and i1040gi (version 2026-09-10-tax-irs-forms-ty2025).
+    BIR''s own TY2025 product is Form 1040 INFO (a residents'' attachment, not the return), recorded and not taken. 0 taken.'
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready
