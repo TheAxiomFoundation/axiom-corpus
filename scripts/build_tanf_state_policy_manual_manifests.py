@@ -247,6 +247,21 @@ DONE: dict[str, dict[str, Any]] = {
 # Publishers that blocked retrieval on 2026-09-10 and again on the batch-4 retry from a US network. Exact
 # failures observed by the agent. The batch 2/3 blocked rows (SC, KY, NE, OH, TN, VT) and OR answered on the
 # retry and moved to BUILDERS; their earlier failures are recorded in the batch notes.
+# Re-probe of every blocked row, 2026-09-13T19:57Z: one plain GET of the recorded URL with the extractor client from a US
+# network (docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md); appended to the notes below.
+REPROBE_STAMP = "2026-09-13T19:57Z"
+REPROBE_NY = (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: connection reset by peer "
+              "after 0.1 s, no response. Durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two "
+              "dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available rather than pending.")
+REPROBE_VI = (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Family Assistance page answers HTTP 200 "
+              "(137,037 bytes, 3.0 s) and still lists no TANF policy manual, adopted rule or state plan. Publisher posts nothing; "
+              "confirmed on two dates.")
+REPROBE_AS = (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: http://dhss.as/index.html answers HTTP 200 "
+              "(12,095 bytes, 1.0 s) with the same placeholder menu and 42 U.S.C. 619 on uscode.house.gov HTTP 200 (146,988 bytes, "
+              "10.1 s). Not applicable on two dates; nothing to take.")
+REPROBE_MP = (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: 42 U.S.C. 619 on uscode.house.gov answers "
+              "HTTP 200 (146,988 bytes, 10.1 s); the statutory definition is unchanged. Not applicable on two dates; nothing to take.")
+
 BLOCKED: dict[str, dict[str, Any]] = {
     "us-ny": {
         "source_kind": "official_pdf_manual",
@@ -264,7 +279,7 @@ BLOCKED: dict[str, dict[str, Any]] = {
         "chrome/firefox GET, HTTP 200 text/html 5.5 KB challenge page; 15 s timeouts), same failure. Retried "
         "2026-09-10T21:34Z from a US network (batch 4: one plain requests GET, 'Remote end closed connection without "
         "response'; one curl-cffi chrome GET, HTTP 200 text/html 7.6 KB bot-challenge page (window['bobcmn'] ... TSPD); "
-        "20 s timeouts), same failure.",
+        "20 s timeouts), same failure." + REPROBE_NY,
     },
 }
 
@@ -289,7 +304,7 @@ NOT_PUBLISHED: dict[str, dict[str, Any]] = {
             "FY 2026 SNAP income-limits chart and simplified-reporting notice, the SNAP E&T plan and handbook, ABAWD "
             "flyers, ECAP forms, waivers and one TANF brochure (participant leaflet). No TANF policy manual, adopted "
             "rule or state plan is posted; the TANF state plan is filed with ACF through OLDC and not published by "
-            "the territory. 0 taken. Nothing was worked around."
+            "the territory. 0 taken. Nothing was worked around." + REPROBE_VI
         ),
     },
 }
@@ -306,7 +321,7 @@ NOT_APPLICABLE: dict[str, dict[str, Any]] = {
             "TANF program pages and the OPRE Welfare Rules Databook territory coverage). The Department of Human and "
             "Social Services site (http://dhss.as; the https host presents a self-signed, expired certificate, "
             "verification not disabled) lists no TANF program and its program pages are 'coming.html' placeholders. "
-            "No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 territories pass.)"
+            "No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 territories pass.)" + REPROBE_AS
         ),
     },
     "us-mp": {
@@ -320,7 +335,7 @@ NOT_APPLICABLE: dict[str, dict[str, Any]] = {
             "Puerto Rico, the Virgin Islands, Guam and American Samoa; the Northern Mariana Islands is not a TANF "
             "jurisdiction and receives no TANF block grant (42 U.S.C. 619 is not in the corpus; cited from "
             "uscode.house.gov). No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 "
-            "territories pass.)"
+            "territories pass.)" + REPROBE_MP
         ),
     },
 }

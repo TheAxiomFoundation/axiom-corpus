@@ -288,7 +288,9 @@ states:
     page links ''WIC Authorized Vendors'' only to the learn.dhss.alaska.gov login and lists no manual; the Nutrition topic
     page lists none; the legacy manual.aspx and policy.aspx paths and an /en/resources/wic-policy-and-procedure-manual/ guess
     answer 404. No page lists a policy manual or a local-agency section. Selected in the fifth batch as one of the last five
-    jurisdictions without a queue row (AK, DC, ND, VT, WY).'
+    jurisdictions without a queue row (AK, DC, ND, VT, WY). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client: HTTP 200, 140,494 bytes, 1.4 s; page reachable, still no manual link. Publisher posts no manual; confirmed on
+    two dates.'
 - jurisdiction: us-al
   name: Alabama
   lead_counts: {}
@@ -309,7 +311,9 @@ states:
     Provider Standards pages link only the formulary, prescription forms, a certification-process handout, two stand-alone
     policy PDFs (IID policy, informal resolution process) and the FY2027 state-plan public notice; no page lists the manual.
     Selected in the third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT). re-probed
-    2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+    2026-09-10T21:38Z from US network, still not published (page reachable, no manual link). Re-probed 2026-09-13T19:57Z from
+    a US network with the plain extractor client: HTTP 200, 59,815 bytes, 0.4 s; page reachable, still no manual link. Publisher
+    posts no manual; confirmed on two dates.'
   state_plan_scope:
     jurisdiction: us-al
     document_class: policy
@@ -337,7 +341,11 @@ states:
     page for the plain client and one curl_cffi chrome124 impersonation attempt (20 s timeouts), so no manual index could
     be read from the publisher. Replacement for a blocked batch-3 state. No mirror was used. Selected in the third batch as
     a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. retried 2026-09-10T21:34Z from
-    US network, same failure (HTTP 403 Cloudflare for the WIC page and the site root).'
+    US network, same failure (HTTP 403 Cloudflare for the WIC page and the site root). Re-probed 2026-09-13T19:57Z from a
+    US network with the plain extractor client: the Cloudflare 403 has lifted (HTTP 200, 293,905 bytes, 0.2 s), but the WIC
+    page and its sub-pages (Breastfeeding, EBT, Farmers'' Market, Nutrition Information, Resources for Families, Fraud and
+    Abuse, Vendor Management) link only the FY27 income guidelines PDF; no manual index is published on the site as served.
+    Now a not-published row rather than an access block.'
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}
@@ -358,7 +366,9 @@ states:
     descriptions, clinic information and the USDA complaint form only; the department site www.dhss.as presents a self-signed,
     expired certificate (verification not disabled; curl 60 plain and curl_cffi chrome120) and its plain-HTTP ASWIC menu entry
     is the ''coming.html'' placeholder. No page lists a manual. Selected in the territories pass (2026-09-11): the five inhabited
-    territories PR, GU, VI, AS, MP.'
+    territories PR, GU, VI, AS, MP. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200,
+    62,987 bytes, 0.8 s; aswic.com is reachable with program and clinic pages only; www.dhss.as still fails TLS verification
+    (self-signed certificate). Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -383,7 +393,10 @@ states:
     batch as one of the next ten states by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-checked 2026-09-10T23:00Z
     from US network: the relocated Local Agencies page (prevention/azwic/agencies/index.php) still answers 200 (80,005 bytes)
     with the ''WIC Manuals'' sidebar link to #manuals and no element with that id, to the plain client and to one curl_cffi
-    chrome120 impersonation alike; same finding.'
+    chrome120 impersonation alike; same finding. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client:
+    the recorded Local Agencies URL is still the soft 404 (HTTP 200, 70,489 bytes, 0.7 s, ''Page or Document Not Found'')
+    and the relocated agencies page (79,014 bytes) still links ''WIC Manuals'' to a #manuals anchor the served page does not
+    contain. Same finding on two dates.'
 - jurisdiction: us-ca
   name: California
   lead_counts: {}
@@ -537,7 +550,10 @@ states:
     next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). re-checked 2026-09-10T23:00Z
     from US network: www.dhss.delaware.gov still answers HTTP 403 (''Web App - Unavailable'', 1,892 bytes) to the plain client
     for the WIC home page, and one curl_cffi chrome120 impersonation still fails TLS verification (curl 60: self signed certificate
-    in certificate chain), which was not disabled; same failure.'
+    in certificate chain), which was not disabled; same failure. Re-probed 2026-09-13T19:57Z from a US network with the plain
+    extractor client, same failure: HTTP 403, 1,892 bytes, 0.2 s, ''Web App - Unavailable''. Durable block: the same failure
+    from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should
+    treat the cell as not available rather than pending.'
 - jurisdiction: us-fl
   name: Florida
   lead_counts: {}
@@ -557,7 +573,9 @@ states:
     the WIC and health-care-provider pages link only forms, the vendor handbook and outreach material; the manual is referenced
     by number in county documents but no state index or PDF is available. Selected in the first batch as one of the ten largest
     states by population. re-checked 2026-09-10T18:47Z, still not published. re-probed 2026-09-10T21:38Z from US network,
-    still not published (page reachable, no manual link).'
+    still not published (page reachable, no manual link). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client: HTTP 200, 222,622 bytes, 0.2 s; page reachable, still no manual link. Publisher posts no manual; confirmed on
+    two dates.'
 - jurisdiction: us-ga
   name: Georgia
   lead_counts: {}
@@ -611,7 +629,8 @@ states:
     dphss.guam.gov (HTTP 200): the WIC program page and the WIC services page are text-only program descriptions with no document
     links (0 PDFs), and the only WIC PDF located on the host is the 2024-2025 income eligibility guidelines in the retired
     wp-content path. No page lists a manual. Selected in the territories pass (2026-09-11): the five inhabited territories
-    PR, GU, VI, AS, MP.'
+    PR, GU, VI, AS, MP. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200, 95,080 bytes,
+    3.6 s; page reachable, still no manual link. Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -630,7 +649,9 @@ states:
   notes: 'Hawaii Department of Health, WIC Services Branch: The Hawaii WIC policy and procedure manual is not published on
     health.hawaii.gov: the ''Information for WIC Local Agencies'' page links only the federal and state cost-principles documents,
     the WIC Nutrition Services Standards and FNS Instruction 113-1; no page lists a manual. Selected in the fourth batch (retry)
-    as one of the next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+    as one of the next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: HTTP 200, 60,954 bytes, 0.6 s; page reachable, still no manual link.
+    Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-ia
   name: Iowa
   lead_counts: {}
@@ -680,7 +701,8 @@ states:
     the batch-2-era WIC URLs (services-programs/food-assistance/wic, .../children-families/women-infants-and-children-wic,
     /wic, providers/wic) all answer 404, and the current About WIC page links only the vendor page and the public health districts;
     no page lists a manual. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states by population
-    (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+    (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client:
+    HTTP 200, 180,829 bytes, 0.5 s; page reachable, still no manual link. Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-il
   name: Illinois
   lead_counts: {}
@@ -701,7 +723,9 @@ states:
     issue date May 2006) is still served, but there is no publisher index from which the current manual can be confirmed.
     Selected in the first batch as one of the ten largest states by population. re-checked 2026-09-10T18:47Z, still not published.
     retried 2026-09-10T21:34Z from US network: www.dhs.state.il.us did not resolve (NameResolutionError, twice), so the page
-    could not be re-read.'
+    could not be re-read. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: www.dhs.state.il.us
+    resolves again; the manual page (item=36418) redirects to ''IDHS: Page Not Found'' (item=27893; HTTP 200, 7,619 bytes,
+    0.2 s), as in batch 1. Still not published.'
 - jurisdiction: us-in
   name: Indiana
   lead_counts: {}
@@ -720,7 +744,9 @@ states:
   notes: 'Indiana Department of Health: The Indiana WIC Policy and Procedure Manual is not published on in.gov: the WIC Staff
     page links only the Indiana WIC Disaster Plan, and the WIC home, eligibility and vendor pages link only the vendor manual
     and participant material. Selected in the second batch as one of the next ten states by population (NJ, VA, WA, AZ, TN,
-    MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+    MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200, 52,040 bytes, 0.4 s; page reachable,
+    still no manual link. Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-ks
   name: Kansas
   lead_counts: {}
@@ -743,7 +769,10 @@ states:
     client and, after five requests, a Cloudflare ''Just a moment'' HTTP 429 challenge, which was not worked around. The manual
     policies demonstrably exist on the host (DocumentCenter/View/<id>/<POLICY>-PDF) but no static index lists them. No mirror
     was used. Selected in the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing
-    state.'
+    state. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the For Local WIC Agencies page
+    answers HTTP 200 (122,556 bytes, 0.7 s) and still links the Policy & Procedure Manual to DocumentCenter/Index/903, which
+    answers HTTP 200 (101,809 bytes) as the empty CivicEngage Document Center shell; the admin binding endpoint that challenged
+    on 2026-09-10 was not requested again. Same finding on two dates: no static manual index.'
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
@@ -788,7 +817,11 @@ states:
     and the agency''s louisianawic.org site (participant, vendor, medical-provider pages) link no Policy & Procedure Manual;
     the one chapter known on the host (assets/docs/LegisReports/Act542/WIC_Chapter11.pdf) is a legislative-report attachment,
     not an index. No mirror was used. Selected in the third batch as one of the next ten states by population (CO, MN, SC,
-    AL, LA, KY, OR, OK, CT, UT).'
+    AL, LA, KY, OR, OK, CT, UT). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 403,
+    479 bytes, 0.5 s, Cloudflare ''403 Forbidden'' (the 2026-09-10 US probe got the page and found no manual link). Not published
+    on the page as read on 2026-09-10 and blocked again on 2026-09-13; Durable block: the same failure from two networks (the
+    2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available
+    rather than pending.'
 - jurisdiction: us-ma
   name: Massachusetts
   lead_counts: {}
@@ -809,7 +842,9 @@ states:
     providers page and the state-plan page link no manual (the state plans are a different document family). mass.gov also
     answers 403 to non-browser clients. Selected in the second batch as one of the next ten states by population (NJ, VA,
     WA, AZ, TN, MA, IN, MD, MO, WI). retried 2026-09-10T21:34Z from US network, same failure (HTTP 403 for the WIC organization
-    page).'
+    page). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the 403 has lifted (HTTP 200, 308,139
+    bytes, 0.1 s), and the WIC organization page links no manual (the eligibility checker and program pages only), as the
+    state-plan reading already said. Now a not-published row rather than an access block.'
   state_plan_scope:
     jurisdiction: us-ma
     document_class: policy
@@ -956,7 +991,9 @@ states:
     WIC Local Agency Portal login: the manual index and every section URL (e.g. .../wic-operations-manual-wom/usda-definitions-and-justifications/100s-10)
     redirect to health.mo.gov/topic/781/login, and the public WIC pages link no manual. Selected in the second batch as one
     of the next ten states by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network:
-    the manual URL still redirects to health.mo.gov/topic/781/login.'
+    the manual URL still redirects to health.mo.gov/topic/781/login. Re-probed 2026-09-13T19:57Z from a US network with the
+    plain extractor client: the manual URL still redirects to health.mo.gov/topic/781/login (HTTP 200, 90,487 bytes, 0.6 s,
+    ''WIC Local Agency Portal Login''). Behind login on two dates.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   lead_counts: {}
@@ -975,7 +1012,9 @@ states:
   notes: 'Commonwealth Healthcare Corporation, CNMI WIC Program: The CNMI WIC policy manual is not published on chcc.health
     (HTTP 200): the CNMI WIC page lists referral, medical-documentation and employment-verification forms, the WIC food list
     booklet and two National WIC Association handouts (7 PDFs); no manual or local-agency section. Selected in the territories
-    pass (2026-09-11): the five inhabited territories PR, GU, VI, AS, MP.'
+    pass (2026-09-11): the five inhabited territories PR, GU, VI, AS, MP. Re-probed 2026-09-13T19:57Z from a US network with
+    the plain extractor client: HTTP 200, 45,278 bytes, 0.2 s; page reachable, still no manual link. Publisher posts no manual;
+    confirmed on two dates.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -995,7 +1034,9 @@ states:
     the WIC Local Agencies page says sites must operate under the manual but links only the local-agency application and site-requirements
     PDFs, and the WIC program pages link no manual. Replacement for a blocked batch-3 state. Selected in the third batch as
     a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. re-probed 2026-09-10T21:38Z from
-    US network, still not published (page reachable, no manual link).'
+    US network, still not published (page reachable, no manual link). Re-probed 2026-09-13T19:57Z from a US network with the
+    plain extractor client: HTTP 200, 37,588 bytes, 0.3 s; page reachable, still no manual link. Publisher posts no manual;
+    confirmed on two dates.'
 - jurisdiction: us-mt
   name: Montana
   lead_counts: {}
@@ -1015,7 +1056,9 @@ states:
     the WIC page''s ''State Plan Program Policies'' link is the 2026 Montana WIC State Plan page (section drawers with State
     Plan attachments under assets/ecfsd/WIC/StatePlan/), which is the state-plan document family, not a policy/procedure manual
     index. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states by population (NE, WV, ID,
-    HI, NH, ME, MT, RI, DE, SD).'
+    HI, NH, ME, MT, RI, DE, SD). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200,
+    49,490 bytes, 0.4 s; the WIC State Plan page is reachable and remains the state-plan family, not a policy manual index.
+    Publisher posts no manual; confirmed on two dates.'
   state_plan_scope:
     jurisdiction: us-mt
     document_class: policy
@@ -1065,7 +1108,9 @@ states:
     Pick-WIC Paper, About, Free Food, Appointment, eWIC for Families, eWIC for Stores, New Participant Training, Referrals,
     Breastfeeding Resources) are participant- and store-facing; eWIC for Stores links one PDF (approved infant formula suppliers)
     and the site search for ''WIC policy manual'' returns only those pages. No page lists a manual or a local-agency section.
-    Selected in the fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY).'
+    Selected in the fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY). Re-probed
+    2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200, 452,860 bytes, 1.1 s; page reachable, still
+    no manual link. Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-ne
   name: Nebraska
   lead_counts: {}
@@ -1085,7 +1130,10 @@ states:
     the Local Agency Staff page''s ''Policies, Procedures & Forms'' page lists three policy memos (hospital certification,
     Afghan refugees, eWIC Journey use), budget templates, forms and two vendor letter templates from a ''WIC Procedure Manuals''
     folder, but no manual index or chapter PDFs. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted
-    states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+    states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). Re-probed 2026-09-13T19:57Z from a US network with the
+    plain extractor client: HTTP 200, 282,671 bytes, 0.9 s; the Policies, Procedures & Forms page is reachable and its ''WIC
+    Procedure Manuals'' folder still holds only the two vendor letter templates. Publisher posts no manual; confirmed on two
+    dates.'
 - jurisdiction: us-nh
   name: New Hampshire
   lead_counts: {}
@@ -1105,7 +1153,10 @@ states:
     a browser User-Agent for the WIC page and for the site root (first probe, 2026-09-10T21:47Z from a US network); one curl_cffi
     chrome120 impersonation of the WIC URL answers 404, so the page has also moved and no manual index could be read from
     the publisher. No mirror was used. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states
-    by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+    by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client, same failure: HTTP 403, 447 bytes, 0.1 s, ''Access Denied''. Durable block: the same failure from two networks
+    (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as
+    not available rather than pending.'
 - jurisdiction: us-nj
   name: New Jersey
   lead_counts: {}
@@ -1147,7 +1198,9 @@ states:
     but links no documents under them; the only links in that section point at the department intranet (http://chilenet/...).
     The manual is not published. Replacement for a blocked batch-3 state. Selected in the third batch as a replacement (in
     order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. re-probed 2026-09-10T21:38Z from US network: the
-    Policies & Procedures page still links only the intranet.'
+    Policies & Procedures page still links only the intranet. Re-probed 2026-09-13T19:57Z from a US network with the plain
+    extractor client: the Policies & Procedures page answers HTTP 200 (232,386 bytes, 1.3 s) and still links no documents
+    under the manual series headings (intranet links only). Not published on two dates.'
 - jurisdiction: us-nv
   name: Nevada
   lead_counts: {}
@@ -1168,7 +1221,9 @@ states:
     To view it, please enter the password below.''), so the manual index cannot be read; individual policy PDFs exist under
     wp-content/uploads but no public index lists them. Replacement for a blocked batch-3 state. Selected in the third batch
     as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. re-probed 2026-09-10T21:38Z
-    from US network: the Policy and Procedures page is still password-protected.'
+    from US network: the Policy and Procedures page is still password-protected. Re-probed 2026-09-13T19:57Z from a US network
+    with the plain extractor client: the Policy / Procedures Archive page still answers HTTP 200 (60,492 bytes, 1.6 s) with
+    the password form. Password-protected on two dates.'
 - jurisdiction: us-ny
   name: New York
   lead_counts: {}
@@ -1188,7 +1243,10 @@ states:
     link no manual, the only copies on the host are inactive procurement attachments (funding/ifb/inactive/16429/wic_program_manual_*.pdf),
     and current copies exist only as reposts on non-government sites (nwica.org, thewichub.org), which the queue forbids.
     Selected in the first batch as one of the ten largest states by population. re-checked 2026-09-10T18:47Z, still not published.
-    re-probed 2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+    re-probed 2026-09-10T21:38Z from US network, still not published (page reachable, no manual link). Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: HTTP 403, 919 bytes, 0.2 s, CloudFront ''The request could not be satisfied''
+    (the 2026-09-10 probes got the page and found no manual link). Not published on the pages as read on 2026-09-10 and now
+    blocked to the plain client; the manual is not available either way.'
 - jurisdiction: us-oh
   name: Ohio
   lead_counts: {}
@@ -1208,7 +1266,8 @@ states:
     Staff and program pages link no manual; the only public copy is a July 2015 repost by a county health department, which
     is neither current nor the publisher. Selected in the first batch as one of the ten largest states by population. re-checked
     2026-09-10T18:47Z, still not published. re-probed 2026-09-10T21:38Z from US network: the Local Staff page and the Women-Infants-Children
-    program page both answer 404; still not published.'
+    program page both answer 404; still not published. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client: the Local Staff page is still HTTP 404 (5,285 bytes, 0.4 s). Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-ok
   name: Oklahoma
   lead_counts: {}
@@ -1228,7 +1287,9 @@ states:
     the WIC program page and its Health Partners, WIC Forms, Formula Information, Health & Nutrition and Caseload Data subpages
     link only the formulary, income guidelines, clinic list, assessment forms and formula documents; no page lists a manual.
     Selected in the third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT). re-probed
-    2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+    2026-09-10T21:38Z from US network, still not published (page reachable, no manual link). Re-probed 2026-09-13T19:57Z from
+    a US network with the plain extractor client: HTTP 200, 576,476 bytes, 0.1 s; page reachable, still no manual link. Publisher
+    posts no manual; confirmed on two dates.'
 - jurisdiction: us-or
   name: Oregon
   lead_counts: {}
@@ -1303,7 +1364,9 @@ states:
     (HTTP 200): the site is a single-page Angular application whose server response is the app-root shell with no document
     links or text, and the Department of Health site www.salud.pr.gov lists no WIC manual; the client-side application was
     not driven. No mirror was used. Selected in the territories pass (2026-09-11): the five inhabited territories PR, GU,
-    VI, AS, MP.'
+    VI, AS, MP. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200, 5,894 bytes, 0.5
+    s; the wic.pr.gov response is still the Angular application shell with no document links. Publisher posts no manual; confirmed
+    on two dates.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -1345,7 +1408,9 @@ states:
     from a US network: the host now answers 200, but the WIC program page and its WIC Resources, Healthcare Providers & Formulas
     and South Carolina WIC subpages link only participant, formula, food-guide and referral material, and the linked apps.dhec.sc.gov/Health/WIC
     is a participant sign-in portal; no policy manual index is published on the site. No mirror was used. Selected in the
-    third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT).'
+    third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT). Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: HTTP 200, 384,361 bytes, 0.2 s; page reachable, still no manual link.
+    Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}
@@ -1364,7 +1429,9 @@ states:
   notes: 'South Dakota Department of Health, WIC Program: The South Dakota WIC policy manual is not published on doh.sd.gov:
     the WIC program page links only the sd.gov/wic participant portal (approved foods, eligibility, news), the Family Nutrition
     Services page and the grocery-store lookup; no page lists a manual. Selected in the fourth batch (retry) as one of the
-    next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).'
+    next ten not-yet-attempted states by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD). Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: HTTP 200, 87,299 bytes, 0.6 s; page reachable, still no manual link.
+    Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-tn
   name: Tennessee
   lead_counts: {}
@@ -1386,7 +1453,9 @@ states:
     vendor and nutrition-education material, the WIC state rule (1200-15-02) and the vendor Food Package Policy but no Policy
     & Procedures Manual index; individual manual policies still exist under content/dam/tn/health/program-areas/wic/ (FY2022-ADM-01-03-02
     answers 200 to HEAD) but no page lists them. No mirror was used. Selected in the second batch as one of the next ten states
-    by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI).'
+    by population (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client: the recorded WIC URL is still HTTP 404 (68,643 bytes, 1.3 s); no manual index was published on the relocated page
+    on 2026-09-10. Confirmed on two dates.'
 - jurisdiction: us-tx
   name: Texas
   lead_counts: {}
@@ -1488,7 +1557,8 @@ states:
     prescription forms, mobile-app sheet, rights and responsibilities forms in English and Spanish, eWIC card guides, brochure)
     and the department''s news item opens the FY 2027 WIC State Plan of Operations for public comment (state-plan family,
     MT precedent); no page lists a manual or local-agency section. Selected in the territories pass (2026-09-11): the five
-    inhabited territories PR, GU, VI, AS, MP.'
+    inhabited territories PR, GU, VI, AS, MP. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client:
+    HTTP 200, 177,707 bytes, 3.6 s; page reachable, still no manual link. Publisher posts no manual; confirmed on two dates.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}
@@ -1511,7 +1581,8 @@ states:
     Reports links the ''2025 State Plan Goals and Objectives'' PDF (WIC State Plan, a different document family; MT precedent)
     and data reports; Information for Grocers links the Vermont WIC Grocer Handbook and vendor forms (vendor family); the
     site search for ''WIC policy manual'' returns only those pages. Selected in the fifth batch as one of the last five jurisdictions
-    without a queue row (AK, DC, ND, VT, WY).'
+    without a queue row (AK, DC, ND, VT, WY). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client:
+    HTTP 200, 297,025 bytes, 0.3 s; page reachable, still no manual link. Publisher posts no manual; confirmed on two dates.'
   state_plan_scope:
     jurisdiction: us-vt
     document_class: policy
@@ -1569,7 +1640,8 @@ states:
     paths answer 404; the only policy-like PDFs on the host (wic/certification-eligibility-coordination.pdf, wic/caseload-management.pdf)
     are FY 2025 state-plan sections, not a manual index. Selected in the second batch as one of the next ten states by population
     (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network, still not published (page reachable,
-    no manual link).'
+    no manual link). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: HTTP 200, 166,465 bytes,
+    0.2 s; page reachable, still no manual link. Publisher posts no manual; confirmed on two dates.'
   state_plan_scope:
     jurisdiction: us-wi
     document_class: policy
@@ -1657,4 +1729,6 @@ states:
     Where Can I Shop, Yearly Savings, Vendor Services, Complaints and Fraud) list no policy manual or local-agency section;
     Vendor Services links a ''Vendor Manual'', minimum stocking requirements and a price survey as Google Docs (vendor family,
     not the program policy manual); the site search for ''WIC policy manual'' returns only the program page. Selected in the
-    fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY).'
+    fifth batch as one of the last five jurisdictions without a queue row (AK, DC, ND, VT, WY). Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: HTTP 200, 190,896 bytes, 0.8 s; page reachable, still no manual link.
+    Publisher posts no manual; confirmed on two dates.'

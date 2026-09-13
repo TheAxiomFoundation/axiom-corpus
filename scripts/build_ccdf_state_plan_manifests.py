@@ -167,6 +167,15 @@ IN_MANUAL_NOTE = (
 
 AUTHORITY = "HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by the state or territory CCDF Lead Agency)"
 
+# Re-probe 2026-09-13T19:57Z (docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md): every blocked row's
+# Lead Agency URL was fetched once with the plain extractor client from a US network. GA and TX now answer and
+# are extracted into their own scope version (REPROBE_SCOPE, applied with --only ga,tx); AS, AZ, MD, MO, NY and
+# MP fail as on 2026-09-10 and their block is recorded as durable (two networks, two dates).
+REPROBE_STAMP = "2026-09-13T19:57Z"
+REPROBE_SCOPE = {"source_as_of": "2026-09-13", "scope_version": "2026-09-13-ccdf-plan-fy2025-2027"}
+DURABLE = ("durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates "
+           "(2026-09-10 and 2026-09-13), so the dashboard should treat the cell as not available rather than pending")
+
 # Reviewed 2026-09-10 by following each ACF index "plan" link to the Lead Agency page.
 # taken: (plan_url, publisher_index_url, source_format, plan_version, plan_status, extra)
 # blocked/needs_review: (publisher_index_url, reason)
@@ -176,9 +185,11 @@ RESOLUTIONS: dict[str, dict] = {
     "ak": {"status": "needs_review", "index": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=215530",
                "reason": "retry 2 2026-09-10T21:35Z from a US network: aws.state.ak.us now answers (first two passes: TCP connect timeout); the Online Public Notice the ACF index links carries one attachment, '2025-2027 CCDF State Plan 052424.pdf' (Attachment.aspx?id=148401, 213 pages, Microsoft Word export dated 2024-05-24, no CARS Plan Status line, text refers to 'this draft CCDF Plan' posted for public comment); the Department of Health Child Care Program Office page lists no CCDF plan; no approved or certified FFY 2025-2027 plan is posted, so not extracted"},
     "as": {"status": "blocked_primary_source", "index": "https://www.dhss.as/index.html",
-               "reason": "TLS: www.dhss.as presents a self-signed, expired certificate (CN=cmaster70); verification impossible, not disabled; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (SSLCertVerificationError / curl 60 self-signed, expired certificate); retried 2026-09-11T21:15Z from a US network (territories pass), same failure: openssl reports the self-signed CN=cmaster70 certificate with verify return code 10 (certificate has expired), curl 60 for the plain client and for curl_cffi chrome120 alike; the plain-HTTP site http://dhss.as/index.html answers 200 but its Child Care, ASNAP and ASWIC menu entries all point at the 'coming.html' placeholder, so no plan is posted there either"},
+               "reason": "TLS: www.dhss.as presents a self-signed, expired certificate (CN=cmaster70); verification impossible, not disabled; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (SSLCertVerificationError / curl 60 self-signed, expired certificate); retried 2026-09-11T21:15Z from a US network (territories pass), same failure: openssl reports the self-signed CN=cmaster70 certificate with verify return code 10 (certificate has expired), curl 60 for the plain client and for curl_cffi chrome120 alike; the plain-HTTP site http://dhss.as/index.html answers 200 but its Child Care, ASNAP and ASWIC menu entries all point at the 'coming.html' placeholder, so no plan is posted there either; "
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (SSLCertVerificationError: self-signed certificate, 0.6 s; the plain-HTTP index still answers HTTP 200, 12,095 bytes, 1.0 s with the placeholder menu); {DURABLE}"},
     "az": {"status": "blocked_primary_source", "index": "https://des.az.gov/services/child-and-family/child-care/child-care-and-development-fund-state-plan",
-               "reason": "HTTP 403 (cloudflare) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare for plain requests and chrome impersonation)"},
+               "reason": "HTTP 403 (cloudflare) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare for plain requests and chrome impersonation); "
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (HTTP 403, 5,958 bytes, 0.1 s, Cloudflare 'Just a moment...' challenge page); {DURABLE}"},
     "ar": {"status": "agent_ready", "url": "https://dese.ade.arkansas.gov/Files/ACF-118_CCDF_FFY_2025-2027_For_Arkansas_OEC.pdf",
                "index": "https://dese.ade.arkansas.gov/Offices/office-of-early-childhood/forms--documents", "version": "Amendment 2", "plan_status": "Approved as of 2026-05-13 (only FFY 2025-2027 version posted)",
                "tls": True},
@@ -195,8 +206,14 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://osse.dc.gov/publication/dc-child-care-and-development-fund", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (amendment 1 and 2 approval letters posted separately, not taken)"},
     "fl": {"status": "agent_ready", "url": "https://www.fldoe.org/file/20628/2025-2027CCDFStatePlan.pdf",
                "index": "https://www.fldoe.org/schools/early-learning/rep-pol-guide/ccdf-plan.stml", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09", "impersonation": True},
-    "ga": {"status": "blocked_primary_source", "index": "http://www.decal.ga.gov/BftS/CCDFPlan.aspx",
-               "reason": "connection reset by peer (curl 56) from www.decal.ga.gov for plain curl and curl_cffi; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (remote end closed connection without response / curl 52 empty reply)"},
+    "ga": {"status": "agent_ready", "url": "https://www.decal.ga.gov/documents/attachments/CCDFStatePlan25-27.pdf",
+               "index": "https://www.decal.ga.gov/BftS/CCDFPlan.aspx", "version": "Amendment 2",
+               "plan_status": ("Approved as of 2026-02-13 ('Child Care and Development Fund (CCDF) State Plan FFY 2025-2027' on the DECAL CCDF Plan page, "
+                               "the only FFY 2025-2027 plan version posted; the CARS print carries 'Amendment 2'; the FFY 2025 executive summary, "
+                               f"public-hearing notice, acronym list and QPRs are posted separately, not taken; located on the {REPROBE_STAMP} "
+                               "re-probe from a US network with the plain extractor client (HTTP 200, 81,837 bytes, 0.7 s; the PDF 3,483,574 bytes, "
+                               "Last-Modified 2026-02-25) after connection resets on all three 2026-09-10 passes)"),
+               **REPROBE_SCOPE},
     "gu": {"status": "agent_ready", "url": "https://guamchildcare.com/sites/default/files/ccdf_state_plan_ffy_2025-2027_for_guam_amendment_01.pdf",
                "index": "https://guamchildcare.com/ccdf-state-plan", "version": "Amendment 1", "plan_status": "Approved as of 2026-03-26 (only FFY 2025-2027 version posted)"},
     "hi": {"status": "agent_ready", "url": "https://humanservices.hawaii.gov/bessd/files/2024/11/ACF-118-CCDF-FFY-2025-2027-For-Hawaii.pdf",
@@ -220,7 +237,8 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers", "version": "Initial Plan",
                "plan_status": "Certified as of 2024-09-12 (located on retry 2026-09-10: the ACF index link goes to the 'paying for child care' page; the plan is 'Maine State Plan CCDF FFY 2025-2027 for Maine' on the OCFS 'Child Care Affordability Information & Resources' page; Amendments #1-#4, the Appendix, public comments and the Notice of Compliance are posted separately, not taken; approved print not posted)"},
     "md": {"status": "blocked_primary_source", "index": "https://earlychildhood.marylandpublicschools.org/about/ccdf-state-plan",
-               "reason": "landing page 200; the linked plan page https://earlychildhood.marylandpublicschools.org/2025-2027-ccdf-plan returns HTTP 403 'Access denied'; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare on the 2025-2027-ccdf-plan page for plain and impersonated requests; the about/ccdf-state-plan landing page answers 200 and links only that page)"},
+               "reason": "landing page 200; the linked plan page https://earlychildhood.marylandpublicschools.org/2025-2027-ccdf-plan returns HTTP 403 'Access denied'; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare on the 2025-2027-ccdf-plan page for plain and impersonated requests; the about/ccdf-state-plan landing page answers 200 and links only that page); "
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (landing page HTTP 200, 117,379 bytes, 0.5 s; the 2025-2027-ccdf-plan page HTTP 403, 107,539 bytes, 'Access denied' page served by cloudflare); {DURABLE}"},
     "ma": {"status": "agent_ready", "url": "https://www.mass.gov/doc/20241108-approved-2025-2027-ccdf-state-plan/download",
                "index": "https://www.mass.gov/lists/child-care-and-development-fund-ccdf-state-plans", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (amendment 1 and 2 consolidated plans posted separately, not taken)", "impersonation": True},
     "mi": {"status": "agent_ready", "url": "https://www.michigan.gov/mileap/-/media/Project/Websites/mileap/Documents/Early-Childhood-Education/Child-Development-and-Care/data-and-reporting/CARS-118-FFY2025-2027-CCDF-Plan-Print-Template.pdf?rev=7d0ee04737634947b4883ee964af46a7&hash=C3B5F436B5ECD5F2D57742378BDE464C",
@@ -231,7 +249,8 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://www.mdhs.ms.gov/eccd/reports-archives/", "version": "Initial Plan",
                "plan_status": "Approved as of 2024-11-09 (located on retry 2026-09-10: the State Plans page still lists only 2022-2024; the plan is '2025 - 2027 CCDF Triennial State Plan' on the ECCD 'Child Care Reports & Archives' page, whose /document/2025-2027-ccdf-triennial-state-plan/ landing URL 302s to this PDF; the Appendix is posted separately, not taken)"},
     "mo": {"status": "blocked_primary_source", "index": "https://dese.mo.gov/childhood/child-care-subsidy/child-care-dev-fund",
-               "reason": "plan link https://dese.mo.gov/media/pdf/acf-118-ccdf-ffy-2025-2027-missouri returns an HTML Drupal antibot form (HTTP 200) instead of the PDF for requests and curl_cffi chrome120; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 200 text/html Drupal antibot form with an Incapsula script instead of the PDF, plain and impersonated; the landing page also lists Amendment #1 and 'Current' Amendment #2 behind the same media path)"},
+               "reason": "plan link https://dese.mo.gov/media/pdf/acf-118-ccdf-ffy-2025-2027-missouri returns an HTML Drupal antibot form (HTTP 200) instead of the PDF for requests and curl_cffi chrome120; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 200 text/html Drupal antibot form with an Incapsula script instead of the PDF, plain and impersonated; the landing page also lists Amendment #1 and 'Current' Amendment #2 behind the same media path); "
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (landing page HTTP 200, 81,955 bytes, 0.1 s, with the Incapsula script; the plan media path HTTP 200 text/html 52,900 bytes and the Amendment #2 media path HTTP 200 text/html 60,052 bytes, both the Drupal antibot form instead of a PDF); {DURABLE}"},
     "mt": {"status": "agent_ready", "url": "https://dphhs.mt.gov/assets/ecfsd/childcare/documentsandresources/MontanaCCDFStatePlan.pdf",
                "index": "https://dphhs.mt.gov/ecfsd/childcare/documentsandresources", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09"},
     "ne": {"status": "agent_ready", "url": "https://dhhs.ne.gov/Child%20Care%20Documents/ACF-118%20CCDF%20FFY%202025-2027%20For%20Nebraska%20-%20APPROVED.pdf",
@@ -245,13 +264,15 @@ RESOLUTIONS: dict[str, dict] = {
     "nm": {"status": "agent_ready", "url": "https://www.nmececd.org/wp-content/uploads/2025/04/Approved-FFY2025-2027-Child-Care-and-Development-Fund-State-Plan.pdf",
                "index": "https://www.nmececd.org/ccdfsessions/", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09"},
     "ny": {"status": "blocked_primary_source", "index": "https://ocfs.ny.gov/main/childcare/stateplan/",
-               "reason": "ocfs.ny.gov returns an F5/Shape JavaScript bot-challenge page (TSPD) instead of the index; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (F5/Shape TSPD JavaScript challenge page, 7.5 KB, plain and impersonated)"},
+               "reason": "ocfs.ny.gov returns an F5/Shape JavaScript bot-challenge page (TSPD) instead of the index; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (F5/Shape TSPD JavaScript challenge page, 7.5 KB, plain and impersonated); "
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure class (connection reset by peer after 0.1 s, no response); {DURABLE}"},
     "nc": {"status": "agent_ready", "url": "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/A/ACF-118_CCDF_FFY_2025-2027_For_North_Carolina_November_2024.pdf?ver=5Qk3uXFjaCh3xyBqG3faZg%3d%3d",
                "index": "https://ncchildcare.ncdhhs.gov/Services/Child-Care-Development-Fund-CCDF", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (Amendment 2 consolidated plan and the Appendix posted separately, not taken)"},
     "nd": {"status": "agent_ready", "url": "https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-initial-archived.pdf",
                "index": "https://www.hhs.nd.gov/cfs/early-childhood-services/child-care-development-fund", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (Amendment 1, Amendment 2 and Appendix posted separately, not taken)"},
     "mp": {"status": "blocked_primary_source", "index": "https://www.childcare.gov.mp/",
-               "reason": "HTTP 403 (nginx) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx); retried 2026-09-11T21:15Z from a US network (territories pass), same failure (HTTP 403, server nginx/1.29.8, 358-byte body, for the plain browser UA and curl_cffi chrome120; the parent Department of Community and Cultural Affairs site www.dcca.gov.mp answers the same 403)"},
+               "reason": "HTTP 403 (nginx) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx); retried 2026-09-11T21:15Z from a US network (territories pass), same failure (HTTP 403, server nginx/1.29.8, 358-byte body, for the plain browser UA and curl_cffi chrome120; the parent Department of Community and Cultural Affairs site www.dcca.gov.mp answers the same 403); "
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (HTTP 403, 358 bytes, 2.5 s, nginx/1.29.8 '403 Forbidden'); {DURABLE}"},
     "oh": {"status": "agent_ready", "url": "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Providers/CCDF/Approved_State_Plan_2025-2027.pdf",
                "index": "https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (amendments 1 and 2 posted separately, not taken)"},
     "ok": {"status": "agent_ready", "url": "https://oklahoma.gov/content/dam/ok/en/okdhs/documents/okdhs-pdf-library/child-care-services/ACF-118%20CCDF%20FFY%202025-2027%20For%20Oklahoma.pdf",
@@ -271,8 +292,14 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://dss.sd.gov/childcare/stateplan/default.aspx", "version": "Initial Plan", "plan_status": "Certified as of 2024-09-24 ('original'; Amendments 1-3 consolidated plans posted separately, not taken)"},
     "tn": {"status": "agent_ready", "url": "https://www.tn.gov/content/dam/tn/human-services/documents/CCDF%20State%20Plan%20FFY%202025-2027%20Tennessee.pdf",
                "index": "https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 ('CCDF State Plan FFY 2025-2027' on the TDHS Reports and Information page; Appendix 1 and two transitional waiver approvals are posted separately, not taken; located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 awselb on the first two passes; one of three page requests on the retry ended with an SSL unexpected EOF, the others answered 200)"},
-    "tx": {"status": "blocked_primary_source", "index": "https://www.twc.texas.gov/programs/child-care/data-reports-plans",
-               "reason": "HTTP 403 (CloudFront) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure class (HTTP 202 with an AWS WAF JavaScript challenge body instead of the page, plain and impersonated; the first two passes saw 403 CloudFront)"},
+    "tx": {"status": "agent_ready", "url": "https://www.twc.texas.gov/sites/default/files/ccel/docs/ffy-2025-2027-ccdf-state-plan-amendment-1-accessible.pdf",
+               "index": "https://www.twc.texas.gov/programs/child-care/data-reports-plans", "version": "Amendment 1",
+               "plan_status": ("Approved as of 2026-07-01 ('Child Care and Development Fund 2025-2027 State Plan Amendment 1' on the TWC Child Care "
+                               "Data, Reports & Plans page, the only FFY 2025-2027 plan version posted; the page links the ACF-hosted Appendix "
+                               f"separately, not taken; located on the {REPROBE_STAMP} re-probe from a US network with the plain extractor client "
+                               "(HTTP 200, 122,911 bytes, 0.2 s; the PDF 2,910,861 bytes, Last-Modified 2026-08-03) after HTTP 403 CloudFront and "
+                               "an HTTP 202 AWS WAF challenge on the three 2026-09-10 passes)"),
+               **REPROBE_SCOPE},
     "ut": {"status": "agent_ready", "url": "https://jobs.utah.gov/occ/ccdfplan.pdf",
                "index": "https://jobs.utah.gov/occ/plans.html", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 ('2025-2027 State Plan' on the OCC Plans and Reports page; the state-hosted Appendix is posted separately, not taken; located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 awselb on the first two passes)"},
     "vt": {"status": "agent_ready", "url": "https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Approved.pdf",
@@ -319,17 +346,75 @@ def fetch_index() -> list[dict]:
 
 
 
+def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) -> dict:
+    """Write the one-document manifest of an agent_ready jurisdiction and return its queue-row fields.
+
+    A resolution may pin its own ``scope_version`` and ``source_as_of`` (the 2026-09-13 re-probe scope for GA
+    and TX); every other jurisdiction stays on the run-wide VERSION / SOURCE_AS_OF."""
+    jur = f"us-{code}"
+    fmt = res.get("source_format", "pdf")
+    version = res.get("scope_version", VERSION)
+    stem = f"{jur}-ccdf-state-plan-fy{FY}"
+    doc = {
+        "source_id": f"{jur}-acf-ccdf-plan-fy{FY}",
+        "jurisdiction": jur,
+        "document_class": "policy",
+        "title": f"{name} CCDF Plan, FFY {FY}",
+        "source_url": res["url"],
+        "source_format": fmt,
+        "source_as_of": res.get("source_as_of", SOURCE_AS_OF),
+        "expression_date": EXPRESSION_DATE,
+        "citation_path": f"{jur}/policy/acf/ccdf-plan/fy{FY}",
+    }
+    if res.get("impersonation"):
+        doc["request"] = {"browser_impersonation": True}
+    doc["extraction"] = res.get("extraction", CARS_EXTRACTION)
+    doc["metadata"] = {
+        "primary_source": True,
+        "source_authority": AUTHORITY,
+        "document_subtype": "state_plan_html" if fmt == "html" else "state_plan_pdf",
+        "program": "CCDF",
+        "form": "ACF-118",
+        "fiscal_years": FY,
+        "plan_period": "2024-10-01 to 2027-09-30",
+        "plan_version": res["version"],
+        "plan_status": res["plan_status"],
+        "central_index_url": INDEX,
+        "publisher_index_url": res["index"],
+        "acf_appendix_url": appendix_url,
+        "source_discovery_group": f"{jur}/policy/ccdf",
+        "discovered_via": "manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027",
+    }
+    if res.get("tls"):
+        doc["metadata"]["tls_note"] = "server omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem"
+    manifest = {"version": version, "documents": [doc]}
+    (ROOT / "manifests" / f"{stem}.yaml").write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
+    return {
+        "queue_status": "agent_ready",
+        "publisher_index_url": res["index"],
+        "target_scope": {"jurisdiction": jur, "document_class": "policy", "version": version},
+        "source_kind": "official_html_state_plan" if fmt == "html" else "official_pdf_state_plan",
+        "primary_source_url": res["url"],
+        "target_manifest": f"manifests/{stem}.yaml",
+        "taken_count": 1,
+        "notes": f"FFY {FY} ACF-118 CCDF Plan ({res['version']}; {res['plan_status']}) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.",
+    }
+
+
 def refresh_rows_only(codes: list[str]) -> dict[str, int]:
-    """Refresh the queue rows of non-extracted jurisdictions from RESOLUTIONS without fetching the
-    ACF index or rewriting any manifest (territories pass, 2026-09-11: AS, MP, PR, VI re-probed)."""
+    """Refresh the queue rows of the listed jurisdictions from RESOLUTIONS without fetching the ACF index
+    (territories pass, 2026-09-11: AS, MP, PR, VI re-probed; re-probe 2026-09-13: GA and TX extracted, the
+    other blocked rows re-recorded). A newly agent_ready row gets its manifest written from the ACF index
+    facts the row already carries (index_plan_link, index_appendix_url); no other manifest is touched."""
     queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
     rows = {s["jurisdiction"]: s for s in queue["states"]}
     for code in codes:
         res = RESOLUTIONS[code]
-        if res["status"] == "agent_ready":
-            raise SystemExit(f"{code}: extracted rows are rebuilt by the full run, not --only")
         row = rows[f"us-{code}"]
+        if res["status"] == "agent_ready":
+            row.update(ready_row_fields(code, row["name"], res, row.get("index_appendix_url")))
+            continue
         row["queue_status"] = res["status"]
         row["publisher_index_url"] = res["index"]
         row["notes"] = (
@@ -702,8 +787,9 @@ def run_family(family: str) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--only", help="comma-separated jurisdiction codes (as,mp,...) whose non-extracted rows are "
-                        "refreshed from RESOLUTIONS; every other row and manifest is left untouched")
+    parser.add_argument("--only", help="comma-separated jurisdiction codes (as,mp,...) whose rows are refreshed from "
+                        "RESOLUTIONS without fetching the ACF index (a newly agent_ready row also gets its manifest); "
+                        "every other row and manifest is left untouched")
     parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
                         help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
                              "queue rows (additional_families) instead of rebuilding the plan rows")
@@ -738,50 +824,8 @@ def main() -> int:
         row["publisher_index_url"] = res["index"]
         row["target_scope"] = {"jurisdiction": jur, "document_class": "policy", "version": VERSION}
         if res["status"] == "agent_ready":
-            fmt = res.get("source_format", "pdf")
-            stem = f"{jur}-ccdf-state-plan-fy{FY}"
-            doc = {
-                "source_id": f"{jur}-acf-ccdf-plan-fy{FY}",
-                "jurisdiction": jur,
-                "document_class": "policy",
-                "title": f"{name} CCDF Plan, FFY {FY}",
-                "source_url": res["url"],
-                "source_format": fmt,
-                "source_as_of": SOURCE_AS_OF,
-                "expression_date": EXPRESSION_DATE,
-                "citation_path": f"{jur}/policy/acf/ccdf-plan/fy{FY}",
-            }
-            if res.get("impersonation"):
-                doc["request"] = {"browser_impersonation": True}
-            doc["extraction"] = res.get("extraction", CARS_EXTRACTION)
-            doc["metadata"] = {
-                "primary_source": True,
-                "source_authority": AUTHORITY,
-                "document_subtype": "state_plan_html" if fmt == "html" else "state_plan_pdf",
-                "program": "CCDF",
-                "form": "ACF-118",
-                "fiscal_years": FY,
-                "plan_period": "2024-10-01 to 2027-09-30",
-                "plan_version": res["version"],
-                "plan_status": res["plan_status"],
-                "central_index_url": INDEX,
-                "publisher_index_url": res["index"],
-                "acf_appendix_url": r["appendix_url"],
-                "source_discovery_group": f"{jur}/policy/ccdf",
-                "discovered_via": "manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027",
-            }
-            if res.get("tls"):
-                doc["metadata"]["tls_note"] = "server omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem"
-            manifest = {"version": VERSION, "documents": [doc]}
-            (ROOT / "manifests" / f"{stem}.yaml").write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
+            row.update(ready_row_fields(code, name, res, r["appendix_url"]))
             written += 1
-            row.update({
-                "source_kind": "official_html_state_plan" if fmt == "html" else "official_pdf_state_plan",
-                "primary_source_url": res["url"],
-                "target_manifest": f"manifests/{stem}.yaml",
-                "taken_count": 1,
-                "notes": f"FFY {FY} ACF-118 CCDF Plan ({res['version']}; {res['plan_status']}) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.",
-            })
         else:
             row.update({
                 "source_kind": "official_state_plan_page",
