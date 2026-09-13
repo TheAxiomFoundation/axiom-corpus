@@ -609,10 +609,78 @@ states:
     22 subparts + 599 live sections (8 reserved sections skipped; the Appendix to Subpart K is not a supported adapter shape
     and is not taken); coverage complete; citation paths us/regulation/20/416/<section>. The 14-row 2026-07-23-title-20-part-416
     deeming slice is signed but selected by no release, so no released scope carries a us/regulation/20/416 path; the two
-    scopes are mutually exclusive in a selector and the full part is the one to select.'
+    scopes are mutually exclusive in a selector and the full part is the one to select. 2026-09-13 closure run (needs-closure-2026-09-11
+    SSI-F-POMS): the remaining 56 part SI subchapters (778 sections) taken as scope us/manual/2026-09-13-ssi-poms-si-remainder
+    through the same generator (--family si-remainder); together with the 2026-09-10 scope every section of part SI is held.'
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
   index_document_count: 622
   taken_count: 622
+  remainder_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-13-ssi-poms-si-remainder
+    target_manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+    index_document_count: 1693
+    taken_count: 778
+    subchapters_taken:
+    - SI 00500
+    - SI 00510
+    - SI 00515
+    - SI 00529
+    - SI 00530
+    - SI 00600
+    - SI 00601
+    - SI 00602
+    - SI 00603
+    - SI 00604
+    - SI 00605
+    - SI 00800
+    - SI 00832
+    - SI 00870
+    - SI 01100
+    - SI 01150
+    - SI 01200
+    - SI 01210
+    - SI 01220
+    - SI 01300
+    - SI 01700
+    - SI 01715
+    - SI 01730
+    - SI 01800
+    - SI 01801
+    - SI 02000
+    - SI 02002
+    - SI 02003
+    - SI 02004
+    - SI 02006
+    - SI 02007
+    - SI 02009
+    - SI 02100
+    - SI 02101
+    - SI 02200
+    - SI 02201
+    - SI 02205
+    - SI 02220
+    - SI 02300
+    - SI 02301
+    - SI 02302
+    - SI 02305
+    - SI 02306
+    - SI 02309
+    - SI 02310
+    - SI 02900
+    - SI 02901
+    - SI 04000
+    - SI 04005
+    - SI 04010
+    - SI 04020
+    - SI 04030
+    - SI 04040
+    - SI 04050
+    - SI 04060
+    - SI 04070
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}

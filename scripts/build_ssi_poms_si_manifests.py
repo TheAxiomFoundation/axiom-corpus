@@ -1,21 +1,36 @@
-"""Build the SSA POMS SI (Supplemental Security Income) official-document manifest
-from the publisher's own table of contents, and update the SSI agent queue.
+"""Build SSA POMS official-document manifests (part SI for SSI, part HI for
+Medicare) from the publisher's own table of contents, and update the program
+agent queues.
 
 Primary official source: SSA Program Operations Manual System (POMS), public site
-https://secure.ssa.gov/poms.nsf/. The SI part chapter list is
-https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05 ; each
-chapter links to a subchapter list that enumerates every section (national and
-regional) with its ``lnx`` URL. This script reads those index pages, takes a
-bounded, encoder-relevant set of subchapters (``TAKEN_SUBCHAPTERS``), fetches each
-taken section page once to read its printed "Effective Dates" start date and
+https://secure.ssa.gov/poms.nsf/. Each part has a chapter list
+(``chapterlist!openview&restricttocategory=<category>``: 05 for part SI, 06 for
+part HI); each chapter links to a subchapter list that enumerates every section
+(national and regional) with its ``lnx`` URL. This script reads those index
+pages, selects the subchapters of one family (``FAMILIES``), fetches each taken
+section page once to read its printed "Effective Dates" start date and
 transmittal ("TN") line, and writes one manifest document per section with
-citation path ``us/manual/ssa/poms/si/<section number>``.
+citation path ``us/manual/ssa/poms/<part>/<section number>``.
 
-Section pages are cached under ``--cache-dir`` (default ``~/.axiom/poms-si-cache``)
+Families (``--family``):
+
+* ``si-core`` (default): the 2026-09-10 SSI run, the bounded encoder-relevant set
+  ``TAKEN_SUBCHAPTERS`` (23 subchapters, 915 sections), version
+  ``2026-09-10-ssi-poms-si``; also rewrites the SSI state rows of the queue.
+* ``si-remainder``: the 2026-09-13 closure run, every other part SI subchapter
+  (56 subchapters), version ``2026-09-13-ssi-poms-si-remainder``. Citation paths
+  are section numbers, so the two SI scopes share no path and both can sit in one
+  release selector; the extractor emits no part- or chapter-level container rows.
+* ``hi``: the 2026-09-13 closure run, the whole of part HI (Health Insurance:
+  Medicare entitlement, SMI enrollment, state buy-in, premiums, IRMAA, Part D
+  Extra Help), version ``2026-09-13-medicare-poms-hi``.
+
+Section pages are cached under ``--cache-dir`` (default ``~/.axiom/poms-<part>-cache``)
 so the script can be re-run without re-fetching; the corpus extractor still
 re-fetches every page itself when it snapshots the source.
 
-    uv run python scripts/build_ssi_poms_si_manifests.py [--print-index] [--skip-queue]
+    uv run python scripts/build_ssi_poms_si_manifests.py [--family si-core|si-remainder|hi]
+        [--print-index] [--skip-queue]
 """
 from __future__ import annotations
 
@@ -26,6 +41,7 @@ import json
 import re
 import sys
 import time
+from dataclasses import dataclass
 from pathlib import Path
 
 import requests
@@ -33,12 +49,16 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 HOST = "https://secure.ssa.gov"
-INDEX_URL = f"{HOST}/poms.nsf/chapterlist!openview&restricttocategory=05"
+CHAPTER_LIST_URL = f"{HOST}/poms.nsf/chapterlist!openview&restricttocategory={{category}}"
 SUBCHAPTER_URL = f"{HOST}/apps10/poms.nsf/subchapterlist!openview&restricttocategory={{chapter}}"
+# POMS part -> (chapter-list category, program the queue tracks)
+PARTS = {"SI": ("05", "SSI"), "HI": ("06", "MEDICARE")}
 VERSION = "2026-09-10-ssi-poms-si"
 SOURCE_AS_OF = "2026-09-10"
+INDEX_URL = CHAPTER_LIST_URL.format(category="05")
 MANIFEST = ROOT / "manifests" / "us-ssa-poms-si-2026-09-10.yaml"
 QUEUE = ROOT / "manifests" / "ssi-agent-queue.yaml"
+MEDICARE_QUEUE = ROOT / "manifests" / "medicare-agent-queue.yaml"
 USER_AGENT = "axiom-corpus/0.1 (source discovery; https://github.com/TheAxiomFoundation/axiom-corpus)"
 
 # Reviewer judgment (2026-09-10): the bounded, encoder-relevant SI family. The work
@@ -59,6 +79,65 @@ TAKEN_SUBCHAPTERS = (
     "SI 01400", "SI 01401", "SI 01403", "SI 01405", "SI 01410", "SI 01415",
     "SI 02001", "SI 02005",
 )
+
+
+@dataclass(frozen=True)
+class Family:
+    """One POMS extraction scope: a part, the subchapters it takes (None = every
+    subchapter the chapter list enumerates; ``exclude`` removes the ones another
+    scope already holds), and the version, manifest and dates it is written with."""
+
+    name: str
+    part: str
+    version: str
+    source_as_of: str
+    manifest: str
+    include: tuple[str, ...] | None = None
+    exclude: tuple[str, ...] = ()
+    discovered_via: str = "manual-review:ssi-agent-queue; SSA POMS SI table of contents"
+
+    @property
+    def category(self) -> str:
+        return PARTS[self.part][0]
+
+    @property
+    def program(self) -> str:
+        return PARTS[self.part][1]
+
+    @property
+    def index_url(self) -> str:
+        return CHAPTER_LIST_URL.format(category=self.category)
+
+    @property
+    def manifest_path(self) -> Path:
+        return ROOT / "manifests" / self.manifest
+
+    def takes(self, subchapter: str) -> bool:
+        if subchapter in self.exclude:
+            return False
+        return self.include is None or subchapter in self.include
+
+
+FAMILIES = {
+    "si-core": Family(
+        name="si-core", part="SI", version=VERSION, source_as_of=SOURCE_AS_OF,
+        manifest=MANIFEST.name, include=TAKEN_SUBCHAPTERS,
+    ),
+    # 2026-09-13 closure run (docs/coverage/needs-closure-2026-09-11/ssi.md, SSI-F-POMS-*):
+    # the 56 part SI subchapters the 2026-09-10 scope did not take.
+    "si-remainder": Family(
+        name="si-remainder", part="SI", version="2026-09-13-ssi-poms-si-remainder",
+        source_as_of="2026-09-13", manifest="us-ssa-poms-si-remainder-2026-09-13.yaml",
+        exclude=TAKEN_SUBCHAPTERS,
+        discovered_via="manual-review:ssi-agent-queue; needs-closure-2026-09-11 SSI-F-POMS; SSA POMS SI table of contents",
+    ),
+    # 2026-09-13 closure run (medicare.md, MED-F-POMS-HI-*): the whole of part HI.
+    "hi": Family(
+        name="hi", part="HI", version="2026-09-13-medicare-poms-hi", source_as_of="2026-09-13",
+        manifest="us-ssa-poms-hi-2026-09-13.yaml",
+        discovered_via="manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-POMS-HI; SSA POMS HI table of contents",
+    ),
+}
 
 EXTRACTION = {
     # the section body; excludes the Effective Dates breadcrumb, Previous/Next links
@@ -183,25 +262,31 @@ def fetch(session: requests.Session, url: str, cache: Path | None) -> str:
     return text
 
 
-def read_index(session: requests.Session, cache_dir: Path) -> dict[str, dict]:
-    """Return {chapter: {title, url, subchapters: {sub: {title, sections: [...]}}}}."""
-    page = fetch(session, INDEX_URL, cache_dir / "index" / "chapterlist-05.html")
+def read_index(session: requests.Session, cache_dir: Path, part: str = "SI") -> dict[str, dict]:
+    """Return {chapter: {title, url, subchapters: {sub: {title, sections: [...]}}}}
+    for one POMS part (``SI`` or ``HI``)."""
+    category = PARTS[part][0]
+    index_url = CHAPTER_LIST_URL.format(category=category)
+    page = fetch(session, index_url, cache_dir / "index" / f"chapterlist-{category}.html")
     chapters: dict[str, dict] = {}
     for code, title in re.findall(
-        r"<div class='chaptitletoc'>SI (\d{3}): <A HREF='/apps10/poms\.nsf/subchapterlist!openview&restricttocategory=05\d{3}'>([^<]+)</A>",
+        rf"<div class='chaptitletoc'>{part} (\d{{3}}): <A HREF='/apps10/poms\.nsf/subchapterlist!openview"
+        rf"&restricttocategory={category}\d{{3}}'>([^<]+)</A>",
         page,
     ):
-        chapters[f"SI {code}"] = {"title": html.unescape(title).strip(), "code": f"05{code}", "subchapters": {}}
+        chapters[f"{part} {code}"] = {
+            "title": html.unescape(title).strip(), "code": f"{category}{code}", "subchapters": {},
+        }
     if len(chapters) < 10:
-        raise SystemExit(f"only {len(chapters)} SI chapters parsed from {INDEX_URL}; layout changed?")
+        raise SystemExit(f"only {len(chapters)} {part} chapters parsed from {index_url}; layout changed?")
     for _chapter, info in chapters.items():
         url = SUBCHAPTER_URL.format(chapter=info["code"])
         info["url"] = url
         body = fetch(session, url, cache_dir / "index" / f"subchapterlist-{info['code']}.html")
         current = None
         pattern = re.compile(
-            r'<div class="subchaptitle">&nbsp;(SI [A-Z]*\d+): ([^<]+)<br></div>'
-            r'|<div class="sectionTitle">(SI [A-Z]*\d+\.\d+): <A class="sectionTitle" HREF=\'([^\']+)\' target="_blank">(.*?)</A><br></div>'
+            rf'<div class="subchaptitle">&nbsp;({part} [A-Z]*\d+): ([^<]+)<br></div>'
+            rf'|<div class="sectionTitle">({part} [A-Z]*\d+\.\d+): <A class="sectionTitle" HREF=\'([^\']+)\' target="_blank">(.*?)</A><br></div>'
         )
         for match in pattern.finditer(body):
             if match.group(1):
@@ -238,12 +323,18 @@ def parse_section_page(text: str) -> tuple[str | None, str | None]:
     return effective, tn
 
 
-def build_documents(chapters: dict[str, dict], session: requests.Session, cache_dir: Path) -> list[dict]:
+def build_documents(
+    chapters: dict[str, dict],
+    session: requests.Session,
+    cache_dir: Path,
+    family: Family = FAMILIES["si-core"],
+) -> list[dict]:
+    part = family.part
     docs: list[dict] = []
     seen: set[str] = set()
     for chapter, info in chapters.items():
         for sub, subinfo in info["subchapters"].items():
-            if sub not in TAKEN_SUBCHAPTERS:
+            if not family.takes(sub):
                 continue
             for item in subinfo["sections"]:
                 number = section_number(item["section"])
@@ -255,13 +346,13 @@ def build_documents(chapters: dict[str, dict], session: requests.Session, cache_
                 if 'class="poms"' not in page:
                     raise SystemExit(f"no div.poms body on {item['url']}")
                 effective, tn = parse_section_page(page)
-                region = re.match(r"SI ([A-Z]+)\d", item["section"])
+                region = re.match(rf"{part} ([A-Z]+)\d", item["section"])
                 metadata = {
                     "primary_source": True,
                     "source_authority": "Social Security Administration",
                     "document_subtype": "poms_section",
-                    "program": "SSI",
-                    "poms_part": "SI",
+                    "program": family.program,
+                    "poms_part": part,
                     "poms_chapter": chapter,
                     "poms_chapter_title": info["title"],
                     "poms_subchapter": sub,
@@ -270,22 +361,22 @@ def build_documents(chapters: dict[str, dict], session: requests.Session, cache_
                     "poms_regional": region.group(1) if region else None,
                     "transmittal": tn,
                     "effective_date_printed": effective,
-                    "index_url": INDEX_URL,
+                    "index_url": family.index_url,
                     "subchapter_index_url": info["url"],
-                    "source_discovery_group": "us/manual/ssa/poms/si",
-                    "discovered_via": "manual-review:ssi-agent-queue; SSA POMS SI table of contents",
+                    "source_discovery_group": f"us/manual/ssa/poms/{part.lower()}",
+                    "discovered_via": family.discovered_via,
                 }
                 docs.append(
                     {
-                        "source_id": f"ssa-poms-si-{number.replace('.', '-')}",
+                        "source_id": f"ssa-poms-{part.lower()}-{number.replace('.', '-')}",
                         "jurisdiction": "us",
                         "document_class": "manual",
                         "title": f"POMS {item['section']}: {item['title']}",
                         "source_url": item["url"],
                         "source_format": "html",
-                        "source_as_of": SOURCE_AS_OF,
-                        "expression_date": effective or SOURCE_AS_OF,
-                        "citation_path": f"us/manual/ssa/poms/si/{number}",
+                        "source_as_of": family.source_as_of,
+                        "expression_date": effective or family.source_as_of,
+                        "citation_path": f"us/manual/ssa/poms/{part.lower()}/{number}",
                         # secure.ssa.gov served plain requests during discovery; the option only
                         # enables the extractor's browser fallback if SSA starts rejecting them.
                         "request": {"browser_impersonation": True},
@@ -296,17 +387,17 @@ def build_documents(chapters: dict[str, dict], session: requests.Session, cache_
     return docs
 
 
-def index_markdown(chapters: dict[str, dict]) -> str:
+def index_markdown(chapters: dict[str, dict], family: Family = FAMILIES["si-core"]) -> str:
     lines = ["| Chapter / subchapter | Title | Sections listed | Taken |", "| --- | --- | ---: | --- |"]
     total = taken_total = 0
     for chapter, info in chapters.items():
         count = sum(len(s["sections"]) for s in info["subchapters"].values())
-        taken = sum(len(s["sections"]) for k, s in info["subchapters"].items() if k in TAKEN_SUBCHAPTERS)
+        taken = sum(len(s["sections"]) for k, s in info["subchapters"].items() if family.takes(k))
         total += count
         taken_total += taken
         lines.append(f"| **{chapter}** | {info['title']} | {count} | {taken} |")
         for sub, subinfo in info["subchapters"].items():
-            flag = "yes" if sub in TAKEN_SUBCHAPTERS else ""
+            flag = "yes" if family.takes(sub) else ""
             lines.append(f"| {sub} | {subinfo['title']} | {len(subinfo['sections'])} | {flag} |")
     lines.append(f"| **Total** | | {total} | {taken_total} |")
     return "\n".join(lines)
@@ -423,26 +514,104 @@ def update_queue(docs: list[dict], index_count: int) -> dict:
     return queue["status_counts"]
 
 
+def _recount(queue: dict) -> None:
+    queue["status_counts"] = {}
+    for row in queue["states"]:
+        queue["status_counts"][row["queue_status"]] = queue["status_counts"].get(row["queue_status"], 0) + 1
+
+
+def update_queue_si_remainder(docs: list[dict], chapters: dict[str, dict], index_count: int) -> dict:
+    """Record the remainder scope on the SSI queue's federal row without touching the
+    2026-09-10 row fields the core family owns."""
+    family = FAMILIES["si-remainder"]
+    queue = yaml.safe_load(QUEUE.read_text())
+    rows = {row["jurisdiction"]: row for row in queue["states"]}
+    federal = rows["us"]
+    subchapters = sorted({d["metadata"]["poms_subchapter"] for d in docs})
+    federal["remainder_scope"] = {
+        "jurisdiction": "us", "document_class": "manual", "version": family.version,
+        "target_manifest": str(family.manifest_path.relative_to(ROOT)),
+        "index_url": family.index_url,
+        "index_document_count": index_count,
+        "taken_count": len(docs),
+        "subchapters_taken": subchapters,
+        "run_note": "docs/ingest-runs/2026-09-13-federal-guidance-layer.md",
+    }
+    note = (
+        f"2026-09-13 closure run (needs-closure-2026-09-11 SSI-F-POMS): the remaining {len(subchapters)} part SI "
+        f"subchapters ({len(docs)} sections) taken as scope us/manual/{family.version} through the same generator "
+        "(--family si-remainder); together with the 2026-09-10 scope every section of part SI is held."
+    )
+    if note not in str(federal.get("notes") or ""):
+        federal["notes"] = f"{federal.get('notes') or ''} {note}".strip()
+    _recount(queue)
+    QUEUE.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
+def update_queue_hi(docs: list[dict], chapters: dict[str, dict], index_count: int) -> dict:
+    """Record the POMS HI family on the Medicare queue's federal row (the CMS IOM
+    generator owns the row's singular keys; this adds a sibling family record)."""
+    family = FAMILIES["hi"]
+    queue = yaml.safe_load(MEDICARE_QUEUE.read_text())
+    rows = {row["jurisdiction"]: row for row in queue["states"]}
+    federal = rows["us"]
+    federal["poms_hi"] = {
+        "jurisdiction": "us", "document_class": "manual", "version": family.version,
+        "target_manifest": str(family.manifest_path.relative_to(ROOT)),
+        "source_kind": "official_html_agency_manual",
+        "index_url": family.index_url,
+        "index_document_count": index_count,
+        "taken_count": len(docs),
+        "chapters": [
+            {
+                "chapter": chapter, "title": info["title"],
+                "subchapters": [
+                    {"subchapter": sub, "title": s["title"], "sections": len(s["sections"])}
+                    for sub, s in info["subchapters"].items()
+                ],
+            }
+            for chapter, info in chapters.items()
+        ],
+        "run_note": "docs/ingest-runs/2026-09-13-federal-guidance-layer.md",
+    }
+    note = (
+        f"2026-09-13 closure run (needs-closure-2026-09-11 MED-F-POMS-HI): SSA POMS part HI taken whole "
+        f"({len(chapters)} chapters, {index_count} sections) as scope us/manual/{family.version}, citation path "
+        "us/manual/ssa/poms/hi/<section>, through scripts/build_ssi_poms_si_manifests.py --family hi."
+    )
+    if note not in str(federal.get("notes") or ""):
+        federal["notes"] = f"{federal.get('notes') or ''} {note}".strip()
+    _recount(queue)
+    MEDICARE_QUEUE.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cache-dir", type=Path, default=Path.home() / ".axiom" / "poms-si-cache")
-    parser.add_argument("--print-index", action="store_true", help="print the SI index inventory as markdown")
-    parser.add_argument("--skip-queue", action="store_true", help="do not rewrite manifests/ssi-agent-queue.yaml")
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--family", choices=sorted(FAMILIES), default="si-core", help="POMS scope to build")
+    parser.add_argument("--cache-dir", type=Path, default=None,
+                        help="section-page cache (default ~/.axiom/poms-<part>-cache)")
+    parser.add_argument("--print-index", action="store_true", help="print the part's index inventory as markdown")
+    parser.add_argument("--skip-queue", action="store_true", help="do not rewrite the program agent queue")
     args = parser.parse_args()
+    family = FAMILIES[args.family]
+    cache_dir = args.cache_dir or Path.home() / ".axiom" / f"poms-{family.part.lower()}-cache"
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT})
-    chapters = read_index(session, args.cache_dir)
+    chapters = read_index(session, cache_dir, family.part)
     index_count = sum(len(s["sections"]) for c in chapters.values() for s in c["subchapters"].values())
     if args.print_index:
-        print(index_markdown(chapters))
-    docs = build_documents(chapters, session, args.cache_dir)
-    manifest = {"version": VERSION, "documents": docs}
-    MANIFEST.write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
+        print(index_markdown(chapters, family))
+    docs = build_documents(chapters, session, cache_dir, family)
+    manifest = {"version": family.version, "documents": docs}
+    family.manifest_path.write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
     missing_dates = [d["metadata"]["poms_section"] for d in docs if "effective_date_printed" not in d["metadata"]]
     print(
         json.dumps(
             {
-                "manifest": str(MANIFEST.relative_to(ROOT)),
+                "family": family.name,
+                "manifest": str(family.manifest_path.relative_to(ROOT)),
                 "index_section_count": index_count,
                 "taken_count": len(docs),
                 "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -451,7 +620,12 @@ def main() -> int:
         )
     )
     if not args.skip_queue:
-        print("queue status_counts:", update_queue(docs, index_count))
+        if family.name == "si-core":
+            print("queue status_counts:", update_queue(docs, index_count))
+        elif family.name == "si-remainder":
+            print("queue status_counts:", update_queue_si_remainder(docs, chapters, index_count))
+        else:
+            print("queue status_counts:", update_queue_hi(docs, chapters, index_count))
     return 0
 
 
