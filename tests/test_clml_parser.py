@@ -299,3 +299,33 @@ class TestCLMLExtentParsing:
         extent = parse_extent("E+W")
         assert len(extent) == 2
         assert "S" not in extent
+
+
+class TestSectionMarginalNote:
+    def test_section_title_carries_p1group_marginal_note(self):
+        """The P1group Title (the marginal note) joins the structural
+        title, so corpus headings read 'Section 141 - Child benefit'
+        rather than the bare number."""
+        from axiom_corpus.parsers.clml import parse_section
+
+        xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation"
+             xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             DocumentURI="http://www.legislation.gov.uk/ukpga/1992/4/section/141">
+<ukm:Metadata>
+    <dc:title>Social Security Contributions and Benefits Act 1992</dc:title>
+</ukm:Metadata>
+<Primary>
+<Body>
+<P1group>
+<Title>Child benefit</Title>
+<P1><Pnumber>141</Pnumber>
+<P1para><Text>A person who is responsible for one or more children in any week shall be entitled to child benefit.</Text></P1para>
+</P1>
+</P1group>
+</Body>
+</Primary>
+</Legislation>"""
+        section = parse_section(xml)
+        assert section.title == "Section 141 - Child benefit"
