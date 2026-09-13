@@ -281,6 +281,7 @@ from axiom_corpus.corpus.usc import (
     extract_usc,
     extract_usc_directory,
     infer_uslm_title,
+    read_uslm_zip,
     usc_run_id,
 )
 from axiom_corpus.corpus.virginia_vac import extract_virginia_vac
@@ -1291,8 +1292,14 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
     try:
+        if args.title:
+            title = args.title
+        elif args.source_zip is not None:
+            title = infer_uslm_title(decode_uslm_bytes(read_uslm_zip(args.source_zip)[1]))
+        else:
+            title = infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes()))
         allowed_citation_paths = _usc_allowed_citation_paths(
-            args.title or infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes())),
+            title,
             sections=args.section,
             citation_paths=args.citation_path,
             include_title=args.include_title,
@@ -1304,6 +1311,7 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         store,
         version=args.version,
         source_xml=args.source_xml,
+        source_zip=args.source_zip,
         title=args.title,
         source_as_of=args.source_as_of,
         expression_date=expression_date,
@@ -5835,7 +5843,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_usc_cmd.add_argument("--base", type=Path, required=True)
     extract_usc_cmd.add_argument("--version", required=True)
-    extract_usc_cmd.add_argument("--source-xml", type=Path, required=True)
+    extract_usc_source = extract_usc_cmd.add_mutually_exclusive_group(required=True)
+    extract_usc_source.add_argument("--source-xml", type=Path)
+    extract_usc_source.add_argument(
+        "--source-zip",
+        type=Path,
+        help=(
+            "Single-member OLRC USLM zip; retained byte-for-byte as the inventoried source "
+            "(under olrc/) instead of the extracted XML member."
+        ),
+    )
     extract_usc_cmd.add_argument("--title")
     extract_usc_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_usc_cmd.add_argument("--expression-date")

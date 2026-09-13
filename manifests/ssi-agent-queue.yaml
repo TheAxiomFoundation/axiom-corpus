@@ -37,6 +37,9 @@ policy:
   - '2026-09-11 SSI territories pass: scripts/build_ssi_state_supplement_manifests.py --batch 4; MP done (SSI applies, no
     supplement; POMS SI 00501.410 pointer); PR, GU, VI, AS not applicable under 42 U.S.C. 1382c(e), recorded as blocked_primary_source;
     docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
+  - '2026-09-13 SSI re-probe of the blocked rows: scripts/build_ssi_state_supplement_manifests.py --batch 5; NY still reset
+    by otda.ny.gov (durable block), WY still a script-rendered Drive embed, PR/GU/VI/AS still outside title XVI; nothing fetched
+    beyond one plain GET each; docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -44,7 +47,7 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 29
+  agent_ready: 30
   done: 23
   blocked_primary_source: 6
 states:
@@ -609,10 +612,103 @@ states:
     22 subparts + 599 live sections (8 reserved sections skipped; the Appendix to Subpart K is not a supported adapter shape
     and is not taken); coverage complete; citation paths us/regulation/20/416/<section>. The 14-row 2026-07-23-title-20-part-416
     deeming slice is signed but selected by no release, so no released scope carries a us/regulation/20/416 path; the two
-    scopes are mutually exclusive in a selector and the full part is the one to select.'
+    scopes are mutually exclusive in a selector and the full part is the one to select. 2026-09-13 closure run (needs-closure-2026-09-11
+    SSI-F-POMS): the remaining 56 part SI subchapters (778 sections) taken as scope us/manual/2026-09-13-ssi-poms-si-remainder
+    through the same generator (--family si-remainder); together with the 2026-09-10 scope every section of part SI is held.'
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
   index_document_count: 622
   taken_count: 622
+  remainder_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-13-ssi-poms-si-remainder
+    target_manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+    index_document_count: 1693
+    taken_count: 778
+    subchapters_taken:
+    - SI 00500
+    - SI 00510
+    - SI 00515
+    - SI 00529
+    - SI 00530
+    - SI 00600
+    - SI 00601
+    - SI 00602
+    - SI 00603
+    - SI 00604
+    - SI 00605
+    - SI 00800
+    - SI 00832
+    - SI 00870
+    - SI 01100
+    - SI 01150
+    - SI 01200
+    - SI 01210
+    - SI 01220
+    - SI 01300
+    - SI 01700
+    - SI 01715
+    - SI 01730
+    - SI 01800
+    - SI 01801
+    - SI 02000
+    - SI 02002
+    - SI 02003
+    - SI 02004
+    - SI 02006
+    - SI 02007
+    - SI 02009
+    - SI 02100
+    - SI 02101
+    - SI 02200
+    - SI 02201
+    - SI 02205
+    - SI 02220
+    - SI 02300
+    - SI 02301
+    - SI 02302
+    - SI 02305
+    - SI 02306
+    - SI 02309
+    - SI 02310
+    - SI 02900
+    - SI 02901
+    - SI 04000
+    - SI 04005
+    - SI 04010
+    - SI 04020
+    - SI 04030
+    - SI 04040
+    - SI 04050
+    - SI 04060
+    - SI 04070
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+- jurisdiction: us
+  name: Federal statute (42 U.S.C., uscode.house.gov USLM)
+  queue_status: agent_ready
+  source_kind: federal_statute_uscode_uslm
+  primary_source_url: https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: statute
+    version: 2026-09-13-ssi-statute-1381a-1383f-title-42
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 1381a, 1383,
+    1383a, 1383b, 1383c, 1383d, 1383e, 1383f (the Title XVI sections the released 2026-06-20 scope stops short of; 1381 and
+    1382-1382j stay in the released scope). Extracted with extract-usc from the official OLRC USLM release point Public Law
+    119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip,
+    retained byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-ssi-statute-1381a-1383f-title-42/olrc/
+    via extract-usc --source-zip; the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 8
+    section rows, 475 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
+    rows are self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded
+    in metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements
+    SSI-F-USC-1381a, SSI-F-USC-1383, SSI-F-USC-1383a through SSI-F-USC-1383f (8).'
+  index_url: https://uscode.house.gov/download/download.shtml
+  index_document_count: 8
+  taken_count: 475
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}
@@ -702,7 +798,9 @@ states:
     of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
     American Samoa operates no adult assistance program under titles I, X, XIV or XVI. No territory SSI document exists to
-    inventory and nothing was fetched. (2026-09-11 territories pass.)'
+    inventory and nothing was fetched. (2026-09-11 territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the
+    plain extractor client: POMS SI 00501 subchapter list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov
+    HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion is unchanged. Not applicable on two dates; nothing to take.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -882,7 +980,9 @@ states:
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
     Guam administers Old Age Assistance, Aid to the Blind and Aid to the Permanently and Totally Disabled through DPHSS (SSA
     titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
-    territories pass.)'
+    territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter
+    list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory
+    exclusion is unchanged. Not applicable on two dates; nothing to take.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1406,7 +1506,10 @@ states:
     possible. SSA regional description remains in the federal family: us/manual/ssa/poms/si/ny01415.026. Retried 2026-09-10T21:36Z
     from a US network, same failure: plain client ''Remote end closed connection without response'' on https://otda.ny.gov/programs/ssp/;
     chrome120 impersonation HTTP 200 with a 7,559-byte JavaScript challenge (''Please enable JavaScript to view the page content.
-    Your support ID is ...''), no page content.'
+    Your support ID is ...''), no page content. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client,
+    same failure: connection reset by peer after 0.1 s, no response. Durable block: the same failure from two networks (the
+    2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available
+    rather than pending.'
   index_families: no index inventory possible (publisher blocked; see notes)
 - jurisdiction: us-oh
   name: Ohio
@@ -1525,7 +1628,10 @@ states:
     of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
     Puerto Rico administers Aid to the Aged, Blind and Disabled under SSA titles I, X and XIV (42 U.S.C. 1308 ceiling), a
-    separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.)'
+    separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.)
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter list HTTP 200
+    (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion
+    is unchanged. Not applicable on two dates; nothing to take.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -1708,7 +1814,9 @@ states:
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
     the Virgin Islands Department of Human Services administers Old Age Assistance, Aid to the Blind and Aid to the Disabled
     (SSA titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
-    territories pass.)'
+    territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter
+    list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory
+    exclusion is unchanged. Not applicable on two dates; nothing to take.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}
@@ -1820,6 +1928,10 @@ states:
     URL or file id, so the document is not addressable from the publisher''s page. DFS (dfs.wyo.gov) lists no SSI supplement
     family (Cash Assistance = POWER; policy manuals: APS, Child Support, SNAP/POWER, Foster Care). rules.wyo.gov (Secretary
     of State, ASP.NET search application) was not searched for a Department of Health SSP rule chapter. No index document
-    taken. The SSA regional description is in the federal family: us/manual/ssa/poms/si/01415.010 (Wyoming row S/S).'
+    taken. The SSA regional description is in the federal family: us/manual/ssa/poms/si/01415.010 (Wyoming row S/S). Re-probed
+    2026-09-13T19:57Z from a US network with the plain extractor client: ecom.wyo.gov answers HTTP 200 (218,582 bytes, 0.3
+    s) with the same Google Sites navigation and script-rendered Drive embed; M1804 is still not addressable from the publisher''s
+    page. Not a network block: the document is not fetchable on two dates (2026-09-11 and 2026-09-13); treat the cell as not
+    available rather than pending.'
   index_families: 'Department of Health EOM sections (Google Sites navigation): 107 found / 0 taken (M1804 content is a script-rendered
     Drive embed; see notes); DFS index: no SSI supplement family'

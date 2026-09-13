@@ -1,0 +1,27 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-fl-tanf-state-plan-2026-2028
+  jurisdiction: us-fl
+  document_class: policy
+  title: Florida TANF State Plan 2026-2028
+  source_url: https://www.myflfamilies.com/documents/Florida%20TANF%20State%20Plan%202026-2028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-01'
+  citation_path: us-fl/policy/acf/tanf-plan/2026-2028
+  metadata:
+    primary_source: true
+    source_authority: Florida Department of Children and Families
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Florida TANF State Plan 2026-2028 (effective July 1, 2026)
+    publisher_index_url: https://www.myflfamilies.com/services/public-assistance/temporary-cash-assistance
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-fl/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.myflfamilies.com/services/public-assistance/temporary-cash-assistance
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

@@ -340,12 +340,31 @@ def _ecfr_source_key(run_id: str, title: int, only_part: str | None) -> str:
     )
 
 
+# An eCFR section identifier is PART.SECTION. Title 26 numbers many sections after the
+# Code subsection they implement, so SECTION may carry parenthesised groups
+# ("1.401(k)-1", "31.3121(a)(1)-1", "31.3121(a)-1T"). Parentheses are not legal in a
+# citation-path segment (schema/citation-path.v1.json), so the path segment folds each
+# group into hyphens ("401-k-1", "3121-a-1-1") while labels, identifiers, metadata and
+# the eCFR URL keep the official form.
+_SECTION_IDENTIFIER_PATTERN = r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.()-]*)"
+
+
+def _section_path_segment(section: str) -> str:
+    segment = re.sub(r"[()]", "-", section)
+    segment = re.sub(r"-{2,}", "-", segment)
+    return segment.strip("-")
+
+
+def _section_citation_path(title: int, part: str, section: str) -> str:
+    return f"us/regulation/{title}/{part}/{_section_path_segment(section)}"
+
+
 def _section_citation_from_identifier(title: int, identifier: str) -> tuple[str, str] | None:
-    match = re.fullmatch(r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.-]*)", identifier)
+    match = re.fullmatch(_SECTION_IDENTIFIER_PATTERN, identifier)
     if not match:
         return None
     part, section = match.groups()
-    return f"us/regulation/{title}/{part}/{section}", section
+    return _section_citation_path(title, part, section), section
 
 
 def _title_from_citation_path(citation_path: str) -> int:
@@ -357,11 +376,11 @@ def _title_from_citation_path(citation_path: str) -> int:
 
 def _section_citation_from_element(title: int, elem: ET.Element) -> tuple[str, str, str] | None:
     n_attr = elem.get("N", "")
-    match = re.search(r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.-]*)", n_attr)
+    match = re.search(_SECTION_IDENTIFIER_PATTERN, n_attr)
     if not match:
         return None
     part, section = match.groups()
-    return f"us/regulation/{title}/{part}/{section}", part, section
+    return _section_citation_path(title, part, section), part, section
 
 
 def _appendix_citation_from_identifier(
@@ -801,10 +820,7 @@ def _filter_ecfr_inventory_sections(
 ) -> list[SourceInventoryItem]:
     requested = tuple(dict.fromkeys(only_sections))
     for selector in requested:
-        if not re.fullmatch(
-            r"[0-9A-Za-z]+\.[0-9A-Za-z][0-9A-Za-z.-]*",
-            selector,
-        ):
+        if not re.fullmatch(_SECTION_IDENTIFIER_PATTERN, selector):
             raise ValueError(
                 f"invalid eCFR section selector {selector!r}; expected PART.SECTION"
             )
