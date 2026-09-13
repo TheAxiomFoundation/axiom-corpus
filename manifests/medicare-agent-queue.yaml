@@ -29,7 +29,7 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 2
+  agent_ready: 6
   done: 5
 states:
 - jurisdiction: us
@@ -389,7 +389,9 @@ states:
     Pub 100-04 (Medicare Claims Processing Manual) taken: 39 chapter PDFs (chapters 1-39) from its publication page; the two
     ''Chapter 21 - Medicare Summary Notices - English/Spanish Exhibits'' links are ZIP bundles of MSN exhibit images, not
     chapter text, and the 29 per-chapter crosswalk PDFs are finding aids; none of those are taken. Several chapter TOCs list
-    sections the body no longer prints (for example chapter 8''s 50.1.5 to 100.3 and chapter 18''s 1 and 1.1); the body governs.'
+    sections the body no longer prints (for example chapter 8''s 50.1.5 to 100.3 and chapter 18''s 1 and 1.1); the body governs.
+    2026-09-13: 42 CFR parts 406, 407, 408 and 423 taken as us/regulation 2026-09-13-title-42-part-<p> (see the four federal_regulation_ecfr
+    rows below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md).'
   index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
   index_document_count: 25
   taken_count: 4
@@ -862,6 +864,84 @@ states:
   index_url: https://uscode.house.gov/download/download.shtml
   index_document_count: 21
   taken_count: 2335
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-406
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-42-part-406
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 42 CFR part 406 extracted with
+    extract-ecfr --only-title 42 --only-part 406 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 30 rows = 1 part + 4 subparts + 25 sections; coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/42/406/<section>. Closure elements addressed: MED-F-CFR-406.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-42.json
+  index_document_count: 30
+  taken_count: 30
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-407
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-42-part-407
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 42 CFR part 407 extracted with
+    extract-ecfr --only-title 42 --only-part 407 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 33 rows = 1 part + 4 subparts + 28 sections; coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/42/407/<section>. Closure elements addressed: MED-F-CFR-407.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-42.json
+  index_document_count: 33
+  taken_count: 33
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-408
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-42-part-408
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 42 CFR part 408 extracted with
+    extract-ecfr --only-title 42 --only-part 408 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 58 rows = 1 part + 8 subparts + 49 sections (408.4 reserved skipped); coverage
+    complete; every section body non-empty unless noted; citation paths us/regulation/42/408/<section>. Closure elements addressed:
+    MED-F-CFR-408.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-42.json
+  index_document_count: 58
+  taken_count: 58
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-423
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-42-part-423
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 42 CFR part 423 extracted with
+    extract-ecfr --only-title 42 --only-part 423 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 360 rows = 1 part + 25 subparts + 334 sections (2 reserved subparts, 3 reserved
+    sections skipped); coverage complete; every section body non-empty unless noted; citation paths us/regulation/42/423/<section>.
+    Closure elements addressed: MED-F-CFR-423-B, -D, -P.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-42.json
+  index_document_count: 360
+  taken_count: 360
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}

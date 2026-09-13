@@ -29,7 +29,7 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 22
+  agent_ready: 24
   done: 35
   needs_review: 1
 states:
@@ -2028,7 +2028,9 @@ states:
     2848, 941, W-2/W-3, 9465, SS-4, W-7, 4547) and links the Schedules for Form 1040 page (14 schedules: 1, 1-A, 2, 3, A-F,
     H, J, R, SE, EIC, 8812). Taken: 19. Separate manifest manifests/us-irs-guidance-2026-inflation-adjustments.yaml (document_class
     guidance, version 2026-09-10-tax-irs-guidance) adds the 2026 IRB inflation-adjustment items not already in manifests/us-irs-guidance.yaml:
-    Notice 2026-10, Rev. Proc. 2026-24, Rev. Proc. 2026-26. Extraction proven 2026-09-10.'
+    Notice 2026-10, Rev. Proc. 2026-24, Rev. Proc. 2026-26. Extraction proven 2026-09-10. 2026-09-13: the closure check''s
+    26 CFR part 1 sections (344, folded into the released 1401 scope''s successor) and the whole of 26 CFR part 31 taken as
+    us/regulation (see the two federal_regulation_ecfr rows below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md).'
   index_url: https://www.irs.gov/forms-instructions
   index_document_count: 35
   taken_count: 19
@@ -2059,6 +2061,52 @@ states:
   index_url: https://uscode.house.gov/download/download.shtml
   index_document_count: 42
   taken_count: 4299
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-26/chapter-I/subchapter-A/part-1
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 26 CFR part 1 extracted with extract-ecfr
+    --only-title 26 --only-part 1 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 346 rows = 1 part + 345 sections: the released 2026-07-24 scope''s 1.1401-1 plus the 344
+    sections the closure check lists, taken section-scoped (extract-ecfr --section, 2026-09-13-title-26-part-1, 345 rows)
+    and consolidated with scripts/consolidate_release_scopes.py because both scopes carry the us/regulation/26/1 container;
+    coverage complete; every section body non-empty unless noted; citation paths us/regulation/26/1/<section>. Closure elements
+    addressed: F116-F127, F129, F130, F132 (1.7703-1 only) and the 1.1402(a)-1 to 1.1402(h)-1 half of F128. Section identifiers
+    with parenthesised groups (1.401(k)-1) fold into hyphenated path segments (us/regulation/26/1/401-k-1); labels keep the
+    official form. 1.163-16 is the publisher''s placeholder for the 91 FR 57235 amendment (heading ''xxx'', empty body). 6
+    formula images archived without transcriptions (1.162-28, 1.163-10T, 1.408-11). F132''s 301.7701-18 (part 301) is not
+    taken.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-26.json
+  index_document_count: 346
+  taken_count: 346
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-26/chapter-I/subchapter-C/part-31
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-26-part-31
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 26 CFR part 31 extracted with extract-ecfr
+    --only-title 26 --only-part 31 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 359 rows = 1 part + 7 subparts + 351 sections (31.3121(a)(12)-1 reserved skipped); coverage
+    complete; every section body non-empty unless noted; citation paths us/regulation/26/31/<section>. Closure elements addressed:
+    F131.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-26.json
+  index_document_count: 359
+  taken_count: 359
 - jurisdiction: us-ak
   name: Alaska
   queue_status: done

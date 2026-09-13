@@ -2373,7 +2373,13 @@ def main() -> int:
     args = parser.parse_args()
 
     queue = yaml.safe_load(QUEUE_PATH.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     for jur, name in NEW_ROWS.items():
         rows.setdefault(
             jur,
@@ -2530,7 +2536,7 @@ def main() -> int:
             ),
         }
     )
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = (

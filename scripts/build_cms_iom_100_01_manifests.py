@@ -642,7 +642,13 @@ def update_queue(
 ) -> dict[str, int]:
     """Extend the single federal row: one entry per taken publication."""
     queue = yaml.safe_load(queue_path.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     row = rows["us"]
     taken = {e["publication"] for e in row.get("index_inventory", []) if e.get("taken")}
     taken |= {p["publication"] for p in row.get("publications", [])}
@@ -712,7 +718,7 @@ def update_queue(
             "notes": notes,
         }
     )
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
@@ -741,7 +747,13 @@ TERRITORY_POINTERS = {
 
 def apply_territory_rows(queue_path: Path, only: set[str] | None = None) -> dict[str, int]:
     queue = yaml.safe_load(queue_path.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     for jur, (name, pointer) in TERRITORY_POINTERS.items():
         if only and jur not in only:
             continue
@@ -773,7 +785,7 @@ def apply_territory_rows(queue_path: Path, only: set[str] | None = None) -> dict
             }
         )
         rows[jur] = row
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1

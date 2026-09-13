@@ -46,6 +46,254 @@ policy:
     block-grant MOU) extracted; GU and VI (SNAP) and AS (ASNAP) publish no manual or plan. Generator: scripts/build_snap_state_manual_completion_manifests.py
     --only us-pr --only us-mp --only us-gu --only us-vi --only us-as --corpus-base <corpus>.'
 states:
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-271
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-271
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 271 extracted with extract-ecfr
+    --only-title 7 --only-part 271 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 10 rows = 1 part + 9 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/271/<section>. Closure elements addressed: snap_cfr_271_1-9.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 10
+  taken_count: 10
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-272
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-272
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 272 extracted with extract-ecfr
+    --only-title 7 --only-part 272 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 19 rows = 1 part + 18 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/272/<section>. Closure elements addressed: snap_cfr_272_1-18.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 19
+  taken_count: 19
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-274
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-274
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 274 extracted with extract-ecfr
+    --only-title 7 --only-part 274 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 9 rows = 1 part + 8 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/274/<section>. Closure elements addressed: snap_cfr_274_1-8.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 9
+  taken_count: 9
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-276
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-276
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 276 extracted with extract-ecfr
+    --only-title 7 --only-part 276 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 8 rows = 1 part + 7 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/276/<section>. Closure elements addressed: snap_cfr_276_1-7.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 8
+  taken_count: 8
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-277
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-277
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 277 extracted with extract-ecfr
+    --only-title 7 --only-part 277 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 19 rows = 1 part + 17 sections + Appendix A (cost principles; 277.15 reserved skipped); coverage
+    complete; every section body non-empty unless noted; citation paths us/regulation/7/277/<section>. Closure elements addressed:
+    snap_cfr_277_1-14,16-18.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 19
+  taken_count: 19
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-278
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-278
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 278 extracted with extract-ecfr
+    --only-title 7 --only-part 278 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 9 rows = 1 part + 8 sections (278.8, 278.10 reserved skipped); coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/7/278/<section>. Closure elements addressed: snap_cfr_278_1-7,9.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 9
+  taken_count: 9
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-279
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-279
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 279 extracted with extract-ecfr
+    --only-title 7 --only-part 279 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 11 rows = 1 part + 2 subparts + 8 sections; coverage complete; every section body non-empty
+    unless noted; citation paths us/regulation/7/279/<section>. Closure elements addressed: snap_cfr_279_1-8.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 11
+  taken_count: 11
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-280
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-280
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 280 extracted with extract-ecfr
+    --only-title 7 --only-part 280 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 2 rows = 1 part + 1 section; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/280/<section>. Closure elements addressed: snap_cfr_280_1.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 2
+  taken_count: 2
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-281
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-281
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 281 extracted with extract-ecfr
+    --only-title 7 --only-part 281 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 11 rows = 1 part + 10 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/281/<section>. Closure elements addressed: snap_cfr_281_1-10.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 11
+  taken_count: 11
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-282
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-282
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 282 extracted with extract-ecfr
+    --only-title 7 --only-part 282 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 3 rows = 1 part + 2 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/282/<section>. Closure elements addressed: snap_cfr_282_1-2.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 3
+  taken_count: 3
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-283
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-283
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 283 extracted with extract-ecfr
+    --only-title 7 --only-part 283 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 36 rows = 1 part + 3 subparts + 32 sections; coverage complete; every section body non-empty
+    unless noted; citation paths us/regulation/7/283/<section>. Closure elements addressed: snap_cfr_283_1-32.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 36
+  taken_count: 36
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-284
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-284
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 284 extracted with extract-ecfr
+    --only-title 7 --only-part 284 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 2 rows = 1 part + 1 section (284.2 reserved skipped); coverage complete; every section body
+    non-empty unless noted; citation paths us/regulation/7/284/<section>. Closure elements addressed: snap_cfr_284_1.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 2
+  taken_count: 2
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-7/chapter-II/subchapter-C/part-285
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-7-part-285
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 7 CFR part 285 extracted with extract-ecfr
+    --only-title 7 --only-part 285 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of on 2026-09-13;
+    expression date 2026-09-10). 6 rows = 1 part + 5 sections; coverage complete; every section body non-empty unless noted;
+    citation paths us/regulation/7/285/<section>. Closure elements addressed: snap_cfr_285_1-5.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
+  index_document_count: 6
+  taken_count: 6
 - jurisdiction: us-al
   name: Alabama
   queue_status: done
@@ -1384,6 +1632,6 @@ states:
       body. Extraction 6 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion scope (Glossary,
       Policy Clarifications, Table I, purchasing page) is untouched.'
 status_counts:
+  agent_ready: 20
   done: 20
   blocked_primary_source: 6
-  agent_ready: 7

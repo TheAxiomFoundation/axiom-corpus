@@ -54,7 +54,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 2
-  agent_ready: 43
+  agent_ready: 44
   blocked_primary_source: 8
   done: 6
 states:
@@ -1297,6 +1297,27 @@ states:
   index_url: https://uscode.house.gov/download/download.shtml
   index_document_count: 10
   taken_count: 824
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-447
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-42-part-447
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 42 CFR part 447 extracted with
+    extract-ecfr --only-title 42 --only-part 447 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 79 rows = 1 part + 7 subparts + 71 sections (subparts D and H and 447.58 reserved
+    skipped); coverage complete; every section body non-empty unless noted; citation paths us/regulation/42/447/<section>.
+    Closure elements addressed: M-447-1 to M-447-90 (22 subpart A sections). The adapter has no subpart selector, so the whole
+    part (payments for services) is taken; subpart A is us/regulation/42/447/subpart-A.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-42.json
+  index_document_count: 79
+  taken_count: 79
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}

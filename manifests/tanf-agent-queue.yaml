@@ -30,7 +30,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 1
-  agent_ready: 27
+  agent_ready: 33
   done: 26
   blocked_primary_source: 4
 states:
@@ -273,7 +273,8 @@ states:
     separate later document family (state plans are published by each state; the OFA program page and the acf.gov resource
     library do not expose a consolidated plan index to a non-browser client on 2026-09-10 - acf.gov/ofa/programs/tanf/state-plans
     is 404 and the resource-library type filter returns an HTTP 202 challenge). index_document_count unknown; record once
-    an index is located.'
+    an index is located. 2026-09-13: 45 CFR parts 260-265 taken as us/regulation 2026-09-13-title-45-part-260 to -265 (see
+    the six federal_regulation_ecfr rows below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md).'
   index_url: https://acf.gov/ofa/programs/temporary-assistance-needy-families-tanf
   index_document_count: null
   taken_count: 0
@@ -302,6 +303,124 @@ states:
   index_url: https://uscode.house.gov/download/download.shtml
   index_document_count: 23
   taken_count: 1101
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/chapter-II/part-260
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-45-part-260
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 45 CFR part 260 extracted with
+    extract-ecfr --only-title 45 --only-part 260 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 27 rows = 1 part + 3 subparts + 23 sections; coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/45/260/<section>. Closure elements addressed: tanf-f-cfr-260.*
+    (23).'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-45.json
+  index_document_count: 27
+  taken_count: 27
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/chapter-II/part-261
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-45-part-261
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 45 CFR part 261 extracted with
+    extract-ecfr --only-title 45 --only-part 261 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 52 rows = 1 part + 8 subparts + 43 sections; coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/45/261/<section>. Closure elements addressed: tanf-f-cfr-261.*
+    (43).'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-45.json
+  index_document_count: 52
+  taken_count: 52
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/chapter-II/part-262
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-45-part-262
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 45 CFR part 262 extracted with
+    extract-ecfr --only-title 45 --only-part 262 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 9 rows = 1 part + 8 sections; coverage complete; every section body non-empty
+    unless noted; citation paths us/regulation/45/262/<section>. Closure elements addressed: tanf-f-cfr-262.* (8).'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-45.json
+  index_document_count: 9
+  taken_count: 9
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/chapter-II/part-263
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-45-part-263
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 45 CFR part 263 extracted with
+    extract-ecfr --only-title 45 --only-part 263 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 22 rows = 1 part + 3 subparts + 18 sections; coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/45/263/<section>. Closure elements addressed: tanf-f-cfr-263.*
+    (18).'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-45.json
+  index_document_count: 22
+  taken_count: 22
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/chapter-II/part-264
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-45-part-264
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 45 CFR part 264 extracted with
+    extract-ecfr --only-title 45 --only-part 264 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 30 rows = 1 part + 3 subparts + 26 sections; coverage complete; every section
+    body non-empty unless noted; citation paths us/regulation/45/264/<section>. Closure elements addressed: tanf-f-cfr-264.*
+    (26).'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-45.json
+  index_document_count: 30
+  taken_count: 30
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/chapter-II/part-265
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-45-part-265
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 45 CFR part 265 extracted with
+    extract-ecfr --only-title 45 --only-part 265 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 11 rows = 1 part + 10 sections; coverage complete; every section body non-empty
+    unless noted; citation paths us/regulation/45/265/<section>. Closure elements addressed: tanf-f-cfr-265.* (10).'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-45.json
+  index_document_count: 11
+  taken_count: 11
 - jurisdiction: us-ak
   name: Alaska
   queue_status: done
