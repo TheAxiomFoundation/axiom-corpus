@@ -51,7 +51,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 2
-  agent_ready: 41
+  agent_ready: 42
   blocked_primary_source: 3
   done: 6
 states:
@@ -1240,10 +1240,32 @@ states:
     (coverage complete, 168 provisions) plus the CMS-2454-IFC community-engagement scopes; 42 CFR part 436 (Puerto Rico, Guam,
     Virgin Islands eligibility) is NOT in the corpus (no coverage, manifest, or ingest-run note mentions part 436). Nothing
     federal was re-ingested and none of the federal lead-list URLs were taken in this run. A later run should extract part
-    436 through extract-ecfr --only-title 42 --only-part 436.'
+    436 through extract-ecfr --only-title 42 --only-part 436. 2026-09-11: 42 CFR part 436 extracted as us/regulation/2026-09-11-title-42-part-436
+    (see the eCFR row below).'
   index_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C
   index_document_count: null
   taken_count: 0
+- jurisdiction: us
+  name: Federal (42 CFR part 436, eCFR)
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-436
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-11-title-42-part-436
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): 42 CFR part 436 (Medicaid
+    eligibility in Guam, Puerto Rico and the Virgin Islands) extracted with extract-ecfr --only-title 42 --only-part 436 from
+    the eCFR Versioner API at as-of 2026-09-09. 87 rows = 1 part + 11 live subparts + 75 live sections; the reserved units
+    (subpart H; 436.402, 436.408, 436.604-436.608) and the 12 subject-group headings are not rows, as in the released 42 CFR
+    435 scope; coverage complete; citation paths us/regulation/42/436/<section>. No released scope carries any us/regulation/42/436
+    path; part 435 stays in 2026-06-25-title-42-part-435.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-42.json
+  index_document_count: 87
+  taken_count: 87
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}

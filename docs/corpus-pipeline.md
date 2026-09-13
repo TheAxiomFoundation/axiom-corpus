@@ -143,6 +143,10 @@ axiom-corpus-ingest extract-ecfr \
 Use an eCFR date that the public API actually serves. The corpus version can be
 the local build or release date; the source `as_of` date remains provenance.
 
+The Versioner API's full-XML endpoint requires response compression (it answers
+`406 Not Acceptable`, support code 11, to a request without an `Accept-Encoding`
+header); the adapter offers gzip and deflate and decodes the reply itself.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash

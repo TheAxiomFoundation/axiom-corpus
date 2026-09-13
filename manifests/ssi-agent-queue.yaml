@@ -41,7 +41,7 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 28
+  agent_ready: 29
   done: 22
   blocked_primary_source: 2
 states:
@@ -584,10 +584,32 @@ states:
     lists. 42 USC 1381-1382j (2026-06-20 run) and the 20 CFR 416 deeming slice (2026-07-23 run, 14 rows) already exist and
     are not re-ingested; the rest of 20 CFR 416 remains a separate follow-up. Sibling POMS documents already under us/guidance
     (SI 01415.058 2026, SI PHI01415.009 from the DC run) keep their guidance citation paths; the manual family re-takes them
-    under the section-number path.'
+    under the section-number path. 2026-09-11: the rest of 20 CFR 416 is now the full-part scope us/regulation/2026-09-11-title-20-part-416
+    (see the eCFR row below).'
   index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
   index_document_count: 1693
   taken_count: 915
+- jurisdiction: us
+  name: Federal (20 CFR part 416, eCFR)
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-20/chapter-III/part-416
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-11-title-20-part-416
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): the full 20 CFR part 416 extracted
+    with extract-ecfr --only-title 20 --only-part 416 from the eCFR Versioner API at as-of 2026-09-09. 622 rows = 1 part +
+    22 subparts + 599 live sections (8 reserved sections skipped; the Appendix to Subpart K is not a supported adapter shape
+    and is not taken); coverage complete; citation paths us/regulation/20/416/<section>. The 14-row 2026-07-23-title-20-part-416
+    deeming slice is signed but selected by no release, so no released scope carries a us/regulation/20/416 path; the two
+    scopes are mutually exclusive in a selector and the full part is the one to select.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
+  index_document_count: 622
+  taken_count: 622
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}
