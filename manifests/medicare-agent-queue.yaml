@@ -389,10 +389,29 @@ states:
     Pub 100-04 (Medicare Claims Processing Manual) taken: 39 chapter PDFs (chapters 1-39) from its publication page; the two
     ''Chapter 21 - Medicare Summary Notices - English/Spanish Exhibits'' links are ZIP bundles of MSN exhibit images, not
     chapter text, and the 29 per-chapter crosswalk PDFs are finding aids; none of those are taken. Several chapter TOCs list
-    sections the body no longer prints (for example chapter 8''s 50.1.5 to 100.3 and chapter 18''s 1 and 1.1); the body governs.'
+    sections the body no longer prints (for example chapter 8''s 50.1.5 to 100.3 and chapter 18''s 1 and 1.1); the body governs.
+    2026-09-13 closure run (needs-closure-2026-09-11 MED-F-POMS-HI): SSA POMS part HI taken whole (11 chapters, 922 sections)
+    as scope us/manual/2026-09-13-medicare-poms-hi, citation path us/manual/ssa/poms/hi/<section>, through scripts/build_ssi_poms_si_manifests.py
+    --family hi. Pub 100-18 (Medicare Prescription Drug Benefit Manual: Part D benefits, formulary, LIS, coordination of benefits)
+    taken as posted: the IOM publication page links only the two-page table of contents (pub100_18.pdf, not a chapter and
+    not taken); the chapter PDFs (5, 6, 7, 9, 12, 13, 14) are on the publisher''s Prescription Drug Benefit Manual page. Chapters
+    1, 8, 16 and 17 are reserved; 10, 11 and 15 have not been disseminated via Pub 100-18; chapter 2 (communications and marketing),
+    chapter 3 (eligibility and enrollment) and chapter 4 (creditable coverage) are published as standalone CMS guidance documents
+    (Medicare Communications and Marketing Guidelines, the CY C/D Enrollment and Disenrollment Guidance, the creditable-coverage
+    guidance pages), not as manual chapters; chapter 18 is the Parts C & D Enrollee Grievances, Organization/Coverage Determinations,
+    and Appeals Guidance linked on the same page and is recorded, not taken as a chapter. 2026-09-13 closure run (needs-closure-2026-09-11
+    MED-F-IOM-100-18). 2026-09-13 closure run (needs-closure-2026-09-11 MED-F-ANN-*): the CY 2026 Part A premium, Part A deductible
+    and Part B premium Federal Register notices (govinfo), the CMS premiums fact sheet, the Part D bid information fact sheet
+    and national average bid announcement, the CY 2026 Rate Announcement (Part D defined standard benefit parameters), the
+    CY 2026 LIS resource limits memorandum and the CY 2026 MA/Part D enrollment and disenrollment guidance (the successor
+    of Pub 100-18 chapter 3). Pub 100-16 (Medicare Managed Care Manual, the Part C eligibility, enrollment, benefits and beneficiary
+    protection rules) taken as posted: 25 chapter PDFs on its publication page (chapters 1, 3-15, 16a, 16b, 17a-17d, 17f,
+    18a-18c, 21; chapters 2, 17e, 19 and 20 are not posted), of which 23 carry text; chapters 3 (marketing) and 13 (grievances
+    and appeals) are one-page pointers to standalone cms.gov guidance and are recorded, not taken. Chapter 21 is the joint
+    compliance program chapter also posted as Pub 100-18 chapter 9. 2026-09-13 closure run (needs-closure-2026-09-11 MED-F-IOM-100-16).'
   index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
   index_document_count: 25
-  taken_count: 4
+  taken_count: 6
   publication_page:
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
     document_count: 8
@@ -527,20 +546,10 @@ states:
   - publication: 100-16
     title: Medicare Managed Care Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
-    chapter_count: 15
-    other_document_count: 10
-    other_documents:
-    - Chapter 16a - Subchapter A - Private Fee-for-Service (PFFS) Plans
-    - Chapter 16b - Subchapter B - Special Needs Plans
-    - Chapter 17a - Subchapter A - TEFRA Cost Based Payment Processes and Principles
-    - Chapter 17b - Subchapter B - Payment Principles for Cost-Based HMOs and CMPs
-    - Chapter 17c - Subchapter C - Cost Apportionment for Cost-Based HMOs and CMPs
-    - Chapter 17d - Subchapter D - Medicare Cost Plan Enrollment and Disenrollment Instructions
-    - Chapter 17f - Subchapter F - Benefits and Beneficiary Protections
-    - Chapter 18a - Subchapter A - Cost-Based Payment Process and Principles
-    - Chapter 18b - Subchapter B - Payment Principles for Cost-Based HMOs and CMPs
-    - Chapter 18c - Subchapter C - Cost Apportionment for Cost-Based HMO/CMPs
-    taken: false
+    chapter_count: 25
+    other_document_count: 0
+    other_documents: []
+    taken: true
   - publication: 100-17
     title: CMS/Business Partners Systems Security Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019466
@@ -557,7 +566,7 @@ states:
     other_document_count: 1
     other_documents:
     - Pub 100-18 - Medicare Prescription Drug Benefit Manual
-    taken: false
+    taken: true
   - publication: 100-19
     title: Demonstrations
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms020107
@@ -711,6 +720,48 @@ states:
     heading_style: bold 'N - Title' headings (some chapters print 'N Title', 'N- Title' or 'N -Title'; chapter 1 opens with
       '01 - Foreword'); the body starts after the table of contents
     run_note: docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md
+  - publication: 100-16
+    title: Medicare Managed Care Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    target_manifest: manifests/us-cms-iom-100-16.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-13-medicare-cms-iom-100-16
+    document_count: 25
+    chapter_count: 25
+    chapters_taken: 23
+    not_taken:
+    - 'Chapter 3 - Marketing Guides Instructions (one-page pointer: the chapter text (Medicare Marketing Guidelines) is published
+      as the standalone Medicare Communications and Marketing Guidelines on cms.gov, not in the PDF)'
+    - 'Chapter 13 - Medicare Managed Care Beneficiary Grievances, Organization Determinations, and Appeals Applicable to Medicare
+      Advantage Plans, Cost Plans, and Health Care Prepayment Plans (HCPPs), (collectively referred to as Medicare Health
+      Plans) (one-page pointer: the chapter text is published as the standalone Parts C & D Enrollee Grievances, Organization/Coverage
+      Determinations, and Appeals Guidance on cms.gov, not in the PDF)'
+    heading_style: bold 'N – Title' headings (some sections print 'N– Title' or 'N Title'); lettered chapters (16a, 16b, 17a-17f,
+      18a-18c) keep their letter in the chapter key; the body starts after the table of contents
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+  - publication: 100-18
+    title: Medicare Prescription Drug Benefit Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    target_manifest: manifests/us-cms-iom-100-18.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-13-medicare-cms-iom-100-18
+    document_count: 10
+    chapter_count: 7
+    chapters_taken: 7
+    not_taken:
+    - Pub 100-18 - Medicare Prescription Drug Benefit Manual
+    - Guidance for Prescription Drug Plan (PDP) Renewals and Non-Renewals 4.2018 (PDF)
+    - Parts C & D Enrollee Grievances, Organization/Coverage Determinations, and Appeals Guidance (PDF)
+    heading_style: bold 'N - Title' / 'N – Title' headings (chapter 13 prints 'N- Title'); chapters 5 and 12 open with a transmittal
+      cover letter before the table of contents; the body starts after the table of contents
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
   - publication: 100-24
     title: State Payment of Medicare Premiums
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
@@ -795,8 +846,10 @@ states:
     status: not_taken
   - publication: 100-16
     title: Medicare Managed Care Manual
-    chapter_count: 15
-    status: not_taken
+    chapter_count: 25
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-16.yaml
+    version: 2026-09-13-medicare-cms-iom-100-16
   - publication: 100-17
     title: CMS/Business Partners Systems Security Manual
     chapter_count: 0
@@ -804,7 +857,9 @@ states:
   - publication: 100-18
     title: Medicare Prescription Drug Benefit Manual
     chapter_count: 0
-    status: whole_manual_download_only
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-18.yaml
+    version: 2026-09-13-medicare-cms-iom-100-18
   - publication: 100-19
     title: Demonstrations
     chapter_count: 0
@@ -835,6 +890,233 @@ states:
     title: Information Security Acceptable Risk Safeguards Manual
     chapter_count: 0
     status: whole_manual_download_only
+  poms_hi:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-13-medicare-poms-hi
+    target_manifest: manifests/us-ssa-poms-hi-2026-09-13.yaml
+    source_kind: official_html_agency_manual
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=06
+    index_document_count: 922
+    taken_count: 922
+    chapters:
+    - chapter: HI 002
+      title: Computations/Offsets
+      subchapters:
+      - subchapter: HI 00200
+        title: General
+        sections: 1
+      - subchapter: HI 00201
+        title: Health Insurance Program
+        sections: 8
+      - subchapter: HI 00204
+        title: Safeguards Under Medicare
+        sections: 5
+      - subchapter: HI 00208
+        title: Computations/Offsets
+        sections: 28
+    - chapter: HI 004
+      title: Definitions
+      subchapters:
+      - subchapter: HI 00400
+        title: Definitions
+        sections: 1
+      - subchapter: HI 00401
+        title: Provider and Related Definitions
+        sections: 32
+    - chapter: HI 006
+      title: Covered Services (HI-SMI)
+      subchapters:
+      - subchapter: HI 00600
+        title: Covered Services (HI-SMI)
+        sections: 1
+      - subchapter: HI 00601
+        title: Hospital Insurance
+        sections: 82
+      - subchapter: HI 00610
+        title: Supplementary Medical Insurance
+        sections: 58
+      - subchapter: HI 00620
+        title: Exclusions from Coverage
+        sections: 26
+      - subchapter: HI 00630
+        title: Medicare Coverage Outside U.S.
+        sections: 18
+    - chapter: HI 008
+      title: Requirement for Entitlement and Termination
+      subchapters:
+      - subchapter: HI 00800
+        title: Requirement for Entitlement and Termination
+        sections: 1
+      - subchapter: HI 00801
+        title: Hospital Insurance Entitlement
+        sections: 94
+      - subchapter: HI 00803
+        title: Medicare Entitlement for Individuals Exposed to Environmental Health Hazards (EHH)
+        sections: 13
+      - subchapter: HI 00805
+        title: Supplementary Medical Insurance Entitlement
+        sections: 104
+      - subchapter: HI 00810
+        title: Medicare Processes
+        sections: 2
+      - subchapter: HI 00815
+        title: State Enrollment of Eligible Individuals
+        sections: 31
+      - subchapter: HI 00820
+        title: Terminations and Withdrawals
+        sections: 24
+      - subchapter: HI 00825
+        title: Inquiries and Referrals for HI/SMI
+        sections: 27
+      - subchapter: HI 00830
+        title: Processing Equitable Relief Inquiries
+        sections: 15
+    - chapter: HI 009
+      title: Evidence of Entitlement
+      subchapters:
+      - subchapter: HI 00900
+        title: Requirement For Entitlement And Termination
+        sections: 1
+      - subchapter: HI 00901
+        title: Hospital Insurance Entitlement
+        sections: 20
+      - subchapter: HI 00920
+        title: Part A and Part B Reject (and Qualified Approval) Codes (Except Code 52)
+        sections: 3
+      - subchapter: HI 00930
+        title: Resolving Entitlement Problems
+        sections: 12
+    - chapter: HI 010
+      title: Premium Collections
+      subchapters:
+      - subchapter: HI 01000
+        title: Premium Collections
+        sections: 1
+      - subchapter: HI 01001
+        title: Supplementary Medical Insurance
+        sections: 86
+      - subchapter: HI 01005
+        title: Premium Health Insurance
+        sections: 21
+      - subchapter: HI 01015
+        title: Trust Fund Accounting
+        sections: 11
+    - chapter: HI 011
+      title: Medicare Income-Related Monthly Adjustment Amount
+      subchapters:
+      - subchapter: HI 01100
+        title: Medicare Part B (SMI) Income-Related Monthly Adjustment Amount
+        sections: 1
+      - subchapter: HI 01101
+        title: Medicare Income-Related Monthly Adjustment Amount
+        sections: 10
+      - subchapter: HI 01120
+        title: New Initial Determinations Using Beneficiary Information
+        sections: 16
+      - subchapter: HI 01130
+        title: Annual Verification
+        sections: 8
+      - subchapter: HI 01140
+        title: Appeal of Medicare Income Related Monthly Adjustment Amount
+        sections: 9
+      - subchapter: HI 01190
+        title: Medicare IRMAA Notices General
+        sections: 20
+      - subchapter: HI 01194
+        title: Medicare IRMAA Exhibits Of Notices
+        sections: 23
+    - chapter: HI 012
+      title: Claims Process — Provider's, Physician's, and Supplier's Services
+      subchapters:
+      - subchapter: HI 01200
+        title: Claims Process — Provider's, Physician's, and Supplier's Services
+        sections: 1
+      - subchapter: HI 01205
+        title: Claims Appeals Information for Provider's, Physician's, and Supplier's Services
+        sections: 2
+    - chapter: HI 022
+      title: Medicare Overpayments
+      subchapters:
+      - subchapter: HI 02200
+        title: Medicare Overpayments
+        sections: 1
+      - subchapter: HI 02201
+        title: Methods of Recovery for Title XVIII Overpayments
+        sections: 5
+    - chapter: HI 030
+      title: Eligibility for Subsidized Medicare Prescription Drug Coverage
+      subchapters:
+      - subchapter: HI 03000
+        title: Resources
+        sections: 1
+      - subchapter: HI 03001
+        title: Description of the Medicare Prescription Drug Coverage Program
+        sections: 5
+      - subchapter: HI 03010
+        title: Applications
+        sections: 10
+      - subchapter: HI 03020
+        title: Income
+        sections: 13
+      - subchapter: HI 03030
+        title: Resources
+        sections: 7
+      - subchapter: HI 03035
+        title: Verification Process and Pre-Decisional Issues
+        sections: 10
+      - subchapter: HI 03040
+        title: Appeal of Medicare Part D Subsidy Determination
+        sections: 6
+      - subchapter: HI 03050
+        title: Redeterminations
+        sections: 6
+      - subchapter: HI 03090
+        title: Medicare Part D Notices General
+        sections: 2
+      - subchapter: HI 03092
+        title: Medicare Part D Numbered Paragraphs
+        sections: 4
+      - subchapter: HI 03094
+        title: Medicare Part D Exhibits Of Notices
+        sections: 33
+    - chapter: HI 041
+      title: Medicare Violations/Fraud
+      subchapters:
+      - subchapter: HI 04100
+        title: Medicare Violations/Fraud
+        sections: 1
+      - subchapter: HI 04125
+        title: Medicare Program Integrity
+        sections: 2
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+  annual_notices_2026:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-09-13-medicare-annual-notices-2026
+    target_manifest: manifests/us-cms-annual-notices-2026.yaml
+    document_count: 9
+    citation_paths:
+    - us/guidance/cms/part-a-premiums/2026/federal-register
+    - us/guidance/cms/part-a-deductible-coinsurance/2026/federal-register
+    - us/guidance/cms/part-b-premium-deductible/2026/federal-register
+    - us/guidance/cms/parts-a-b-premiums-deductibles/2026/fact-sheet
+    - us/guidance/cms/part-d-bid-information/2026/fact-sheet
+    - us/guidance/cms/part-d-national-average-bid-amount/2026
+    - us/guidance/cms/ma-part-d-rate-announcement/2026
+    - us/guidance/cms/part-d-lis-resource-limits/2026
+    - us/guidance/cms/part-c-d-enrollment-disenrollment-guidance/2026
+    closure_elements:
+    - MED-F-ANN-AB
+    - MED-F-ANN-D
+    - MED-F-ANN-LIS
+    - MED-F-IOM-100-18
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+    notes: '2026-09-13 closure run (needs-closure-2026-09-11 MED-F-ANN-*): the CY 2026 Part A premium, Part A deductible and
+      Part B premium Federal Register notices (govinfo), the CMS premiums fact sheet, the Part D bid information fact sheet
+      and national average bid announcement, the CY 2026 Rate Announcement (Part D defined standard benefit parameters), the
+      CY 2026 LIS resource limits memorandum and the CY 2026 MA/Part D enrollment and disenrollment guidance (the successor
+      of Pub 100-18 chapter 3).'
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}
