@@ -36,18 +36,18 @@ states:
     status: taken
     publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/alaska
     pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ak-snapet-stateplanFY26.pdf
-    pdf_bytes: null
+    pdf_bytes: 473906
     fna_page_updated: January 28, 2026
     checks:
     - url: https://www.fna.usda.gov/snap-et/stateplan/alaska
       status: 200
       bytes: 42419
-      seconds: 0.3
+      seconds: 0.1
       client: requests
     - url: https://www.fna.usda.gov/sites/default/files/resource-files/ak-snapet-stateplanFY26.pdf
       status: 200
-      bytes: 0
-      seconds: 0.4
+      bytes: 473906
+      seconds: 0.3
       client: requests
     notes: FNA state page 'Alaska SNAP E&T State Plan' (Print Version (462.80 KB)); the PDF is the FNS template ('USDA FNS
       SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
@@ -83,18 +83,18 @@ states:
     status: taken
     publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/alabama
     pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/al-snapet-stateplanFY26.pdf
-    pdf_bytes: null
+    pdf_bytes: 2830956
     fna_page_updated: January 28, 2026
     checks:
     - url: https://www.fna.usda.gov/snap-et/stateplan/alabama
       status: 200
       bytes: 42419
-      seconds: 0.3
+      seconds: 0.2
       client: requests
     - url: https://www.fna.usda.gov/sites/default/files/resource-files/al-snapet-stateplanFY26.pdf
       status: 200
-      bytes: 0
-      seconds: 0.8
+      bytes: 2830956
+      seconds: 0.3
       client: requests
     notes: FNA state page 'Alabama SNAP E&T State Plan' (Print Version (2.70 MB)); the PDF is the FNS template ('USDA FNS
       SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
