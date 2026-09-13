@@ -1,0 +1,35 @@
+documents:
+  - source_id: ch-zh-stg-2022-section-47-wealth-tax
+    jurisdiction: ch-zh
+    document_class: statute
+    citation_path: ch-zh/statute/stg/631-1/2022/section-47
+    title: Steuergesetz des Kantons Zürich (StG), Nachtragsnummer 115, § 47
+    source_url: 'https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-631_1-1997_06_08-1999_01_01-115.html'
+    download_url: 'https://www2.zhlex.zh.ch/appl/zhlex_r.nsf/WebView/14339144C2AA9081C12587730042E33C/%24File/631.1_8.6.97_115.pdf'
+    source_format: pdf
+    source_as_of: '2026-08-28'
+    expression_date: '2022-01-01'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 24
+          end_page: 25
+          start_at_pattern: '^§ 47\.'
+          stop_at_pattern: '^(?:D\. Ausgleich der kalten Progression|§ 48\.)'
+    metadata:
+      primary_source: true
+      source_authority: Kanton Zürich / Zürcher Gesetzessammlung
+      legal_identifier: LS 631.1, Nachtrag 115
+      source_family: wealth-tax/zurich-tariff
+      source_note: >-
+        The official historical-law page records publication on 1 January 2022
+        and this version in force through 1 July 2023. The direct official
+        WebView PDF is retained from the § 47 heading up to, but not including,
+        § 48. Section 47 gives the
+        2022 single and married wealth-tax tariff widths, the shared-custody
+        married-tariff condition, and the end-of-period status rule. This source
+        closes the former 2022-vintage gap; the later ESTV 2026 indexed table
+        remains in the separate single-scope guidance manifest.
