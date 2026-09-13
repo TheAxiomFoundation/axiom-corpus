@@ -2234,7 +2234,10 @@ NOT_APPLICABLE_ROWS_4 = {
 def update_queue_batch4(only: set[str] | None = None) -> dict:
     """Add the five territory rows (no builders: nothing is fetched)."""
     queue = yaml.safe_load(QUEUE.read_text())
-    rows = {row["jurisdiction"]: row for row in queue["states"]}
+    rows: dict[str, dict] = {}
+    for row in queue["states"]:
+        # first row per jurisdiction: the federal POMS row precedes the 20 CFR 416 eCFR follow-on row
+        rows.setdefault(row["jurisdiction"], row)
     federal_scope = rows["us"]["target_scope"]
     for code, name in TERRITORY_NAMES_4.items():
         jurisdiction = f"us-{code.lower()}"

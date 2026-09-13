@@ -2569,7 +2569,16 @@ def main() -> int:
     args = parser.parse_args()
     batches = ["1", "2", "3", "4", "5", "6"] if args.batch == "all" else [args.batch]
     queue = yaml.safe_load(QUEUE.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    # The first row of a jurisdiction is the one the batches address; later rows of the same jurisdiction (the
+    # federal eCFR follow-on row of docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md) are carried through
+    # untouched and written back right after that first row.
+    rows: dict[str, dict[str, Any]] = {}
+    extra_rows: dict[str, list[dict[str, Any]]] = {}
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     loaded = set(rows)
     summary: dict[str, Any] = {}
     for batch in batches:
@@ -2628,7 +2637,7 @@ def main() -> int:
     if lost := loaded - set(rows):
         print(f"queue rows would be dropped: {sorted(lost)}", file=sys.stderr)
         return 1
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1

@@ -30,7 +30,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 6
-  agent_ready: 44
+  agent_ready: 45
   blocked_primary_source: 8
 states:
 - jurisdiction: us
@@ -154,10 +154,31 @@ states:
     directory, not a federal source document. Federal CCDF rules are 45 CFR part 98: not in the corpus (no us/regulation title-45-part-98
     coverage; no us/regulation/45/98 provisions); the CCDBG Act (42 U.S.C. 9857 et seq.) appears only as scattered cross-reference
     rows in other us/statute scopes. Ingest 45 CFR 98 through extract-ecfr (--only-title 45 --only-part 98) in a separate
-    run; not re-ingested here.'
+    run; not re-ingested here. 2026-09-11: 45 CFR part 98 extracted as us/regulation/2026-09-11-title-45-part-98 (see the
+    eCFR row below).'
   index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
   index_document_count: 107
   taken_count: 0
+- jurisdiction: us
+  name: Federal (45 CFR part 98, eCFR)
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-45/part-98
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-11-title-45-part-98
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): 45 CFR part 98 (Child Care
+    and Development Fund) extracted with extract-ecfr --only-title 45 --only-part 98 from the eCFR Versioner API at as-of
+    2026-09-09 (latest served date). 73 rows = 1 part + 11 subparts + 61 sections, no reserved units, no appendix; coverage
+    complete; citation paths us/regulation/45/98/<section>. No released scope carries any us/regulation/45/98 path. Structure
+    JSON and part XML retained under sources/us/regulation/2026-09-11-title-45-part-98/ecfr/.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-45.json
+  index_document_count: 73
+  taken_count: 73
 - jurisdiction: us-al
   name: Alabama
   queue_status: agent_ready

@@ -21,6 +21,7 @@ from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_USER_AGENT,
     OfficialDocumentManifest,
     OfficialDocumentSource,
+    _browser_impersonation_headers,
     _date_text,
     _download_document,
     _download_document_by_browser_impersonation,
@@ -1182,6 +1183,23 @@ def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(
             "impersonate": OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
         }
     ]
+
+
+def test_browser_impersonation_headers_follow_the_impersonated_profile():
+    chrome_headers = _browser_impersonation_headers(None, impersonate="chrome120")
+    explicit = _browser_impersonation_headers(
+        {"User-Agent": "custom", "Accept": "text/html"}, impersonate="chrome131"
+    )
+    safari_headers = _browser_impersonation_headers(
+        {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT, "Accept": "text/html"},
+        impersonate="safari17_0",
+    )
+    firefox_headers = _browser_impersonation_headers(None, impersonate="firefox133")
+
+    assert chrome_headers == {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    assert explicit == {"User-Agent": "custom", "Accept": "text/html"}
+    assert safari_headers == {"Accept": "text/html"}
+    assert firefox_headers == {}
 
 
 def test_download_document_can_use_browser_impersonation_directly(monkeypatch):
