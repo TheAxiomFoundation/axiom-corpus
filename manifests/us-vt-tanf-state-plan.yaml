@@ -1,0 +1,27 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-vt-tanf-state-plan-2024-2027
+  jurisdiction: us-vt
+  document_class: policy
+  title: Vermont TANF State Plan Renewal 2024-2027
+  source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/Benefits/VT-TANF-State-Plan-2024-2027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-vt/policy/acf/tanf-plan/2024-2027
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division (Reach Up)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Vermont TANF State Plan Renewal October 1, 2024 through December 31, 2027
+    publisher_index_url: https://dcf.vermont.gov/esd/resources/reports
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-vt/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://dcf.vermont.gov/esd/resources/reports
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

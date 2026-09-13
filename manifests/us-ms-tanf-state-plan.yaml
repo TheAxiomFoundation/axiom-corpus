@@ -1,0 +1,31 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ms-tanf-state-plan-2020
+  jurisdiction: us-ms
+  document_class: policy
+  title: Mississippi TANF State Plan (Title 18 Part 19, Division of Economic Assistance)
+  source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000566c.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ms/policy/acf/tanf-plan/2020
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Human Services, Division of Economic Assistance (filed with the Secretary
+      of State as Title 18 Part 19)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: TANF State Plan (Economic Assistance) as filed in the Mississippi Administrative Code, Title 18 Part 19 (period
+      beginning July 1, 2020); the MDHS State Plans page links the Secretary of State copy
+    publisher_index_url: https://www.mdhs.ms.gov/reports/plans/
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ms/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.mdhs.ms.gov/reports/plans/
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page
