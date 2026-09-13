@@ -59,7 +59,11 @@ for line in "${SCOPES[@]}"; do
              "data/corpus/provisions/$jur/$cls/$ver.jsonl" \
              "data/corpus/sources/$jur/$cls/$ver"
 done
+if git diff --cached --quiet; then
+  echo "artifacts already committed; skipping data commit"
+else
 git commit -q -m "$(printf 'Add %s artifacts (unsigned data commit)\n\nSources, inventory, provisions and coverage for the %d unreleased scopes selected by\n%s. Signed ingest manifests follow in the next commit.\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>' "$NAME" "${#SCOPES[@]}" "$NAME")"
+fi
 echo "data commit: $(git rev-parse --short HEAD)"
 
 # 2. sign each scope against the clean data commit. The command text is the rebuild
@@ -85,6 +89,12 @@ PY
 }
 for line in "${SCOPES[@]}"; do
   read -r jur cls ver <<<"$line"
+  if [ -f ".axiom/ingest-manifests/$jur/$cls/$ver.json" ]; then
+    # Already signed by an earlier run (its manifest may carry reasoning-log attestations
+    # this script cannot reproduce); guard-ingested still verifies it against the artifacts.
+    echo "already signed, keeping existing manifest: $jur/$cls/$ver"
+    continue
+  fi
   m=$(manifest_for "$jur" "$cls" "$ver")
   case "$ver" in
     *-consolidated|*chapters-06-07)
