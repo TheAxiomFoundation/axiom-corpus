@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "ceaca23295f2af5e43d50a71ebcbec25668ce87a41a25177cd5e7cc13bf6ea2f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "8e5b117edd65daa58b3ddce2fed0896354a23d3dc6cee19dc3dcd7c54c23146a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "4321904d227f523e8cc87b64b8673b14aac85cde0b1352d91bb20b0fd6280bd3"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/policy/2026-09-13-tanf-state-plan/official-documents/us-ca-tanf-state-plan-2022.pdf",
+      "sha256": "b2f1ce572a13a451cda263170756385da12e6dbbb06b363f9e1fe5fe3a1c0649"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 36,
+    "missing_count": 0,
+    "provision_count": 36,
+    "source_count": 36
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:12:37.939507+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8KbMr0VSuQHE0+f9tT1IyXdOfKkmijyp1gj9FrWCXDb2xAzTap8rPeYHss+nnkNtjyiM4hYu+305TvreS9zPCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

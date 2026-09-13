@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "b814d85f913a156eac4b17b3528327cc72e3d7eb2d40d6b12258465ce449b448"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "709b415437e33fda5bf258863608e93d16674df1d08ddeda2fed5d6bd022ee00"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "fd5cdeee4bdeed449f62a406223b04dd65a7f214e4086da46d9dfa622a7ff3f0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-09-13-tanf-state-plan/official-documents/us-wa-tanf-state-plan-2026-certifications.pdf",
+      "sha256": "cdd6bd42e413557705279c7a6af32d88befbeb5287e0aedf3313b5cbd2054d4b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-09-13-tanf-state-plan/official-documents/us-wa-tanf-state-plan-2026.pdf",
+      "sha256": "3a4809078fbc5a26c9aa9ec147e59135c95e11647327b600b57ad9256096bb27"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:28:09.013915+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CUW1Z325MYmw/NSLLjVFCpzQ4mq5dup1YGRF5QKgJHqWDWA2PWIepRFx2z+VnOtQrRQ0YM1dxHMs8+h8I2VHAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

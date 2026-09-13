@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-42-part-408.json",
+      "sha256": "172a7329e145c9867486f40e1fe3d63cabffce40c1fb73be1f67a4f6947dadd2"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-42-part-408.json",
+      "sha256": "af298e4b55135f6728eb0beb309fad400b151e4b5c5f8b586543ef3fc1189114"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-42-part-408.jsonl",
+      "sha256": "9cac2d9f9746153ef1991adbdeca6bde64a15fbeced0ebe10dfafdec271dd488"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-42-part-408/ecfr/title-42-part-408.xml",
+      "sha256": "3b2e1c471e5f0e13cef9fe974a04909ac6a01777bd7908d56943b73105a448aa"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-42-part-408/ecfr/title-42.structure.json",
+      "sha256": "e26fcf6a5b5d463b8402883ca8159ecfdbdc37f3c215fdfaef9efce4d0faf1ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-42-part-408 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 58,
+    "missing_count": 0,
+    "provision_count": 58,
+    "source_count": 58
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:42:39.920216+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NJ966cTLGOxV2HNg6NeW32c9lj0WECC4KT8DnEnX76WTOj11aYY+XgH7Zg+SkH6EEOqHkluE7g3AI7o2WfLQCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-42-part-408"
+}

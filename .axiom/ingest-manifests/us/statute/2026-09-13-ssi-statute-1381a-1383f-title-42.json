@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-ssi-statute-1381a-1383f-title-42.json",
+      "sha256": "ad08cbda5fc121ea0d1d673ece33565929a1046bbdb52b5bd6209fe541d2faf8"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-ssi-statute-1381a-1383f-title-42.json",
+      "sha256": "6dcc69f6c5317743260eea046ff34ee1d48626c59cf77f145a3bab12abc4892c"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-ssi-statute-1381a-1383f-title-42.jsonl",
+      "sha256": "ae7e8f1fdb9afd3914b60c538e3de576325edad6b2f632dbc8b9127f81914de2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-ssi-statute-1381a-1383f-title-42/olrc/xml_usc42@119-103.zip",
+      "sha256": "28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ssi-statute-1381a-1383f-title-42 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 475,
+    "missing_count": 0,
+    "provision_count": 475,
+    "source_count": 475
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:57:15.768052+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "p/w7H8mgHImloBYlYy8Pd0PV8/LG35JR7pMy6vex7uHDUoOI280xRLmoSKgIk+msRSUDiQLw1bvDnYLKe69pAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ssi-statute-1381a-1383f-title-42"
+}
