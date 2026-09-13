@@ -29,7 +29,7 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 22
+  agent_ready: 23
   blocked_primary_source: 35
 states:
 - jurisdiction: us
@@ -218,6 +218,29 @@ states:
       '1992': 6
       '1991': 1
       total: 154
+- jurisdiction: us
+  name: Federal statute (42 U.S.C., uscode.house.gov USLM)
+  queue_status: agent_ready
+  source_kind: federal_statute_uscode_uslm
+  primary_source_url: https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: statute
+    version: 2026-09-13-wic-statute-1786-title-42
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 1786. Extracted
+    with extract-usc from the official OLRC USLM release point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09
+    (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip, retained byte-for-byte as the inventoried
+    source at sources/us/statute/2026-09-13-wic-statute-1786-title-42/olrc/ via extract-usc --source-zip; the usc42.xml member
+    is parsed in memory and named in metadata.source_archive_member). 1 section rows, 622 provision rows, coverage complete;
+    citation paths us/statute/42/<section>[/<subsection>...]. Section rows are self-contained (the title row us/statute/42
+    stays in its released consolidated scope; detached parents are recorded in metadata.detached_parent_citation_path). No
+    selected scope carries any of these paths. Closes needs-closure elements wic_usc_1786_a through wic_usc_1786_s (19).'
+  index_url: https://uscode.house.gov/download/download.shtml
+  index_document_count: 1
+  taken_count: 622
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}

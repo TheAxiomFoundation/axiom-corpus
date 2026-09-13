@@ -213,6 +213,22 @@ USLM file's `dcterms:created` date when present. Targeted smoke runs can use
 `--limit`; that produces a scoped run id such as `2026-04-29-title-26-limit-25`
 and only certifies coverage for that scoped inventory.
 
+`--source-zip` takes the publisher's single-member release-point zip
+(`xml_usc42@119-103.zip`) instead of `--source-xml`. The zip is then retained
+byte-for-byte as the inventoried source under `sources/us/statute/{run_id}/olrc/`
+(inventory and provision `source_path` and `sha256` point at the zip, and
+`metadata.source_archive_member` names the parsed member), which keeps Title 42
+scopes under GitHub's 100 MB file limit: the extracted `usc42.xml` is 113 MB.
+
+```bash
+axiom-corpus-ingest extract-usc \
+  --base data/corpus \
+  --version 2026-09-13-wic-statute-1786 \
+  --source-zip xml_usc42@119-103.zip --title 42 \
+  --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip \
+  --section 1786
+```
+
 For a complete local US Code source directory:
 
 ```bash
