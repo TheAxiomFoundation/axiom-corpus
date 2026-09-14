@@ -2534,6 +2534,60 @@ states:
   index_url: https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
   index_document_count: 26
   taken_count: 4
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-al-code-title-40
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-al-title-40
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-al-title-40
+      complete: true
+      provision_count: 2265
+      missing: 0
+      extra: 0
+    index_url: https://alison.legislature.state.al.us/code-of-alabama
+    index_document_count: 2265
+    taken_count: 2265
+    supersedes:
+    - us-al/statute/2026-07-13-recovery
+    notes: Code of Alabama Title 40, Chapter 18 (whole Title 40 taken); whole-chapter statute scope of 2026-09-14 superseding
+      the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Alabama Department of Revenue
+    index_url: https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=form-categories:154
+    index_document_count: 30
+    index_count_method: unique PDF links on the forms archive filtered to Individual Income Tax
+    indexes_for_inflation: false
+    taken_count: 2
+    scopes:
+    - target_manifest: manifests/us-al-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-al/form/ador/ty2026/form-40es-instructions
+    - target_manifest: manifests/us-al-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-al/guidance/ador/ty2026/individual-income-tax-filing-information
+    notes: Alabama does not index. The 2026-labelled 40ES products print no amounts; the department's undated filing-information
+      page states the statutory rates and exemptions.
 - jurisdiction: us-ar
   name: Arkansas
   queue_status: agent_ready
@@ -3180,6 +3234,38 @@ states:
   index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
   index_document_count: 49
   taken_count: 3
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: blocked_primary_source
+    index_url: https://advance.lexis.com/container?config=00JAAzZDgzNzU2ZC05MDA0LTRmMDItYjkzMS0xOGY3MjE3OWNlODIKAFBvZENhdGFsb2fcIFfJnJ2IC8XZi1AYM4Ne&crid=1
+    index_document_count: null
+    taken_count: 0
+    notes: The official Arkansas Code is published only through LexisNexis (arkleg.state.ar.us links to advance.lexis.com);
+      the container answers a 3.6 KB JavaScript shell that requires the Lexis CAPTCHA/robot check before any section text
+      (probed once 2026-09-13, same as manifests/state-statute-agent-queue.yaml). The released Act 2 of 2026 scope stays.
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Arkansas Department of Finance and Administration
+    index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/
+    index_document_count: 55
+    index_count_method: unique PDF links on the Individual Income Tax Forms page
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ar-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ar/form/dfa/ty2026/ar1000es-instructions
+    notes: Arkansas indexes the standard deduction and brackets to CPI (Act 182 of 2019); the 2026 AR1000ES prints the full
+      2026 schedule.
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}
@@ -3793,6 +3879,26 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-az-ars-title-43
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-az-title-43
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-az-title-43
+      complete: true
+      provision_count: 335
+      missing: 0
+      extra: 0
+    index_url: https://www.azleg.gov/arstitle/
+    index_document_count: 335
+    taken_count: 335
+    supersedes:
+    - us-az/statute/2026-07-13-recovery
+    notes: Arizona Revised Statutes Title 43 (Taxation of Income); whole-chapter statute scope of 2026-09-14 superseding the
+      released partial scope(s); provision rows counted (containers plus sections).
 - jurisdiction: us-ca
   name: California
   queue_status: done
@@ -4627,6 +4733,27 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/us-ca-rtc-part-10-10.2-sections.yaml
+    source_id: null
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7
+      complete: true
+      provision_count: 1029
+      missing: 0
+      extra: 0
+    index_url: https://leginfo.legislature.ca.gov/faces/codes_displayexpandedbranch.xhtml?tocCode=RTC&division=2.&title=&part=10.&chapter=&article=
+    index_document_count: 1029
+    taken_count: 1029
+    supersedes:
+    - us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5
+    - us-ca/statute/2026-07-13-recovery
+    notes: California Revenue and Taxation Code Division 2, Parts 10 and 10.2 (Personal Income Tax; Administration); whole-chapter
+      statute scope of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
 - jurisdiction: us-co
   name: Colorado
   queue_status: agent_ready
@@ -5388,6 +5515,28 @@ states:
     DR 0366, DR 1307, DR 1316, DR 1322, DR 1330, DR 1703'
   - 'individual-income-tax-forms landing page: 2025 tab (10 quick links), Helpful Forms (13), tax-year tabs 2022-2024 and
     the prior-year archive'
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Colorado Department of Revenue, Taxation Division
+    index_url: https://tax.colorado.gov/individual-income-tax-forms
+    index_document_count: 23
+    index_count_method: unique form links on the Individual Income Tax Forms page (read with a browser user agent)
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-co-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-co/form/cdor/ty2026/dr-0104ep
+    notes: Colorado is a flat 4.4% tax with no indexing; the 2026 DR 0104EP prints the rate.
 - jurisdiction: us-ct
   name: Connecticut
   queue_status: done
@@ -5709,6 +5858,54 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-ct-cgs-chapter-229
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-title-12-chapter-229
+    - 2026-09-14-income-tax-chapter-title-17b
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-title-12-chapter-229
+      complete: true
+      provision_count: 75
+      missing: 0
+      extra: 0
+    - version: 2026-09-14-income-tax-chapter-title-17b
+      complete: true
+      provision_count: 722
+      missing: 0
+      extra: 0
+    index_url: https://www.cga.ct.gov/current/pub/chap_229.htm
+    index_document_count: 797
+    taken_count: 797
+    supersedes:
+    - us-ct/statute/2026-07-13-recovery
+    notes: Connecticut General Statutes Title 12, Chapter 229 (Income Tax), with the title 17b companion; whole-chapter statute
+      scope of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Connecticut Department of Revenue Services
+    index_url: https://portal.ct.gov/drs/drs-forms/current-year-forms/individual-income-tax-forms
+    index_document_count: 36
+    index_count_method: unique PDF links on the DRS current-year Individual Income Tax Forms page
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ct-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ct/form/drs/ty2026/ct-1040es
+    notes: Connecticut does not index; the CT-1040ES 2026 prints Tables A and B for the 2026 taxable year.
 - jurisdiction: us-dc
   name: District of Columbia
   queue_status: agent_ready
@@ -6038,6 +6235,16 @@ states:
   index_url: https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
   index_document_count: 230
   taken_count: 2
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: blocked_primary_source
+    publisher: DC Office of Tax and Revenue
+    index_url: https://otr.cfo.dc.gov/page/individual-income-tax-forms
+    index_document_count: null
+    taken_count: 0
+    notes: otr.cfo.dc.gov answers HTTP 403 'Access denied | otr' (101,469-byte block page) to the corpus client and to a Chrome
+      user agent on every page path probed on 2026-09-13; the 2026-09-10 forms run had been served on the same paths. Not
+      worked around.
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -6273,6 +6480,48 @@ states:
   index_url: https://revenue.delaware.gov/personal-income-tax-forms/
   index_document_count: 63
   taken_count: 3
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-de-code-title-30-chapter-11
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-de-title-30-chapter-11
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-de-title-30-chapter-11
+      complete: true
+      provision_count: 103
+      missing: 0
+      extra: 0
+    index_url: https://www.delcode.delaware.gov/title30/c011/index.html
+    index_document_count: 103
+    taken_count: 103
+    supersedes:
+    - us-de/statute/2026-07-13-recovery
+    notes: Delaware Code Title 30, Chapter 11 (Personal Income Tax); whole-chapter statute scope of 2026-09-14 superseding
+      the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Delaware Division of Revenue
+    index_url: https://revenue.delaware.gov/personal-income-tax-forms/
+    index_document_count: 62
+    index_count_method: unique PDF links on the Personal Income Tax Forms current-year page
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-de-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-de/form/dor/ty2026/pit-est-instructions
+    notes: Delaware does not index; the 2026 PIT-EST instructions print the statutory amounts.
 - jurisdiction: us-fl
   name: Florida
   queue_status: done
@@ -6781,6 +7030,29 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Georgia Department of Revenue
+    index_url: https://dor.georgia.gov/taxes/years-individual-income-tax-forms
+    index_document_count: 8
+    index_count_method: document entries on This Year's Individual Income Tax Forms
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ga-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ga/form/dor/ty2026/500-es
+    notes: Georgia is a flat tax with statutory amounts; dor.georgia.gov answered HTTP 200 to the corpus client on 2026-09-13
+      (no WAF block this run).
 - jurisdiction: us-gu
   name: Guam
   lead_counts: {}
@@ -7361,6 +7633,29 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Hawaii Department of Taxation
+    index_url: https://tax.hawaii.gov/forms/a1_1alphalist/
+    index_document_count: 261
+    index_count_method: unique PDF links on the alphabetical forms listing
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-hi-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-hi/guidance/dotax/ty2025/tax-tables-and-rate-schedules
+    notes: Hawaii does not index; brackets and the standard deduction change by the Act 46 (SLH 2024) schedule. Form N-1 is
+      discontinued and N-200V (Rev. 2025) prints no amounts.
 - jurisdiction: us-ia
   name: Iowa
   queue_status: agent_ready
@@ -7762,6 +8057,28 @@ states:
   index_url: https://revenue.iowa.gov/forms/common-forms/individual-income-tax
   index_document_count: 15
   taken_count: 2
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Iowa Department of Revenue
+    index_url: https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+    index_document_count: 15
+    index_count_method: unique media download links on the Individual Income Tax forms page
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ia-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ia/form/idr/ty2026/ia-1040es-instructions
+    notes: Iowa is a flat 3.8% tax from 2025 with no indexing and uses the federal standard deduction.
 - jurisdiction: us-id
   name: Idaho
   queue_status: agent_ready
@@ -8361,6 +8678,50 @@ states:
   index_url: https://tax.idaho.gov/forms/
   index_document_count: 200
   taken_count: 3
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-id-statutes-title-63-chapter-30
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-id-title-63-chapter-30
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-id-title-63-chapter-30
+      complete: true
+      provision_count: 164
+      missing: 0
+      extra: 0
+    index_url: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/
+    index_document_count: 164
+    taken_count: 164
+    supersedes:
+    - us-id/statute/2026-07-31-id-title-63-chapter-30-successor
+    notes: Idaho Statutes Title 63, Chapter 30 (Income Tax); whole-chapter statute scope of 2026-09-14 superseding the released
+      partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Idaho State Tax Commission
+    index_url: https://tax.idaho.gov/forms/
+    index_document_count: 172
+    index_count_method: unique PDF and document-manager links on the all-forms page
+    indexes_for_inflation: true
+    taken_count: 2
+    scopes:
+    - target_manifest: manifests/us-id-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 42
+        missing: 0
+        extra: 0
+      documents:
+      - us-id/guidance/istc/ty2025/individual-income-tax-rate-schedule
+      - us-id/guidance/istc/ty2026/epb00744-withholding-percentage-table
+    notes: Idaho indexes its zero-bracket threshold; the department's rate-schedule page stops at 2025 and Form 51 (2026)
+      prints no rates, so the 2026-dated withholding table is taken alongside the rate-schedule page.
 - jurisdiction: us-il
   name: Illinois
   queue_status: done
@@ -9883,6 +10244,26 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/us-ky-krs-chapter-141-income-taxes.yaml
+    source_id: null
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter
+    coverage:
+    - version: 2026-09-14-income-tax-chapter
+      complete: true
+      provision_count: 390
+      missing: 0
+      extra: 0
+    index_url: https://apps.legislature.ky.gov/law/statutes/chapter.aspx?id=37674
+    index_document_count: 390
+    taken_count: 390
+    supersedes:
+    - us-ky/statute/2026-07-22-individual-income-tax
+    notes: Kentucky Revised Statutes Chapter 141 (Income Taxes); whole-chapter statute scope of 2026-09-14 superseding the
+      released partial scope(s); provision rows counted (containers plus sections).
 - jurisdiction: us-la
   name: Louisiana
   queue_status: done
@@ -11330,6 +11711,37 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-md-code-tax-general
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-md-article-gtg
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-md-article-gtg
+      complete: true
+      provision_count: 744
+      missing: 0
+      extra: 0
+    index_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg
+    index_document_count: 744
+    taken_count: 744
+    supersedes:
+    - us-md/statute/2026-07-13-recovery-r2026-07-24-immutable
+    notes: Maryland Code, Tax-General Article, Title 10 (Income Tax) (whole article taken); whole-chapter statute scope of
+      2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: blocked_primary_source
+    publisher: Comptroller of Maryland
+    index_url: https://services.marylandcomptroller.gov/taxes/en/individual-income-tax-forms-and-instructions?id=kb_article_view&sysparm_article=KB0010191
+    index_document_count: 0
+    taken_count: 0
+    notes: marylandtaxes.gov redirects to a ServiceNow knowledge base whose pages are JavaScript-rendered shells (HTTP 200,
+      no article text or document links in the HTML; the KB REST API answers 401) and the legacy PDF paths (forms/current_forms/502D.pdf,
+      26_forms/PV.pdf, 26_forms/Withholding_Guide.pdf) redirect to 404. No 2026-labelled document is retrievable from the
+      publisher as of 2026-09-13.
 - jurisdiction: us-me
   name: Maine
   queue_status: done
@@ -12182,6 +12594,26 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-me-mrs-title-36
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-me-title-36
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-me-title-36
+      complete: true
+      provision_count: 1933
+      missing: 0
+      extra: 0
+    index_url: https://legislature.maine.gov/statutes/36/title36ch0sec0.html
+    index_document_count: 1933
+    taken_count: 1933
+    supersedes:
+    - us-me/statute/2026-07-13-recovery
+    notes: Maine Revised Statutes Title 36, Part 8 (Income Taxes) (whole Title 36 taken); whole-chapter statute scope of 2026-09-14
+      superseding the released partial scope(s); provision rows counted (containers plus sections).
 - jurisdiction: us-mi
   name: Michigan
   queue_status: done
@@ -12805,6 +13237,26 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-mi-mcl-chapter-206
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-mi-chapter-206
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-mi-chapter-206
+      complete: true
+      provision_count: 308
+      missing: 0
+      extra: 0
+    index_url: https://www.legislature.mi.gov/documents/mcl/
+    index_document_count: 308
+    taken_count: 308
+    supersedes:
+    - us-mi/statute/2026-07-13-recovery
+    notes: Michigan Compiled Laws Chapter 206 (Income Tax Act of 1967); whole-chapter statute scope of 2026-09-14 superseding
+      the released partial scope(s); provision rows counted (containers plus sections).
 - jurisdiction: us-mn
   name: Minnesota
   queue_status: done
@@ -13870,6 +14322,61 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-mn-statutes-chapter-290
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-mn-title-290
+    - 2026-09-14-income-tax-chapter-us-mn-title-142g
+    - 2026-09-14-income-tax-chapter-us-mn-title-256p
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-mn-title-290
+      complete: true
+      provision_count: 238
+      missing: 0
+      extra: 0
+    - version: 2026-09-14-income-tax-chapter-us-mn-title-142g
+      complete: true
+      provision_count: 61
+      missing: 0
+      extra: 0
+    - version: 2026-09-14-income-tax-chapter-us-mn-title-256p
+      complete: true
+      provision_count: 13
+      missing: 0
+      extra: 0
+    index_url: https://www.revisor.mn.gov/statutes/cite/290
+    index_document_count: 312
+    taken_count: 312
+    supersedes:
+    - us-mn/statute/2026-07-13-recovery
+    notes: Minnesota Statutes Chapter 290 (Income and Franchise Taxes), with companions 142G and 256P; whole-chapter statute
+      scope of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Minnesota Department of Revenue
+    index_url: https://www.revenue.state.mn.us/find-form
+    index_document_count: 39
+    index_count_method: unique PDF and form-search links on the Find a Form page
+    indexes_for_inflation: true
+    taken_count: 2
+    scopes:
+    - target_manifest: manifests/us-mn-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 7
+        missing: 0
+        extra: 0
+      documents:
+      - us-mn/guidance/department-of-revenue/ty2026/inflation-adjusted-amounts
+      - us-mn/guidance/department-of-revenue/ty2026/income-tax-rates-and-brackets
+    notes: Minnesota indexes; the HTML page carries the 2026 brackets and the PDF the full list.
 - jurisdiction: us-mo
   name: Missouri
   queue_status: done
@@ -14514,6 +15021,29 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Missouri Department of Revenue
+    index_url: https://dor.mo.gov/forms/
+    index_document_count: 931
+    index_count_method: unique PDF links on the all-taxes Forms and Manuals page (14 labelled 2026)
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-mo-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-mo/form/dor/ty2026/mo-1040es
+    notes: Missouri indexes brackets and the standard deduction; dor.mo.gov served the 2026 file to the corpus client (no
+      WAF block this run). A standalone 2026 Tax Chart is not yet posted.
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   lead_counts: {}
@@ -14875,6 +15405,36 @@ states:
   index_url: https://www.dor.ms.gov/forms-resources/form-search?division=individual_forms
   index_document_count: 26
   taken_count: 2
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: blocked_primary_source
+    index_url: https://advance.lexis.com/container?config=00JAAzZDgzNzU2ZC05MDA0LTRmMDItYjkzMS0xOGY3MjE3OWNlODIKAFBvZENhdGFsb2fcIFfJnJ2IC8XZi1AYM4Ne&crid=1
+    index_document_count: null
+    taken_count: 0
+    notes: The official Mississippi Code is published only through LexisNexis with the same CAPTCHA/robot check (probed once
+      2026-09-13); the released HB 1 (2025) recovery of section 27-7-5 stays.
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Mississippi Department of Revenue
+    index_url: https://www.dor.ms.gov/forms-resources/form-search?division=individual_forms
+    index_document_count: 25
+    index_count_method: unique individual-form PDF links on the form search results
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ms-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 7
+        missing: 0
+        extra: 0
+      documents:
+      - us-ms/guidance/dor/ty2026/general-information
+    notes: Mississippi does not index; the current 80-106 voucher is the TY2025 revision and prints no amounts.
 - jurisdiction: us-mt
   name: Montana
   queue_status: agent_ready
@@ -15583,6 +16143,29 @@ states:
   index_url: https://revenue.mt.gov/forms/
   index_document_count: 20
   taken_count: 2
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Montana Department of Revenue
+    index_url: https://revenue.mt.gov/forms/
+    index_document_count: 214
+    index_count_method: unique file, publication and PDF links on the all-taxes forms index
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-mt-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-mt/guidance/mtdor/ty2026/publication-1
+    notes: Montana indexes brackets and uses the federal standard deduction; the rates web page is JS-rendered, so the 2026
+      Publication 1 PDF is the extractable source.
 - jurisdiction: us-nc
   name: North Carolina
   queue_status: done
@@ -15921,6 +16504,30 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: North Carolina Department of Revenue
+    index_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/individual-income-tax-forms-instructions
+    index_document_count: 47
+    index_count_method: unique PDF and document links on the Individual Income Tax Forms & Instructions page (all 2025 tax
+      year)
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-nc-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 3
+        missing: 0
+        extra: 0
+      documents:
+      - us-nc/guidance/ncdor/ty2026/tax-rate-schedules
+    notes: North Carolina does not index; no 2026-labelled NC-40 PDF exists on the publisher (the estimated-tax page links
+      the eservices web voucher and 2024/2025 worksheets).
 - jurisdiction: us-nd
   name: North Dakota
   queue_status: done
@@ -16220,6 +16827,29 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: North Dakota Office of State Tax Commissioner
+    index_url: https://www.tax.nd.gov/forms
+    index_document_count: 27
+    index_count_method: unique individual-income-tax PDF links on the Tax Forms Search page
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-nd-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-nd/form/otc/ty2026/nd-1es
+    notes: North Dakota indexes bracket thresholds and starts from federal taxable income (no state standard deduction or
+      exemption).
 - jurisdiction: us-ne
   name: Nebraska
   queue_status: done
@@ -16564,6 +17194,26 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-ne-revised-statutes-chapter-77
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-ne-title-77
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-ne-title-77
+      complete: true
+      provision_count: 2742
+      missing: 0
+      extra: 0
+    index_url: https://nebraskalegislature.gov/laws/browse-chapters.php?chapter=77
+    index_document_count: 2742
+    taken_count: 2742
+    supersedes:
+    - us-ne/statute/2026-07-13-recovery
+    notes: Nebraska Revised Statutes Chapter 77, Article 27 (Income Tax) (whole Chapter 77 taken); whole-chapter statute scope
+      of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -17286,6 +17936,28 @@ states:
   - 'fiduciary: NJ-1041 + instructions, NJ-1041SB, NJ-1041-V, business schedules'
   - 'composite: NJ-1080C + instructions, NJ-1080E, eligibility, record layouts'
   - 'other: C-4267, DCC-1, NJ-W4, NJ-W-4P, change of address, A-3128, GIT/REP-1 to 4A'
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: New Jersey Division of Taxation
+    index_url: https://www.nj.gov/treasury/taxation/prntgit.shtml
+    index_document_count: 63
+    index_count_method: unique PDF links on the Income Tax Forms print index
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-nj-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-nj/form/taxation/ty2026/nj-1040-es-instructions
+    notes: New Jersey does not index (no standard deduction; fixed exemptions and statutory brackets).
 - jurisdiction: us-nm
   name: New Mexico
   queue_status: agent_ready
@@ -17650,6 +18322,28 @@ states:
   - 'estimated: PIT-ES voucher + instructions (subfolder RPD-41272 underpayment penalty)'
   - 'other RPD forms: RPD-41369 NOL carryforward, RPD-41348 military spouse (2), RPD-41359 pass-through withholding statement,
     RPD-41260 change of address; subfolder Prior Years'
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: New Mexico Taxation and Revenue Department
+    index_url: https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/
+    index_document_count: 0
+    index_count_method: the forms list is loaded client-side by the RealFile SDK; the HTML carries no document links
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-nm-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-nm/guidance/trd/ty2026/fyi-104-withholding-tax
+    notes: New Mexico does not index; the forms portal is JavaScript-only.
 - jurisdiction: us-nv
   name: Nevada
   queue_status: done
@@ -18185,6 +18879,50 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/us-ny-tax-law-article-22-personal-income-tax.yaml
+    source_id: null
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter
+    coverage:
+    - version: 2026-09-14-income-tax-chapter
+      complete: true
+      provision_count: 186
+      missing: 0
+      extra: 0
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    index_document_count: 186
+    taken_count: 186
+    supersedes:
+    - us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
+    - us-ny/statute/2026-07-13-recovery
+    notes: New York Tax Law Article 22 (Personal Income Tax); whole-chapter statute scope of 2026-09-14 superseding the released
+      partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: New York State Department of Taxation and Finance
+    index_url: https://www.tax.ny.gov/forms/income_estimated_forms.htm
+    index_document_count: 124
+    index_count_method: unique links on the Income tax estimated forms (current year) page
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ny-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ny/form/tax/ty2026/it-2105-i
+    notes: New York does not index; tax.ny.gov answered HTTP 200 to the corpus client on 2026-09-13 (no WAF block this run).
+      The annual tax-tables page has no 2026 entry yet.
 - jurisdiction: us-oh
   name: Ohio
   queue_status: done
@@ -18576,6 +19314,48 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-oh-orc-title-57
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-us-oh-title-57
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-us-oh-title-57
+      complete: true
+      provision_count: 1385
+      missing: 0
+      extra: 0
+    index_url: https://codes.ohio.gov/ohio-revised-code/title-57
+    index_document_count: 1385
+    taken_count: 1385
+    supersedes:
+    - us-oh/statute/2026-07-13-recovery
+    notes: Ohio Revised Code Chapter 5747 (Income Tax) (whole Title 57 taken); whole-chapter statute scope of 2026-09-14 superseding
+      the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Ohio Department of Taxation
+    index_url: https://tax.ohio.gov/forms-top/search-forms
+    index_document_count: null
+    index_count_method: the forms search renders client-side; not countable
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-oh-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 22
+        missing: 0
+        extra: 0
+      documents:
+      - us-oh/guidance/odt/ty2025/annual-tax-rates
+    notes: Ohio indexes brackets; no 2026 bracket publication or IT 1040ES 2026 exists on the publisher as of 2026-09-13.
 - jurisdiction: us-ok
   name: Oklahoma
   queue_status: agent_ready
@@ -18888,6 +19668,28 @@ states:
   - 'other current income tax subcategories on the same index: Corporate (3), Corporate/Fiduciary/Pass-Through (2), Corporate/Pass-Through
     (1), Credits (22), Fiduciary (5), Information (4), Miscellaneous (4), Pass-Through (9), Withholding (1); past-year income
     tax 1997-2024; non-income tax types'
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Oklahoma Tax Commission
+    index_url: https://oklahoma.gov/tax/forms.html
+    index_document_count: 26
+    index_count_method: rows of the forms metadata CSV with category Income Tax, subcategory Individuals, year Current
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ok-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ok/form/otc/ty2026/ow-8-es
+    notes: Oklahoma does not index; the current 511 packet is the 2025 booklet.
 - jurisdiction: us-or
   name: Oregon
   queue_status: done
@@ -19683,6 +20485,28 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Pennsylvania Department of Revenue
+    index_url: https://www.pa.gov/agencies/revenue/forms-and-publications
+    index_document_count: null
+    index_count_method: the forms listing is a client-side search; not countable
+    indexes_for_inflation: false
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-pa-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-pa/form/department-of-revenue/ty2026/rev-413i
+    notes: Pennsylvania is a flat 3.07% tax with no standard deduction or exemption; nothing is indexed.
 - jurisdiction: us-pr
   name: Puerto Rico
   lead_counts: {}
@@ -20328,6 +21152,29 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Rhode Island Division of Taxation
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    index_document_count: 30
+    index_count_method: unique PDF links on the Personal Income Tax Forms page
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ri-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ri/form/tax/ty2026/ri-1040es
+    notes: Rhode Island indexes; ADV 2025-22 is in the released selection and the 2026 RI-1040ES adds the printed schedule
+      and worksheet amounts.
 - jurisdiction: us-sc
   name: South Carolina
   queue_status: done
@@ -20675,6 +21522,28 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: South Carolina Department of Revenue
+    index_url: https://dor.sc.gov/find-a-form?search_api_fulltext=&field_category=All&field_document_type=All&field_tax_year=601
+    index_document_count: 87
+    index_count_method: unique PDF links across the ten Find a Form result pages filtered to tax year 2026
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-sc-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-sc/form/dor/ty2026/sc1040es
+    notes: South Carolina indexes its brackets and follows the federal standard deduction and exemption amounts.
 - jurisdiction: us-sd
   name: South Dakota
   queue_status: done
@@ -21504,6 +22373,49 @@ states:
   - 'other tax types, all years (515 rows): Corporate Income 108, Sales 83, DMV and MVED 74, Fiduciary 49, Other Taxes 43,
     Partnership/LLP/LLC 38, Fuel 24, Tobacco 23, Withholding 22, Insurance 16, Oil/Gas/Severance 14, Property 11, Beer 7,
     Cannabinoid Tobacco 3'
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/state-income-tax-chapters-2026-09-14.yaml
+    source_id: us-ut-code-title-59
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter-title-59
+    coverage:
+    - version: 2026-09-14-income-tax-chapter-title-59
+      complete: true
+      provision_count: 1226
+      missing: 0
+      extra: 0
+    index_url: https://le.utah.gov/xcode/Title59/59.html
+    index_document_count: 1226
+    taken_count: 1226
+    supersedes:
+    - us-ut/statute/2026-07-13-recovery
+    notes: Utah Code Title 59, Chapter 10 (Individual Income Tax Act) (whole Title 59 taken); whole-chapter statute scope
+      of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Utah State Tax Commission
+    index_url: https://tax.utah.gov/forms-pubs/
+    index_document_count: 231
+    index_count_method: unique current-forms PDF links on the Current Forms & Publications page
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-ut-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-ut/guidance/ustc/ty2025/tax-rates
+    notes: Utah has a flat rate; no 2026-labelled publication with the indexed credit amounts exists on the publisher as of
+      2026-09-13.
 - jurisdiction: us-va
   name: Virginia
   queue_status: done
@@ -21937,6 +22849,59 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  income_tax_chapter_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    target_manifest: manifests/us-va-code-title-58.1-chapter-3-income-tax.yaml
+    source_id: null
+    document_class: statute
+    versions:
+    - 2026-09-14-income-tax-chapter
+    coverage:
+    - version: 2026-09-14-income-tax-chapter
+      complete: true
+      provision_count: 614
+      missing: 0
+      extra: 0
+    index_url: https://law.lis.virginia.gov/vacode/title58.1/chapter3/
+    index_document_count: 614
+    taken_count: 614
+    supersedes:
+    - us-va/statute/2026-07-13-recovery
+    notes: Code of Virginia Title 58.1, Chapter 3 (Income Tax); whole-chapter statute scope of 2026-09-14 superseding the
+      released partial scope(s); provision rows counted (containers plus sections).
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Virginia Department of Taxation
+    index_url: https://www.tax.virginia.gov/forms/search?category=1&year=667
+    index_document_count: 3
+    index_count_method: unique PDF links on the forms search filtered to Individual Income Tax, year 2026
+    indexes_for_inflation: false
+    taken_count: 2
+    scopes:
+    - target_manifest: manifests/us-va-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-va/form/tax/ty2026/760es
+    - target_manifest: manifests/us-va-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 21
+        missing: 0
+        extra: 0
+      documents:
+      - us-va/guidance/tax/ty2026/deductions
+    notes: Virginia does not index.
 - jurisdiction: us-vi
   name: Virgin Islands
   lead_counts: {}
@@ -22737,6 +23702,28 @@ states:
   - 'payments, estimated, extension, amended: IN-114 2026 + instructions, IN-116, IN-151, IN-152, IN-152A, IN-110'
   - 'homestead and credits: HS-122/HI-144 + instructions, HS-122W, HSD-315, HSD-316, RCC-146 + instructions'
   - 'other: W-4VT, domicile statement, B-2, PA-1, GB-1098, RP-1231'
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: Vermont Department of Taxes
+    index_url: https://tax.vermont.gov/individuals/personal-income-tax/rates
+    index_document_count: 19
+    index_count_method: unique PDF links on the Vermont Rate Schedules and Tax Tables page (through 2025)
+    indexes_for_inflation: true
+    taken_count: 1
+    scopes:
+    - target_manifest: manifests/us-vt-individual-income-tax-form-ty2026-amounts.yaml
+      document_class: form
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 2
+        missing: 0
+        extra: 0
+      documents:
+      - us-vt/form/vdt/ty2026/in-114-instructions
+    notes: Vermont indexes; the 2026 standard deduction and personal exemption are not printed in IN-114.
 - jurisdiction: us-wa
   name: Washington
   queue_status: agent_ready
@@ -23745,6 +24732,16 @@ states:
   notes: Current-year individual income tax material already ingested (2026-07 state income tax runs / zero-liability states);
     not re-ingested and not counted toward batch 1. Scope taken from the prior run note / local coverage artifact.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: done
+    publisher: Wisconsin Department of Revenue
+    index_url: https://www.revenue.wi.gov/Pages/Form/2026Individual.aspx
+    index_document_count: 24
+    taken_count: 0
+    notes: The 2026 Form 1-ES instructions (2026 standard deduction schedules and rate schedules) are already released as
+      us-wi/form/2026-07-22-wi-form1-es-2026 (citation path us-wi/form/individual-income-tax/2026/1-es, same file); the closure
+      check's REVIEW is a regex miss, not a gap. Not re-taken.
 - jurisdiction: us-wv
   name: West Virginia
   queue_status: done
@@ -24034,6 +25031,30 @@ states:
     not re-ingested and not counted toward batch 1. The prior manifest exists but no local coverage artifact or release selector
     names its version in this checkout; reviewer to confirm the scope.
   taken_count: 0
+  ty2026_indexed_amounts_scope:
+    run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
+    queue_status: agent_ready
+    publisher: West Virginia Tax Division
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    index_document_count: 66
+    index_count_method: unique PDF links on the Individuals page (the individual forms index)
+    indexes_for_inflation: false
+    taken_count: 2
+    scopes:
+    - target_manifest: manifests/us-wv-individual-income-tax-guidance-ty2026-amounts.yaml
+      document_class: guidance
+      version: 2026-09-14-ty2026-indexed-amounts
+      coverage:
+        version: 2026-09-14-ty2026-indexed-amounts
+        complete: true
+        provision_count: 6
+        missing: 0
+        extra: 0
+      documents:
+      - us-wv/guidance/tax/ty2026/2026-income-tax-rate-cut
+      - us-wv/guidance/tax/ty2026/it-100-2-a-withholding-tables
+    notes: West Virginia does not index; no IT-140ES exists on the site (estimated payments go through MyTaxes) and the 2026
+      rate schedule PDF is not yet posted.
 - jurisdiction: us-wy
   name: Wyoming
   queue_status: done

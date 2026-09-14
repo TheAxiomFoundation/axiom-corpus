@@ -1477,8 +1477,15 @@ def extract_minnesota_statutes(
     """Snapshot official Minnesota Statutes HTML and extract provisions."""
     jurisdiction = "us-mn"
     only_chapter = _minnesota_chapter_filter(only_title)
+    # Lettered chapters (142G, 256P) keep their uppercase token for matching; the run id,
+    # which becomes the scope version, must be lowercase for release selectors.
     run_id = (
-        state_run_id(version, jurisdiction=jurisdiction, only_title=only_chapter, limit=limit)
+        state_run_id(
+            version,
+            jurisdiction=jurisdiction,
+            only_title=only_chapter.lower() if only_chapter else None,
+            limit=limit,
+        )
         if only_chapter or limit is not None
         else version
     )
