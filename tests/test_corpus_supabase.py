@@ -1607,6 +1607,186 @@ def test_unbounded_statement_disables_the_session_timeout_first():
     assert statement == "SET statement_timeout = 0;\nSELECT 'abc' AS v"
 
 
+class _FakeDirectCursor:
+    def __init__(self, connection):
+        self.connection = connection
+        self.description = None
+        self._rows = []
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return None
+
+    def execute(self, statement, parameters=None):
+        self.connection.statements.append((statement, parameters))
+        self.description = None
+        self._rows = []
+        if statement.startswith("INSERT INTO corpus.release_activation_upload_chunks"):
+            self._rows = [(parameters[3],)]
+        elif "corpus.activate_corpus_release(" in statement:
+            self._rows = [(self.connection.activation_result,)]
+        elif "corpus.preview_corpus_release_activation(" in statement:
+            self.description = [
+                ("jurisdiction",),
+                ("document_class",),
+                ("current_release_name",),
+                ("current_content_sha256",),
+                ("changes",),
+            ]
+            self._rows = [("nz", "statute", None, None, True)]
+
+    def fetchone(self):
+        return self._rows[0] if self._rows else None
+
+    def fetchall(self):
+        return list(self._rows)
+
+
+class _FakeDirectConnection:
+    def __init__(self, activation_result):
+        self.statements = []
+        self.autocommit = False
+        self.closed = False
+        self.activation_result = activation_result
+
+    def cursor(self):
+        return _FakeDirectCursor(self)
+
+    def close(self):
+        self.closed = True
+
+
+def _install_fake_psycopg2(monkeypatch, connection):
+    import types
+
+    calls = []
+    fake = types.SimpleNamespace(connect=lambda url: calls.append(url) or connection)
+    monkeypatch.setitem(sys.modules, "psycopg2", fake)
+    return calls
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [
+        ("postgresql://postgres:pw@db.abcdefghijklmnop.supabase.co:5432/postgres", True),
+        (
+            "postgresql://postgres.abcdefghijklmnop:pw@aws-0-us-east-1.pooler.supabase.com:5432/postgres",
+            True,
+        ),
+        ("postgresql://postgres:pw@db.otherprojectref00.supabase.co:5432/postgres", False),
+        (
+            "postgresql://postgres.otherprojectref00:pw@aws-0.pooler.supabase.com:5432/postgres",
+            False,
+        ),
+    ],
+)
+def test_database_url_names_project(url, expected):
+    import axiom_corpus.corpus.supabase as supabase
+
+    assert supabase.database_url_names_project(url, "abcdefghijklmnop") is expected
+
+
+def test_activate_corpus_release_direct_runs_the_same_transaction_over_psycopg2(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    result = {
+        "active": True,
+        "release": release_object["release"],
+        "content_sha256": release_object["content_sha256"],
+        "scopes": [
+            {"jurisdiction": "nz", "document_class": "statute", "status": "activated"},
+        ],
+    }
+    connection = _FakeDirectConnection(result)
+    calls = _install_fake_psycopg2(monkeypatch, connection)
+    monkeypatch.setattr(supabase, "_require_complete_activation_scopes", lambda *a, **k: None)
+    monkeypatch.setattr(supabase.secrets, "token_hex", lambda _size: "b" * 64)
+
+    returned = supabase.activate_corpus_release_direct(
+        release_object,
+        database_url="postgresql://postgres.abcdefghijklmnop:pw@pooler.supabase.com:5432/postgres",
+        public_key=public_key,
+        expected_project_ref="abcdefghijklmnop",
+    )
+
+    assert returned == result
+    assert calls == ["postgresql://postgres.abcdefghijklmnop:pw@pooler.supabase.com:5432/postgres"]
+    assert connection.autocommit is True
+    assert connection.closed is True
+    statements = [statement for statement, _ in connection.statements]
+    assert statements[0] == "SET statement_timeout = 0"
+    assert statements[1].startswith("DELETE FROM corpus.release_activation_upload_chunks")
+    assert statements[2].startswith("INSERT INTO corpus.release_activation_upload_chunks")
+    assert "$1" not in statements[2] and "%s" in statements[2]
+    activation = next(
+        (stmt, params)
+        for stmt, params in connection.statements
+        if "corpus.activate_corpus_release(" in stmt
+    )
+    assert activation[1] == (
+        "b" * 64,
+        release_object["release"],
+        release_object["content_sha256"],
+        hashlib.sha256(canonical_json_bytes(release_object)).hexdigest(),
+    )
+    assert statements[-1].startswith("DELETE FROM corpus.release_activation_upload_chunks WHERE")
+
+
+def test_activate_corpus_release_direct_refuses_a_foreign_project_url(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    connection = _FakeDirectConnection({})
+    calls = _install_fake_psycopg2(monkeypatch, connection)
+
+    with pytest.raises(RuntimeError, match="does not name project"):
+        supabase.activate_corpus_release_direct(
+            release_object,
+            database_url="postgresql://postgres.zzzzzzzzzzzzzzzz:pw@pooler.supabase.com:5432/postgres",
+            public_key=public_key,
+            expected_project_ref="abcdefghijklmnop",
+        )
+    assert calls == []
+
+
+def test_preview_corpus_release_activation_direct_binds_the_identity(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    connection = _FakeDirectConnection({})
+    _install_fake_psycopg2(monkeypatch, connection)
+
+    rows = supabase.preview_corpus_release_activation_direct(
+        release_object,
+        database_url="postgresql://postgres:pw@db.abcdefghijklmnop.supabase.co:5432/postgres",
+        public_key=public_key,
+        expected_project_ref="abcdefghijklmnop",
+    )
+
+    assert rows == [
+        {
+            "jurisdiction": "nz",
+            "document_class": "statute",
+            "current_release_name": None,
+            "current_content_sha256": None,
+            "changes": True,
+        }
+    ]
+    preview = next(
+        (stmt, params)
+        for stmt, params in connection.statements
+        if "corpus.preview_corpus_release_activation(" in stmt
+    )
+    assert "%s::jsonb" in preview[0]
+    assert json.loads(preview[1][0]) == {
+        "release": release_object["release"],
+        "content": {"scopes": release_object["content"]["scopes"]},
+    }
+
+
 def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
