@@ -1702,7 +1702,730 @@ states:
       scope held an 83,792-character block ending in Section 5xx; every substantive released sentence is present in the new
       body. Extraction 6 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion scope (Glossary,
       Policy Clarifications, Table I, purchasing page) is untouched.'
+- jurisdiction: us-al
+  name: Alabama
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_summary_form
+  primary_source_url: https://dhr.alabama.gov/wp-content/uploads/2025/10/Form-1942-Summarized-Eligibility-Requirements-Rev.-10-25.pdf
+  target_manifest: manifests/us-al-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dhr.alabama.gov/food-assistance/
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 2
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-al/guidance/dhr/food-assistance/form-1942-summarized-eligibility-requirements/2025-10
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DHR publishes no separate FY 2026
+    COLA transmittal; the Food Assistance page links Form DHR-FAP-1942 ''Summarized Eligibility Requirements'' (Rev. 10-25,
+    4 pages), which prints the FY 2026 gross/net income limits, standard deductions ($209/$223/$261/$299) and maximum allotments
+    effective 10/01/25. The same table is page 8 of the combined application Form 2116/1942 Rev. 10-2025 (not taken). Page
+    1 is a graphic cover; pages 2-4 carry the text. Plain client HTTP 200.'
+- jurisdiction: us-dc
+  name: District of Columbia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://dhs.dc.gov/service/snap-eligibility-requirements
+  target_manifest: manifests/us-dc-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dhs.dc.gov/service/snap-eligibility-requirements
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-dc/guidance/dhs/snap-eligibility-requirements/fy2026
+  - us-dc/guidance/dhs/snap-monthly-benefit/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DHS publishes no FY 2026 transmittal;
+    the FY 2026 figures live on two service pages: ''SNAP Eligibility Requirements'' (income limits October 1, 2025 to September
+    30, 2026) and ''SNAP Monthly Benefit'' (maximum allotments, $24 minimum). The eligibility page''s deduction paragraph
+    still prints FY 2025 values (standard deduction $204, shelter cap $712, SUA $374), recorded in metadata. Plain client
+    HTTP 200.'
+- jurisdiction: us-de
+  name: Delaware
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://dhss.delaware.gov/dss/division-of-social-services/snap/
+  target_manifest: manifests/us-de-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dhss.delaware.gov/dss/division-of-social-services/snap/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-de/guidance/dss/snap-income-limits-and-maximum-benefits/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DSS publishes no separate transmittal;
+    the SNAP program page prints the FY 2026 table ''Food Benefit Income Eligibility Limits and Maximum Benefit Amounts, October
+    1, 2025 to September 30, 2026'' (200/165/130/100% limits and maximum benefits by household size) inside an accordion;
+    deductions are not on the page. DSSM 9060 on regulations.delaware.gov is a JavaScript shell to the plain client. Plain
+    client HTTP 200.'
+- jurisdiction: us-hi
+  name: Hawaii
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://humanservices.hawaii.gov/bessd/snap/
+  target_manifest: manifests/us-hi-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://humanservices.hawaii.gov/bessd/snap/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-hi/guidance/bessd/snap-income-eligibility-standards/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): BESSD publishes no transmittal;
+    the SNAP page prints the Hawaii-specific FY 2026 gross (130%/200%) and net (100%) monthly income eligibility standards
+    effective 10/1/2025 (three tables; the 130% row for seven persons is misprinted ''$6.064''). Maximum allotments are not
+    published on the state site (the 2025-09-23 press release states only the reductions). Plain client HTTP 200.'
+- jurisdiction: us-ia
+  name: Iowa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_general_letter
+  primary_source_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance/income-maintenance-general-letters
+  target_manifest: manifests/us-ia-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance/income-maintenance-general-letters
+  index_document_count: 30
+  taken_count: 2
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 30
+      taken: 2
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ia/guidance/hhs/general-letter/7-f-104
+  - us-ia/guidance/hhs/general-letter/7-e-126
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Iowa transmits the FY 2026 standards
+    through Employees'' Manual general letters: GL 7-F-104 (2026-02-13, Title 7 Chapter F SNAP Budgeting: ''update the gross
+    and net income limits effective 10/1/25 ... maximum benefit allotment effective 10/1/25'') and companion GL 7-E-126 (2026-02-13,
+    Chapter E SNAP Income incl. standard utility allowances). The general-letters index lists the 30 most recent letters;
+    the standalone chapter links still served the September 2024 revisions. Plain client HTTP 200.'
+- jurisdiction: us-id
+  name: Idaho
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: official_html_program_page
+  primary_source_url: https://healthandwelfare.idaho.gov/services-programs/food-assistance/apply-snap
+  target_manifest: manifests/us-id-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://healthandwelfare.idaho.gov/services-programs/food-assistance
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-id/guidance/dhw/apply-snap-income-limits/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Partial: DHW publishes no transmittal,
+    chart or manual with FY 2026 figures; the only state-published FY 2026 numbers are the gross (130% FPL) monthly income
+    limits ''Effective October 2025'' on the Apply for SNAP page. Net limits, deductions, SUAs and allotments are not on the
+    state site. Plain client HTTP 200.'
+- jurisdiction: us-ks
+  name: Kansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_appendix
+  primary_source_url: https://content.dcf.ks.gov/ees/keesm/appendix/appendix.html
+  target_manifest: manifests/us-ks-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: manual
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://content.dcf.ks.gov/ees/keesm/appendix/appendix.html
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 2
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ks/manual/dcf/keesm/appendix/f-2/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): KEESM Appendix F-2 ''Food Assistance
+    Program Standards Effective October 1, 2025 to September 30, 2026'' (one page: allotments, limits, standard deduction,
+    $744 shelter cap, SUA $469 / LUA $345 / phone $44 / medical $175). The unversioned ''F-2 FA Program Standards.pdf'' link
+    already serves the FY 2027 chart, so the archived FY 2026 file name is taken. Taken under the manual class of the KEESM
+    (selected us-ks/manual scope). Plain client HTTP 200.'
+- jurisdiction: us-ma
+  name: Massachusetts
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_issuance_tables
+  primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  target_manifest: manifests/us-ma-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  index_document_count: 3
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 3
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ma/guidance/dta/snap-issuance-tables/fy2026/households-1-10
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The DTA Policy Online ''SNAP Annual
+    Cost-of-Living Adjustment (COLA)'' scheduled mailing (FY 2026 shelter cap, standard deductions, SUAs, minimum benefit,
+    effective 10/1/2025) is already held in the selected scope us-ma/guidance/2026-08-03-ma-dta-snap-cola-official-source-recovery
+    (us-ma/guidance/dta/policy-online/snap-cola/2025-10-01) and is not re-taken. The maximum allotments it omits are in the
+    ''SNAP program issuance tables, 1 to 10 persons (106 CMR 364.980)'' PDF republished by DTA (FNS basis-of-issuance table
+    dated 12/16/2025 for October 1, 2025; 51 pages), taken with browser impersonation (mass.gov answers HTTP 403 to the plain
+    client). The 11-20 person table (101 pages) and the stale mass.gov COLA info page are not taken.'
+- jurisdiction: us-mn
+  name: Minnesota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_change_attachment
+  primary_source_url: https://www.dhs.state.mn.us/main/groups/county_access/documents/pub/mndhs-072723.pdf
+  target_manifest: manifests/us-mn-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&dDocName=cm_002012&RevisionSelectionMethod=LatestReleased
+  index_document_count: 0
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 0
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-mn/guidance/dhs/combined-manual-description-of-changes/2025-10
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): No FY 2026 COLA bulletin was found
+    on DHS or DCYF; the Combined Manual ''Description of Changes Attachment, Revised Sections, Issued 10/2025'' (19 pages)
+    carries every FY 2026 figure in the revised sections (0018.15 homeless shelter $198.99, 0018.15.09 SUAs, 0018.21 standard
+    deduction, 0019.06/0019.09 income limits, 0020.12 net standards, 0022.12.01 TFP and $24 minimum). Page 1 is watermarked
+    DRAFT although the sections print ''ISSUE DATE 10/2025''. dhs.state.mn.us is Radware-gated: the PDF answers the browser-impersonated
+    client (HTTP 200) and the plain client intermittently; taken with impersonation.'
+- jurisdiction: us-mo
+  name: Missouri
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_flyer
+  primary_source_url: https://dssmanuals.mo.gov/wp-content/uploads/2021/10/snap-changes-flyer.pdf
+  target_manifest: manifests/us-mo-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dssmanuals.mo.gov/memorandums/2025-im-memos/
+  index_document_count: 24
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 24
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-mo/guidance/fsd/snap-changes-flyer/2025-10
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The FSD flyer ''10/2025 SNAP Changes
+    Effective October 1, 2025'' (one page, created 2025-09-15) prints the FY 2026 gross/net limits, maximum allotments, standard
+    deductions, $744 shelter cap and $198.99 homeless deduction (no SUAs or minimum). The 2025 IM memo series on dssmanuals.mo.gov
+    is password-protected and dss.mo.gov/fsd/fstamp answers 404; the flyer URL is stable and overwritten yearly. Plain client
+    HTTP 200.'
+- jurisdiction: us-ms
+  name: Mississippi
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://www.mdhs.ms.gov/help/snap/
+  target_manifest: manifests/us-ms-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.mdhs.ms.gov/help/snap/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ms/guidance/mdhs/snap-income-limits-and-max-benefits/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): No MDHS transmittal for FY 2026
+    was found; the SNAP page prints ''SNAP Income Limits and Max Benefit Amounts'' (gross 130%, net 100%, maximum allotments;
+    ''All numbers are effective October 1, 2025''). The SNAP Policy Manual (Title 18 Part 14, hosted by the Secretary of State)
+    carries no dollar standards. Plain client HTTP 200.'
+- jurisdiction: us-mt
+  name: Montana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_section_pointer
+  primary_source_url: https://dphhs.mt.gov/hcsd/Manuals/snapmanual
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-mt
+    document_class: manual
+    version: 2026-07-17-mt-snap-policy-manual
+  index_url: https://dphhs.mt.gov/hcsd/Manuals/snapmanual
+  index_document_count: 82
+  taken_count: 0
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 82
+      taken: 0
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-mt/manual/2026-07-17-mt-snap-policy-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: Montana publishes
+    no separate COLA manual letter; SNAP 001 ''Table of Standards: GMI and NMI, Thrifty Food Plan'' (Effective Date October
+    1, 2025: 130/165/200% and net limits, allotments, $24 minimum, $744 cap), SNAP 602-2 (standard deduction) and SNAP 602-4
+    ($799 SUA) print the FY 2026 figures. The selected scope us-mt/manual/2026-07-17-mt-snap-policy-manual already holds SNAP
+    001 in this edition (us-mt/manual/dphhs/snap-policy-manual/snap001-table-of-standards-gmi-nmi-thrifty-food-plan prints
+    ''October 1, 2025'' and $1,696) with 602-2 and 602-4. Nothing new to take.'
+- jurisdiction: us-ne
+  name: Nebraska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_guidance_document
+  primary_source_url: https://dhhs.ne.gov/Guidance%20Docs/SNAP%20Program%20Standards.pdf
+  target_manifest: manifests/us-ne-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dhhs.ne.gov/Pages/Guidance-Documents.aspx
+  index_document_count: 3
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 3
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ne/guidance/dhhs/snap-program-standards/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DHHS publishes the FY 2026 standards
+    as guidance document DOC00428 ''SNAP Program Standards, Effective October 1, 2025'' (2 pages: 100/130/165% limits, maximum
+    allotments, $24 minimum, resource limits; no deductions). The Regulation and Guidance Documents Index lists three SNAP
+    guidance documents (DOC00428, DOC00429 deductions, DOC00431); DOC00429 was not located. Plain client HTTP 200.'
+- jurisdiction: us-nh
+  name: New Hampshire
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_service_release
+  primary_source_url: https://www.dhhs.nh.gov/sr_htm/html/sr_25-32_dated_10_25.htm
+  target_manifest: manifests/us-nh-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: manual
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.dhhs.nh.gov/fsm_htm/newfsm.htm
+  index_document_count: 0
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 0
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nh/manual/dhhs/sr/25-32
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Service Release SR 25-32 (dated
+    10/25, signed 2025-09-18, effective 2025-10-01) is the FY 2026 SNAP mass change: 165/130/100/200% income limits, maximum
+    allotments, $24 minimum, resource limits, SUAs ($1,018/$373/$217/$39), standard deductions, $744 shelter cap, homeless
+    and medical deductions. dhhs.nh.gov (Akamai) answers HTTP 403 to the plain client and 200 to the browser-impersonated
+    client; the Food Stamp Manual index is a JavaScript frameset, so the SR count is not enumerated. Taken under the manual
+    class of the FSM (the service releases are the transmittal family of the selected us-nh manual scopes).'
+- jurisdiction: us-nj
+  name: New Jersey
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: official_html_program_page
+  primary_source_url: https://www.nj.gov/humanservices/njsnap/apply/eligibility/
+  target_manifest: manifests/us-nj-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.nj.gov/humanservices/njsnap/apply/eligibility/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nj/guidance/dfd/njsnap-eligibility/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Partial: no DFD Instruction announcing
+    the FY 2026 COLA was found on nj.gov (DFD home, food stamps, reports and materials pages checked; the instructions paths
+    answer 404) and the N.J.A.C. 10:87 manual (October 2025) prints no FY 2026 dollars. The NJ SNAP eligibility page carries
+    the state''s applied 185% FPL gross standard (figures valid October 2025 to September 2026) and the $95 state minimum
+    benefit only. Plain client HTTP 200.'
+- jurisdiction: us-nm
+  name: New Mexico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_standards_card
+  primary_source_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+  target_manifest: manifests/us-nm-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+  index_document_count: 12
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 12
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nm/guidance/hca/isd-017/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): ISD 017 ''Income Eligibility Guidelines
+    for SNAP and Financial Assistance and LIHEAP, October 1, 2025 to September 30, 2026'' (the index-linked ''-final-1'' revision,
+    created 2026-02-27, printed revision date ''2-30-2026'' sic): 100/130/200% limits, maximum allotments, $24 minimum, standard
+    deductions, $744 shelter cap, HCSUA $419, LUA $289, telephone $51, homeless $198.99, asset limits. The earlier 9-30-2025
+    revision is still live but unlinked (same SNAP figures; not taken). The FPL page lists 12 English cards. Plain client
+    HTTP 200.'
+- jurisdiction: us-ny
+  name: New York
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: blocked_publisher
+  primary_source_url: https://otda.ny.gov/policy/gis/2025/
+  target_manifest: null
+  target_scope: null
+  index_url: https://otda.ny.gov/policy/gis/2025/
+  index_document_count: 0
+  taken_count: 0
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 0
+      taken: 0
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  blocked_evidence: 'https://www.otda.ny.gov/policy/gis/2025/25DC059.pdf: plain client connection reset; curl_cffi chrome120
+    HTTP 200 text/html JavaScript challenge (support ID), not the PDF.'
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Blocked: the FY 2026 SNAP standards
+    are GIS 25 TA/DC059 ''2025-2026 SNAP Standards'' with Attachment 1 on otda.ny.gov, which resets the plain client''s connection
+    and answers the browser-impersonated client with an HTTP 200 JavaScript challenge page (''Please enable JavaScript'',
+    support ID), as in every earlier probe (batches 1-3, 2026-09-11 re-probe). Probed once each way and not fought; no mirror
+    or archived copy used.'
+- jurisdiction: us-nd
+  name: North Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_manual_release
+  primary_source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+  target_manifest: manifests/us-nd-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-nd
+    document_class: manual
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+  index_document_count: 15
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 15
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nd/manual/hhs/snap/updates/release-25-6
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): SNAP Release 25.6 ''Effective October
+    1, 2025'' (6 pages, redline of the income levels, Thrifty Food Plan, SUA and standard deduction sections; the 130% one-person
+    figure is misprinted $1,692) is the FY 2026 release on the manual''s release log (15 PDFs). The live Appendix B has already
+    rolled to FY 2027 (Release 26.7) and releases 26-5/26-6 are held in the superseding 2026-09-11 scope; 25.6 was never taken.
+    Taken under the manual class of the ND SNAP manual (us-nd/manual/hhs/snap/updates/...). Plain client HTTP 200.'
+- jurisdiction: us-oh
+  name: Ohio
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_change_transmittal
+  primary_source_url: https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/EBS/Programs%20Rules%20and%20Resources/Food%20Assistance/Food%20Assistance%20Change%20Letters/2025/FACT_105_-_October_1_2025_Mass_Change.pdf
+  target_manifest: manifests/us-oh-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://emanuals.jfs.ohio.gov/FoodAssistance/FACT/
+  index_document_count: 0
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 0
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-oh/guidance/odjfs/fact/105
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Food Assistance Change Transmittal
+    No. 105 ''October 1, 2025 Mass Change'' (dated 2025-08-29, 4 pages, the full FY 2026 figure set) answers the plain client
+    on dam.assets.ohio.gov. The eManuals FACT index host still does not answer (as on 2026-09-11) and the jfs.ohio.gov help-center
+    pages answer 404, so the index count is not recorded.'
+- jurisdiction: us-or
+  name: Oregon
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_policy_transmittal
+  primary_source_url: https://www.oregon.gov/odhs/transmittals/oeptransmittals/pt25034.pdf
+  target_manifest: manifests/us-or-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.oregon.gov/odhs/transmittals/pages/oep-transmittals.aspx
+  index_document_count: 0
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 0
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-or/guidance/odhs/oep-transmittal/pt-25-034
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): OEP policy transmittal OEP-PT-25-034
+    ''FFY2026 COLA Standards for SNAP'' (issued 2025-09-09, 5 pages: income limits, deductions, FUA/LUA/TUA/IUA, maximum and
+    minimum allotments). The transmittal index page is JavaScript-rendered, so the count is not recorded (the file was found
+    by sweeping the pt25NNN series). Plain client HTTP 200.'
+- jurisdiction: us-ri
+  name: Rhode Island
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_cola_notice
+  primary_source_url: https://dhs.ri.gov/media/9561/download?language=en
+  target_manifest: manifests/us-ri-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dhs.ri.gov/programs-and-services/supplemental-nutrition-assistance-program-snap/supplemental-nutrition-0
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ri/guidance/dhs/snap-cola/fy2026
+  - us-ri/guidance/dhs/snap-monthly-income-guidelines/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): ''SNAP Annual Cost of Living Adjustment
+    Effective October 1, 2025'' (2 pages: 185%/200% limits, standard deduction, SUA $844, $744 cap, minimum and maximum) and
+    ''SNAP Monthly Income Guidelines October 1, 2025 through September 30, 2026'' (1 page). Neither prints an issue date.
+    The COLA sheet is no longer linked from the SNAP page (the FY 2027 sheet replaced it) but is still served. Plain client
+    HTTP 200.'
+- jurisdiction: us-tn
+  name: Tennessee
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_income_chart
+  primary_source_url: https://www.tn.gov/humanservices/for-families/supplemental-nutrition-assistance-program-snap/eligibility-information.html
+  target_manifest: manifests/us-tn-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-tn
+    document_class: guidance
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://www.tn.gov/humanservices/for-families/supplemental-nutrition-assistance-program-snap/eligibility-information.html
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-tn/guidance/dhs/snap-income-update/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): ''TN.gov Income Update 2026'' (one
+    page, the only document on the SNAP eligibility page) prints the FY 2026 130/165/200/100% income standards and maximum
+    allotments for households of 1-24; no title, date or deductions are printed (effective date recorded from the FY 2026
+    figures). Plain client HTTP 200.'
+- jurisdiction: us-ut
+  name: Utah
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_table
+  primary_source_url: https://jobs.utah.gov/infosource/eligibilitymanual/Tables,_Appendicies,_and_Charts/Tables,_Appendicies,_and_Charts/Table_2_-_SNAP_Monthly_Income_Limits_and_Maximum_Assistance_Amounts.htm
+  target_manifest: manifests/us-ut-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: manual
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://jobs.utah.gov/infosource/eligibilitymanual/
+  index_document_count: 0
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 0
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ut/manual/dws/eligibility-manual/tables/table-2-snap-monthly-income-limits/fy2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Eligibility Manual Table 2 ''SNAP
+    Monthly Income Limits and Maximum Assistance Amounts (Table Effective: October 1, 2025)'' (RoboHelp topic page; the manual
+    root answers 403/404 so the count is not recorded). Deduction tables were not located. Taken under the manual class of
+    the selected us-ut manuals scope. Plain client HTTP 200.'
+- jurisdiction: us-vt
+  name: Vermont
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_manual_tables
+  primary_source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/3000_Tables.htm
+  target_manifest: manifests/us-vt-snap-fy2026-state-transmittal.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: manual
+    version: 2026-09-14-snap-fy2026-state-transmittal
+  index_url: https://dcf.vermont.gov/esd/laws-rules/procedures
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-vt/manual/dcf/3squaresvt/3100-tables-release-25-4
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DCF publishes no standalone COLA
+    transmittal; the 3SquaresVT Program Manual ''3100 Tables'' topic (RoboHelp page on the AHS host; income limits and maximum
+    benefit, standard deduction, shelter deduction maximum, utility allowances $1,096, minimum benefit, each stamped ''Last
+    Update Release # 25-4, Effective Date 10/01/2025'') carries the FY 2026 figures. The selected scope us-vt/manual/2026-07-21-vt-3squaresvt-manual
+    does not hold this topic (the released 2026-05-27 scope holds an earlier edition at us-vt/manual/dcf/3squaresvt/3000-tables,
+    so a release-keyed path is used). Plain client HTTP 200.'
+- jurisdiction: us-va
+  name: Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_transmittal_pointer
+  primary_source_url: https://www.dss.virginia.gov/benefit/snap/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-va
+    document_class: manual
+    version: 2026-07-21-va-snap-manual
+  index_url: https://www.dss.virginia.gov/benefit/snap/
+  index_document_count: 12
+  taken_count: 0
+  index_families:
+    fy2026_state_transmittal_scope:
+      found: 12
+      taken: 0
+  closure_elements:
+  - snap_s20
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-va/manual/2026-07-21-va-snap-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: SNAP Manual Volume
+    V Transmittal #36 (dated 2025-09-18) is a full reissue of the manual (200 pages) carrying the FY 2026 figures at the income
+    limits, deductions and allotment tables. The selected scope us-va/manual/2026-07-21-va-snap-manual holds the full manual
+    with the same FY 2026 figures (us-va/manual/dss/snap/full-manual prints ''October 1, 2025'', $1,696, $1,305, $2,608).
+    The transmittals page lists #25-#36. Nothing new to take.'
 status_counts:
-  agent_ready: 21
-  done: 20
-  blocked_primary_source: 6
+  agent_ready: 41
+  done: 22
+  blocked_primary_source: 7
+  needs_review: 2
