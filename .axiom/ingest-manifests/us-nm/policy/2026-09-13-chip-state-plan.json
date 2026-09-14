@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "f251372152457d8dac149142cb5a38395cb3a22f7141294b3a83e0ac030765fd"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "a23ae679de675659965c31608642f8114d7c2558dedf0c080c4921ff990f96fa"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "037b2cf6c111e62d7a975398dc069c23bad9467e0696fa8f03b483c03ff90328"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan/official-documents/us-nm-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "51be9589c9df609f788872d946d48027e7299c3e3c2fd73e59f83f32550a8d76"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan/official-documents/us-nm-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "22aa6312afdb8ce982a66e504f4cb0956725ebcc39f7f240d533c9357be18943"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan/official-documents/us-nm-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "2e7f24a6b11ca33ec69b1570446f6e5c2bd602c6f70a45bfc0efb66bbbc645b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan/official-documents/us-nm-cms-chip-state-plan-spa-nm-14-0010-approval-package.pdf",
+      "sha256": "6236705ec2182aeec65faae2077f9499fbe67cb7cd0f3328c92728ed144ec8b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan/official-documents/us-nm-cms-chip-state-plan-spa-nm-14-0011-approval-package.pdf",
+      "sha256": "8e78182ba71818e85c247e167119342a7a4b8f926ab1a07ba05e250fbd4c3355"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan/official-documents/us-nm-cms-chip-state-plan-spa-nm-21-0009-approval-package.pdf",
+      "sha256": "e0944b6904b2a1c16405aca901cbf265cec7801698fc308a993120650f741269"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 179,
+    "missing_count": 0,
+    "provision_count": 179,
+    "source_count": 179
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:13:24.052155+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qYjTlDY02BkoRcI9lytyUVWQYeL1DZuU9B2Pu3fRlW2ZXjdMhx56BisUjRNztX2aFHgETircOHjmYuWSKBfhCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}
