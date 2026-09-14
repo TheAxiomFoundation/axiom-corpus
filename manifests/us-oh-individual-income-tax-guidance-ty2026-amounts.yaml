@@ -1,0 +1,32 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-oh-odt-annual-tax-rates-ty2025
+  jurisdiction: us-oh
+  document_class: guidance
+  title: 'Annual Tax Rates: Ohio individual income tax brackets for 2005 through 2025'
+  source_url: https://tax.ohio.gov/individual/resources/annual-tax-rates
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/guidance/odt/ty2025/annual-tax-rates
+  extraction:
+    html_content_selector: main#odx-main-content
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2025'
+    publication_or_revision_date: null
+    amounts_carried:
+    - 'bracket schedule by year (2025 latest: 0% to $26,050, 2.75%, 3.125%)'
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.ohio.gov/individual/resources/annual-tax-rates
+    discovered_via: manual-review:tax-agent-queue; index https://tax.ohio.gov/individual/resources/annual-tax-rates (read
+      2026-09-13)
+    source_note: 'Latest published year: the page stops at taxable years beginning in 2025. tax.ohio.gov answers the corpus
+      client with HTTP 404 whose body is a ''403 Error Page'' and serves a Chrome user agent (probed 2026-09-13).'
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
