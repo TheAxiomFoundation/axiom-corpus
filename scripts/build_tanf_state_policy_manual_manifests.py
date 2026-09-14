@@ -34,8 +34,11 @@ import datetime as dt
 import html
 import json
 import re
+import subprocess
 import sys
+import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
@@ -64,12 +67,20 @@ BATCH_4 = ("us-ny", "us-or", "us-sc", "us-ky", "us-ne", "us-oh", "us-tn", "us-vt
 # Territories pass (docs/ingest-runs/2026-09-11-territories-ten-programs.md): PR and GU extracted, VI
 # publishes no manual, AS operates no TANF program, MP is outside the statutory definition of State.
 BATCH_5 = ("us-pr", "us-gu", "us-vi", "us-as", "us-mp")
+# Whole-manual pass (docs/ingest-runs/2026-09-14-tanf-whole-manuals-md-comar.md): the four "slice taken,
+# publisher posts whole" states of the needs-driven closure check (docs/coverage/needs-closure-2026-09-11/tanf.md).
+# CT, GA and DE build here under WHOLE_VERSION; AZ stays DONE with the probe recorded (Cloudflare challenge).
+BATCH_6 = ("us-ct", "us-ga", "us-de", "us-az")
+WHOLE_VERSION = "2026-09-14-tanf-manual-whole"
+WHOLE_SOURCE_AS_OF = "2026-09-14"
+WHOLE_PROVEN = "2026-09-14"
 BATCH_LABEL = {
     **dict.fromkeys(BATCH_1, "Batch 1"),
     **dict.fromkeys(BATCH_2, "Batch 2"),
     **dict.fromkeys(BATCH_3, "Batch 3"),
     **dict.fromkeys(BATCH_4, "Batch 4 (retry)"),
     **dict.fromkeys(BATCH_5, "Territories pass (2026-09-11)"),
+    **dict.fromkeys(BATCH_6, "Whole-manual pass (2026-09-14)"),
 }
 # Rows added to the queue by batches 2 and 3 (not on the lead list): name per jurisdiction.
 NEW_ROWS = {
@@ -118,22 +129,20 @@ DONE: dict[str, dict[str, Any]] = {
     "us-az": {
         "target_manifest": "manifests/us-az-des-faa5-manual.yaml",
         "scope": ("manual", "2025-10-30-az-des-faa5-manual"),
-        "notes": "Arizona DES FAA policy manual (combined CA/NA) already ingested; recovery scope 2026-07-17-faa5-recovery also exists. Done per the prior-ingest list.",
-    },
-    "us-de": {
-        "target_manifest": "manifests/us-de-tanf-rules.yaml",
-        "scope": ("regulation", "2026-07-03-de-tanf-rules"),
-        "notes": "Delaware DSSM 3000 TANF rules (state-published adopted rule) already ingested. Done per the prior-ingest list.",
+        "notes": (
+            "Arizona DES FAA policy manual (combined CA/NA) already ingested; recovery scope 2026-07-17-faa5-recovery also exists. "
+            "Done per the prior-ingest list. Whole-manual pass 2026-09-14T01:16Z (FAA1-FAA6, closure check tanf.md 'slice taken, "
+            "publisher posts whole', 13 cells): https://dbmefaapolicy.azdes.gov/FAA1.html answered the plain extractor client HTTP 403, "
+            "5,611 B, Cloudflare 'Just a moment' challenge (cf-mitigated: challenge) and the browser-impersonated client (curl_cffi "
+            "chrome120) HTTP 403, 6,038 B, the same challenge; the same wall the 2026-09-13 re-probe met after its first two requests. "
+            "Nothing was worked around and no archived copy was used; the FAA1-FAA6 whole manual stays not taken and the released "
+            "FAA5 slice scopes stay as they are."
+        ),
     },
     "us-fl": {
         "target_manifest": "manifests/us-fl-ess-manual.yaml",
         "scope": ("manual", "2026-05-27-fl-ess-manual"),
         "notes": "Florida DCF ESS Program Policy Manual is the combined FS/TCA/Medicaid manual (48 chapters incl. 1400/1800 TCA chapters, 2600 benefit calculation). Reviewer judgment: combined manual counts as the TCA policy manual; not re-ingested.",
-    },
-    "us-ga": {
-        "target_manifest": "manifests/us-ga-tanf-manual.yaml",
-        "scope": ("manual", "2026-06-25-ga-tanf"),
-        "notes": "Georgia DFCS TANF Policy Manual already ingested. Done per the prior-ingest list.",
     },
     "us-hi": {
         "target_manifest": "manifests/us-hi-tanf-admin-rules.yaml",
@@ -191,11 +200,6 @@ DONE: dict[str, dict[str, Any]] = {
         "target_manifest": "manifests/us-ar-tea-official-documents.yaml",
         "scope": ("policy", "2026-07-02-ar-tea-official-documents"),
         "notes": "Batch 2 check: Arkansas TEA official documents already ingested. Done.",
-    },
-    "us-ct": {
-        "target_manifest": "manifests/us-ct-ssp-official-documents.yaml",
-        "scope": ("policy", "2026-07-02-ct-ssp-upm-and-standards"),
-        "notes": "Batch 2 check: Connecticut DSS Uniform Policy Manual (TFA) and standards already ingested. Done.",
     },
     "us-ia": {
         "target_manifest": "manifests/us-ia-fip-admin-rules.yaml",
@@ -2351,7 +2355,446 @@ def build_pr() -> dict[str, Any]:
 
 
 
+# --------------------------------------------------------------------------- whole-manual pass (2026-09-14)
+# docs/coverage/needs-closure-2026-09-11/tanf.md: "slice taken, publisher posts whole" (CT, GA, AZ, DE).
+CT_UPM_INDEX = "https://portal.ct.gov/dss/lists/uniform-policy-manual"
+CT_UPM_CHAPTERS = (
+    ("upm0---table-of-contents", "Table of Contents"),
+    ("upm1---rights-and-responsibilities-eligibility-process", "Rights and Responsibilities; Eligibility Process"),
+    (
+        "upm2---assistance-unit-composition-categorical-eligibility-requirements",
+        "Assistance Unit Composition; Categorical Eligibility Requirements",
+    ),
+    (
+        "upm3---technical-eligibility-requirements-procedural-eligibility-requirements",
+        "Technical Eligibility Requirements; Procedural Eligibility Requirements",
+    ),
+    ("upm4---treatment-of-assets-standards-of-assistance", "Treatment of Assets; Standards of Assistance"),
+    ("upm5---treatment-of-income-income-eligibility", "Treatment of Income; Income Eligibility"),
+    ("upm6---calculation-of-benefits-benefit-issuance", "Calculation of Benefits; Benefit Issuance"),
+    ("upm7---benefit-error-recovery", "Benefit Error Recovery"),
+    ("upm8---special-programs-saga-jobs-first-program", "Special Programs; SAGA; Jobs First Program"),
+)
+CT_STANDARDS_CHART_URL = (
+    "https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/fact-sheets-and-issue-briefs/"
+    "fact-sheets/dss-program-standards-chart-effective-010126.pdf"
+)
+CT_SUPERSEDED_SCOPE = "us-ct/policy/2026-07-02-ct-ssp-upm-and-standards"
+GA_TANF_INDEX = "https://pamms.dhs.ga.gov/dfcs/tanf/"
+GA_SUPERSEDED_SCOPE = "us-ga/manual/2026-06-25-ga-tanf"
+DE_ADMIN_CODE_INDEX = "https://regulations.delaware.gov/AdminCode/title16"
+DE_ADMIN_CODE_API = "https://regulations.delaware.gov/api/AdminCode/regulation"
+DE_RELEASED_4000_SCOPE = "us-de/regulation/2026-07-03-de-tanf-rules"
+# The DSSM 4000 pattern of manifests/us-de-tanf-rules.yaml, re-labelled for the 3000 series; the heading charset
+# adds the characters the 3000 headings print (& : [Repealed] and the curly apostrophe of "Delaware's").
+DE_DSSM_3000_EXTRACTION: dict[str, Any] = {
+    "segmentation": "labeled_sections",
+    "section_heading_pattern": r"^(?P<label>3\d{3}(?:\.\d+)*)\s+(?P<heading>[A-Z][A-Za-z0-9 ().,'’&:/\[\]-]+)$",
+    "section_label_pattern": r"^(?P<label>3\d{3}(?:\.\d+)*)$",
+    "label_only_heading_pattern": r"^[A-Z][A-Za-z0-9 ().,'’&:/#\[\]-]+$",
+    "label_only_requires_heading": True,
+    "drop_lines": [
+        "TITLE 16 HEALTH AND SAFETY",
+        "DELAWARE ADMINISTRATIVE CODE",
+        "Office of the Registrar of Regulations,",
+        "Legislative Council,",
+        "State of Delaware",
+        "DEPARTMENT OF HEALTH AND SOCIAL SERVICES",
+        "Division of Social Services",
+        "3000 Technical Eligibility for Cash Assistance",
+    ],
+    "drop_line_patterns": [r"^\d{1,3}$"],
+}
+
+
+def _drop_none(values: dict[str, Any]) -> dict[str, Any]:
+    return {key: value for key, value in values.items() if value is not None}
+
+
+def _ct_listing(chapter: str) -> list[tuple[str, str]]:
+    """Every UPM document linked from one chapter listing page (paginated with ``?page=N``)."""
+    base = f"{CT_UPM_INDEX}/{chapter}"
+    found: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    page = 1
+    while True:
+        text = plain_fetch(base if page == 1 else f"{base}?page={page}").text
+        added = 0
+        for href, label in links(text):
+            if "/dss/upms/" not in href or not re.search(r"\.docx?(\?|$)", href, re.I):
+                continue
+            key = href.split("?")[0]
+            if key in seen:
+                continue
+            seen.add(key)
+            found.append((href, label))
+            added += 1
+        last = max([int(n) for n in re.findall(r"[?&]page=(\d+)", text)] or [1])
+        if added == 0 or page >= last:
+            return found
+        page += 1
+
+
+def _ct_document_text(content: bytes, suffix: str) -> str:
+    """Text of a UPM Word document via textutil (the converter the extractor itself uses for .doc)."""
+    with tempfile.TemporaryDirectory(prefix="ct-upm-") as temp_dir:
+        path = Path(temp_dir) / f"source{suffix}"
+        path.write_bytes(content)
+        result = subprocess.run(
+            ["textutil", "-convert", "txt", "-stdout", str(path)],
+            check=False,
+            capture_output=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    return result.stdout if result.returncode == 0 else ""
+
+
+def _ct_header(text: str) -> dict[str, Any]:
+    """Parse the UPM transmittal header (Date, Transmittal, Section, Chapter, Subject, Type)."""
+    head = text.splitlines()[:40]
+    joined = "\n".join(head)
+    out: dict[str, Any] = {}
+    match = re.search(r"Date:\s*(\d{1,2}-\d{1,2}-\d{2,4})", joined)
+    if match:
+        out["date_text"] = match.group(1)
+        for fmt in ("%m-%d-%y", "%m-%d-%Y"):
+            try:
+                out["date"] = dt.datetime.strptime(match.group(1), fmt).date().isoformat()
+                break
+            except ValueError:
+                continue
+    match = re.search(r"Transmittal:\s*([A-Za-z0-9-]+)", joined)
+    if match:
+        out["transmittal"] = match.group(1)
+
+    def is_code(cell: str) -> bool:
+        # The header's right-hand columns (Type: POLICY/PROCEDURES; Program: AFDC, AABD, MA, FS, ALL PROGRAMS, TFA...)
+        # print as upper-case tokens; the Section/Chapter/Subject names never do.
+        return bool(re.fullmatch(r"[A-Z][A-Z0-9&/. -]{0,24}", cell))
+
+    def cells_after(label: str) -> list[str]:
+        for index, line in enumerate(head):
+            if line.strip().startswith(label):
+                found: list[str] = []
+                for following in head[index + 1 : index + 4]:
+                    if following.strip().startswith(("Section:", "Chapter:", "Subject:")):
+                        break
+                    found.extend(
+                        cell.strip()
+                        for cell in re.split(r"\t| {3,}", following)
+                        if cell.strip() and not set(cell.strip()) <= {"_", " "}
+                    )
+                return found
+        return []
+
+    section_cells = cells_after("Section:")
+    match = re.search(r"\b(POLICY|PROCEDURES)\b", " ".join(section_cells))
+    if match:
+        out["type"] = match.group(1)
+    programs: list[str] = []
+    for label in ("Section:", "Chapter:", "Subject:"):
+        names = [cell for cell in cells_after(label) if not is_code(cell)]
+        programs.extend(cell for cell in cells_after(label) if is_code(cell) and cell not in ("POLICY", "PROCEDURES"))
+        out[label[:-1].lower()] = names[0] if names else None
+    if programs:
+        out["programs"] = ", ".join(dict.fromkeys(programs))
+    if not (out["section"] or out["chapter"] or out["subject"]):
+        # Table-of-contents documents print no Section/Chapter/Subject grid; their first text line is the title.
+        started = False
+        for line in head:
+            if re.search(r"Date:\s*\d", line):
+                started = True
+                continue
+            text = line.strip()
+            if started and text and not set(text) <= {"_", " "} and re.search(r"[A-Za-z]", text):
+                out["first_line"] = heading_case(text[:80]) if text.isupper() else text[:80]
+                break
+    return out
+
+
+def _ct_fetch_header(href: str, fmt: str, *, attempts: int = 4) -> dict[str, Any]:
+    last: Exception | None = None
+    for attempt in range(attempts):
+        try:
+            response = plain_fetch(href, timeout=180)
+            return _ct_header(_ct_document_text(response.content, f".{fmt}"))
+        except Exception as exc:  # noqa: BLE001 - retry any transport failure (portal.ct.gov read timeouts)
+            last = exc
+            time.sleep(3 * (attempt + 1))
+    raise RuntimeError(f"UPM header fetch failed: {href}: {last}")
+
+
+def build_ct(cache_path: Path | None = None) -> dict[str, Any]:
+    """Connecticut DSS Uniform Policy Manual, whole: every section and procedure document of chapters 0-8 on the
+    publisher's listing pages, plus the DSS Program Standards Chart carried over from the superseded slice scope.
+    Titles and expression dates come from each document's own transmittal header (textutil text; cached in
+    ``cache_path`` keyed by media URL and Sitecore revision)."""
+    cache: dict[str, Any] = {}
+    if cache_path is not None and cache_path.exists():
+        cache = json.loads(cache_path.read_text())
+    by_chapter = {chapter: _ct_listing(chapter) for chapter, _title in CT_UPM_CHAPTERS}
+    listed = [href for entries in by_chapter.values() for href, _label in entries]
+
+    def media(href: str) -> tuple[str, str | None, str]:
+        url, _, query = href.partition("?")
+        rev_match = re.search(r"rev=([0-9a-f]+)", query)
+        return url, (rev_match.group(1) if rev_match else None), url.rsplit(".", 1)[-1].lower()
+
+    # portal.ct.gov drops the odd request (read timeout after 120 s) and serves one document in 0.4-4 s depending on
+    # the hour; the headers still missing from the cache are fetched eight at a time with retries, and whatever
+    # succeeded is written back to the cache even when one document fails.
+    pending = [(href, media(href)) for href in listed if cache.get(media(href)[0], {}).get("rev") != media(href)[1]]
+    if pending:
+        print(f"us-ct: fetching {len(pending)} UPM headers ({len(listed) - len(pending)} cached)", file=sys.stderr)
+        try:
+            with ThreadPoolExecutor(max_workers=8) as pool:
+                futures = {pool.submit(_ct_fetch_header, href, fmt): (url, rev) for href, (url, rev, fmt) in pending}
+                for future in as_completed(futures):
+                    url, rev = futures[future]
+                    cache[url] = {"rev": rev, **future.result()}
+        finally:
+            if cache_path is not None:
+                cache_path.write_text(json.dumps(cache, indent=1, sort_keys=True))
+
+    docs: list[dict[str, Any]] = []
+    paths: dict[str, str] = {}
+    for chapter, chapter_title in CT_UPM_CHAPTERS:
+        for href, label in by_chapter[chapter]:
+            url, rev, fmt = media(href)
+            entry = cache[url]
+            path_label = label.lower().replace("_", ".").strip(".")
+            citation_path = f"us-ct/policy/dss/upm/{path_label}"
+            if citation_path in paths:
+                raise RuntimeError(f"UPM citation path collision: {label} vs {paths[citation_path]}")
+            paths[citation_path] = label
+            number = label.replace("_", ".").strip(".")
+            display = f"P-{number[:-1]}" if re.fullmatch(r"\d{4}(?:\.\d{2})?[Pp]", number) else number
+            subject = entry.get("subject")
+            # Title: the Subject line; chapter-level documents (6000 "Calculation of Benefits") print the name in the
+            # Chapter or Section grid cell instead, and table-of-contents documents in their first text line.
+            name = subject or entry.get("chapter") or entry.get("section") or entry.get("first_line")
+            docs.append(
+                base_doc(
+                    source_id=f"ct-upm-{label.lower().replace('_', '-').strip('-')}",
+                    jurisdiction="us-ct",
+                    document_class="policy",
+                    title=f"UPM {display} - {name}" if name else f"UPM {display}",
+                    source_url=url,
+                    source_format=fmt,
+                    citation_path=citation_path,
+                    expression_date=entry.get("date") or WHOLE_SOURCE_AS_OF,
+                    authority="Connecticut Department of Social Services",
+                    subtype="policy_manual_section",
+                    state_program="Connecticut Temporary Family Assistance (TFA)",
+                    index_url=CT_UPM_INDEX,
+                    extra=_drop_none(
+                        {
+                            "official_section_number": display,
+                            "upm_chapter": chapter,
+                            "upm_chapter_title": chapter_title,
+                            "upm_section": entry.get("section"),
+                            "upm_subchapter": entry.get("chapter"),
+                            "upm_subject": subject,
+                            "upm_programs": entry.get("programs"),
+                            "document_type": entry.get("type"),
+                            "transmittal": entry.get("transmittal"),
+                            "official_effective_date": entry.get("date_text"),
+                            "media_revision": rev,
+                            "listing_page": f"{CT_UPM_INDEX}/{chapter}",
+                            "extraction_granularity": "document",
+                        }
+                    ),
+                )
+            )
+    docs.append(
+        base_doc(
+            source_id="ct-dss-program-standards-2026-01-01",
+            jurisdiction="us-ct",
+            document_class="policy",
+            title="DSS Program Standards Chart Effective 2026-01-01",
+            source_url=CT_STANDARDS_CHART_URL,
+            source_format="pdf",
+            citation_path="us-ct/policy/dss/program-standards/2026-01-01",
+            expression_date="2026-01-01",
+            authority="Connecticut Department of Social Services",
+            subtype="program_standards_chart",
+            state_program="Connecticut Temporary Family Assistance (TFA)",
+            index_url=CT_UPM_INDEX,
+            extra={
+                "carried_from_scope": CT_SUPERSEDED_SCOPE,
+                "extraction_granularity": "pdf_page",
+            },
+        )
+    )
+    for doc in docs:
+        doc["source_as_of"] = WHOLE_SOURCE_AS_OF
+    return {
+        "docs": docs,
+        "index_url": CT_UPM_INDEX,
+        "index_document_count": len(listed),
+        "inventory": (
+            f"{len(listed)} UPM section and procedure documents (.doc/.docx) listed on the nine chapter listing pages "
+            f"upm0-upm8; taken all {len(listed)}, plus the DSS Program Standards Chart effective 2026-01-01 carried over "
+            f"from the superseded slice scope ({len(docs)} documents)"
+        ),
+        "source_kind": "official_doc_manual_sections",
+        "document_class": "policy",
+        "primary_source_url": CT_UPM_INDEX,
+        "version": WHOLE_VERSION,
+        "source_as_of": WHOLE_SOURCE_AS_OF,
+        "proven": WHOLE_PROVEN,
+        "notes_suffix": (
+            f" Supersedes the released slice scope {CT_SUPERSEDED_SCOPE} (13 UPM sections plus the standards chart, "
+            "28 rows): every citation path of that scope is carried here; the controller swaps the selector."
+        ),
+    }
+
+
+def build_ga() -> dict[str, Any]:
+    """Georgia DFCS TANF Policy Manual, whole: every section and appendix page of the publisher's manual navigation
+    (pamms.dhs.ga.gov), same page selector and citation shape as the superseded four-section scope."""
+    page = plain_fetch(GA_TANF_INDEX).text
+    items = re.findall(
+        r'<li class="nav-item" data-depth="(\d)">\s*<a class="nav-link" href="([^"]+)">(.*?)</a>', page, re.S
+    )
+    docs: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for depth, href, raw_label in items:
+        if href.startswith(("../", "http", "#")):
+            continue
+        slug = href.strip("/")
+        if slug in seen:
+            raise RuntimeError(f"duplicate Georgia manual navigation entry {slug}")
+        seen.add(slug)
+        label = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", html.unescape(raw_label))).strip()
+        url = f"{GA_TANF_INDEX}{slug}/"
+        response = plain_fetch(url)
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html.unescape(response.text)))
+        match = re.search(r"Effective Date:\s*([A-Z][a-z]+)\s+(\d{4})", text)
+        effective_text = f"{match.group(1)} {match.group(2)}" if match else None
+        effective = None
+        if effective_text:
+            try:
+                effective = dt.datetime.strptime(effective_text, "%B %Y").date().isoformat()
+            except ValueError:
+                effective = None
+        docs.append(
+            base_doc(
+                source_id=f"ga-dfcs-tanf-{slug}",
+                jurisdiction="us-ga",
+                document_class="manual",
+                title=f"Georgia TANF Policy Manual: {label}",
+                source_url=url,
+                source_format="html",
+                citation_path=f"us-ga/manual/dfcs/tanf/{slug}",
+                expression_date=effective or http_date(response.headers.get("Last-Modified")) or WHOLE_SOURCE_AS_OF,
+                authority="Georgia Department of Human Services Division of Family and Children Services",
+                subtype="policy_manual_section",
+                state_program="Georgia TANF",
+                index_url=GA_TANF_INDEX,
+                extra=_drop_none(
+                    {
+                        "official_section_number": slug,
+                        "official_listing_title": label,
+                        "official_effective_date": effective_text,
+                        "expression_date_source": "page 'Effective Date' line" if effective else "HTTP Last-Modified",
+                        "navigation_depth": int(depth),
+                        "extraction_granularity": "html_heading_block",
+                    }
+                ),
+                extraction={"html_content_selector": "article.doc"},
+            )
+        )
+    for doc in docs:
+        doc["source_as_of"] = WHOLE_SOURCE_AS_OF
+    return {
+        "docs": docs,
+        "index_url": GA_TANF_INDEX,
+        "index_document_count": len(docs),
+        "inventory": (
+            f"{len(docs)} manual pages in the publisher's TANF manual navigation (sections 1001-1915 and appendices "
+            f"A-H); taken all {len(docs)}"
+        ),
+        "source_kind": "official_html_manual_sections",
+        "document_class": "manual",
+        "primary_source_url": GA_TANF_INDEX,
+        "version": WHOLE_VERSION,
+        "source_as_of": WHOLE_SOURCE_AS_OF,
+        "proven": WHOLE_PROVEN,
+        "notes_suffix": (
+            f" Supersedes the released slice scope {GA_SUPERSEDED_SCOPE} (sections 1525, 1605, 1615 and Appendix A, "
+            "47 rows): the same four pages are taken again under the same citation paths; the controller swaps the "
+            "selector. The guidance scope us-ga/guidance/2026-06-25-ga-tanf is a different document class and is untouched."
+        ),
+    }
+
+
+def build_de() -> dict[str, Any]:
+    """Delaware DSSM 3000 (Technical Eligibility for Cash Assistance), the TANF program rules of Delaware
+    Administrative Code Title 16, from the regulations.delaware.gov AdminCode API (the source of the released
+    DSSM 4000 scope). Corrects the 2026-09-10 row, which said DSSM 3000 was already ingested: only 4000 was."""
+    import requests as plain_requests
+
+    response = plain_requests.post(
+        DE_ADMIN_CODE_API,
+        json={"RegulationUrl": "/AdminCode/title16/3000"},
+        headers={"User-Agent": "axiom-corpus-ingest"},
+        timeout=90,
+    )
+    response.raise_for_status()
+    data = response.json()
+    name = str(data["regulationName"])
+    pdf_id = str(data["pdfId"])
+    doc = base_doc(
+        source_id="de-dhss-dss-3000-technical-eligibility-for-cash-assistance",
+        jurisdiction="us-de",
+        document_class="regulation",
+        title=f"Delaware Administrative Code Title 16, {name}",
+        source_url="https://regulations.delaware.gov/AdminCode/title16/3000",
+        source_format="pdf",
+        citation_path="us-de/regulation/title-16/3000-technical-eligibility-for-cash-assistance",
+        expression_date=WHOLE_SOURCE_AS_OF,
+        authority="Delaware Department of Health and Social Services, Division of Social Services",
+        subtype="administrative_code",
+        state_program="Delaware TANF",
+        index_url=DE_ADMIN_CODE_INDEX,
+        extra={
+            "api_pdf_file_id": pdf_id,
+            "official_regulation_name": name,
+            "manual": "Delaware Social Services Manual (DSSM), section 3000 (DAC Title 16)",
+            "extraction_granularity": "labeled_section",
+        },
+        extraction=DE_DSSM_3000_EXTRACTION,
+    )
+    doc["download_url"] = f"https://regulations.delaware.gov/api/AdminCode/title16/3000/{pdf_id}"
+    doc["source_as_of"] = WHOLE_SOURCE_AS_OF
+    return {
+        "docs": [doc],
+        "index_url": DE_ADMIN_CODE_INDEX,
+        "index_document_count": 2,
+        "inventory": (
+            f"DSSM cash-assistance chapters posted under Title 16: 3000 ({name}) and 4000 (Financial Responsibility); "
+            f"taken 1 (3000, 44-page PDF, labeled sections); 4000 stays in the released scope {DE_RELEASED_4000_SCOPE}"
+        ),
+        "source_kind": "official_pdf_regulation",
+        "document_class": "regulation",
+        "primary_source_url": "https://regulations.delaware.gov/AdminCode/title16/3000",
+        "version": WHOLE_VERSION,
+        "source_as_of": WHOLE_SOURCE_AS_OF,
+        "proven": WHOLE_PROVEN,
+        "notes_suffix": (
+            f" Corrects the 2026-09-10 row: DSSM 3000 had never been taken (the released scope {DE_RELEASED_4000_SCOPE} "
+            "carries DSSM 4000 Financial Responsibility only, 41 rows); 4000 stays in that released scope and nothing "
+            "is superseded, this scope is an addition."
+        ),
+    }
+
+
 BUILDERS = {
+    "us-ct": build_ct,
+    "us-ga": build_ga,
+    "us-de": build_de,
     "us-gu": build_gu,
     "us-pr": build_pr,
     "us-ca": build_ca,
@@ -2384,6 +2827,11 @@ BUILDERS = {
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mo-title-cache", type=Path)
+    parser.add_argument(
+        "--ct-header-cache",
+        type=Path,
+        help="JSON cache of UPM transmittal headers keyed by media URL (whole-manual pass; about 1,560 downloads without it)",
+    )
     parser.add_argument("--only", action="append", help="jurisdiction(s) to rebuild; default all")
     args = parser.parse_args()
 
@@ -2416,9 +2864,14 @@ def main() -> int:
         if jur not in BUILDERS:
             continue  # static-row jurisdictions (territories pass) are applied below
         builder = BUILDERS[jur]
-        result = builder(args.mo_title_cache) if jur == "us-mo" else builder()
+        if jur == "us-mo":
+            result = builder(args.mo_title_cache)
+        elif jur == "us-ct":
+            result = builder(args.ct_header_cache)
+        else:
+            result = builder()
         stem = f"{jur}-tanf-state-policy-manual"
-        manifest = {"version": SOURCE_AS_OF, "documents": result["docs"]}
+        manifest = {"version": result.get("source_as_of", SOURCE_AS_OF), "documents": result["docs"]}
         (ROOT / "manifests" / f"{stem}.yaml").write_text(
             yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120)
         )
@@ -2438,7 +2891,7 @@ def main() -> int:
                 "index_url": result["index_url"],
                 "index_document_count": result["index_document_count"],
                 "taken_count": len(result["docs"]),
-                "notes": f"{BATCH_LABEL[jur]}. Primary source confirmed from the publisher's own index. Inventory: {result['inventory']}. Extraction proven {result.get('proven', '2026-09-10')} (coverage complete, 0 missing/extra/duplicate).",
+                "notes": f"{BATCH_LABEL[jur]}. Primary source confirmed from the publisher's own index. Inventory: {result['inventory']}. Extraction proven {result.get('proven', '2026-09-10')} (coverage complete, 0 missing/extra/duplicate).{result.get('notes_suffix', '')}",
             }
         )
         print(f"{jur}: {len(result['docs'])} documents -> manifests/{stem}.yaml", file=sys.stderr)
@@ -2547,7 +3000,9 @@ def main() -> int:
                 "--only-title 45 --only-part 260..265 is the path). ACF Office of Family Assistance TANF state plans are a separate later "
                 "document family (state plans are published by each state; the OFA program page and the acf.gov resource library do not "
                 "expose a consolidated plan index to a non-browser client on 2026-09-10 - acf.gov/ofa/programs/tanf/state-plans is 404 and "
-                "the resource-library type filter returns an HTTP 202 challenge). index_document_count unknown; record once an index is located."
+                "the resource-library type filter returns an HTTP 202 challenge). index_document_count unknown; record once an index is located. "
+                "2026-09-13: 45 CFR parts 260-265 taken as us/regulation 2026-09-13-title-45-part-260 to -265 (see the six "
+                "federal_regulation_ecfr rows below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md)."
             ),
         }
     )

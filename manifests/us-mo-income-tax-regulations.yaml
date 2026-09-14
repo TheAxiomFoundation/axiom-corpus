@@ -1,0 +1,30 @@
+version: '2026-09-14'
+documents:
+- source_id: mo-sos-12-csr-10-2-income-tax
+  jurisdiction: us-mo
+  document_class: regulation
+  citation_path: us-mo/regulation/12-csr/10-2
+  title: 'Missouri Code of State Regulations 12 CSR 10-2: Income Tax (Director of Revenue)'
+  source_url: https://www.sos.mo.gov/cmsimages/adrules/csr/current/12csr/12c10-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-31'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^12 CSR 10-2\.(?P<num>\d{3})\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{num}'
+    start_page: 4
+    drop_line_patterns:
+    - ^12 CSR 10-2\.\d{3}\s*\t.*$
+    - ^CODE OF STATE REGULATIONS$
+    - ^\d{1,3}$
+    - ^Denny Hoskins\s+\(\d+/\d+/\d+\)$
+    - ^Secretary of State$
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Revenue
+    official_publisher: Missouri Secretary of State, Administrative Rules Division
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mo/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.sos.mo.gov/adrules/csr/current/12csr/12csr

@@ -30,8 +30,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 1
-  agent_ready: 33
-  done: 26
+  agent_ready: 36
+  done: 23
   blocked_primary_source: 4
 states:
 - jurisdiction: us
@@ -665,8 +665,13 @@ states:
     - policyengine-us#parameters/gov/states/az/hhs/tanf/income/deductions/care_expenses/amounts.yaml
     - policyengine-us#parameters/gov/states/az/hhs/tanf/income/deductions/flat.yaml
     - policyengine-us#parameters/gov/states/az/hhs/tanf/income/deductions/percentage.yaml
-  notes: Arizona DES FAA policy manual (combined CA/NA) already ingested; recovery scope 2026-07-17-faa5-recovery also exists.
-    Done per the prior-ingest list.
+  notes: 'Arizona DES FAA policy manual (combined CA/NA) already ingested; recovery scope 2026-07-17-faa5-recovery also exists.
+    Done per the prior-ingest list. Whole-manual pass 2026-09-14T01:16Z (FAA1-FAA6, closure check tanf.md ''slice taken, publisher
+    posts whole'', 13 cells): https://dbmefaapolicy.azdes.gov/FAA1.html answered the plain extractor client HTTP 403, 5,611
+    B, Cloudflare ''Just a moment'' challenge (cf-mitigated: challenge) and the browser-impersonated client (curl_cffi chrome120)
+    HTTP 403, 6,038 B, the same challenge; the same wall the 2026-09-13 re-probe met after its first two requests. Nothing
+    was worked around and no archived copy was used; the FAA1-FAA6 whole manual stays not taken and the released FAA5 slice
+    scopes stay as they are.'
   additional_families:
   - family: tanf_state_plan
     queue_status: blocked_primary_source
@@ -1144,17 +1149,22 @@ states:
       2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ct
   name: Connecticut
-  queue_status: done
-  source_kind: already_ingested
-  primary_source_url: null
-  target_manifest: manifests/us-ct-ssp-official-documents.yaml
+  queue_status: agent_ready
+  source_kind: official_doc_manual_sections
+  primary_source_url: https://portal.ct.gov/dss/lists/uniform-policy-manual
+  target_manifest: manifests/us-ct-tanf-state-policy-manual.yaml
   target_scope:
     jurisdiction: us-ct
     document_class: policy
-    version: 2026-07-02-ct-ssp-upm-and-standards
+    version: 2026-09-14-tanf-manual-whole
   lead_counts: null
   candidate_sources: []
-  notes: 'Batch 2 check: Connecticut DSS Uniform Policy Manual (TFA) and standards already ingested. Done.'
+  notes: 'Whole-manual pass (2026-09-14). Primary source confirmed from the publisher''s own index. Inventory: 1564 UPM section
+    and procedure documents (.doc/.docx) listed on the nine chapter listing pages upm0-upm8; taken all 1564, plus the DSS
+    Program Standards Chart effective 2026-01-01 carried over from the superseded slice scope (1565 documents). Extraction
+    proven 2026-09-14 (coverage complete, 0 missing/extra/duplicate). Supersedes the released slice scope us-ct/policy/2026-07-02-ct-ssp-upm-and-standards
+    (13 UPM sections plus the standards chart, 28 rows): every citation path of that scope is carried here; the controller
+    swaps the selector.'
   additional_families:
   - family: tanf_state_plan
     queue_status: agent_ready
@@ -1171,6 +1181,9 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): CT TANF State Plan FFY 2024-2026 (October 1, 2023 through
       September 30, 2026), 4/15/24 amendment print. ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  index_url: https://portal.ct.gov/dss/lists/uniform-policy-manual
+  index_document_count: 1564
+  taken_count: 1565
 - jurisdiction: us-dc
   name: District of Columbia
   queue_status: agent_ready
@@ -1394,14 +1407,14 @@ states:
       resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-de
   name: Delaware
-  queue_status: done
-  source_kind: already_ingested
-  primary_source_url: null
-  target_manifest: manifests/us-de-tanf-rules.yaml
+  queue_status: agent_ready
+  source_kind: official_pdf_regulation
+  primary_source_url: https://regulations.delaware.gov/AdminCode/title16/3000
+  target_manifest: manifests/us-de-tanf-state-policy-manual.yaml
   target_scope:
     jurisdiction: us-de
     document_class: regulation
-    version: 2026-07-03-de-tanf-rules
+    version: 2026-09-14-tanf-manual-whole
   lead_counts:
     ready_for_manifest: 2
     needs_review: 4
@@ -1496,7 +1509,12 @@ states:
     - policyengine-us#parameters/gov/states/de/dhss/tanf/benefit/deficit_rate.yaml
     - policyengine-us#parameters/gov/states/de/dhss/tanf/income/deductions/child_support.yaml
     - policyengine-us#parameters/gov/states/de/dhss/tanf/income/deductions/dependent_care.yaml
-  notes: Delaware DSSM 3000 TANF rules (state-published adopted rule) already ingested. Done per the prior-ingest list.
+  notes: 'Whole-manual pass (2026-09-14). Primary source confirmed from the publisher''s own index. Inventory: DSSM cash-assistance
+    chapters posted under Title 16: 3000 (3000 Technical Eligibility for Cash Assistance) and 4000 (Financial Responsibility);
+    taken 1 (3000, 44-page PDF, labeled sections); 4000 stays in the released scope us-de/regulation/2026-07-03-de-tanf-rules.
+    Extraction proven 2026-09-14 (coverage complete, 0 missing/extra/duplicate). Corrects the 2026-09-10 row: DSSM 3000 had
+    never been taken (the released scope us-de/regulation/2026-07-03-de-tanf-rules carries DSSM 4000 Financial Responsibility
+    only, 41 rows); 4000 stays in that released scope and nothing is superseded, this scope is an addition.'
   additional_families:
   - family: tanf_state_plan
     queue_status: agent_ready
@@ -1513,6 +1531,9 @@ states:
     notes: 'State TANF plan taken 2026-09-13 (closure tanf-s32): Delaware TANF State Plan 10-1-23 to 09-30-26 (listed as ''Delaware
       TANF State Plan 2023-2026 (PUBLIC NOTICE)''). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource
       library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own publication.'
+  index_url: https://regulations.delaware.gov/AdminCode/title16
+  index_document_count: 2
+  taken_count: 1
 - jurisdiction: us-fl
   name: Florida
   queue_status: done
@@ -1638,14 +1659,14 @@ states:
       and 2026-09-13); the plan is the state agency''s own publication.'
 - jurisdiction: us-ga
   name: Georgia
-  queue_status: done
-  source_kind: already_ingested
-  primary_source_url: null
-  target_manifest: manifests/us-ga-tanf-manual.yaml
+  queue_status: agent_ready
+  source_kind: official_html_manual_sections
+  primary_source_url: https://pamms.dhs.ga.gov/dfcs/tanf/
+  target_manifest: manifests/us-ga-tanf-state-policy-manual.yaml
   target_scope:
     jurisdiction: us-ga
     document_class: manual
-    version: 2026-06-25-ga-tanf
+    version: 2026-09-14-tanf-manual-whole
   lead_counts:
     ready_for_manifest: 1
     needs_review: 11
@@ -1773,7 +1794,12 @@ states:
     discovered_via:
     - policyengine-us#parameters/gov/states/ga/dfcs/tanf/resources/limit.yaml
     - policyengine-us#variables/gov/states/ga/dfcs/tanf/eligibility/ga_tanf_resources_eligible.py
-  notes: Georgia DFCS TANF Policy Manual already ingested. Done per the prior-ingest list.
+  notes: 'Whole-manual pass (2026-09-14). Primary source confirmed from the publisher''s own index. Inventory: 101 manual
+    pages in the publisher''s TANF manual navigation (sections 1001-1915 and appendices A-H); taken all 101. Extraction proven
+    2026-09-14 (coverage complete, 0 missing/extra/duplicate). Supersedes the released slice scope us-ga/manual/2026-06-25-ga-tanf
+    (sections 1525, 1605, 1615 and Appendix A, 47 rows): the same four pages are taken again under the same citation paths;
+    the controller swaps the selector. The guidance scope us-ga/guidance/2026-06-25-ga-tanf is a different document class
+    and is untouched.'
   additional_families:
   - family: tanf_state_plan
     queue_status: agent_ready
@@ -1791,6 +1817,9 @@ states:
       2026 (the earlier ''draft'' renewal file is also posted, not taken). ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf
       and the resource library carry no plan links, checked 2026-09-10 and 2026-09-13); the plan is the state agency''s own
       publication.'
+  index_url: https://pamms.dhs.ga.gov/dfcs/tanf/
+  index_document_count: 101
+  taken_count: 101
 - jurisdiction: us-gu
   name: Guam
   queue_status: agent_ready

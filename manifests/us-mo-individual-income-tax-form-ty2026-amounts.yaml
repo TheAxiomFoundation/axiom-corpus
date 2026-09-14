@@ -1,0 +1,28 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-mo-dor-mo-1040es-ty2026
+  jurisdiction: us-mo
+  document_class: form
+  title: MO-1040ES 2026 Declaration of Estimated Tax for Individuals
+  source_url: https://dor.mo.gov/forms/MO-1040ES_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-mo/form/dor/ty2026/mo-1040es
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Revenue
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-12-15'
+    amounts_carried:
+    - tax rate chart 2026 (2.0%-4.7%)
+    - standard deductions 2026
+    - head-of-household/qualifying-widow additional exemption ($1,400)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://dor.mo.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://dor.mo.gov/forms/ (read 2026-09-13)

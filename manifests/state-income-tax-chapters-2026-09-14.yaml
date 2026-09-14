@@ -1,0 +1,331 @@
+version: "2026-09-14-income-tax-chapter"
+# Whole state income-tax chapter statute scopes for the partial-chapter states of the
+# needs-driven closure check (docs/coverage/needs-closure-2026-09-11/tax.md, top gap 3).
+# One source per jurisdiction; every source runs the state's existing source-first
+# adapter against the legislature's own publisher, restricted to the income-tax
+# chapter where the adapter has a chapter filter and to the enclosing taxation title
+# otherwise. The adapters append their own scope suffix to the version
+# (for example -us-mi-chapter-206), so the on-disk scope version is this prefix plus
+# the suffix recorded in docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md.
+# Kentucky, Virginia, New York and California run through separate manifests
+# (official-documents extractor or the California section extractor), see the run note.
+sources:
+  - source_id: us-al-code-title-40
+    jurisdiction: us-al
+    document_class: statute
+    adapter: alabama-code
+    source_url: https://alison.legislature.state.al.us/code-of-alabama
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "40"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.05
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      source_authority: Alabama Legislature (ALISON)
+      source_scope_note: >-
+        Code of Alabama 1975 Title 40 (Revenue and Taxation) from the official ALISON
+        GraphQL code service; the adapter filters at title grain, so the scope carries
+        the whole taxation title, which contains Chapter 18 (Income Taxes, sections
+        40-18-1 et seq.) as the income-tax chapter of the closure check.
+
+  - source_id: us-az-ars-title-43
+    jurisdiction: us-az
+    document_class: statute
+    adapter: arizona-revised-statutes
+    source_url: https://www.azleg.gov/arstitle/
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "43"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-az-ars/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.05
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Arizona State Legislature
+      source_scope_note: >-
+        Arizona Revised Statutes Title 43 (Taxation of Income) from the official
+        Legislature ARS HTML; Title 43 is the income-tax title (chapters 1-15,
+        including chapter 10, Individuals).
+
+  - source_id: us-ct-cgs-chapter-229
+    jurisdiction: us-ct
+    document_class: statute
+    adapter: connecticut-statutes
+    source_url: https://www.cga.ct.gov/current/pub/chap_229.htm
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "12"
+      only_chapter: "229"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ct-cgs/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.1
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: Connecticut General Assembly
+      source_scope_note: >-
+        Connecticut General Statutes Title 12, Chapter 229 (Income Tax, sections 12-700
+        et seq.) from the official current statutes HTML with the 2026 supplement
+        merged by the adapter. The publisher's TLS chain omits the Go Daddy G2
+        intermediate; it is supplied from data/certs/state-tax-statute-ca-bundle.pem.
+
+  - source_id: us-de-code-title-30-chapter-11
+    jurisdiction: us-de
+    document_class: statute
+    adapter: delaware-code
+    source_url: https://www.delcode.delaware.gov/title30/c011/index.html
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "30"
+      only_chapter: "11"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-de-code/2026-09-14-income-tax-chapter
+      workers: 4
+    metadata:
+      source_authority: Delaware General Assembly (Division of Research)
+      source_scope_note: >-
+        Delaware Code Title 30, Chapter 11 (Personal Income Tax, sections 1101 et seq.)
+        from the official Delaware Code HTML.
+
+  - source_id: us-id-statutes-title-63-chapter-30
+    jurisdiction: us-id
+    document_class: statute
+    adapter: idaho-statutes
+    source_url: https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "63"
+      only_chapter: "30"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-id-statutes/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.1
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Idaho Legislature
+      source_scope_note: >-
+        Idaho Statutes Title 63, Chapter 30 (Income Tax, sections 63-3001 et seq.) from
+        the official Legislature HTML.
+
+  - source_id: us-md-code-tax-general
+    jurisdiction: us-md
+    document_class: statute
+    adapter: maryland-code
+    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_article: gtg
+      enactments: false
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-md-code/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.05
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 6
+    metadata:
+      source_authority: Maryland General Assembly
+      source_scope_note: >-
+        Maryland Code, Tax-General Article (gtg) from the official General Assembly
+        StatuteText service; the adapter filters at article grain, so the scope carries
+        the whole article, which contains Title 10 (Income Tax) as the income-tax
+        chapter of the closure check.
+
+  - source_id: us-me-mrs-title-36
+    jurisdiction: us-me
+    document_class: statute
+    adapter: maine-revised-statutes
+    source_url: https://legislature.maine.gov/statutes/36/title36ch0sec0.html
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "36"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-me-mrs/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.1
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Maine Legislature (Office of the Revisor of Statutes)
+      source_scope_note: >-
+        Maine Revised Statutes Title 36 (Taxation) from the official Legislature HTML;
+        the adapter's chapter filter takes one chapter and Part 8 (Income Taxes) spans
+        chapters 801-827, so the scope carries the whole taxation title.
+
+  - source_id: us-mi-mcl-chapter-206
+    jurisdiction: us-mi
+    document_class: statute
+    adapter: michigan-compiled-laws
+    source_url: https://www.legislature.mi.gov/documents/mcl/
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "206"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mi-mcl/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.1
+      timeout_seconds: 120
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Michigan Legislature (Legislative Service Bureau)
+      source_scope_note: >-
+        Michigan Compiled Laws Chapter 206 (Income Tax Act of 1967, sections 206.1 et
+        seq.) from the official Legislature MCL XML chapter release. The publisher's TLS
+        chain omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; it is
+        supplied from data/certs/state-tax-statute-ca-bundle.pem.
+
+  - source_id: us-mn-statutes-chapter-290
+    jurisdiction: us-mn
+    document_class: statute
+    adapter: minnesota-statutes
+    source_url: https://www.revisor.mn.gov/statutes/cite/290
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "290"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
+      workers: 4
+    metadata:
+      source_authority: Minnesota Office of the Revisor of Statutes
+      source_scope_note: >-
+        Minnesota Statutes Chapter 290 (Income and Franchise Taxes, sections 290.01 et
+        seq.) from the official Revisor HTML.
+
+  - source_id: us-ne-revised-statutes-chapter-77
+    jurisdiction: us-ne
+    document_class: statute
+    adapter: nebraska-revised-statutes
+    source_url: https://nebraskalegislature.gov/laws/browse-chapters.php?chapter=77
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "77"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ne-revised-statutes/2026-09-14-income-tax-chapter
+      workers: 4
+    metadata:
+      source_authority: Nebraska Legislature
+      source_scope_note: >-
+        Nebraska Revised Statutes Chapter 77 (Revenue and Taxation) from the official
+        Legislature HTML; the adapter filters at chapter grain, so the scope carries the
+        whole chapter, which contains Article 27 (Income Tax, sections 77-2701 et seq.)
+        as the income-tax chapter of the closure check.
+
+  - source_id: us-oh-orc-title-57
+    jurisdiction: us-oh
+    document_class: statute
+    adapter: ohio-revised-code
+    source_url: https://codes.ohio.gov/ohio-revised-code/title-57
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "57"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-oh-orc/2026-09-14-income-tax-chapter
+    metadata:
+      source_authority: Ohio Legislative Service Commission
+      source_scope_note: >-
+        Ohio Revised Code Title 57 (Taxation) from the official codes.ohio.gov HTML; the
+        adapter filters at title grain, so the scope carries the whole taxation title,
+        which contains Chapter 5747 (Income Tax) as the income-tax chapter of the
+        closure check.
+
+  - source_id: us-ut-code-title-59
+    jurisdiction: us-ut
+    document_class: statute
+    adapter: utah-code
+    source_url: https://le.utah.gov/xcode/C_1800010118000101.html
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "59"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ut-code/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.1
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Utah State Legislature
+      source_scope_note: >-
+        Utah Code Title 59 (Revenue and Taxation) from the official Legislature
+        HTML/XML; the adapter filters at title grain, so the scope carries the whole
+        taxation title, which contains Chapter 10 (Individual Income Tax Act) as the
+        income-tax chapter of the closure check.
+
+  # Companion scopes. The released 2026-07-13-recovery scopes of Connecticut and Minnesota
+  # mix income-tax sections with public-assistance sections that rulespec-us also cites
+  # (CGS 17b-104, 17b-112, 17b-600; Minn. Stat. 142G.16, 142G.17, 256P.03). Swapping the
+  # recovery scope for the income-tax chapter would drop those sections, so the chapters
+  # holding them are taken here at the same grain, from the same publishers.
+
+  - source_id: us-ct-cgs-title-17b
+    jurisdiction: us-ct
+    document_class: statute
+    adapter: connecticut-statutes
+    source_url: https://www.cga.ct.gov/current/pub/title_17b.htm
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "17b"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ct-cgs/2026-09-14-income-tax-chapter
+      request_delay_seconds: 0.1
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: Connecticut General Assembly
+      source_scope_note: >-
+        Companion to the chapter 229 scope: Connecticut General Statutes Title 17b (Social
+        Services), whole title, which holds sections 17b-104 and 17b-112 (chapter 319s)
+        and 17b-600 (chapter 319mm) of the released recovery scope. One title-level scope
+        is taken because two chapter-level scopes of the same title would both carry the
+        us-ct/statute/title-17b container row.
+
+  - source_id: us-mn-statutes-chapter-142g
+    jurisdiction: us-mn
+    document_class: statute
+    adapter: minnesota-statutes
+    source_url: https://www.revisor.mn.gov/statutes/cite/142G
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "142G"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
+      workers: 4
+    metadata:
+      source_authority: Minnesota Office of the Revisor of Statutes
+      source_scope_note: >-
+        Companion to the chapter 290 scope: Minnesota Statutes Chapter 142G (Minnesota Family Investment Program), which holds sections 142G.16 and 142G.17 of the released recovery scope.
+
+  - source_id: us-mn-statutes-chapter-256p
+    jurisdiction: us-mn
+    document_class: statute
+    adapter: minnesota-statutes
+    source_url: https://www.revisor.mn.gov/statutes/cite/256P
+    version: "2026-09-14-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      only_title: "256P"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
+      workers: 4
+    metadata:
+      source_authority: Minnesota Office of the Revisor of Statutes
+      source_scope_note: >-
+        Companion to the chapter 290 scope: Minnesota Statutes Chapter 256P (Economic Assistance Program Standards), which holds section 256P.03 of the released recovery scope.
