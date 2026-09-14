@@ -9,7 +9,7 @@ Branch: `discovery/ingest-cms-state-plans` (sparse worktree `~/axiom-corpus-work
 Generator: `scripts/build_cms_state_plan_manifests.py` (new). One small edit to
 `scripts/build_chip_state_eligibility_manifests.py` so a rerun carries the second per-jurisdiction queue row through.
 Impact analysis: not run; the GitNexus MCP tools were not available in this session. No library function was modified.
-Timing: started 2026-09-13T19:35Z (discovery), extraction driver started 2026-09-13T20:06:49Z; in progress at this checkpoint.
+Timing: started 2026-09-13T19:35Z (discovery), extraction driver started 2026-09-13T20:06:49Z, CHIP batch done 2026-09-13T21:16Z, Medicaid batch resumed 2026-09-13T21:59Z and done 2026-09-14T01:03Z (after the SC/SD/TN retries); 7,777 extraction seconds for Medicaid, 2,598 for CHIP.
 
 ## Discovery: what CMS actually hosts
 
@@ -86,66 +86,66 @@ jurisdiction was blocked (medicaid.gov answered every listing and document reque
 Extraction seconds are wall seconds of the `extract-official-documents` command per scope (driver log), run while
 another agent's extraction shared the corpus root.
 
-**Progress checkpoint (partial, 52 of 102 scopes extracted at the time of this commit; the driver is still running in the background on the controller machine; rows with '-' seconds and MISSING coverage are not yet extracted; the note is rewritten when the run completes).**
+All 102 scopes (51 Medicaid, 51 CHIP) are extracted and coverage-complete on disk in the main checkout. The driver stopped itself after `medicaid/us-id` when free disk fell below 4 GB (other agents were extracting into the same corpus root); the controller resumed the remaining 37 Medicaid scopes with the same command (`cms-medicaid-resume.log`; the resumed scopes' seconds are the coverage file's write time minus the resume log's start stamp). `us-sc`, `us-sd` and `us-tn` failed once on the first resumed pass with a curl DNS error (`Could not resolve host: www.medicaid.gov`, a transient resolver outage on the controller machine, not a publisher block) and were re-run successfully at the end of the pass with no manifest change.
 
 ### Medicaid per state
 
 | Jurisdiction | SPA records on CMS index | Index pages | Eligibility-bearing records | Documents (PDFs) | Provisions | Coverage | Seconds |
 | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |
 | us-ak | 164 | 2 | 29 | 37 (35) | 393 | complete | 36 |
-| us-al | 187 | 2 | 25 | 35 (32) | 0 | MISSING | - |
-| us-ar | 226 | 3 | 30 | 33 (27) | 0 | MISSING | - |
-| us-az | 319 | 4 | 27 | 45 (41) | 0 | MISSING | - |
-| us-ca | 575 | 6 | 60 | 82 (76) | 0 | MISSING | - |
-| us-co | 545 | 6 | 30 | 46 (39) | 0 | MISSING | - |
-| us-ct | 508 | 6 | 56 | 64 (57) | 0 | MISSING | - |
-| us-dc | 207 | 3 | 24 | 27 (24) | 0 | MISSING | - |
-| us-de | 160 | 2 | 33 | 49 (47) | 0 | MISSING | - |
-| us-fl | 226 | 3 | 19 | 28 (25) | 0 | MISSING | - |
-| us-ga | 194 | 2 | 27 | 31 (29) | 0 | MISSING | - |
-| us-hi | 137 | 2 | 28 | 32 (30) | 0 | MISSING | - |
-| us-ia | 329 | 4 | 38 | 55 (51) | 0 | MISSING | - |
-| us-id | 206 | 3 | 33 | 37 (34) | 0 | MISSING | - |
-| us-il | 312 | 4 | 33 | 37 (33) | 0 | MISSING | - |
-| us-in | 235 | 3 | 32 | 45 (41) | 0 | MISSING | - |
-| us-ks | 297 | 3 | 25 | 30 (27) | 0 | MISSING | - |
-| us-ky | 191 | 2 | 25 | 27 (25) | 0 | MISSING | - |
-| us-la | 561 | 6 | 43 | 51 (45) | 0 | MISSING | - |
-| us-ma | 479 | 5 | 37 | 42 (36) | 0 | MISSING | - |
-| us-md | 276 | 3 | 43 | 74 (71) | 0 | MISSING | - |
-| us-me | 320 | 4 | 46 | 56 (51) | 0 | MISSING | - |
-| us-mi | 383 | 4 | 48 | 52 (47) | 0 | MISSING | - |
-| us-mn | 436 | 5 | 46 | 63 (56) | 0 | MISSING | - |
-| us-mo | 276 | 3 | 31 | 38 (34) | 0 | MISSING | - |
-| us-ms | 262 | 3 | 24 | 31 (27) | 0 | MISSING | - |
-| us-mt | 485 | 5 | 39 | 71 (66) | 0 | MISSING | - |
-| us-nc | 423 | 5 | 35 | 44 (39) | 0 | MISSING | - |
-| us-nd | 363 | 4 | 31 | 37 (33) | 0 | MISSING | - |
-| us-ne | 279 | 3 | 55 | 108 (105) | 0 | MISSING | - |
-| us-nh | 363 | 4 | 44 | 48 (43) | 0 | MISSING | - |
-| us-nj | 280 | 3 | 37 | 48 (45) | 0 | MISSING | - |
-| us-nm | 181 | 2 | 26 | 28 (26) | 0 | MISSING | - |
-| us-nv | 295 | 3 | 35 | 44 (40) | 0 | MISSING | - |
-| us-ny | 855 | 9 | 46 | 55 (45) | 0 | MISSING | - |
-| us-oh | 512 | 6 | 90 | 121 (113) | 0 | MISSING | - |
-| us-ok | 338 | 4 | 35 | 39 (35) | 0 | MISSING | - |
-| us-or | 287 | 3 | 20 | 25 (21) | 0 | MISSING | - |
-| us-pa | 510 | 6 | 38 | 52 (46) | 0 | MISSING | - |
-| us-ri | 212 | 3 | 33 | 38 (35) | 0 | MISSING | - |
-| us-sc | 300 | 3 | 25 | 33 (30) | 0 | MISSING | - |
-| us-sd | 176 | 2 | 25 | 27 (25) | 0 | MISSING | - |
-| us-tn | 91 | 1 | 20 | 23 (22) | 0 | MISSING | - |
-| us-tx | 646 | 7 | 26 | 35 (27) | 0 | MISSING | - |
-| us-ut | 329 | 4 | 30 | 36 (32) | 0 | MISSING | - |
-| us-va | 267 | 3 | 30 | 33 (30) | 0 | MISSING | - |
-| us-vt | 215 | 3 | 37 | 40 (36) | 0 | MISSING | - |
-| us-wa | 494 | 5 | 43 | 48 (42) | 0 | MISSING | - |
-| us-wi | 303 | 4 | 53 | 67 (62) | 0 | MISSING | - |
-| us-wv | 128 | 2 | 19 | 23 (21) | 0 | MISSING | - |
-| us-wy | 146 | 2 | 22 | 24 (21) | 0 | MISSING | - |
-| **total** | 16,489 | 189 | 1,786 | 2,294 (2,080) | 393 | 1/1 complete | 36 |
+| us-al | 187 | 2 | 25 | 35 (32) | 270 | complete | 100 |
+| us-ar | 226 | 3 | 30 | 33 (27) | 349 | complete | 32 |
+| us-az | 319 | 4 | 27 | 45 (41) | 386 | complete | 173 |
+| us-ca | 575 | 6 | 60 | 82 (76) | 1,480 | complete | 258 |
+| us-co | 545 | 6 | 30 | 46 (39) | 387 | complete | 29 |
+| us-ct | 508 | 6 | 56 | 64 (57) | 868 | complete | 206 |
+| us-dc | 207 | 3 | 24 | 27 (24) | 625 | complete | 125 |
+| us-de | 160 | 2 | 33 | 49 (47) | 422 | complete | 59 |
+| us-fl | 226 | 3 | 19 | 28 (25) | 334 | complete | 131 |
+| us-ga | 194 | 2 | 27 | 31 (29) | 346 | complete | 118 |
+| us-hi | 137 | 2 | 28 | 32 (30) | 433 | complete | 148 |
+| us-ia | 329 | 4 | 38 | 55 (51) | 530 | complete | 52 |
+| us-id | 206 | 3 | 33 | 37 (34) | 769 | complete | 119 |
+| us-il | 312 | 4 | 33 | 37 (33) | 493 | complete | 78 |
+| us-in | 235 | 3 | 32 | 45 (41) | 659 | complete | 63 |
+| us-ks | 297 | 3 | 25 | 30 (27) | 443 | complete | 27 |
+| us-ky | 191 | 2 | 25 | 27 (25) | 467 | complete | 112 |
+| us-la | 561 | 6 | 43 | 51 (45) | 570 | complete | 47 |
+| us-ma | 479 | 5 | 37 | 42 (36) | 869 | complete | 429 |
+| us-md | 276 | 3 | 43 | 74 (71) | 769 | complete | 57 |
+| us-me | 320 | 4 | 46 | 56 (51) | 699 | complete | 158 |
+| us-mi | 383 | 4 | 48 | 52 (47) | 1,032 | complete | 111 |
+| us-mn | 436 | 5 | 46 | 63 (56) | 852 | complete | 377 |
+| us-mo | 276 | 3 | 31 | 38 (34) | 520 | complete | 74 |
+| us-ms | 262 | 3 | 24 | 31 (27) | 331 | complete | 144 |
+| us-mt | 485 | 5 | 39 | 71 (66) | 638 | complete | 57 |
+| us-nc | 423 | 5 | 35 | 44 (39) | 795 | complete | 111 |
+| us-nd | 363 | 4 | 31 | 37 (33) | 670 | complete | 21 |
+| us-ne | 279 | 3 | 55 | 108 (105) | 868 | complete | 171 |
+| us-nh | 363 | 4 | 44 | 48 (43) | 898 | complete | 272 |
+| us-nj | 280 | 3 | 37 | 48 (45) | 625 | complete | 170 |
+| us-nm | 181 | 2 | 26 | 28 (26) | 453 | complete | 46 |
+| us-nv | 295 | 3 | 35 | 44 (40) | 697 | complete | 100 |
+| us-ny | 855 | 9 | 46 | 55 (45) | 627 | complete | 124 |
+| us-oh | 512 | 6 | 90 | 121 (113) | 1,512 | complete | 380 |
+| us-ok | 338 | 4 | 35 | 39 (35) | 472 | complete | 36 |
+| us-or | 287 | 3 | 20 | 25 (21) | 270 | complete | 19 |
+| us-pa | 510 | 6 | 38 | 52 (46) | 535 | complete | 816 |
+| us-ri | 212 | 3 | 33 | 38 (35) | 588 | complete | 66 |
+| us-sc | 300 | 3 | 25 | 33 (30) | 278 | complete | 167 |
+| us-sd | 176 | 2 | 25 | 27 (25) | 416 | complete | 22 |
+| us-tn | 91 | 1 | 20 | 23 (22) | 467 | complete | 56 |
+| us-tx | 646 | 7 | 26 | 35 (27) | 351 | complete | 1113 |
+| us-ut | 329 | 4 | 30 | 36 (32) | 558 | complete | 40 |
+| us-va | 267 | 3 | 30 | 33 (30) | 652 | complete | 120 |
+| us-vt | 215 | 3 | 37 | 40 (36) | 756 | complete | 225 |
+| us-wa | 494 | 5 | 43 | 48 (42) | 680 | complete | 39 |
+| us-wi | 303 | 4 | 53 | 67 (62) | 983 | complete | 190 |
+| us-wv | 128 | 2 | 19 | 23 (21) | 905 | complete | 113 |
+| us-wy | 146 | 2 | 22 | 24 (21) | 261 | complete | 40 |
+| **total** | 16,489 | 189 | 1,786 | 2,294 (2,080) | 31,251 | 51/51 complete | 7,777 |
 
-Verification (medicaid): 1 scopes on disk, 1 coverage-complete, 37 document roots, 354 page provisions, 0 empty non-root bodies, 0 duplicate citation paths, 0 rows without expression_date.
+Verification (medicaid): 51 scopes on disk, 51 coverage-complete, 2,294 document roots, 28,743 page provisions, 0 empty non-root bodies, 0 duplicate citation paths, 0 rows without expression_date.
 
 
 ### Chip per state
@@ -418,7 +418,7 @@ the legacy protected groups.
 
 ## Verification
 
-- Coverage `complete: true`, 0 missing, 0 extra, 0 duplicate citation paths for every extracted scope; duplicate-
+- Coverage `complete: true`, 0 missing, 0 extra, 0 duplicate citation paths for all 102 scopes; duplicate-
   freedom re-checked directly on each provisions JSONL; every non-root provision has a non-empty body (counts in the
   tables above); every row carries `expression_date`.
 - Draft selector `docs/ingest-runs/2026-09-13-cms-state-plans.selector.json` = the follow-up draft
