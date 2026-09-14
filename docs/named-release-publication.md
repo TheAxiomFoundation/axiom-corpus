@@ -64,7 +64,10 @@ at the first failure:
    never changes public visibility and never synthesizes missing parents.
 6. Query direct base-table evidence before signing. Exact provision/navigation
    counts and canonical digests of every publisher-controlled projection field
-   must match the locally derived evidence.
+   must match the locally derived evidence. The evidence RPC is per scope,
+   so the controller requests it in chunks of 32 scopes and splits a chunk
+   the gateway rejects (a 504 after it ran too long) in half until it fits;
+   every selected scope must still appear exactly once across all chunks.
 7. Rerun deep validation, prove the artifact and scope identity did not change,
    then build and Ed25519-sign the attested release object. The independently
    configured public key must verify it locally.
