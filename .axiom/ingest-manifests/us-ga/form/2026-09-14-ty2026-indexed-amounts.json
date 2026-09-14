@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "65c7a0a5d0fb2f16968d892d2e57c88a8874cffe52a6eefe5f15105092bcbab1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "4638a3869b1860275b33bd2ceaf1c9d6cd06792a4f01f6e39cd206ad4add5d86"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "44139a9f98cae9234cd5691fa72ff596aa712707c9914d66b958d53a049f841d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-ga-dor-500-es-ty2026.pdf",
+      "sha256": "dbc270b3be6196d680af4a91fa1cf628813b1c9a37e6ad7b52a51ed8fe9e0b45"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-ga-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T16:23:40.929543+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/3Xp0pYWtSCaQUXcFVCiNBJ/njN8cob/SwtDo48sILKRHWqumiOX9RiqBP4ssTVm+o8yiVe9jbWFVUvXLpEwAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

@@ -200,13 +200,13 @@
   "known_irregulars_ratchet": {
     "description": "A ratcheted ceiling on unique irregular citation-path membership, checked by scripts/validate_citation_paths.py. Immutable scope versions may repeat a citation identity and are counted once. The validator FAILS if a live unique-path count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-      "block_n": 71944,
-      "page_n": 145948,
+      "block_n": 75769,
+      "page_n": 150593,
       "space_segments": 196,
       "endash_segments": 1652,
-      "uppercase_segments": 14515,
+      "uppercase_segments": 15371,
       "truncated_segments": 53,
-      "collection_roots": 6
+      "collection_roots": 10
     }
   },
   "identity_drift_ratchet": {

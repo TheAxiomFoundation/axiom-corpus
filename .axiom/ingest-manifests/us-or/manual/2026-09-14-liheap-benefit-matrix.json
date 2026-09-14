@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "be04c4590b5497b98443ed263c5a82a26dafee7968144988656bba5f9e142c2f"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "a652149fe17a0572f521cf4694c61274040dfcfbcb717faa64f2c9aa926eab1a"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/manual/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "0b72ffbbac2158bd56cc8a67e9f72fdced527c93d9389fe66e21e41757b6111e"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-or-liheap-ohcs-energy-assistance-intake-operations-policy-manual.pdf",
+      "sha256": "1cff5afb195fd24d506f71f9527f3e9818b50525ac435a9b333213b31a67fe0c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-or-liheap-benefit-matrix-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 95,
+    "missing_count": 0,
+    "provision_count": 95,
+    "source_count": 95
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T17:52:16.096086+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Yx9/NCrU984fYXQxKa4gH4DIEIF+hcG+k93IQ0fq1oLWbSiOx7S5dtWZXvKjRQc5KyCoLD0PAYnt55H7MA10CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

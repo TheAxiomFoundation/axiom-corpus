@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="Description" content="Title 17b - Social Services"/>
+<meta name="Number" content="17b"/>
+<title>Title 17b - Social Services</title>
+<style type="text/css" media="screen"><!--
+/* High-level style defs for page */
+html {
+background-color: #ffffff;
+color: #000000;
+}
+body {
+padding: 0em 0.5em;
+font-family : "Times New Roman", Times, serif;
+font-size: medium;
+}
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+color : #000000;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.1;
+margin : 0em 0em;
+text-align : center;
+text-decoration : none;
+text-indent : 0em;
+}
+h1, h2, h3 {
+font-weight : bold;
+}
+h5, h6 {
+margin-top: 2em;
+}
+h1.title-no, h1.title-name {
+color: #800000;
+}
+h2.chap-no, h2.chap-name {
+/* nothing special */
+}
+h3.part-name {
+margin-top: 0.5em;
+}
+h3.part-no {
+margin-top: 2em;
+}
+h4.chap_toc_hd {
+font-weight: bold;
+margin: 1.5em 0em 1em 0em;
+text-align: left;
+}
+h4.subpart-name {
+font-weight: bold;
+margin-top: 0.5em;
+}
+h4.subpart-no {
+font-weight: bold;
+margin-top: 2em;
+}
+/* HORIZONTAL RULES */
+hr.titles_pg_bar {
+background-color: #a0a0a0;
+border-width: 0;
+color: #a0a0a0;
+height: .5em;
+margin: 1em 0em;
+width: 100%;
+}
+hr.chaps_pg_bar {
+background-color: #8b0000;
+border-width: 0;
+color: #8b0000;
+height: .8em;
+margin: .5em 0em;
+width: 100%;
+}
+hr.titles_toc_spcr {
+background-color: #ffcc00;
+border-width: 0;
+color: #ffcc00;
+height: 1em;
+margin: 0.1em .5em;
+text-align: left;
+vertical-align: top;
+width: 150px;
+}
+/* IMAGES */
+img.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* PARAGRAPHS */
+p {
+font-size : 1em;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.2;
+margin : 1em 0em 0em 0em;
+text-align : justify;
+text-justify:distribute;
+text-decoration : none;
+text-indent: 1em;
+}
+p.annotation, p.annotation-first {
+color: #ff3333;
+}
+p.cross-ref, p.cross-ref-first {
+color: #009900;
+}
+p.front-note, p.front-note-first {
+color : #ff6600;
+}
+p.history, p.history-first {
+color : #9900FF;
+}
+p.source, p.source-first {
+color : #996600;
+}
+p.Form-center, p.Text-center, p.Form-head, p.lesser-head {
+text-align : center;
+text-indent: 0em;
+}
+p.Form-head, p.lesser-head {
+margin-top: 2em;
+}
+p.Form-left, p.Text-left {
+text-align : justify;
+text-indent: 0em;
+}
+p.Text-left1 {
+text-align : justify;
+text-indent: 0em;
+margin-top: 0em;
+}
+p.Form-right {
+text-align : right;
+text-indent: 0em;
+}
+p.tb, p.tb-left, p.tb-left1, p.tb-left2, p.tb-center, p.tb-right {
+text-align : justify;
+text-indent : 0em;
+margin : 0.5em 0em 0em 0em;
+}
+p.tb, p.tb-left1 {
+margin-left: 1em;
+}
+p.tb-left2 {
+margin-left: 2em;
+}
+p.tb-center {
+text-align : center;
+}
+p.tb-right {
+text-align : right;
+}
+p.nolead {
+margin-top: 0em;
+}
+p.flush {
+text-align : left;
+text-indent : 0em;
+}
+/* TABLES */
+table {
+/* consider border-collapse : collapse; */
+border-style: none;
+font-size: 1em;
+text-align: left;
+vertical-align: top;
+margin: 1em 0em 1em 0em;
+}
+tbody, thead, tfoot, tr, td, th {
+text-indent: 0em;
+vertical-align: top;
+}
+table.center {
+margin-left: auto;
+margin-right: auto;
+}
+table.nav_tbl {
+border: 0;
+width: 50%;
+padding: 2px;
+border-spacing: 2px;
+text-align: center;
+margin: 1em 0em 2em 0em;
+}
+table.ttl_toc_vol_hd {
+border: 0;
+padding: 0px;
+border-right: 15px;
+vertical-align: middle;
+margin-top: 2em;
+}
+td.bottom {
+vertical-align: bottom;
+}
+td.left_25pct {
+width: 25%;
+}
+td.left_38pct {
+width: 38%;
+}
+td.left_40pct {
+width: 40%;
+}
+/* SPANS */
+span.inline_hd {
+font-weight : bold;
+}
+span.catchln {
+color: #8b0000;
+font-weight : bold;
+}
+span.toc_vol_no {
+font-size: 1.2em;
+font-style : normal;
+font-weight : bold;
+}
+span.toc_ttl_desig, span.toc_ttl_name {
+font-size: 1.1em;
+font-weight: bold;
+color: #003399;
+}
+span.toc_rng_chaps {
+font-size: 1.1em;
+font-weight: bold;
+color: #cc0033;
+}
+/* etc. */
+.titles_main_hd {
+color: #ff0000;
+}
+.toc_rng_secs {
+color: #cc0033;
+font-weight: bold;
+}
+.toc_catchln {
+color: #8b0000;
+margin : .1em 0em 0em 2em;
+max-width: 90%;
+text-indent: -2em;
+}
+.toc_catchln * {
+color: #8b0000;
+}
+.toc_ch_link {
+display: inline-block;
+color: #0000ff;
+font-size: 1.1em;
+font-weight: normal;
+}
+.nav_link {
+color: #0000ff;
+}
+.full-width {
+width: 100%;
+}
+.half-width {
+width: 50%;
+}
+.third-width {
+width: 33%;
+}
+--></style>
+</head>
+<body>
+<div id="title_17b.htm" lang="en-us">
+<h1 class="title-no">TITLE 17b</h1>
+<h1 class="title-name">SOCIAL SERVICES</h1>
+<br/>
+<table style="width:80%">
+<tbody>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319o.htm">Chapter 319o</a></td>
+<td><a class="toc_ch_link" href="chap_319o.htm">Department of Social Services</a><br/><span class="toc_rng_secs">Sec. 17b-27c, 17b-28, 17b-28i, 17b-55b, 17b-59a, 17b-59e</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319s.htm">Chapter 319s</a></td>
+<td><a class="toc_ch_link" href="chap_319s.htm">Financial Assistance</a><br/><span class="toc_rng_secs">Sec. 17b-80, 17b-88a, 17b-92a, 17b-99a, 17b-104, 17b-106, 17b-112, 17b-112f, 17b-112g, 17b-112<i>l</i></span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319t.htm">Chapter 319t</a></td>
+<td><a class="toc_ch_link" href="chap_319t.htm">State-Administered General Assistance</a><br/><span class="toc_rng_secs">Sec. 17b-191</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319v.htm">Chapter 319v</a></td>
+<td><a class="toc_ch_link" href="chap_319v.htm">Medical Assistance</a><br/><span class="toc_rng_secs">Sec. 17b-238, 17b-239e, 17b-239f, 17b-245b, 17b-245d, 17b-256f, 17b-261, 17b-261f, 17b-278<i>l</i>, 17b-278o, 17b-281d, 17b-283, 17b-283b, 17b-288</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319y.htm">Chapter 319y</a></td>
+<td><a class="toc_ch_link" href="chap_319y.htm">Long-Term Care</a><br/><span class="toc_rng_secs">Sec. 17b-340, 17b-340d, 17b-340e, 17b-342, 17b-352, 17b-354</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319rr.htm">Chapter 319rr</a></td>
+<td><a class="toc_ch_link" href="chap_319rr.htm">Child Care and Protection</a><br/><span class="toc_rng_secs">Sec. 17b-749</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_319uu.htm">Chapter 319uu</a></td>
+<td><a class="toc_ch_link" href="chap_319uu.htm">Housing Assistance</a><br/><span class="toc_rng_secs">Sec. 17b-801</span></td>
+</tr>
+<tr>
+<td class="left_25pct">&#x00A0;</td>
+<td></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="titles.htm">(Return to List of Titles)</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

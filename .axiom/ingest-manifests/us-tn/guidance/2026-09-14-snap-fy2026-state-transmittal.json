@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "fa72c018806734774045d8a1a9f09b7322a8cb8648e65cd61a7a9b8a0a674d81"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "31ab72c5996510bbe5c89415f11985772d00eaa770ab5bbdee6db0d55ac265dc"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "61b86250682c2efb884f5d6ed952fea848178dee433aa27849aed8e97516b565"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-tn-dhs-income-update-2026.pdf",
+      "sha256": "12558a7395391a3b512340889e31526f2245250fed7f5a76500aca7a212a701f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-tn-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:08:43.388003+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qnIu4Q4KIxl0OBb1YFMXmhKOVd6VRbEsALXwebSeQqSu1z+8d+By8xqmxOVYadVGsdMsqd+oP9CUfnpWmr1ADQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}
