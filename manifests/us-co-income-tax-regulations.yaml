@@ -12,6 +12,11 @@ documents:
   download_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12424&fileName=1%20CCR%20201-2
   extraction:
     segmentation: labeled_sections
+    # Rule numbers carry parenthesised statute subsections and an en-dash rule
+    # counter ("Rule 39-22-104(2)–1"); the citation segment folds both to hyphens
+    # (39-22-104-2-1) and keeps the publisher label in section_label /
+    # publisher_section_id.
+    normalize_citation_segment_dashes: true
     section_heading_pattern: ^Rule (?P<label>39-22-[0-9]+(?:\.[0-9]+)?(?:\([0-9a-zA-Z.]+\))*(?:[–-]\d+)?)\.\s*(?P<heading>[^,]*)$
     section_heading_requires_bold: true
     drop_line_patterns:

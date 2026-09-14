@@ -2541,9 +2541,9 @@ states:
     source_id: us-al-code-title-40
     document_class: statute
     versions:
-    - 2026-09-14-income-tax-chapter-us-al-title-40
+    - 2026-09-14-income-tax-chapter-r2-us-al-title-40
     coverage:
-    - version: 2026-09-14-income-tax-chapter-us-al-title-40
+    - version: 2026-09-14-income-tax-chapter-r2-us-al-title-40
       complete: true
       provision_count: 2265
       missing: 0
@@ -2554,7 +2554,7 @@ states:
     supersedes:
     - us-al/statute/2026-07-13-recovery
     notes: Code of Alabama Title 40, Chapter 18 (whole Title 40 taken); whole-chapter statute scope of 2026-09-14 superseding
-      the released partial scope(s); provision rows counted (containers plus sections).
+      the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
   ty2026_indexed_amounts_scope:
     run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
     queue_status: agent_ready
@@ -6487,9 +6487,9 @@ states:
     source_id: us-de-code-title-30-chapter-11
     document_class: statute
     versions:
-    - 2026-09-14-income-tax-chapter-us-de-title-30-chapter-11
+    - 2026-09-14-income-tax-chapter-r2-us-de-title-30-chapter-11
     coverage:
-    - version: 2026-09-14-income-tax-chapter-us-de-title-30-chapter-11
+    - version: 2026-09-14-income-tax-chapter-r2-us-de-title-30-chapter-11
       complete: true
       provision_count: 103
       missing: 0
@@ -6500,7 +6500,7 @@ states:
     supersedes:
     - us-de/statute/2026-07-13-recovery
     notes: Delaware Code Title 30, Chapter 11 (Personal Income Tax); whole-chapter statute scope of 2026-09-14 superseding
-      the released partial scope(s); provision rows counted (containers plus sections).
+      the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
   ty2026_indexed_amounts_scope:
     run_note: docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md
     queue_status: agent_ready
@@ -17201,9 +17201,9 @@ states:
     source_id: us-ne-revised-statutes-chapter-77
     document_class: statute
     versions:
-    - 2026-09-14-income-tax-chapter-us-ne-title-77
+    - 2026-09-14-income-tax-chapter-r2-us-ne-title-77
     coverage:
-    - version: 2026-09-14-income-tax-chapter-us-ne-title-77
+    - version: 2026-09-14-income-tax-chapter-r2-us-ne-title-77
       complete: true
       provision_count: 2742
       missing: 0
@@ -17214,7 +17214,7 @@ states:
     supersedes:
     - us-ne/statute/2026-07-13-recovery
     notes: Nebraska Revised Statutes Chapter 77, Article 27 (Income Tax) (whole Chapter 77 taken); whole-chapter statute scope
-      of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections).
+      of 2026-09-14 superseding the released partial scope(s); provision rows counted (containers plus sections); r2 re-extraction of 2026-09-14 with grammar-safe citation-path segments (docs/ingest-runs/2026-09-14-wave4-citation-path-slugs.md).
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -25184,7 +25184,7 @@ states:
   target_scope:
     jurisdiction: us-co
     document_class: regulation
-    version: 2026-09-14-income-tax-regulations
+    version: 2026-09-14-income-tax-regulations-r2
   lead_counts: {}
   index_url: https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=19&agencyID=122
   index_document_count: 1
@@ -25204,7 +25204,7 @@ states:
   target_scope:
     jurisdiction: us-ct
     document_class: regulation
-    version: 2026-09-14-income-tax-regulations
+    version: 2026-09-14-income-tax-regulations-r2
   lead_counts: {}
   index_url: https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_12
   index_document_count: 1
