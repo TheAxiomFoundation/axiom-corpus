@@ -228,7 +228,7 @@ docker run -p 8000:8000 -v $(pwd)/axiom.db:/app/axiom.db axiom-corpus
 
 ## License
 
-Apache 2.0
+MIT
 
 ## Related Repos
 
