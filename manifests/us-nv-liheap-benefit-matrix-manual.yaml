@@ -1,0 +1,34 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-nv-liheap-dwss-eap-manual
+  jurisdiction: us-nv
+  document_class: manual
+  title: Nevada Energy Assistance Program (EAP) Manual, FY 2024 (MTL 01/24)
+  source_url: https://dwss.nv.gov/uploadedFiles/dwssnvgov/content/Energy/FY%202024%20EAP%20Manual.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2024-06-25'
+  citation_path: us-nv/manual/dwss/eap-manual
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Welfare and Supportive Services
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: NV
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dwss.nv.gov/Energy/Energy_Assistance/
+    on_clearinghouse_index: true
+    source_discovery_group: us-nv/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dwss.nv.gov/Energy/Energy_Assistance/
+    extraction_granularity: pdf_page
+    expression_date_note: printed 'MTL 01/24 June 25, 2024'
+    access_note: dwss.nv.gov HTTP 200 to the plain client, redirecting to dss.nv.gov (1,266,615 bytes)
+    page_count: 116
+    benefit_matrix_pdf_pages: 63-64,111-113
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+    redirect_note: dwss.nv.gov redirects to https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/energy/FY_2024_EAP_Manual.pdf

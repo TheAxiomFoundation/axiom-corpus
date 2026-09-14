@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-wi-liheap-dehcr-wheap-manual-py2026
+  jurisdiction: us-wi
+  document_class: manual
+  title: Wisconsin Home Energy Assistance Program (WHEAP) Manual, Program Year 2026
+  source_url: https://energyandhousing.wi.gov/Documents/WHEAP/WheapManual_PY26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-wi/manual/dehcr/wheap-manual/py2026
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Energy, Housing and Community Resources
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: WI
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://energyandhousing.wi.gov/Pages/AgencyResources/energy-assistance.aspx
+    on_clearinghouse_index: true
+    source_discovery_group: us-wi/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://energyandhousing.wi.gov/Pages/AgencyResources/energy-assistance.aspx
+    extraction_granularity: pdf_page
+    expression_date_note: 'Program Year 2026 (2025-10-01 to 2026-09-30), printed ''Revised: August 2025'''
+    access_note: energyandhousing.wi.gov HTTP 200 to the plain client (the Clearinghouse-listed PY 2024 URL answers 404)
+    page_count: 178
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
