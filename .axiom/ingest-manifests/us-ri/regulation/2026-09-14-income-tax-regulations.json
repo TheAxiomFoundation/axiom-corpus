@@ -1,0 +1,97 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "0e22d2c3a7549f7e1b2fe77cfd4d414084fd9e3b2b16f434d7d947b62ec4272e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "41c486fcc0fcccda928e35f7f61eed4490da80f9f1f316518bfdc8328f900244"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "a827c3dcd0df0b655d714f0fd04f3c5d4374680b8d69471fe3d5556df6c4214b"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-1.pdf",
+      "sha256": "2062e175fdc0786e82e41db935913e8e40dcd03a984b94b3366c9100cc1877c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-10.pdf",
+      "sha256": "88f06e40a94c03c0999b64995b5662ed9e69e187dd4f0a412cbaa2ce27e40bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-11.pdf",
+      "sha256": "b00a5c16e07f38fc6b07cd08e18ce8e903bc799983d178a75fcc54a3faab53f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-12.pdf",
+      "sha256": "f1fad04dffb0a3a66fcb847fce36adb28f07ce0e64eac73c30e8244809f1021b"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-13.pdf",
+      "sha256": "65168b84fdcf8c57e35af0f8d906f16a4f92fcfd5ffbc3f762973b0a7bc2c78b"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-2.pdf",
+      "sha256": "0ffd06b309a8b504996c57746ff9316228852c3aaef1024fbfeed21706c7ca19"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-3.pdf",
+      "sha256": "d41b0842cd410d4aff3a5c937895f728c5ce76c24e13ea669f3e9bf97a243d32"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-4.pdf",
+      "sha256": "65cfbb29a4fbce4659b63709292b1797839733085adbe0893420c6a28ce56bec"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-5.pdf",
+      "sha256": "aa208b887840bca8440131f1a3dc6bb5151e525a47abd5401e8b530e7920a37c"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-6.pdf",
+      "sha256": "fecfdde8f43b65c9a6a8119654bbc6ef4f29bacd19681348ac7f58876a7ded5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-7.pdf",
+      "sha256": "52c1099b7355a9f65c6e9060d9e14a974a0288a0b9e74962c821d516bb928218"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-8.pdf",
+      "sha256": "8867eb2b9c942e7878cf8c0c90b924048ff93b7910f3ca73e6905341c1efa3c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-14-income-tax-regulations/official-documents/ri-sos-280-ricr-20-55-9.pdf",
+      "sha256": "b94563e7c37bf0509590e37b963d5442240d92490d81d7f81f3a50de2e0f8ff4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 113,
+    "missing_count": 0,
+    "provision_count": 113,
+    "source_count": 113
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T18:00:17.873229+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Nv9R/kwGw8oAOd/6XkL2chcrxOqU/Eoh8pGoNRQHgdCRJq9g2pn/dnMA+Zgbz9VpY7K49cynGJYx9bOybSB5CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "10d884b84262bf3a7c5cd4b500054574b4b385ee7fa816eb82c916005f81ced7"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "6369eda4480594b848f014d701809b95edd88bb59b320edef15ffdeef710fc6c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/manual/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "97ed6f76b79eac84305a7aa42a3ddb3a565e91f037e1a81efe00e5abcc25f51e"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ks-dcf-keesm-appendix-f-2-fy2026.pdf",
+      "sha256": "31fb5feb790c9f7e679be9e0f2cb24d67b12a2382f829300061201d8ee97d2e8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-ks-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T16:34:29.922851+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AglbMUnVMT+Z2PB8jb8e9TW7Zqlz1QoBTWtZNh5cYKLiTznRdLqJypzQrDNcYbQ2TqSS61FUFIxtqd8kISRACA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

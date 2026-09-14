@@ -1,0 +1,825 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/statute/2026-09-14-income-tax-chapter.json",
+      "sha256": "9a36d4488c005d1f0e8d331f3dc9ac87886f2e2bb0858f445d1e9d081342cdd9"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/statute/2026-09-14-income-tax-chapter.json",
+      "sha256": "ee8d31b89c3b3746371e9994353300ae69531741d7a2bc261cf69163235f4b8b"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/statute/2026-09-14-income-tax-chapter.jsonl",
+      "sha256": "00724561ccf1ee86231a9821a0f5679125ec5bd384ae0b1be06163386af7e9b4"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-010.pdf",
+      "sha256": "1d6ba6cd91c3ad8c45ae511cbecf22e84674d512732472b635b14382f367bc7d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0101.pdf",
+      "sha256": "90c0bbfdbe025e08828eee78e61f1c136894b3730cb2f8e566d9456339d1948b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0105.pdf",
+      "sha256": "aee27f433037f96024597cf11f47e538f11529dffb554ec3e8ad6b70051c940e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-011.pdf",
+      "sha256": "8bc48bf7eca8ae8cbe693a7871710ceaaa6dcbce5bcebabbfdc4e54dc03c2aa2"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-012.pdf",
+      "sha256": "a24c4a30cb5d2ebf3555f88918ad20e6e6512377d8df2359d25f4496816e18b1"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-013.pdf",
+      "sha256": "6faf168f2607c31882a91b7cdf2797a31ffdf09062410a2402f18ba20f6806ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-014.pdf",
+      "sha256": "fa4cfeea3147e8599e089180dd757a828dd1f65a05dbdd9a48006ded1e75bbe4"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-015.pdf",
+      "sha256": "7c13d8d5cea13caab3f95e3d30b3ff53cf972414a0332777c32c7f0668af109d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-016.pdf",
+      "sha256": "cbc2e6dc3f9f3e13e0643e25ce1800bb7c1a010369651d424ace13b6c33ebee2"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-017.pdf",
+      "sha256": "ca865954b1b63d1766760d262f975260e7236fca95e03d6ac1a2a940323ac124"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-018.pdf",
+      "sha256": "64cb06ec62daed742478662af6f75383535a5303685cf9658802a8f312a93993"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-019.pdf",
+      "sha256": "4e32b8f85a44b58afeb41b06f8377c0f663c15a10903aff6cf7b200e3e2fb577"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-020.pdf",
+      "sha256": "ba8f7b25f40ff55012f8e1713d4b4b58fcee9ac5a14b116e7b77c9c6a27b6777"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0201.pdf",
+      "sha256": "a93eb67626f13a1e4f2bdd0e617bbb37968af6f58b9c3b7cfe768b3be355101f"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0202.pdf",
+      "sha256": "aa3cfbbdfdca77b1652d624a41523855d92543325a57dea657cb462942eb87d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0205.pdf",
+      "sha256": "fd8dac2643cc6a9e95750cbd6049d04f4ec7dd4ff3c4b6005ca16471c974f827"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-021.pdf",
+      "sha256": "c165f7d0a76e541548eb36be1a8f2f6c1f635531dc2ba515b4c15d5f19a925cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0215.pdf",
+      "sha256": "129d6ab52e40f43bf0dd4f178e9718760caafa70d602f5911e57640a0be47093"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-022.pdf",
+      "sha256": "cd208e2357a46b8787ac791740c776cbf4679234572800f29d3990905d700ad6"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-023.pdf",
+      "sha256": "39bd45d844fbf39766e091c385d1df5b18f7459cb2e6183ef896cc20485a3a30"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-025.pdf",
+      "sha256": "18798c156966712b2f6700dc1c60418c5455b276d8fc3eadac113bca82c25573"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-030.pdf",
+      "sha256": "dc250489089d28b6d6187c9676f4e7739f53a434196c9faaebbd25889d543839"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-039.pdf",
+      "sha256": "1922f01e5c9cda4b2874ee98f4224c8cad07e44472b845a0fdbc1e1db29860bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-040.pdf",
+      "sha256": "896e3521d534a81f07fc9f25ca52b57c599d08f343570e2d6e0d3f7d1100d085"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0401.pdf",
+      "sha256": "30435dfe7b608447ce9a1208c679706caf6876d4fffa8213733ef96abcfbe078"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0405.pdf",
+      "sha256": "4efcc405f10b0c14ffc56d1ac7c0824659344144c3c80b0ce0bd6331ca5b48b5"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-0406.pdf",
+      "sha256": "2e52f03b5fb53ca44483cfcecf7235ef41d3c912f41957bcab2a3c0d29c7e587"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-041.pdf",
+      "sha256": "a04ce8b19d4a8507350ea7d3068ec8bcb44743447b1b150bee6acb3a1189d196"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-042.pdf",
+      "sha256": "316a973e6c22a993f16be1793238b53a932a3ebc1c78c0868036c2f559c59df2"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-044.pdf",
+      "sha256": "0d1a955050fc64570f24b7111d31979b1e10bab62b29eddb1623df9a502043f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-046.pdf",
+      "sha256": "0d40cc1e655fd31fc439380d5e141c4fd54e59ff3b1aa68c50c7a239701fadc0"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-050.pdf",
+      "sha256": "68c5c77ee9bf6e759b45e41707f3fb2998d84b3281426e4d5d0262173d32b075"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-055.pdf",
+      "sha256": "10178b9dbbd224ec080694412d633aa2c0cced29358ab95f45c71e828ac87a84"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-060.pdf",
+      "sha256": "4ad47010ad6c65189560ed85fb909550a85057c86d28415a56e48a2d67d3e101"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-062.pdf",
+      "sha256": "95803e1e383df560206113e3ec4df1765d46c67b2c7359b40c6bc0c2293e1911"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-063.pdf",
+      "sha256": "94ba5596866f7f25b49d5ce99148e477208a44d917b4ca4d6de28b673c9062c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-065.pdf",
+      "sha256": "ee5577bc737a7da44f777a0ced03400b6549b3aca382b939d9deccb37e3bad7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-066.pdf",
+      "sha256": "464e352f471bc9af1ee9f52a5165ac102768b429e1601f56c4a0063be1da09d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-067.pdf",
+      "sha256": "881d62db13e6450ce443de18f2e985b5328fa8b24aa9640b7633dadb4e4311a6"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-068.pdf",
+      "sha256": "4798a4c16d546fb50162c17501669b64e21bd419a3130c96dbcbc9a8dab992f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-069.pdf",
+      "sha256": "995a9a08b052a88a017104329264b869e7972977f3aaec57ceb132cc61510a11"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-070.pdf",
+      "sha256": "fe829aeb1dfc8f267d4951205ead3f0b7873fcc215aa171f218c35064c580dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-071.pdf",
+      "sha256": "9368e31b5164c7cd55741364d175de4ec7c5a4ef7f75900c397005ba4584fd48"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-072.pdf",
+      "sha256": "e53d6b086d41008d8f9b96064ce961df2bafbe3cb91ad2d48bf2ce6a5e79a8ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-073.pdf",
+      "sha256": "15d33b03663cec556e687dbcd331a217ef96dfe381bcb7c0abd7915cca9bf312"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-075.pdf",
+      "sha256": "239a311f0a2bc269290e480841c6a710bc295d6383376bc110fc7dbd8f61cda3"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-080.pdf",
+      "sha256": "051a8a48c224acd00d71b706baa5d1d28056a613e98ddb21ce3fb82df5da24fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-081.pdf",
+      "sha256": "15191d4bb195e64d4d318dc09da270f4cb09cbcaeea997a1a72afd8d2db67084"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-082.pdf",
+      "sha256": "0ff759c1d62171a1a2c47ace02810e44751e0748c4d82e0245d43e9ffd256329"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-083.pdf",
+      "sha256": "bd03e56f6eaa40592f4b817203efa5f1ba334f31afa7405732ac945a45a5af97"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-084.pdf",
+      "sha256": "85ebafaa6e7696ef96da5e820a7f6111e0bd2a887da532a20c0c18c36c1033a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-085.pdf",
+      "sha256": "d3548ef101616b0abc5cec68e04af21d18e5d85b30f455d89b8730eaaad7baa6"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-090.pdf",
+      "sha256": "2923c05731003b494a0604fb7a67e63393536a6530c054c3e5d29ac442f4af9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-095.pdf",
+      "sha256": "39cdc01fb325e75817fb2293168a60c8c0c2df02cc9764d8b1b5f3a75f079d4a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-096.pdf",
+      "sha256": "06baee8af8cad840ceeb7e60410f1823e9a060d271c4834faabc601a1b03ac03"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-100.pdf",
+      "sha256": "863c1465ca75c127ace02eb00f5f40a4485e702fa7b2e9281980695b7fb71395"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-110.pdf",
+      "sha256": "67eab2b51ac68d414540c145aaaad3c3bbafdbccade65034166c1e4e537cd6d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-120.pdf",
+      "sha256": "791209f9bac79ed65f801953e442c9cd37369a523b7198b9f355327dd4abcc8d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-121.pdf",
+      "sha256": "239b43d7ddae3ef44bfefef542c870e584f420892d62c36a66c4807b9e9dccba"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-124.pdf",
+      "sha256": "2ce8639243c0dcd422c6ed07db5e196cb042e42cb11e2a01296eff91fd815ca3"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-125.pdf",
+      "sha256": "f3437f8a3fc0d07c15d2e3a2afaca0df33b7851a6ad17d0a0d7df616ba5d58b5"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-130.pdf",
+      "sha256": "ff922a5e9f48fcebde0f770108244f38d91ac1d9faaf88cd07f57d90c2237578"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-140.pdf",
+      "sha256": "8faa3a0ab24450cc5dbe4b8fced556870169b176dc72c463b9759f8d8b6477e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-150.pdf",
+      "sha256": "22d858b65f0964264716aeacd640bd0aa360f5ac7ff1e7c6a19f936030464587"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-160.pdf",
+      "sha256": "5191d4a26f83d7795948912d0e3f70e1e8e09a4012d324ddabd3ac50da134623"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-170.pdf",
+      "sha256": "7d463b9c446f95ac1098983049419bc14627a28f9e2bac8e17026f6522b97bf7"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-175.pdf",
+      "sha256": "5064dfdfcb9f8355d15fc5482c299ba6e624d0e8b3f7ad1cbdaf25743bf84055"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-180.pdf",
+      "sha256": "e53e9a25fb87a65671a546a8761d4f5cc880649f41a275d713c1057a2975173d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-190.pdf",
+      "sha256": "e44c048569c133b7e90fcc1ae76398246acae8593488f0a154fc440a31a82590"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-200.pdf",
+      "sha256": "088b34b8bd9c38a82afc64e1dd4e615db09b967fd19e5b2d9712deee2a6de928"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-201.pdf",
+      "sha256": "e338ebf64e2131ccd1817412271d3a957f4362f36379dccbb966195cba67f512"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-202.pdf",
+      "sha256": "cac91df69d550b25db3d762fce8f105b480770a35aded206ae2494b59b3fd674"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-205.pdf",
+      "sha256": "60a70ebcc0f9f5a90dc3253e2d49a3fd9f47df124a7374123512c370a140955a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-206.pdf",
+      "sha256": "030c7d62f8c679b2d995a40827c92c2fe50bff2c944bc0bbc2752dc18e21fd12"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-207.pdf",
+      "sha256": "695dab0f4971653190cd4889ad023c5f56d62d0122143733d51a6ad365a7ff2d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-208.pdf",
+      "sha256": "ad12f6cbaa20b183b1b7e3d7056ab211abc9d83412ed7897cddab64a1b83c572"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-209.pdf",
+      "sha256": "a823997a7e1cbd4a8f925239d45cbe58fbcf52b0c9c4dc9ff90f1a4ca9e93ede"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-210.pdf",
+      "sha256": "b9d3ec07c8a444667ce5c2763051cbe778fadcbee5f964bc7779da3dc66a93d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-211.pdf",
+      "sha256": "4d916575bff19d0b4c62cd3b965dc192caace8c49756b549061efafb79b397d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-215.pdf",
+      "sha256": "c23f4ff03fcb40b538d74d086aab30a3585b2397361d320029d76286bde80396"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-220.pdf",
+      "sha256": "dfb134645b5dc9ae18ce744769f56686fea674b570f0d5397abd9461d9d13829"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-225.pdf",
+      "sha256": "1e0588ec440e19878782a0d5c4387d61261fd09bf62abe4f9ffab69cd3c0297e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-230.pdf",
+      "sha256": "7c124f5e23b44fc39f091c51298bc9aaca47749de41213e59eb2fa60f4d6ec5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-235.pdf",
+      "sha256": "adfbdabdfefa4ac6c3ab288071e6b86f9217410d17e5b9fb5694f3f63b66e266"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-240.pdf",
+      "sha256": "d461adad77d96316d8e6a67a9cd58298d81409f8e4b43172427684da4720b2d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-250.pdf",
+      "sha256": "feccaace12a7b040e4cc3a3f0832b3c4c1fbe6131092d394aab63e418bcae58b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-260.pdf",
+      "sha256": "d8ca54969da7c85a7cdece4766c80ae56712e540aa01a552768cd9241e965e20"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-270.pdf",
+      "sha256": "44947ffb8684e3cb050d11a972df28bddd2b6e70501d990b98c8160d467281b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-300.pdf",
+      "sha256": "69996a3f6206ad499db2c6e01564cd38d4c2b33b20967c76678bd5e4e7f48ed9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-305.pdf",
+      "sha256": "63f92e4c4dde6484198c081bf4d5c5f18ea79b27c5635e8d5db89b44b3fefbc4"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-310.pdf",
+      "sha256": "f6d39ecc48f7338470e0590bd07766f8993b7bf4dbeebcf5a95409ec857d4f7d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-315.pdf",
+      "sha256": "fd61f68cbaaea6c5a3106e84718027a5ff60d9dedf71d6e8c9648f3555967c6c"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-320.pdf",
+      "sha256": "cb7506166d1f53f16ffa607b3c4459141ee94b6e2a2727e63fa8e3dbdf45abf7"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-325.pdf",
+      "sha256": "4e29d5ebdc1c772020d22baf8775f95af5099f57b9769d32d31964d03ce21ebb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-330.pdf",
+      "sha256": "91325879a5ba65e6cdae083220be71a2f15aa6bfd3896d969ceda22b7d14dd2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-335.pdf",
+      "sha256": "c3b8e10fa86ee3ebe96d1ae4611e3d3ef1389a05bd0b8eb4f5797a4cde1aa4dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-340.pdf",
+      "sha256": "ec80e7ea13460824fbb755f40681042b7bec685f807c7bf4ebad3e48f54aa210"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-345.pdf",
+      "sha256": "9de7a8b40b4c45499627e33f39efb1d482b4f36f80b35dbd8cbc9aa4080e8923"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-347.pdf",
+      "sha256": "b31d9749789b36fb6f2895ec4b5145d87741c3f1cd3bdd7f06c0147842d5646e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-350.pdf",
+      "sha256": "75aa591e9df069fc1106290c3a7bc54ade0cbf60ccbf18d299c406e7a2c5531e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-355.pdf",
+      "sha256": "47a97d13f9db2d5f6d90e82fa11ecaff02d3df53370c7d568e1cc25d343e9f6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-360.pdf",
+      "sha256": "7f2b1581b0f5d7728cd03cb75b75c63af86d3312fc40079778a29c336c02fc32"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-370.pdf",
+      "sha256": "25cde858de55318a157bf9177f429108f0335b2664c0f3a139888a366dae79bf"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-375.pdf",
+      "sha256": "c08d70c5cda9d9132d51ef5262191137d81ac1a8313117a77342f2305a0f8c9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-380.pdf",
+      "sha256": "d7e9352f9a62d33d959aa813886a1afe27e7b000aebca6b72282989a60a32643"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-381.pdf",
+      "sha256": "98dbe467a9fec00c27107e084c21945519b256d33bda3b83834d77369bb8d198"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-382.pdf",
+      "sha256": "1317083d42be923111633af88f7861f2a26486ebd44bbe876e6db3fad0679ca9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-3821.pdf",
+      "sha256": "740dd0dbb4ee13c486e4b88b97524238c1b27e2ac6ec4d7b8bde3d58c8d02f07"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-383.pdf",
+      "sha256": "2941fab9046117716695fbc970cb1efd6bcb996dc8824eadfb5574cef7aa571d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-384.pdf",
+      "sha256": "b3e62ab402838eb4f24b414dc8915f044dc6508d3552cc768eb3899aa4adc222"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-3841.pdf",
+      "sha256": "3742307d43ebd2b1c77a37741a77e9763e6751f8468f81b5e0a51f8dd17f5b4c"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-385.pdf",
+      "sha256": "275285389de413be91506560b55ebc4eae2f3ba0de3111c8e7a7fb8a615c1cf9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-386.pdf",
+      "sha256": "b6901093759c49d045f52572955cd06e6c147a8c99cbd11a44df9b02e9ea2686"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-387.pdf",
+      "sha256": "19963e82429c7ec389d127e26bf0aa86bdd4feec0eca47461f2b2e70f45f2bea"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-388.pdf",
+      "sha256": "bd2b7e57a6cbdc3fa4a6b2b95b24e760396287c0058d24a4c78bdc0df491173f"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-389.pdf",
+      "sha256": "9106383c7ca2ef5196519c7d0b9d8d4d865236cdce90c01fefa7397c24727ee2"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-390.pdf",
+      "sha256": "b484a76710cb1aba3ba1cf5687dd8a837c1ad630e64b4b025c0392325d3479cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-391.pdf",
+      "sha256": "268a14b4b893a3ece740e3961a5976189fd41a4e6d23b12172afede61faa1fa5"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-392.pdf",
+      "sha256": "780a16a09b9c778c3ec637c4660d99ce212052712e62bafa6a23df95413a175c"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-395.pdf",
+      "sha256": "efce454d93c2f8d6c10345642050cd057b1f1c6aa3e189c6c7c486c45ecef0bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-396.pdf",
+      "sha256": "547ced5b6228a30b7a54f5bd7b5e635f6b5d2f295a6bf789ddaf779f0636d9ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-398.pdf",
+      "sha256": "8ba68c28e93a0fc4780cb4b51f4244c47c3bda3466fce2fec64146dc4dc578a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-399.pdf",
+      "sha256": "f50a156a08ddd2d2fb447200cc030d75bf655545b503eb7ee43735a7eeaec30d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-400.pdf",
+      "sha256": "3dc1f468c1f79fa0f39664065bd13de59748bda075fdf59c404e4eadf658b462"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-401.pdf",
+      "sha256": "5d3fd800698dc04fd65a67710fe58d04f0974c48d233321d80630db363cc1c74"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-402.pdf",
+      "sha256": "19e1af42d8a3da6ee0356bcc73627c90b660d3eec2cfe6be2ba4b293df6f4bcb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-403.pdf",
+      "sha256": "e287da3c9e0b02a56d9c1c2c8b4be703bfd2c96addd290270086be82ff7058c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-405.pdf",
+      "sha256": "9dd66513029518bfc65f1327142532dced68e46ea64c2c0bb3abb7c8bcf38e76"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-407.pdf",
+      "sha256": "9de066e3391771930c35f29b617137ce5dd01ebb64719ff91a8a484b261fcd06"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-408.pdf",
+      "sha256": "a2c4e2e19b4ca0f57d8bae5de571800a09b56578460cf6c755e6073b68093d06"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-410.pdf",
+      "sha256": "6b970257df1228e1b0d84cd0456ee1d4e5d089479dac859e876f95c24c0c4349"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-412.pdf",
+      "sha256": "5fa3e4f451439b4b36e42688056b956e8c8b50bc3edb330bf78a3f8ce3835ffb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-414.pdf",
+      "sha256": "e10de1ff54b07c90c0f9f0407e323d48981c4c7281e20efe6036ab33cd0a296a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-415.pdf",
+      "sha256": "5ed0f1653ec7bbfc2f9df98a7a2a32fe80422fd8237d46fdaf15da65f5522e10"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-416.pdf",
+      "sha256": "4ace517e8c7a05ac0955a8d67c259368bd8a5f60dab8e9fe45551641747af225"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-417.pdf",
+      "sha256": "fff76e7a01d67e4980d3fdff29ae44ecb2dcac4782f26fb2e8e7388c9b8387c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-418.pdf",
+      "sha256": "b3be02fe4f64ae962c1d3a2452879de329c5aea50313d34fe6fba7d76d161bf7"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-419.pdf",
+      "sha256": "9e935a9ec560f104aa2ef52b58e86de6484f05f8526705e61be9266fb4a9aae3"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-420.pdf",
+      "sha256": "0d498e83c4aa9800bc7d468c3c7e2475596855c0595bdcd7b3ff002fa92c6d32"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-421.pdf",
+      "sha256": "6f68b7ad8ca5ed8ab0b8fbc4017aa806cff142aba3fc14b60dc2e17303886280"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-422.pdf",
+      "sha256": "3d70068b4c71cee07e555ac164d255035db15c7461f5b7f41abe3100eb4be61f"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-423.pdf",
+      "sha256": "9b8bab3b7862d4d0da133849700c460c5bcf799f792786a895165ebed6227ad8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-4231.pdf",
+      "sha256": "bb662ee2e012cf1cd91083dc5e99365c9f2a2b8c8d841b7e3027414afbb8862a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-424.pdf",
+      "sha256": "7ad33cf9fd94889ac4542cbaacb54392cd8bd2522ce43b124739a0c90178456c"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-4242.pdf",
+      "sha256": "21ad8c1a613934cd0c79c31b989cc8ef2ffecb1e685813fea19652816800e1d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-4244.pdf",
+      "sha256": "f30b364e7d0a8d6f30ea33ad7891a6b1d348d8d751c791fa45857388f1cd000a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-4246.pdf",
+      "sha256": "ca612c2ca92d16cf2797c34a39c9eae3d75367d707a7b79de905d1217bb27e92"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-4248.pdf",
+      "sha256": "f405279cb6c7ea41bb33b9a5113285862cb5a8fcb0e1cce5cae8dc6c246c7cfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-425.pdf",
+      "sha256": "ebe5eded46de098744141ddd442c3d066c6f57f4e450c87e571d9ad8c1114af7"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-428.pdf",
+      "sha256": "8dd18105a5c3ffe986fb7fdff1b6e7087a05fee38c31acf3b18cd5fb897511ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-430.pdf",
+      "sha256": "67bb0903716b192b21d8599e536eba84d65b104659ded77f359ba387fc496397"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-432.pdf",
+      "sha256": "d71bb8430a6482f56197f09f2d8929e299ecd3917ed6623545c98bc806a1788d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-433.pdf",
+      "sha256": "f0aa91940d90470fc699b9bb7dcec88fc1098995d21492e72b292d4f414f2709"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-434.pdf",
+      "sha256": "ff9cf4866c37ea733f63e74bd112e6083620ed2ae0a63302eea48b4edd53a364"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-435.pdf",
+      "sha256": "ba008a14391d754f09be0ef5970a72577dfc1dba6cbd24fc90748f63d79e7c45"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-436.pdf",
+      "sha256": "2e59649ce5ca95b5869b4cd0792e6875427a61ba188980504fb0f94697fe4a61"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-437.pdf",
+      "sha256": "c1dc6ba72daaa7348e6eb201ee9ddf69347c07f9acc34c331169cdce5cea1b97"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-438.pdf",
+      "sha256": "c831af98be30b2d76e8660b526f6b123aea2837b4b36e14afa41c6cdb18d6237"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-440.pdf",
+      "sha256": "16f250790f7a69bc1d36a6ada00574974b810b9e7647123101ebb5fdf46ba079"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-441.pdf",
+      "sha256": "0a0b3cfc46da522181c75b41f5d8aa0e463e9280747f10ce0cbeb6b8d9b68687"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-442.pdf",
+      "sha256": "9e74558b7ab3ff076fa5359ba44d23e0fcf53a7dfc724cdf916ab97333893a78"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-4425.pdf",
+      "sha256": "bf3477b1494162cacc7bff01e0dd8056468698eff4940fa0730a4ab8250960e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-443.pdf",
+      "sha256": "6736b98da781fe185c9b3207c4330bb1c4cc3dacbffb716eb34f9f89b36c53cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-444.pdf",
+      "sha256": "f139dd963cca2768b37faa3b00b1aed63a51cae96b9d0eae935debb560858219"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-445.pdf",
+      "sha256": "455a69d98dc19c3a305915cdb445dd29cc70f50d34474a481ac41d71ceef6f48"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-446.pdf",
+      "sha256": "66178f24f2add2759118ab2efc554bcc691700fe3ebaee6552d99bcf60898c43"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-447.pdf",
+      "sha256": "eb8217a85eeac521e1d1dcba43e51a6dceb8c50ac000942a235ad008f6456794"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-448.pdf",
+      "sha256": "e344ffd17a1aec5735511aa5edd7b43416bb7cef7ded893dd22e3ad49f333624"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-449.pdf",
+      "sha256": "fc5d5b32cb1178bae68bbdd12dfd6935f2d43bca806ec42e221be5c33dd4ce25"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-450.pdf",
+      "sha256": "5d380f27a5ac0976303728d2898bb5e3a71840bd805f8f5e4c4f579eda6e0ad1"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-455.pdf",
+      "sha256": "1e5253eab67e98b204512989b8e10800bf3a3fc3fba0066a85002ba4bc20e221"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-460.pdf",
+      "sha256": "01a0229dae39368d1c45426bb30c7b63f7fb7686f6ab28b59345349dd38c761c"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-465.pdf",
+      "sha256": "396b6c27f6d064ae21fca75029eb6d6283b6a58ecb4726fe65d4135a309b42ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-470.pdf",
+      "sha256": "eb1b3e3fc9c8508af77810ebd637575c654bcef783069eefb682ffa7da509463"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-475.pdf",
+      "sha256": "419f35caa06b6cadae24c866bcdc40c4e731326e12a0e31eb9ff9d5a69351118"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-480.pdf",
+      "sha256": "6f1c6421c96a114d41126fdac5f197fa6f42b8ed2ff4e139c291c0015d17f93b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-500.pdf",
+      "sha256": "aec01bd252e0e7ea5d8f53e33735ec945a9ec6ed1b98b1526358949e5d0741b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-502.pdf",
+      "sha256": "607a0091d12f4612075848bc26b8ab58a86e6e37db708de4082ef9ccb5db80cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-504.pdf",
+      "sha256": "5508052174fdceeee71b26702aa9b1acd2b6a8500d322bcbbd6635cd7c7b091e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-506.pdf",
+      "sha256": "574a27c3f1d1d7884f827094297c9414bc2d540cf3b3907b20b4424545ecd25e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-508.pdf",
+      "sha256": "3eec5ccafbe773f6fe148ff455124c69c6842fa1c96e5ee1340079c7cbed68c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-510.pdf",
+      "sha256": "3e82c992a89889c68a5bcf7b240e6176406c297a6f1c25124a58a17b2e34af39"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-512.pdf",
+      "sha256": "3241e487ed9bc0efa517ee1619f019d4f7dfdb080080d7a8ae418f1dd895b47f"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-514.pdf",
+      "sha256": "8355bd1cbff3711f0b708b8d13663fde058d98f3b99250e913521dc725713466"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-516.pdf",
+      "sha256": "003edf959db4ea32d3231575f66e403569ffae395884073e54045a1a6407168d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-518.pdf",
+      "sha256": "85eccdda9719e0b8f4b394e102a6e3a8005983dc2662c0cc2cb43050ae924188"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-520.pdf",
+      "sha256": "c2eadcb0bfd49ba0cfd35149cdac2b1e73c6f842c55d5c7cae5a2ecde75a39ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-522.pdf",
+      "sha256": "6e82a83dee8b1eec8c25f4917a7f5a8359dafcd5bc3dc6358e859cf337170d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-524.pdf",
+      "sha256": "3e64c66a11d7173a99629541214c33ffdd39388ec4a27eda4e08eaf0b1518dda"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-526.pdf",
+      "sha256": "edd3703c4d6a5792057527edde0571a1dc81250fd6d9fa74ec24ad702cec4b1b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-528.pdf",
+      "sha256": "0d2bb8f7fa283c2c37aea1b502433ab0cc52d003855c9429762a0350763ab67a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-900.pdf",
+      "sha256": "fdb2439f9331b8190672b046058f05bb9f6cee6a66ceddb2628883053667b127"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-901.pdf",
+      "sha256": "ef75d8d326a45712de908dfd99c0c63efbe1bd2898d4cf8c4ff6d857af32d441"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-985.pdf",
+      "sha256": "94ae69315d6fa6cb9d547e1f23205ddc470c3092d9faa4d550e5b73a096ee7df"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-09-14-income-tax-chapter/official-documents/us-ky-krs-141-990.pdf",
+      "sha256": "5859e40aa405c563e7c5bf592626226b65b9b22c08be9881454793ad73c05610"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter --manifest manifests/us-ky-krs-chapter-141-income-taxes.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 390,
+    "missing_count": 0,
+    "provision_count": 390,
+    "source_count": 390
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T16:37:32.698319+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xbz2l7rZ2SnPLMiO5LSBrIu4zjZapwFfMqZGBX+0P55Aoheq05/A5qP7PSDpCFl8wHOJesh8tlqXt0qGxbE5Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "d358ae45aecace81cf70aecaa92cead4968fd9e5d6ee6946a52f7aff1baa936f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "2a406d04fbe11d86f7997e769680be8c159d79f41a6818a54221870a3798be4d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "4213a16c4ee8301b44119fee4c4a8319213ea0daf6f3b2ac0d83a81ccb207f5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-ut-ustc-tax-rates-ty2025.html",
+      "sha256": "bd938958afcd2fa4f0fa74eacc590e940c9806d2147efa5a67cd13c254336e3e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-ut-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:11:55.084677+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zw9D7+ZY4NdXhJDXontsJrn2rDlx3Go7mRIl4IyNyWQEiD+K5Fr8zozBiBC/OtaMiV/EV+waeKtaJqx6T/VmBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

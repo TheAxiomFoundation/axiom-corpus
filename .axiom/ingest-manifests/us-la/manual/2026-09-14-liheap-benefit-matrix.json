@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "59f5b2c2b2020810ecbf599cafd4768895eda6c14d17b0dd28810e19f4f0c425"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "81545dad9a7bc2a98b610916a10033f3f719faca456a2234f2c0a5b953faf7d2"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/manual/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "8fd7878f2bdbe3ef1d3795d5a8ec268db5103dd542cd2965b774654e7116266d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-la-liheap-lhc-liheap-service-delivery-guide.pdf",
+      "sha256": "fbefeceb96e81349509629dd3351834d0cbcd7e1a653bc204c8fd97f2fe55217"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-la-liheap-benefit-matrix-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 109,
+    "missing_count": 0,
+    "provision_count": 109,
+    "source_count": 109
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T16:38:01.533937+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zbBpS5eyF2WTzH04oPlfyu98Xz0fS9snPqx50o2FqpM5lvBwm5+Speubp2q/miMGtWwIM/Al3g0zVl9G6If0Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

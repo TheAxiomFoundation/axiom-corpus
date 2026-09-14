@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "ee0e024c157f234af0c6ee3cf0572fb6385600497dd9e3e85589e24e00471d20"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "c889df81d63a9cbf06f4299650aa5c811c78a297831386834264c1d8025b8f6a"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "38c4825a6a2ad27366cdd49ebccc2f7aa0ec4c312a236ca19165a16a4f5b1d7f"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-vt-vdt-in-114-instructions-ty2026.pdf",
+      "sha256": "8221e653b2b557ffc23b7f6ee443b5ea283d58860fc383394f5eaf89d2db5ca4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-vt-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T18:25:11.529246+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BSIyFNet5phLe5/5WscLL/QpSLFYGZsdUUjNJkePVL94wVybPBeSreGVn1Vd3SnNrkNiO9Dc3NkbiFVEhKUuCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}
