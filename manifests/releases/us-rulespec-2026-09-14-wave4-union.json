@@ -1,6 +1,6 @@
 {
   "name": "us-rulespec-2026-09-14-wave4-union",
-  "description": "Fifth release after us-rulespec-2026-09-13-cms-state-plans-union: the five wave-4 ingestion runs of 2026-09-14. It adds the state Medicare Savings Program income/resource charts and the SNAP FY 2026 state transmittals (49 scopes, docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md), the LIHEAP benefit matrices and state manuals with the SSI state-supplement payment standards plus K.S.A. 39-972 (66 scopes, 2026-09-14-liheap-matrix-ssi-standards.md), the whole state income-tax statute chapters of 18 states with the TY2026 indexed amounts of 27 states (48 scopes in, 19 superseded recovery and core-section scopes out, 2026-09-14-state-tax-statute-ty2026.md), the whole CT UPM, GA TANF and DE DSSM 3000 manuals (two swaps and one addition, 2026-09-14-tanf-whole-manuals-md-comar.md), and the income-tax regulations of 37 states (2026-09-14-state-tax-regulations.md), of which the Maryland COMAR 03.04, Ohio OAC 5703-7 and Oregon OAR 150-316 scopes are carried by consolidated successors of the released us-md, us-oh and us-or regulation scopes (Maryland also absorbing the July COMAR 07.03.03 TCA chapter); see docs/ingest-runs/2026-09-14-wave4-release-consolidation.md.",
+  "description": "Fifth release after us-rulespec-2026-09-13-cms-state-plans-union: the five wave-4 ingestion runs of 2026-09-14. It adds the state Medicare Savings Program income/resource charts and the SNAP FY 2026 state transmittals (49 scopes, docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md), the LIHEAP benefit matrices and state manuals with the SSI state-supplement payment standards plus K.S.A. 39-972 (66 scopes, 2026-09-14-liheap-matrix-ssi-standards.md), the whole state income-tax statute chapters of 18 states with the TY2026 indexed amounts of 27 states (48 scopes in, 19 superseded recovery and core-section scopes out, 2026-09-14-state-tax-statute-ty2026.md), the whole CT UPM, GA TANF and DE DSSM 3000 manuals (two swaps and one addition, 2026-09-14-tanf-whole-manuals-md-comar.md), and the income-tax regulations of 37 states (2026-09-14-state-tax-regulations.md), of which the Maryland COMAR 03.04, Ohio OAC 5703-7 and Oregon OAR 150-316 scopes are carried by consolidated successors of the released us-md, us-oh and us-or regulation scopes (Maryland also absorbing the July COMAR 07.03.03 TCA chapter); see docs/ingest-runs/2026-09-14-wave4-release-consolidation.md. Held out of this cut pending slug-safe citation paths (grammar gate): NE, DE and AL whole-chapter statute scopes (their released originals stay selected) and the CT and CO income-tax regulation scopes.",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
     {
@@ -691,7 +691,7 @@
     {
       "jurisdiction": "us-al",
       "document_class": "statute",
-      "version": "2026-09-14-income-tax-chapter-us-al-title-40"
+      "version": "2026-07-13-recovery"
     },
     {
       "jurisdiction": "us-ar",
@@ -1061,11 +1061,6 @@
     {
       "jurisdiction": "us-co",
       "document_class": "regulation",
-      "version": "2026-09-14-income-tax-regulations"
-    },
-    {
-      "jurisdiction": "us-co",
-      "document_class": "regulation",
       "version": "2026-09-14-liheap-benefit-matrix"
     },
     {
@@ -1157,11 +1152,6 @@
       "jurisdiction": "us-ct",
       "document_class": "policy",
       "version": "2026-09-14-tanf-manual-whole"
-    },
-    {
-      "jurisdiction": "us-ct",
-      "document_class": "regulation",
-      "version": "2026-09-14-income-tax-regulations"
     },
     {
       "jurisdiction": "us-ct",
@@ -1371,7 +1361,7 @@
     {
       "jurisdiction": "us-de",
       "document_class": "statute",
-      "version": "2026-09-14-income-tax-chapter-us-de-title-30-chapter-11"
+      "version": "2026-07-13-recovery"
     },
     {
       "jurisdiction": "us-fl",
@@ -3321,7 +3311,7 @@
     {
       "jurisdiction": "us-ne",
       "document_class": "statute",
-      "version": "2026-09-14-income-tax-chapter-us-ne-title-77"
+      "version": "2026-07-13-recovery"
     },
     {
       "jurisdiction": "us-nh",
