@@ -4224,6 +4224,7 @@ def _cmd_extract_illinois_admin_code(args: argparse.Namespace) -> int:
         source_as_of=args.source_as_of,
         expression_date=expression_date,
         only_title=args.only_title,
+        only_part=args.only_part,
         limit=args.limit,
         workers=args.workers,
         progress_stream=sys.stderr,
@@ -6702,6 +6703,10 @@ def build_parser() -> argparse.ArgumentParser:
     extract_illinois_admin_code_cmd.add_argument("--source-dir", type=Path)
     extract_illinois_admin_code_cmd.add_argument("--download-dir", type=Path)
     extract_illinois_admin_code_cmd.add_argument("--only-title")
+    extract_illinois_admin_code_cmd.add_argument(
+        "--only-part",
+        help="Part number or comma-separated part numbers within the selected title.",
+    )
     extract_illinois_admin_code_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_illinois_admin_code_cmd.add_argument("--expression-date")
     extract_illinois_admin_code_cmd.add_argument("--limit", type=int)

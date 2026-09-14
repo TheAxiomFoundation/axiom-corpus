@@ -21,14 +21,16 @@ from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provis
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
-ILLINOIS_ADMIN_CODE_BASE_URL = "https://www.ilga.gov/ftp/JCAR/AdminCode/"
+ILLINOIS_ADMIN_CODE_BASE_URL = "https://ftp.ilga.gov/JCAR/AdminCode/"
+ILLINOIS_ADMIN_CODE_HOSTS = frozenset({"ftp.ilga.gov", "www.ilga.gov"})
 ILLINOIS_ADMIN_CODE_INDEX_URL = urljoin(ILLINOIS_ADMIN_CODE_BASE_URL, "titles.html")
 ILLINOIS_ADMIN_CODE_SOURCE_FORMAT = "illinois-admin-code-html"
 ILLINOIS_ADMIN_CODE_USER_AGENT = "axiom-corpus/0.1 (max@axiom-foundation.org)"
 ILLINOIS_ADMIN_CODE_SOURCE_NOTE = (
-    "Illinois General Assembly site maintained and updated weekly, but it is not the "
-    "certified official text; certified copies are available from the Secretary of "
-    "State's Index Department."
+    "Illinois General Assembly public file repository (ftp.ilga.gov, synchronized "
+    "nightly from the JCAR Administrative Code database maintained and updated weekly), "
+    "but it is not the certified official text; certified copies are available from "
+    "the Secretary of State's Index Department."
 )
 
 _SOURCE_PREFIX = "illinois-admin-code-html"
@@ -226,6 +228,7 @@ def illinois_admin_code_run_id(
     version: str,
     *,
     only_title: str | None = None,
+    only_part: str | None = None,
     limit: int | None = None,
 ) -> str:
     """Return a scoped Illinois Administrative Code run id."""
@@ -233,6 +236,8 @@ def illinois_admin_code_run_id(
     parts = [version]
     if only_title:
         parts.append(f"title-{_path_token(_normal_title_number(only_title))}")
+    if only_part:
+        parts.append(f"part-{_path_token('-'.join(_normal_part_numbers(only_part)))}")
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)
@@ -247,16 +252,28 @@ def extract_illinois_admin_code(
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
     only_title: str | None = None,
+    only_part: str | None = None,
     limit: int | None = None,
     workers: int = 8,
     progress_stream: TextIO | None = None,
 ) -> IllinoisAdminCodeExtractReport:
-    """Snapshot Illinois Administrative Code HTML and extract provisions."""
+    """Snapshot Illinois Administrative Code HTML and extract provisions.
+
+    ``only_part`` accepts one part number or a comma-separated list ("100,110");
+    listing entries are matched on the five-digit part segment of the JCAR file name
+    (``086 00100 ...``), so only that part's pages are fetched.
+    """
 
     jurisdiction = "us-il"
     document_class = DocumentClass.REGULATION.value
     only_title_number = _normal_title_number(only_title) if only_title else None
-    run_id = illinois_admin_code_run_id(version, only_title=only_title_number, limit=limit)
+    only_part_numbers = _normal_part_numbers(only_part) if only_part else None
+    run_id = illinois_admin_code_run_id(
+        version,
+        only_title=only_title_number,
+        only_part=only_part,
+        limit=limit,
+    )
     source_root = Path(source_dir) if source_dir is not None else None
     download_root = Path(download_dir) if download_dir is not None and source_root is None else None
 
@@ -337,8 +354,14 @@ def extract_illinois_admin_code(
         )
         entries = _parse_title_listing(listing_source.artifact_path.read_bytes(), title=title.number)
         html_entries = tuple(entry for entry in entries if not entry.is_dir and entry.name.endswith(".html"))
+        if only_part_numbers is not None:
+            html_entries = tuple(
+                entry for entry in html_entries if _entry_part_number(entry) in only_part_numbers
+            )
         page_entries.extend(html_entries)
 
+    if only_part_numbers is not None and not page_entries:
+        raise ValueError(f"no Illinois Administrative Code part selected: {only_part!r}")
     if limit is not None:
         page_entries = page_entries[:limit]
 
@@ -1207,7 +1230,7 @@ def _linked_asset_sources(data: bytes, *, entry: _DirectoryEntry) -> tuple[tuple
                 continue
             url = urljoin(entry.source_url, raw)
             parsed = urlparse(url)
-            if parsed.netloc != "www.ilga.gov" or "/ftp/JCAR/AdminCode/" not in parsed.path:
+            if parsed.netloc not in ILLINOIS_ADMIN_CODE_HOSTS or "/JCAR/AdminCode/" not in parsed.path:
                 continue
             asset_name = parsed.path.split(f"/AdminCode/{entry.title}/", 1)[-1]
             if not asset_name or asset_name.endswith(".html") or asset_name == entry.name:
@@ -1376,6 +1399,29 @@ def _normal_title_number(value: str) -> str:
     if not text.isdigit():
         raise ValueError(f"Illinois title must be numeric: {value!r}")
     return f"{int(text):03d}"
+
+
+def _normal_part_numbers(value: str) -> frozenset[str]:
+    numbers: set[str] = set()
+    for token in value.split(","):
+        text = token.strip()
+        if not text:
+            continue
+        if not text.isdigit():
+            raise ValueError(f"Illinois part must be numeric: {token!r}")
+        numbers.add(f"{int(text):05d}")
+    if not numbers:
+        raise ValueError(f"Illinois part selector is empty: {value!r}")
+    return frozenset(numbers)
+
+
+def _entry_part_number(entry: _DirectoryEntry) -> str | None:
+    """Return the zero-padded part segment of a JCAR page file name (``086`` ``00100``)."""
+
+    name = entry.name
+    if len(name) < 8 or not name[:8].isdigit():
+        return None
+    return name[3:8]
 
 
 def _section_path_segment(section_number: str) -> str:
