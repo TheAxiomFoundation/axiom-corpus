@@ -38,7 +38,11 @@ jobs:
   preview:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Activation recounts and re-hashes every scope of the release inside one
+    # transaction (761 scopes took over five minutes before run 34866210267 was
+    # cancelled by a statement timeout); the statement now runs unbounded, so the
+    # job must allow the work rather than the old 20 minutes.
+    timeout-minutes: 60
     environment: release-preview
     env:
       RELEASE_NAME: ${{ inputs.release }}
@@ -122,7 +126,11 @@ jobs:
     if: inputs.request_activation && github.ref == 'refs/heads/main'
     needs: preview
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Activation recounts and re-hashes every scope of the release inside one
+    # transaction (761 scopes took over five minutes before run 34866210267 was
+    # cancelled by a statement timeout); the statement now runs unbounded, so the
+    # job must allow the work rather than the old 20 minutes.
+    timeout-minutes: 60
     environment: release-activation
     env:
       RELEASE_NAME: ${{ inputs.release }}

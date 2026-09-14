@@ -971,19 +971,55 @@ _RELEASE_ACTIVATION_CHUNK_PACING_SECONDS = 1.5
 # Column list must exactly match corpus.preview_corpus_release_activation's
 # RETURNS TABLE (pair-level; no per-version columns). A postgres test runs this
 # string against the live function so the two cannot drift apart.
+# The Management API query endpoint runs every request in its own session with
+# a bounded statement_timeout. A SET inside a function cannot lengthen a timer
+# that was armed when the outer statement began, so activate_corpus_release's
+# own "SET statement_timeout = 0" never applied: run 34866210267 (761 scopes)
+# was cancelled with 57014 about five minutes into the per-scope counts. The
+# long release statements are therefore sent with the timeout disabled as the
+# leading statement of the same request. Multi-statement text cannot carry bind
+# parameters, so the handful of values are inlined as validated literals.
+UNBOUNDED_STATEMENT_PREFIX = "SET statement_timeout = 0;\n"
+_SQL_PLAIN_LITERAL_RE = re.compile(r"[A-Za-z0-9._:@+-]{1,200}")
+_SQL_JSONB_DOLLAR_TAG = "$axiom_release_json$"
+
 PREVIEW_ACTIVATION_QUERY = (
     "SELECT jurisdiction, document_class, current_release_name, "
     "current_content_sha256, changes "
-    "FROM corpus.preview_corpus_release_activation($1::jsonb)"
+    "FROM corpus.preview_corpus_release_activation({release_identity})"
 )
 
 
 ACTIVATE_RELEASE_QUERY = (
     "SELECT corpus.activate_corpus_release("
     "corpus.load_release_activation_upload("
-    "$1::text, $2::text, $3::text, $4::text"
+    "{upload_id}, {release}, {content_sha256}, {object_sha256}"
     ")) AS result"
 )
+
+
+def sql_text_literal(value: object) -> str:
+    """Quote a plain identifier-like string (hex digest, upload id, release name).
+
+    Anything outside ``[A-Za-z0-9._:@+-]`` is refused rather than escaped: the
+    release identity never needs other characters, and refusing keeps the
+    inlined statement free of quoting subtleties.
+    """
+    if not isinstance(value, str) or _SQL_PLAIN_LITERAL_RE.fullmatch(value) is None:
+        raise RuntimeError("management SQL literal is not a plain identifier-like string")
+    return f"'{value}'"
+
+
+def sql_jsonb_literal(value: str) -> str:
+    """Dollar-quote a JSON document as a ``jsonb`` literal."""
+    if not isinstance(value, str) or _SQL_JSONB_DOLLAR_TAG in value or "\0" in value:
+        raise RuntimeError("management SQL jsonb literal cannot be dollar-quoted")
+    return f"{_SQL_JSONB_DOLLAR_TAG}{value}{_SQL_JSONB_DOLLAR_TAG}::jsonb"
+
+
+def unbounded_statement(template: str, **literals: str) -> str:
+    """Render ``template`` with pre-quoted literals behind the timeout reset."""
+    return UNBOUNDED_STATEMENT_PREFIX + template.format(**literals)
 
 
 STAGE_RELEASE_ACTIVATION_CHUNK_QUERY = (
@@ -1060,29 +1096,30 @@ def preview_corpus_release_activation(
             f"refusing to preview against Supabase project {project_ref!r}: "
             f"expected {expected_project_ref!r}"
         )
+    # The preview function consumes only these signed fields. Excluding
+    # artifact and validation inventories keeps this request read-only and
+    # bounded even for comprehensive releases.
+    release_identity = json.dumps(
+        {
+            "release": release_object["release"],
+            "content": {
+                "scopes": release_object["content"]["scopes"],  # type: ignore[index]
+            },
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
     rows = _management_api_post_json_with_curl(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
         payload={
-            "query": PREVIEW_ACTIVATION_QUERY,
-            # The preview function consumes only these signed fields. Excluding
-            # artifact and validation inventories keeps this request read-only
-            # and bounded even for comprehensive releases.
-            "parameters": [
-                json.dumps(
-                    {
-                        "release": release_object["release"],
-                        "content": {
-                            "scopes": release_object["content"]["scopes"],  # type: ignore[index]
-                        },
-                    },
-                    separators=(",", ":"),
-                    sort_keys=True,
-                )
-            ],
+            "query": unbounded_statement(
+                PREVIEW_ACTIVATION_QUERY,
+                release_identity=sql_jsonb_literal(release_identity),
+            ),
             "read_only": True,
         },
         access_token=access_token,
-        timeout=120,
+        timeout=900,
     )
     if not isinstance(rows, list):
         raise RuntimeError(f"unexpected activation preview response: {rows!r}")
@@ -1130,17 +1167,17 @@ def activate_corpus_release(
         rows = _management_api_post_json_with_curl(
             endpoint,
             payload={
-                "query": ACTIVATE_RELEASE_QUERY,
-                "parameters": [
-                    upload_id,
-                    str(release_object["release"]),
-                    str(release_object["content_sha256"]),
-                    object_sha256,
-                ],
+                "query": unbounded_statement(
+                    ACTIVATE_RELEASE_QUERY,
+                    upload_id=sql_text_literal(upload_id),
+                    release=sql_text_literal(str(release_object["release"])),
+                    content_sha256=sql_text_literal(str(release_object["content_sha256"])),
+                    object_sha256=sql_text_literal(object_sha256),
+                ),
                 "read_only": False,
             },
             access_token=access_token,
-            timeout=600,
+            timeout=1800,
         )
         if (
             not isinstance(rows, list)
