@@ -2695,7 +2695,16 @@ def main() -> int:
     args = parser.parse_args()
     only = set(args.only.split(",")) if args.only else None
     queue = yaml.safe_load(QUEUE.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    # The first row of a jurisdiction is the eligibility-manual row this generator owns; later rows of the
+    # same jurisdiction (the `family: cms_state_plan` rows of scripts/build_cms_state_plan_manifests.py) are
+    # carried through untouched and written back right after that first row.
+    rows: dict[str, dict] = {}
+    extra_rows: dict[str, list[dict]] = {}
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     for jur, name in {**NEW_ROW_NAMES, **NEW_ROW_NAMES_BATCH3, **NEW_ROW_NAMES_BATCH4}.items():
         rows.setdefault(jur, {"jurisdiction": jur, "name": name, "lead_counts": {},
                               "candidate_sources": []})
@@ -2758,7 +2767,7 @@ def main() -> int:
         })
         if "pointer" in spec:
             row["pointer"] = spec["pointer"]
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1

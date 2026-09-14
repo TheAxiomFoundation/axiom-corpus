@@ -1,0 +1,2069 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ct-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 508
+- source_id: us-ct-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 508
+- source_id: us-ct-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 508
+- source_id: us-ct-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 508
+- source_id: us-ct-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 508
+- source_id: us-ct-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 6
+    index_records_on_page: 8
+    index_records_total: 508
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-26-0022-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-26-0022: Approval Document (approved August 14, 2026, effective August 15, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-26-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-08-15'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-26-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-26-0022
+    cms_node_id: '195236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=195236
+    approval_date: '2026-08-14'
+    effective_date: '2026-08-15'
+    summary: This amendment proposes to terminate the optional eligibility group of "Individuals Receiving State Plan Home
+      and Community-Based Services (HCBS) Who Are Otherwise Eligible for HCBS Waivers," effective August 15, 2026. This action
+      eliminates the Connecticut Housing Engagement and Support Services (CHESS) State Plan Home and Community-Based Services
+      group.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-26-0006-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-26-0006: Approval Document (approved May 1, 2026, effective March 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-26-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-03-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-26-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-26-0006
+    cms_node_id: '192131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192131
+    approval_date: '2026-05-01'
+    effective_date: '2026-03-01'
+    summary: This amendment is to increase the Medically Needy Income Level (MNIL).
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-25-0037-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-25-0037: Approval Document (approved December 17, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-25-0037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-25-0037/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-25-0037
+    cms_node_id: '187621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187621
+    approval_date: '2025-12-17'
+    effective_date: '2025-07-01'
+    summary: This amendment proposed to disregard VA-administered non-service-connected pension benefits and Housebound pension
+      benefits that are granted to a veteran or the surviving spouse of such veteran when determining income eligibility for
+      the Medicare Savings Program eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-25-0019-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-25-0019: Approval Document (approved September 26, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-25-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-25-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-25-0019
+    cms_node_id: '185206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185206
+    approval_date: '2025-09-26'
+    effective_date: '2025-04-01'
+    summary: This amendment updates the income and resource standards for its working disability groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-25-0012-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-25-0012: Approval Document (approved May 19, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-25-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-25-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-25-0012
+    cms_node_id: '179716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179716
+    approval_date: '2025-05-19'
+    effective_date: '2025-01-01'
+    summary: This amendment is to memorialize the new income standards for its optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid under Connecticut's State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-25-0013-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-25-0013: Approval Document (approved May 2, 2025, effective March 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-03-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-25-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-25-0013
+    cms_node_id: '179396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179396
+    approval_date: '2025-05-02'
+    effective_date: '2025-03-01'
+    summary: This amendment proposed to increase its Medically Needy income standards.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-24-0025-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-24-0025: Approval Document (approved March 14, 2025, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-24-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-24-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0025
+    cms_node_id: '178576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178576
+    approval_date: '2025-03-14'
+    effective_date: '2024-10-01'
+    summary: This amendment is to reduce the income standard for the parents and caretaker relatives eligibility group from
+      155 percent of the federal poverty level to 133 percent of the federal poverty level.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-24-0026-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-24-0026: Approval Document (approved January 15, 2025, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-24-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-24-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0026
+    cms_node_id: '177396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=177396
+    approval_date: '2025-01-15'
+    effective_date: '2024-10-01'
+    summary: This amendment is to increase its medically needy income levels.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-24-0015-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-24-0015: Approval Document (approved November 15, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-24-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-24-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0015
+    cms_node_id: '172811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=172811
+    approval_date: '2024-11-15'
+    effective_date: '2024-07-01'
+    summary: This amendment is to memorialize certain changes to the payment calculations of its state supplement program.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-24-0003-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-24-0003: Approval Document (approved May 17, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0003
+    cms_node_id: '165441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165441
+    approval_date: '2024-05-17'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to memorialize the new income standards for its optional state supplement program and
+      increase its medically needy income level.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-24-0006-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-24-0006: Approval Document (approved May 17, 2024, effective March 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0006
+    cms_node_id: '165446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165446
+    approval_date: '2024-05-17'
+    effective_date: '2024-03-01'
+    summary: This amendment proposed to increase its Medically Needy Income Level (MNIL).
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-24-0004-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-24-0004: Approval Document (approved April 26, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0004
+    cms_node_id: '163666'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163666
+    approval_date: '2024-04-26'
+    effective_date: '2024-01-01'
+    summary: This amendment is to provide a mandatory 12 months of continuous eligibility (CE) for children under 19 in Medicaid
+      and CHIP, as required by Section 5112 of the Consolidated Appropriations Act of 2023.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-23-0009-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-23-0009: Approval Document (approved June 2, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-23-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-23-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-23-0009
+    cms_node_id: '148611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148611
+    approval_date: '2023-06-02'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-23-0006-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-23-0006: Approval Document (approved May 12, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-23-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-23-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-23-0006
+    cms_node_id: '147896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147896
+    approval_date: '2023-05-12'
+    effective_date: '2023-01-01'
+    summary: This amendment proposed to memorialize the new income standards for its optional state supplement program, the
+      beneficiaries of which are eligible for Medicaid under Connecticut's State Plan.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-22-0031-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT 22-0031: Approval Document (approved November 18, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-22-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-22-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT 22-0031
+    cms_node_id: '141721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=141721
+    approval_date: '2022-11-18'
+    effective_date: '2022-07-01'
+    summary: This amendment is to update Connecticut's medically needy income level, and to confirm certain new income standards
+      and personal needs allowances in its optional state supplement program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-22-0004-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-22-0004: Approval Document (approved June 28, 2022, effective January 2, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-22-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-02'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-22-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-22-0004
+    cms_node_id: '139191'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139191
+    approval_date: '2022-06-28'
+    effective_date: '2022-01-02'
+    summary: Documented the increase in standards for Connecticut’s optional state supplement program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-21-0037-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-21-0037: Approval Document (approved June 28, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-21-0037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-21-0037/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-21-0037
+    cms_node_id: '137471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137471
+    approval_date: '2022-06-28'
+    effective_date: '2021-10-01'
+    summary: Effective October 1, 2021 this amendment removes federally optional liens and recoveries. This amendment updates
+      third-party liability section to reflect current law and practice with respect to the BBA of 2018 and it removes the
+      language regarding the cost effectiveness premium purchase program for group health insurance that is authorized under
+      section 1906 of the SSA.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-21-0033-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-21-0033: Approval Document (approved December 22, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-21-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-21-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-21-0033
+    cms_node_id: '135841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135841
+    approval_date: '2021-12-22'
+    effective_date: '2021-07-01'
+    summary: CT-21-0033 which proposed to amend Connecticut's Medically Needy Income Levels and the income standards for Connecticut's
+      optional state supplement program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-21-0001-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-21-0001: Approval Document (approved August 16, 2021, effective August 16, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-08-16'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-21-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-21-0001
+    cms_node_id: '110881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110881
+    approval_date: '2021-08-16'
+    effective_date: '2021-08-16'
+    summary: Effective August 6, 2021, this amendment adds the optional eligibility group of individuals who are eligible
+      for state plan home and community-based services (HCBS) and meet the requirements for an approved section 1915(c) waiver.
+      The amendment also offers a Medicaid eligibility pathway to certain individuals who meet the coverage requirements for
+      the Connecticut Housing Engagement and Support Services (CHESS) Initiative State Plan Home and Community-Based Services
+      Benefit Pursuant to Section 1915(i) of the Social Security Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-21-0001-a-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-21-0001-A: Approval Document (approved August 16, 2021, effective August 16, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-21-0001-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-08-16'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-21-0001-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-21-0001-A
+    cms_node_id: '168781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168781
+    approval_date: '2021-08-16'
+    effective_date: '2021-08-16'
+    summary: This SPA offers Medicaid eligibility pathway to certain individuals who meet the coverage requirements for the
+      Connecticut Housing Engagement and Support Services (CHESS) Initiative State Plan Home and Community Based Services
+      Benefit Pursuant to Section 1915(i) of the Social Security Act.
+    topics:
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-21-0003-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-21-0003: Approval Document (approved June 24, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/media/file/line-chart3.json
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-21-0003/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-21-0003
+    cms_node_id: '109656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109656
+    approval_date: '2021-06-24'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment updates the Optional State Supplement Standards.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-21-0005-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-21-0005: Approval Document (approved May 24, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-21-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-21-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-21-0005
+    cms_node_id: '108721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108721
+    approval_date: '2021-05-24'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment incorporates various 2021 Healthcare Common Procedure Coding System
+      (HCPCS) updates, updated the reimbursement methodology to 100% of the January 2021 Medicare Average Sales Price (ASP)
+      Drug Pricing file for physician-administered drugs, immune globulins, vaccines and toxoids and made technical updates
+      to the Person-Centered Medical Home (PCMH) program.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-20-0017-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-20-0017: Approval Document (approved July 16, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-20-0017
+    cms_node_id: '101686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101686
+    approval_date: '2020-07-16'
+    effective_date: '2020-04-01'
+    summary: updates Attachment 3.1A/B of the Medicaid State Plan to increase the allowable units to eight hours per day with
+      additional hours available with prior authorization for individual day program services provided to individuals residing
+      in Medicaid-certified nursing facilities who are 21 years of age or older and have been found through the Preadmission
+      Screening and Resident Review (PASSR) process to need such services
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-20-0003-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-20-0003: Approval Document (approved June 29, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-20-0003
+    cms_node_id: '101051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101051
+    approval_date: '2020-06-29'
+    effective_date: '2020-04-01'
+    summary: Updates the optional state supplement income standard in accordance with the 2020 SSI COLA increase.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-20-0016-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-20-0016: Approval Document (approved June 29, 2020, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-20-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-20-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-20-0016
+    cms_node_id: '99991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99991
+    approval_date: '2020-06-29'
+    effective_date: '2019-07-01'
+    summary: Makes technical corrections to recently approved state plan amendment TN 19-0017 (inpatient hospital supplemental
+      payments)
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-20-0010-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-20-0010: Approval Document (approved March 29, 2020, effective February 3, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-02-03'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-20-0010
+    cms_node_id: '98931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98931
+    approval_date: '2020-03-29'
+    effective_date: '2020-02-03'
+    summary: Updates the State’s Asset Verification System (AVS) reflecting the State’s decision to go from using a contractor
+      to build the system to joining a consortium to develop an Asset Verification System
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-19-0025-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-19-0025: Approval Document (approved November 13, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-19-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-19-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-19-0025
+    cms_node_id: '52231'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52231
+    approval_date: '2019-11-13'
+    effective_date: '2019-07-01'
+    summary: Updates the effective date of the fee schedule for Community First Choice Services (under 1915k) to implement
+      a 10% rate increase for home-delivered meals.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-18-0016-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-18-0016: Approval Document (approved June 21, 2018, effective February 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-18-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-02-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-18-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-18-0016
+    cms_node_id: '9756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9756
+    approval_date: '2018-06-21'
+    effective_date: '2018-02-01'
+    summary: This amends the State plan to make various changes to the reimbursement of chemical maintenance clinics including:pro-rating
+      the weekly rate to account for weeks in which services are provided on fewer than seven days in the week, specifying
+      in detail the services that are included in the rate, and providing for specific types of documentation regarding the
+      services that are provided.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-17-0001-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-17-0001: Approval Document (approved January 27, 2017, effective February 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-17-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-02-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-17-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-17-0001
+    cms_node_id: '16521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16521
+    approval_date: '2017-01-27'
+    effective_date: '2017-02-01'
+    summary: This SPA is an amendment to Connecticut' s approved Title XIX Medicaid State plan to renew the home and community-based
+      services benefit under Section 1915 (i ) of the Social Security Act for individuals 65 and older who meet the needs-based
+      and financial eligibility criteria in the approved SPA.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-027-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-027: Approval Document (approved May 14, 2015, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-027
+    cms_node_id: '26411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26411
+    approval_date: '2015-05-14'
+    effective_date: '2014-07-01'
+    summary: Replaces the existing plan language with a comprehensive description of the reimbursement methodology for the
+      state's public chronic disease hospital owned and operated by the Department of Veterans' Affairs.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-11-033-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-11-033: Approval Document (approved April 8, 2015, effective March 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-11-033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-11-033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-11-033
+    cms_node_id: '27461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27461
+    approval_date: '2015-04-08'
+    effective_date: '2012-03-01'
+    summary: This amendment implements adjustments for Provider Preventable Conditions, consistent with Section 2702 of the
+      Affordable Care Act of 2010 and the implementing final rule at 42 CFR 447 Subpart A.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0003-mm3-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0003-MM3: Approval Document (approved August 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0003-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0003-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0003-MM3
+    cms_node_id: '32916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32916
+    approval_date: '2014-08-25'
+    effective_date: '2014-01-01'
+    summary: SPA describes how the state will apply Modified Adjusted Gross Income (MAGi)-based methodologies consistent with
+      42 CFR §435.603.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0002-mm2-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0002-MM2: Approval Document (approved June 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0002-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0002-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0002-MM2
+    cms_node_id: '36081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36081
+    approval_date: '2014-06-24'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0004-mm4-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0004-MM4: Approval Document (approved June 18, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0004-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0004-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0004-MM4
+    cms_node_id: '36156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36156
+    approval_date: '2014-06-18'
+    effective_date: '2014-01-01'
+    summary: Establishes Single State Agency and Entities Responsible for Determinations of Eligibility and Appeals/Fair Hearings.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0001-mm1-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0001-MM1: Approval Document (approved June 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0001-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0001-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0001-MM1
+    cms_node_id: '36326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36326
+    approval_date: '2014-06-11'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0006-mm6-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0006-MM6: Approval Document (approved June 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0006-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0006-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0006-MM6
+    cms_node_id: '36331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36331
+    approval_date: '2014-06-03'
+    effective_date: '2014-01-01'
+    summary: Incorporates the Citizen and Non-Citizen Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0007-mm7-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0007-MM7: Approval Document (approved June 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0007-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0007-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0007-MM7
+    cms_node_id: '36336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36336
+    approval_date: '2014-06-03'
+    effective_date: '2014-01-01'
+    summary: Indicates Hospitals in State Determine Eligibility Presumptively, and the State Provides Medicaid Coverage to
+      Individuals Determined Presumptively Eligible.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-0005-mm5-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-0005-MM5: Approval Document (approved May 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-0005-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-0005-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0005-MM5
+    cms_node_id: '36611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36611
+    approval_date: '2014-05-23'
+    effective_date: '2014-01-01'
+    summary: Affirms Residency Regulations and Addresses Interstate Agreements and Temporary Absence in Accordance with the
+      Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-14-015-mm1-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-14-015-MM1: Approval Document (approved January 31, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-14-015-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-14-015-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-015-MM1
+    cms_node_id: '38456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38456
+    approval_date: '2014-01-31'
+    effective_date: '2014-01-01'
+    summary: Covers the New Adult Group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-13-043-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-13-043: Approval Document (approved November 12, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-13-043.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-13-043/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-13-043
+    cms_node_id: '34711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34711
+    approval_date: '2013-11-12'
+    effective_date: '2013-07-01'
+    summary: Increases the Personal Needs Allowance component for Medicaid beneficiaries eligible for State Supplement Awards.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-13-042-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-13-042: Approval Document (approved November 12, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-13-042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-13-042/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-13-042
+    cms_node_id: '34716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34716
+    approval_date: '2013-11-12'
+    effective_date: '2013-07-01'
+    summary: Updates the income eligibility standards for the Low Income Adults eligibility group described under Section
+      1902(a)(10)(A)(i)(VIII) of the Social Security Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-13-019-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-13-019: Approval Document (approved June 19, 2013, effective March 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-13-019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-03-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-13-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-13-019
+    cms_node_id: '34721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34721
+    approval_date: '2013-06-19'
+    effective_date: '2013-03-01'
+    summary: Updates the income eligibility standards for the Low Income Adults eligibility group described under Section
+      1902(a)(10)(A)(i)(VIII) of the Social Security Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-023-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-023: Approval Document (approved May 9, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-023-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-023
+    cms_node_id: '45906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45906
+    approval_date: '2013-05-09'
+    effective_date: '2012-07-01'
+    summary: To no longer count Aid and Attendance benefits as available income in determining eligibility.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-023-attachment
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-023: Attachment (approved May 9, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-023-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-023/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CT-12-023
+    cms_node_id: '45906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45906
+    approval_date: '2013-05-09'
+    effective_date: '2012-07-01'
+    summary: To no longer count Aid and Attendance benefits as available income in determining eligibility.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-023-form-cms-179
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-023: Form CMS-179 (approved May 9, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-023-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-023/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CT-12-023
+    cms_node_id: '45906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45906
+    approval_date: '2013-05-09'
+    effective_date: '2012-07-01'
+    summary: To no longer count Aid and Attendance benefits as available income in determining eligibility.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-010-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-010: Approval Document (approved December 21, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-010
+    cms_node_id: '27946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27946
+    approval_date: '2012-12-21'
+    effective_date: '2012-01-01'
+    summary: This SPA transmitted a proposed amendment to Connecticut's approved Title XIX State Plan Amendments 3.1A, 3.1B
+      and 4.19B in order to revised the reimbursement methodology for other practitioner services.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-009-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-009: Approval Document (approved December 12, 2012, effective March 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-009
+    cms_node_id: '27951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27951
+    approval_date: '2012-12-12'
+    effective_date: '2012-03-01'
+    summary: This SPA transmitted a proposed amendment to Connecticut's approved Title XIX State Plan Attachments 2.2A, 2.6A,
+      3.1A, and 4.19B in order to establish a Family Planning Services coverage group pursuant to Section 2303 of the Patient
+      Protection and Affordable Care Act., P.L. 111-148.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-015-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-015: Approval Document (approved November 21, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-015
+    cms_node_id: '31621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31621
+    approval_date: '2012-11-21'
+    effective_date: '2012-01-01'
+    summary: This proposed SPA transmitted an amendment to Connecticut's approved Title XIX State plan to exclude the amount
+      of the Connecticut Earned Income Tax Credit in determining Medicaid eligibility for the eligibility groups specified
+      in this SPA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-022-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-022: Approval Document (approved September 21, 2012, effective May 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-05-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-022
+    cms_node_id: '31616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31616
+    approval_date: '2012-09-21'
+    effective_date: '2012-05-01'
+    summary: This proposed SPA transmitted an amendment to Connecticut's approved Title XIX State plan to disregard the cash
+      surrender value of life insurance policies when the death benefits are assigned to funeral homes to fund funeral home
+      contracts.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-013-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-013: Approval Document (approved September 21, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-013
+    cms_node_id: '27941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27941
+    approval_date: '2012-09-21'
+    effective_date: '2012-04-01'
+    summary: This SPA transmitted a proposed amendment to Connecticut's approved Title XIX State Plan Attachments 3.1A, 3.1B
+      and 4.19B to establish methods and standards for setting payment rates for birth center services and other ambulatory
+      services offered by a birth center and otherwise included in the Medicaid State Plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-014-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-014: Approval Document (approved June 28, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-014
+    cms_node_id: '27936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27936
+    approval_date: '2012-06-28'
+    effective_date: '2012-04-01'
+    summary: This SPA proposes to modify the Connecticut State Plan in order to comply with the Patient Protection and Affordable
+      Care Act (Pub. I. 111-148. enacted on March 23. 2010).
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-12-003-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-12-003: Approval Document (approved March 3, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-12-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-12-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-12-003
+    cms_node_id: '31626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31626
+    approval_date: '2012-03-03'
+    effective_date: '2012-01-01'
+    summary: This proposed SPA transmitted an amendment to Connecticut's approved Title XIX State plan to increase the standards
+      for the optional State supplementary payment program by an amount equal to the SSI cost of living increase proposed
+      by the Social Security Administration.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-11-004-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-11-004: Approval Document (approved June 16, 2011, effective March 30, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-11-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-30'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-11-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-11-004
+    cms_node_id: '25536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25536
+    approval_date: '2011-06-16'
+    effective_date: '2011-03-30'
+    summary: Amends Physician Fee Schedule and reflects proposed increase in Medicaid fee for procedural code J7302.
+    topics:
+    - Premiums
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-09-026-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-09-026: Approval Document (approved December 8, 2010, effective February 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-09-026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-02-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-09-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-09-026
+    cms_node_id: '29161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29161
+    approval_date: '2010-12-08'
+    effective_date: '2010-02-01'
+    summary: This SPA transmitted a proposed amendment to Connecticut's approved Title XIX State Plan Lo add authorization
+      requirements to certain high-cost, high-utilization procedures.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-09-025-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-09-025: Approval Document (approved June 23, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-09-025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-09-025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-09-025
+    cms_node_id: '29166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29166
+    approval_date: '2010-06-23'
+    effective_date: '2010-01-01'
+    summary: This proposed plan submitted transmitted an amendment to the approved Title XIX State plan proposing to amend
+      Attachment 4.19-B of your State Plan to implement a more cost-effective fee for ceiling lifts in keeping with community
+      pricing, without a negative impact on consumer access.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-09-015-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-09-015: Approval Document (approved March 12, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-09-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-09-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-09-015
+    cms_node_id: '29191'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29191
+    approval_date: '2010-03-12'
+    effective_date: '2009-04-01'
+    summary: This proposed plan transmitted an amendment to the approved Title XIX State plan proposing to amend Title XIX
+      of Connecticut's State Plan by using fj 1902 (r)(2) and 9 193 1 of the Social Security Act (the Act) to disregard, for
+      certain mandatory and optional categorically needy and medically needy Medicaid eligibility groups, all wages paid by
+      the U.S. Census Bureau related to temporary employment related to the decennial census activities.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-09-016-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-09-016: Approval Document (approved December 30, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-09-016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-09-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-09-016
+    cms_node_id: '26966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26966
+    approval_date: '2009-12-30'
+    effective_date: '2009-04-01'
+    summary: This option allows States to provide full Medicaid coverage to otherwise eligible alien children or pregnant
+      women lawfully residing in the United States.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ct-cms-medicaid-state-plan-spa-ct-09-017-approval-document
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut Medicaid SPA CT-09-017: Approval Document (approved October 26, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CT/CT-09-017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ct/policy/cms/medicaid-state-plan/spa/ct-09-017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-09-017
+    cms_node_id: '26971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26971
+    approval_date: '2009-10-26'
+    effective_date: '2009-07-01'
+    summary: Extends Transitional Medical Assistance (TMA) coverage for individuals that received Section 1931 eligibility
+      for at least one of the previous six months from an initial period of six months to a full twelve month period of initial
+      eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document

@@ -1,0 +1,2203 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-mt-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 485
+- source_id: us-mt-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 485
+- source_id: us-mt-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 485
+- source_id: us-mt-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 485
+- source_id: us-mt-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 5
+    index_records_on_page: 85
+    index_records_total: 485
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-23-0007-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-23-0007: Approval Document (approved April 4, 2024, effective May 12, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-05-12'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-23-0007
+    cms_node_id: '163101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163101
+    approval_date: '2024-04-04'
+    effective_date: '2024-05-12'
+    summary: This SPA is to amend 1915(k) Community First Choice (CFC) benefit.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-23-0001-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-23-0001: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-23-0001
+    cms_node_id: '148281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148281
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: This SPA amendment is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-22-0013-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-22-0013: Approval Document (approved July 13, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-22-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-22-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-22-0013
+    cms_node_id: '137751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137751
+    approval_date: '2022-07-13'
+    effective_date: '2022-04-01'
+    summary: This amendment addresses third party liability and related Medicaid payments associated with prenatal care, preventive
+      pediatric services, and medical child support.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-22-0002-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-22-0002: Approval Document (approved June 15, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-22-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-22-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-22-0002
+    cms_node_id: '137096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137096
+    approval_date: '2022-06-15'
+    effective_date: '2022-01-01'
+    summary: On March 31, 2022, the Centers for Medicare and Medicaid Services (CMS) received Montana State Plan Amendment
+      (SPA) MT-22-0002, in which the state proposed to increase the general income disregard for medically needy individuals
+      from $100 to $269 per month, and to further modify the disregard consistent with Social Security Administration cost-of-living
+      adjustments beginning in 2023 and in subsequent years.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-22-0007-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-22-0007: Approval Document (approved June 7, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-22-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-22-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-22-0007
+    cms_node_id: '136546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=136546
+    approval_date: '2022-06-07'
+    effective_date: '2022-04-01'
+    summary: This amendment modifies the reimbursement received at an Indian Health Services or Tribal 638 provider for a
+      Medicaid member with dual eligible benefits. The Medicare payment will be treated as third party payments and be offset
+      against the all-inclusive Medicaid payment.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-21-0003-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-21-0003: Approval Document (approved March 31, 2021, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-21-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-21-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-21-0003
+    cms_node_id: '106966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106966
+    approval_date: '2021-03-31'
+    effective_date: '2020-03-18'
+    summary: Effective March 18, 2020, the agency rescinds the election at A.1. of section 7.4 (approved on May 8, 2020 in
+      SPA Number MT-20-0024) of the state plan to furnish medical assistance to the optional eligibility group.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-21-0004-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-21-0004: Approval Document (approved March 25, 2021, effective March 25, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MT-21-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-25'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-21-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-21-0004
+    cms_node_id: '107001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107001
+    approval_date: '2021-03-25'
+    effective_date: '2021-03-25'
+    summary: This amendment modifies the state’s paper and online applications to integrate eligibility for the state’s 1115
+      family planning demonstration waiver into the state’s Medicaid eligibility application and eligibility determination
+      system. The changes are limited to inclusion of two additional questions to ensure an applicant can apply and be determined
+      eligible for family planning coverage, as provided under Montana’s section 1115 family planning demonstration.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-20-0015-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-20-0015: Approval Document (approved September 29, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MT-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-20-0015
+    cms_node_id: '102926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102926
+    approval_date: '2020-09-29'
+    effective_date: '2020-07-01'
+    summary: Effective for services on or after July 1, 2020, this amendment updates the fee schedule for Psychiatric Residential
+      Treatment Facilities (PRTF) for state fiscal year 2020.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-20-0005-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-20-0005: Approval Document (approved September 25, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/mt-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-20-0005
+    cms_node_id: '102676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102676
+    approval_date: '2020-09-25'
+    effective_date: '2020-04-01'
+    summary: apply a census income disregard for Medicaid eligibility groups subject to non-MAGI income methodology, and to
+      migrate eligibility requirements already approved for those non-MAGI eligibility groups into the state plan. Additionally,
+      this state plan amendment revises the MAGI methodology to account for reasonably predictable
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-20-0024-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-20-0024: Approval Document (approved May 8, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-20-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-20-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-20-0024
+    cms_node_id: '98306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98306
+    approval_date: '2020-05-08'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing, allow 90-day supplies of drugs and early refills, allow exceptions
+      to the State's preferred drug list, allow use of telehealth service delivery methods in lieu of face-to-face when appropriate,
+      and to establish supplemental payments for NF/ICF providers.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-19-0001-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-19-0001: Approval Document (approved December 18, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-19-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-19-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-19-0001
+    cms_node_id: '57496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=57496
+    approval_date: '2019-12-18'
+    effective_date: '2019-10-01'
+    summary: Proposes to allow the Division of Medicaid to comply with the Medicaid Drug Utilization Review (DUR) provisions
+      included in Section 1004 of the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment (SUPPORT)
+      for Patients and Communities Act (P.L. 115-271). This amendment also proposes to allow the Division of Medicaid to comply
+      with the requirements outlined in Montana House Bill 86 regarding a 7-day supply limit for opioid naïve members
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-18-0007-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-18-0007: Approval Document (approved May 4, 2018, effective March 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-18-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-18-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-18-0007
+    cms_node_id: '10746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10746
+    approval_date: '2018-05-04'
+    effective_date: '2018-03-01'
+    summary: This amendment updates the eligibility requirements and removes the dietician from the required care team.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-16-0007-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-16-0007: Approval Document (approved February 6, 2017, effective October 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-16-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-16-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-16-0007
+    cms_node_id: '16491'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16491
+    approval_date: '2017-02-06'
+    effective_date: '2016-10-01'
+    summary: This amendment permits Montana to provide continuous Medicaid eligibility for children under the age of 19 for
+      a full year, regardless of whether the child continuously meets all eligibility requirements during the continuous eligibility
+      period.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-15-0036-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-15-0036: Approval Document (approved July 19, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-15-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-15-0036/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-15-0036
+    cms_node_id: '18736'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=18736
+    approval_date: '2016-07-19'
+    effective_date: '2016-01-01'
+    summary: Implements federal cost-sharing provisions for Montana's Medicaid expansion population.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-16-0020-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-16-0020: Approval Document (approved July 19, 2016, effective June 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-16-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-06-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-16-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-16-0020
+    cms_node_id: '18741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=18741
+    approval_date: '2016-07-19'
+    effective_date: '2016-06-01'
+    summary: Implements Federal cost sharing provisions for Montana's Medicaid standard population to align with the expansion
+      HELP population.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-16-0003-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-16-0003: Approval Document (approved May 24, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-16-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-16-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-16-0003
+    cms_node_id: '19401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19401
+    approval_date: '2016-05-24'
+    effective_date: '2016-01-01'
+    summary: This adds the new expansion adults to the State Plan.
+    topics:
+    - State Plan Factsheet
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-15-0032-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-15-0032: Approval Document (approved February 17, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-15-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-15-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-15-0032
+    cms_node_id: '20396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20396
+    approval_date: '2016-02-17'
+    effective_date: '2016-01-01'
+    summary: Adds hospital presumptive eligibility to Montana Medicaid.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-15-0021-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-15-0021: Approval Document (approved January 25, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-15-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-15-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-15-0021
+    cms_node_id: '20831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20831
+    approval_date: '2016-01-25'
+    effective_date: '2016-01-01'
+    summary: Added introduction page.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-0045-mm-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-0045-MM: Approval Document (approved June 10, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-0045-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-0045-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0045-MM
+    cms_node_id: '26761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26761
+    approval_date: '2015-06-10'
+    effective_date: '2014-01-01'
+    summary: This SPA implements the Affordable Care Act changes for citizenship and non-citizen eligibility, verifying the
+      reasonable opportunity periods to provide verification of citizenship.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-0042-mm-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-0042-MM: Approval Document (approved April 8, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-0042-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-0042-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0042-MM
+    cms_node_id: '37901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37901
+    approval_date: '2014-04-08'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Mandatory and Optional Eligibility Groups Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-14-0004-mm7-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-14-0004-MM7: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-14-0004-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-14-0004-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-14-0004-MM7
+    cms_node_id: '38446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38446
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: Implements new Provision for MAGI Presumptive Eligibility for Hospitals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-029-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-029: Approval Document (approved January 29, 2014, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-029
+    cms_node_id: '34146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34146
+    approval_date: '2014-01-29'
+    effective_date: '2013-07-01'
+    summary: Amends Physician Services to update Fees by 5.7% and the date of Fee Schedule.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-0044-mm-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-0044-MM: Approval Document (approved November 26, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-0044-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-0044-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0044-MM
+    cms_node_id: '35751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35751
+    approval_date: '2013-11-26'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-0048-mm-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-0048-MM: Approval Document (approved November 25, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-0048-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-0048-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-0048-MM
+    cms_node_id: '35341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35341
+    approval_date: '2013-11-25'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Single State Agency Delegation of Authority Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-033-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-033: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-033-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-033
+    cms_node_id: '42426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42426
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Licensed Professional Counselors Services 2% Rate Increase, Date Change.
+    topics: &id002
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-033-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-033: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-033-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-033/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-033
+    cms_node_id: '42426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42426
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Licensed Professional Counselors Services 2% Rate Increase, Date Change.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-033-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-033: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-033-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-033/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-033
+    cms_node_id: '42426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42426
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Licensed Professional Counselors Services 2% Rate Increase, Date Change.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-032-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-032: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-032-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-032
+    cms_node_id: '42431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42431
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Licensed Professional Counselors Services 2% Rate Increase, Date Change.
+    topics: &id003
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-032-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-032: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-032-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-032/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-032
+    cms_node_id: '42431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42431
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Licensed Professional Counselors Services 2% Rate Increase, Date Change.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-032-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-032: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-032-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-032/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-032
+    cms_node_id: '42431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42431
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Licensed Professional Counselors Services 2% Rate Increase, Date Change.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-030-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-030: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-030-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-030
+    cms_node_id: '42436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42436
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: TCM for Youth with SED Rate Increase, Date Change.
+    topics: &id004
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-030-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-030: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-030-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-030/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-030
+    cms_node_id: '42436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42436
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: TCM for Youth with SED Rate Increase, Date Change.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-030-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-030: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-030-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-030/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-030
+    cms_node_id: '42436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42436
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: TCM for Youth with SED Rate Increase, Date Change.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-028-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-028: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-028-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-028
+    cms_node_id: '42441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42441
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Home Health Services 2% Rate Increase, Date Change.
+    topics: &id005
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-028-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-028: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-028-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-028/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-028
+    cms_node_id: '42441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42441
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Home Health Services 2% Rate Increase, Date Change.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-028-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-028: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-028-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-028/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-028
+    cms_node_id: '42441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42441
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Home Health Services 2% Rate Increase, Date Change.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-026-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-026: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-026-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-026
+    cms_node_id: '42446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42446
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Hearing Aids 2% Rate Increase, Date Change.
+    topics: &id006
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-026-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-026: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-026-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-026/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-026
+    cms_node_id: '42446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42446
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Hearing Aids 2% Rate Increase, Date Change.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-026-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-026: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-026-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-026/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-026
+    cms_node_id: '42446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42446
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Hearing Aids 2% Rate Increase, Date Change.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-023-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-023: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-023-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-023
+    cms_node_id: '42451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42451
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Chiropractic Services 2% Rate Increase, Date Change.
+    topics: &id007
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-023-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-023: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-023-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-023/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-023
+    cms_node_id: '42451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42451
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Chiropractic Services 2% Rate Increase, Date Change.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-023-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-023: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-023-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-023/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-023
+    cms_node_id: '42451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42451
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Chiropractic Services 2% Rate Increase, Date Change.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-019-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-019: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-019-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-019
+    cms_node_id: '42456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42456
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Dental Services 2% Rate Increase, Date Change.
+    topics: &id008
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-019-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-019: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-019-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-019/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-019
+    cms_node_id: '42456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42456
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Dental Services 2% Rate Increase, Date Change.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-019-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-019: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-019-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-019/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-019
+    cms_node_id: '42456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42456
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Dental Services 2% Rate Increase, Date Change.
+    topics: *id008
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-018-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-018: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-018-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-018
+    cms_node_id: '42461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42461
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Speech Therapy & Audiology Services 2% Rate Increase, Date Change.
+    topics: &id009
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-018-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-018: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-018-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-018/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-018
+    cms_node_id: '42461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42461
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Speech Therapy & Audiology Services 2% Rate Increase, Date Change.
+    topics: *id009
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-018-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-018: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-018-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-018/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-018
+    cms_node_id: '42461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42461
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Speech Therapy & Audiology Services 2% Rate Increase, Date Change.
+    topics: *id009
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-017-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-017: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-017-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-017
+    cms_node_id: '42466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42466
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Occupational Therapy Services 2% Rate Increase, Date Change.
+    topics: &id010
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-017-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-017: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-017-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-017/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-017
+    cms_node_id: '42466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42466
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Occupational Therapy Services 2% Rate Increase, Date Change.
+    topics: *id010
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-017-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-017: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-017-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-017/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-017
+    cms_node_id: '42466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42466
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Occupational Therapy Services 2% Rate Increase, Date Change.
+    topics: *id010
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-016-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-016: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-016-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-016
+    cms_node_id: '42471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42471
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Physical Therapy Services 2% Rate Increase, Date Change.
+    topics: &id011
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-016-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-016: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-016-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-016/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-016
+    cms_node_id: '42471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42471
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Physical Therapy Services 2% Rate Increase, Date Change.
+    topics: *id011
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-016-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-016: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-016-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-016/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-016
+    cms_node_id: '42471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42471
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Physical Therapy Services 2% Rate Increase, Date Change.
+    topics: *id011
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-015-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-015: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-015-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-015
+    cms_node_id: '42476'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42476
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Optometrists Services Rate Increase and Date Change.
+    topics: &id012
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-015-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-015: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-015-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-015/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-015
+    cms_node_id: '42476'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42476
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Optometrists Services Rate Increase and Date Change.
+    topics: *id012
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-015-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-015: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-015-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-015/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-015
+    cms_node_id: '42476'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42476
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Optometrists Services Rate Increase and Date Change.
+    topics: *id012
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-009-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-009: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-13-009
+    cms_node_id: '42481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42481
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: TCM, Adult Mental Health 2% Rate Increase, Date Change.
+    topics: &id013
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-009-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-009: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-13-009
+    cms_node_id: '42481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42481
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: TCM, Adult Mental Health 2% Rate Increase, Date Change.
+    topics: *id013
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-13-009-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-13-009: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-13-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-13-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-13-009
+    cms_node_id: '42481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42481
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: TCM, Adult Mental Health 2% Rate Increase, Date Change.
+    topics: *id013
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-12-002-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-12-002: Approval Document (approved May 30, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-12-002-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-12-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-12-002
+    cms_node_id: '32976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32976
+    approval_date: '2012-05-30'
+    effective_date: '2012-04-01'
+    summary: Provider Screening and Enrollment.
+    topics: &id014
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-12-002-attachment
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-12-002: Attachment (approved May 30, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-12-002-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-12-002/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MT-12-002
+    cms_node_id: '32976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32976
+    approval_date: '2012-05-30'
+    effective_date: '2012-04-01'
+    summary: Provider Screening and Enrollment.
+    topics: *id014
+    link_label: Attachment
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-12-002-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-12-002: Form CMS-179 (approved May 30, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-12-002-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-12-002/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-12-002
+    cms_node_id: '32976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32976
+    approval_date: '2012-05-30'
+    effective_date: '2012-04-01'
+    summary: Provider Screening and Enrollment.
+    topics: *id014
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-08-016-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-08-016: Approval Document (approved February 10, 2011, effective July 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-08-016-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-08-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-08-016
+    cms_node_id: '48351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=48351
+    approval_date: '2011-02-10'
+    effective_date: '2008-07-01'
+    summary: Target Case Management for Chronically Mentally Ill Adults.
+    topics: &id015
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-08-016-form-cms-179
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-08-016: Form CMS-179 (approved February 10, 2011, effective July 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-08-016-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-08-016/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MT-08-016
+    cms_node_id: '48351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=48351
+    approval_date: '2011-02-10'
+    effective_date: '2008-07-01'
+    summary: Target Case Management for Chronically Mentally Ill Adults.
+    topics: *id015
+    link_label: Form CMS-179
+- source_id: us-mt-cms-medicaid-state-plan-spa-mt-09-011-approval-document
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Medicaid SPA MT-09-011: Approval Document (approved November 6, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MT/MT-09-011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-mt/policy/cms/medicaid-state-plan/spa/mt-09-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Montana
+    source_discovery_group: us-mt/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MT-09-011
+    cms_node_id: '24306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24306
+    approval_date: '2009-11-06'
+    effective_date: '2009-07-01'
+    summary: Amendment to extend Medicaid eligibility under TMA for an initial period of 12 months.
+    topics:
+    - Eligibility
+    link_label: Approval Document

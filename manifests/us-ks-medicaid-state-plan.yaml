@@ -1,0 +1,976 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ks-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 297
+- source_id: us-ks-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 297
+- source_id: us-ks-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 97
+    index_records_total: 297
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-24-0002-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-24-0002: Approval Document (approved April 4, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-24-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-24-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-24-0002
+    cms_node_id: '162516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162516
+    approval_date: '2024-04-04'
+    effective_date: '2024-01-01'
+    summary: This amendment abolishes copayments for Medicaid fee-for-service beneficiaries within the state.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-24-0003-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-24-0003: Approval Document (approved March 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-24-0003
+    cms_node_id: '161591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161591
+    approval_date: '2024-03-15'
+    effective_date: '2024-01-01'
+    summary: This amendment streamlines the process of integrating the state's compliance with continuous eligibility (CE)
+      authority into the Medicaid and Chip Program (MACPro) Portal.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-21-0013-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-21-0013: Approval Document (approved July 24, 2023, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-21-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-21-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-21-0013
+    cms_node_id: '150881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150881
+    approval_date: '2023-07-24'
+    effective_date: '2021-07-01'
+    summary: This amendment expands PE to include the Parents and other Caretaker Relatives, Former Foster Care and Breast
+      and Cervical Cancer groups, in addition to Children and Pregnant Women, and to allow the state-designated Qualified
+      Entities to complete PE determinations for all groups covered in PE.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-23-0015-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-23-0015: Approval Document (approved May 19, 2023, effective May 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-23-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-23-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-23-0015
+    cms_node_id: '148111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148111
+    approval_date: '2023-05-19'
+    effective_date: '2023-05-01'
+    summary: This amendment align premium rates for the Working Healthy program with recent changes to the protected income
+      level for Kansas Home- and Community-Based Services waivers, which eliminates premiums for most beneficiaries.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-23-0011-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-23-0011: Approval Document (approved March 17, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-23-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-23-0011
+    cms_node_id: '145931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=145931
+    approval_date: '2023-03-17'
+    effective_date: '2023-04-01'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to temporarily
+      implement a disregard of income that would have otherwise been part of an individual’s liability for institutional or
+      home and community-based waiver services based on application of the post-eligibility treatment-of income (PETI) rules,
+      but which became countable resources on or after March 18, 2020.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-22-0030-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-22-0030: Approval Document (approved October 14, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-22-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-22-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-22-0030
+    cms_node_id: '140651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140651
+    approval_date: '2022-10-14'
+    effective_date: '2022-07-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to rescind the authorities regarding Presumptive Eligibility (PE) authorized in sections B.1, B.2,
+      and B.3 of DR SPA KS-20-0012. This will revert the State back to the practice of one PE period for parents or caretaker
+      relatives, children, former foster care children; one PE period per pregnancy per a 12-month period; remove the state
+      as a qualified entity; and eliminate the ability for qualified providers to determine eligibility for Parents/Caretaker
+      Relatives and Former Foster Care Children.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-22-0029-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-22-0029: Approval Document (approved September 16, 2022, effective No Effective Date)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-22-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-09-16'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-22-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-22-0029
+    cms_node_id: '139781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139781
+    approval_date: '2022-09-16'
+    effective_date: null
+    summary: 'CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to: Income that
+      would have otherwise been part of an individual''s liability for his or her institutional or home and community-based
+      waiver services based on application of the post-eligibility treatment-of income (PETI) rules, but which became countable
+      resources on or after March 18, 2020. Such resources will be disregarded through the twelve months following the end
+      of the month in which the COVID-19 public health emergency ends.'
+    topics:
+    - Disaster Relief
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-21-0008-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-21-0008: Approval Document (approved May 5, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/KS-21-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-21-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-21-0008
+    cms_node_id: '108241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108241
+    approval_date: '2021-05-05'
+    effective_date: '2021-04-01'
+    summary: Includes broader diagnoses of schizophrenia, bipolar disorder, and depressive disorders, expanding eligibility
+      for more medicaid members
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-20-0011-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-20-0011: Approval Document (approved September 20, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-20-0011
+    cms_node_id: '102346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102346
+    approval_date: '2020-09-20'
+    effective_date: '2020-07-01'
+    summary: This amendment adds "unit” to “transfer” definition and “wing” is changed to “unit” in section 2.5400.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-20-0013-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS 20-0013: Approval Document (approved July 16, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/KS 20-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-20-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS 20-0013
+    cms_node_id: '101056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101056
+    approval_date: '2020-07-16'
+    effective_date: '2020-04-01'
+    summary: Adds services available in State’s Health Homes program to enrollees in Kansas’ Working Healthy Program
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-20-0008-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-20-0008: Approval Document (approved June 25, 2020, effective April 3, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-03'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-20-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-20-0008
+    cms_node_id: '99861'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99861
+    approval_date: '2020-06-25'
+    effective_date: '2020-04-03'
+    summary: Adds "State Institutional Alternative (SIA)" to the Medicaid state plan
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-20-0012-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-20-0012: Approval Document (approved May 11, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-20-0012
+    cms_node_id: '98371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98371
+    approval_date: '2020-05-11'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to allow 2 presumptive eligibility periods during a 12-month period during the public health emergency; suspend cost-sharing
+      for all COVID-19 related services; authorize up to 90-day supplies for maintenance drugs; expand prior authorization
+      for medications; increases pharmacy reimbursement by adjusting dispensing fee; and make exceptions to the preferred
+      drug list in case of drug shortages.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-19-0012-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-19-0012: Approval Document (approved December 2, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-19-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-19-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-19-0012
+    cms_node_id: '52271'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52271
+    approval_date: '2019-12-02'
+    effective_date: '2019-10-01'
+    summary: Updates the State’s Disproportionate Share Hospital allotment allocation and payment methodology.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-19-0018-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-19-0018: Approval Document (approved November 5, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-19-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-19-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-19-0018
+    cms_node_id: '4226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4226
+    approval_date: '2019-11-05'
+    effective_date: '2019-10-01'
+    summary: Transfer of basic eligibility information into the MACPro system without making any changes to Kansas' current
+      groups.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-19-0010-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-19-0010: Approval Document (approved September 13, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-19-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-19-0010
+    cms_node_id: '5016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5016
+    approval_date: '2019-09-13'
+    effective_date: '2019-07-01'
+    summary: Amends the amount that would otherwise be paid methodology for the KS' Program of All-Inclusive Care for the
+      Elderly (PACE).
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-18-0012-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-18-0012: Approval Document (approved November 6, 2018, effective September 21, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-18-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-09-21'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-18-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-18-0012
+    cms_node_id: '8316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=8316
+    approval_date: '2018-11-06'
+    effective_date: '2018-09-21'
+    summary: Expands tobacco cessation counseling to all Medicaid enrollees.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-17-012-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-17-012: Approval Document (approved January 25, 2018, effective December 19, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-17-012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-12-19'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-17-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-17-012
+    cms_node_id: '11901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11901
+    approval_date: '2018-01-25'
+    effective_date: '2017-12-19'
+    summary: This Amendment corrects the State plan regarding the state's payment of Medicare Part A and B deductibles and
+      cost-sharing on Medicare crossover claims.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0003-mm2-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0003-MM2: Approval Document (approved December 8, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0003-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0003-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0003-MM2
+    cms_node_id: '30216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30216
+    approval_date: '2014-12-08'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI-based eligibility process requirements, including the single streamlined application, into
+      Kansas' Medicaid state plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0019-mm1-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0019-MM1: Approval Document (approved August 25, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0019-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0019-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0019-MM1
+    cms_node_id: '33566'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33566
+    approval_date: '2014-08-25'
+    effective_date: '2014-04-01'
+    summary: Amend Modified Adjusted Gross Income (MAGI) page S30, for the MAGI based eligibility groups Mandatory Coverage
+      - Infants and Children under Age 19.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0006-mm5-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0006-MM5: Approval Document (approved June 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0006-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0006-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0006-MM5
+    cms_node_id: '35866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35866
+    approval_date: '2014-06-25'
+    effective_date: '2014-01-01'
+    summary: Describes the Modified Adjusted Gross Income (MAGI) Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0002-mm1-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0002-MM1: Approval Document (approved June 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0002-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0002-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0002-MM1
+    cms_node_id: '36141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36141
+    approval_date: '2014-06-23'
+    effective_date: '2014-01-01'
+    summary: Describes Modified Adjusted Gross Income MAGI Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0005-mm4-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0005-MM4: Approval Document (approved June 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0005-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0005-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0005-MM4
+    cms_node_id: '36371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36371
+    approval_date: '2014-06-06'
+    effective_date: '2014-01-01'
+    summary: Clarifies Authority and Responsibility of State Agency and its Relationship to Other Federal and State Agencies,
+      the Fair Hearings Process, and the Process for Determining Eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0004-mm3-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0004-MM3: Approval Document (approved May 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0004-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0004-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0004-MM3
+    cms_node_id: '37511'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37511
+    approval_date: '2014-05-02'
+    effective_date: '2014-01-01'
+    summary: Describes the Financial Eligibility Methodologies that will apply to all Modified Adjusted Gross Income MAGI
+      Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-14-0007-mm6-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-14-0007-MM6: Approval Document (approved April 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-14-0007-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-14-0007-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-14-0007-MM6
+    cms_node_id: '28066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28066
+    approval_date: '2014-04-06'
+    effective_date: '2014-01-01'
+    summary: Describes Medicaid Requirements Related to Citizenship and Non-Citizen Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-11-14-approval-document
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-11-14: Approval Document (approved January 9, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-11-14-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-11-14/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KS-11-14
+    cms_node_id: '43386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43386
+    approval_date: '2012-01-09'
+    effective_date: '2011-10-01'
+    summary: This amendment provides for Medicaid coverage of comprehensive tobacco cessation services for pregnant women,
+      including both counseling and pharmacotherapy, without cost sharing.
+    topics: &id002
+    - Benefits
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-11-14-attachment
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-11-14: Attachment (approved January 9, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-11-14-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-11-14/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: KS-11-14
+    cms_node_id: '43386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43386
+    approval_date: '2012-01-09'
+    effective_date: '2011-10-01'
+    summary: This amendment provides for Medicaid coverage of comprehensive tobacco cessation services for pregnant women,
+      including both counseling and pharmacotherapy, without cost sharing.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ks-cms-medicaid-state-plan-spa-ks-11-14-form-cms-179
+  jurisdiction: us-ks
+  document_class: policy
+  title: 'Kansas Medicaid SPA KS-11-14: Form CMS-179 (approved January 9, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/KS/KS-11-14-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-ks/policy/cms/medicaid-state-plan/spa/ks-11-14/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Kansas
+    source_discovery_group: us-ks/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: KS-11-14
+    cms_node_id: '43386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43386
+    approval_date: '2012-01-09'
+    effective_date: '2011-10-01'
+    summary: This amendment provides for Medicaid coverage of comprehensive tobacco cessation services for pregnant women,
+      including both counseling and pharmacotherapy, without cost sharing.
+    topics: *id002
+    link_label: Form CMS-179

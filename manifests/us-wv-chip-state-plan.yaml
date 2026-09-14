@@ -1,0 +1,616 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-wv-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=731&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 21
+    index_records_total: 21
+- source_id: us-wv-cms-chip-state-plan-spa-wv-26-1001-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-26-1001: Approval Package (approved August 17, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-26-1001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-26-1001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-26-1001
+    cms_node_id: '195026'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=195026
+    approval_date: '2026-08-17'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, West Virginia demonstrates compliance with section 205 of the Consolidated Appropriations Act,
+      2024 (CAA, 2024) by modifying CHIP eligibility requirements for the treatment of incarcerated pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-24-0003-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-24-0003: Approval Package (approved September 18, 2024, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-24-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-24-0003
+    cms_node_id: '170551'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170551
+    approval_date: '2024-09-18'
+    effective_date: '2023-07-01'
+    summary: Through this SPA, the state amends the benefit package for children under the CHIP state plan from benchmark
+      to Secretary-approved coverage that mirrors the Medicaid state plan benefit package for children. CHIP medical, dental,
+      and behavioral health benefits align with West Virginia Medicaid benefits for children and pregnant women in respect
+      to amount, duration, and scope of services, as well as exclusions and limitations. Pharmacy is the one exception to
+      full alignment with Medicaid.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-24-0009-chip-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-24-0009-CHIP: Approval Package (approved August 7, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-24-0009-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-24-0009-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-24-0009-CHIP
+    cms_node_id: '169781'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169781
+    approval_date: '2024-08-07'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-24-0008-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-24-0008: Approval Package (approved July 31, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-24-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-24-0008/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-24-0008
+    cms_node_id: '169866'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169866
+    approval_date: '2024-07-31'
+    effective_date: '2024-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-23-0001-dral-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-23-0001-DRAL: Approval Package (approved August 10, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-23-0001-DRAL
+    cms_node_id: '152131'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=152131
+    approval_date: '2023-08-10'
+    effective_date: '2023-05-12'
+    summary: 'This letter reactivates West Virginia''s approved Evergreen Disaster Relief State Plan Amendment to include
+      the following flexibilities: waiving the collection of premiums (through 3/1/24) and waiving copayments for services
+      related to COVID-19 (through 9/30/24).'
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-22-0017-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-22-0017: Approval Package (approved September 8, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-22-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-22-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-22-0017
+    cms_node_id: '139561'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139561
+    approval_date: '2022-09-08'
+    effective_date: '2022-04-01'
+    summary: This SPA provides West Virginia with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-22-0018-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-22-0018: Approval Package (approved July 7, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV-22-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-22-0018/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-22-0018
+    cms_node_id: '138011'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=138011
+    approval_date: '2022-07-07'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-20-0005-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-20-0005: Approval Package (approved July 9, 2021, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/wv-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-20-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-20-0005
+    cms_node_id: '110056'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110056
+    approval_date: '2021-07-09'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-19-0006-factsheet
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-19-0006: Factsheet (approved October 11, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-19-0006/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: WV-19-0006
+    cms_node_id: '58631'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=58631
+    approval_date: '2019-10-11'
+    effective_date: '2019-07-01'
+    summary: Provides coverage to uninsured pregnant women over age 18, with family income up to 300 percent of the federal
+      poverty level
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-wv-cms-chip-state-plan-spa-wv-19-0005-factsheet
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-19-0005: Factsheet (approved September 27, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-19-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-19-0005/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: WV-19-0005
+    cms_node_id: '58626'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=58626
+    approval_date: '2019-09-27'
+    effective_date: '2019-07-01'
+    summary: authorizes use of title XXI admin funding for expenditures for HSI under the plan improving the health of children
+    topics:
+    - Current State Plan
+    - Health Services Initiatives
+    link_label: Factsheet
+- source_id: us-wv-cms-chip-state-plan-spa-wv-18-0003-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-18-0003: Approval Package (approved December 6, 2018, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-18-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-18-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-18-0003
+    cms_node_id: '3991'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3991
+    approval_date: '2018-12-06'
+    effective_date: '2017-10-02'
+    summary: Implements mental health parity requirements to ensure that financial requirements and treatment limitations
+      applied to mental health (MH) and substance use disorder(SUD) benefits are no more restrictive than those applied to
+      medical/surgical (M/S) benefits.
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-13-0005-mc5-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-13-0005-MC5: Approval Package (approved February 7, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-13-0005-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-13-0005-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0005-MC5
+    cms_node_id: '2506'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2506
+    approval_date: '2014-02-07'
+    effective_date: '2014-01-01'
+    summary: Clarifies State's Non-Financial Eligibility Policies on Residency, Citizenship, Social Security Numbers, Substitution
+      on Coverage, Non-Payment of Premiums, and Continuous Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-13-0001-mc1-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-13-0001-MC1: Approval Package (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-13-0001-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-13-0001-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0001-MC1
+    cms_node_id: '2511'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2511
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that State will Apply Methodologies Based on MAGI for all Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-13-0002-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-13-0002: Approval Package (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-13-0002-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-13-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0002
+    cms_node_id: '2516'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2516
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: MC2 Converts State's Existing Income Eligibility Standards to Modified Adjusted Gross Income MAGI Equivalent
+      Standards, By Age Group, For Children Covered In Its Title XXI Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-13-0003-mc3-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-13-0003-MC3: Approval Package (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-13-0003-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-13-0003-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-13-0003-MC3
+    cms_node_id: '2521'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2521
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: Describes State's Plan to Provide Coverage in Its Separate CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-spa-wv-cspa-10-approval-package
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP SPA WV-CSPA-10: Approval Package (approved June 22, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WV-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/spa/wv-cspa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WV-CSPA-10
+    cms_node_id: '1431'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1431
+    approval_date: '2011-06-22'
+    effective_date: '2003-06-01'
+    summary: Expansion from 250% FPL to 300% FPL, CHIPRA Section 501 - Oral Health, CHIPRA Section 502 - Mental Health Parity,
+      F12, expands benefits, and reduces waiting period.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-wv-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WVCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: WV
+    cms_node_id: '1291'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1291
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 6 and Factsheet as of 12-27-2006.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-wv-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-wv
+  document_class: policy
+  title: 'West Virginia CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/WV/WVCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-wv/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: West Virginia
+    source_discovery_group: us-wv/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: WV
+    cms_node_id: '1291'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1291
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan as amended by SPA 6 and Factsheet as of 12-27-2006.
+    topics: *id002
+    link_label: Current State Plan

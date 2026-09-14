@@ -1,0 +1,697 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ky-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 22
+    index_records_total: 22
+- source_id: us-ky-cms-chip-state-plan-spa-ky-26-0003-chip-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-26-0003-CHIP: Approval Package (approved August 17, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-26-0003-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-26-0003-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-26-0003-CHIP
+    cms_node_id: '195031'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=195031
+    approval_date: '2026-08-17'
+    effective_date: '2026-01-01'
+    summary: Through this SPA, Kentucky demonstrates compliance with section 205 of the Consolidated Appropriations Act, 2024
+      (CAA, 2024) by modifying CHIP eligibility requirements for the treatment of incarcerated pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-23-0002-chip-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-23-0002-CHIP: Approval Package (approved December 15, 2023, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-23-0002-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-23-0002-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-23-0002-CHIP
+    cms_node_id: '157711'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=157711
+    approval_date: '2023-12-15'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-22-0003-chip-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-22-0003-CHIP: Approval Package (approved July 21, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-22-0003-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-22-0003-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-22-0003-CHIP
+    cms_node_id: '150786'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=150786
+    approval_date: '2023-07-21'
+    effective_date: '2022-07-01'
+    summary: Through this SPA, the state transitions all children from the state’s separate CHIP to a Medicaid expansion CHIP
+      effective July 1, 2022
+    topics:
+    - Delivery System
+    - Eligibility
+    - MCHIP Program
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-22-0004-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-22-0004: Approval Package (approved October 7, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-22-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-22-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-22-0004
+    cms_node_id: '140391'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=140391
+    approval_date: '2022-10-07'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-21-0002-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-21-0002: Approval Package (approved June 9, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-22-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-21-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-21-0002
+    cms_node_id: '136861'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=136861
+    approval_date: '2022-06-09'
+    effective_date: '2022-07-01'
+    summary: This SPA approves Kentucky to provide coverage to targeted low-income pregnant women in CHIP, who are women over
+      age 18 with income above 195 percent up to and including 213 percent of the federal poverty level.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-21-0001-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-21-0001: Approval Package (approved June 9, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-21-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-21-0001
+    cms_node_id: '136866'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=136866
+    approval_date: '2022-06-09'
+    effective_date: '2022-07-01'
+    summary: This SPA approves Kentucky to provide coverage to targeted low-income pregnant women in CHIP, who are women over
+      age 18 with income above 195 percent up to and including 213 percent of the federal poverty level.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-22-0001-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-22-0001: Approval Package (approved May 25, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-22-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-22-0001
+    cms_node_id: '136056'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=136056
+    approval_date: '2022-05-25'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Kentucky with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its separate CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-20-0002-chip-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-20-0002-CHIP: Approval Package (approved April 8, 2021, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY-20-0002-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-20-0002-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-20-0002-CHIP
+    cms_node_id: '107616'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=107616
+    approval_date: '2021-04-08'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-18-0001-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-18-0001: Approval Package (approved April 19, 2019, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-18-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-18-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-18-0001
+    cms_node_id: '3951'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3951
+    approval_date: '2019-04-19'
+    effective_date: '2017-10-02'
+    summary: CHIP implements mental health parity requirements to ensure that treatment limitations applied to mental health
+      (MH) and substance use disorder (SUD) benefits are no more restrictive than medical/surgical (MIS) benefits.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-13-0013-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-13-0013: Approval Package (approved November 14, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-13-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-13-0013/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0013
+    cms_node_id: '2421'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2421
+    approval_date: '2013-11-14'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that State will Apply Methodologies Based on MAGI for All Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-13-0017-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-13-0017: Approval Package (approved November 14, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-13-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-13-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0017
+    cms_node_id: '2431'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2431
+    approval_date: '2013-11-14'
+    effective_date: '2014-01-01'
+    summary: Clarifies State's Non-Financial Eligibility Policies on Residency; Citizenship; Social Security Numbers; and
+      Substitution of Coverage.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-13-0015-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-13-0015: Approval Package (approved October 8, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-13-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-13-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0015
+    cms_node_id: '2416'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2416
+    approval_date: '2013-10-08'
+    effective_date: '2014-01-01'
+    summary: Provides Coverage in a Separate CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-13-0014-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-13-0014: Approval Package (approved October 8, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-13-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-13-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-13-0014
+    cms_node_id: '2426'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2426
+    approval_date: '2013-10-08'
+    effective_date: '2014-01-01'
+    summary: Converts State's Existing Income Eligibility Standard to Modified Adjusted Gross Income MAGI Equivalent Standard.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-cspa-12-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-CSPA-12: Approval Package (approved February 24, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-CSPA-12-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-cspa-12/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-CSPA-12
+    cms_node_id: '2061'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2061
+    approval_date: '2011-02-24'
+    effective_date: '2010-10-01'
+    summary: Coverage for children of state employees -Section 10203(6)(C) of the Affordable Care Act.
+    topics: &id002
+    - Expansion
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-cspa-12-final-approved-state-plan
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-CSPA-12: Final Approved State Plan (approved February 24, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-CSPA-12-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-cspa-12/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: KY-CSPA-12
+    cms_node_id: '2061'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2061
+    approval_date: '2011-02-24'
+    effective_date: '2010-10-01'
+    summary: Coverage for children of state employees -Section 10203(6)(C) of the Affordable Care Act.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-ky-cms-chip-state-plan-spa-ky-cspa-11-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-CSPA-11: Approval Package (approved October 21, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-CSPA-11-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-cspa-11/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-CSPA-11
+    cms_node_id: '1441'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1441
+    approval_date: '2010-10-21'
+    effective_date: '2010-07-01'
+    summary: Eliminate premiums for children enrolled in the KY separate CHIP.
+    topics: &id003
+    - Premiums
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-cspa-11-final-approved-state-plan
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-CSPA-11: Final Approved State Plan (approved October 21, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-CSPA-11-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-cspa-11/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: KY-CSPA-11
+    cms_node_id: '1441'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1441
+    approval_date: '2010-10-21'
+    effective_date: '2010-07-01'
+    summary: Eliminate premiums for children enrolled in the KY separate CHIP.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-ky-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP compiled state plan: Factsheet (approved October 21, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KYCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: KY
+    cms_node_id: '1861'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1861
+    approval_date: '2010-10-21'
+    effective_date: '2010-07-01'
+    summary: Current CHIP State Plan as amended by SPA 11 and Factsheet as of 02-24-2011.
+    topics: &id004
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ky-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP compiled state plan: Current State Plan (approved October 21, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KYCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: KY
+    cms_node_id: '1861'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1861
+    approval_date: '2010-10-21'
+    effective_date: '2010-07-01'
+    summary: Current CHIP State Plan as amended by SPA 11 and Factsheet as of 02-24-2011.
+    topics: *id004
+    link_label: Current State Plan
+- source_id: us-ky-cms-chip-state-plan-spa-ky-cspa-10-approval-package
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-CSPA-10: Approval Package (approved April 21, 2009, effective November 1, 2008)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-11-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-cspa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: KY-CSPA-10
+    cms_node_id: '2121'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2121
+    approval_date: '2009-04-21'
+    effective_date: '2008-11-01'
+    summary: CHIPRA Section 502 - Mental Health Parity and CHIPRA Section 503 - Prospective Payment System for FQHCs & RHCs.
+    topics: &id005
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ky-cms-chip-state-plan-spa-ky-cspa-10-final-approved-state-plan
+  jurisdiction: us-ky
+  document_class: policy
+  title: 'Kentucky CHIP SPA KY-CSPA-10: Final Approved State Plan (approved April 21, 2009, effective November 1, 2008)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/KY/KY-CSPA-10-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-11-01'
+  citation_path: us-ky/policy/cms/chip-state-plan/spa/ky-cspa-10/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Kentucky
+    source_discovery_group: us-ky/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: KY-CSPA-10
+    cms_node_id: '2121'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2121
+    approval_date: '2009-04-21'
+    effective_date: '2008-11-01'
+    summary: CHIPRA Section 502 - Mental Health Parity and CHIPRA Section 503 - Prospective Payment System for FQHCs & RHCs.
+    topics: *id005
+    link_label: Final Approved State Plan
