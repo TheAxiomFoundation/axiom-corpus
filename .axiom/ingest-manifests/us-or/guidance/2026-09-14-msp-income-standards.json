@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "7a17304bba3a1e66d5626bf7b223db512726d5c9d30be2c718770958705f95c1"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "2cb8395e3f9c7b1e1579fc0135a76173b3c9e88b51d8c9b33ded3b5cc9680c91"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "358b5bc9d8470aa7bbc0c2db3629605904c8812bf6d0cc0cc7a5a022a02f4a13"
+    },
+    {
+      "path": "data/corpus/sources/us-or/guidance/2026-09-14-msp-income-standards/official-documents/us-or-odhs-medicare-savings-programs-2026.html",
+      "sha256": "efd7d02efbc1c7ee6d917ad792cea8e34a03c28fa91cbb74755cb94983e02752"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-or-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:50:40.692796+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ikapne6rZ5EYOLWDfQsGgDUPoHItkzh16r0R7YhoeXskdx5Ifm/eUjhGWQWF5WZ3MH9YlP7wKbfOiNqhJgNJCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>04</num>
+  <heading>Special</heading>
+  <section cache:ref-path="03|04|04|.01">
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Order of Payment for Unpaid Income Tax.</heading>
+    <para>
+      <num>A.</num>
+      <text>Income tax payments received by the Comptroller shall be applied as follows:</text>
+      <para>
+        <num>(1)</num>
+        <text>Payments accompanying returns shall be applied to the period covered by the return in the following manner:</text>
+        <para>
+          <num>(a)</num>
+          <text>First to any penalty;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Second to accrued interest; and</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Third to the unpaid tax.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>All other payments shall be applied to the earliest delinquent tax year in the following manner:</text>
+        <para>
+          <num>(a)</num>
+          <text>First to any penalty;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Second to accrued interest; and</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Third to the unpaid tax.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>A refund of income tax due a taxpayer shall be applied first as provided for in <cite path="03|04|04|.01|A.|(2)">§A(2) of this regulation</cite>, and then in the following order of priority:</text>
+      <para>
+        <num>(1)</num>
+        <text>To any debt collection intercept under <cite path="|03.04.05">COMAR 03.04.05</cite> or <cite path="|03.04.06">03.04.06</cite>; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>To the taxpayer of any remaining balance.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container"><cite doc="Md. Code" path="gtg|2-103">Tax-General Article, §2-103, </cite>Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1989-01-09">Effective date: January 9, 1989 (15:27 Md. R. 3126)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2022-05-02"><cite path="|03|04|04|.01">Regulation .01</cite> amended effective August 20, 1990 (17:16 Md. R. 1989); May 2, 2022 (49:9 Md. R. 529)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1999-01-14"><cite path="|03|04|04|.02|C.">Regulation .02C</cite> amended effective January 14, 1999 (26:1 Md. R. 22)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|04|.02">Regulation .02</cite> repealed effective October 9, 2006 (33:20 Md. R. 1612)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="1999-01-14"><cite path="|03|04|04|.03|H.">Regulation .03H</cite> adopted effective January 14, 1999 (26:1 Md. R. 22)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|04|.03">Regulation .03</cite> repealed effective October 9, 2006 (33:20 Md. R. 1612)</annotation>
+  </annotations>
+</container>

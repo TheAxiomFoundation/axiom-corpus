@@ -14,11 +14,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterable, Iterator, Mapping, Sequence
-from contextlib import suppress
+from contextlib import closing, suppress
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import TextIO
+from typing import Any, TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from axiom_corpus.corpus.models import ProvisionRecord
@@ -1124,6 +1124,163 @@ def preview_corpus_release_activation(
     if not isinstance(rows, list):
         raise RuntimeError(f"unexpected activation preview response: {rows!r}")
     return [row for row in rows if isinstance(row, dict)]
+
+
+# Cloudflare fronts api.supabase.com with a 120 s proxy read timeout (error
+# 524, run 34879466018), so the Management API cannot carry a statement that
+# verifies and repoints 800+ scopes even with statement_timeout disabled. When a
+# direct database URL is configured (Actions secret SUPABASE_DB_URL: the
+# project's session-pooler connection string), activation and its preview run
+# over psycopg2 instead: same functions, same verification, no HTTP proxy.
+DEFAULT_DATABASE_URL_ENV = "SUPABASE_DB_URL"
+_DIRECT_STATEMENT_TIMEOUT = "SET statement_timeout = 0"
+
+
+def database_url_names_project(database_url: str, project_ref: str) -> bool:
+    """True when the connection string belongs to ``project_ref``.
+
+    Supabase direct hosts are ``db.<ref>.supabase.co``; pooler connections carry
+    the ref in the user name (``postgres.<ref>``). Either form must name the
+    expected project so a stray URL cannot activate elsewhere.
+    """
+    parsed = urllib.parse.urlsplit(database_url)
+    host = parsed.hostname or ""
+    user = urllib.parse.unquote(parsed.username or "")
+    return host == f"db.{project_ref}.supabase.co" or user.endswith(f".{project_ref}")
+
+
+def _direct_connection(database_url: str) -> Any:
+    import psycopg2
+
+    connection = psycopg2.connect(database_url)
+    connection.autocommit = True
+    with connection.cursor() as cursor:
+        cursor.execute(_DIRECT_STATEMENT_TIMEOUT)
+    return connection
+
+
+def _stage_release_activation_upload_direct(
+    connection: Any, release_object: Mapping[str, object]
+) -> tuple[str, str]:
+    raw = canonical_json_bytes(release_object).decode("ascii")
+    chunks = [
+        raw[offset : offset + _RELEASE_ACTIVATION_CHUNK_SIZE]
+        for offset in range(0, len(raw), _RELEASE_ACTIVATION_CHUNK_SIZE)
+    ]
+    upload_id = secrets.token_hex(32)
+    object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+    with connection.cursor() as cursor:
+        cursor.execute(DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY)
+        for index, chunk in enumerate(chunks):
+            cursor.execute(
+                STAGE_RELEASE_ACTIVATION_CHUNK_QUERY.replace("$1::text", "%s")
+                .replace("$2::text", "%s")
+                .replace("$3::text", "%s")
+                .replace("$4::integer", "%s")
+                .replace("$5::integer", "%s")
+                .replace("$6::text", "%s"),
+                (
+                    upload_id,
+                    str(release_object["release"]),
+                    str(release_object["content_sha256"]),
+                    index,
+                    len(chunks),
+                    chunk,
+                ),
+            )
+            row = cursor.fetchone()
+            if row is None or row[0] != index:
+                raise RuntimeError(
+                    f"unexpected release activation chunk response at index {index}: {row!r}"
+                )
+    return upload_id, object_sha256
+
+
+def preview_corpus_release_activation_direct(
+    release_object: Mapping[str, object],
+    *,
+    database_url: str,
+    public_key: str,
+    expected_project_ref: str,
+) -> list[dict[str, object]]:
+    """``preview_corpus_release_activation`` over a direct database connection."""
+    verify_release_object(release_object, public_key=public_key)
+    if not database_url_names_project(database_url, expected_project_ref):
+        raise RuntimeError(
+            f"refusing to preview: database URL does not name project {expected_project_ref!r}"
+        )
+    release_identity = json.dumps(
+        {
+            "release": release_object["release"],
+            "content": {"scopes": release_object["content"]["scopes"]},  # type: ignore[index]
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+    with closing(_direct_connection(database_url)) as connection, connection.cursor() as cursor:
+        cursor.execute(
+            PREVIEW_ACTIVATION_QUERY.format(release_identity="%s::jsonb"), (release_identity,)
+        )
+        columns = [description[0] for description in cursor.description]
+        rows = [dict(zip(columns, values, strict=True)) for values in cursor.fetchall()]
+    return rows
+
+
+def activate_corpus_release_direct(
+    release_object: Mapping[str, object],
+    *,
+    database_url: str,
+    public_key: str,
+    expected_project_ref: str,
+) -> dict[str, object]:
+    """``activate_corpus_release`` over a direct database connection.
+
+    Same Ed25519 verification, same chunked upload table, same
+    ``corpus.activate_corpus_release`` transaction and the same response
+    checks; only the transport differs, so the statement is bounded by nothing
+    but its own work.
+    """
+    verify_release_object(release_object, public_key=public_key)
+    if not database_url_names_project(database_url, expected_project_ref):
+        raise RuntimeError(
+            f"refusing to activate: database URL does not name project {expected_project_ref!r}"
+        )
+    with closing(_direct_connection(database_url)) as connection:
+        upload_id, object_sha256 = _stage_release_activation_upload_direct(
+            connection, release_object
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    ACTIVATE_RELEASE_QUERY.format(
+                        upload_id="%s", release="%s", content_sha256="%s", object_sha256="%s"
+                    ),
+                    (
+                        upload_id,
+                        str(release_object["release"]),
+                        str(release_object["content_sha256"]),
+                        object_sha256,
+                    ),
+                )
+                row = cursor.fetchone()
+            if row is None or len(row) != 1:
+                raise RuntimeError(f"unexpected corpus activation query response: {row!r}")
+            result = row[0]
+            if isinstance(result, str):
+                result = json.loads(result)
+            if not isinstance(result, dict) or result.get("active") is not True:
+                raise RuntimeError(f"unexpected corpus activation response: {result!r}")
+            if result.get("release") != release_object.get("release"):
+                raise RuntimeError("activated release name does not match the requested object")
+            if result.get("content_sha256") != release_object.get("content_sha256"):
+                raise RuntimeError("activated release digest does not match the requested object")
+            _require_complete_activation_scopes(result, release_object)
+            return result
+        finally:
+            with suppress(Exception), connection.cursor() as cursor:
+                cursor.execute(
+                    DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY.replace("$1::text", "%s"), (upload_id,)
+                )
 
 
 def activate_corpus_release(

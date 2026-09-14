@@ -1,0 +1,502 @@
+    <!-- #region Login -->
+    <!-- #endregion -->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head id="Head1">
+		    <title>&#167; 58.1-439.28. (Applicable to taxable years beginning on and after January 1, 2028) Guidelines for scholarship foundations</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link rel="apple-touch-icon" href="./images/favicon-law16.png" sizes="16x16" />
+		<link rel="apple-touch-icon" href="./images/favicon-law32.png" sizes="32x32" />
+        <script src="/Scripts/session.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/Content/base.css" type="text/css" media="all" />
+		<!--[if lt IE 9 ]><link rel="stylesheet" href="./Content/720_grid.css" type="text/css" /><![endif]-->
+		<link rel="stylesheet" href="/Content/720_grid.css" type="text/css" media="screen and (min-width: 720px)" />
+		<link rel="stylesheet" href="/Content/986_grid.css" type="text/css" media="screen and (min-width: 986px)" />
+		<link rel="stylesheet" href="/Content/1236_grid.css" media="screen and (min-width: 1236px)" />
+		<link rel="stylesheet" href="/Content/font-awesome.min.css" />
+		<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css' />
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT Serif:r,i,400,700" />
+		
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300,300italic,400italic,700italic' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="/Content/jquery.fancybox.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="/Content/jquery.qtip.min.css" type="text/css" media="all" />
+		
+		<meta name='docid' content='299090' /><meta name='title' content='Title 58.1. Taxation' /><meta name='COVtitle' content='Title 58.1. Taxation' /><meta name='subject' content='' /><meta name='subject' content='' />
+
+		<style type="text/css">.fancybox-margin {margin-right: 0px;}</style>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6YYKCXH17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-F6YYKCXH17');
+        </script>
+        <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+        <script src="/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $('document').ready(function () {
+                $('#print').attr("aria-label", "Print Button");
+                $('#txtsearch-in').attr("aria-label", "Search within the current selection");
+                
+                $("#mobile-menu-toggle").click(function () {
+                    $("#section-menu").toggleClass("open");
+                    $(".mobile-overlay").toggleClass("open");
+                });
+
+                $(".mobile-overlay").click(function () {
+                    $("#section-menu").removeClass("open");
+                    $(".mobile-overlay").removeClass("open");
+                });
+            });
+        </script>
+        <script>
+            $(function () {
+                var searchList = document.getElementById("searchList");
+                if (!searchList.length) {
+                    return;
+                }
+
+                var path = (window.location.pathname || "").toLowerCase();
+                var selectedValue = "all";
+                document.getElementById("searchList").value = "LAW";
+
+                if (path.includes("/admincode")) {
+                    selectedValue = "admin";
+                    document.getElementById("searchBtn").value = "Administrative_Code";
+                } else if (path.includes("/constitution")) {
+                    selectedValue = "constitution";
+                    document.getElementById("searchBtn").value = "Constitution";
+                } else if (path.includes("/vacode")) {
+                    selectedValue = "code";
+                    document.getElementById("searchBtn").value = "Code_of_Virginia";
+                } else if (path.includes("/charters")) {
+                    selectedValue = "charters";
+                    document.getElementById("searchBtn").value = "Charters";
+                } else if (path.includes("/authorities")) {
+                    selectedValue = "authorities";
+                    document.getElementById("searchBtn").value = "Authorities";
+                } else if (path.includes("/compacts")) {
+                    selectedValue = "compacts";
+                    document.getElementById("searchBtn").value = "Compacts";
+                } else if (path.includes("/uncodifiedacts")) {
+                    selectedValue = "uncodified";
+                    document.getElementById("searchBtn").value = "Uncodified_Acts";
+                }
+
+                searchList.querySelectorAll("option").forEach(function(option) {
+                    option.selected = false;
+                });
+                var selectedOption = searchList.querySelector('option[value="' + selectedValue + '"]');
+                if (selectedOption) {
+                    selectedOption.selected = true;
+                }
+            });
+        </script>
+	</head>
+
+<body>
+    <input aria-hidden="true" type="text" style="width:0;height:0;visibility:hidden;position:absolute;left:0;top:0" /> 
+    <input aria-hidden="true" type="password" style="width:0;height:0;visibility:hidden;position:absolute;left:0;top:0" />
+    <input aria-hidden="true" type="hidden" id="hidSignIn" value="0" />
+    
+    
+    <div class="mobile-overlay"></div>
+    <div class="top-bar"></div>
+    <header>
+        <nav>
+            <div class="lis-links-content full">
+                <ul>
+                    <li><a href="https://virginiageneralassembly.gov/">Virginia General Assembly</a> /</li>
+                    <li><a href="https://help.lis.virginia.gov">LIS Learning Center</a> /</li>
+                    <li><a href="https://lis.virginia.gov/privacy">Privacy Policy</a> /</li>
+                    <li><a href="https://lis.virginia.gov">LIS home</a> /</li>
+                    <li><a href="https://lis.virginia.gov/register-account">Register Account</a> /</li>
+                    <li><a href="https://lis.virginia.gov/login">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="grid-wrapper one-and-three halves">
+        
+			<a href="https://lis.virginia.gov" id="logo-link">
+				<img alt="LIS Logo" src="/images/lis_logo.png" /> 
+			</a>
+		
+        <div class="portal-links">
+            <ul>
+                <li>
+                    <a class="txt-blue" href="https://lis.virginia.gov">Session Information</a>
+                </li>
+                <li>
+                    <a class="txt-dark-blue" href="https://lis.virginia.gov/bill-search">Bills & Resolutions</a>
+                </li>
+                <li>
+                    <a class="txt-green" href="https://budget.lis.virginia.gov/default/2025/1">State Budget</a>
+                </li>
+                <li>
+                    <a class="txt-light-green" href="https://law.lis.virginia.gov/">Virginia Law</a>
+                </li>
+                <li>
+                    <a class="txt-orange" href="https://rga.lis.virginia.gov/">Reports to the General Assembly</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu">
+            <i id="mobile-menu-toggle" class="fa fa-bars"></i>
+        </div>
+    </div>
+        
+        
+        <div class="va-law">
+            <div class="grid">
+                <div class="row">
+                    <div class="slot-0-1-2">
+                        <h1><a href="https://law.lis.virginia.gov">Virginia Law</a></h1>
+                    </div>
+                    <div class="slot-3-4-5">
+                        <div class="input-group .search-comp ">
+                            <div class="input-group-btn">
+                                <label for="searchList" class="sr-only">Select Search Type</label>
+                                <select id="searchList" name="searchTypeSelect" class="btn input-sm btn-default dropdown-toggle" aria-label="Select Search Type">
+                                    <option value="all">All</option>
+                                    <option value="code">Code of Virginia</option>
+                                    <option value="admin">Administrative Code</option>
+                                    <option value="constitution">Constitution</option>
+                                    <option value="charters">Charters</option>
+                                    <option value="authorities">Authorities</option>
+                                    <option value="compacts">Compacts</option>
+                                    <option value="uncodified">Uncodified Acts</option>
+                                </select>
+                            </div>
+                            <input aria-label="search input" type="text" id="txtSearch" class="form-control input-sm" placeholder="Search" />
+                            <span class="input-group-btn">
+                                <button aria-label="search button" class="btn btn-sm btn-default" id="searchBtn" type="submit" value="LAW">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="grid">
+            <!-- #region Variables -->
+<!-- #endregion -->
+<!-- #region Highlights -->
+<!-- #endregion -->
+<!-- #region Build Pages -->
+<!-- #endregion -->
+
+
+<body class="flipcol ">
+	<input type="hidden" id="hidST" />
+	<input type="hidden" id="hidToC" value="1" />
+	<input type="hidden" id="hidID" />
+	<input type="hidden" id="hidNote"/>
+	<input type="hidden" id="hidBiP" value="false" />
+	<input type="hidden" id="hidReport" value="0" />
+	<input type="hidden" id="hidSegments" value="58.1-439.28" />
+    <input type="hidden" id="hidPage" value="vacode" />
+	<div class="grid">
+		<div class="row">
+			<div class="slot-6-7-8">
+				<section id="pageTitle"><h2 class='pg-title'>Code of Virginia</h2></section>
+				<section class="breadcrumbs" id="breadcrumbs"><p><a href='/vacode/'>Table of Contents</a> &raquo; <a href='/vacode/title58.1/'>Title 58.1. Taxation</a> &raquo; <a href='/vacode/title58.1#subtitleI/'>Subtitle I. Taxes Administered by the Department of Taxation</a>  &raquo; <a href='/vacode/title58.1/chapter3/'>Chapter 3. Income Tax</a>  &raquo; <a href='/vacode/title58.1/chapter3#article13-3/'>Article 13.3. Education Improvement Scholarships Tax Credits</a>  &raquo; <span class='breadcrumb-inactive'>§ 58.1-439.28. (Applicable to taxable years beginning on and after January 1, 2028) Guidelines for scholarship foundations</span></p></section>
+				<section class="content-header-menu" id="menucontainer">
+					<nav class="content-header-menu-left"><ul><li><a title='§ 58.1-439.27. Scholarship foundation eligibility and requirements; list of foundations receiving donations' href='/vacode/title58.1/chapter3/section58.1-439.27/''><i class='fa fa-long-arrow-left'></i></a> Section <a title='§ 58.1-439.29. Definitions' href='/vacode/title58.1/chapter3/section58.1-439.29/''><i class='fa fa-long-arrow-right'></i></a></li></ul></nav>
+					<a href="#" class="scroll_top" aria-hidden="true"><i class="fa fa-arrow-up"></i></a>
+					<nav class="content-header-menu-middle"><ul><li><span id='printIE' class='printPDF'><a id='A1' onclick='PrintPreview();' title='Print page' href=''><i class='fa fa-print'></i> Print</a></span></li><li><a id='A3' data-section='vacode/58.1-439.28' title='Download PDF' href=''><i class='fa fa-file-text'></i> PDF</a></li><li><a class='fancybox fancybox.iframe' href='/emailForm'><i class='fa fa-envelope'></i> email</a></li></ul></nav>
+							<nav class="content-header-menu-right"></nav>
+
+				</section>
+				<p class="sidenote alert rptCheckbox"><strong>Creating a Report:</strong> Check the sections you'd like to appear in the report, then use the "Create Report" button at the bottom of the page to generate your report. Once the report is generated you'll then have the option to download it as a pdf, print or email the report.</p>
+				<article id="vacode" class="content">
+					<div id="printStuff"><div id='printHeader'>Code of Virginia<br/>Title 58.1. Taxation<br/>Chapter 3. Income Tax</div><div id='printDate'>9/14/2026</div></div>
+					<span id='va_code' class="content"><!--googleon: index--><h2> <span id='v0'>§ 58.1-439.28</span>. (Applicable to taxable years beginning on and after January 1, 2019, but before January 1, 2028) Guidelines for scholarship foundations.</h2><section class='body editable' id='edit41494' data-table='CoV' data-field='body'><p>A. As a condition for qualification by the Department of Education, a scholarship foundation, as defined in § <a href='/vacode/58.1-439.25/'>58.1-439.25</a> and included on the list published annually by the Department of Education pursuant to this section, shall disburse an amount at least equal to 90 percent of the value of the donations it receives (for which tax credits were issued under this article) during each 12-month period ending on June 30 by the immediately following June 30 for qualified educational expenses through scholarships to students or eligible students with a disability. Tax-credit-derived funds not used for such scholarships may only be used for the administrative expenses of the scholarship foundation. Any scholarship foundation that fails to meet such disbursal requirement shall, for the first offense, be required to pay a civil penalty equal to the difference between 90 percent of the value of the tax-credit-derived donations it received in the applicable 12-month period and the amount that was actually disbursed. Such civil penalty shall be remitted by the scholarship foundation to the Department of Education within 30 days after the end of the one-year period and deposited to the general fund. For a second offense within a five-year period, the scholarship foundation shall be removed from the annual list published pursuant to this section and shall not be entitled to request preauthorization for additional tax credits, nor shall it be entitled to receive and administer additional tax-credit-derived funds for two years. After two years, the scholarship foundation shall be eligible to reapply to be included on the annual list to receive and administer tax-credit derived funds. If a scholarship foundation is authorized to be added to the annual list after such reapplication, the scholarship foundation shall not be considered to have any previous offenses for purposes of this subsection. The required disbursement under this section shall begin with donations received for the period January 1, 2013, through June 30, 2014.</p><p>B. By September 30 of each year beginning in 2016, the scholarship foundation shall provide the following information to the Department of Education: (i) the total number and value of donations received by the foundation during the 12-month period ending on June 30 of the prior calendar year for which tax credits were issued by the Superintendent of Public Instruction, (ii) the dates when such donations were received, and (iii) the total number and dollar amount of qualified educational expenses scholarships awarded from tax-credit-derived donations and disbursed by the scholarship foundation during the 24-month period ending on June 30 of the current calendar year. Any scholarship foundation that fails to provide this report by September 30 shall, for the first offense, be required to pay a $1,000 civil penalty. Such civil penalty shall be remitted by the scholarship foundation to the Department of Education by November 1 of the same year and deposited to the general fund. For a second offense within a five-year period, the scholarship foundation shall be removed from the annual list published pursuant to this section and shall not be entitled to request preauthorization for additional tax credits, nor shall it be entitled to receive and administer additional tax-credit-derived funds. After two years, the scholarship foundation shall be eligible to reapply to be included on the annual list to receive and administer tax-credit derived funds. If a scholarship foundation is authorized to be added to the annual list after such reapplication, the scholarship foundation shall not be considered to have any previous offenses for purposes of this subsection.</p><p>C. In awarding scholarships from tax-credit-derived funds, the scholarship foundation shall (i) provide scholarships for qualified educational expenses only to students whose family's annual household income is not in excess of 300 percent of the current poverty guidelines, eligible students with a disability whose family's annual household income is not in excess of 400 percent of the current poverty guidelines, or eligible pre-kindergarten children; (ii) not limit scholarships to students or eligible students with a disability of one school; and (iii) comply with Title VI of the Civil Rights Act of 1964, as amended. Payment of scholarships from tax-credit-derived funds by the eligible scholarship foundation shall be by individual warrant or check made payable to and mailed to the eligible school that the parent or legal guardian of the student or eligible student with a disability indicates. In mailing such scholarship payments, the eligible scholarship foundation shall include a written notice to the eligible school that the source of the scholarship was donations made by persons receiving tax credits for the same pursuant to this article.</p><p>D. 1. Scholarship foundations shall ensure that schools selected by students or eligible students with a disability to which tax-credit-derived funds may be paid (i) are in compliance with the Commonwealth's and locality's health and safety laws and codes; (ii) hold a valid occupancy permit as required by the locality; (iii) comply with Title VI of the Civil Rights Act of 1964, as amended; and (iv) are (a) for students in grades K through 12, nonpublic schools that comply with nonpublic school accreditation requirements as set forth in § <a href='/vacode/22.1-19/'>22.1-19</a> and administered by the Virginia Council for Private Education or nonpublic schools that maintain an assessment system that annually measures the progress of scholarship students or eligible students with a disability in reading and math using a national norm-referenced achievement test, including but not limited to the Stanford Achievement Test, California Achievement Test, and Iowa Test of Basic Skills and (b) for eligible pre-kindergarten children, nonpublic pre-kindergarten programs.</p><p>2. Each nonpublic pre-kindergarten program shall (i) provide to the eligible pre-kindergarten child a curriculum that is aligned with Virginia's Foundation Blocks for Early Learning: Comprehensive Standards for Four-Year-Olds as published by the Department of Education, or any successor standards published by the Department of Education; (ii) have maximum class sizes of 20 students with a teacher-student ratio of not fewer than two teachers for every 20 students; (iii) provide at least half-day services and operate for at least the school year; (iv) agree to provide the Department of Education with student information for each eligible pre-kindergarten child receiving a scholarship foundation scholarship for purposes of allowing the Department of Education to conduct studies comparing the academic performance of such children while attending primary or secondary school with other children attending primary or secondary school who have attended a pre-kindergarten program, including programs funded under the Virginia Preschool Initiative; and (v) require professional development of program teachers, which enables such teachers to engage in high-quality interactions with eligible pre-kindergarten children and provide high-quality instruction in accordance with the curriculum described under clause (i). Each nonpublic pre-kindergarten program teacher at a minimum shall have earned a certificate from a nationally recognized early childhood education certificate program, including but not limited to any early childhood education program provided or sponsored by the Virginia Community College System.</p><p>In awarding scholarships to eligible pre-kindergarten children, scholarship foundations shall award scholarships from tax-credit-derived funds only to such children who are enrolled in or attending nonpublic pre-kindergarten programs that meet the conditions of this subdivision as certified by the Virginia Council for Private Education or the Virginia Early Childhood Foundation.</p><p>3. Eligible schools shall compile the results of any national norm-referenced achievement test for each of its students or eligible students with a disability receiving tax-credit-derived scholarships and shall provide the respective parents or legal guardians of such students or eligible students with a disability with a copy of the results on an annual basis, beginning with the first year of testing of the student or eligible student with a disability. Such schools also shall annually provide to the Department of Education for each such student or eligible student with a disability the achievement test results, beginning with the first year of testing of the student or eligible student with a disability, and information that would allow the Department to aggregate the achievement test results by grade level, gender, family income level, number of years of participation in the scholarship program, and race. Beginning with the third year of testing and test-related data collection, the Department of Education shall ensure that the achievement test results and associated learning gains are published on the Department of Education's website in accordance with such classifications and in an aggregate form as to prevent the identification of any student or eligible student with a disability. Eligible schools shall annually provide to the Superintendent of Public Instruction graduation rates of its students or eligible students with a disability participating in the scholarship program in a manner consistent with nationally recognized standards. In publishing and disseminating achievement test results and other information, the Superintendent of Public Instruction and the Department of Education shall ensure compliance with all student privacy laws.</p><p>The provisions of this subdivision shall not apply to eligible pre-kindergarten children.</p><p>E. 1. The aggregate amount of scholarships provided to each student or eligible student with a disability who does not meet the requirements of subdivision 2 for any single school year by all eligible scholarship foundations from eligible donations shall not exceed the lesser of (i) the actual qualified educational expenses of the student or (ii) 100 percent of the per-pupil amount distributed to the local school division (in which the student resides) as the state's share of the standards of quality costs using the composite index of ability to pay as defined in the general appropriation act.</p><p>2. a. Except as provided in subdivision 1, the aggregate amount of scholarships provided to each eligible student with a disability for any single school year by all eligible scholarship foundations from eligible donations shall not exceed the lesser of (i) the actual qualified educational expenses of the student or (ii) 300 percent of the per pupil amount distributed to the local school division (in which the eligible student with a disability resides) as the state's share of the standards of quality costs using the composite index of ability to pay as defined in the general appropriation act.</p><p>b. Except as provided in subdivision 1, scholarships may only be provided to an eligible student with a disability who is attending a school for students with disabilities, as defined in § <a href='/vacode/22.1-319/'>22.1-319</a>, that (i) is licensed by the Department of Education to serve students with disabilities, (ii) complies with the nonpublic school accreditation requirements of the Virginia Association of Independent Schools, (iii) is exempt from taxation under § 501(c)(3) of the Internal Revenue Code, and (iv) does not receive public funds to supplement the cost of the education of the eligible student with a disability that is receiving the scholarship pursuant to this section.</p><p>3. In the case of eligible pre-kindergarten children, the aggregate amount of scholarships provided to each child for any single school year by all eligible scholarship foundations from eligible donations shall not exceed the lesser of the actual qualified educational expenses of the child or the state share of the grant per child under the Virginia Preschool Initiative for the locality in which the eligible pre-kindergarten child resides.</p><p>F. Scholarship foundations shall develop procedures for disbursing scholarships in quarterly or semester payments throughout the school year to ensure scholarships are portable.</p><p>G. Scholarship foundations that receive donations of marketable securities for which tax credits were issued under this article shall be required to sell such securities and convert the donation into cash immediately, but in no case more than 21 days after receipt of the donation.</p><p>H. Each scholarship foundation with total revenues (including the value of all donations)(i) in excess of $100,000 for the foundation's most recent fiscal year ended shall have an audit or review performed by an independent certified public accountant of the foundation's donations received in such year for which tax credits were issued under this article or (ii) of $100,000 or less for the foundation's most recent fiscal year ended shall have a compilation performed by an independent certified public accountant of the foundation's donations received in such year for which tax credits were issued under this article. A summary report of the audit, review, or compilation shall be made available to the public and the Department of Education upon request.</p><p>I. The Department of Education shall publish annually on its website a list of each scholarship foundation qualified under this article. Once a foundation has been qualified by the Department of Education, it shall remain qualified until the Department removes the foundation from its annual list. The Department of Education shall remove a foundation from the annual list if it no longer meets the requirements of this article. The Department of Education may periodically require a qualified foundation to submit updated or additional information for purposes of determining whether or not the foundation continues to meet the requirements of this article.</p><p>J. Actions of the Superintendent of Public Instruction or the Department of Education relating to the awarding of tax credits under this article and the qualification of scholarship foundations shall be exempt from the provisions of the Administrative Process Act (§ <a href='/vacode/2.2-4000/'>2.2-4000</a> et seq.). Decisions of the Superintendent of Public Instruction or the Department of Education shall be final and not subject to review or appeal.</p><p>2012, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?121+ful+CHAP0731'>731</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?121+ful+CHAP0842'>842</a>; 2013, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?131+ful+CHAP0713'>713</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?131+ful+CHAP0716'>716</a>; 2016, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?161+ful+CHAP0751'>751</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?161+ful+CHAP0767'>767</a>; 2019, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?191+ful+CHAP0808'>808</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?191+ful+CHAP0817'>817</a>.</p></section><input type='hidden' class='dataType' id='dataTable' value='CoV'/><input type='hidden' class='dataType' id='dataMember' value='id'/><input type='hidden' class='dataType' id='dataField' value='body'/><h2>§ <span id='v0'>58.1-439.28</span>. (Applicable to taxable years beginning on and after January 1, 2028) Guidelines for scholarship foundations.</h2><section class='body editable' id='edit41495' data-table='CoV' data-field='body'><p>A. As a condition for qualification by the Department of Education, a scholarship foundation, as defined in § <a href='/vacode/58.1-439.25/'>58.1-439.25</a> and included on the list published annually by the Department of Education pursuant to this section, shall disburse an amount at least equal to 90 percent of the value of the donations it receives (for which tax credits were issued under this article) during each 12-month period ending on June 30 by the immediately following June 30 for qualified educational expenses through scholarships to eligible students. Tax-credit-derived funds not used for such scholarships may only be used for the administrative expenses of the scholarship foundation. Any scholarship foundation that fails to meet such disbursal requirement shall, for the first offense, be required to pay a civil penalty equal to the difference between 90 percent of the value of the tax-credit-derived donations it received in the applicable 12-month period and the amount that was actually disbursed. Such civil penalty shall be remitted by the scholarship foundation to the Department of Education within 30 days after the end of the one-year period and deposited to the general fund. For a second offense within a five-year period, the scholarship foundation shall be removed from the annual list published pursuant to this section and shall not be entitled to request preauthorization for additional tax credits, nor shall it be entitled to receive and administer additional tax-credit-derived funds for two years. After two years, the scholarship foundation shall be eligible to reapply to be included on the annual list to receive and administer tax-credit derived funds. If a scholarship foundation is authorized to be added to the annual list after such reapplication, the scholarship foundation shall not be considered to have any previous offenses for purposes of this subsection. The required disbursement under this section shall begin with donations received for the period January 1, 2013, through June 30, 2014.</p><p>B. By September 30 of each year beginning in 2016, the scholarship foundation shall provide the following information to the Department of Education: (i) the total number and value of donations received by the foundation during the 12-month period ending on June 30 of the prior calendar year for which tax credits were issued by the Superintendent of Public Instruction, (ii) the dates when such donations were received, and (iii) the total number and dollar amount of qualified educational expenses scholarships awarded from tax-credit-derived donations and disbursed by the scholarship foundation during the 24-month period ending on June 30 of the current calendar year. Any scholarship foundation that fails to provide this report by September 30 shall, for the first offense, be required to pay a $1,000 civil penalty. Such civil penalty shall be remitted by the scholarship foundation to the Department of Education by November 1 of the same year and deposited to the general fund. For a second offense within a five-year period, the scholarship foundation shall be removed from the annual list published pursuant to this section and shall not be entitled to request preauthorization for additional tax credits, nor shall it be entitled to receive and administer additional tax-credit-derived funds. After two years, the scholarship foundation shall be eligible to reapply to be included on the annual list to receive and administer tax-credit derived funds. If a scholarship foundation is authorized to be added to the annual list after such reapplication, the scholarship foundation shall not be considered to have any previous offenses for purposes of this subsection.</p><p>C. In awarding scholarships from tax-credit-derived funds, the scholarship foundation shall (i) provide scholarships for qualified educational expenses only to students whose family's annual household income is not in excess of 300 percent of the current poverty guidelines, eligible students with a disability, or eligible pre-kindergarten children; (ii) not limit scholarships to students of one school; and (iii) comply with Title VI of the Civil Rights Act of 1964, as amended. Payment of scholarships from tax-credit-derived funds by the eligible scholarship foundation shall be by individual warrant or check made payable to and mailed to the eligible school that the student's parent or legal guardian indicates. In mailing such scholarship payments, the eligible scholarship foundation shall include a written notice to the eligible school that the source of the scholarship was donations made by persons receiving tax credits for the same pursuant to this article.</p><p>D. 1. Scholarship foundations shall ensure that schools selected by students to which tax-credit-derived funds may be paid (i) are in compliance with the Commonwealth's and locality's health and safety laws and codes; (ii) hold a valid occupancy permit as required by the locality; (iii) comply with Title VI of the Civil Rights Act of 1964, as amended; and (iv) are (a) for students in grades K through 12, nonpublic schools that comply with nonpublic school accreditation requirements as set forth in § <a href='/vacode/22.1-19/'>22.1-19</a> and administered by the Virginia Council for Private Education or nonpublic schools that maintain an assessment system that annually measures scholarship students' progress in reading and math using a national norm-referenced achievement test, including but not limited to the Stanford Achievement Test, California Achievement Test, and Iowa Test of Basic Skills and (b) for eligible pre-kindergarten children, nonpublic pre-kindergarten programs.</p><p>2. Each nonpublic pre-kindergarten program shall (i) provide to the eligible pre-kindergarten child a curriculum that is aligned with Virginia's Foundation Blocks for Early Learning: Comprehensive Standards for Four-Year-Olds as published by the Department of Education, or any successor standards published by the Department of Education; (ii) have maximum class sizes of 20 students with a teacher-student ratio of not fewer than two teachers for every 20 students; (iii) provide at least half-day services and operate for at least the school year; (iv) agree to provide the Department of Education with student information for each eligible pre-kindergarten child receiving a scholarship foundation scholarship for purposes of allowing the Department of Education to conduct studies comparing the academic performance of such children while attending primary or secondary school with other children attending primary or secondary school who have attended a pre-kindergarten program, including programs funded under the Virginia Preschool Initiative; and (v) require professional development of program teachers, which enables such teachers to engage in high-quality interactions with eligible pre-kindergarten children and provide high-quality instruction in accordance with the curriculum described under clause (i). Each nonpublic pre-kindergarten program teacher at a minimum shall have earned a certificate from a nationally recognized early childhood education certificate program, including but not limited to any early childhood education program provided or sponsored by the Virginia Community College System.</p><p>In awarding scholarships to eligible pre-kindergarten children, scholarship foundations shall award scholarships from tax-credit-derived funds only to such children who are enrolled in or attending nonpublic pre-kindergarten programs that meet the conditions of this subdivision as certified by the Virginia Council for Private Education or the Virginia Early Childhood Foundation.</p><p>3. Eligible schools shall compile the results of any national norm-referenced achievement test for each of its students receiving tax-credit-derived scholarships and shall provide the respective parents or legal guardians of such students with a copy of the results on an annual basis, beginning with the first year of testing of the student. Such schools also shall annually provide to the Department of Education for each such student the achievement test results, beginning with the first year of testing of the student, and student information that would allow the Department to aggregate the achievement test results by grade level, gender, family income level, number of years of participation in the scholarship program, and race. Beginning with the third year of testing of each such student and test-related data collection, the Department of Education shall ensure that the achievement test results and associated learning gains are published on the Department of Education's website in accordance with such classifications and in an aggregate form as to prevent the identification of any student. Eligible schools shall annually provide to the Superintendent of Public Instruction graduation rates of its students participating in the scholarship program in a manner consistent with nationally recognized standards. In publishing and disseminating achievement test results and other information, the Superintendent of Public Instruction and the Department of Education shall ensure compliance with all student privacy laws.</p><p>The provisions of this subdivision shall not apply to eligible pre-kindergarten children.</p><p>E. 1. The aggregate amount of scholarships provided to each student for any single school year by all eligible scholarship foundations from eligible donations shall not exceed the lesser of (i) the actual qualified educational expenses of the student or (ii) 100 percent of the per-pupil amount distributed to the local school division (in which the student resides) as the state's share of the standards of quality costs using the composite index of ability to pay as defined in the general appropriation act.</p><p>2. In the case of eligible pre-kindergarten children, the aggregate amount of scholarships provided to each child for any single school year by all eligible scholarship foundations from eligible donations shall not exceed the lesser of the actual qualified educational expenses of the child or the state share of the grant per child under the Virginia Preschool Initiative for the locality in which the eligible pre-kindergarten child resides.</p><p>F. Scholarship foundations shall develop procedures for disbursing scholarships in quarterly or semester payments throughout the school year to ensure scholarships are portable.</p><p>G. Scholarship foundations that receive donations of marketable securities for which tax credits were issued under this article shall be required to sell such securities and convert the donation into cash immediately, but in no case more than 21 days after receipt of the donation.</p><p>H. Each scholarship foundation with total revenues (including the value of all donations) (i) in excess of $100,000 for the foundation's most recent fiscal year ended shall have an audit or review performed by an independent certified public accountant of the foundation's donations received in such year for which tax credits were issued under this article or (ii) of $100,000 or less for the foundation's most recent fiscal year ended shall have a compilation performed by an independent certified public accountant of the foundation's donations received in such year for which tax credits were issued under this article. A summary report of the audit, review, or compilation shall be made available to the public and the Department of Education upon request.</p><p>I. The Department of Education shall publish annually on its website a list of each scholarship foundation qualified under this article. Once a foundation has been qualified by the Department of Education, it shall remain qualified until the Department removes the foundation from its annual list. The Department of Education shall remove a foundation from the annual list if it no longer meets the requirements of this article. The Department of Education may periodically require a qualified foundation to submit updated or additional information for purposes of determining whether or not the foundation continues to meet the requirements of this article.</p><p>J. Actions of the Superintendent of Public Instruction or the Department of Education relating to the awarding of tax credits under this article and the qualification of scholarship foundations shall be exempt from the provisions of the Administrative Process Act (§ <a href='/vacode/2.2-4000/'>2.2-4000</a> et seq.). Decisions of the Superintendent of Public Instruction or the Department of Education shall be final and not subject to review or appeal.</p><p>2012, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?121+ful+CHAP0731'>731</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?121+ful+CHAP0842'>842</a>; 2013, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?131+ful+CHAP0713'>713</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?131+ful+CHAP0716'>716</a>; 2016, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?161+ful+CHAP0751'>751</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?161+ful+CHAP0767'>767</a>; 2019, cc. <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?191+ful+CHAP0808'>808</a>, <a href='http://LegacyLIS.virginia.gov/cgi-bin/legp604.exe?191+ful+CHAP0817'>817</a>.</p></section><input type='hidden' class='dataType' id='dataTable' value='CoV'/><input type='hidden' class='dataType' id='dataMember' value='id'/><input type='hidden' class='dataType' id='dataField' value='body'/><!--googleoff: index--></span>
+
+
+
+				</article>
+				<div id="HistoryNote"><p class='sidenote'>The chapters of the acts of assembly referenced in the historical citation at the end of this section may not constitute a comprehensive list of such chapters and may exclude chapters whose provisions have expired.</p></div>
+						<nav class="content-footer-menu"><ul><li><a title='§ 58.1-439.27. Scholarship foundation eligibility and requirements; list of foundations receiving donations' href='/vacode/title58.1/chapter3/section58.1-439.27/''><i class='fa fa-long-arrow-left'></i></a> Section <a title='§ 58.1-439.29. Definitions' href='/vacode/title58.1/chapter3/section58.1-439.29/''><i class='fa fa-long-arrow-right'></i></a></li></ul></nav>
+
+			</div>
+			<div class="slot-9">
+				<nav id="section-menu">
+					<ul class="section-header-menu">
+						<li class="selected" aria-label="Currently selected page">
+							<a href="/vacode">Code of Virginia</a>
+						</li>
+						<li class="sub-menu">
+							<a href="/vacodepopularnames">Popular Names</a>
+						</li>
+						<li id="covUpdates" class="sub-menu">
+							<a  href='/vacodeupdates/'>2026 Updates</a>
+						</li>
+						<li id='search-box' class="sub-menu">
+							<label class="form-title" for="search-text">Section Look Up</label>
+						
+						
+							<div action='/search' id='search-form' method='get' target='_top'>
+								<input aria-label="Section look up input" title="Section look up input" type="text" id='search-text' name='q' placeholder='ex.  2.2-4007.01' readonly onfocus="if (this.hasAttribute('readonly')) {this.removeAttribute('readonly'); this.blur(); this.focus(); }"/>
+								<button aria-label="Section look up button" title="Section look up button" id='search-button' type='submit'>Go</button>
+							</div>
+						</li>
+						<li>
+							<a href="/admincode">Administrative Code</a>
+						</li>
+						<li>
+							<a href="/constitution">Constitution of Virginia</a>
+						</li>
+						<li>
+							<a href="/charters">Charters</a>
+						</li>
+						<li>
+							<a href="/authorities">Authorities</a>
+						</li>
+						<li>
+							<a href="/compacts">Compacts</a>
+						</li>
+						<li>
+							<a href="/uncodifiedacts">Uncodified Acts</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript">var siteurl = 'https://law.lis.virginia.gov';</script>
+	<script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="/Scripts/responsive.js" type="text/javascript"></script>
+	<script src="/Scripts/modernizer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/jquery.fancybox.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+	<script src="/Scripts/fancybox/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.floatThead.min.js" type="text/javascript"></script>
+	<script src="/Scripts/printThisCoV.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/Scripts/search.js" type="text/javascript"></script>
+	<script src="/Scripts/searchCoV.js" type="text/javascript"></script>
+	<script src="/Scripts/isFontFaceSupported.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.qtip.js" type="text/javascript"></script>
+	
+	<link rel="stylesheet" href="/Content/msgBoxLight.css" />
+	<script src="/Scripts/jquery.msgBox.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/tinymce/tinymce.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/edit.js" type="text/javascript"></script>
+	<script src="/Scripts/CoVInit.js" type="text/javascript"></script>
+	
+	<script src="/Scripts/report.js" type="text/javascript"></script>
+	<script src="/Scripts/default.js" type="text/javascript"></script>
+	<script src="/Scripts/pdf.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		    $('document').ready(function () {
+		        $('#print').click(function () {
+		            $("#vacode").printThis();
+		            return (false);
+		        });
+
+		        var val = parseInt($.browser.version);
+		        if ($.browser.msie || (val > 7 && val <= 11)) {
+		            //stuff here (like adding an IE10 class to the body or html tag
+		            $(".input-sm").css("margin-top", "1px");
+		        }
+
+		        $('a.fancybox').fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 520
+		        });
+
+		        $("a.single_image").fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 720
+		        });
+
+		        $('.fancybox').attr('href', "/emailForm?parent=vacode/" + $('#hidSegments').val());
+
+		        $('.hdr-read-text a').fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 701,
+		            'autoDimensions': false,
+		            'autoSize': false,
+		            afterClose: function (event, ui) {
+		                //parent.document.getElementById("hidBiP").value = "false";
+		                parent.$("#hidBiP").val("false");
+		            }
+		        });
+
+		        var _hidVal = $('#hidBiP').val();
+		        if (_hidVal == 'true') {
+		            $('.hdr-read-text a').click();
+		        }
+
+		        if (isFontFaceSupported() == false) {
+		            $('.fa').iconfontFallback();
+		        }
+
+		        $('p.hdr-read-text a').qtip({
+		            content: 'Bills currently before the General Assembly',
+		            style: {
+		                textAlign: 'center',
+		                tip: true,
+		                classes: 'qtip-rounded qtip-shadow',
+		            },
+		            position: {
+		                my: 'top center',
+		                at: 'bottom center'
+		            }
+		        });
+
+				$('#reportClick').attr("aria-label", "Create a report based on the current selection");
+				$('.number-descrip-list > dt > input').each(function () {
+					$(this).attr('aria-label', $(this).attr("id") + " checkbox");
+		    	});
+				$('.parentCheck').attr('aria-label', "Select all children in selection checkbox")
+				$('.va-law-footer').attr('style', "padding-top: 20px;");
+				$('.reportClick.rptCheckbox').attr('aria-label', "Cancel Report");
+				$('.reportClick.rptCheckbox').attr('name', "Cancel Report");
+				$('.fancybox-iframe').attr('title', "Email form" );
+
+			});
+
+		    function PrintPreview() {
+		        $('table').floatThead('reflow');
+		        $('table').floatThead('reflow');
+		        printWindow = window.open("", "", "location=1,status=1,scrollbars=1,width=650,height=600");
+		        printWindow.document.write('<!DOCTYPE html><html><head>');
+		        printWindow.document.write('<link rel="stylesheet" href="./css/base.css" type="text/css" media="all" />');
+		        printWindow.document.write('<link rel="stylesheet" href="./css/720_grid.css" type="text/css" media="all" />');
+		        printWindow.document.write('<style type="text/css">@media print{.no-print, .no-print *{display: none !important;}h6{display:none !important;}#printPages{display:none !important;}}#printDate {display:none !important;}</style>');
+		        printWindow.document.write('<style type="text/css">#printHeader{display:block;font-size:1em;line-height:1.3em;text-align:left;margin-bottom:.8em;}</style>');
+
+		        printWindow.document.write('<style type="text/css">body{color:#444;font-family:"PT Serif",Georgia,serif;line-height:1.3em;font-size: .95em;}h2{margin:0 0 .1em 0;font-weight:normal;line-height:1.2em;font-size:1.4em;letter-spacing:.01em;padding:0 .35em 0 0.25em;}');
+		        printWindow.document.write('.hdr-read-text,.read-text,.rptCheckbox{display:none;}ul .outline{margin-bottom:1em;}ul{list-style:none;}.outline ul{margin-left:1em;}a, a:link{color:#1a73ae;text-decoration:none;}');
+		        printWindow.document.write('b{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;}.number-descrip-list{line-height:1.55em;margin-bottom:1em;height:auto;}');
+		        printWindow.document.write('.number-descrip-list dt {clear: left;float: left;display: table-cell;font-weight: bold;width: 6.75em;}.number-descrip-list dd {padding-bottom: .125em;display: table-cell;}');
+		        printWindow.document.write('.number-descrip-list-outline{margin-left:1em;line-height:1.55em;}.number-descrip-list-outline dt{width:7em;font-weight:bold;}');
+		        printWindow.document.write('.number-descrip-list-outline dd{display:table-cell;padding-bottom:0;}</style>');
+
+		        printWindow.document.write('<style type="text/css">h6 {font-family: "Lato", Helvetica, Arial, sans-serif;font-size: 14px;border-bottom: 1px solid #ddd;padding-bottom: 15px;}');
+		        printWindow.document.write('table{border-collapse: collapse;border-spacing: 0;margin-bottom: 15px;}.printButtons {width: 100%;text-align: right;position: absolute;right: 10px;top: 28px;}</style>');
+		        printWindow.document.write('<style>#printPages{position:absolute;left: 120px;top: 30px;}.hiddenTable {display: none !important;}</style>');
+
+		        printWindow.document.write('</head><body>');
+		        printWindow.document.write('<h6>Print Preview</h6><span id="printPages"></span>')
+		        printWindow.document.write('<div class="printButtons">');
+
+		        //Print and cancel button
+		        printWindow.document.write('<input type="button" id="btnPrint" value="Print" class="no-print" onclick="window.print();window.onfocus=function(){window.close();}" />');
+		        printWindow.document.write('<input type="button" id="btnCancel" value="Cancel" class="no-print" onclick="window.close()" />');
+
+		        printWindow.document.write('</div>');
+
+		        //You can include any data this way.
+		        var _page = '<div id="va_code" class="va_code">' + $('#printStuff').html() + $('#va_code').html() + '</div>';
+		        printWindow.document.write(_page);
+		        printWindow.document.write('<scr' + 'ipt type="text/javascript">var divHeight;var obj = document.getElementById("va_code");if(obj.offsetHeight){divHeight=obj.offsetHeight;}else if(obj.style.pixelHeight){divHeight=obj.style.pixelHeight;}document.getElementById("printPages").innerHTML="Approximate Number of Pages: " + Math.ceil(divHeight / 850);</sc' + 'ript>');
+		        printWindow.document.write('</body></html>');
+		        printWindow.document.close();
+		        printWindow.focus();
+		    }
+	</script>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+</body>
+        </div>
+        
+        
+            <div class="va-law-footer" id="valawfooter">
+                <div class="grid">
+                    <div class="row">
+                        <div class="slot-6 foot-callout">
+                            <h4><i class="fa fa-book"></i> Virginia Law Library</h4>
+                            
+                            <p>The Code of Virginia, Constitution of Virginia, Charters, Authorities, Compacts and Uncodified Acts are available in both PDF and CSV formats. <a aria-label="Virginia Law Library" class="more" href="/law-library"><i class="fa fa-arrow-circle-right"></i></a></p>
+                        </div>
+                        <div class="slot-7 foot-callout">
+                            <h4><i class="fa fa-question-circle"></i> Helpful Resources</h4>
+                            <ul>
+                                <li><a href="http://codecommission.dls.virginia.gov/">Virginia Code Commission</a></li>
+                                <li><a href="http://register.dls.virginia.gov/">Virginia Register of Regulations</a></li>
+                                <li><a href="https://www.archives.gov/exhibits/charters/constitution_transcript.html">U.S. Constitution</a></li>
+                            </ul>
+                        </div>
+                        <div class="slot-8 foot-callout">
+                            <h4 href="/developers"><i class="fa fa-wrench"></i> For Developers</h4>
+                            <p>The Virginia Law website data is available via a web service. <a aria-label="For Developers" class="more" href="/developers"><i class="fa fa-arrow-circle-right"></i></a></p>
+                        </div>
+                        <div class="slot-9 foot-callout">
+                            
+                            
+                            <div style="height: 4px;"></div>
+                            <img id="ga-seal" src="/images/ga_seal_lis.png" alt="virginia general assembly seal" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="footer">
+            <nav class="footer-links" style="line-height: 1.4;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div aria-hidden="true" id='generic_login_div' style="display:none;z-index:9999;padding:10px;" class="corners dropshadow">
+                            <h3>Sign In</h3>
+                            <div class='form-row'>
+                                <label id='lblusername' for='username'>Username:&nbsp; </label>
+                                <input type='text' class="user" name='username' placeholder="Username" id='username' />
+                                <label id="userError"></label>
+                            </div>
+                            <div class='form-row'>
+                                <label id='lblpassword' for='password'>Password:&nbsp; </label>
+                                <input type='password' class="pass" name='password' placeholder="Password" id='password' />
+                                <label id="passError"></label>
+                            </div>
+                            <div class='submit-row'>
+                                <input type='button' id="btnLogin" class="button" value='Login' />
+                                <a onclick='hideLogin()' class="hover">Cancel</a>
+                            </div>
+                        </div>
+                        <div id="dialog-modal" style="display:none;"></div>
+                        <span class="col-xs-12 text-center">
+                            <ul>
+                                <li><a href="https://lis.virginia.gov">LIS Home</a></li>
+                                <li><a id="aLIAB" href="https://lis.virginia.gov/register-account">Lobbyist-in-a-Box</a></li>
+                                <li><a href="https://lis.virginia.gov/privacy">Privacy Policy</a></li>
+                                
+                            </ul>
+                            <p>
+                                © Copyright Commonwealth of Virginia,
+                                <script>document.write(new Date().getFullYear())</script>. All rights reserved. Site developed by the <a href="http://dlas.virginia.gov">Division of Legislative Automated Systems (DLAS)</a>.
+                                <a aria-hidden="true" href="" id="signin" onclick="showLogin();return false;">Sign In</a>
+                                
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+</body>
+</html>
+
+<!--[if lt IE 10 ]><script async src="<%: FriendlyUrl.Href("~/Scripts/placeHolder.js" type="text/javascript"></script><![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="~/Scripts/html5shiv.js"></script>
+<script src="~/Scripts/respond.js"></script>
+<![endif]-->
+
+<script src="/Scripts/SwitchMode.js" type="text/javascript"></script>
