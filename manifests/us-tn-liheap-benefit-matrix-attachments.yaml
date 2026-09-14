@@ -1,0 +1,68 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-tn-liheap-thda-liheap-benefit-matrix-2026
+  jurisdiction: us-tn
+  document_class: policy
+  title: Tennessee LIHEAP 2026 Benefit Matrix (form LI-11)
+  source_url: https://dogvxws799i6n.cloudfront.net/wp-content/uploads/2026-LIHEAP-Eligible-Income-Household-Size-Benefits.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-tn/policy/thda/liheap/benefit-matrix-2026
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Housing Development Agency
+    hosting_authority: THDA WordPress asset distribution (dogvxws799i6n.cloudfront.net), linked from thda.org
+    document_subtype: plan_attachment_benefit_matrix_pdf
+    program: LIHEAP
+    state: TN
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://thda.org/govt-non-profit/low-income-home-energy-assistance-program-liheap-forms/
+    on_clearinghouse_index: true
+    source_discovery_group: us-tn/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://thda.org/govt-non-profit/low-income-home-energy-assistance-program-liheap-forms/
+    extraction_granularity: pdf_page
+    expression_date_note: FY 2026 matrix (PDF dated 2025-09-05)
+    access_note: thda.org HTTP 200 to the plain client; its documents are served from THDA's own WordPress asset distribution
+      (dogvxws799i6n.cloudfront.net), linked directly from the THDA index page; the Clearinghouse-listed thda.org/pdf/ URL
+      answers 404
+    page_count: 1
+    benefit_matrix_pdf_pages: '1'
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-tn-liheap-thda-liheap-benefit-matrix-2027
+  jurisdiction: us-tn
+  document_class: policy
+  title: Tennessee LIHEAP Fiscal Year 2027 Benefit Matrix (form LI-12)
+  source_url: https://dogvxws799i6n.cloudfront.net/wp-content/uploads/2027-LIHEAP-LI-12-Eligible-Income-Benefit-Matrix.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-15'
+  citation_path: us-tn/policy/thda/liheap/benefit-matrix-2027
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Housing Development Agency
+    hosting_authority: THDA WordPress asset distribution (dogvxws799i6n.cloudfront.net), linked from thda.org
+    document_subtype: plan_attachment_benefit_matrix_pdf
+    program: LIHEAP
+    state: TN
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://thda.org/govt-non-profit/low-income-home-energy-assistance-program-liheap-forms/
+    on_clearinghouse_index: true
+    source_discovery_group: us-tn/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://thda.org/govt-non-profit/low-income-home-energy-assistance-program-liheap-forms/
+    extraction_granularity: pdf_page
+    expression_date_note: dated 2026-07-15 for fiscal year 2027 (from 2026-10-01)
+    access_note: thda.org HTTP 200 to the plain client; its documents are served from THDA's own WordPress asset distribution
+      (dogvxws799i6n.cloudfront.net), linked directly from the THDA index page; the Clearinghouse-listed thda.org/pdf/ URL
+      answers 404
+    page_count: 4
+    benefit_matrix_pdf_pages: 1-4
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

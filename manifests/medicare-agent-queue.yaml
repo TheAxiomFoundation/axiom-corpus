@@ -29,8 +29,9 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 6
-  done: 5
+  agent_ready: 32
+  done: 12
+  needs_review: 3
 states:
 - jurisdiction: us
   name: Federal
@@ -1346,3 +1347,1067 @@ states:
     Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
     100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
     341 provisions). Nothing was fetched.'
+- jurisdiction: us-az
+  name: Arizona
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_chart
+  primary_source_url: https://www.azahcccs.gov/Members/GetCovered/
+  target_manifest: manifests/us-az-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-az
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.azahcccs.gov/Members/GetCovered/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-az/guidance/ahcccs/eligibility-requirements-chart/2026-02
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): AHCCCS ''Who Can Apply?'' page links
+    one FPL and income eligibility chart (PDF, RTF twin); the 2-page chart revised February 1, 2026 prints QMB/SLMB/QI-1 monthly
+    limits ($1,330/$1,596/$1,796 single; $1,804/$2,164/$2,435 couple, without the $20 disregard) under ''Coverage for Medicare
+    Beneficiaries'' with resource limit N/A (no MSP asset test). azahcccs.gov answers the plain client (HTTP 200); the des.az.gov
+    block was not involved. The AHCCCS eligibility policy manual chapter 600 (MA0615, held in the selected 2026-09-10 scope)
+    states the same figures in prose; the chart is the standards document.'
+- jurisdiction: us-co
+  name: Colorado
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_operational_memo
+  primary_source_url: https://hcpf.colorado.gov/sites/hcpf/files/HCPF%20OM%2026-025%202026%20Increase%20to%20Income%20Limits-Medicare%20Savings%20Programs%20and%20Low-Income%20Subsidy_Accessible.pdf
+  target_manifest: manifests/us-co-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-co
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://hcpf.colorado.gov/2026-memo-series-communication
+  index_document_count: 86
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 86
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-co/guidance/hcpf/operational-memo/om-26-025
+  - us-co/guidance/hcpf/operational-memo/om-25-078
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): HCPF publishes the MSP standards
+    as operational memos: OM 26-025 (issued 2026-04-08, effective 2026-04-01; QMB $1,350/$1,824, SLMB $1,616/$2,184, QI-1
+    $1,816/$2,455, QDWI $2,680/$3,628 including the $20 disregard; supersedes OM 25-013) on the 2026 memo series page (86
+    PDF links, the only MSP memo of 2026) and OM 25-078 (issued 2025-12-29, effective 2026-01-01; MSP resource limits $11,450/$17,910
+    including the $1,500/$3,000 burial allowance) on the 2025 page. hcpf.colorado.gov (CloudFront) answers HTTP 403 to the
+    plain client and HTTP 200 to the browser-impersonated client; both memos taken with browser impersonation.'
+- jurisdiction: us-ct
+  name: Connecticut
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_program_standards_chart
+  primary_source_url: https://portal.ct.gov/dss/knowledge-base/articles/fact-sheets-and-brochures-articles/income-tables-articles/dss-program-standards-chart
+  target_manifest: manifests/us-ct-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: policy
+    version: 2026-09-14-msp-income-standards
+  index_url: https://portal.ct.gov/dss/knowledge-base/articles/fact-sheets-and-brochures-articles/income-tables-articles/dss-program-standards-chart
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ct/policy/dss/program-standards/2026-07-01
+  - us-ct/policy/dss/medicare-savings-program-eligibility/2026-03-01
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The DSS Program Standards Chart
+    knowledge-base article links two charts: the current ''As of 7/1/2026'' chart (MSP block ''eff. 3/1/2026'': QMB $2,807/$3,806,
+    SLMB $3,073/$4,166, ALMB $3,272/$4,436) and the 10/1/2026 chart that becomes current on 2026-10-01 (same MSP block, FY
+    2027 SNAP standards; not taken). The 1/1/2026 chart held in the selected us-ct/policy/2026-07-02-ct-ssp-upm-and-standards
+    scope prints the 3/1/2025 MSP figures, so a dated sibling path is taken under the same document class (policy, the state''s
+    precedent for this chart). The MSP eligibility page prints the three tiers in prose.'
+- jurisdiction: us-dc
+  name: District of Columbia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://dhcf.dc.gov/service/qualified-Medicare-beneficiary-qmb
+  target_manifest: manifests/us-dc-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://dhcf.dc.gov/service/qualified-Medicare-beneficiary-qmb
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-dc/guidance/dhcf/qmb-income-limits/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DHCF publishes no PDF standards
+    chart or transmittal; the QMB service page (updated 2026-01-16) prints the 2026 QMB monthly limits (300% FPL plus the
+    $20 disregard: $4,010 one person, $5,430 two) and states no asset test. The District operates only the QMB tier (its ceiling
+    exceeds 135% FPL, so no SLMB/QI dollar standards exist). The ''Eligibility Changes to the Medicaid Program Effective January
+    1, 2026'' resource document describes the transition without dollar limits and is not taken.'
+- jurisdiction: us-de
+  name: Delaware
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_administrative_notice
+  primary_source_url: https://dhss.delaware.gov/wp-content/uploads/sites/11/2026/06/2026-Federal-Poverty-and-Medicaid-Assistance-Levels.pdf
+  target_manifest: manifests/us-de-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://dhss.delaware.gov/dmma/home/income-limits/
+  index_document_count: 1
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-de/guidance/dmma/administrative-notice/a-03-2026
+  - us-de/guidance/dmma/medicaid-income-limits/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DMMA Administrative Notice A-03-2026
+    (signed 2026-02-04) prints the 2026 QMB/SLMB/QI-1/QDWI monthly limits for family sizes 1 and 2 ($1,330/$1,596/$1,796/$2,660;
+    $1,804/$2,164/$2,435/$3,607), effective 2026-04-01 for MSP; Delaware applies no MSP resource test. The DMMA Medicaid Income
+    Limits page reproduces the MSP table (taken as the HTML secondary). Both answer the plain client.'
+- jurisdiction: us-fl
+  name: Florida
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_appendix_pointer
+  primary_source_url: https://www.myflfamilies.com/services/public-assistance/additional-resources-and-services/ess-program-manual/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-fl
+    document_class: manual
+    version: 2026-05-27-fl-ess-manual-r2026-07-15-self-contained
+  index_url: https://www.myflfamilies.com/services/public-assistance/additional-resources-and-services/ess-program-manual/
+  index_document_count: 27
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 27
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: the ESS Program
+    Policy Manual index links Appendix A-9.1 ''Medicare Savings Programs and Low-Income Subsidy Coverage Groups Financial
+    Standards'' (ffic.myflfamilies.com/manual/essfiles/59106.pdf, HTTP 200), headed ''Interim Effective January 2026 / Financial
+    Standards April 2025'' (QMB $1,342, SLMB $1,609, QI1 $1,811, assets $9,950/$14,910). The selected scope us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained
+    already holds this edition at us-fl/manual/dcf/ess-program-policy-manual/appendix-a-9-1-medicare-savings-programs-and-low-income-subsidy-coverage-groups-financial-standards
+    (the closure regex missed it because the figures sit in a table without a 2026 date next to the group term). Nothing new
+    to take; DCF has not posted an April 2026 revision.'
+- jurisdiction: us-ga
+  name: Georgia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_financial_limits_chart
+  primary_source_url: https://medicaid.georgia.gov/how-apply/basic-eligibility
+  target_manifest: manifests/us-ga-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://medicaid.georgia.gov/how-apply/basic-eligibility
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ga/guidance/dch/medicaid/financial-limits-all-programs/2026
+  - us-ga/guidance/dch/medicaid/abd-fm-income-resource-limits/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): medicaid.georgia.gov answered the
+    plain client (HTTP 200; the dch/dfcs.georgia.gov block was not involved). The Basic Eligibility page links two limits
+    documents: the one-page ''2026 Financial Limits, All Programs'' chart (income limits effective 3/1/2026, revised 3/5/2026:
+    QMB/SLMB/QI-1/QDWI as FPL% + $20, resources $9,950/$14,910) and the three-page ''2026 Income and Resource Limits'' narrative
+    (QMB only). The chart''s text layer is column-scrambled (dense landscape table).'
+- jurisdiction: us-hi
+  name: Hawaii
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_income_standards_chart
+  primary_source_url: https://medquest.hawaii.gov/en/resources/rules-and-policy.html
+  target_manifest: manifests/us-hi-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://medquest.hawaii.gov/en/resources/rules-and-policy.html
+  index_document_count: 7
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 7
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-hi/guidance/med-quest/magi-and-magi-excepted-income-standards-chart/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The Med-QUEST Rules and Policies
+    page lists seven annual MAGI and MAGI-Excepted income standards charts (2020-2026); the 2026 chart (effective 01/13/2026)
+    prints QMB 100%, SLMB 120%, QI-1 135% and QDWI 200% monthly standards for household sizes 1-10 on the Hawaii poverty guideline
+    (100% = $1,530) keyed to HAR 17-1722 sections, plus the MAGI-Excepted asset limits $9,950/$14,910. Plain client HTTP 200.'
+- jurisdiction: us-id
+  name: Idaho
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+  target_manifest: manifests/us-id-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-id/guidance/dhw/medicaid-program-income-limits/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DHW publishes no PDF chart or transmittal;
+    the Medicaid Program Income Limits page (last updated 2026-04-20) carries a ''Medicare Savings Program, Effective January
+    2026'' section with individual and couple tables (QMB $1,350/$1,824, SLMB $1,616/$2,184, QI $1,816/$2,455, resources $9,950/$14,910;
+    FPL% plus the $20 disregard). The whole page is taken (it also holds the other program limits).'
+- jurisdiction: us-in
+  name: Indiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_chapter_pointer
+  primary_source_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-in
+    document_class: manual
+    version: 2026-09-10-chip-state-eligibility-manual
+  index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+  index_document_count: 22
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 22
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-in/manual/2026-09-10-chip-state-eligibility-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: IHCPPM Chapter
+    3000 Eligibility Standards (www.in.gov/fssa/ompp/files/Medicaid_PM_3000.pdf, HTTP 200, modified 2026-09-10) prints the
+    QMB 150% / SLMB 170% / QDW 200% / QI 185% standards effective March 1, 2026 (3010.35.05-.20: $1,995 / $2,261 / $2,660
+    / $2,461 for one) and the 1/1/2026 resource limits. The selected scope us-in/manual/2026-09-10-chip-state-eligibility-manual
+    already holds this chapter section by section (us-in/manual/fssa/chip/ihcppm-chapter-3000/3010.35.05 carries ''effective
+    March 1, 2026'' and $1995.00). Nothing new to take.'
+- jurisdiction: us-ks
+  name: Kansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_standards_appendix
+  primary_source_url: https://www.kancare.ks.gov/providers/presumptive-eligibility
+  target_manifest: manifests/us-ks-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.kancare.ks.gov/providers/presumptive-eligibility
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ks/guidance/kdhe/medical-assistance-standards-f-8/2026-07
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Kansas Medical Assistance Standards
+    F-8 (07-26 edition, 9 pages) prints the MSP table ''Updated 4/1/2026'' (QMB 100%, LMB 120%, ELMB 135%, QWD 200%: Kansas''s
+    names for QMB/SLMB/QI/QDWI) on page 3 and the $9,950/$14,910 resource limits on page 8. kancare.ks.gov (Akamai) answers
+    HTTP 403 to the plain client and HTTP 200 to the browser-impersonated client. The CivicPlus URL carries a version stamp
+    that changes on re-upload; the Presumptive Eligibility page is the only public page found linking F-8.'
+- jurisdiction: us-ky
+  name: Kentucky
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_volume_pointer
+  primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-ky
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+  index_document_count: 12
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 12
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-ky/manual/2026-09-10-medicaid-state-eligibility-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: Operation Manual
+    Volume IVA (Non-MAGI Medicaid, one 356-page PDF, HTTP 200) carries MS 4455 ''Income Limits for Medicare Savings Program''
+    (R. 4/13/26, OMTL-693: QMB $1,350, SLMB $1,616, QI1 $1,816 for one, including the $20 exclusion) on PDF page 334 and MS
+    4450 resource limits. The selected scope us-ky/manual/2026-09-10-medicaid-state-eligibility-manual holds the same edition
+    page by page (us-ky/manual/dcbs/medicaid/volume-iva; the 4/13/26 figures match). Nothing new to take.'
+- jurisdiction: us-la
+  name: Louisiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_chart_pointer
+  primary_source_url: https://ldh.la.gov/medicaid/medicaid-eligibility-manual
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-la
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://ldh.la.gov/medicaid/medicaid-eligibility-manual
+  index_document_count: 17
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 17
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-la/manual/2026-09-10-medicaid-state-eligibility-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: chart Z-200 ''Federal
+    Poverty Income Guidelines, for programs changing effective March 1, 2026'' (issued 2026-01-30; 100/120/135/200% monthly
+    figures $1,330/$1,596/$1,796/$2,660) and Z-2200 ''Medicare Savings Program Resource Limits'' are both held in the selected
+    scope us-la/manual/2026-09-10-medicaid-state-eligibility-manual (us-la/manual/ldh/medicaid/z-200/page-1 prints ''Issued
+    January 30, 2026 ... Effective March 1, 2026''; z-2200). Nothing new to take.'
+- jurisdiction: us-ma
+  name: Massachusetts
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_operations_memo_and_fpl_chart
+  primary_source_url: https://www.mass.gov/doc/eom-24-03-medicare-savings-programs-formerly-known-as-masshealth-senior-buy-in-and-masshealth-buy-in-programs-0/download
+  target_manifest: manifests/us-ma-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.mass.gov/info-details/program-financial-guidelines-for-certain-masshealth-applicants-and-members
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ma/guidance/masshealth/eom/24-03
+  - us-ma/guidance/masshealth/income-standards-and-fpl/2026-03
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): MassHealth publishes no single chart
+    naming QMB/SLMB/QI with per-tier dollars. The tiers (QMB up to 190% FPL, SLMB over 190 to 210%, QI over 210 to 225%, no
+    asset test since 2024-03-01) are set by Eligibility Operations Memo 24-03 (March 2024; the 2026 EOM list 26-01 to 26-09
+    has no MSP standards memo) and the 2026 dollars by the program financial guidelines chart DG-FPL_2026-03 (effective 2026-03-01;
+    190% $2,527/$3,427, 225% $2,993/$4,058; no 210% column). Both taken; mass.gov answers HTTP 403 to the plain client and
+    200 to the browser-impersonated client. The MSP application form is not taken.'
+- jurisdiction: us-me
+  name: Maine
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_guidelines_chart
+  primary_source_url: https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+  target_manifest: manifests/us-me-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-me/guidance/ofi/mainecare-eligibility-guidelines/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The OFI health care assistance page
+    links the 2026 MaineCare Eligibility Guidelines chart (file dated 6.23.26; 2026 FPL, 100% = $1,330). Its Medicare Savings
+    Programs (Buy-in) block prints QMB at 185% FPL ($2,461/$3,337) and QI at 250% ($3,325/$4,509) with no asset test; Maine
+    has no SLMB tier (22 MRS 3174-LLL), so two tiers are the complete program. Plain client HTTP 200.'
+- jurisdiction: us-mi
+  name: Michigan
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_reference_table
+  primary_source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/RF/Public/RFT/242.pdf
+  target_manifest: manifests/us-mi-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-mi
+    document_class: manual
+    version: 2026-09-14-msp-income-standards
+  index_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/RF/Public/RFT/000.pdf
+  index_document_count: 22
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 22
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-mi/manual/mdhhs/bridges-reference-tables/rft-242
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): RFT 242 ''AD-Care and Medicare Savings
+    Program Income Limits'' (RFB 2026-004, 4-1-2026) prints the full-coverage QMB, limited-coverage QMB (SLMB) and ALMB (QI)
+    monthly limits effective 4/1/2026 (QMB $1,350/$1,824, SLM to $1,616/$2,184, ALMB to $1,816/$2,455, +$20 disregard). Path-case
+    gotcha: the uppercase /olmweb/EX/... path (and the dhhs.michigan.gov/OLMWEB redirect) serves the stale RFB 2025-004 edition;
+    the lowercase /olmweb/ex/... path serves the current one and is the URL taken. The RFT 000 table of contents (RFB 2026-006)
+    lists 22 tables. MSP resource limits are in BEM 165 (selected Bridges scope). Class manual: the reference tables are part
+    of the Bridges manual family held as manual.'
+- jurisdiction: us-mn
+  name: Minnesota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_income_and_asset_guidelines
+  primary_source_url: https://edocs.dhs.state.mn.us/lfserver/Public/DHS-3461A-ENG
+  target_manifest: manifests/us-mn-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://edocs.dhs.state.mn.us/lfserver/Public/DHS-3461A-ENG
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-mn/guidance/dhs/dhs-3461a/2026-06
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): DHS-3461A ''Insurance Affordability
+    Programs (IAPs) Income and Asset Guidelines'' (6-26 edition, effective 7/1/26 to 6/30/27) is the agency''s MSP dollar
+    chart: QMB/SLMB/QI/QWD monthly and annual limits with the $20 disregard ($1,350/$1,616/$1,816/$2,680 for one) and asset
+    limits ($10,000/$18,000). The unversioned eDocs URL stacks the current edition (pages 1-2) over the prior 10-25 edition
+    (pages 3-4), so pages 1-2 are taken as one block. The EPM Appendix F host hcopub.dhs.state.mn.us resets connections and
+    fails TLS verification from this machine (both clients); eDocs answers the plain client.'
+- jurisdiction: us-mo
+  name: Missouri
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_appendix_pointer
+  primary_source_url: https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-mo
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/
+  index_document_count: 1
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-mo/manual/2026-09-10-medicaid-state-eligibility-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: MHABD Manual Appendix
+    J ''Eligibility Standards for Non-MAGI Programs (07/2026)'' (dssmanuals.mo.gov, HTTP 200 to the plain client; the upload
+    path is dated 2022/07 but the file is overwritten in place) prints QMB $1,330, SLMB1 $1,596, SLMB2 (QI-1) $1,796 effective
+    04-01-26 and resource maximums $9,950/$14,910 effective 01-01-26. The selected scope us-mo/manual/2026-09-10-medicaid-state-eligibility-manual
+    holds this same 07/2026 edition (us-mo/manual/dss/medicaid/mhabd/appendix-j/page-1). fsdimresources.mo.gov is Incapsula-blocked
+    to both clients. Nothing new to take.'
+- jurisdiction: us-ms
+  name: Mississippi
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_guide
+  primary_source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Medicare-Cost-Sharing-2026.pdf
+  target_manifest: manifests/us-ms-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/medicare-cost-sharing/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ms/guidance/dom/medicare-cost-sharing-eligibility-guide/2026-03
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The Medicare Cost-Sharing page links
+    the ''Medicaid Eligibility Guide for Medicare Cost-Sharing Coverage'' (revised 3/1/2026, 2 pages): QMB $1,380/$1,854,
+    SLMB $1,646/$2,214, QI $1,846/$2,485 (2026 FPL plus the $50 Mississippi disregard), no resource test. The Eligibility
+    Manual Appendix A-1 (rev. 3/1/2026) lists the same percentages but its multi-column table separates labels from figures;
+    the guide is the closing document. Plain client HTTP 200.'
+- jurisdiction: us-nc
+  name: North Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_change_notice
+  primary_source_url: https://policies.ncdhhs.gov/document/change-notice-for-manual-no-03-26-2026-federal-poverty-level-changes-fpl-income-changes-and-cost-of-living-adjustment-cola-disregard/
+  target_manifest: manifests/us-nc-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: manual
+    version: 2026-09-14-msp-income-standards
+  index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/
+  index_document_count: 2
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nc/manual/dhb/medicaid/change-notice/cn-03-26
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): MA-2252 ''Non-MAGI Medicaid Income/Reserve
+    Limits (2026)'' (effective 4/1/2026; MQB-Q/MQB-B/MQB-E are NC''s names for QMB/SLMB/QI) is already held in the selected
+    scope us-nc/manual/2026-09-10-medicaid-state-eligibility-manual (us-nc/manual/dhb/medicaid/ma-2252 carries ''April 1,
+    2026''), so it is not re-taken. Change Notice 03-26 (2026-02-03), the transmittal that issues the 2026 FPL income changes
+    and COLA disregard, was not held and is taken under the manual class of the NC Medicaid family.'
+- jurisdiction: us-nh
+  name: New Hampshire
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_service_release
+  primary_source_url: https://www.dhhs.nh.gov/sr_htm/html/sr_26-03_dated_03_26.htm
+  target_manifest: manifests/us-nh-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: manual
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.dhhs.nh.gov/mam_htm/html/601_table_a_income_limits_mam.htm
+  index_document_count: 6
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 6
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nh/manual/dhhs/sr/26-03
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Service Release SR 26-03 (dated
+    03/26, effective 2026-03-01) is the FPL mass-change release that updates the QMB and SLMB/SLMB135 (NH''s name for QI)
+    income limits and restates the resource limits. MAM 601 Tables C (QMB) and D (SLMB/SLMB135), stamped ''SR 26-03'', are
+    already held in the selected scope us-nh/manual/2026-09-10-medicaid-state-eligibility-manual (us-nh/manual/dhhs/mam/601-table-c-...,
+    601-table-d-...) and are not re-taken. dhhs.nh.gov (Akamai) answers HTTP 403 to the plain client and 200 to the browser-impersonated
+    client; the SR is taken with browser impersonation under the manual class of the MAM.'
+- jurisdiction: us-nj
+  name: New Jersey
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_medicaid_communication
+  primary_source_url: https://www.nj.gov/humanservices/dmahs/documents/providers-stakeholders/resources/medicaid/2026/26-03_Income_Eligibility_Standards_Effective_January-1-2026.pdf
+  target_manifest: manifests/us-nj-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.nj.gov/humanservices/dmahs/providers-stakeholders/provider-resources/medicaid-communications/
+  index_document_count: 6
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 6
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nj/guidance/dmahs/medicaid-communication/26-03
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Medicaid Communication No. 26-03
+    (2026-02-26) ''Income Eligibility Standards Effective January 1, 2026'' is the annual FPL communication; its page-3 chart
+    labels QMB Only 100% FPL, SLMB 120% FPL and SLMB QI-1 135% FPL with annual and monthly columns for household sizes 1-8
+    (columns extract out of order in the text layer). The Division of Aging Services MSP page (nj.gov/humanservices/doas/services/l-p/msp/,
+    HTTP 200) prints the 2026 annual income and the $9,950/$14,910 asset limits that 26-03 omits, but its markup nests the
+    whole <main> inside an unclosed <nav>, which the HTML extractor drops, so it is recorded here and not taken. The 2026
+    communications folder lists 26-01 to 26-06 (26-01 is SSI/Medicaid Only, no MSP figures).'
+- jurisdiction: us-nm
+  name: New Mexico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_standards_form
+  primary_source_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+  target_manifest: manifests/us-nm-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+  index_document_count: 14
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 14
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nm/guidance/hca/mad-029/2026-04-01
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): MAD 029 ''Aged, Blind and Disabled
+    Medicaid Programs'' revised 04/01/2026 (one dense page: FPL grid, SSI/LTC standards and the MSP boxes QMB $1,330/$1,804,
+    SLIMB $1,596/$2,164, QI1 $1,796/$2,435; footnote: resource guidelines no longer apply to MSP). The FPL page lists 14 MAD
+    029 editions; the second 2026-2027 link (MAD-029-1.1.2026-Final.pdf) is the January revision still carrying 2025 FPL figures
+    and is not taken. Plain client HTTP 200.'
+- jurisdiction: us-nv
+  name: Nevada
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_income_limit_chart
+  primary_source_url: https://www.dss.nv.gov/access-nv/eligibility-payments-manual/income-limit-charts/
+  target_manifest: manifests/us-nv-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-nv
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.dss.nv.gov/access-nv/eligibility-payments-manual/income-limit-charts/
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-nv/guidance/dss/income-limit-charts-maabd/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The Income Limit Charts page prints
+    the MAABD ''2026 Medicare Beneficiary Income Limits by Aid Category'' (QMB $0-$1,330/$1,804, SLMB $1,330.01-$1,596/$2,164,
+    QI-1 to $1,796/$2,435; the year only, no day) in a collapsed accordion beside the SNAP/TANF/MAGI charts; the whole page
+    is taken. The formal Medical Assistance Manual Appendix C is stale (MTL 08/24, ''Effective 04/24''). Effective date recorded
+    as 2026-04-01 from Nevada''s April FPL cadence (metadata flags it as inferred). Plain client HTTP 200.'
+- jurisdiction: us-ny
+  name: New York
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_gis_message
+  primary_source_url: https://www.health.ny.gov/health_care/medicaid/publications/docs/gis/26ma05.pdf
+  target_manifest: manifests/us-ny-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.health.ny.gov/health_care/medicaid/publications/pub2026gis.htm
+  index_document_count: 13
+  taken_count: 3
+  index_families:
+    msp_income_standards_scope:
+      found: 13
+      taken: 3
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ny/guidance/doh/gis/26-ma-05
+  - us-ny/guidance/doh/gis/26-ma-05/attachment-1
+  - us-ny/guidance/doh/medicare-savings-programs/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): GIS 26 MA/05 ''2026 Federal Poverty
+    Levels'' (2026-02-13) and its Attachment 1 ''New York State Income and Resource Standards for Non-MAGI Population, Effective
+    January 1, 2026'' carry the MSP standards: New York has QMB (to 138% FPL, $1,836/$2,489) and QI (over 138% to 186%, $2,474/$3,355)
+    only since the 2023 expansion, no SLMB tier and no resource test. The NYSDOH Medicare Savings Programs page (revised May
+    2026) prints the same limits with the +$20 columns. health.ny.gov (CloudFront) answers HTTP 403 to the plain client and
+    200 to the browser-impersonated client (otda.ny.gov was not needed). The 2026 GIS index lists 13 messages.'
+- jurisdiction: us-oh
+  name: Ohio
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_eligibility_procedure_letter
+  primary_source_url: https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/About%20Us/PoliciesGuidelines/MEPL/MEPL_194_-_2026_Federal_Poverty_Level_Income_Guidelines.pdf
+  target_manifest: manifests/us-oh-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://medicaid.ohio.gov/resources-for-providers/policies-guidelines/medicaid-eligibility-procedure-letters/
+  index_document_count: 0
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 0
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-oh/guidance/odm/mepl/194
+  - us-oh/guidance/odm/abd-monthly-financial-eligibility-chart/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Medicaid Eligibility Procedure Letter
+    No. 194 (issued 2026-01-21, effective 2026-03-01) sets the 2026 QMB/SLMB/QI-1/QDWI standards under OAC 5160:1-3-02.1 for
+    family sizes 1-8 and obsoletes MEPL 186; the one-page ''2026 Monthly Financial Eligibility, Aged, Blind or Disabled /
+    Medicare Premium Assistance Programs'' chart prints sizes 1-12. Both PDFs answer the plain client on dam.assets.ohio.gov;
+    the MEPL index page on medicaid.ohio.gov could not be fetched from this machine (HTTP/2 error / 404), so the index count
+    is not recorded. Ohio applies no MSP resource test.'
+- jurisdiction: us-ok
+  name: Oklahoma
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: policy_appendix_pointer
+  primary_source_url: https://oklahoma.gov/okdhs/searchcenter/okdhsformresults/c-1.html
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-ok
+    document_class: policy
+    version: 2026-07-21-ok-snap-policy
+  index_url: https://oklahoma.gov/okdhs/searchcenter/okdhsformresults/c-1.html
+  index_document_count: 1
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-ok/policy/2026-07-21-ok-snap-policy
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: OKDHS Appendix
+    C-1 ''Maximum Income, Resource, and Payment Standards'' (7/1/2026 revision, 8 pages) carries the MSP schedules VI (QMBP),
+    VII (SLMB) and VII.A (QI-1): FPL% + $20 ($1,350/$1,616/$1,816 for one) and the $9,950/$14,910 resource standard. The selected
+    scope us-ok/policy/2026-07-21-ok-snap-policy holds this same revision (us-ok/policy/okdhs/snap/appendix-c-1 prints ''7/1/2026''
+    and $1,350), as does the superseding 2026-09-11 scope. The HTML rendering c-1.html is the older 1/1/2026 revision with
+    2025 figures. Nothing new to take.'
+- jurisdiction: us-or
+  name: Oregon
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://www.oregon.gov/odhs/aging-disability-services/pages/medicare-savings-programs.aspx
+  target_manifest: manifests/us-or-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.oregon.gov/odhs/aging-disability-services/pages/medicare-savings-programs.aspx
+  index_document_count: 4
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 4
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-or/guidance/odhs/medicare-savings-programs/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The MSP income standards are OAR
+    461-155-0290 (QMB), 461-155-0295 (SLMB, QI) and 461-155-0291 (QDWI), amended by SSP 17-2026 effective 2026-03-01 with
+    the 2026 FPL dollar tables; all three rules are already held in the selected scope us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461
+    (rule-461-155-0290/-0291/-0295; the 0295 row carries $1,596/$1,796) and are not re-taken. The ODHS ''Help Paying Medicare
+    Costs'' page prints the four 2026 tiers for one- and two-person groups and states Oregon has no MSP asset test; taken
+    as the standards page. The brochure host sharedsystems.dhsoha.state.or.us serves an incomplete TLS chain (not needed).
+    Plain client HTTP 200.'
+- jurisdiction: us-ri
+  name: Rhode Island
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://eohhs.ri.gov/Consumer/ProgramsServices/MedicarePremiumPaymentProgram.aspx
+  target_manifest: manifests/us-ri-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://eohhs.ri.gov/Consumer/ProgramsServices/MedicarePremiumPaymentProgram.aspx
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-ri/guidance/eohhs/medicare-premium-payment-program/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): EOHHS publishes no PDF chart; the
+    Medicare Premium Payment Program page (last updated 2026-09-02) prints the 2026 limits: QMB $1,683/$2,275 (125% FPL, SLMB
+    folded into QMB as of 2026-02-01 under SPA RI-26-0003), QI $2,255/$3,050 (168% FPL), resources $9,950/$14,910. Effective
+    date recorded from the 2026-02-01 QMB change statement. Plain client HTTP 200.'
+- jurisdiction: us-sc
+  name: South Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_html_program_page
+  primary_source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  target_manifest: manifests/us-sc-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-sc/guidance/scdhhs/program-eligibility-and-income-limits/2026
+  - us-sc/guidance/scdhhs/medicaid-eligibility-programs/2026-03-01
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The Program Eligibility and Income
+    Limits page prints the QMB and the SLMB/QI sections with ''Eff. 03/01/2026'' monthly limits ($1,330/$1,596/$1,796; couple
+    $1,804/$2,164/$2,435) and resource limits $9,950/$14,910 in accordions (the SLMB/QI resources cell is labelled ''Eff.
+    01/01/2025'', an agency typo). The three-page ''Medicaid Eligibility Programs Effective March 1, 2026'' PDF (URL still
+    named ''Effective 1.1'') carries SLMB, QI and QDWI rows; both taken. Plain client HTTP 200.'
+- jurisdiction: us-sd
+  name: South Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: official_pdf_brochure
+  primary_source_url: https://dss.sd.gov/formsandpubs/docs/MEDELGBLTY/MedicareSavingsProgramBrochureEntire.pdf
+  target_manifest: manifests/us-sd-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://dss.sd.gov/economicassistance/medical_programs.aspx
+  index_document_count: 2
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-sd/guidance/dss/medicare-savings-program-brochure/2026-05
+  - us-sd/guidance/dss/medicaid-coverage-groups/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Partial: no South Dakota document
+    prints separate QMB/SLMB/QI dollar tiers. The Medicare Savings Program brochure EA05 (May 2026) prints the single 2026
+    MSP income ceiling ($1,816/$2,455 = 135% FPL + $20) and the resource limits; the Medicaid Coverage Groups page names QMB,
+    SLMB and QI-1 with the $9,950/$14,910 resource limits. Both taken as the state''s current official publications; the application
+    DSS-EA-270, the Guide to Assistance and the billing manual were checked and print no figures. Plain client HTTP 200.'
+- jurisdiction: us-ut
+  name: Utah
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: manual_table_pointer
+  primary_source_url: https://oepmanuals.dhhs.utah.gov/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-ut
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://oepmanuals.dhhs.utah.gov/
+  index_document_count: 0
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 0
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-ut/manual/2026-09-10-medicaid-state-eligibility-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Needs review: the Medicaid Policy
+    Manual TABLE II ''Aged, Blind and Disabled Income Limits and Other Important Figures'' (effective 2026-03-01) prints the
+    100% FPL figure ($1,330/$1,804) and the QMB/SLMB/QI asset limits, but not the 120% and 135% dollar tiers (sections 320-2/320-3/320-4
+    define the tiers as percentages). TABLE II is already held in the selected scope us-ut/manual/2026-09-10-medicaid-state-eligibility-manual
+    (us-ut/manual/dhhs/medicaid/tables-table-ii-...). No Utah publication with all three dollar tiers was found; nothing new
+    to take.'
+- jurisdiction: us-vt
+  name: Vermont
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_standards_chart
+  primary_source_url: https://dvha.vermont.gov/sites/dvha/files/documents/MABD_PIL_Income_Chart_2026.pdf
+  target_manifest: manifests/us-vt-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://dvha.vermont.gov/members/medicaid/medicaid-aged-blind-or-disabled-mabd
+  index_document_count: 4
+  taken_count: 2
+  index_families:
+    msp_income_standards_scope:
+      found: 4
+      taken: 2
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-vt/guidance/dvha/mabd-pil-fpl-income-chart/2026
+  - us-vt/guidance/dvha/standards-change-for-healthcare/2026
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The MABD page lists four standards
+    documents (the Q1 1/1/2026 chart and standards-change notice, and their republished 4/1/2026 versions). The 2026 MABD
+    PIL/FPL Income Chart effective 4/1/2026 and the 2026 Standards Change for Healthcare (version 4, 07/13/2026) print Vermont''s
+    tiers: QMB 150% FPL ($1,995/$2,707), QI-1 202% ($2,687/$3,645), QDWI 200%, no resource test; SLMB sunset 1/1/2026. The
+    DVHA MSP member page repeats them with a couple-range typo and is not taken. Plain client HTTP 200.'
+- jurisdiction: us-wa
+  name: Washington
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_pdf_income_and_resource_standards_chart
+  primary_source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-help-others-apply-and-access-apple-health/program-standard-income-and-resources
+  target_manifest: manifests/us-wa-msp-income-standards-2026.yaml
+  target_scope:
+    jurisdiction: us-wa
+    document_class: guidance
+    version: 2026-09-14-msp-income-standards
+  index_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-help-others-apply-and-access-apple-health/program-standard-income-and-resources
+  index_document_count: 64
+  taken_count: 1
+  index_families:
+    msp_income_standards_scope:
+      found: 64
+      taken: 1
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  citation_paths:
+  - us-wa/guidance/hca/income-and-resource-standards/2026-07-01
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): The Program standard for income
+    and resources page (held as HTML in the selected 2026-09-10 Medicaid scope) lists 64 quarterly charts; the current chart
+    ''Washington Apple Health Income and Resource Standards, July 1, 2026'' (HCA 19-0096 (07/26), 3 pages) carries the MSP
+    block ''Alternate financial eligibility standards 4/1/2026'' with Washington''s tiers (QMB 110% $1,483, SLMB 120% $1,616,
+    QI-1 138% $1,855, QDWI 200% $2,680 for one; eleven household columns; no MSP resource row, no asset test). The unsuffixed
+    URL is overwritten each quarter; earlier charts carry a YYYYMMDD suffix. Plain client HTTP 200.'
+- jurisdiction: us-wv
+  name: West Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: manual_appendix_pointer
+  primary_source_url: https://bfa.wv.gov/income-maintenance-manual
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-wv
+    document_class: manual
+    version: 2026-07-21-wv-income-maintenance-manual
+  index_url: https://bfa.wv.gov/income-maintenance-manual
+  index_document_count: 1
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 1
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  pointer: us-wv/manual/2026-07-21-wv-income-maintenance-manual
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Done by pointer: the BFA site publishes
+    the whole Income Maintenance Manual as one 2,273-page PDF (bfa.wv.gov/media/40005/download, created 2026-08-25). The 2026
+    MSP figures are in Chapter 4 Income, Appendix A ''Income Limits'' (QMB 1,330/1,804; SLIMB 1,331-1,596 / 1,805-2,164; QI-1
+    1,597-1,796 / 2,165-2,435), not in Chapter 10. The selected scope us-wv/manual/2026-07-21-wv-income-maintenance-manual
+    already holds this appendix with the 2026 FPL figures (us-wv/manual/bfa/income-maintenance-manual/page-407: ''Chapter
+    4 Income APPENDIX A: INCOME LIMITS ... SLIMB ... 1,596''). Nothing new to take.'
+- jurisdiction: us-wy
+  name: Wyoming
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: needs_review
+  source_kind: google_sites_image_tables
+  primary_source_url: https://ecom.wyo.gov/
+  target_manifest: null
+  target_scope: null
+  index_url: https://ecom.wyo.gov/
+  index_document_count: 2
+  taken_count: 0
+  index_families:
+    msp_income_standards_scope:
+      found: 2
+      taken: 0
+  closure_elements:
+  - MED-ST-7
+  run_note: docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+  blocked_evidence: 'ecom.wyo.gov/tables/table1 and /tables/table7: HTTP 200 HTML whose tables are lh3.googleusercontent.com
+    JPEGs (image/jpeg, ~235 KB, 1280x1416); =s0/=w4000 variants return HTML; tesseract at 1280 px reads the 3+ person rows
+    only.'
+  notes: '2026-09-14 closure run (docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md): Needs review: the EOM (Google Sites,
+    HTTP 200 to the plain client) carries Table 1 ''Federal Poverty Level Standard, Effective Date: April 1, 2026'' (columns
+    C/D/F = QMB 100%, SLMB 120%, QI 135%) and Table 7 ''Maximum Resource Standards, Effective Date: January 1, 2026'', but
+    the dollar tables are JPEG images served from lh3.googleusercontent.com (1280 px, signed URLs); the page text holds only
+    the titles, effective dates and column key. The official-documents extractor has no image adapter, and OCR of the 1280
+    px rendering leaves the one- and two-person rows illegible, so no manifest is written. A browser-rendered or higher-resolution
+    fetch is needed.'

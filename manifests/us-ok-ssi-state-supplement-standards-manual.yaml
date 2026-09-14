@@ -1,0 +1,28 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-ok-manual-okdhs-oac-340-appendix-c-1
+  jurisdiction: us-ok
+  document_class: manual
+  title: 'Oklahoma Human Services Appendix C-1: Maximum Income, Resource, and Payment Standards (7/1/2026)'
+  source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  citation_path: us-ok/manual/okdhs/oac-340-appendix/c-1
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Human Services
+    document_subtype: policy_appendix_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: OK
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-1.pdf
+    source_discovery_group: us-ok/manual/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-1.pdf
+    extraction_granularity: pdf_page
+    expression_date_note: footer 'Appendix C-1 7/1/2026'
+    access_note: oklahoma.gov HTTP 200 to the plain client (the former policy-library appendix page redirects to rules.ok.gov/home,
+      Cloudflare HTTP 403 to plain clients)
+    page_count: 8

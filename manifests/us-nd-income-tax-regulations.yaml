@@ -1,0 +1,143 @@
+version: '2026-09-14'
+documents:
+- source_id: nd-legis-ndac-81-03-01.1
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-01.1
+  title: 'North Dakota Administrative Code Chapter 81-03-01.1: General Considerations'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-01.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-01\.1-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code
+- source_id: nd-legis-ndac-81-03-02.1
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-02.1
+  title: 'North Dakota Administrative Code Chapter 81-03-02.1: Income Tax on Individuals, Estates, Trusts, and Fiduciaries'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-02.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-02\.1-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code
+- source_id: nd-legis-ndac-81-03-02.2
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-02.2
+  title: 'North Dakota Administrative Code Chapter 81-03-02.2: Income Tax on Nonresident Individuals, Estates, Trusts,
+    and Fiduciaries'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-02.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-02\.2-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code
+- source_id: nd-legis-ndac-81-03-03.1
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-03.1
+  title: 'North Dakota Administrative Code Chapter 81-03-03.1: Income Tax Withholding'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-03.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-03\.1-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code
+- source_id: nd-legis-ndac-81-03-03.2
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-03.2
+  title: 'North Dakota Administrative Code Chapter 81-03-03.2: New Jobs Credit from Withholding'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-03.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-03\.2-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code
+- source_id: nd-legis-ndac-81-03-04
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-04
+  title: 'North Dakota Administrative Code Chapter 81-03-04: Estimated Tax'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-04-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code
+- source_id: nd-legis-ndac-81-03-10
+  jurisdiction: us-nd
+  document_class: regulation
+  citation_path: us-nd/regulation/ndac/81-03-10
+  title: 'North Dakota Administrative Code Chapter 81-03-10: Voluntary Contributions'
+  source_url: https://ndlegis.gov/information/acdata/pdf/81-03-10.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>81\-03\-10-\d{2}(?:\.\d)?)\.\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    official_publisher: North Dakota Legislative Council
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-nd/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ndlegis.gov/agency-rules/north-dakota-administrative-code

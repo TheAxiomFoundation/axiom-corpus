@@ -142,8 +142,39 @@ states:
     jurisdiction: us-ak
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ak/manual/2026-09-14-liheap-benefit-matrix, us-ak/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ak
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ak-liheap-benefit-matrix-manual.yaml
+      document_count: 66
+    - jurisdiction: us-ak
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ak-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: http://dpaweb.hss.state.ak.us/manuals/HAP/hap.htm
+    on_clearinghouse_index: true
+    taken_count: 67
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Heating Assistance Program Policy Manual, a RoboHelp 2022 manual (66 topic pages walked
+      from whxdata/toc*.new.js; latest transmittal 2026-02 of 2026-09-01); 3004-5 Grant Computation and Addendum A (FFY 2027
+      community fuel points) carry the benefit computation; plus the FY 2026 Heating Assistance Benefit Computation attachment
+      (6 pages) from the Clearinghouse. Publisher: Alaska Department of Health, Division of Public Assistance. Access: dpaweb.hss.state.ak.us
+      HTTP 200 to the plain client (RoboHelp shell 33,470 bytes; topic pages about 1 s each); liheapch.acf.gov HTTP 200 with
+      the Entrust intermediate in the CA bundle.'
 - jurisdiction: us-al
   name: Alabama
   lead_counts: {}
@@ -156,8 +187,30 @@ states:
     jurisdiction: us-al
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-al/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-al
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-al-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://adeca.alabama.gov/liheap/
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: ADECA LIHEAP Policy Manual (99 pages, effective 2024-10-01 to 2025-02-16 as printed);
+      the benefit matrix is printed on page 57. Publisher: Alabama Department of Economic and Community Affairs (ADECA). Access:
+      adeca.alabama.gov HTTP 200 to the plain client (963,902 bytes).'
 - jurisdiction: us-ar
   name: Arkansas
   lead_counts: {}
@@ -170,8 +223,32 @@ states:
     jurisdiction: us-ar
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ar/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ar
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ar-liheap-benefit-matrix-attachments.yaml
+      document_count: 6
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://adeq.state.ar.us/energy/assistance/liheap.aspx
+    on_clearinghouse_index: true
+    taken_count: 6
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FFY 2026 benefit matrices (electric, natural gas, propane, fuel oil, other/wood pellets;
+      2 pages each) and the FFY 2026 eligibility chart from the Arkansas Energy Office LIHEAP page; the plan (section 2.6)
+      refers to these attachments. Publisher: Arkansas Department of Energy and Environment, Arkansas Energy Office. Access:
+      adeq.state.ar.us HTTP 200 to the plain client; the Clearinghouse link (/docs/2026/manuals/AR_Manual_2026.pdf) answers
+      404 (its FFY 2025 predecessor is served but not linked).'
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}
@@ -198,8 +275,31 @@ states:
     jurisdiction: us-az
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-az/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-az
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-az-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://des.az.gov/services/basic-needs/utility-assistance
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DES CCSD LIHEAP Policy, Rev. 16A effective 07/01/2026 (41 pages); benefit table on page
+      39. Publisher: Arizona Department of Economic Security, Community Services Division. Access: des.az.gov HTTP 403 (5,578-byte
+      body) to the plain client and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-13; fetched with browser_impersonation,
+      TLS verification on.'
 - jurisdiction: us-ca
   name: California
   lead_counts: {}
@@ -212,8 +312,31 @@ states:
     jurisdiction: us-ca
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ca/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ca
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ca-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.csd.ca.gov/Pages/LIHEAPProgram.aspx
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 2026 LIHEAP County Base Benefit Amounts (BBA) and HEAP/Fast Track/WPO payment tables (7
+      pages) from the Clearinghouse; the same tables are pages 182-188 of CSD''s own 2026 LIHEAP State Plan PDF (https://www.csd.ca.gov/Shared%20Documents/2026-Final-LIHEAP-State-Plan.pdf,
+      442 pages, HTTP 200), which the CSD program page lists. Publisher: California Department of Community Services and Development.
+      Access: liheapch.acf.gov HTTP 200 with the Entrust intermediate in the CA bundle; csd.ca.gov HTTP 200 to the plain client.'
 - jurisdiction: us-co
   name: Colorado
   lead_counts: {}
@@ -226,8 +349,33 @@ states:
     jurisdiction: us-co
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-co/regulation/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-co
+      document_class: regulation
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-co-liheap-benefit-matrix-rule.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.sos.state.co.us/CCR/Welcome.do
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 9 CCR 2503-7 Other Assistance Programs (Income Maintenance Volume 3), the rendition the
+      Clearinghouse index links (ruleVersionId 7308, generated 2017-10-20); LEAP rules 3.750-3.759 (rev. eff. 12/1/14) with
+      the benefit points table on page 33. The CCR site''s current-version listing needs a browser session (DisplayRule.do
+      answers a 5 KB shell to the plain client), so the linked rendition is taken as listed. Publisher: Colorado Department
+      of Human Services (rule); Colorado Secretary of State, Code of Colorado Regulations (publisher). Access: sos.state.co.us
+      HTTP 200 to the plain client (512,442 bytes).'
 - jurisdiction: us-ct
   name: Connecticut
   lead_counts: {}
@@ -240,8 +388,32 @@ states:
     jurisdiction: us-ct
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ct/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ct
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ct-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://portal.ct.gov/dss/knowledge-base/articles/state-plans-and-federal-reports/community-services-allocation-plans
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FFY 2026 LIHEAP Block Grant Allocation Plan as approved 2025-08-07 (19 pages; basic benefit
+      levels on pages 10-11), the DSS document the Clearinghouse lists as the state''s manual (its FFY 2025 link is dead;
+      the FFY 2026 plan is on the DSS allocation-plans page). Publisher: Connecticut Department of Social Services. Access:
+      portal.ct.gov HTTP 200 to the plain client (400,574 bytes); the Clearinghouse-listed FFY 2025 plan URL answers 404 (portal
+      404 page).'
 - jurisdiction: us-dc
   name: District of Columbia
   queue_status: agent_ready
@@ -286,8 +458,30 @@ states:
     - policyengine-us#parameters/gov/states/dc/doee/liheap/income_level_increment.yaml
     - policyengine-us#parameters/gov/states/dc/doee/liheap/payment/electricity.yaml
     - policyengine-us#parameters/gov/states/dc/doee/liheap/payment/gas.yaml
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-dc/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-dc
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-dc-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://doee.dc.gov/liheap
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FY26 LIHEAP Benefit Matrix (DOEE''s Regular Benefits Table for FY 2026, a Word document;
+      heating only) linked from the DOEE LIHEAP page. Publisher: District of Columbia Department of Energy and Environment.
+      Access: doee.dc.gov HTTP 200 to the plain client (27,999 bytes, Word document).'
 - jurisdiction: us-de
   name: Delaware
   lead_counts: {}
@@ -300,8 +494,31 @@ states:
     jurisdiction: us-de
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-de/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-de
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-de-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://bidcondocs.delaware.gov/HSS/
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DEAP Policies and Procedures Manual (102 pages, PDF dated 2015-04-22, posted with solicitation
+      HSS-15-027); it says the benefit matrix is in the current Delaware State Plan (page 8) and prints no matrix. Publisher:
+      Delaware Department of Health and Social Services, Division of State Service Centers. Access: bidcondocs.delaware.gov
+      HTTP 200 to the plain client (2,514,551 bytes).'
 - jurisdiction: us-fl
   name: Florida
   lead_counts: {}
@@ -314,8 +531,31 @@ states:
     jurisdiction: us-fl
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-fl/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-fl
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-fl-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP Policy Manual (73 pages, last revised 2021-11-17, effective 2022-05-27), the Clearinghouse-hosted
+      copy; no dollar matrix is printed (benefit amounts are set in the state plan). Publisher: Florida Department of Commerce
+      (formerly Department of Economic Opportunity), Division of Community Development. Access: liheapch.acf.gov HTTP 200
+      with the Entrust intermediate in the CA bundle (2,098,739 bytes).'
 - jurisdiction: us-ga
   name: Georgia
   lead_counts: {}
@@ -328,8 +568,30 @@ states:
     jurisdiction: us-ga
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ga/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ga
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ga-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DFCS LIHEAP Policy Manual revised January 2022 (89 pages), the Clearinghouse-hosted copy;
+      no dollar matrix is printed. Publisher: Georgia Department of Human Services, Division of Family and Children Services.
+      Access: liheapch.acf.gov HTTP 200 with the Entrust intermediate in the CA bundle (1,243,400 bytes).'
 - jurisdiction: us-gu
   name: Guam
   lead_counts: {}
@@ -356,8 +618,37 @@ states:
     jurisdiction: us-hi
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-hi/manual/2026-09-14-liheap-benefit-matrix, us-hi/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-hi
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-hi-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-hi
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-hi-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://humanservices.hawaii.gov/bessd/liheap/
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DHS LIHEAP Policies and Procedures, FFY 2020 (22 pages, PDF dated 2019-07-15); the benefit
+      is a points allocation (five point categories, pages 19-20), not a dollar matrix. Publisher: Hawaii Department of Human
+      Services, Benefit, Employment and Support Services Division. Access: humanservices.hawaii.gov HTTP 200 to the plain
+      client (311,631 bytes).'
 - jurisdiction: us-ia
   name: Iowa
   lead_counts: {}
@@ -370,8 +661,30 @@ states:
     jurisdiction: us-ia
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ia/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ia
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ia-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://hhs.iowa.gov/programs/programs-and-services/liheap
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FY24 LIHEAP Policy and Procedures Manual (114 pages, PDF dated 2023-09-11); benefit matrix
+      on pages 22-23. Publisher: Iowa Department of Health and Human Services, Community Action Agencies Unit. Access: hhs.iowa.gov
+      HTTP 200 to the plain client (1,612,960 bytes).'
 - jurisdiction: us-id
   name: Idaho
   lead_counts: {}
@@ -384,8 +697,26 @@ states:
     jurisdiction: us-id
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://healthandwelfare.idaho.gov/services-programs/food-cash-assistance/heating-assistance
+    on_clearinghouse_index: false
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: the IDHW heating-assistance pages list benefit factors only and link no manual
+      or matrix; the FY 2026 plan states min $122 / max $1,285 with no attachment; the Clearinghouse serves only a 2025 benefit
+      determination chart (ID_BenefitMatrix_2025.pdf) and answers 404 for 2026. Publisher: Idaho Department of Health and
+      Welfare. Access: healthandwelfare.idaho.gov HTTP 200 to the plain client; liheapch.acf.gov HTTP 200 with the CA bundle.'
 - jurisdiction: us-il
   name: Illinois
   queue_status: agent_ready
@@ -470,8 +801,27 @@ states:
     - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml
     - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml
     - policyengine-us#parameters/gov/states/il/dceo/liheap/payment/matrix/nat_gas.yaml
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dceo.illinois.gov/communityservices/utilitybillassistance.html
+    on_clearinghouse_index: false
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: DCEO''s FY26 accepted plan (dceo.illinois.gov, 54 pages) refers to ''Illinois''
+      LIHEAP Benefit Matrix'' but does not attach it (min $58 / max $2,564); the utility-bill-assistance pages link brochures
+      only; the Clearinghouse serves a 2025 matrix (IL_BenefitMatrix_2025.pdf) and answers 404 for 2026. Publisher: Illinois
+      Department of Commerce and Economic Opportunity. Access: dceo.illinois.gov HTTP 200 to the plain client; liheapch.acf.gov
+      HTTP 200 with the CA bundle.'
 - jurisdiction: us-in
   name: Indiana
   lead_counts: {}
@@ -484,8 +834,30 @@ states:
     jurisdiction: us-in
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-in/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-in
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-in-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.in.gov/ihcda/program-partners/energy-assistance-program-eap/
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: IHCDA LIHEAP Intake and Operations Program Manual PY2024 v1.0 (111 pages); benefit matrices
+      on pages 60-71. Publisher: Indiana Housing and Community Development Authority. Access: in.gov HTTP 200 to the plain
+      client (1,185,182 bytes).'
 - jurisdiction: us-ks
   name: Kansas
   lead_counts: {}
@@ -498,8 +870,31 @@ states:
     jurisdiction: us-ks
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ks/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ks
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ks-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://content.dcf.ks.gov/EES/KEESM/Keesm.htm
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FY 2026 LIEAP Benefits Matrix attachment (4 pages, benefit adjustment at 80 percent, by
+      fuel, household size and dwelling type) from the Clearinghouse; KEESM 13000 (the manual the Clearinghouse lists) is
+      already in the selected KEESM scope. Publisher: Kansas Department for Children and Families. Access: liheapch.acf.gov
+      HTTP 200 with the Entrust intermediate in the CA bundle.'
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
@@ -512,8 +907,27 @@ states:
     jurisdiction: us-ky
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/pdb/Pages/liheap.aspx
+    on_clearinghouse_index: true
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: the Clearinghouse-listed document (kyhousing.org ''2022 Kentucky Health and Safety
+      Plan'') is the Weatherization Assistance Program health-and-safety plan, not a LIHEAP manual; the CHFS LIHEAP page posts
+      narrative only (the only PDF is the LIHWAP plan) and the Clearinghouse has no Kentucky matrix for 2025 or 2026. Publisher:
+      Kentucky Cabinet for Health and Family Services, Department for Community Based Services. Access: chfs.ky.gov HTTP 200
+      to the plain client; kyhousing.org HTTP 200.'
 - jurisdiction: us-la
   name: Louisiana
   lead_counts: {}
@@ -526,8 +940,37 @@ states:
     jurisdiction: us-la
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-la/manual/2026-09-14-liheap-benefit-matrix, us-la/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-la
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-la-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-la
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-la-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.lhc.la.gov/energy-assistance
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP Service Delivery Guide effective 2026-04-01 (108 pages; the current edition of
+      the 2022 guide the Clearinghouse lists) and LHC''s own FFY 2026 Model Plan (62 pages) whose page 60 is the ''FFY2026
+      Heating and Cooling - Benefit Matrix'' attachment. Publisher: Louisiana Housing Corporation. Access: lhc.la.gov HTTP
+      200 to the plain client.'
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: agent_ready
@@ -617,8 +1060,33 @@ states:
     - policyengine-us#parameters/gov/states/ma/doer/liheap/benefit_level.yaml
     - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml
     - policyengine-us#parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ma/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ma
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ma-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.mass.gov/how-to/apply-for-home-energy-assistance-heap
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FY 2026 HEAP Income Eligibility and Benefit Levels chart (3 pages) from the Clearinghouse;
+      the EOHLC HEAP page links its own chart but the download answers 404 (blocked as evidence shows). Publisher: Massachusetts
+      Executive Office of Housing and Livable Communities. Access: mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP
+      200 to a chrome120 TLS fingerprint for pages, but the linked FY 2027 chart download (/doc/fy-2027-liheap-income-eligibility-and-benefit-chart-july-2026/download)
+      and the FY 2026 March 2026 chart answer 404 to the chrome120 fetch on 2026-09-14; liheapch.acf.gov HTTP 200 with the
+      CA bundle.'
 - jurisdiction: us-md
   name: Maryland
   lead_counts: {}
@@ -631,8 +1099,38 @@ states:
     jurisdiction: us-md
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-md/manual/2026-09-14-liheap-benefit-matrix, us-md/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-md
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-md-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-md
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-md-liheap-benefit-matrix-attachments.yaml
+      document_count: 2
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dhs.maryland.gov/office-of-home-energy-programs/
+    on_clearinghouse_index: true
+    taken_count: 3
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: OHEP Operations Manual updated May 2025 (163 pages; benefit levels narrative 1.6 and 6.1,
+      matrices not printed) and the FY27 MEAP Benefit Matrices (2 pages, text) and FY27 EUSP Benefit Matrix (3 pages, image-only,
+      OCR) from the OHEP documents directory; program year FY27 runs 2026-07-01 to 2027-06-30. Publisher: Maryland Department
+      of Human Services, Office of Home Energy Programs. Access: dhs.maryland.gov HTTP 200 to the plain client; the Clearinghouse-listed
+      2021 manual URL answers 404.'
 - jurisdiction: us-me
   name: Maine
   lead_counts: {}
@@ -645,8 +1143,30 @@ states:
     jurisdiction: us-me
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-me/regulation/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-me
+      document_class: regulation
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-me-liheap-benefit-matrix-rule.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.mainehousing.org/policy-research/mainehousing-rules
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: MaineHousing Rule Chapter 24 Home Energy Assistance Program, effective 2026-06-29 (33
+      pages); the rule sets the benefit method and refers to the program-year HEAP Guide for the matrix. Publisher: Maine
+      State Housing Authority (MaineHousing). Access: mainehousing.org HTTP 200 to the plain client (390,680 bytes).'
 - jurisdiction: us-mi
   name: Michigan
   lead_counts: {}
@@ -659,8 +1179,33 @@ states:
     jurisdiction: us-mi
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-mi/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-mi
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-mi-liheap-benefit-matrix-manual.yaml
+      document_count: 2
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.michigan.gov/mpsc/consumer/meap
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 2024 MEAP Policy and Procedure Manual v1.0 (MPSC, effective 2023-10-01, 78 pages; benefit
+      computation on page 44, no matrix) and MDHHS Emergency Relief Manual item ERM 301 Energy Services (ERB 2026-002 of 2026-04-01,
+      16 pages) whose page 13 prints the SER energy payment limits effective 2025-10-01; Michigan''s LIHEAP heating benefit
+      is the Treasury Home Heating Credit and the crisis benefits run through SER and MEAP. Publisher: Michigan Public Service
+      Commission. Access: michigan.gov HTTP 403 (503-byte body) to the plain client and HTTP 200 to a chrome120 TLS fingerprint
+      on 2026-09-13; fetched with browser_impersonation, TLS verification on.'
 - jurisdiction: us-mn
   name: Minnesota
   lead_counts: {}
@@ -673,8 +1218,31 @@ states:
     jurisdiction: us-mn
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-mn/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-mn
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-mn-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://mn.gov/commerce/energy/consumer-assistance/energy-assistance/
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FFY24 EAP Policy Manual (309 pages, PDF dated 2023-12-19); chapter 4 Primary Heat computes
+      the benefit from the household''s energy cost and income (no grid is printed; the Clearinghouse has no Minnesota matrix
+      for 2025 or 2026). Publisher: Minnesota Department of Commerce, Energy Assistance Program. Access: mn.gov HTTP 200 to
+      the plain client (2,619,550 bytes).'
 - jurisdiction: us-mo
   name: Missouri
   lead_counts: {}
@@ -687,8 +1255,32 @@ states:
     jurisdiction: us-mo
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-mo/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-mo
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-mo-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dss.mo.gov/fsd/energy-assistance/liheap-contractor-supplier-information
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP Policy and Procedure Manual, 2025 edition (129 pages, PDF dated 2025-09-30); Appendix
+      K on page 129 prints the FFY 24 income ranges and benefit amounts by fuel type. Publisher: Missouri Department of Social
+      Services, Family Support Division. Access: dss.mo.gov HTTP 200 to the plain client (the Clearinghouse link mydss.mo.gov/media/pdf/liheap-manual
+      redirects to an HTML media page embedding the 2024 edition; the 2025 edition is linked from the contractor information
+      page).'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   lead_counts: {}
@@ -715,8 +1307,31 @@ states:
     jurisdiction: us-ms
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ms/regulation/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ms
+      document_class: regulation
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ms-liheap-benefit-matrix-rule.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.sos.ms.gov/adminsearch/
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Title 18 Part 24 LIHEAP Policy Manual, revised January 2026 (64 pages), from the Secretary
+      of State''s administrative code; benefit table on page 39. Publisher: Mississippi Department of Human Services (rule);
+      Mississippi Secretary of State, Administrative Code (publisher). Access: sos.ms.gov HTTP 200 to the plain client (1,062,896
+      bytes).'
 - jurisdiction: us-mt
   name: Montana
   lead_counts: {}
@@ -729,8 +1344,30 @@ states:
     jurisdiction: us-mt
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-mt/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-mt
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-mt-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dphhs.mt.gov/hcsd/energyassistance/
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 2025-2026 LIHEAP Policy Manual (135 pages, PDF dated 2026-05-04); benefit matrices on
+      pages 122-125. Publisher: Montana Department of Public Health and Human Services, Human and Community Services Division.
+      Access: dphhs.mt.gov HTTP 200 to the plain client (1,409,971 bytes).'
 - jurisdiction: us-nc
   name: North Carolina
   lead_counts: {}
@@ -743,8 +1380,31 @@ states:
     jurisdiction: us-nc
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-nc/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nc
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nc-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://policies.ncdhhs.gov/document/ep-300-low-income-energy-assistance-program-lieap/
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Energy Programs manual EP-300 Low Income Energy Assistance Program, Change #2-2026 effective
+      2026-05-01 (22 pages); section 300.12 B on page 19 prints the benefit chart by household size and income category. Publisher:
+      North Carolina Department of Health and Human Services, Division of Social Services. Access: policies.ncdhhs.gov HTTP
+      200 to the plain client.'
 - jurisdiction: us-nd
   name: North Dakota
   lead_counts: {}
@@ -757,8 +1417,30 @@ states:
     jurisdiction: us-nd
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-nd/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nd
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nd-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.hhs.nd.gov/applying-help/low-income-home-energy-assistance-program-liheap
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP Service Chapter 415, Manual Letter 3750 effective 2023-10-01 (369 pages); benefit
+      tables on pages 137, 201 and 245. Publisher: North Dakota Department of Health and Human Services. Access: nd.gov HTTP
+      200 to the plain client (1,499,137 bytes).'
 - jurisdiction: us-ne
   name: Nebraska
   lead_counts: {}
@@ -771,8 +1453,30 @@ states:
     jurisdiction: us-ne
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ne/guidance/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ne
+      document_class: guidance
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ne-liheap-benefit-matrix-guidance.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dhhs.ne.gov/Pages/Guidance-Documents.aspx
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DHHS LIHEAP Guidance Document dated 07/18/2026 (6 pages) with the 2026 heating season
+      payment table (pages 3-4, effective 10/1/25 through 9/30/26). Publisher: Nebraska Department of Health and Human Services.
+      Access: dhhs.ne.gov HTTP 200 to the plain client (377,116 bytes).'
 - jurisdiction: us-nh
   name: New Hampshire
   lead_counts: {}
@@ -785,8 +1489,37 @@ states:
     jurisdiction: us-nh
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-nh/manual/2026-09-14-liheap-benefit-matrix, us-nh/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nh
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nh-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-nh
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nh-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.energy.nh.gov/consumers/help-energy-and-utility-bills/fuel-assistance-program
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Fuel Assistance Program Policy and Procedures Manual, Program Year 2027 (2026-2027; 103
+      pages, PDF dated 2026-08-10); benefit tables on pages 19 and 78. Publisher: New Hampshire Department of Energy. Access:
+      energy.nh.gov HTTP 403 (524-byte body) to the plain client and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-13;
+      fetched with browser_impersonation, TLS verification on.'
 - jurisdiction: us-nj
   name: New Jersey
   lead_counts: {}
@@ -799,8 +1532,37 @@ states:
     jurisdiction: us-nj
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-nj/manual/2026-09-14-liheap-benefit-matrix, us-nj/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nj
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nj-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-nj
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nj-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.nj.gov/dca/dhcr/offices/liheap.shtml
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FY2026 LIHEAP Handbook (25 pages, PDF dated 2025-08-07; it says the benefit level matrix
+      is published by public notice in the New Jersey Register) and the FY 2026 Benefit Matrix (1 image-only page, OCR) from
+      the same DCA docs directory. Publisher: New Jersey Department of Community Affairs, Division of Housing and Community
+      Resources. Access: nj.gov HTTP 200 to the plain client (419,963 bytes).'
 - jurisdiction: us-nm
   name: New Mexico
   lead_counts: {}
@@ -813,8 +1575,31 @@ states:
     jurisdiction: us-nm
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-nm/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nm
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nm-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP Heating and Cooling Point and Income Guide FFY 2026 (1 page: income guidelines
+      at 150 percent of poverty, point categories and the $35 point value) from the HCA income-eligibility page; NMAC 8.150.620.10
+      sets the point value annually outside the rule. Publisher: New Mexico Health Care Authority, Income Support Division.
+      Access: hca.nm.gov HTTP 200 to the plain client.'
 - jurisdiction: us-nv
   name: Nevada
   lead_counts: {}
@@ -827,8 +1612,36 @@ states:
     jurisdiction: us-nv
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-nv/manual/2026-09-14-liheap-benefit-matrix, us-nv/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nv
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nv-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-nv
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-nv-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dwss.nv.gov/Energy/Energy_Assistance/
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: FY 2024 Energy Assistance Program Manual, MTL 01/24 of 2024-06-25 (116 pages); benefit
+      tables on pages 63-64 and 111-113. Publisher: Nevada Division of Welfare and Supportive Services. Access: dwss.nv.gov
+      HTTP 200 to the plain client, redirecting to dss.nv.gov (1,266,615 bytes).'
 - jurisdiction: us-ny
   name: New York
   lead_counts: {}
@@ -841,8 +1654,28 @@ states:
     jurisdiction: us-ny
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is blocked (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: blocked
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://otda.ny.gov/programs/heap/
+    on_clearinghouse_index: true
+    taken_count: 0
+    matrix_status: blocked
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Blocked: the HEAP manual (http://otda.ny.gov/programs/heap/HEAP-manual.pdf, 302 to HTTPS)
+      and every otda.ny.gov page sit behind the OTDA JavaScript challenge (the same block as the SSI, TANF and SNAP queues);
+      no other official host serves the manual or the benefit table; nothing was worked around. Publisher: New York State
+      Office of Temporary and Disability Assistance. Access: otda.ny.gov: HTTPS connection reset with no HTTP response to
+      plain and Chrome-UA clients; HTTP 200 text/html 7,510-byte JavaScript challenge (F5/Shape, window[''bobcmn'']) to a
+      chrome120 TLS fingerprint on 2026-09-13, for the HEAP manual, the HEAP page and the 2025-26 HEAP GIS alike.'
 - jurisdiction: us-oh
   name: Ohio
   lead_counts: {}
@@ -855,8 +1688,34 @@ states:
     jurisdiction: us-oh
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-oh/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-oh
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-oh-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://jfs.ohio.gov/public-assistance/energy-and-community-assistance
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 2025 LIHEAP Benefit Matrix attachment of the FY 2026 plan (1 page, headed ''DRAFT Funding''
+      and dated 5/1/2025) from the Clearinghouse; the state''s EAP guidelines are posted only on a non-government CDN, and
+      the ODJFS HEAP page was unreachable to every client. Publisher: Ohio Department of Job and Family Services (HEAP since
+      2026-04-06; formerly Ohio Department of Development). Access: the Clearinghouse-listed manual is on a third-party CDN
+      (irp.cdn-website.com) and is not taken; jfs.ohio.gov answers HTTP 404 to the plain client and a 1.1 MB single-page application
+      to a Chrome UA, and its HEAP page HTTP 502/504 to a chrome120 fetch on 2026-09-13; liheapch.acf.gov HTTP 200 with the
+      CA bundle.'
 - jurisdiction: us-ok
   name: Oklahoma
   lead_counts: {}
@@ -869,8 +1728,32 @@ states:
     jurisdiction: us-ok
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ok/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ok
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ok-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://oklahoma.gov/okdhs/services/liheap/utilityservicesliheapmain.html
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: OKDHS Appendix C-7-A ''Estimated LIHEAP Benefit Level for all Households'' (2 pages, footer
+      10/1/2021, file dated 2026-06-17; winter heating, LP/oil, heat-in-rent and summer cooling tables) reached from the OKDHS
+      forms search center; the FY 2026 plan cites it as the OAC 340:20-1 appendix. Publisher: Oklahoma Human Services. Access:
+      oklahoma.gov HTTP 200 to the plain client; rules.ok.gov (the OAC 340:20-1 text) HTTP 403 Cloudflare to plain and Chrome-UA
+      clients and a JavaScript shell to chrome120.'
 - jurisdiction: us-or
   name: Oregon
   lead_counts: {}
@@ -883,8 +1766,31 @@ states:
     jurisdiction: us-or
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-or/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-or
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-or-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.oregon.gov/ohcs/energy-weatherization/pages/energy-service-provider-resources.aspx
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 2026 Energy Programs (LIHEAP and OEAP) Intake Operations and Policy Manual, effective
+      2025-10-01 to 2026-09-30 (95 pages); the 2026 benefit matrices for regions 1 and 2 are on pages 77-80. Publisher: Oregon
+      Housing and Community Services. Access: oregon.gov HTTP 200 to the plain client; the Clearinghouse-listed 2022 manual
+      URL answers 404.'
 - jurisdiction: us-pa
   name: Pennsylvania
   lead_counts: {}
@@ -897,8 +1803,38 @@ states:
     jurisdiction: us-pa
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-pa/manual/2026-09-14-liheap-benefit-matrix, us-pa/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-pa
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-pa-liheap-benefit-matrix-manual.yaml
+      document_count: 75
+    - jurisdiction: us-pa
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-pa-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: http://services.dpw.state.pa.us/oimpolicymanuals/liheap/index.htm
+    on_clearinghouse_index: true
+    taken_count: 76
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP Handbook, a RoboHelp 2026 manual (75 topic pages walked from whxdata/toc*.new.js;
+      chapter 638 and its appendices carry the benefit calculation, the benefit table page links only the DHS dynamic lookup),
+      plus the 2025-2026 energy year LIHEAP Benefit Charts for all 67 counties (469 pages, report generated 2025-08-07) from
+      the Clearinghouse. Publisher: Pennsylvania Department of Human Services. Access: services.dpw.state.pa.us HTTP 200 to
+      the plain client (one TOC file read timed out once and was retried); liheapch.acf.gov HTTP 200 with the CA bundle.'
 - jurisdiction: us-pr
   name: Puerto Rico
   lead_counts: {}
@@ -925,8 +1861,27 @@ states:
     jurisdiction: us-ri
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dhs.ri.gov/programs-and-services/energy-assistance-programs-heating/ffy-2026-low-income-guidelines
+    on_clearinghouse_index: false
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: DHS posts the FFY 2026 eligibility (income) table, the plan summary and the proposed
+      rule but no grant table; the Clearinghouse file RI_BenefitMatrix_2026.pdf (1 page, dated 2025-07-18) is headed ''[Moderate
+      matrix dependent on funding levels at FFY 2025, to be input 9/30/2025]'' and is a provisional placeholder, not taken.
+      Publisher: Rhode Island Department of Human Services. Access: dhs.ri.gov HTTP 200 to the plain client; liheapch.acf.gov
+      HTTP 200 with the CA bundle.'
 - jurisdiction: us-sc
   name: South Carolina
   lead_counts: {}
@@ -939,8 +1894,31 @@ states:
     jurisdiction: us-sc
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-sc/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-sc
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-sc-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://oeo.sc.gov/managedsites/prd/oeo/liheap.html
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: 2026 Benefit Matrix attachment of the FY 2026 plan (2 pages: income eligibility at 60
+      percent SMI, non-emergency benefit add-on table, crisis caps) from the Clearinghouse; the OEO site posts no matrix.
+      Publisher: South Carolina Office of Economic Opportunity. Access: oeo.sc.gov HTTP 200 to the plain client (lists plans,
+      the administrative guide and the fiscal manual, no matrix); liheapch.acf.gov HTTP 200 with the CA bundle.'
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}
@@ -953,8 +1931,36 @@ states:
     jurisdiction: us-sd
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-sd/manual/2026-09-14-liheap-benefit-matrix, us-sd/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-sd
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-sd-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-sd
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-sd-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Office of Energy Assistance Policies and Procedures Manual 2018 (60 pages, PDF dated 2017-12-05),
+      the Clearinghouse-hosted copy; benefit table on page 50. Publisher: South Dakota Department of Social Services, Office
+      of Energy Assistance. Access: liheapch.acf.gov HTTP 200 with the Entrust intermediate in the CA bundle (1,984,214 bytes).'
 - jurisdiction: us-tn
   name: Tennessee
   lead_counts: {}
@@ -967,8 +1973,38 @@ states:
     jurisdiction: us-tn
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-tn/manual/2026-09-14-liheap-benefit-matrix, us-tn/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-tn
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-tn-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-tn
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-tn-liheap-benefit-matrix-attachments.yaml
+      document_count: 2
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://thda.org/govt-non-profit/low-income-home-energy-assistance-program-liheap-forms/
+    on_clearinghouse_index: true
+    taken_count: 3
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: LIHEAP 2026 Policy Manual for Regular and Crisis Assistance, revised 2025-08-29 (67 pages;
+      section 2.20 refers to form LI-11) plus the LIHEAP 2026 Benefit Matrix (1 page) and the Fiscal Year 2027 Benefit Matrix
+      (4 pages, dated 2026-07-15) from the THDA LIHEAP forms page. Publisher: Tennessee Housing Development Agency. Access:
+      thda.org HTTP 200 to the plain client; its documents are served from THDA''s own WordPress asset distribution (dogvxws799i6n.cloudfront.net),
+      linked directly from the THDA index page; the Clearinghouse-listed thda.org/pdf/ URL answers 404.'
 - jurisdiction: us-tx
   name: Texas
   lead_counts: {}
@@ -981,8 +2017,27 @@ states:
     jurisdiction: us-tx
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.tdhca.texas.gov/community-affairs/ceap
+    on_clearinghouse_index: false
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent as a table: CEAP benefits are a sliding scale by income set by subrecipients under
+      10 TAC 6.309(e) (caps per component); the 2026 plan (55 pages, min $1 / max $12,600) attaches no matrix and the Clearinghouse
+      serves only a 2025 file reproducing the rule''s caps; the rule text is on the SOS JavaScript-only portal. Publisher:
+      Texas Department of Housing and Community Affairs. Access: tdhca.texas.gov HTTP 200 to the plain client; the Texas SOS
+      administrative code portal (texas-sos.appianportalsgov.com) serves a 2.5 KB JavaScript shell to the plain client.'
 - jurisdiction: us-ut
   name: Utah
   lead_counts: {}
@@ -995,8 +2050,30 @@ states:
     jurisdiction: us-ut
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-ut/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ut
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-ut-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://jobs.utah.gov/housing/scso/seal/heat.html
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: HEAT Program Policy Manual revised 2023-03-01 (53 pages); benefit table on page 37. Publisher:
+      Utah Department of Workforce Services, Housing and Community Development Division. Access: jobs.utah.gov HTTP 200 to
+      the plain client (1,027,302 bytes).'
 - jurisdiction: us-va
   name: Virginia
   lead_counts: {}
@@ -1009,8 +2086,38 @@ states:
     jurisdiction: us-va
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-va/manual/2026-09-14-liheap-benefit-matrix, us-va/policy/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-va
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-va-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    - jurisdiction: us-va
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-va-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.dss.virginia.gov/relief/ea/
+    on_clearinghouse_index: true
+    taken_count: 2
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: VDSS Energy Assistance Manual, Volumes IX and X (138 pages, PDF created 2025-05-16; benefits
+      are points-based with amounts set by the home office, no dollar chart printed) plus the FY 2026 plan attachment from
+      the Clearinghouse (7 image-only pages of manual excerpts with the FFY 2026 income limits, OCR). Publisher: Virginia
+      Department of Social Services. Access: dss.virginia.gov HTTP 200 to the plain client (the Clearinghouse-listed /files/division/bp/ea/
+      URL answers 404); liheapch.acf.gov HTTP 200 with the CA bundle.'
 - jurisdiction: us-vi
   name: Virgin Islands
   lead_counts: {}
@@ -1050,8 +2157,39 @@ states:
     jurisdiction: us-vt
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-vt/regulation/2026-09-14-liheap-benefit-matrix, us-vt/manual/2026-09-14-liheap-benefit-matrix
+    (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-vt
+      document_class: regulation
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-vt-liheap-benefit-matrix-rule.yaml
+      document_count: 2
+    - jurisdiction: us-vt
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-vt-liheap-benefit-matrix-manual.yaml
+      document_count: 6
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    taken_count: 8
+    matrix_status: in_manual
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Seasonal Fuel Assistance rule 2900 and Crisis Fuel rule 3100 (adopted 2024-06-22, from
+      the ESD current-rules page) and the Fuel Assistance procedures P2914A-D (calculation of benefits), P2915 (heat cost
+      percentage table, 7/1/25) and P2916 (standard heating cost tables, 2025-26 season) from the P2900 procedures index the
+      Clearinghouse lists; the seasonal payment rate itself is looked up in ACCESS (P2914B). Publisher: Vermont Department
+      for Children and Families, Economic Services Division. Access: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the
+      plain client.'
 - jurisdiction: us-wa
   name: Washington
   lead_counts: {}
@@ -1064,8 +2202,32 @@ states:
     jurisdiction: us-wa
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-wa/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-wa
+      document_class: policy
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-wa-liheap-benefit-matrix-attachments.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://www.commerce.wa.gov/community-opportunities/liheap/
+    on_clearinghouse_index: false
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Benefit Calculation Worksheet (actual and surrogate heat cost, household adjuster table;
+      5 pages) attached to the FY 2026 plan, from the Clearinghouse; Washington computes benefits by formula rather than a
+      grid and Commerce posts no matrix. Publisher: Washington State Department of Commerce. Access: commerce.wa.gov HTTP
+      200 to the plain client (links Box-hosted eligibility guidelines and the plan only); liheapch.acf.gov HTTP 200 with
+      the CA bundle.'
 - jurisdiction: us-wi
   name: Wisconsin
   lead_counts: {}
@@ -1078,8 +2240,32 @@ states:
     jurisdiction: us-wi
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) was taken as us-wi/manual/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-wi
+      document_class: manual
+      version: 2026-09-14-liheap-benefit-matrix
+      manifest: manifests/us-wi-liheap-benefit-matrix-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://energyandhousing.wi.gov/Pages/AgencyResources/energy-assistance.aspx
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: WHEAP Manual Program Year 2026, revised August 2025 (178 pages; the program year in force
+      on the fetch date, PY 2027 is also posted); section 2.3 says the HE+ system calculates benefits from income, household
+      size, fuel type, fuel use and rooms, so no matrix is printed. Publisher: Wisconsin Department of Energy, Housing and
+      Community Resources. Access: energyandhousing.wi.gov HTTP 200 to the plain client (the Clearinghouse-listed PY 2024
+      URL answers 404).'
 - jurisdiction: us-wv
   name: West Virginia
   lead_counts: {}
@@ -1092,8 +2278,28 @@ states:
     jurisdiction: us-wv
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://bfa.wv.gov/utility-assistancelieap
+    on_clearinghouse_index: true
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: the Clearinghouse-listed chapter 26 files (wvdhhr.org legacy Income Maintenance
+      Manual, sections 26.1-26.5 dated to 2014) refer to a ''LIEAP benefit payment chart'' that is not published; the current
+      DoHS Income Maintenance Manual (bfa.wv.gov, effective 2026-07-01, in the selected corpus) assigns chapter 26 to the
+      Medicaid Work Incentive and carries no LIEAP chapter; the BFA LIEAP page posts only the FY 2026 fact sheet (income limits)
+      and the FY 2026 plan. Publisher: West Virginia Department of Human Services, Bureau for Family Assistance. Access: bfa.wv.gov
+      and wvdhhr.org HTTP 200 to the plain client.'
 - jurisdiction: us-wy
   name: Wyoming
   lead_counts: {}
@@ -1106,5 +2312,23 @@ states:
     jurisdiction: us-wy
     document_class: policy
     version: '2026-09-10'
-  notes: FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the
-    publisher's index; agency policy manuals listed there are a separate, later document family.
+  notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
+    the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
+    family (LIHEAP-ST-09/ST-18) is absent (see benefit_matrix_scope).'
+  benefit_matrix_scope:
+    status: absent
+    scopes: []
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://dfs.wyo.gov/assistance-programs/home-utilities-energy-assistance/low-income-energy-assistance-program-lieap/
+    on_clearinghouse_index: false
+    taken_count: 0
+    matrix_status: absent
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: DFS posts the FFY 2026 LIEAP State Model Plan (53 pages, min $48 / max $1,901,
+      no attachment), application guides and an income-guidelines handout; the Clearinghouse serves only a 2025 matrix workbook
+      (WY_BenefitMatrix_2025.pdf) and answers 404 for 2026. Publisher: Wyoming Department of Family Services. Access: dfs.wyo.gov
+      HTTP 200 to the plain client; liheapch.acf.gov HTTP 200 with the CA bundle.'
