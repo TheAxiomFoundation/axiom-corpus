@@ -436,6 +436,11 @@ def extract_nycrr_parts(
                 fetched_child,
             )
             for nested_record in _nested_nycrr_provisions(child_soup, child_record):
+                if nested_record.citation_path in seen_paths:
+                    # Westlaw prints alpha "(i)" and roman "(i)" paragraphs with the same
+                    # label; the section row above carries the full text, so the second
+                    # nested paragraph is not emitted as its own row.
+                    continue
                 _append_scoped_record(
                     items,
                     records,
@@ -781,6 +786,18 @@ def _part_child_citation_path(
         return f"{part_citation_path}/notes"
     if lowered.endswith(" refs"):
         return f"{part_citation_path}/refs"
+    range_match = re.match(
+        rf"^\s*s\s+{re.escape(part)}\.(?P<start>[A-Za-z0-9.-]+)\s+--\s+"
+        rf"{re.escape(part)}\.(?P<end>[A-Za-z0-9.-]+)\b",
+        link_text,
+    )
+    if range_match:
+        # A repealed range such as "s 101.5 -- 101.7 (Repealed)" is one document whose
+        # citation label spans the range; keep both ends in the path.
+        return (
+            f"{part_citation_path}/"
+            f"{_slug(range_match.group('start'))}-{_slug(range_match.group('end'))}"
+        )
     raise RuntimeError(
         f"unable to derive Part {part} citation from {citation!r} / {link_text!r}"
     )

@@ -390,6 +390,12 @@ def _download_document(
             verify=verify,
             chunk_size=int(request_config.get("range_chunk_size", _RANGE_FETCH_CHUNK_SIZE_BYTES)),
         )
+    if request_config.get("fresh_session"):
+        # Publishers such as govt.westlaw.com answer a cookie-bearing session with a
+        # browser-check interstitial after the first page; fetch with a fresh session.
+        fresh_session = requests.Session()
+        fresh_session.headers.update(session.headers)
+        session = fresh_session
     response = _get_with_retries(session, download_url, headers=request_headers, verify=verify)
     if _needs_browser_fallback(source, response):
         response.close()
@@ -697,9 +703,15 @@ def _parse_curl_header_dump(header_dump: str) -> tuple[int, dict[str, str]]:
 
 
 def _request_headers_from_config(request_config: dict[str, Any]) -> dict[str, str] | None:
-    if not request_config.get("browser_user_agent"):
-        return None
-    return {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    headers: dict[str, str] = {}
+    if request_config.get("browser_user_agent"):
+        headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+    cookies = request_config.get("cookies")
+    if isinstance(cookies, dict) and cookies:
+        # Publisher-declared cookies (for example the govt.westlaw.com browser-check
+        # cookies) sent with every request for the document.
+        headers["Cookie"] = "; ".join(f"{name}={value}" for name, value in cookies.items())
+    return headers or None
 
 
 def _needs_browser_fallback(
@@ -2441,9 +2453,7 @@ def _extract_html_blocks(
             )
         parts = []
 
-    for node in root.find_all(_TEXT_TAGS):
-        if not isinstance(node, Tag) or _inside_text_tag(node):
-            continue
+    for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
@@ -2797,9 +2807,7 @@ def _extract_labeled_html_section_blocks(
         current_heading = None
         current_body = []
 
-    for node in root.find_all(_TEXT_TAGS):
-        if not isinstance(node, Tag) or _inside_text_tag(node):
-            continue
+    for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
@@ -3147,6 +3155,32 @@ def _document_title(soup: BeautifulSoup) -> str | None:
         if text:
             return text
     return None
+
+
+def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[Tag, ...]:
+    """Return the block-level text nodes of ``root`` in document order.
+
+    By default these are the heading, paragraph, list-item, table and blockquote tags
+    (nested ones are read through their outermost ancestor). ``html_text_selector``
+    names the nodes explicitly for publishers that print provision text inside ``div``
+    or ``span`` containers; a selected node inside another selected node is skipped so
+    the text is read once.
+    """
+
+    selector = (extraction or {}).get("html_text_selector")
+    if not selector:
+        return tuple(
+            node
+            for node in root.find_all(_TEXT_TAGS)
+            if isinstance(node, Tag) and not _inside_text_tag(node)
+        )
+    selected = [node for node in root.select(str(selector)) if isinstance(node, Tag)]
+    selected_ids = {id(node) for node in selected}
+    return tuple(
+        node
+        for node in selected
+        if not any(id(parent) in selected_ids for parent in node.parents)
+    )
 
 
 def _inside_text_tag(node: Tag) -> bool:

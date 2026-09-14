@@ -1,0 +1,22 @@
+version: '2026-09-14'
+extractor: extract-ohio-administrative-code --only-agency 5703 --only-chapter 5703-7
+documents:
+- source_id: oh-oac-5703-7-income-tax
+  jurisdiction: us-oh
+  document_class: regulation
+  citation_path: us-oh/regulation/agency-5703/chapter-5703-7
+  title: 'Ohio Administrative Code Chapter 5703-7: Income Tax (Department of Taxation)'
+  source_url: https://codes.ohio.gov/ohio-administrative-code/chapter-5703-7
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    official_publisher: Ohio Laws and Administrative Rules (codes.ohio.gov)
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-oh/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://codes.ohio.gov/ohio-administrative-code/5703
+    extractor: uv run axiom-corpus-ingest extract-ohio-administrative-code --only-agency 5703 --only-chapter 5703-7
+    pointer_manifest: true
