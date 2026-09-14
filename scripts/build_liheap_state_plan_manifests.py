@@ -76,7 +76,11 @@ TERRITORY_ROWS_NOT_ON_INDEX: dict[str, dict] = {
             "Division of Family Assistance (HTTP 200 to the plain client 2026-09-11T21:15Z from a US network), "
             "runs LIHEAP as the Energy Crisis Assistance Program (ECAP) and posts only the ECAP Checklist and "
             "Criteria and the ECAP Intake Form (application family); no plan, manual or policy document is "
-            "posted. Nothing was worked around."
+            "posted. Nothing was worked around. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor "
+            "client (docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md): the Clearinghouse index answers HTTP 200 "
+            "(53,615 bytes, 0.5 s) with no Virgin Islands plan in the territory table, and the grantee's Family Assistance "
+            "page HTTP 200 (137,037 bytes, 3.0 s) still posts the ECAP forms only. Publisher posts nothing; confirmed on "
+            "two dates."
         ),
     },
 }
@@ -85,14 +89,20 @@ TERRITORY_ROWS_NOT_ON_INDEX: dict[str, dict] = {
 def apply_territory_rows(only: set[str] | None = None) -> dict[str, int]:
     queue_path = ROOT / "manifests" / "liheap-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     for jur, facts in TERRITORY_ROWS_NOT_ON_INDEX.items():
         if only and jur not in only:
             continue
         row = rows.get(jur) or {"jurisdiction": jur, "name": facts["name"], "lead_counts": {}, "candidate_sources": []}
         row.update(facts)
         rows[jur] = row
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
@@ -137,7 +147,13 @@ def main() -> int:
         return 1
     queue_path = ROOT / "manifests" / "liheap-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    rows = {}
+    extra_rows = {}  # later rows of a jurisdiction (federal eCFR rows) are carried through untouched
+    for s in queue["states"]:
+        if s["jurisdiction"] in rows:
+            extra_rows.setdefault(s["jurisdiction"], []).append(s)
+        else:
+            rows[s["jurisdiction"]] = s
     written = []
     for code, name, url in sorted(plans):
         jur = f"us-{code.lower()}"
@@ -176,7 +192,7 @@ def main() -> int:
             "notes": f"FY {FY} Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from the publisher's index; agency policy manuals listed there are a separate, later document family.",
         })
         rows[jur] = row
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["states"] = [row for j in sorted(rows, key=lambda j: (j != "us", j)) for row in (rows[j], *extra_rows.get(j, []))]
     queue["status_counts"] = {}
     for s in queue["states"]:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1

@@ -621,17 +621,40 @@ def fetch_release_provision_counts(
     )
 
 
-def fetch_staged_release_scope_evidence(
-    release: ReleaseManifest,
+# Staged evidence is one per-scope aggregate (row counts plus projection
+# digests over every staged row), so a whole-release request scales with the
+# release's total row count and Supabase's HTTP gateway cuts it off long before
+# the function's own statement_timeout. The RPC is per scope, so the client asks
+# for bounded chunks and merges them; a chunk the gateway still rejects is split
+# in half until it fits.
+_STAGED_EVIDENCE_CHUNK_SCOPES = 32
+_STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS = 3
+_STAGED_EVIDENCE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+_STAGED_EVIDENCE_FIELDS = frozenset(
+    {
+        "jurisdiction",
+        "document_class",
+        "version",
+        "provision_count",
+        "navigation_count",
+        "provision_projection_sha256",
+        "navigation_projection_sha256",
+    }
+)
+
+
+def _fetch_staged_scope_evidence_rows(
+    scopes: Sequence[ReleaseScope],
     *,
     service_key: str,
-    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
-) -> dict[tuple[str, str, str], StagedScopeEvidence]:
-    """Fetch exact counts and projection digests for every staged scope.
+    supabase_url: str,
+) -> list[object]:
+    """Call the evidence RPC for one chunk of scopes, splitting it when rejected.
 
-    There is intentionally no materialized-view or paged-client fallback. The
-    publication boundary requires the dedicated evidence RPC; absence or
-    failure is fatal before signing.
+    A 4xx other than 413/414 is a real error and propagates. Gateway rejections
+    (5xx, including 504 on a request that ran too long) and transport timeouts
+    are retried with backoff, and a multi-scope chunk that keeps failing is
+    split in half so that a request that is merely too large still converges.
     """
     payload = {
         "p_scopes": [
@@ -640,7 +663,7 @@ def fetch_staged_release_scope_evidence(
                 "document_class": scope.document_class,
                 "version": scope.version,
             }
-            for scope in release.scopes
+            for scope in scopes
         ]
     }
     req = urllib.request.Request(
@@ -657,22 +680,70 @@ def fetch_staged_release_scope_evidence(
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        rows = json.loads(resp.read())
-    if not isinstance(rows, list):
-        raise RuntimeError("unexpected staged release-evidence response")
+
+    def _split() -> list[object]:
+        midpoint = len(scopes) // 2
+        return _fetch_staged_scope_evidence_rows(
+            scopes[:midpoint], service_key=service_key, supabase_url=supabase_url
+        ) + _fetch_staged_scope_evidence_rows(
+            scopes[midpoint:], service_key=service_key, supabase_url=supabase_url
+        )
+
+    for attempt in range(_STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected staged release-evidence response")
+            return rows
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500 and exc.code not in {413, 414}:
+                raise
+            if len(scopes) > 1:
+                return _split()
+            if attempt + 1 == _STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
+            if attempt + 1 == _STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS:
+                if len(scopes) == 1:
+                    raise
+                return _split()
+        time.sleep(_STAGED_EVIDENCE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("staged-evidence retry loop exhausted unexpectedly")
+
+
+def fetch_staged_release_scope_evidence(
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    chunk_scopes: int = _STAGED_EVIDENCE_CHUNK_SCOPES,
+) -> dict[tuple[str, str, str], StagedScopeEvidence]:
+    """Fetch exact counts and projection digests for every staged scope.
+
+    There is intentionally no materialized-view or paged-client fallback. The
+    publication boundary requires the dedicated evidence RPC; absence or
+    failure is fatal before signing. The RPC computes each scope independently,
+    so the release is requested in chunks of at most ``chunk_scopes`` scopes
+    and the rows are merged; every requested scope must appear exactly once
+    across all chunks.
+    """
+    if chunk_scopes < 1:
+        raise ValueError("chunk_scopes must be positive")
+    scopes = tuple(release.scopes)
+    rows: list[object] = []
+    for start in range(0, len(scopes), chunk_scopes):
+        rows.extend(
+            _fetch_staged_scope_evidence_rows(
+                scopes[start : start + chunk_scopes],
+                service_key=service_key,
+                supabase_url=supabase_url,
+            )
+        )
     evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
-    expected_fields = {
-        "jurisdiction",
-        "document_class",
-        "version",
-        "provision_count",
-        "navigation_count",
-        "provision_projection_sha256",
-        "navigation_projection_sha256",
-    }
     for row in rows:
-        if not isinstance(row, dict) or set(row) != expected_fields:
+        if not isinstance(row, dict) or set(row) != _STAGED_EVIDENCE_FIELDS:
             raise RuntimeError("staged release-evidence response contains a malformed row")
         key = (
             str(row.get("jurisdiction") or ""),
@@ -823,9 +894,7 @@ def fetch_released_scope_objects(
 ) -> dict[tuple[str, str, str], tuple[ReleasedScopeObject, ...]]:
     """Return prior signed objects that make requested scopes immutable."""
 
-    memberships: dict[tuple[str, str, str], list[str]] = {
-        key: [] for key in release.scope_keys
-    }
+    memberships: dict[tuple[str, str, str], list[str]] = {key: [] for key in release.scope_keys}
     seen_memberships: set[tuple[tuple[str, str, str], str]] = set()
     objects_by_name: dict[str, tuple[str, Mapping[str, object]]] = {}
     object_set_fields = {"release_name", "content_sha256", "release_object", "scopes"}
@@ -925,8 +994,7 @@ STAGE_RELEASE_ACTIVATION_CHUNK_QUERY = (
 
 
 DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY = (
-    "DELETE FROM corpus.release_activation_upload_chunks "
-    "WHERE upload_id = $1::text"
+    "DELETE FROM corpus.release_activation_upload_chunks WHERE upload_id = $1::text"
 )
 
 

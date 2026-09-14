@@ -1649,6 +1649,83 @@ RETRIED = {
              "(curl 60: self signed certificate in certificate chain), which was not disabled; same failure.",
 }
 
+# Re-probe of every blocked row (2026-09-13T19:57Z, one plain GET of the recorded index_url with the extractor client, US network;
+# docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md). Access blocks that persist are recorded as durable (two networks, two
+# dates); hosts that now answer but list no manual join the not-published rows; not-published pages are re-confirmed.
+REPROBE_STAMP = "2026-09-13T19:57Z"
+_DURABLE = ("Durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and "
+            "2026-09-13); the dashboard should treat the cell as not available rather than pending.")
+
+
+def _not_published(byte_count: int, seconds: float, detail: str = "page reachable, still no manual link") -> str:
+    return (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: HTTP 200, {byte_count:,} bytes, {seconds} s; "
+            f"{detail}. Publisher posts no manual; confirmed on two dates.")
+
+
+REPROBED_2026_09_13 = {
+    "us-ar": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Cloudflare 403 has lifted (HTTP 200, "
+              "293,905 bytes, 0.2 s), but the WIC page and its sub-pages (Breastfeeding, EBT, Farmers' Market, Nutrition Information, "
+              "Resources for Families, Fraud and Abuse, Vendor Management) link only the FY27 income guidelines PDF; no manual index is "
+              "published on the site as served. Now a not-published row rather than an access block."),
+    "us-ma": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the 403 has lifted (HTTP 200, 308,139 bytes, "
+              "0.1 s), and the WIC organization page links no manual (the eligibility checker and program pages only), as the state-plan "
+              "reading already said. Now a not-published row rather than an access block."),
+    "us-il": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: www.dhs.state.il.us resolves again; the manual "
+              "page (item=36418) redirects to 'IDHS: Page Not Found' (item=27893; HTTP 200, 7,619 bytes, 0.2 s), as in batch 1. Still not "
+              "published."),
+    "us-ks": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the For Local WIC Agencies page answers HTTP "
+              "200 (122,556 bytes, 0.7 s) and still links the Policy & Procedure Manual to DocumentCenter/Index/903, which answers HTTP "
+              "200 (101,809 bytes) as the empty CivicEngage Document Center shell; the admin binding endpoint that challenged on 2026-09-10 "
+              "was not requested again. Same finding on two dates: no static manual index."),
+    "us-az": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the recorded Local Agencies URL is still the "
+              "soft 404 (HTTP 200, 70,489 bytes, 0.7 s, 'Page or Document Not Found') and the relocated agencies page (79,014 bytes) still "
+              "links 'WIC Manuals' to a #manuals anchor the served page does not contain. Same finding on two dates."),
+    "us-la": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: HTTP 403, 479 bytes, 0.5 s, Cloudflare "
+              "'403 Forbidden' (the 2026-09-10 US probe got the page and found no manual link). Not published on the page as read on "
+              "2026-09-10 and blocked again on 2026-09-13; " + _DURABLE),
+    "us-de": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: HTTP 403, 1,892 bytes, 0.2 s, "
+              "'Web App - Unavailable'. " + _DURABLE),
+    "us-nh": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: HTTP 403, 447 bytes, 0.1 s, "
+              "'Access Denied'. " + _DURABLE),
+    "us-ny": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: HTTP 403, 919 bytes, 0.2 s, CloudFront 'The "
+              "request could not be satisfied' (the 2026-09-10 probes got the page and found no manual link). Not published on the pages "
+              "as read on 2026-09-10 and now blocked to the plain client; the manual is not available either way."),
+    "us-tn": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the recorded WIC URL is still HTTP 404 (68,643 "
+              "bytes, 1.3 s); no manual index was published on the relocated page on 2026-09-10. Confirmed on two dates."),
+    "us-oh": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Local Staff page is still HTTP 404 (5,285 "
+              "bytes, 0.4 s). Publisher posts no manual; confirmed on two dates."),
+    "us-mo": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the manual URL still redirects to "
+              "health.mo.gov/topic/781/login (HTTP 200, 90,487 bytes, 0.6 s, 'WIC Local Agency Portal Login'). Behind login on two dates."),
+    "us-nv": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Policy / Procedures Archive page still "
+              "answers HTTP 200 (60,492 bytes, 1.6 s) with the password form. Password-protected on two dates."),
+    "us-nm": (f"Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Policies & Procedures page answers HTTP "
+              "200 (232,386 bytes, 1.3 s) and still links no documents under the manual series headings (intranet links only). Not "
+              "published on two dates."),
+    "us-ak": _not_published(140_494, 1.4),
+    "us-al": _not_published(59_815, 0.4),
+    "us-fl": _not_published(222_622, 0.2),
+    "us-hi": _not_published(60_954, 0.6),
+    "us-id": _not_published(180_829, 0.5),
+    "us-in": _not_published(52_040, 0.4),
+    "us-ms": _not_published(37_588, 0.3),
+    "us-mt": _not_published(49_490, 0.4, "the WIC State Plan page is reachable and remains the state-plan family, not a policy manual index"),
+    "us-nd": _not_published(452_860, 1.1),
+    "us-ne": _not_published(282_671, 0.9, "the Policies, Procedures & Forms page is reachable and its 'WIC Procedure Manuals' folder still "
+                            "holds only the two vendor letter templates"),
+    "us-ok": _not_published(576_476, 0.1),
+    "us-sc": _not_published(384_361, 0.2),
+    "us-sd": _not_published(87_299, 0.6),
+    "us-vt": _not_published(297_025, 0.3),
+    "us-wi": _not_published(166_465, 0.2),
+    "us-wy": _not_published(190_896, 0.8),
+    "us-as": _not_published(62_987, 0.8, "aswic.com is reachable with program and clinic pages only; www.dhss.as still fails TLS "
+                            "verification (self-signed certificate)"),
+    "us-gu": _not_published(95_080, 3.6),
+    "us-mp": _not_published(45_278, 0.2),
+    "us-pr": _not_published(5_894, 0.5, "the wic.pr.gov response is still the Angular application shell with no document links"),
+    "us-vi": _not_published(177_707, 3.6),
+}
+
 # inventory keys that annotate documents already counted in another family (or that are not documents at all)
 INDEX_ANNOTATION_KEYS = {"vacant_chapter", "duplicate_link_same_file", "policy_pdf_labeled_by_title",
                          "header_number_differs_from_filename", "duplicate_policy_number",
@@ -1745,6 +1822,7 @@ def main(argv: list[str] | None = None) -> int:
         row = rows.get(jur) or {"jurisdiction": jur, "name": STATE_NAMES[jur], "lead_counts": {}, "candidate_sources": []}
         recheck = f" re-checked {RECHECKED[jur]}, still not published." if jur in RECHECKED else ""
         recheck += f" {RETRIED[jur]}" if jur in RETRIED else ""
+        recheck += f" {REPROBED_2026_09_13[jur]}" if jur in REPROBED_2026_09_13 else ""
         row.update({
             "name": STATE_NAMES[jur],
             "queue_status": "blocked_primary_source",

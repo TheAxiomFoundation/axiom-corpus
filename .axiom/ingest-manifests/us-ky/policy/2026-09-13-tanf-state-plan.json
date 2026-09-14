@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "5df68916aba400879c9bba68ae9bacc3481eba22831f61e159f9f30e48dffa3c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "40c7a72891b9feef20eb2b7957666dc80312bc573860b0b78ed71a55ad2d5635"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "4dd4c3f22df7018475763c4f7e80f8df78905703dd684e7fb73cfe559c15bda5"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-09-13-tanf-state-plan/official-documents/us-ky-tanf-state-plan-fy2024-2026.pdf",
+      "sha256": "70348b5cf356f1b8756c916821243ae80a81cec5bde54042cf7d7ceeb5bc4144"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 61,
+    "missing_count": 0,
+    "provision_count": 61,
+    "source_count": 61
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:34:59.796551+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SX8HRWapQ2BoXo3oZnKQ7ksj+T40FFhMC3FIhMDwSXZ1C7nwRJInt0kx4SMivXHyKKOX7NWllLkK+5XLrb3CDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

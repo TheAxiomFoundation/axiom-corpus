@@ -46,6 +46,11 @@ policy:
   - 'Batch 6 (2026-09-11, territories pass): the five inhabited territories PR, GU, VI, AS, MP, each publisher probed once
     from a US network; none publishes an eligibility manual (AS unreachable: no DNS record). Static rows only. Generator:
     scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 6 [--only us-xx].'
+  - 'Batch 7 (2026-09-13, re-probe of the blocked publishers): every blocked_primary_source row''s recorded URL fetched once
+    with the plain extractor client from a US network. NE answers again and Title 477 NAC (28 chapters plus 40 appendices)
+    is extracted under version 2026-09-13-medicaid-state-eligibility-manual; AL and CA still blocked (recorded as durable);
+    the five territories still post nothing. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch
+    7; see docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md.'
   - 'CMS state plan family (2026-09-13): one `family: cms_state_plan` row per state for the medicaid.gov SPA index and eligibility-bearing
     approval packages, version 2026-09-13-medicaid-state-plan, document_class policy, citation root us-xx/policy/cms/medicaid-state-plan.
     Generator: scripts/build_cms_state_plan_manifests.py --program medicaid.'
@@ -57,8 +62,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 2
-  agent_ready: 93
-  blocked_primary_source: 8
+  agent_ready: 96
+  blocked_primary_source: 7
   done: 6
 states:
 - jurisdiction: us
@@ -1272,6 +1277,55 @@ states:
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-42.json
   index_document_count: 87
   taken_count: 87
+- jurisdiction: us
+  name: Federal statute (42 U.S.C., uscode.house.gov USLM)
+  queue_status: agent_ready
+  source_kind: federal_statute_uscode_uslm
+  primary_source_url: https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: statute
+    version: 2026-09-13-medicaid-statute-closure-title-42
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 1315, 1320b-7,
+    1396o, 1396o-1, 1396r-1, 1396r-1a, 1396r-1b, 1396r-1c, 1396r-5, 1396r-6 (whole sections) and the subsections 1396a(a)(3),
+    (a)(17), (a)(25), (a)(34), (a)(47), (k), (r); 1396d(b), (y), (z); 1396p(b), (c), (d) (the released 2026-06-26 Medicaid
+    scope keeps 1396a(a)(10), (e), (f), (l), (m); 1396b(f), (v); 1396d(a), (n), (p), (q); 1396p(f); 1396u-1, and the PL 119-21
+    scope keeps 1396a(xx); no citation path is carried twice). Extracted with extract-usc from the official OLRC USLM release
+    point Public Law 119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip,
+    retained byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-medicaid-statute-closure-title-42/olrc/
+    via extract-usc --source-zip; the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 10
+    section rows, 824 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
+    rows are self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded
+    in metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements
+    M-ST-1396a-a17, M-ST-1396a-a34, M-ST-1396a-a47, M-ST-1396a-k, M-ST-1396d-b-y, M-ST-1396o, M-ST-1396p-b, M-ST-1396p-c,
+    M-ST-1396p-d, M-ST-1396r-5, M-ST-1396r-6, M-ST-1320b-7, M-ST-1315, M-ST-1396a-a3, M-ST-1396a-a25 (15).'
+  index_url: https://uscode.house.gov/download/download.shtml
+  index_document_count: 10
+  taken_count: 824
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-447
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-13-title-42-part-447
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal CFR layer (docs/ingest-runs/2026-09-13-federal-cfr-layer.md): 42 CFR part 447 extracted with
+    extract-ecfr --only-title 42 --only-part 447 from the eCFR Versioner API at as-of 2026-09-10 (the titles'' up_to_date_as_of
+    on 2026-09-13; expression date 2026-09-10). 79 rows = 1 part + 7 subparts + 71 sections (subparts D and H and 447.58 reserved
+    skipped); coverage complete; every section body non-empty unless noted; citation paths us/regulation/42/447/<section>.
+    Closure elements addressed: M-447-1 to M-447-90 (22 subpart A sections). The adapter has no subpart selector, so the whole
+    part (payments for services) is taken; subpart A is us/regulation/42/447/subpart-A.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-42.json
+  index_document_count: 79
+  taken_count: 79
 - jurisdiction: us-ak
   name: Alaska
   lead_counts: {}
@@ -1432,7 +1486,14 @@ states:
     from a US network (plain request plus curl-cffi chrome120 browser impersonation, 20 s timeouts), same failure: medicaid.alabama.gov
     now accepts TCP but the TLS handshake never completes (curl 28 ''Connection timed out after 20002 milliseconds'' after
     the Client Hello for curl and curl-cffi chrome120; python requests gets an SSL EOF / ''unable to get local issuer certificate''
-    within 0.4 s, i.e. no server certificate is delivered). No workaround attempted.'
+    within 0.4 s, i.e. no server certificate is delivered). No workaround attempted. Re-probed 2026-09-13T19:57Z from a US
+    network with the plain extractor client: SSLError ''unable to get local issuer certificate'' after 0.4 s. medicaid.alabama.gov
+    now completes the TLS handshake but serves only its leaf certificate (issuer GlobalSign Atlas R3 OV TLS CA 2026 Q1, valid
+    2026-04-06 to 2026-10-22) without the intermediate; with the chain completed from the leaf''s AIA URL (public intermediate,
+    not added to data/certs because nothing was extracted) the host answers, but the recorded Eligibility Manual page (9.4.11_Eligibility_Manual.aspx)
+    is HTTP 404 (3,866 bytes; the Forms Library now numbers 9.4.11 as Mental Health Forms) and the Forms Library, Provider
+    Manuals and Apply pages (HTTP 200) link no eligibility manual. The manual''s new index, if any, was not located; a reviewer
+    decision is needed on where Alabama Medicaid now publishes it. Nothing was worked around.'
   target_manifest: manifests/us-al-medicaid-eligibility-manual.yaml
   target_scope:
     jurisdiction: us-al
@@ -1766,7 +1827,9 @@ states:
   notes: 'Blocked (2026-09-11 territories pass): the American Samoa Medicaid State Agency site medicaid.as.gov has no DNS
     A record (the zone is delegated to ns3-5.linode.com; NOERROR with an empty answer from the local resolver and from 8.8.8.8;
     www.medicaid.as.gov is a CNAME to the same name), so the publisher cannot be reached by any client (curl 6, plain http
-    and https). Index inventory not possible; no workaround attempted.'
+    and https). Index inventory not possible; no workaround attempted. Re-probed 2026-09-13T19:57Z from a US network with
+    the plain extractor client, same failure: medicaid.as.gov has no DNS record (NameResolutionError after 0.2 s). Publisher
+    unreachable on two dates; nothing is posted to take.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -1923,7 +1986,10 @@ states:
     from a US network (plain request plus curl-cffi chrome120 browser impersonation, 20 s timeouts), same failure: the MEPM
     index now answers HTTP 200 (848-byte body) that is only the Imperva/Incapsula ''Request unsuccessful'' challenge iframe
     (incident id 491000040177845619-389699386573783349) to both requests; no manual content and no index inventory. No workaround
-    attempted.'
+    attempted. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client, same failure: the MEPM index
+    answers HTTP 200 with a 212-byte Imperva/Incapsula challenge body (0.2 s), no manual content. Durable block: the same
+    failure from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10/11 and 2026-09-13); the dashboard
+    should treat the cell as not available rather than pending.'
 - jurisdiction: us-ca
   name: California
   family: cms_state_plan
@@ -2998,7 +3064,9 @@ states:
     publishes no Medicaid eligibility manual: the Medicare/Medicaid services page and the BHCFA bureau page are text-only
     program descriptions with no document links (HTTP 200), and the 2019 ''Guam Medicaid State Plan'' (1-of-2, 2-of-2) and
     ''Guam Medicaid Handbook'' PDFs that search engines still index under wp-content/uploads/2019 answer HTTP 404 on the current
-    site. 0 taken. Nothing was worked around.'
+    site. 0 taken. Nothing was worked around. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client:
+    the Medicare/Medicaid services page answers HTTP 200 (93,777 bytes, 3.6 s) and still lists no eligibility manual or document
+    link. Publisher posts nothing; confirmed on two dates.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -5039,7 +5107,9 @@ states:
     Drive, lists the documents required and states only that income limits are percentages of the SSI Federal Benefit Rate
     by household size and category (no figures); the State Plan Amendments page links a Google Sheet listing and the medicaid.gov
     SPA index (CMS posts SPAs, not the plan); the legacy host medicaid.cnmi.mp does not answer. 0 taken. Nothing was worked
-    around.'
+    around. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the Eligibility & Enrollment page
+    answers HTTP 200 (223,772 bytes, 0.3 s) and still lists no eligibility manual. Publisher posts nothing; confirmed on two
+    dates.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -5701,32 +5771,34 @@ states:
   name: Nebraska
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
+  queue_status: agent_ready
   source_kind: official_pdf_nac_chapters
-  primary_source_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+  primary_source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%201%20%2809-17-2024%29.pdf
   index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
-  index_document_count: null
-  taken_count: 0
-  notes: 'Batch 5 (2026-09-11): blocked. Nebraska Title 477 NAC (Medicaid Eligibility) is served through the Secretary of
-    State rules site API (rules.nebraska.gov/api/chapter/GetByTitleId/232 for the chapter listing, /api/fileStorage/GetAsByteArray/chapter-pdfs/...
-    for the chapter PDFs), the same API the us-ne SNAP (475 NAC), TANF (468 NAC), SSI (469 NAC) and CHIP (477 NAC ch.19) scopes
-    used earlier today. Retried 2026-09-11 from the US network (plain request plus curl-cffi chrome120 browser impersonation,
-    20 s, REQUESTS_CA_BUNDLE set to the DigiCert bundle in data/certs): the host now answers HTTP 403 ''Access Denied / Forbidden''
-    (2,174-byte body, server Microsoft-Azure-Application-Gateway/v2) to every client for the chapter-listing API, the chapter
-    PDF API and the site root; the Title 477 Appendix host dhhs.ne.gov does not complete TCP (ConnectTimeout at 25 s). The
-    publisher began blocking between the earlier same-day scopes and this run; no workaround attempted, TLS verification never
-    disabled. Follow-on: retry Title 477 chapters 1-30 plus the 40 appendix PDFs when the SOS API answers again.'
+  index_document_count: 69
+  taken_count: 68
+  notes: 'Batch 7 (2026-09-13): 68 documents taken from the publisher''s own index (69 documents inventoried across 3 families;
+    68 taken). Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md.
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the Secretary of State chapter API answers
+    HTTP 200 (686,881-byte JSON, 0.6 s) and dhhs.ne.gov''s Title 477 page HTTP 200 (194,402 bytes, 0.5 s) after the 2026-09-11
+    Azure gateway 403 and TCP timeout, so the batch-5 follow-on was run: 28 of the 29 chapter PDFs taken (chapter 19 MAGI-Based
+    Programs is already in the corpus under the CHIP scope at the same citation path) plus the 40 appendix PDFs on the DHHS
+    Title 477 Appendix page (page-level provisions). The 2018 filings keep the older chapter-section numbering (16-001.01A
+    ...) and use their own heading pattern; heading-only parent sections carry no body of their own.'
   target_manifest: manifests/us-ne-medicaid-eligibility-manual.yaml
   target_scope:
     jurisdiction: us-ne
-    document_class: manual
-    version: 2026-09-10-medicaid-state-eligibility-manual
+    document_class: regulation
+    version: 2026-09-13-medicaid-state-eligibility-manual
   index_families:
-    title_477_chapter_listing_sos:
-      found: 1
-      taken: 0
     title_477_appendix_pdf:
-      found: 47
+      found: 40
+      taken: 40
+    nac_477_chapter_pdf:
+      found: 28
+      taken: 28
+    nac_477_chapter_pdf_already_in_corpus_chip_scope:
+      found: 1
       taken: 0
 - jurisdiction: us-ne
   name: Nebraska
@@ -7243,7 +7315,9 @@ states:
     an applicant must bring and links the pre-screening calculator at prod-ua.preeservices.com, the Beneficiarios page (/CMS/4)
     and the Guias page (/CMS/5) carry 138 provider-enrollment files (checklists, PRV/AP/CLM policies, communications, forms),
     the Department of Health program page (salud.pr.gov/CMS/85) has no documents and ASES (Plan Vital) publishes insurer and
-    plan pages. 0 taken. Nothing was worked around.'
+    plan pages. 0 taken. Nothing was worked around. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client: the Guias page answers HTTP 200 (195,309 bytes, 1.0 s, provider-enrollment files only) and still lists no eligibility
+    manual or reglamento. Publisher posts nothing; confirmed on two dates.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -8360,7 +8434,9 @@ states:
     flyer, documents required, application, room and board statement, authorized representative, statement of circumstances,
     employment wage and self-employment income forms) and the Providers General Information Manual (2026-01-21; provider family,
     with a public-comment notice for the Provider Enrollment and General Information manuals); no eligibility manual or state
-    plan. 0 taken. Nothing was worked around.'
+    plan. 0 taken. Nothing was worked around. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client:
+    the Office of Medicaid page answers HTTP 200 (141,356 bytes, 3.0 s) and still lists application forms and the provider
+    manual only. Publisher posts nothing; confirmed on two dates.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

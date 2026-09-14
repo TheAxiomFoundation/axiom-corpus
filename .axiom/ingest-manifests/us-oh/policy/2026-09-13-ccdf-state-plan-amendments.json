@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/policy/2026-09-13-ccdf-state-plan-amendments.json",
+      "sha256": "bcb7b0e67b3baf681bcf4f5b4cf5090afec5976ce88b4e2e0c7e01af1b39e8d0"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/policy/2026-09-13-ccdf-state-plan-amendments.json",
+      "sha256": "df81ba70c833112df1d61061874b780383432a0b19c483798bc4064cd69c307f"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/policy/2026-09-13-ccdf-state-plan-amendments.jsonl",
+      "sha256": "c58be5bfffff6974575d1a3de82690245ce3044633a05c7b316e7f23a4383b6e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-oh-acf-ccdf-plan-fy2025-2027-amendment-1.pdf",
+      "sha256": "aba2086947a714bf517419a1668003f00aeababb14d5c2804aaa99427bb704e3"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-oh-acf-ccdf-plan-fy2025-2027-amendment-2.pdf",
+      "sha256": "2a181a6cedfee9095f77c2707f8b60f95a90dd0da192b39184a8859d6c1fe610"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-amendments (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 84,
+    "missing_count": 0,
+    "provision_count": 84,
+    "source_count": 84
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:04:48.578676+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "w+VhhBlj0dzoqObnOPeRDroa74S2WPmuY+sFgaX5ILt+ZWWUxDCvZoBkiYCOVdoabgy/WI+ddtdetYU3WaSEDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-amendments"
+}

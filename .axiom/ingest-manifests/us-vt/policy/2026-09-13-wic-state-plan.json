@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "1fb7e0cec3c3063bddf6665fff7612de107af8fc5b1a75e7e22d1cf9f624d2c4"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "002b85db48f625512bab0e052fd961dcc52a9c8b9dc7fe9de66dc43bf4f18222"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/policy/2026-09-13-wic-state-plan.jsonl",
+      "sha256": "ea8b4f33ca996bf5815e9edb707abc6d5a59ff50ca9344fab26e108e2ee440e5"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/policy/2026-09-13-wic-state-plan/official-documents/vt-wic-state-plan-2025-goals-objectives.pdf",
+      "sha256": "a115e37e1d10dde9a653efa8560a5483803ae729c2fe26f834fe735259af6db9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:25:57.382809+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "H7cvqi0B2/EN9COFxrRGoTojyDpcnBDg5t1apBHPAtXF1I8UeD08DcK3oRsDy3sw8wTHels5a9otOQFJFlk2Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-state-plan"
+}

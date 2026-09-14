@@ -2311,10 +2311,12 @@ RESTORED_NOTE = (" Row restored 2026-09-11 by the batch-5 generator from the com
 
 
 def builder_row_note(batch: str, docs: int, found: int, taken: int, family_count: int) -> str:
-    date = "2026-09-11" if batch == "5" else "2026-09-10"
+    date = {"5": "2026-09-11", "7": "2026-09-13"}.get(batch, "2026-09-10")
+    run_note = ("docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md" if batch == "7"
+                else f"docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-{batch}.md")
     return (f"Batch {batch} ({date}): {docs} documents taken from the publisher's own index ({found} documents inventoried "
             f"across {family_count} families; {taken} taken). Extraction proven with the official-documents extractor; "
-            f"see docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-{batch}.md.")
+            f"see {run_note}.")
 
 
 def restore_missing_rows(rows: dict[str, dict[str, Any]]) -> list[str]:
@@ -2523,6 +2525,208 @@ STATIC_ROWS_BATCH6: dict[str, dict[str, Any]] = {
 }
 
 
+# ---------------------------------------------------------------- batch 7: re-probe of the blocked rows (2026-09-13)
+# Every blocked_primary_source row's recorded URL was fetched once with the plain extractor client from a US
+# network (docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md). Nebraska's Secretary of State API and
+# the DHHS Title 477 pages answer again and are extracted here; AL and CA fail as before (durable blocks); the
+# five territory publishers still post no eligibility manual.
+REPROBE_STAMP = "2026-09-13T19:57Z"
+VERSION_BATCH7 = "2026-09-13-medicaid-state-eligibility-manual"
+SOURCE_AS_OF_BATCH7 = "2026-09-13"
+RUN_NOTE_BATCH7 = "docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md"
+DISCOVERED_VIA7 = "manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index {index}"
+DURABLE_BLOCK = (" Durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates "
+                 "(2026-09-10/11 and 2026-09-13); the dashboard should treat the cell as not available rather than pending.")
+NE_477_LANDING = "https://rules.nebraska.gov/rules?agencyId=37&titleId=232"
+NE_477_CHAPTERS_API = "https://rules.nebraska.gov/api/chapter/GetByTitleId/232"
+NE_477_FILE_API = "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray"
+NE_477_DHHS_INDEX = "https://dhhs.ne.gov/Pages/Title-477.aspx"
+NE_477_APPENDIX_INDEX = "https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx"
+NE_477_CHIP_CHAPTER = "19"  # already in the corpus as us-ne/regulation/title-477/chapter-19 (2026-09-10-chip-state-eligibility-manual)
+# 2020 and later filings: "001.  SCOPE AND AUTHORITY. body" / "005.01  APPLICATION SUBMITTAL. body" (the CHIP chapter-19 pattern).
+NE_477_NEW_STYLE_EXTRACTION = {
+    "segmentation": "labeled_sections",
+    "normalize_parenthetical_label_components": True,
+    "section_heading_pattern": (
+        r"^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+"
+        r"(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$"
+    ),
+    "heading_continuation_pattern": (
+        r"^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$"
+    ),
+}
+# 2018 filings keep the older "16-001.01A Heading: body" numbering (chapter-section, sub-letters, digits, "(1)").
+NE_477_OLD_STYLE_EXTRACTION = {
+    "segmentation": "labeled_sections",
+    "normalize_parenthetical_label_components": True,
+    "section_heading_pattern": (
+        r"^(?P<label>\d{1,2}-\d{3}(?:\.\d{2})?(?:[A-Z]\d*[a-z]?(?:\(\d+\))?)?)\s+"
+        r"(?P<heading>[A-Z][^:]*?)(?::\s*(?P<body>.*))?\s*$"
+    ),
+}
+NE_477_APPENDIX_EXTRACTION = {"page_citation_prefix": "page"}
+# Chapter 14 (2018) is an unnumbered definitions list ("599 CHIP: ...", "Family Size ...: ..."): one body.
+NE_477_UNNUMBERED_CHAPTERS = {"14"}
+NE_477_SINGLE_BLOCK_EXTRACTION = {"segmentation": "single_block"}
+NE_477_SMALL_WORDS = {"and", "for", "of", "the", "to", "or", "in", "by", "with"}
+
+
+def _ne_chapter_title(name: str) -> str:
+    words = []
+    for word in re.sub(r"\s+", " ", name).strip().lower().split(" "):
+        words.append(word if word in NE_477_SMALL_WORDS and words else "-".join(part.capitalize() for part in word.split("-")))
+    title = " ".join(words)
+    for acronym in ("MAGI", "IV-E", "SIMP", "SSI", "ABD"):
+        title = re.sub(rf"(?i)(?<![a-z]){re.escape(acronym)}(?![a-z])", acronym, title)
+    return title
+
+
+def build_ne() -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Nebraska Title 477 NAC (Medicaid Eligibility): the 29 filed chapter PDFs listed by the Secretary of State's
+    rules.nebraska.gov chapter API (the same mechanism as the us-ne SNAP, TANF, SSI and CHIP scopes) minus chapter 19,
+    which the CHIP scope already carries at the same citation path, plus the 40 Title 477 appendix PDFs (income and
+    resource standards, forms and tables) that DHHS posts on its Title 477 Appendix page. rules.nebraska.gov serves its
+    leaf certificate only, so REQUESTS_CA_BUNDLE must point at certifi plus the committed DigiCert G2 intermediate."""
+    import os
+    from urllib.parse import quote
+
+    if not os.environ.get("REQUESTS_CA_BUNDLE"):
+        raise RuntimeError("rules.nebraska.gov serves only its leaf certificate: set REQUESTS_CA_BUNDLE to certifi's "
+                           "cacert.pem concatenated with data/certs/digicert-global-g2-tls-rsa-sha256-2020-ca1.pem")
+    chapters = json.loads(fetch(NE_477_CHAPTERS_API))["output"]
+    families: dict[str, dict[str, int]] = {
+        "nac_477_chapter_pdf": {"found": 0, "taken": 0},
+        "nac_477_chapter_pdf_already_in_corpus_chip_scope": {"found": 0, "taken": 0},
+        "title_477_appendix_pdf": {"found": 0, "taken": 0},
+    }
+    docs: list[dict[str, Any]] = []
+    tls_note = ("rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA "
+                "SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)")
+    for chapter in sorted(chapters, key=lambda c: int(c["chapterNumber"])):
+        number = str(chapter["chapterNumber"])
+        if number == NE_477_CHIP_CHAPTER:
+            families["nac_477_chapter_pdf_already_in_corpus_chip_scope"]["found"] += 1
+            continue
+        families["nac_477_chapter_pdf"]["found"] += 1
+        families["nac_477_chapter_pdf"]["taken"] += 1
+        # The chapter blob, not the signed "_Official" blob: chapter 25's official blob answers HTTP 400 from the file API.
+        blob = chapter["pdfBlobName"]
+        effective = chapter["effectiveDate"][:10]
+        old_style = effective < "2020-01-01"
+        docs.append({
+            "source_id": f"ne-dhhs-title-477-chapter-{number}",
+            "jurisdiction": "us-ne",
+            "document_class": "regulation",
+            "title": f"Nebraska Title 477 NAC Chapter {number}: {_ne_chapter_title(chapter['chapterName'])}",
+            "source_url": f"{NE_477_FILE_API}/{chapter['pdfContainerName']}/{quote(blob)}",
+            "source_format": "pdf",
+            "source_as_of": SOURCE_AS_OF_BATCH7,
+            "expression_date": effective,
+            "citation_path": f"us-ne/regulation/title-477/chapter-{number}",
+            "extraction": (NE_477_SINGLE_BLOCK_EXTRACTION if number in NE_477_UNNUMBERED_CHAPTERS
+                           else NE_477_OLD_STYLE_EXTRACTION if old_style else NE_477_NEW_STYLE_EXTRACTION),
+            "metadata": {
+                "primary_source": True,
+                "source_authority": "Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State",
+                "document_subtype": "official_filed_administrative_regulation_chapter",
+                "program": "MEDICAID",
+                "manual": "Nebraska Title 477 NAC Medicaid Eligibility",
+                "manual_index_url": NE_477_DHHS_INDEX,
+                "official_publisher": "Nebraska Secretary of State (rules.nebraska.gov)",
+                "rules_landing_page": NE_477_LANDING,
+                "rules_api_url": NE_477_CHAPTERS_API,
+                "agency_id": 37, "title_id": 232, "title_number": 477,
+                "chapter_id": chapter["id"], "chapter_number": number, "chapter_name": chapter["chapterName"],
+                "effective_date": effective, "pdf_blob_name": blob,
+                "official_pdf_blob_available": bool(chapter.get("officialPdfBlobName")),
+                "section_numbering": ("unnumbered definitions list (single body)" if number in NE_477_UNNUMBERED_CHAPTERS
+                                      else "2018 filing: chapter-section labels (NN-001.01A)" if old_style else "2020+ filing: 001./005.01 labels"),
+                "tls_note": tls_note,
+                "source_discovery_group": "us-ne/regulation/medicaid",
+                "discovered_via": DISCOVERED_VIA7.format(index=NE_477_LANDING),
+            },
+        })
+    page = fetch(NE_477_APPENDIX_INDEX)
+    seen: set[str] = set()
+    for href, text in links(page, NE_477_APPENDIX_INDEX):
+        match = re.search(r"/Documents/(477-000-(\d{3}))\.pdf$", href)
+        if not match or href in seen:
+            continue
+        seen.add(href)
+        families["title_477_appendix_pdf"]["found"] += 1
+        families["title_477_appendix_pdf"]["taken"] += 1
+        label = match.group(1)
+        docs.append({
+            "source_id": f"ne-dhhs-title-477-appendix-{label}",
+            "jurisdiction": "us-ne",
+            "document_class": "regulation",
+            "title": f"Nebraska Title 477 Appendix {label}" + (f": {text}" if text and text != label else ""),
+            "source_url": href,
+            "source_format": "pdf",
+            "source_as_of": SOURCE_AS_OF_BATCH7,
+            "expression_date": SOURCE_AS_OF_BATCH7,
+            "citation_path": f"us-ne/regulation/title-477/appendix/{label}",
+            "extraction": NE_477_APPENDIX_EXTRACTION,
+            "metadata": {
+                "primary_source": True,
+                "source_authority": "Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care",
+                "document_subtype": "regulation_appendix_table_pdf",
+                "program": "MEDICAID",
+                "manual": "Nebraska Title 477 NAC Medicaid Eligibility",
+                "manual_index_url": NE_477_APPENDIX_INDEX,
+                "appendix_number": label,
+                "expression_date_note": "fetch date; each appendix prints its own revision date in the page header (REV. ...)",
+                "source_discovery_group": "us-ne/regulation/medicaid",
+                "discovered_via": DISCOVERED_VIA7.format(index=NE_477_APPENDIX_INDEX),
+            },
+        })
+    if families["title_477_appendix_pdf"]["found"] == 0:
+        raise RuntimeError("us-ne: the Title 477 Appendix page lists no 477-000-NNN PDFs; layout changed?")
+    return docs, {"index_url": NE_477_DHHS_INDEX, "families": families}
+
+
+BUILDERS_BATCH7 = {"us-ne": build_ne}
+NAMES_BATCH7 = {"us-ne": "Nebraska"}
+SOURCE_KIND_BATCH7 = {"us-ne": "official_pdf_nac_chapters"}
+STATIC_ROWS_BATCH7: dict[str, dict[str, Any]] = {}
+DOC_CLASS_BATCH7 = {"us-ne": "regulation"}
+BATCH_VERSIONS = {"7": VERSION_BATCH7}
+BATCH7_ROW_SUFFIX = {
+    "us-ne": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Secretary of State chapter API answers "
+              "HTTP 200 (686,881-byte JSON, 0.6 s) and dhhs.ne.gov's Title 477 page HTTP 200 (194,402 bytes, 0.5 s) after the "
+              "2026-09-11 Azure gateway 403 and TCP timeout, so the batch-5 follow-on was run: 28 of the 29 chapter PDFs taken (chapter 19 "
+              "MAGI-Based Programs is already in the corpus under the CHIP scope at the same citation path) plus the 40 appendix PDFs on the "
+              "DHHS Title 477 Appendix page (page-level provisions). The 2018 filings keep the older chapter-section numbering "
+              "(16-001.01A ...) and use their own heading pattern; heading-only parent sections carry no body of their own."),
+}
+# Rows that stay blocked after the 2026-09-13 re-probe (one plain request each; appended to the row notes).
+REPROBE_DETAILS_BATCH7: dict[str, str] = {
+    "us-al": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: SSLError 'unable to get local issuer "
+              "certificate' after 0.4 s. medicaid.alabama.gov now completes the TLS handshake but serves only its leaf certificate "
+              "(issuer GlobalSign Atlas R3 OV TLS CA 2026 Q1, valid 2026-04-06 to 2026-10-22) without the intermediate; with the chain "
+              "completed from the leaf's AIA URL (public intermediate, not added to data/certs because nothing was extracted) the host "
+              "answers, but the recorded Eligibility Manual page (9.4.11_Eligibility_Manual.aspx) is HTTP 404 (3,866 bytes; the Forms "
+              "Library now numbers 9.4.11 as Mental Health Forms) and the Forms Library, Provider Manuals and Apply pages (HTTP 200) "
+              "link no eligibility manual. The manual's new index, if any, was not located; a reviewer decision is needed on where "
+              "Alabama Medicaid now publishes it. Nothing was worked around."),
+    "us-ca": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: the MEPM index answers HTTP 200 "
+              "with a 212-byte Imperva/Incapsula challenge body (0.2 s), no manual content." + DURABLE_BLOCK),
+    "us-as": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure: medicaid.as.gov has no DNS "
+              "record (NameResolutionError after 0.2 s). Publisher unreachable on two dates; nothing is posted to take."),
+    "us-gu": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Medicare/Medicaid services page answers "
+              "HTTP 200 (93,777 bytes, 3.6 s) and still lists no eligibility manual or document link. Publisher posts nothing; confirmed "
+              "on two dates."),
+    "us-mp": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Eligibility & Enrollment page answers "
+              "HTTP 200 (223,772 bytes, 0.3 s) and still lists no eligibility manual. Publisher posts nothing; confirmed on two dates."),
+    "us-pr": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Guias page answers HTTP 200 (195,309 "
+              "bytes, 1.0 s, provider-enrollment files only) and still lists no eligibility manual or reglamento. Publisher posts nothing; "
+              "confirmed on two dates."),
+    "us-vi": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Office of Medicaid page answers HTTP 200 "
+              "(141,356 bytes, 3.0 s) and still lists application forms and the provider manual only. Publisher posts nothing; confirmed "
+              "on two dates."),
+}
+
+
 BATCHES = {
     "1": (BUILDERS, STATIC_ROWS, NAMES, SOURCE_KIND,
           "Batch 1 (2026-09-10): the two queued state rows plus the eight largest states by population; done-already states "
@@ -2550,6 +2754,11 @@ BATCHES = {
           "Batch 6 (2026-09-11, territories pass): the five inhabited territories PR, GU, VI, AS, MP, each publisher probed once "
           "from a US network; none publishes an eligibility manual (AS unreachable: no DNS record). Static rows only. Generator: "
           "scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 6 [--only us-xx]."),
+    "7": (BUILDERS_BATCH7, STATIC_ROWS_BATCH7, NAMES_BATCH7, SOURCE_KIND_BATCH7,
+          "Batch 7 (2026-09-13, re-probe of the blocked publishers): every blocked_primary_source row's recorded URL fetched once with "
+          "the plain extractor client from a US network. NE answers again and Title 477 NAC (28 chapters plus 40 appendices) is extracted "
+          "under version 2026-09-13-medicaid-state-eligibility-manual; AL and CA still blocked (recorded as durable); the five territories "
+          "still post nothing. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 7; see " + RUN_NOTE_BATCH7 + "."),
 }
 BATCH1_RETRY_DETAILS = {
     "us-ca": "HTTP 403 Incapsula interstitial (incident id 648000110658208525-192905496909841125) for both requests.",
@@ -2562,12 +2771,12 @@ BATCH1_RETRY_DETAILS = {
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--batch", choices=["1", "2", "3", "4", "5", "6", "all"], default="all",
+    parser.add_argument("--batch", choices=["1", "2", "3", "4", "5", "6", "7", "all"], default="all",
                         help="which batch's builders and static rows to (re)build; rows of the other batch are left untouched")
     parser.add_argument("--only", action="append", default=[], metavar="JURISDICTION",
                         help="restrict live builders to these jurisdictions (static rows of the batch are still applied)")
     args = parser.parse_args()
-    batches = ["1", "2", "3", "4", "5", "6"] if args.batch == "all" else [args.batch]
+    batches = ["1", "2", "3", "4", "5", "6", "7"] if args.batch == "all" else [args.batch]
     queue = yaml.safe_load(QUEUE.read_text())
     # The first row of a jurisdiction is the one the batches address; later rows of the same jurisdiction (the
     # federal eCFR follow-on row of docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md) are carried through
@@ -2596,20 +2805,22 @@ def main() -> int:
                 print(f"{jur}: duplicate citation paths {dupes}", file=sys.stderr)
                 return 1
             stem = f"{jur}-medicaid-eligibility-manual"
+            version = BATCH_VERSIONS.get(batch, VERSION)
             (ROOT / "manifests" / f"{stem}.yaml").write_text(
-                yaml.safe_dump({"version": VERSION, "documents": docs}, sort_keys=False, allow_unicode=True, width=120))
+                yaml.safe_dump({"version": version, "documents": docs}, sort_keys=False, allow_unicode=True, width=120))
             found = sum(f["found"] for f in info["families"].values())
             taken = sum(f["taken"] for f in info["families"].values())
             summary[jur] = {"documents": len(docs), **info}
             row = rows.get(jur) or {"jurisdiction": jur, "name": names[jur], "lead_counts": {}, "candidate_sources": []}
-            dclass = DOC_CLASS_BATCH5.get(jur, "manual")
+            dclass = {**DOC_CLASS_BATCH5, **DOC_CLASS_BATCH7}.get(jur, "manual")
             row.update({
                 "name": names[jur], "queue_status": "agent_ready", "source_kind": source_kind[jur],
                 "primary_source_url": docs[0]["source_url"], "target_manifest": f"manifests/{stem}.yaml",
-                "target_scope": {"jurisdiction": jur, "document_class": dclass, "version": VERSION},
+                "target_scope": {"jurisdiction": jur, "document_class": dclass, "version": version},
                 "index_url": info["index_url"], "index_document_count": found, "taken_count": taken,
                 "index_families": info["families"],
-                "notes": builder_row_note(batch, len(docs), found, taken, len(info["families"])) + BATCH5_ROW_SUFFIX.get(jur, ""),
+                "notes": builder_row_note(batch, len(docs), found, taken, len(info["families"]))
+                + BATCH5_ROW_SUFFIX.get(jur, "") + BATCH7_ROW_SUFFIX.get(jur, ""),
             })
             rows[jur] = row
             print(f"{jur}: {len(docs)} documents; index families {info['families']}")
@@ -2629,6 +2840,10 @@ def main() -> int:
                 note = RETRY_NOTE4.format(stamp=stamp, outcome=outcome)
                 if jur in rows and note not in rows[jur]["notes"]:
                     rows[jur]["notes"] = rows[jur]["notes"] + note
+        if batch == "7":
+            for jur, note in REPROBE_DETAILS_BATCH7.items():
+                if jur in rows and rows[jur]["queue_status"] == "blocked_primary_source" and note not in rows[jur]["notes"]:
+                    rows[jur]["notes"] = rows[jur]["notes"].rstrip() + note
         notes = queue.setdefault("policy", {}).setdefault("notes", [])
         if batch_note not in notes:
             notes.append(batch_note)

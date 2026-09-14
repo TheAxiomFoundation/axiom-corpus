@@ -98,6 +98,30 @@ def test_make_r2_client_uses_bounded_network_timeouts(monkeypatch):
     assert captured["config"].connect_timeout == 10
     assert captured["config"].read_timeout == 30
     assert captured["config"].retries == {"max_attempts": 5, "mode": "standard"}
+    assert captured["config"].max_pool_connections == 10
+
+    make_r2_client(
+        R2Config(
+            bucket="axiom-corpus",
+            endpoint_url="https://example.r2.cloudflarestorage.com",
+            access_key_id="key",
+            secret_access_key="secret",
+        ),
+        max_pool_connections=16,
+    )
+    # A thread pool larger than botocore's default pool must widen the pool,
+    # while a smaller request never shrinks it below the default.
+    assert captured["config"].max_pool_connections == 16
+    make_r2_client(
+        R2Config(
+            bucket="axiom-corpus",
+            endpoint_url="https://example.r2.cloudflarestorage.com",
+            access_key_id="key",
+            secret_access_key="secret",
+        ),
+        max_pool_connections=2,
+    )
+    assert captured["config"].max_pool_connections == 10
 
 
 def test_sync_artifacts_to_r2_uploads_missing_and_size_changed_files(tmp_path):

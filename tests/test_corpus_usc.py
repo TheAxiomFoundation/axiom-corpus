@@ -966,3 +966,61 @@ def test_extract_usc_directory_only_title_scopes_run_id(tmp_path):
     assert report.provisions_path == store.provisions_path("us", "statute", "2026-04-29-title-42")
     records = load_provisions(report.provisions_path)
     assert [record.citation_path for record in records] == ["us/statute/42", "us/statute/42/1983"]
+
+
+def test_extract_usc_source_zip_retains_the_zip_as_the_inventoried_source(tmp_path):
+    import hashlib
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@119-103.zip"
+    with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-09-13",
+        source_zip=source_zip,
+        source_as_of="2026-09-02",
+        expression_date=date(2026, 9, 2),
+    )
+
+    assert report.coverage.complete
+    assert report.provisions_written == 3
+    retained = store.root / "sources/us/statute/2026-09-13-title-26/olrc/xml_usc26@119-103.zip"
+    assert report.source_paths == (retained,)
+    assert retained.read_bytes() == source_zip.read_bytes()
+    assert not (store.root / "sources/us/statute/2026-09-13-title-26/uslm").exists()
+    zip_sha256 = hashlib.sha256(source_zip.read_bytes()).hexdigest()
+    inventory = load_source_inventory(report.inventory_path)
+    records = load_provisions(report.provisions_path)
+    expected_source_path = "sources/us/statute/2026-09-13-title-26/olrc/xml_usc26@119-103.zip"
+    assert {item.source_path for item in inventory} == {expected_source_path}
+    assert {item.sha256 for item in inventory} == {zip_sha256}
+    assert {item.metadata["source_archive_member"] for item in inventory} == {"usc26.xml"}
+    assert {record.source_path for record in records} == {expected_source_path}
+    assert {record.metadata["source_archive_member"] for record in records} == {"usc26.xml"}
+    assert [record.citation_path for record in records] == [
+        "us/statute/26",
+        "us/statute/26/32",
+        "us/statute/26/151",
+    ]
+    assert records[1].source_as_of == "2026-09-02"
+
+
+def test_extract_usc_source_zip_refuses_ambiguous_archives(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "two.zip"
+    with zipfile.ZipFile(source_zip, "w") as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+        archive.writestr("README.txt", "x")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="exactly one USLM XML member"):
+        extract_usc(store, version="2026-09-13", source_zip=source_zip)
+
+
+def test_extract_usc_requires_exactly_one_source(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="exactly one of source_xml or source_zip"):
+        extract_usc(store, version="2026-09-13")

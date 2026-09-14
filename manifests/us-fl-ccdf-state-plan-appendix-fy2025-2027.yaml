@@ -1,0 +1,76 @@
+version: 2026-09-13-ccdf-state-plan-appendices
+documents:
+- source_id: us-fl-acf-ccdf-plan-fy2025-2027-appendix-1
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CCDF Plan FFY 2025-2027, Appendix 1: Lead Agency Implementation Plan'
+  source_url: https://acf.gov/sites/default/files/documents/occ/FL-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-fl/policy/acf/ccdf-plan/fy2025-2027-appendix-1
+  request:
+    browser_user_agent: true
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>[A-Z][A-Z0-9 ,&/()'’-]*:[A-Z][A-Z0-9 ,&/()'’-]*)$
+    heading_continuation_pattern: ^(?P<heading>[A-Z(][A-Z0-9 ,&/()'’-]*)$
+    section_label_replacements:
+      COMPREHENSIVE BACKGROUND CHECK:BACKGROUND CHECK PROCESSES: comprehensive-background-check-background-check-processes
+      COMPREHENSIVE BACKGROUND CHECK:DISQUALIFICATIONS FOR EMPLOYMENT: comprehensive-background-check-disqualifications-for-employment
+      COMPREHENSIVE BACKGROUND CHECK:IN-STATE: comprehensive-background-check-in-state
+      COMPREHENSIVE BACKGROUND CHECK:INTER-STATE: comprehensive-background-check-inter-state
+      COMPREHENSIVE BACKGROUND CHECK:NATIONAL FINGERPRINT: comprehensive-background-check-national-fingerprint
+      COMPREHENSIVE BACKGROUND CHECK:NATIONAL NAME-BASED: comprehensive-background-check-national-name-based
+      COMPREHENSIVE BACKGROUND CHECK:PRE-SERVICE CHECK REQUIREMENTS: comprehensive-background-check-pre-service-check-requirements
+      COMPREHENSIVE BACKGROUND CHECK:5 YEAR RENEWAL: comprehensive-background-check-5-year-renewal
+      CONSUMER EDUCATION:WEBSITE AND RESOURCES FOR PARENTS: consumer-education-website-and-resources-for-parents
+      ELIGIBILITY AND ENROLLMENT:CONTINUITY OF CARE (12-MONTH ELIGIBILITY): eligibility-and-enrollment-continuity-of-care-12-month-eligibility
+      ELIGIBILITY AND ENROLLMENT:ELIGIBILITY: eligibility-and-enrollment-eligibility
+      ELIGIBILITY AND ENROLLMENT:PRIORITIZATION OF POPULATIONS: eligibility-and-enrollment-prioritization-of-populations
+      EQUAL ACCESS:AFFORDABILITY: equal-access-affordability
+      EQUAL ACCESS:PAYMENT PRACTICES: equal-access-payment-practices
+      EQUAL ACCESS:PAYMENT RATES: equal-access-payment-rates
+      EQUAL ACCESS:PROVIDER OPTIONS FOR PARENTS: equal-access-provider-options-for-parents
+      EQUAL ACCESS:SUPPLY BUILDING STRATEGIES: equal-access-supply-building-strategies
+      HEALTH AND SAFETY:ADMINISTRATION OF MEDICATION: health-and-safety-administration-of-medication
+      HEALTH AND SAFETY:BUILDING AND PHYSICAL PREMISES SAFETY: health-and-safety-building-and-physical-premises-safety
+      HEALTH AND SAFETY:CHILD DEVELOPMENT: health-and-safety-child-development
+      HEALTH AND SAFETY:EMERGENCY PREPAREDNESS AND RESPONSE PLANNING: health-and-safety-emergency-preparedness-and-response-planning
+      HEALTH AND SAFETY:FIRE STANDARDS: health-and-safety-fire-standards
+      HEALTH AND SAFETY:HANDLING AND STORAGE OF HAZARDOUS MATERIALS AND: health-and-safety-handling-and-storage-of-hazardous-materials-and-disposal-of-biocontaminants
+      HEALTH AND SAFETY:IDENTIFICATION AND REPORTING OF CHILD ABUSE: health-and-safety-identification-and-reporting-of-child-abuse
+      HEALTH AND SAFETY:INSPECTION OF IN-HOME CARE: health-and-safety-inspection-of-in-home-care
+      HEALTH AND SAFETY:INSPECTORS: health-and-safety-inspectors
+      HEALTH AND SAFETY:ONGOING TRAINING: health-and-safety-ongoing-training
+      HEALTH AND SAFETY:PEDIATRIC FIRST AID AND PEDIATRIC CPR: health-and-safety-pediatric-first-aid-and-pediatric-cpr
+      HEALTH AND SAFETY:POSTING INSPECTION REPORTS: health-and-safety-posting-inspection-reports
+      HEALTH AND SAFETY:PRECAUTIONS IN TRANSPORTING CHILDREN: health-and-safety-precautions-in-transporting-children
+      HEALTH AND SAFETY:PREVENTION AND CONTROL OF INFECTIOUS DISEASES: health-and-safety-prevention-and-control-of-infectious-diseases
+      HEALTH AND SAFETY:PREVENTION AND RESPONSE TO EMERGENCIES FROM FOOD: health-and-safety-prevention-and-response-to-emergencies-from-food-and-allergic-reactions
+      HEALTH AND SAFETY:PREVENTION OF SHAKEN BABY SYNDROME, ABUSIVE HEAD: health-and-safety-prevention-of-shaken-baby-syndrome-abusive-head-trauma-and-child-maltreatment
+      HEALTH AND SAFETY:RATIOS AND GROUP SIZE FOR CCDF PROVIDERS: health-and-safety-ratios-and-group-size-for-ccdf-providers
+      HEALTH AND SAFETY:RELATIVE EXEMPTIONS: health-and-safety-relative-exemptions
+      HEALTH AND SAFETY:SUDDEN INFANT DEATH SYNDROME AND SAFE SLEEP: health-and-safety-sudden-infant-death-syndrome-and-safe-sleep
+      LEAD AGENCY RESPONSIBILITIES:PROGRAM ADMINISTRATION, PLAN DEVELOPMENT,: lead-agency-responsibilities-program-administration-plan-development-and-program-funding-coordination
+      PROGRAM INTEGRITY:EFFECTIVE FISCAL MANAGEMENT PRACTICES: program-integrity-effective-fiscal-management-practices
+      PROGRAM INTEGRITY:EFFECTIVE INTERNAL CONTROLS: program-integrity-effective-internal-controls
+      PROGRAM INTEGRITY:FRAUD INVESTIGATION, PAYMENT RECOVERY, AND: program-integrity-fraud-investigation-payment-recovery-and-sanctions
+      WORKFORCE:PROFESSIONAL DEVELOPMENT: workforce-professional-development
+    start_after_pattern: '^Plan Status: .*$'
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_appendix_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    source_discovery_group: us-fl/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    appendix: 'Appendix 1: Lead Agency Implementation Plan for federal non-compliances (ACF-hosted accepted copy)'
+    closure_elements:
+    - ccdf-s27
