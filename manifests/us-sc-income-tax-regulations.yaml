@@ -1,0 +1,23 @@
+version: '2026-09-14'
+documents:
+- source_id: sc-legislature-code-regs-chapter-117-revenue
+  jurisdiction: us-sc
+  document_class: regulation
+  citation_path: us-sc/regulation/117
+  title: 'South Carolina Code of Regulations, Chapter 117: Department of Revenue'
+  source_url: https://www.scstatehouse.gov/coderegs/Chapter%20117.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^117[–-](?P<num>\d+(?:\.\d+)*)\.\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Revenue
+    official_publisher: South Carolina Legislative Services Agency
+    document_subtype: code_of_regulations_chapter
+    program: individual_income_tax
+    source_discovery_group: us-sc/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.scstatehouse.gov/coderegs/statmast.php
