@@ -31,6 +31,7 @@ from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
+from axiom_corpus.corpus.citation_segment import citation_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -3227,7 +3228,12 @@ def _inventory_items(
                 source_path=source_key,
                 source_format=source_format,
                 sha256=source_sha,
-                metadata={"kind": block.kind, **metadata, **block.metadata},
+                metadata={
+                    "kind": block.kind,
+                    **metadata,
+                    **block.metadata,
+                    **_block_segment_metadata(source, block),
+                },
             )
         )
     return tuple(items)
@@ -3308,7 +3314,12 @@ def _provision_records(
                 level=level,
                 ordinal=block.ordinal,
                 kind=block.kind,
-                metadata={"kind": block.kind, **metadata, **block.metadata},
+                metadata={
+                    "kind": block.kind,
+                    **metadata,
+                    **block.metadata,
+                    **_block_segment_metadata(source, block),
+                },
             )
         )
     return tuple(records)
@@ -3346,9 +3357,37 @@ def _root_citation_path(source: OfficialDocumentSource) -> str:
 def _block_citation_path(source: OfficialDocumentSource, block: _DocumentBlock) -> str:
     citation_suffix = block.metadata.get("citation_suffix")
     if isinstance(citation_suffix, str) and citation_suffix:
-        safe_suffix = "/".join(safe_segment(part) for part in citation_suffix.split("/"))
-        return f"{_root_citation_path(source)}/{safe_suffix}"
+        return f"{_root_citation_path(source)}/{_block_citation_suffix(source, citation_suffix)}"
     return f"{_root_citation_path(source)}/{block.kind}-{block.ordinal}"
+
+
+def _block_citation_suffix(source: OfficialDocumentSource, citation_suffix: str) -> str:
+    """Return the grammar-safe hierarchy segments for a block's citation suffix.
+
+    Publisher section labels are carried verbatim in ``metadata.section_label``;
+    the path segment folds characters outside the citation-path grammar
+    (commas, parentheses, ``@``...) into hyphens, and
+    ``normalize_citation_segment_dashes: true`` additionally turns en-dashes
+    and em-dashes into hyphens for publishers that use them as ordinary
+    separators (Colorado ``39-22-303–1``).
+    """
+    normalize_dashes = bool(
+        (source.extraction or {}).get("normalize_citation_segment_dashes", False)
+    )
+    return "/".join(
+        citation_segment(safe_segment(part), normalize_dashes=normalize_dashes)
+        for part in citation_suffix.split("/")
+    )
+
+
+def _block_segment_metadata(source: OfficialDocumentSource, block: _DocumentBlock) -> dict[str, str]:
+    """Record the publisher identifier when the path segment had to be slugified."""
+    citation_suffix = block.metadata.get("citation_suffix")
+    if not isinstance(citation_suffix, str) or not citation_suffix:
+        return {}
+    if _block_citation_suffix(source, citation_suffix) == citation_suffix:
+        return {}
+    return {"publisher_section_id": citation_suffix.rsplit("/", 1)[-1]}
 
 
 def _validate_citation_path(

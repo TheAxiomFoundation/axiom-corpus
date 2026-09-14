@@ -997,6 +997,16 @@ def test_nebraska_helpers_cover_defensive_paths():
     assert _nebraska_href_to_citation_path("/laws/statutes.php?statute=1-171") == (
         "us-ne/statute/1/1-171"
     )
+    # Comma-numbered sections (77-3,100 ...) fold the comma to a hyphen so the
+    # citation path stays inside the grammar; the publisher number is kept in
+    # metadata by _nebraska_section_provision.
+    assert _nebraska_href_to_citation_path("/laws/statutes.php?statute=77-27,187") == (
+        "us-ne/statute/77/77-27-187"
+    )
+    assert _nebraska_section_heading_parts("77-3,100. Terms, defined.") == (
+        "77-3,100",
+        "Terms, defined",
+    )
     assert _nebraska_href_to_citation_path("/laws/not-statutes.php") is None
     assert _nebraska_section_heading_parts("not a section") is None
 
