@@ -1709,6 +1709,7 @@ def test_stage_release_activation_upload_bounds_every_management_request(monkeyp
 
     monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
     monkeypatch.setattr(supabase.secrets, "token_hex", lambda _size: "b" * 64)
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: None)
 
     upload_id, object_sha256 = supabase._stage_release_activation_upload(
         release_object,
@@ -1728,6 +1729,124 @@ def test_stage_release_activation_upload_bounds_every_management_request(monkeyp
     assert "".join(payload["parameters"][5] for payload in staged) == canonical_json_bytes(
         release_object
     ).decode("ascii")
+
+
+def test_management_api_post_waits_out_throttle_then_succeeds(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    attempts = []
+    sleeps = []
+
+    class Completed:
+        def __init__(self, returncode, stdout):
+            self.returncode = returncode
+            self.stdout = stdout
+            self.stderr = b""
+
+    def fake_run(command, **kwargs):
+        attempts.append(kwargs["input"])
+        if len(attempts) < 3:
+            return Completed(22, b'{"message":"ThrottlerException: Too Many Requests"}')
+        return Completed(0, b'[{"chunk_index": 0}]')
+
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: sleeps.append(seconds))
+
+    rows = supabase._management_api_post_json_with_curl(
+        "https://api.supabase.test/query",
+        payload={"query": "select 1"},
+        access_token="management",
+        timeout=30,
+    )
+
+    assert rows == [{"chunk_index": 0}]
+    assert len(attempts) == 3
+    assert sleeps == [15.0, 30.0]
+
+
+def test_management_api_post_gives_up_after_persistent_throttle(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    class Completed:
+        returncode = 22
+        stdout = b'{"message":"ThrottlerException: Too Many Requests"}'
+        stderr = b""
+
+    calls = []
+    monkeypatch.setattr(
+        supabase.subprocess, "run", lambda command, **kwargs: calls.append(1) or Completed()
+    )
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: None)
+
+    with pytest.raises(RuntimeError, match="Too Many Requests"):
+        supabase._management_api_post_json_with_curl(
+            "https://api.supabase.test/query",
+            payload={"query": "select 1"},
+            access_token="management",
+            timeout=30,
+        )
+    assert len(calls) == len(supabase._MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS) + 1
+
+
+def test_management_api_post_does_not_retry_other_failures(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    class Completed:
+        returncode = 22
+        stdout = b'{"message":"permission denied"}'
+        stderr = b""
+
+    calls = []
+    monkeypatch.setattr(
+        supabase.subprocess, "run", lambda command, **kwargs: calls.append(1) or Completed()
+    )
+    monkeypatch.setattr(
+        supabase.time, "sleep", lambda seconds: pytest.fail("must not sleep on a hard error")
+    )
+
+    with pytest.raises(RuntimeError, match="permission denied"):
+        supabase._management_api_post_json_with_curl(
+            "https://api.supabase.test/query",
+            payload={"query": "select 1"},
+            access_token="management",
+            timeout=30,
+        )
+    assert calls == [1]
+
+
+def test_stage_release_activation_upload_paces_chunk_requests(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object = {
+        "release": "large-release",
+        "content_sha256": "a" * 64,
+        "content": {"artifacts": ["x" * 400_000]},
+    }
+    events = []
+
+    def fake_post(url, *, payload, access_token, timeout):
+        if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
+            events.append(("post", payload["parameters"][3]))
+            return [{"chunk_index": payload["parameters"][3]}]
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: events.append(("sleep", seconds)))
+
+    supabase._stage_release_activation_upload(
+        release_object, endpoint="https://api.supabase.test/query", access_token="management"
+    )
+
+    pacing = supabase._RELEASE_ACTIVATION_CHUNK_PACING_SECONDS
+    assert events == [
+        ("post", 0),
+        ("sleep", pacing),
+        ("post", 1),
+        ("sleep", pacing),
+        ("post", 2),
+        ("sleep", pacing),
+        ("post", 3),
+    ]
 
 
 def test_apply_release_activation_upload_migration_uses_expected_project(monkeypatch):
