@@ -1097,7 +1097,23 @@ states:
   index_document_count: null
   taken_count: null
   administration: S
-  notes: '2026-07-04 runs: K.S.A. 39-972 (us-ks/statute) and KHPA Policy 2007-05-01 (us-ks/guidance); docs/ingest-runs/2026-07-04-ks-sspp.md.'
+  notes: '2026-07-04 runs: K.S.A. 39-972 (us-ks/statute) and KHPA Policy 2007-05-01 (us-ks/guidance); docs/ingest-runs/2026-07-04-ks-sspp.md.
+    2026-09-14: current payment standards (SSI-ST-4) absent (see standards_scope).'
+  standards_scope:
+    status: absent
+    scopes: []
+    index_url: https://khap.kdhe.ks.gov/kfmam/policydocs/state%20supplemental%20payment%20program%20policy%20memo.pdf
+    index_document_count: null
+    taken_count: 0
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent for the current year: the SSPP pays one flat $20 monthly amount to institutionalized
+      eligibles (KHPA policy memo of 2007-05-02, retroactive to 2006-07-01, already in us-ks/guidance/2026-07-04-ks-sspp-guidance)
+      and KDHE has published no later amount; the April 2026 Kansas Medical Assistance manual (khap.kdhe.ks.gov/KEESM/Apr_2026_Output,
+      121 topics) has no SSPP topic; K.S.A. 39-972 (floor ''not less than $30'') is on disk as us-ks/statute/2026-07-04-ks-sspp-statute
+      and unselected (controller: select it for SSI-ST-2). Nothing new to take. Access: khap.kdhe.ks.gov HTTP 200 to the plain
+      client for the 2007 memo; the policydocs directory answers 403.14; ksrevisor.gov HTTP 200.'
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
@@ -1163,9 +1179,30 @@ states:
   notes: 'State Supplement Program (SSP): 106 CMR 327.000 Eligibility Requirements for SSP (DTA), one regulation PDF from
     the mass.gov law library 106 CMR index (18 chapters listed; 327 taken), 24 section rows 327.010-327.410 (the TOC misprints
     327.160 as 322.160). document_class regulation, citation us-ma/regulation/106-cmr/327/<section>. mass.gov answered HTTP
-    200 to a paced plain client on 2026-09-10 (the guessed law-library/106-cmr-327 path is 404; the regulation page is /regulations/106-CMR-32700-...).'
+    200 to a paced plain client on 2026-09-10 (the guessed law-library/106-cmr-327 path is 404; the regulation page is /regulations/106-CMR-32700-...).
+    2026-09-14: current payment standards (SSI-ST-4) taken as us-ma/guidance/2026-09-14-ssi-state-supplement-standards (see
+    standards_scope).'
   index_families: 'SSP (327): 1 found / 1 taken; Fair hearing rules (343): 1 found / 0 taken; SNAP (360-367): 8 found / 0
     taken; TCAP / TAFDC / EAEDC (701-708): 8 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ma
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-ma-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    index_url: https://www.mass.gov/info-details/learn-about-massachusetts-state-supplement-program-eligibility-and-payments
+    index_document_count: 11
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Federal and State Payment Levels for Calendar Year 2026 (1 page: the SSP amounts by SSI
+      category and state living arrangement A, B, C, E, F, G) from the DTA SSP information page, which lists the CY 2016-2026
+      charts (11 documents; the 2026 chart taken). Closes SSI-ST-4; 106 CMR 327 (SSI-ST-2) is in the 2026-09-10 scope. Access:
+      mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched
+      with the extractor''s browser_impersonation option, TLS verification on.'
 - jurisdiction: us-md
   name: Maryland
   lead_counts: {}
@@ -1250,13 +1287,42 @@ states:
   index_document_count: null
   taken_count: 0
   administration: S
-  notes: Done by pointer (replacement 1, after NY blocked). Minnesota Supplemental Aid (MSA) is governed by the DHS Combined
+  notes: 'Done by pointer (replacement 1, after NY blocked). Minnesota Supplemental Aid (MSA) is governed by the DHS Combined
     Manual, in the corpus as one PDF (dhs-327301.pdf, 1,354 rows; 523 pages mention MSA, incl. 0020.21 MSA Assistance Standards),
     plus the MSA revised sections issued 01/2026 (us-mn/manual/2026-06-27-mn-dhs-msa-revised-sections-2026-01, mndhs-073585.pdf).
     mn.gov/dhs answered a Radware challenge to a plain client on 2026-09-10 (federal run); the corpus copies came from dhs.state.mn.us.
-    (2026-09-10 state-supplement batch 1.)
+    (2026-09-10 state-supplement batch 1.) 2026-09-14: current payment standards (SSI-ST-4) taken as us-mn/manual/2026-09-14-ssi-state-supplement-standards,
+    us-mn/statute/2026-09-14-ssi-state-supplement-standards (see standards_scope).'
   index_families: 'pointer to the DHS Combined Manual scope (1 PDF, 1,354 rows) and the MSA revised sections 01/2026 scope:
     0 new documents taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-mn
+      document_class: manual
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-mn-ssi-state-supplement-standards-manual.yaml
+      document_count: 1
+    - jurisdiction: us-mn
+      document_class: statute
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-mn-ssi-state-supplement-standards-statute.yaml
+      document_count: 1
+    index_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=CM_MANUAL
+    index_document_count: null
+    taken_count: 2
+    closure_elements:
+    - SSI-ST-2
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Combined Manual 0020.21 MSA Assistance Standards, issue date 03/2026, with the 2026 MSA
+      monthly assistance standards by living arrangement (person living alone $1,055.00, living with others $755.33, couples
+      $1,582.00 / $1,058.00 and the pre-1994 couple standards), the current web page of the section whose 09/2020 print is
+      the stale page in the selected Combined Manual PDF scope; and Minn. Stat. 256D.44 (2025 Minnesota Statutes) for the
+      state authority (SSI-ST-2). The sibling Word file cm_002021~24.doc is a 2021 revision and was not taken. Access: dhs.state.mn.us
+      answers HTTP 200 with a 15 KB Radware challenge page to plain and Chrome-UA clients and the manual page to a chrome120
+      TLS fingerprint on 2026-09-14 (fetched with browser_impersonation_direct, TLS verification on); revisor.mn.gov HTTP
+      200 to the plain client.'
 - jurisdiction: us-mo
   name: Missouri
   lead_counts: {}
@@ -1403,9 +1469,29 @@ states:
     from the Secretary of State''s rules.nebraska.gov chapter API, the 475 NAC SNAP scope''s publisher. rules.nebraska.gov
     omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; the publisher''s public intermediate is in data/certs
     and REQUESTS_CA_BUNDLE=data/certs/rules-nebraska-gov-ca-bundle.pem is used (verification on; the SNAP manifest''s verify_tls:
-    false is not used). document_class regulation, citation us-ne/regulation/title-469/chapter-N/<section>, labeled sections.'
+    false is not used). document_class regulation, citation us-ne/regulation/title-469/chapter-N/<section>, labeled sections.
+    2026-09-14: current payment standards (SSI-ST-4) taken as us-ne/manual/2026-09-14-ssi-state-supplement-standards (see
+    standards_scope).'
   index_families: '469 NAC Assistance To The Aged, Blind, Or Disabled Program chapters (API GetByTitleId/224): 4 found / 4
     taken; other DHHS (agency 37) NAC titles on the agency listing (separate titles, not inventoried): 44 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ne
+      document_class: manual
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-ne-ssi-state-supplement-standards-manual.yaml
+      document_count: 2
+    index_url: https://dhhs.ne.gov/Pages/Title-469-Appendix.aspx
+    index_document_count: null
+    taken_count: 2
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Title 469 appendix 469-000-211 AABD or SDP Standard of Need (rev. 2021-01-01, the latest
+      posted: unit standards, board and room, adult family home, assisted living, shelter allowance) and the Medicaid Title
+      477 appendix 477-000-044 ABD Standard of Need (rev. 2025-12-17, the 2026 figures effective 2026-01-01 in the same living-arrangement
+      structure); 469 NAC chapter 3 (SSI-ST-2) is in the 2026-09-10 scope. Access: dhhs.ne.gov HTTP 200 to the plain client.'
 - jurisdiction: us-nh
   name: New Hampshire
   lead_counts: {}
@@ -1425,8 +1511,31 @@ states:
   notes: 'Old Age Assistance, Aid to the Needy Blind and Aid to the Permanently and Totally Disabled (the state supplement
     categories): DHHS Adult Assistance Manual, every topic page from the RoboHelp table of contents (the Family Assistance
     Manual scope''s structure). dhhs.nh.gov HTTP 403 to a plain client, 200 to a chrome120 TLS fingerprint: fetched with the
-    extractor''s browser_impersonation option, TLS verification on. document_class manual, citation us-nh/manual/dhhs/aam/<topic>-aam.'
+    extractor''s browser_impersonation option, TLS verification on. document_class manual, citation us-nh/manual/dhhs/aam/<topic>-aam.
+    2026-09-14: current payment standards (SSI-ST-4) taken as us-nh/guidance/2026-09-14-ssi-state-supplement-standards (see
+    standards_scope).'
   index_families: 'Adult Assistance Manual topic pages (87 RoboHelp TOC files walked): 515 found / 515 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nh
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-nh-ssi-state-supplement-standards-guidance.yaml
+      document_count: 2
+    index_url: https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm
+    index_document_count: null
+    taken_count: 2
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Re-graded: AAM 601 Table A in the selected 2026-09-10 scope carries the 2026 standards
+      of need in its block-2 row (independent living $1,008 / $1,492 / $1,976, residential care $1,188, community residence
+      $1,070 / $1,130 / $1,188), so SSI-ST-4 was already PRESENT (the closure check read the 60-character block-1 stub). Taken
+      in addition: Supervisory Release SR 26-01 dated 01/26 (the transmittal announcing the 2026 COLA-driven standards) and
+      the Bureau of Developmental Services memo ''2026 Standard of Need and Income Changes'' of 2026-01-01. Access: dhhs.nh.gov
+      HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the
+      extractor''s browser_impersonation option, TLS verification on.'
 - jurisdiction: us-nj
   name: New Jersey
   lead_counts: {}
@@ -1533,10 +1642,31 @@ states:
     8 rows (collection, agency, chapter, 5 rules; rules effective 2022-09-03 and 2023-07-01), coverage complete. Citation
     us-oh/regulation/agency-5122/chapter-5122-36/rule-5122-36-0N, the adapter convention of the 5101-4 SNAP scope. The container
     row us-oh/regulation is shared with the 2026-07-16-agency-5101-4 scope by adapter design (collection root); rule rows
-    are unique across us-oh.'
+    are unique across us-oh. 2026-09-14: current payment standards (SSI-ST-4) taken as us-oh/guidance/2026-09-14-ssi-state-supplement-standards
+    (see standards_scope).'
   index_families: 'OAC chapter 5122-36 Residential State Supplement Program rules (5122-36-01 Purpose and definitions, -02
     RSS non-financial eligibility, -03 Application process, -04 Responsibilities of the living arrangement, -05 Determination
     of RSS payment): 5 found / 5 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-oh
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-oh-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    index_url: https://dbh.ohio.gov/get-help/recovery-supports/residential-state-supplement
+    index_document_count: null
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Re-graded: OAC 5122-36-05(B)-(C) in the selected scopes prints the RSS payment level (''one
+      thousand six hundred dollars per month'' plus a personal needs allowance of at least two hundred dollars, effective
+      2023-07-01), so SSI-ST-4 was already PRESENT; no later rate notice exists on the DBH domains. Taken in addition: the
+      DBH Residential State Supplement brochure (2 pages, ''$1,600 per month effective July 1, 2023''). Access: dam.assets.ohio.gov
+      HTTP 200 to the plain client; dbh.ohio.gov HTTP 404 to the plain client and 200 to a Chrome UA; codes.ohio.gov HTTP
+      200.'
 - jurisdiction: us-ok
   name: Oklahoma
   lead_counts: {}
@@ -1560,9 +1690,29 @@ states:
     15 taken. document_class regulation, citation us-ok/regulation/oac/340/15/<section>. Re-probe 2026-09-11 (batch 3, US
     network): oklahoma.gov/okdhs policy library now 301 -> rules.ok.gov/home; rules.ok.gov/home Cloudflare HTTP 403 (5,316
     bytes) plain, HTTP 200 (1,551-byte application shell) then 403 (5,906 bytes) to chrome120 impersonation; the publication''s
-    own API (prod-ok-rules-api.tecuity.com) HTTP 200 plain. Batch 2 (2026-09-10): both hosts 403.'
+    own API (prod-ok-rules-api.tecuity.com) HTTP 200 plain. Batch 2 (2026-09-10): both hosts 403. 2026-09-14: current payment
+    standards (SSI-ST-4) taken as us-ok/manual/2026-09-14-ssi-state-supplement-standards (see standards_scope).'
   index_families: 'OAC Title 340 (Department of Human Services) chapters, current: 17 found / 1 taken; OAC Title 340 chapters,
     revoked: 13 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ok
+      document_class: manual
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-ok-ssi-state-supplement-standards-manual.yaml
+      document_count: 1
+    index_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-1.pdf
+    index_document_count: null
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: OKDHS Appendix C-1 Maximum Income, Resource, and Payment Standards, 7/1/2026 (8 pages;
+      Schedule VIII.A on page 3: SSP categorically needy standard, eligible individual $1,034, individual with spouse $1,532,
+      eligible couple $1,571, SSP amount capped at $40), the appendix OAC 340:15-1-5 cites; reached through the OKDHS forms
+      search center. Access: oklahoma.gov HTTP 200 to the plain client (the former policy-library appendix page redirects
+      to rules.ok.gov/home, Cloudflare HTTP 403 to plain clients).'
 - jurisdiction: us-or
   name: Oregon
   lead_counts: {}
@@ -1670,11 +1820,32 @@ states:
     listed; 403 taken). Retry of the batch-1 blocked row: scdhhs.gov answered from a US network on 2026-09-10; img1.scdhhs.gov
     omits the Go Daddy G2 intermediate, added under data/certs (REQUESTS_CA_BUNDLE=data/certs/img1-scdhhs-gov-ca-bundle.pem,
     verification on). document_class manual, citation us-sc/manual/scdhhs/mppm/chapter-403/<section>. The OSS Services provider
-    manual is a separate family, not taken.'
+    manual is a separate family, not taken. 2026-09-14: current payment standards (SSI-ST-4) taken as us-sc/guidance/2026-09-14-ssi-state-supplement-standards
+    (see standards_scope).'
   index_families: 'MPPM Word documents (sections 100-800, chapters 401-703, MIAP manual): 19 found / 1 taken; internal SharePoint
     training and job-aid links (not public): 8 found / 0 taken; forms and manual notices listing (medsweb.scdhhs.gov): 1 found
     / 0 taken; OSS Services provider manual (https://www.scdhhs.gov/providers/manuals/optional-state-supplementation-services-manual):
     1 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-sc
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-sc-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    index_document_count: null
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: SCDHHS ''Program Eligibility and Income Limits'' page (Optional State Supplementation
+      section: monthly net income limit $1,804, resources $2,000, dated January 1, 2026), the publisher''s current statement
+      of the OSS net income limit; the current MPPM 103 file is not published on the img1.scdhhs.gov index (the only fetchable
+      Chapter 103 is a 2014 Word 97 file on www1.scdhhs.gov, not taken). S.C. Code Title 43 chapter 5 carries no OSS rate
+      (set by appropriations proviso). Access: www.scdhhs.gov HTTP 200 to the plain client; img1.scdhhs.gov (the MPPM index)
+      omits its Go Daddy G2 intermediate (data/certs) and lists Chapter 103 with no link (Chapter_103.docx answers 404).'
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}
@@ -1696,9 +1867,23 @@ states:
     the publisher and JSON/labeled-section convention of the 2026-09-10 CHIP (67:46) and TANF (67:10) scopes. The Article
     67:12 Assistance Payments index lists 21 chapters (11 repealed or transferred); 67:12:14 taken. document_class regulation,
     citation us-sd/regulation/arsd/67/12/14/<section>. sdlegislature.gov HTTP 200 to a plain client (the HTML site is a JavaScript
-    application; the API is its data source).'
+    application; the API is its data source). 2026-09-14: current payment standards (SSI-ST-4) absent (see standards_scope).'
   index_families: 'ARSD Article 67:12 Assistance Payments chapters in force: 8 found / 1 taken; ARSD Article 67:12 chapters
     repealed or transferred: 13 found / 0 taken'
+  standards_scope:
+    status: absent
+    scopes: []
+    index_url: https://dss.sd.gov/economicassistance/
+    index_document_count: null
+    taken_count: 0
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: ARSD 67:12:14:04 (in the 2026-09-10 scope) pays ''at a rate approved by the department
+      based on the annual appropriation'' and DSS publishes no rate (the DSS home, economic assistance, medical programs and
+      forms pages and the DSS Handbook carry no state supplement content; guessed programme URLs answer a redirect stub);
+      SSA''s State Assistance Programs for SSI Recipients series ends with the January 2011 edition. Publisher posts no figure.
+      Access: dss.sd.gov HTTP 200 to the plain client; sdlegislature.gov HTTP 200.'
 - jurisdiction: us-tn
   name: Tennessee
   lead_counts: {}
@@ -1786,10 +1971,36 @@ states:
   notes: 'Auxiliary Grant (AG): DARS Auxiliary Grant Program Manual chapters A-L (12 PDFs) listed on the DARS AG ''for providers''
     page and served by the agency repository www.dsa.virginia.gov (linked as www.vadsa.org). Manual transmittal DARS-APSD-18
     and provider documents not taken; the adopted rule 22VAC30-80 (Virginia LIS, 12 sections) is the alternative family, not
-    taken. document_class manual, citation us-va/manual/dars/auxiliary-grant/chapter-<x>, page granularity.'
+    taken. document_class manual, citation us-va/manual/dars/auxiliary-grant/chapter-<x>, page granularity. 2026-09-14: current
+    payment standards (SSI-ST-4) taken as us-va/guidance/2026-09-14-ssi-state-supplement-standards, us-va/regulation/2026-09-14-ssi-state-supplement-standards
+    (see standards_scope).'
   index_families: 'Auxiliary Grant Program Manual chapters: 12 found / 12 taken; manual transmittals: 1 found / 0 taken; provider
     manuals, agreements, certification and forms: 8 found / 0 taken; 22VAC30-80 Auxiliary Grants Program sections on Virginia
     LIS (https://law.lis.virginia.gov/admincode/title22/agency30/chapter80/; separate index): 12 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-va
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-va-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    - jurisdiction: us-va
+      document_class: regulation
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-va-ssi-state-supplement-standards-regulation.yaml
+      document_count: 12
+    index_url: https://www.dss.virginia.gov/licensed-care/assisted-living-facilities-alf/
+    index_document_count: null
+    taken_count: 13
+    closure_elements:
+    - SSI-ST-2
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DARS Auxiliary Grant rate letter of 2025-11-10 (rate $2,130 statewide and $2,450 in Planning
+      District 8 effective 2026-01-01, personal needs allowance $87), linked from the VDSS assisted-living-facilities page;
+      and 22VAC30-80 Auxiliary Grants Program, all 12 sections from Virginia LIS (SSI-ST-2), the alternative family the 2026-09-10
+      row inventoried and did not take. Access: dss.virginia.gov and law.lis.virginia.gov HTTP 200 to the plain client.'
 - jurisdiction: us-vi
   name: Virgin Islands
   lead_counts: {}
