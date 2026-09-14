@@ -19,8 +19,6 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.corpus.supabase import (
-    ACTIVATE_RELEASE_QUERY,
-    PREVIEW_ACTIVATION_QUERY,
     StagedScopeEvidence,
     activate_corpus_release,
     delete_supabase_provisions_scope,
@@ -1570,6 +1568,45 @@ def test_fetch_staged_release_scope_evidence_requires_exact_rpc_surface(monkeypa
     assert captured["timeout"] == 600
 
 
+@pytest.mark.parametrize(
+    "value",
+    ["a" * 64, "us-rulespec-2026-09-13-federal-and-plans-union", "x.y:z@w+v"],
+)
+def test_sql_text_literal_quotes_plain_values(value):
+    import axiom_corpus.corpus.supabase as supabase
+
+    assert supabase.sql_text_literal(value) == f"'{value}'"
+
+
+@pytest.mark.parametrize("value", ["", "a'b", "a;b", "a b", "a$b", 42, None, "x" * 201])
+def test_sql_text_literal_refuses_anything_else(value):
+    import axiom_corpus.corpus.supabase as supabase
+
+    with pytest.raises(RuntimeError, match="plain identifier-like"):
+        supabase.sql_text_literal(value)
+
+
+def test_sql_jsonb_literal_dollar_quotes_and_refuses_its_own_tag():
+    import axiom_corpus.corpus.supabase as supabase
+
+    doc = json.dumps({"release": "r", "content": {"scopes": [{"a": "it's"}]}})
+    literal = supabase.sql_jsonb_literal(doc)
+    assert literal.startswith(supabase._SQL_JSONB_DOLLAR_TAG)
+    assert literal.endswith(supabase._SQL_JSONB_DOLLAR_TAG + "::jsonb")
+    assert doc in literal
+    with pytest.raises(RuntimeError, match="dollar-quoted"):
+        supabase.sql_jsonb_literal("x" + supabase._SQL_JSONB_DOLLAR_TAG + "y")
+
+
+def test_unbounded_statement_disables_the_session_timeout_first():
+    import axiom_corpus.corpus.supabase as supabase
+
+    statement = supabase.unbounded_statement(
+        "SELECT {value} AS v", value=supabase.sql_text_literal("abc")
+    )
+    assert statement == "SET statement_timeout = 0;\nSELECT 'abc' AS v"
+
+
 def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
@@ -1582,7 +1619,7 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
         query = payload["query"]
         if query == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
             response = [{"chunk_index": payload["parameters"][3]}]
-        elif query == ACTIVATE_RELEASE_QUERY:
+        elif "corpus.activate_corpus_release(" in query:
             response = [
                 {
                     "result": {
@@ -1643,12 +1680,12 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     activation = next(
         payload
         for _command, payload, _capture, _check, _timeout in captured
-        if payload["query"] == ACTIVATE_RELEASE_QUERY
+        if "corpus.activate_corpus_release(" in payload["query"]
     )
-    assert activation["parameters"][1:3] == [
-        "nz-rulespec-v1",
-        release_object["content_sha256"],
-    ]
+    assert activation["query"].startswith(supabase.UNBOUNDED_STATEMENT_PREFIX)
+    assert "'nz-rulespec-v1'" in activation["query"]
+    assert f"'{release_object['content_sha256']}'" in activation["query"]
+    assert "parameters" not in activation
     assert activation["read_only"] is False
 
 
@@ -1679,16 +1716,22 @@ def test_preview_corpus_release_activation_sends_compact_verified_identity(monke
         == []
     )
 
-    assert captured["payload"]["query"] == PREVIEW_ACTIVATION_QUERY
+    query = captured["payload"]["query"]
+    assert query.startswith(supabase.UNBOUNDED_STATEMENT_PREFIX)
+    assert "corpus.preview_corpus_release_activation(" in query
+    assert "parameters" not in captured["payload"]
     assert captured["payload"]["read_only"] is True
-    preview_object = json.loads(captured["payload"]["parameters"][0])
+    tag = supabase._SQL_JSONB_DOLLAR_TAG
+    start = query.index(tag) + len(tag)
+    end = query.index(tag, start)
+    preview_object = json.loads(query[start:end])
     assert preview_object == {
         "release": "nz-rulespec-v1",
         "content": {"scopes": release_object["content"]["scopes"]},
     }
     assert len(json.dumps(captured["payload"])) < 2_000
     assert captured["access_token"] == "management"
-    assert captured["timeout"] == 120
+    assert captured["timeout"] == 900
 
 
 def test_stage_release_activation_upload_bounds_every_management_request(monkeypatch):
@@ -2584,7 +2627,7 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
         queries.append(payload["query"])
         if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
             return [{"chunk_index": payload["parameters"][3]}]
-        if payload["query"] == ACTIVATE_RELEASE_QUERY:
+        if "corpus.activate_corpus_release(" in payload["query"]:
             return response
         return []
 

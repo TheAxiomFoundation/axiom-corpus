@@ -237,7 +237,7 @@ def illinois_admin_code_run_id(
     if only_title:
         parts.append(f"title-{_path_token(_normal_title_number(only_title))}")
     if only_part:
-        parts.append(f"part-{_path_token('-'.join(_normal_part_numbers(only_part)))}")
+        parts.append(f"part-{_path_token('-'.join(sorted(_normal_part_numbers(only_part))))}")
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)
