@@ -1,0 +1,392 @@
+"""Needs-closure check: one CSV row per (jurisdiction, element) for Medicaid and CHIP.
+
+Read-only over data/corpus. Usage (2026-09-14 re-run over the sixth cut):
+  uv run python docs/coverage/needs-closure-2026-09-14/tools/build_matrix.py \
+      --corpus /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+      --selector manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json \
+      --repo . --out docs/coverage/needs-closure-2026-09-14 [--program medicaid|chip]
+
+--corpus is the data/corpus root (a repository root that contains data/corpus is also accepted);
+--selector is the release selector ({scopes:[{jurisdiction, document_class, version}]}); --repo is the
+checkout holding manifests/<program>-agent-queue.yaml.
+
+Statuses:
+  PRESENT        a specific provision in a selected scope carries the element (cited)
+  EXTRACTABLE    an official publisher lists the carrying family; not taken (family and index URL named)
+  ABSENT         the publisher posts nothing carrying it (what was checked is in evidence_note)
+  OUTREACH       the queue row records a publisher block
+  REVIEW         cannot tell from the corpus (candidate cited when a weak-pattern match exists)
+  INHERITED      federal-only element; carried once at the federal row and inherited by the state
+  NOT_APPLICABLE part 436 (GU/PR/VI only) at the state level; state-only structure elements at the federal level
+
+Pass 2 (2026-09-12) search rules, see build_schema.py (unchanged in the 2026-09-14 re-run):
+  - universe per state = the state's Medicaid and CHIP eligibility-manual scopes (any date), plus the pointer scopes
+    named in the queue rows for done-by-pointer states (FL ESS manual, IL CSMM, MI Bridges, WV IMM, ID IDAPA 16.03.05,
+    IN IHCPPM chapter 5000 in us-in-ssp-sapn, TX tx-manuals); no SNAP, TANF, WIC, CCDF, SSI or tax scope is searched;
+  - strong pattern hit -> PRESENT; weak pattern hit -> REVIEW (candidate); needs_number requires a value
+    signal in the body; neg_context rejects Medicare / ACA windows; a hit only in a table-of-contents
+    provision is a candidate, not PRESENT;
+  - no hit: OUTREACH if the program queue row is blocked; ABSENT for community-engagement elements (IFC
+    compliance 2027-01-01) and for the CHIP agency-page states whose publisher posts no manual; EXTRACTABLE
+    when a CMS-posted state plan family or an untaken publisher family carries the element; else REVIEW.
+
+2026-09-14 re-run: pointer and path changes only (no pattern, tier, needs_number, neg_context or grading change):
+  - PROG_VER is date-agnostic (us-ne/regulation/2026-09-13-medicaid-state-eligibility-manual is searched);
+  - the MI pointer accepts the superseding 2026-09-11-mi-snap-manual-supersede (same Bridges BEM/BAM manual);
+  - the CMS-posted state plan scopes (us-xx/policy/<date>-medicaid-state-plan, -chip-state-plan) are loaded per
+    state: state_plan elements are PRESENT citing the scope's first body row (the family is the SPA index plus
+    approval packages; for CHIP also the CMS-compiled Current State Plan where the scope holds one), the spa element
+    accepts the CHIP plan scope's SPA packages, and plan_family elements are searched over the plan rows too
+    (same patterns, same rules); a plan_family element with no hit is REVIEW (the CMS SPA/plan scope is held but
+    carried nothing under the patterns; the untaken state-posted compiled plan is the remaining family);
+  - the OUTREACH branch fires only when the program queue row is blocked AND no program or pointer scope for that
+    program is held for the state; the queue row used is the eligibility-manual row (the queues now also carry a
+    state-plan row per state);
+  - the hard-coded append of us/regulation/2026-09-11-title-42-part-436 is dropped (it is in the selector);
+  - a self-check verifies that every PRESENT cell cites a selected scope version and a citation_path whose
+    provision has a body.
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import csv
+import json
+import os
+import re
+import sys
+import time
+
+import yaml
+
+STATES = ['us-'+s for s in ['ak', 'al', 'ar', 'az', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'ia', 'id', 'il', 'in', 'ks', 'ky', 'la', 'ma', 'md', 'me', 'mi', 'mn', 'mo', 'ms', 'mt', 'nc', 'nd', 'ne', 'nh', 'nj', 'nm', 'nv', 'ny', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'va', 'vt', 'wa', 'wi', 'wv', 'wy']]
+STATE_NAMES = {}
+# pointer scopes: queue rows say the program text is already held in these released scopes
+# (MI: the 2026-09-11 supersede scope re-extracts the same Bridges BEM/BAM manual and replaces the 07-17 version in the sixth cut)
+POINTER = {
+ 'us-fl': ['2026-05-27-fl-ess-manual-r2026-07-15-self-contained'],
+ 'us-il': ['2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained'],
+ 'us-mi': ['2026-07-17-mi-bridges-manual', '2026-09-11-mi-snap-manual-supersede'],
+ 'us-wv': ['2026-07-21-wv-income-maintenance-manual'],
+ 'us-id': ['2026-07-04-id-aabd-rules'],
+ 'us-in': ['2026-07-04-in-ssp-sapn'],
+ 'us-tx': ['2026-05-27-tx-manuals-r2026-07-15-self-contained'],
+}
+PROG_VER = re.compile(r'\d{4}-\d{2}-\d{2}-(medicaid|chip)-state-eligibility-manual')
+PLAN_VER = re.compile(r'\d{4}-\d{2}-\d{2}-(medicaid|chip)-state-plan$')
+COMPILED = re.compile(r'current-state-plan|final-approved-state-plan')
+CHIPCTX = re.compile(r'\bchip\b|\bs-?chip\b|\bm-?chip\b|title xxi|children.s health (insurance|plan)|kidcare|kid care|husky b|child health plus|peachcare|famis|all kids|hawk-i|denali kidcare|healthy steps|dynasaur|nevada check up|coverkids|cub ?care|healthy montana kids|arkids (first-?)?b|michild|mchp|maryland children.s health|chp\+|child health plan plus|florida kidcare|healthy kids|badgercare plus|wvchip|kchip|lachip|hoosier healthwise|package c|mo healthnet for kids|nj familycare|apple health for kids|partners for healthy children|sooner ?care|delaware healthy children|dr\. dynasaur|1397|457\.|targeted low.income', re.I)
+TOC = re.compile(r'table of contents|^contents$|table-of-contents|/toc\b', re.I)
+NUM = re.compile(r'\d{1,3}\s?(%|percent)|\$\s?\d|federal poverty|\bFPL\b|\bFPIG\b|\bFPG\b|poverty (level|guideline|line)', re.I)
+PROGCTX = re.compile(r'medicaid|medical assistance|\bchip\b|title xix|title xxi|buy-?in', re.I)
+# CHIP agency-page states: the queue row records that the agency publishes no CHIP eligibility manual
+CHIP_NO_MANUAL = {'us-al': 'ADPH publishes no ALL Kids eligibility manual and the Alabama Administrative Code chapter could not be located (queue row); only the Income Guidelines and Premiums/Copays pages are held',
+                  'us-ct': 'the DSS Uniform Policy Manual has no HUSKY B chapter and DSS publishes no HUSKY B manual (queue row); only the HUSKY B knowledge-base article and the 2026-03-01 income chart are held',
+                  'us-ny': 'NYSDOH publishes no Child Health Plus eligibility manual and 10 NYCRR is vendor-hosted (queue row); only the Eligibility and Cost page is held'}
+
+ECFR_INDEX = 'https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-42.json'
+USC_INDEX = 'https://uscode.house.gov/view.xhtml?path=/prelim@title42/chapter7/subchapter19&edition=prelim'
+MSPA_INDEX = 'https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments'
+CSPA_INDEX = 'https://www.medicaid.gov/chip/state-program-information/chip-state-plan-amendments'
+CPLAN_INDEX = 'https://www.medicaid.gov/chip/state-program-information'
+MAP_NAMES = {'us-dc': 'district-of-columbia'}
+STATE_PLAN_FAMILY = "the state's own compiled Medicaid state plan (posted by the state Medicaid agency, not on medicaid.gov; never queued)"
+
+def norm(p): return p.replace('–', '-').replace('—', '-')
+
+def corpus_root(path):
+    """Accept the data/corpus root or a repository root containing data/corpus."""
+    if os.path.isdir(f'{path}/provisions'): return path
+    if os.path.isdir(f'{path}/data/corpus/provisions'): return f'{path}/data/corpus'
+    sys.exit(f'--corpus {path}: neither <path>/provisions nor <path>/data/corpus/provisions exists')
+
+def load_index(corpus, selector):
+    sel = json.load(open(selector))['scopes']
+    idx = collections.defaultdict(list); fed = {}; loaded = collections.defaultdict(list); plan = collections.defaultdict(lambda: collections.defaultdict(list))
+    for s in sel:
+        j, v, dc = s['jurisdiction'], s['version'], s['document_class']
+        role = None
+        if j == 'us':
+            if not re.search(r'medicaid|chip|435|436|457|1397|title-42|42-cfr|cms-2454|recovery|ssi-title-xvi', v, re.I): continue
+        elif j in STATES:
+            if PROG_VER.search(v): role = 'program'
+            elif v in POINTER.get(j, []): role = 'pointer'
+            elif PLAN_VER.search(v): role = 'plan'
+            else: continue
+        else:
+            continue
+        f = f'{corpus}/provisions/{j}/{dc}/{v}.jsonl'
+        if not os.path.exists(f): print('missing scope file', f, file=sys.stderr); continue
+        n = 0
+        for line in open(f):
+            r = json.loads(line); b = r.get('body') or ''
+            if not b.strip(): continue
+            cp = r['citation_path']; n += 1
+            if j == 'us': fed.setdefault(norm(cp), (v, cp)); continue
+            row = (v, dc, cp, r.get('heading') or '', b)
+            if role == 'plan': plan[j][PLAN_VER.search(v).group(1)].append(row)
+            else: idx[j].append(row)
+        loaded[j].append((dc, v, n, role or 'federal'))
+    return idx, fed, loaded, plan
+
+def load_queue(path):
+    """One row per jurisdiction: the eligibility-manual (or pointer) row; the 2026-09-13 state-plan rows are kept under 'plan'."""
+    d = yaml.safe_load(open(path)); rows = {}; plan_rows = {}
+    for r in d['states']:
+        tv = (r.get('target_scope') or {}).get('version') or ''
+        if PLAN_VER.search(tv):
+            plan_rows[r['jurisdiction']] = r; continue
+        if r['jurisdiction'] in rows: continue
+        fams = r.get('index_families') or {}
+        untaken = []
+        for k, v in fams.items():
+            if isinstance(v, dict):
+                if v.get('found', 0) > v.get('taken', 0): untaken.append(f"{k} ({v['found']-v['taken']} of {v['found']} not taken)")
+            elif isinstance(v, int) and not k.startswith(('obsolete', 'repealed', 'faq', 'glossary', 'welcome', 'archive', 'privacy', 'program_web_page')):
+                untaken.append(f'{k} ({v} listed in the index; the run took {r.get("taken_count")} documents in all)')
+        rows[r['jurisdiction']] = dict(status=r.get('queue_status'), index_url=r.get('index_url'), primary=r.get('primary_source_url'),
+            version=(r.get('target_scope') or {}).get('version'), dc=(r.get('target_scope') or {}).get('document_class'),
+            untaken=untaken, idx=r.get('index_document_count'), taken=r.get('taken_count'), notes=(r.get('notes') or ''), pointer=r.get('pointer'), name=r.get('name'))
+    for j, r in plan_rows.items():
+        if j in rows: rows[j]['plan'] = dict(status=r.get('queue_status'), version=(r.get('target_scope') or {}).get('version'), taken=r.get('taken_count'), index_url=r.get('index_url'))
+    return rows
+
+STATUTE_PATHS = {
+ 'M-ST-1396a-a10':['us/statute/42/1396a/a/10'], 'M-ST-1396a-a17':['us/statute/42/1396a/a/17'], 'M-ST-1396a-a34':['us/statute/42/1396a/a/34'],
+ 'M-ST-1396a-a47':['us/statute/42/1396a/a/47','us/statute/42/1396r-1'], 'M-ST-1396a-e12':['us/statute/42/1396a/e/12'], 'M-ST-1396a-e14':['us/statute/42/1396a/e/14'],
+ 'M-ST-1396a-e16':['us/statute/42/1396a/e/16'], 'M-ST-1396a-k':['us/statute/42/1396a/k'], 'M-ST-1396a-l':['us/statute/42/1396a/l'], 'M-ST-1396a-m':['us/statute/42/1396a/m'],
+ 'M-ST-1396a-xx':['us/statute/42/1396a/xx'], 'M-ST-1396a-f':['us/statute/42/1396a/f'], 'M-ST-1396b-v':['us/statute/42/1396b/v'], 'M-ST-1396d-a':['us/statute/42/1396d/a'],
+ 'M-ST-1396d-n':['us/statute/42/1396d/n'], 'M-ST-1396d-p':['us/statute/42/1396d/p'], 'M-ST-1396d-b-y':['us/statute/42/1396d/b','us/statute/42/1396d/y'], 'M-ST-1396o':['us/statute/42/1396o','us/statute/42/1396o-1'],
+ 'M-ST-1396p-c':['us/statute/42/1396p/c'], 'M-ST-1396p-b':['us/statute/42/1396p/b'], 'M-ST-1396p-d':['us/statute/42/1396p/d'], 'M-ST-1396p-f':['us/statute/42/1396p/f'],
+ 'M-ST-1396r-5':['us/statute/42/1396r-5'], 'M-ST-1396r-6':['us/statute/42/1396r-6'], 'M-ST-1396u-1':['us/statute/42/1396u-1'], 'M-ST-1396a-a10Aii-buyin':['us/statute/42/1396a/a/10'],
+ 'M-ST-1320b-7':['us/statute/42/1320b-7'], 'M-ST-1382':['us/statute/42/1382','us/statute/42/1382c'], 'M-ST-8usc-1611':['us/statute/8/1641','us/statute/8/1612','us/statute/8/1613','us/statute/8/1611'], 'M-ST-1315':['us/statute/42/1315'],
+ 'M-ST-1396a-a3':['us/statute/42/1396a/a/3'], 'M-ST-1396a-a25':['us/statute/42/1396a/a/25'],
+ 'C-ST-1397aa':['us/statute/42/1397aa'], 'C-ST-1397bb':['us/statute/42/1397bb'], 'C-ST-1397cc':['us/statute/42/1397cc'], 'C-ST-1397dd':['us/statute/42/1397dd'], 'C-ST-1397ee':['us/statute/42/1397ee'],
+ 'C-ST-1397ff':['us/statute/42/1397ff'], 'C-ST-1397gg':['us/statute/42/1397gg'], 'C-ST-1397hh':['us/statute/42/1397hh'], 'C-ST-1397ii':['us/statute/42/1397ii'], 'C-ST-1397jj-b':['us/statute/42/1397jj/b'],
+ 'C-ST-1397jj-c':['us/statute/42/1397jj/c'], 'C-ST-1397kk':['us/statute/42/1397kk'], 'C-ST-1397ll':['us/statute/42/1397ll'], 'C-ST-1397mm':['us/statute/42/1397mm'], 'C-ST-FCEP':['us/regulation/42/457/10'],
+}
+
+def snippet(b, m, n=150):
+    s = max(0, m.start()-60); t = b[s:s+n].replace('\n', ' ').replace('\r', ' ')
+    return re.sub(r'\s+', ' ', t).strip()
+
+def held_sections(fed, prefix):
+    """Top-level sections held under a statute prefix (for the EXTRACTABLE note)."""
+    return sorted({k.split('/')[3] for k in fed if k.startswith(prefix)})
+
+def federal_row(e, fed):
+    cid = e['id']; cite = e['federal_citation']
+    if e.get('cfr_path'):
+        p = e['cfr_path']
+        if p in fed:
+            v, cp = fed[p]; return ('PRESENT', v, cp, f'federal regulation text held ({cite})', 'federal regulation (eCFR)')
+        if e.get('ecfr_missing'):
+            return ('EXTRACTABLE', '', '', f'42 CFR part 447 is not in the corpus; eCFR structure 2026-09-09 lists {cite}; index {ECFR_INDEX}; take with extract-ecfr --only-title 42 --only-part 447', 'federal regulation (eCFR)')
+        return ('REVIEW', '', '', f'{cite} not found in the selected federal scopes', 'federal regulation (eCFR)')
+    if cid in STATUTE_PATHS:
+        for p in STATUTE_PATHS[cid]:
+            hit = [k for k in fed if k == p or k.startswith(p+'/')]
+            if hit:
+                v, cp = fed[sorted(hit, key=len)[0]]
+                extra = ' (8 U.S.C. 1612, 1613, 1641 held; 1611 not held)' if cid == 'M-ST-8usc-1611' else ''
+                return ('PRESENT', v, cp, f'federal statute text held ({cite}){extra}', 'federal statute (uscode.house.gov)')
+        held = ', '.join(held_sections(fed, 'us/statute/42/13') + held_sections(fed, 'us/statute/8/'))
+        return ('EXTRACTABLE', '', '', f'{cite} not held (selected federal statute scopes hold title 42 sections {held}); publisher index {USC_INDEX}', 'federal statute (uscode.house.gov)')
+    if e.get('fallback') and not e.get('no_fallback'):
+        p = e['fallback']
+        if p in fed:
+            v, cp = fed[p]; return ('PRESENT', v, cp, 'CMS compilation carries every state (state decisions as of 2023-12-01)', 'CMS compilation (medicaid.gov)')
+    return ('NOT_APPLICABLE', '', '', 'state-level element; no federal document carries it', 'n/a')
+
+def search(pats, rows, chipctx, needs_number, neg):
+    """Best hit: (score, tier, version, citation_path, pattern, snippet, toc, numok); tier in {strong, weak}."""
+    best = None
+    for tier, plist in (('strong', pats['strong']), ('weak', pats['weak'])):
+        for v, dc, cp, h, b in rows:
+            for p in plist:
+                m = p.search(h) or p.search(b)
+                if not m: continue
+                inhead = bool(p.search(h))
+                src = h if inhead else b
+                win = src[max(0, m.start()-120): m.end()+120]
+                if neg and neg.search(win) and not PROGCTX.search(win): continue
+                if chipctx and 'chip' not in v:
+                    if not (CHIPCTX.search(h) or CHIPCTX.search(b[max(0, m.start()-600): m.end()+600])): continue
+                toc = bool(TOC.search(h) or TOC.search(cp) or b.count('.....') >= 3)
+                numok = (not needs_number) or bool(NUM.search(b))
+                score = (3 if tier == 'strong' else 0) + (2 if numok else 0) + (2 if not toc else 0) + (1 if inhead else 0) + (1 if 200 <= len(b) <= 40000 else 0)
+                if best is None or score > best[0]:
+                    best = (score, tier, v, cp, p.pattern, snippet(src, m), toc, numok)
+        if best and best[1] == 'strong' and not best[6] and best[7]: break
+    return best
+
+def plan_summary(rows):
+    """(n body rows, n SPA packages, compiled-plan citation path or None) for a state's plan scope rows."""
+    spas = {cp.split('/')[5] for v, dc, cp, h, b in rows if len(cp.split('/')) > 5 and cp.split('/')[4] == 'spa'}
+    comp = next((cp for v, dc, cp, h, b in rows if COMPILED.search(cp)), None)
+    return len(rows), len(spas), comp
+
+def state_row(prog, e, pats, j, rows, mq, cq, spa, covmap, fed, held, plan):
+    level = e['level']
+    if e.get('territories_only'): return ('NOT_APPLICABLE', '', e['cfr_path'], 'part 436 governs GU/PR/VI only; not applicable to the 50 states and DC')
+    if level == 'federal_only':
+        cp = e.get('cfr_path') or (STATUTE_PATHS.get(e['id']) or [''])[0]
+        return ('INHERITED', '', cp, f"federal-only element ({e['federal_citation']}); carried at the us row and inherited")
+    q = cq if prog == 'chip' else mq
+    # a CHIP row done by pointer into the Medicaid scope follows the Medicaid row's block state and untaken families
+    by_pointer = prog == 'chip' and cq.get('status') == 'done' and bool(mq)
+    if by_pointer:
+        q = dict(cq, untaken=mq.get('untaken') or [], index_url=mq.get('index_url') or cq.get('index_url'), status=mq.get('status') if mq.get('status') == 'blocked_primary_source' else cq.get('status'))
+    # the block is the state's own manual publisher: it does not fire when a program (or pointer) scope for this program is held and searched
+    held_prog = held['medicaid' if (prog == 'medicaid' or by_pointer) else 'chip'] or held['pointer']
+    blocked = q.get('status') == 'blocked_primary_source' and not held_prog
+    # CMS-posted plan scopes: the Medicaid plan for Medicaid elements; for CHIP elements the CHIP plan plus the Medicaid plan (M-CHIP pages)
+    prows = plan.get('medicaid', []) if prog == 'medicaid' else plan.get('chip', []) + plan.get('medicaid', [])
+    if e.get('state_plan'):
+        is_chip = e['id'].startswith('C-') or 'CHIP' in e['carrying_family_state']
+        pr = plan.get('chip' if is_chip else 'medicaid', [])
+        if pr:
+            n, nspa, comp = plan_summary(pr)
+            v, dc, cp, h, b = pr[0]
+            fam = f"CMS SPA index plus approval packages ({nspa} SPA packages, {n} body rows)"
+            if is_chip:
+                fam += f"; CMS-compiled Current State Plan held ({comp})" if comp else "; no CMS-compiled Current State Plan record for this state (packages only)"
+            else:
+                fam += "; medicaid.gov posts no compiled Medicaid plan, the approved plan pages are the amended pages inside the packages"
+            return ('PRESENT', v, cp, f"family held: {fam}; first body row cited")
+        if is_chip:
+            return ('EXTRACTABLE', '', '', f"family: {e['carrying_family_state']}; not held for this state; index {CPLAN_INDEX}")
+        return ('EXTRACTABLE', '', '', f"family: {e['carrying_family_state']}; not held for this state; index {MSPA_INDEX}")
+    if e.get('spa'):
+        pr = plan.get('chip', []); n, nspa, comp = plan_summary(pr) if pr else (0, 0, None)
+        if spa.get(j):
+            ids = sorted({p.split('/')[5] for p in spa[j]})
+            return ('PRESENT', '2026-07-05-cms-chip-fcep-spa', spa[j][0], f"CHIP SPA documents held: {', '.join(ids)} (SPAs on record, not the compiled plan)" + (f"; the CMS CHIP SPA index scope also holds {nspa} approval packages" if pr else ''))
+        if pr:
+            first = next(((v, cp) for v, dc, cp, h, b in pr if len(cp.split('/')) > 5 and cp.split('/')[4] == 'spa'), (pr[0][0], pr[0][2]))
+            return ('PRESENT', first[0], first[1], f"CHIP SPAs on record: the CMS CHIP SPA index scope holds {nspa} approval packages ({n} body rows); first SPA row cited")
+        return ('EXTRACTABLE', '', '', f"no CHIP SPA held for this state; CMS CHIP SPA index {CSPA_INDEX} lists every state's SPAs")
+    chipctx = bool(e.get('chip_context') and prog == 'chip')
+    neg = re.compile(e['neg_context'], re.I) if e.get('neg_context') else None
+    plan_used = bool(e.get('plan_family')) and bool(prows)
+    universe = rows + prows if plan_used else rows
+    best = search(pats, universe, chipctx, bool(e.get('needs_number')), neg)
+    searched = f"searched {len(rows)} provisions in {STATE_NAMES.get(j, j)}'s program and pointer scopes" + (f" plus {len(prows)} CMS SPA/plan rows" if plan_used else '')
+    if best:
+        score, tier, v, cp, pat, snip, toc, numok = best
+        if tier == 'strong' and not toc and numok:
+            return ('PRESENT', v, cp, f"strong pattern /{pat[:50]}/ matched: '{snip}'")
+        why = 'only a table-of-contents provision matched' if toc else ('no value signal (percent of FPL or dollar amount) in the matched provision' if not numok else 'weak (candidate) pattern matched')
+        return ('REVIEW', v, cp, f"{why}; /{pat[:50]}/: '{snip}' (candidate, needs reading)")
+    if e.get('coverage_map'):
+        name = MAP_NAMES.get(j, STATE_NAMES.get(j, '').lower().replace(' ', '-'))
+        if name in covmap:
+            cp, body = covmap[name]
+            st = 'PRESENT' if COVMAP_SELECTED else 'REVIEW'
+            unsel = '' if COVMAP_SELECTED else '; the coverage-map scope us/form/2026-07-05-cms-chip-children-coverage-map is on disk and in the July foundation selectors but NOT in the sixth cut, so the cell is REVIEW until it is re-selected'
+            if e['id'] == 'C-ST-FCEP':
+                elect = 'elects the FCEP option' if re.search(r'FCEP|unborn|conception', body, re.I) else 'records no FCEP election'
+                return (st, '2026-07-05-cms-chip-children-coverage-map', cp, f"state text not found ({searched}); CMS CHIP children-coverage map record {elect}: '{body[:100]}'" + unsel)
+            return (st, '2026-07-05-cms-chip-children-coverage-map', cp, f"state text not found ({searched}); CMS coverage map record carries the state's program type: '{body[:100]}'" + unsel)
+    fb = ''
+    if e.get('fallback') and e['fallback'] in fed:
+        v, cp = fed[e['fallback']]
+        if not e.get('no_fallback'):
+            return ('PRESENT', v, cp, f"state's own text not found ({searched}); carried only by the CMS Medicaid/CHIP/BHP eligibility-levels compilation (state decisions as of 2023-12-01; stale for 2026)")
+        fb = f'; the CMS eligibility-levels compilation ({cp}, 2023-12-01 values) is the only held source and does not satisfy a current-year table'
+    if blocked:
+        return ('OUTREACH', '', '', f"publisher block recorded in the {prog} queue row ({q.get('status')}); {searched}{fb}: {q.get('notes','')[:200]}")
+    if e.get('absent_note'):
+        return ('ABSENT', '', '', f"no community-engagement text in the held {STATE_NAMES.get(j)} documents ({searched}); {e['absent_note']}; no state has posted implementing rules")
+    untaken = q.get('untaken') or []
+    plan_fam = e.get('plan_family')
+    plan_note = ''
+    if plan_used:
+        n, nspa, comp = plan_summary(prows)
+        plan_note = f"; the CMS SPA index and approval-package scope is held ({nspa} SPA packages, {n} body rows" + (', compiled CHIP Current State Plan included' if comp else '') + ') but no pattern hit in it'
+    if q.get('status') == 'needs_review' or (q.get('taken') in (0, None) and q.get('status') != 'done'):
+        return ('EXTRACTABLE', '', '', f"no {prog} document taken for this state ({searched}); publisher lists: {'; '.join(untaken or ['(index inventoried, not extractable through the generic path)'])}; index {q.get('index_url')}" + (f'; also carried by {plan_fam}{plan_note}; remaining plan family: {STATE_PLAN_FAMILY}' if plan_fam else '') + fb)
+    if prog == 'chip' and j in CHIP_NO_MANUAL and not plan_fam:
+        return ('ABSENT', '', '', f"{CHIP_NO_MANUAL[j]}; {searched}{fb}")
+    if plan_fam:
+        rest = (f"; untaken publisher families: {'; '.join(untaken)[:200]}; index {q.get('index_url')}" if untaken else '') + fb
+        if plan_used and 'verification plan' not in plan_fam:
+            return ('REVIEW', '', '', f"not found in held text ({searched}){plan_note}; the pages a state has not amended since CMS began posting packages (about 2009) are only in {STATE_PLAN_FAMILY}; plan family named in the schema: {plan_fam}{rest}")
+        if plan_used:
+            return ('EXTRACTABLE', '', '', f"not found in held text ({searched}){plan_note}; carried by {plan_fam} (a separate CMS page, not taken){rest}")
+        return ('EXTRACTABLE', '', '', f"not found in held text ({searched}); carried by {plan_fam}{rest}")
+    if untaken:
+        return ('EXTRACTABLE', '', '', f"not found in held text ({searched}); publisher index lists untaken families: {'; '.join(untaken)[:300]}; index {q.get('index_url')}{fb}")
+    where = f"every inventoried family on {q.get('index_url')} was taken" if q.get('index_url') else 'the program text is a done-by-pointer scope with no separate index inventory'
+    return ('REVIEW', '', '', f"no keyword hit ({searched}); {where}, so the state either does not elect this element or its text uses other terms{fb}")
+
+def self_check(rows, corpus, selected):
+    """Every PRESENT cell must cite a selected scope version and a citation_path whose provision has a body."""
+    need = collections.defaultdict(set)
+    for r in rows:
+        if r[4] == 'PRESENT':
+            need[(r[0] if r[5] not in ('2026-07-05-cms-chip-fcep-spa', '2026-07-05-cms-chip-children-coverage-map') and not r[6].startswith('us/') else 'us', r[5])].add(r[6])
+    bad = []
+    for (j, v), cps in need.items():
+        dcs = [dc for (jj, dc, vv) in selected if jj == j and vv == v]
+        if not dcs: bad.append((j, v, 'version not in selector', len(cps))); continue
+        have = set()
+        for dc in dcs:
+            for line in open(f'{corpus}/provisions/{j}/{dc}/{v}.jsonl'):
+                rr = json.loads(line)
+                if (rr.get('body') or '').strip(): have.add(rr['citation_path'])
+        for cp in cps:
+            if cp not in have and norm(cp) not in {norm(x) for x in have}: bad.append((j, v, 'no body at citation_path', cp))
+    return bad
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--corpus', required=True, help='data/corpus root (or a repository root containing data/corpus)')
+    ap.add_argument('--selector', required=True, help='release selector JSON ({scopes: [...]})')
+    ap.add_argument('--repo', default='.', help='checkout holding manifests/<program>-agent-queue.yaml')
+    ap.add_argument('--out', required=True); ap.add_argument('--program', default='both'); a = ap.parse_args()
+    t0 = time.time()
+    corpus = corpus_root(a.corpus)
+    idx, fed, loaded, plan = load_index(corpus, a.selector)
+    selected = {(s['jurisdiction'], s['document_class'], s['version']) for s in json.load(open(a.selector))['scopes']}
+    if ('us', 'regulation', '2026-09-11-title-42-part-436') not in selected: print('warning: 42 CFR 436 scope not in the selector', file=sys.stderr)
+    mq = load_queue(f'{a.repo}/manifests/medicaid-agent-queue.yaml'); cq = load_queue(f'{a.repo}/manifests/chip-agent-queue.yaml')
+    for j in STATES: STATE_NAMES[j] = (mq.get(j) or cq.get(j) or {}).get('name', j)
+    spa = collections.defaultdict(list)
+    for line in open(f'{corpus}/provisions/us/policy/2026-07-05-cms-chip-fcep-spa.jsonl'):
+        r = json.loads(line); p = r['citation_path'].split('/')
+        if len(p) >= 8 and p[6] == 'summary' and (r.get('body') or '').strip(): spa['us-'+p[4]].append(r['citation_path'])  # first body-bearing summary block (2026-09-14: the /summary container row has no body)
+    covmap = {}
+    globals()['COVMAP_SELECTED'] = ('us', 'form', '2026-07-05-cms-chip-children-coverage-map') in selected
+    for line in open(f'{corpus}/provisions/us/form/2026-07-05-cms-chip-children-coverage-map.jsonl'):
+        r = json.loads(line)
+        if r['kind'] == 'record': covmap[r['citation_path'].split('/')[-1]] = (r['citation_path'], r.get('body') or '')
+    print('index loaded', sum(len(v) for v in idx.values()), 'state rows;', sum(len(x) for p in plan.values() for x in p.values()), 'plan rows;', len(fed), 'federal paths;', round(time.time()-t0, 1), 's', file=sys.stderr)
+    with open(f'{a.out}/tools/search-universe.json', 'w') as f: json.dump({j: loaded[j] for j in STATES}, f, indent=1)
+    programs = ['medicaid', 'chip'] if a.program == 'both' else [a.program]
+    for prog in programs:
+        t1 = time.time()
+        schema = yaml.safe_load(open(f'{a.out}/{prog}-schema.yaml'))
+        rows = []; log = collections.Counter()
+        for e in schema['elements']:
+            pats = {'strong': [re.compile(p, re.I) for p in e.get('search_patterns') or []], 'weak': [re.compile(p, re.I) for p in e.get('weak_patterns') or []]}
+            st, v, cp, note, fam = federal_row(e, fed)
+            rows.append(['us', e['id'], e['level'], fam, st, v, cp, e['pe_modeled'], note]); log[('us', st)] += 1
+            for j in STATES:
+                held = {'medicaid': any('medicaid-state-eligibility-manual' in v_ for dc_, v_, n_, role in loaded[j] if role == 'program'),
+                        'chip': any('chip-state-eligibility-manual' in v_ for dc_, v_, n_, role in loaded[j] if role == 'program'),
+                        'pointer': any(role == 'pointer' for dc_, v_, n_, role in loaded[j])}
+                r = state_row(prog, e, pats, j, idx.get(j, []), mq.get(j, {}), cq.get(j, {}), spa, covmap, fed, held, plan.get(j, {}))
+                rows.append([j, e['id'], e['level'], e['carrying_family_state'], r[0], r[1], r[2], e['pe_modeled'], r[3]]); log[(prog, r[0])] += 1
+        bad = self_check(rows, corpus, selected)
+        if bad:
+            for b in bad[:20]: print('SELF-CHECK FAIL', prog, b, file=sys.stderr)
+            sys.exit(f'{prog}: {len(bad)} PRESENT cells fail the citation self-check')
+        print(prog, 'self-check ok:', sum(1 for r in rows if r[4] == 'PRESENT'), 'PRESENT cells cite a selected scope and a provision with a body', file=sys.stderr)
+        with open(f'{a.out}/{prog}-matrix.csv', 'w', newline='') as f:
+            w = csv.writer(f); w.writerow(['jurisdiction', 'element', 'level', 'family', 'status', 'scope_version', 'citation_path', 'pe_modeled', 'evidence_note']); w.writerows(rows)
+        print(prog, len(rows), 'rows', dict(log), round(time.time()-t1, 1), 's', file=sys.stderr)
+    print('total', round(time.time()-t0, 1), 's', file=sys.stderr)
+
+if __name__ == '__main__':
+    main()
