@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "citation_path": "us-nm/guidance/trd/ty2026/fyi-104-withholding-tax",
+      "metadata": {
+        "amounts_carried": [
+          "withholding percentage-method tables (1.7%-5.9%)",
+          "supplemental wage rate (5.9%)"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "application/octet-stream",
+        "discovered_via": "manual-review:tax-agent-queue; index https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/ (read 2026-09-13)",
+        "document_subtype": "withholding_tables",
+        "download_url": "https://realfile.tax.newmexico.gov/FYI-104.pdf",
+        "index_url": "https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/",
+        "kind": "document",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": "2025-11-19",
+        "source_authority": "New Mexico Taxation and Revenue Department",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "No 2026-labelled PIT-ES exists on the publisher (every RealFile file name tried answers 404); the withholding publication is the only 2026-dated figure carrier.",
+        "tax_year": "2026",
+        "title": "FYI-104 New Mexico Withholding Tax, effective January 1, 2026"
+      },
+      "sha256": "400f141e3cc28d352712cd0cb94f80d7c2dc1c40463fcdcf31561247b5889a82",
+      "source_format": "pdf",
+      "source_path": "sources/us-nm/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-nm-trd-fyi-104-withholding-tax-ty2026.pdf",
+      "source_url": "https://realfile.tax.newmexico.gov/FYI-104.pdf"
+    },
+    {
+      "citation_path": "us-nm/guidance/trd/ty2026/fyi-104-withholding-tax/document-1",
+      "metadata": {
+        "amounts_carried": [
+          "withholding percentage-method tables (1.7%-5.9%)",
+          "supplemental wage rate (5.9%)"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "application/octet-stream",
+        "discovered_via": "manual-review:tax-agent-queue; index https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/ (read 2026-09-13)",
+        "document_subtype": "withholding_tables",
+        "download_url": "https://realfile.tax.newmexico.gov/FYI-104.pdf",
+        "index_url": "https://www.tax.newmexico.gov/individuals/online-services-overview/personal-income-tax-forms/",
+        "kind": "document",
+        "page_count": 10,
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": "2025-11-19",
+        "source_authority": "New Mexico Taxation and Revenue Department",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "No 2026-labelled PIT-ES exists on the publisher (every RealFile file name tried answers 404); the withholding publication is the only 2026-dated figure carrier.",
+        "tax_year": "2026",
+        "title": "FYI-104 New Mexico Withholding Tax, effective January 1, 2026"
+      },
+      "sha256": "400f141e3cc28d352712cd0cb94f80d7c2dc1c40463fcdcf31561247b5889a82",
+      "source_format": "pdf",
+      "source_path": "sources/us-nm/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-nm-trd-fyi-104-withholding-tax-ty2026.pdf",
+      "source_url": "https://realfile.tax.newmexico.gov/FYI-104.pdf"
+    }
+  ]
+}
