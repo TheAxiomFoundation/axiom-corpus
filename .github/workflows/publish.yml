@@ -148,7 +148,9 @@ jobs:
           done < "$RUNNER_TEMP/release-selectors.txt"
 
       - name: Retain the signed release object for activation
-        if: steps.selectors.outputs.publish == 'true'
+        # always(): keep the object even when registration failed after
+        # publication succeeded, so the failure can be diagnosed against it.
+        if: always() && steps.selectors.outputs.publish == 'true'
         uses: actions/upload-artifact@v7
         with:
           name: signed-corpus-release-object

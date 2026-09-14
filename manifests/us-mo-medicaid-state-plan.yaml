@@ -1,0 +1,1235 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-mo-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 276
+- source_id: us-mo-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 276
+- source_id: us-mo-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 76
+    index_records_total: 276
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-24-0001-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-24-0001: Approval Document (approved March 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-24-0001
+    cms_node_id: '161551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161551
+    approval_date: '2024-03-15'
+    effective_date: '2024-01-01'
+    summary: This amendment is to provide 12 months of continuous eligibility for children under age 19 per section 5112 of
+      the Consolidated Appropriations Act 2023.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-24-0004-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-24-0004: Approval Document (approved March 6, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-24-0004
+    cms_node_id: '160806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160806
+    approval_date: '2024-03-06'
+    effective_date: '2024-01-01'
+    summary: This SPA corrects a typographical error that was made in MO SPA 23-0030, relating to the resource standard for
+      a couple in the Ticket to Work Basic and Medical Improvements eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-23-0030-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-23-0030: Approval Document (approved December 30, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-23-0030
+    cms_node_id: '157931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157931
+    approval_date: '2023-12-30'
+    effective_date: '2024-01-01'
+    summary: State made changes to several to the income and resource disregards applied in the eligibility determinations
+      for the optional Ticket to Work and Work Incentives Improvement Act (WEEIAA) eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-23-0007-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-23-0007: Approval Document (approved June 22, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-23-0007
+    cms_node_id: '150381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150381
+    approval_date: '2023-06-22'
+    effective_date: '2023-01-01'
+    summary: Missouri adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group, as
+      enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-22-0015-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-22-0015: Approval Document (approved May 19, 2023, effective February 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-22-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-02-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-22-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-22-0015
+    cms_node_id: '148301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148301
+    approval_date: '2023-05-19'
+    effective_date: '2022-02-01'
+    summary: This amendment is to update Missouri’s single streamlined MO HealthNet application used for all Medicaid and
+      CHIP programs.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-23-0002-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-23-0002: Approval Document (approved March 16, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-23-0002
+    cms_node_id: '146041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146041
+    approval_date: '2023-03-16'
+    effective_date: '2023-04-01'
+    summary: This amendment allows MO HealthNet to consider participants eligible for, but not enrolled in, a managed care
+      plan for the Health Insurance Premium Payment (HIPP) program, and determine whether enrolling such participants in HIPP
+      would be cost effective.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-22-0012-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-22-0012: Approval Document (approved September 1, 2022, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-22-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-22-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-22-0012
+    cms_node_id: '139486'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139486
+    approval_date: '2022-09-01'
+    effective_date: '2023-01-01'
+    summary: This State Plan Amendment ensures that the Health Insurance Premium Payment (HIPP) Program in Missouri operates
+      in the most efficient and cost-effective manner possible by eliminating areas where Medicaid may be paying for multiple
+      premiums on behalf of the same participant.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-21-0032-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-21-0032: Approval Document (approved June 29, 2022, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-21-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-21-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-21-0032
+    cms_node_id: '139281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139281
+    approval_date: '2022-06-29'
+    effective_date: '2021-07-01'
+    summary: Removes citizenship, national status, and immigration status as edibility requirements for any PE program, including
+      hospital PE. It also allows additional provider types to serve as qualified entities to make PE determinations for the
+      Adult Group, Parent/Caretaker Relatives, Former Foster Care Youth, Children, and Pregnant Women.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-21-0029-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-21-0029: Approval Document (approved December 17, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-21-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-21-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-21-0029
+    cms_node_id: '139231'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139231
+    approval_date: '2021-12-17'
+    effective_date: '2021-07-01'
+    summary: 'Added coverage for the eligibility group for adults with income below 133% of the FPL under Section 1902(a)(10)(A)(viii)
+      of the Social Security Act:'
+    topics:
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-21-0037-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-21-0037: Approval Document (approved December 17, 2021, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-21-0037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-21-0037/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-21-0037
+    cms_node_id: '139261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139261
+    approval_date: '2021-12-17'
+    effective_date: '2021-10-01'
+    summary: Provides authority to enroll the new Adult Expansion Group (AEG) into managed care and to provide services through
+      the managed care program.
+    topics:
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-20-0027-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA Mo-20-0027: Approval Document (approved March 3, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-20-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-20-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: Mo-20-0027
+    cms_node_id: '107276'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107276
+    approval_date: '2021-03-03'
+    effective_date: '2020-10-01'
+    summary: Effective October 1, 2020, this amendment provides technical corrections to Page 12c of Attachment 3.1-A, which
+      adds in necessary information that was previously omitted.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-20-0016-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-20-0016: Approval Document (approved July 30, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MO-20-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-20-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-20-0016
+    cms_node_id: '101731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101731
+    approval_date: '2020-07-30'
+    effective_date: '2020-04-01'
+    summary: Allows advanced practice registered nurses and physician assistants to order home health services and conduct
+      face to face visits in accordance with 42CFR440.70(f).
+    topics:
+    - Current State Plan
+    - Health Homes
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-20-0007-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-20-0007: Approval Document (approved June 25, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-20-0007
+    cms_node_id: '100156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100156
+    approval_date: '2020-06-25'
+    effective_date: '2020-04-01'
+    summary: SPA was submitted to request a waiver of the regulatory requirement at 42 CFR 455, Subpart F to enter into a
+      contract with a Medicaid Recovery Audit Contractor (RAC) vendor to identify over-payments and underpayments and to recoup
+      over-payments.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-20-0012-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-20-0012: Approval Document (approved June 17, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-20-0012
+    cms_node_id: '99431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99431
+    approval_date: '2020-06-17'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to allow additional flexibilities for pharmacists; suspend Medicaid copayments for all items and services for all
+      eligibility groups; allow flexibilities for home health and personal care benefits; make payment changes to personal
+      care services; and provide flexibilities for personal care assessments, evaluations, training and person-centered care
+      planning.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-20-0013-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-20-0013: Approval Document (approved May 4, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-20-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-20-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-20-0013
+    cms_node_id: '98156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98156
+    approval_date: '2020-05-04'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to allow 12 months continuous eligibility for children under age 19, waive cost sharing for testing services, modify
+      the enforcement of premium and spend down obligations during the emergency period for certain populations, and allow
+      exceptions to the preferred drug list if shortages occur.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0021-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0021: Approval Document (approved February 26, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-20-0018_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0021
+    cms_node_id: '86401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86401
+    approval_date: '2020-02-26'
+    effective_date: '2019-10-01'
+    summary: Proposes to allow the state to comply with the Medicaid Drug Utilization Review (DUR) provisions included in
+      Section 1004 of the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment (SUPPORT) for Patients
+      and Communities Act (P.L. 115-271)
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0024-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0024: Approval Document (approved January 6, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-19-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0024
+    cms_node_id: '57561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=57561
+    approval_date: '2020-01-06'
+    effective_date: '2020-01-01'
+    summary: Adds language to allow chiropractic physicians to become MO HealthNet (MHD) providers.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-21-0030-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-21-0030: Approval Document (approved December 17, 2019, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MO-21-0030
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-21-0030/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-21-0030
+    cms_node_id: '130311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=130311
+    approval_date: '2019-12-17'
+    effective_date: '2021-07-01'
+    summary: This SPA describes the methodology used by the state for determining the appropriate FMAP rates, including the
+      increased FMAP rates, available under the provisions of the Affordable Care Act applicable for the medical assistance
+      expenditures under the Medicaid program associated with enrollees in the new adult group adopted by the state and described
+      in 42 CFR 435.119.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0020-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0020: Approval Document (approved November 13, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-19-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0020
+    cms_node_id: '4261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4261
+    approval_date: '2019-11-13'
+    effective_date: '2019-07-01'
+    summary: Adding a 1.5% provider increase to the Primary Care Health Home program.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0017-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0017: Approval Document (approved November 3, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-19-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0017
+    cms_node_id: '4256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4256
+    approval_date: '2019-11-03'
+    effective_date: '2019-07-01'
+    summary: Transitioning CMHC Health Home program to MACPro and add a 1.5% provider rate increase.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0016-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0016: Approval Document (approved October 10, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-19-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0016
+    cms_node_id: '4721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4721
+    approval_date: '2019-10-10'
+    effective_date: '2019-07-01'
+    summary: Updates the fee schedules for MO HealthNet State Plan services due to a 1.5% increase to certain providers as
+      appropriated by the State Legislature.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0015-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0015: Approval Document (approved September 23, 2019, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-19-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0015
+    cms_node_id: '4946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4946
+    approval_date: '2019-09-23'
+    effective_date: '2019-08-01'
+    summary: Changing the language from supervising physician to collaborating physician and supervision agreement to collaborative
+      practice agreement for Assistant Physician and Physician Assistant State Plan pages.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-19-0003-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-19-0003: Approval Document (approved August 15, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-19-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-19-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0003
+    cms_node_id: '5236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5236
+    approval_date: '2019-08-15'
+    effective_date: '2019-09-01'
+    summary: Approved Primary Care Health Home (PCHH) State Plan by adding new qualifying conditions and risk factors for
+      enrollment.
+    topics:
+    - Benefits
+    - Eligibility
+    - Health Homes
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-13-0024-mm2-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-13-0024-MM2: Approval Document (approved December 29, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-13-0024-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-13-0024-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-13-0024-MM2
+    cms_node_id: '30016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30016
+    approval_date: '2014-12-29'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI-based eligibility process requirements, including the single streamlined application, into
+      Missouri's Medicaid state plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-14-0012-mm7-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-14-0012-MM7: Approval Document (approved November 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-14-0012-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-14-0012-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0012-MM7
+    cms_node_id: '31326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31326
+    approval_date: '2014-11-03'
+    effective_date: '2014-01-01'
+    summary: Describes the Modified Adjusted Gross Income (MAGI)-based hospital presumptive eligibility criteria covered under
+      Missouri's Medicaid State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-14-0013-mm5-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-14-0013-MM5: Approval Document (approved June 27, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-14-0013-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-14-0013-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0013-MM5
+    cms_node_id: '35856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35856
+    approval_date: '2014-06-27'
+    effective_date: '2014-01-01'
+    summary: Describes the Modified Adjusted Gross Income (MAGI) Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-14-0014-mm6-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-14-0014-MM6: Approval Document (approved June 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-14-0014-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-14-0014-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0014-MM6
+    cms_node_id: '35346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35346
+    approval_date: '2014-06-25'
+    effective_date: '2014-01-01'
+    summary: Describes the Modified Adjusted Gross Income MAGI Citizenship and Immigration Status Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-13-0026-mm3-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-13-0026-MM3: Approval Document (approved March 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-13-0026-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-13-0026-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-13-0026-MM3
+    cms_node_id: '38101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38101
+    approval_date: '2014-03-25'
+    effective_date: '2014-01-01'
+    summary: Describes Financial Eligibility Methodologies that will Apply to All Modified Adjusted Gross Income MAGI Eligibility
+      Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-13-10-m-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-13-10 M: Approval Document (approved December 11, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-13-10-MSPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-13-10-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-13-10 M
+    cms_node_id: '39731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39731
+    approval_date: '2013-12-11'
+    effective_date: '2013-07-01'
+    summary: First Step services under Part C of the Individuals with Disabilities Education Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-11-17-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-11-17: Approval Document (approved March 2, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-11-17-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-11-17/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-11-17
+    cms_node_id: '42631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42631
+    approval_date: '2012-03-02'
+    effective_date: '2012-10-01'
+    summary: Which adds restrictions regarding children under the age of 17 being transported under the non-emergency medical
+      transportation program to be accompanied by a parent or adult. It also adds coverage for foster care participants 18-21
+      years of age.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-11-17-attachment
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-11-17: Attachment (approved March 2, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-11-17-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-11-17/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MO-11-17
+    cms_node_id: '42631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42631
+    approval_date: '2012-03-02'
+    effective_date: '2012-10-01'
+    summary: Which adds restrictions regarding children under the age of 17 being transported under the non-emergency medical
+      transportation program to be accompanied by a parent or adult. It also adds coverage for foster care participants 18-21
+      years of age.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-11-17-form-cms-179
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-11-17: Form CMS-179 (approved March 2, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-11-17-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-11-17/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MO-11-17
+    cms_node_id: '42631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42631
+    approval_date: '2012-03-02'
+    effective_date: '2012-10-01'
+    summary: Which adds restrictions regarding children under the age of 17 being transported under the non-emergency medical
+      transportation program to be accompanied by a parent or adult. It also adds coverage for foster care participants 18-21
+      years of age.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-09-10-approval-document
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-09-10: Approval Document (approved January 15, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-09-10-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-09-10/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-09-10
+    cms_node_id: '42726'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42726
+    approval_date: '2010-01-15'
+    effective_date: '2009-10-01'
+    summary: This amendment provides for the inclusion of the ICF/MR CPE Protocol in Missouris Medicaid State Plan, as requested
+      by the Centers for Medicare and Medicaid Services.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-09-10-attachment
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-09-10: Attachment (approved January 15, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-09-10-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-09-10/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MO-09-10
+    cms_node_id: '42726'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42726
+    approval_date: '2010-01-15'
+    effective_date: '2009-10-01'
+    summary: This amendment provides for the inclusion of the ICF/MR CPE Protocol in Missouris Medicaid State Plan, as requested
+      by the Centers for Medicare and Medicaid Services.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-mo-cms-medicaid-state-plan-spa-mo-09-10-form-cms-179
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri Medicaid SPA MO-09-10: Form CMS-179 (approved January 15, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MO/MO-09-10-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-mo/policy/cms/medicaid-state-plan/spa/mo-09-10/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MO-09-10
+    cms_node_id: '42726'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42726
+    approval_date: '2010-01-15'
+    effective_date: '2009-10-01'
+    summary: This amendment provides for the inclusion of the ICF/MR CPE Protocol in Missouris Medicaid State Plan, as requested
+      by the Centers for Medicare and Medicaid Services.
+    topics: *id003
+    link_label: Form CMS-179

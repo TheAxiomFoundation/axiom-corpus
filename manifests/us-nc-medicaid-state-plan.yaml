@@ -1,0 +1,1443 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-nc-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 423
+- source_id: us-nc-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 423
+- source_id: us-nc-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 423
+- source_id: us-nc-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 423
+- source_id: us-nc-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 5
+    index_records_on_page: 23
+    index_records_total: 423
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-24-0033-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-24-0033: Approval Document (approved November 24, 2025, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-24-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-24-0033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-24-0033
+    cms_node_id: '187646'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187646
+    approval_date: '2025-11-24'
+    effective_date: '2024-07-01'
+    summary: This amendment proposed to adopt certain income-related disregards and methodologies for individuals who meet
+      the coverage criteria for the state's 1915(i) benefit.
+    topics:
+    - Benefits
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-25-0007-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-25-0007: Approval Document (approved August 7, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-25-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-25-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-25-0007
+    cms_node_id: '183531'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183531
+    approval_date: '2025-08-07'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to confirm the state's compliance with Section 5121 of the 2023 Consolidated Appropriations
+      Act (CAA) to provide screening, diagnostic, and targeted case management services to eligible juveniles as defined in
+      1902(nn) of the Social Security Act.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-24-0038-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-24-0038: Approval Document (approved March 5, 2025, effective September 25, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-24-0038.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-09-25'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-24-0038/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-24-0038
+    cms_node_id: '178631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178631
+    approval_date: '2025-03-05'
+    effective_date: '2024-09-25'
+    summary: This amendment is to allow certain flexibilities related to eligibility, including allowing individuals displaced
+      from the state due to Hurricane Helene to continue to be residents of the state; temporarily waive and modify certain
+      requirements related to behavioral health, Long Term Services and Supports (LTSS), and dental benefits; and provide
+      retainer payments for specific l 915(i) services, including Community Living and Supports, Supported Employment, Individual
+      Placement and Supports, and Individual and Transitional Supports.
+    topics:
+    - Coverage
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-24-0019-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-24-0019: Approval Document (approved October 4, 2024, effective August 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-24-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-08-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-24-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-24-0019
+    cms_node_id: '170396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=170396
+    approval_date: '2024-10-04'
+    effective_date: '2024-08-01'
+    summary: 'This amendment will allow Medicaid to exempt the following drugs from Medicaid co-payments: Opioid Antagonists,
+      Nicotine Replacement Therapy, and medications used to treat opioid use disorder.'
+    topics:
+    - Cost Sharing
+    - Coverage
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-24-0018-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-24-0018: Approval Document (approved June 21, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-24-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-24-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-24-0018
+    cms_node_id: '167306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167306
+    approval_date: '2024-06-21'
+    effective_date: '2024-07-01'
+    summary: This amendment is to renew its 1915(c) Innovations HCBS waiver and amend its 1915(c) Traumatic Brain Injury (TBI)
+      HCBS waiver.
+    topics:
+    - Benefits
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-24-0015-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-24-0015: Approval Document (approved April 3, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-24-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-24-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-24-0015
+    cms_node_id: '162606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162606
+    approval_date: '2024-04-03'
+    effective_date: '2024-01-01'
+    summary: This amendment proposes to update the state plan to reflect the Third-Party Liability-Related provisions that
+      bar responsible third-party payers from refusing payment for an item or service solely on the basis that such item or
+      service did not receive prior authorization under the third-party payer rules.
+    topics:
+    - Prior Authorization
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0042-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0042: Approval Document (approved February 23, 2024, effective November 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-11-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0042/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0042
+    cms_node_id: '160026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160026
+    approval_date: '2024-02-23'
+    effective_date: '2023-11-01'
+    summary: T his amendment will allow Medicaid to exempt anti-retroviral medications used to treat HIV for the purpose of
+      reducing viral load from Medicaid co-payments. These medications currently require a co-payment of $4 per prescription.
+    topics:
+    - Cost Sharing
+    - Coverage
+    - Preferred Drug Lists
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0031-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0031: Approval Document (approved November 15, 2023, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0031
+    cms_node_id: '155926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155926
+    approval_date: '2023-11-15'
+    effective_date: '2023-12-01'
+    summary: This amendment is to include the new adult group in Community Care of North Carolina (CCNC) primary care case
+      management entity (PCCMe) program eligibility.
+    topics:
+    - Managed Care
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0032-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0032: Approval Document (approved November 15, 2023, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0032
+    cms_node_id: '155931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155931
+    approval_date: '2023-11-15'
+    effective_date: '2023-12-01'
+    summary: This amendment is to include the new adult group in Eastern Band of Cherokee Indians (EBCI) Tribal Option primary
+      care case management entity (PCCMe) program eligibility.
+    topics:
+    - Managed Care
+    - Medicaid Expansion
+    - Tribal/Indian Health Services
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0029-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0029: Approval Document (approved November 14, 2023, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0029
+    cms_node_id: '155796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155796
+    approval_date: '2023-11-14'
+    effective_date: '2023-12-01'
+    summary: This amendment is to define the Alternative Benefit Plan (ABP) that will be used to implement certain requirements
+      for the new North Carolina Medicaid Expansion eligibility group as required by SL 2023-7. The Act allows for the inclusion
+      of Medicaid eligibility to individuals aged 19‐64 with incomes at or below 133 percent of the federal poverty level
+      who are not enrolled in or eligible for Medicare, consistent with the new adult group eligibility criteria as defined
+      by the Affordable Care Act.
+    topics:
+    - Alternative Benefit Plan
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0028-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0028: Approval Document (approved October 12, 2023, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0028
+    cms_node_id: '154171'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=154171
+    approval_date: '2023-10-12'
+    effective_date: '2023-12-01'
+    summary: Added coverage for the eligibility group serving individuals under age 65 with incomes at or below 133% of the
+      FPL under Section 1902(a)(10)(A)(viii) of the Social Security Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0030-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0030: Approval Document (approved October 12, 2023, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0030
+    cms_node_id: '154176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=154176
+    approval_date: '2023-10-12'
+    effective_date: '2023-12-01'
+    summary: This SPA describes the methodology used by the state for determining the appropriate FMAP rates, including the
+      increased FMAP rates, available under the provisions of the Affordable Care Act applicable for the medical assistance
+      expenditures under the Medicaid program associated with enrollees in the new adult group adopted by the state and described
+      in 42 CFR 435.119.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid Expansion
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0009-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0009: Approval Document (approved July 28, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0009
+    cms_node_id: '151086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151086
+    approval_date: '2023-07-28'
+    effective_date: '2023-04-01'
+    summary: 'The state proposed to: transition its separate NC Health Choice Children''s Health Insurance Program to the
+      NC Medicaid Program; adopt a new Medicaid eligibility group for certain children under age 19; and align the income
+      standard for all children under age 19 at 211 percent of the federal poverty level.'
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-23-0007-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-23-0007: Approval Document (approved June 15, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-23-0007
+    cms_node_id: '151081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151081
+    approval_date: '2023-06-15'
+    effective_date: '2023-01-01'
+    summary: The state proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-22-0001-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-22-0001: Approval Document (approved December 2, 2022, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-22-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-22-0001
+    cms_node_id: '142101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142101
+    approval_date: '2022-12-02'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to confirm the methodology used to determine eligibility for the Special Assistance in-Home
+      optional state supplement program, the beneficiaries of which are eligible for Medicaid.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-22-0020-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-22-0020: Approval Document (approved December 2, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-22-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-22-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-22-0020
+    cms_node_id: '142121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142121
+    approval_date: '2022-12-02'
+    effective_date: '2022-07-01'
+    summary: This amendment requests authority to increase co-payments approved under the State Plan to $4.00.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-21-0025-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-21-0025: Approval Document (approved March 24, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-21-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-21-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-21-0025
+    cms_node_id: '134251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=134251
+    approval_date: '2022-03-24'
+    effective_date: '2021-10-01'
+    summary: This SPA propose to raise the effective income eligibility standards for certain individuals who are otherwise
+      eligible to receive services through NC TBI waiver.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-21-0022-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-21-0022: Approval Document (approved December 28, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-21-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-21-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-21-0022
+    cms_node_id: '130821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=130821
+    approval_date: '2021-12-28'
+    effective_date: '2021-07-01'
+    summary: Allows health plans to require cost sharing for certain beneficiaries under managed care. This carries over a
+      policy for the same group under the state's fee-for-service programs, and as such will not increase costs or utilization.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-20-0009-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-20-0009: Approval Document (approved August 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-20-0009
+    cms_node_id: '101376'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101376
+    approval_date: '2020-08-18'
+    effective_date: '2020-03-01'
+    summary: 'CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. This
+      second Medicaid Disaster Relief SPA for North Carolina includes temporary modifications to benefit and payment provisions
+      during the emergency declaration period. The state is proposing the following temporary rate increases: 1) a 10% rate
+      increase for certain providers facing a disproportionate impact during the pandemic, 2) a 5% general increase to all
+      providers that have not yet received one as required by the State’s General Assembly, and 3) authority to provide payments
+      to pharmacy providers for mail-prescriptions to reduce direct contact for beneficiaries and providers.'
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-15-0001-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-15-0001: Approval Document (approved August 5, 2020, effective December 1, 2015)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NC-15-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-12-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-15-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-15-0001
+    cms_node_id: '102351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102351
+    approval_date: '2020-08-05'
+    effective_date: '2015-12-01'
+    summary: This SPA includes North Carolina’s alternative single streamlined online and paper applications only
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-20-0008-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-20-0008: Approval Document (approved May 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-20-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-20-0008
+    cms_node_id: '98491'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98491
+    approval_date: '2020-05-18'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to eliminate all cost sharing for testing and treatment that may be COVID-19 related, suspend enrollment fees and
+      monthly premiums for the Health Care for Workers with Disabilities (HCWD) program; allow increased payment rates of
+      5% to certain FFS programs; add a 5% additional rate increase to support specific providers who may be experiencing
+      a disproportionate impact; set payment rates for telehealth; and add an interim payment methodology.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Financing & Reimbursement
+    - Premiums
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-19-0008-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-19-0008: Approval Document (approved October 2, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-19-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-19-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-19-0008
+    cms_node_id: '4801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4801
+    approval_date: '2019-10-02'
+    effective_date: '2019-10-01'
+    summary: Allows Medicaid to change the State Maximum Allowable rate for Community Support Team services due to a change
+      in the service definition.
+    topics:
+    - Benefits
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-16-0001-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-16-0001: Approval Document (approved February 23, 2017, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-16-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-16-0001
+    cms_node_id: '16371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16371
+    approval_date: '2017-02-23'
+    effective_date: '2017-04-01'
+    summary: Adds the Eastern Band of Cherokee Indians (EBCI) as an entity responsible for determinations of eligibility and
+      appeals/fair hearings in accordance with the North Carolina State Law 2016-94, Section12C.2(a).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-14-0003-mm7-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-14-0003-MM7: Approval Document (approved December 1, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-14-0003-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-14-0003-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-14-0003-MM7
+    cms_node_id: '27786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27786
+    approval_date: '2014-12-01'
+    effective_date: '2014-01-01'
+    summary: This SPA establishes that one or more qualified hospitals are determining presumptive eligibility, and that the
+      state is providing coverage for individuals determined presumptively eligible, in accordance with the Affordable Care
+      Act.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-14-0005-mm1-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-14-0005-MM1: Approval Document (approved September 22, 2014, effective October 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-14-0005-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-14-0005-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-14-0005-MM1
+    cms_node_id: '32766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32766
+    approval_date: '2014-09-22'
+    effective_date: '2014-10-01'
+    summary: This SPA establishes the state's election of the MAGI-based eligibility for the family planning optional eligibility
+      group in the Medicaid state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-14-0004-mm1-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-14-0004-MM1: Approval Document (approved August 12, 2014, effective August 15, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-14-0004-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-08-15'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-14-0004-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-14-0004-MM1
+    cms_node_id: '34181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34181
+    approval_date: '2014-08-12'
+    effective_date: '2014-08-15'
+    summary: Removes the Requirement for Citizenship for Presumptive Eligibility from State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-14-016-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-14-016: Approval Document (approved August 5, 2014, effective June 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-14-016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-06-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-14-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-14-016
+    cms_node_id: '34351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34351
+    approval_date: '2014-08-05'
+    effective_date: '2014-06-01'
+    summary: This amendment modifies the physician's attestation date from June 30, 2013 to June 30, 2014.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-14-001-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-14-001: Approval Document (approved June 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-14-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-14-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-14-001
+    cms_node_id: '36391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36391
+    approval_date: '2014-06-06'
+    effective_date: '2014-01-01'
+    summary: Removes coverage for the family planning optional eligibility group from the Medicaid state plan.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-0017-mm6-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-0017-MM6: Approval Document (approved December 19, 2013, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-13-0017-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-0017-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-13-0017-MM6
+    cms_node_id: '39521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39521
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizenship Regulations, Specifies Reasonable Opportunity Period Options, and Specifies Policy Options
+      related to Eligible Non-Citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-0015-mm3-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-0015-MM3: Approval Document (approved December 19, 2013, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-13-0015-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-0015-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-13-0015-MM3
+    cms_node_id: '39616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39616
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-013-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-013: Approval Document (approved December 11, 2013, effective August 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/nc/NC-13-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-08-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-13-013
+    cms_node_id: '39086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39086
+    approval_date: '2013-12-11'
+    effective_date: '2013-08-01'
+    summary: Implements a rate freeze for Durable Medical Equipment in North Carolina for fiscal years 2014 and 2015.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-0014-mm1-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-0014-MM1: Approval Document (approved December 10, 2013, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-13-0014-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-0014-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-13-0014-MM1
+    cms_node_id: '39621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39621
+    approval_date: '2013-12-10'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-004-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-004: Approval Document (approved June 7, 2013, effective November 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-13-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-11-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-13-004
+    cms_node_id: '46161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46161
+    approval_date: '2013-06-07'
+    effective_date: '2013-11-01'
+    summary: Establishes a new eligibility group for the family planning services.
+    topics: &id002
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-004-attachment
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-004: Attachment (approved June 7, 2013, effective November 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-13-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-11-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NC-13-004
+    cms_node_id: '46161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46161
+    approval_date: '2013-06-07'
+    effective_date: '2013-11-01'
+    summary: Establishes a new eligibility group for the family planning services.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-13-004-form-cms-179
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-13-004: Form CMS-179 (approved June 7, 2013, effective November 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-13-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-11-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-13-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NC-13-004
+    cms_node_id: '46161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46161
+    approval_date: '2013-06-07'
+    effective_date: '2013-11-01'
+    summary: Establishes a new eligibility group for the family planning services.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-11-020-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-11-020: Approval Document (approved October 20, 2011, effective November 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-11-020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-11-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-11-020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-11-020
+    cms_node_id: '51421'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=51421
+    approval_date: '2011-10-20'
+    effective_date: '2011-11-01'
+    summary: To Adjust SFY 2012 by Negative 2.67 Percent.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-09-017-approval-document
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-09-017: Approval Document (approved February 4, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-09-017-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-09-017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NC-09-017
+    cms_node_id: '42396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42396
+    approval_date: '2010-02-04'
+    effective_date: '2009-07-01'
+    summary: Adjusts State Fiscal Year (SFY) 2010 rates for Rehabilitation Services based on an overall program reduction
+      of 4.68 percent for SFY 2010. SFY 2011 rates are to be frozen at the SFY 2010 amount.
+    topics: &id003
+    - Premiums
+    link_label: Approval Document
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-09-017-attachment
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-09-017: Attachment (approved February 4, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-09-017-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-09-017/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NC-09-017
+    cms_node_id: '42396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42396
+    approval_date: '2010-02-04'
+    effective_date: '2009-07-01'
+    summary: Adjusts State Fiscal Year (SFY) 2010 rates for Rehabilitation Services based on an overall program reduction
+      of 4.68 percent for SFY 2010. SFY 2011 rates are to be frozen at the SFY 2010 amount.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-nc-cms-medicaid-state-plan-spa-nc-09-017-form-cms-179
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina Medicaid SPA NC-09-017: Form CMS-179 (approved February 4, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NC/NC-09-017-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-nc/policy/cms/medicaid-state-plan/spa/nc-09-017/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: North Carolina
+    source_discovery_group: us-nc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NC-09-017
+    cms_node_id: '42396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42396
+    approval_date: '2010-02-04'
+    effective_date: '2009-07-01'
+    summary: Adjusts State Fiscal Year (SFY) 2010 rates for Rehabilitation Services based on an overall program reduction
+      of 4.68 percent for SFY 2010. SFY 2011 rates are to be frozen at the SFY 2010 amount.
+    topics: *id003
+    link_label: Form CMS-179

@@ -1,0 +1,360 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-md-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-md/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 11
+    index_records_total: 11
+- source_id: us-md-cms-chip-state-plan-spa-md-24-0002-chip-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-24-0002-CHIP: Approval Package (approved August 9, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD-24-0002-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-24-0002-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-24-0002-CHIP
+    cms_node_id: '170496'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170496
+    approval_date: '2024-08-09'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-24-0001-chip-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-24-0001-CHIP: Approval Package (approved June 20, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD-24-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-24-0001-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-24-0001-CHIP
+    cms_node_id: '167546'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=167546
+    approval_date: '2024-06-20'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-23-0002-chip-amp-md-23-0003-chip-amp-md-23-0004-chip-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-23-0002-CHIP &amp; MD-23-0003-CHIP &amp; MD-23-0004-CHIP: Approval Package (approved September
+    8, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD-23-0002-0003-0004-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-23-0002-chip-amp-md-23-0003-chip-amp-md-23-0004-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0002-CHIP &amp; MD-23-0003-CHIP &amp; MD-23-0004-CHIP
+    cms_node_id: '152926'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=152926
+    approval_date: '2023-09-08'
+    effective_date: '2023-07-01'
+    summary: Collectively, these SPAs create a separate CHIP for the from-to-conception-to-end-of-pregnancy population (FCEP,
+      otherwise known as the "unborn" option) Collectively, with household incomes up to 259 percent of the federal poverty
+      level (FPL), for birth parents that are not otherwise eligible for Medicaid or CHIP. Specifically, MD-23-0003-CHIP and
+      MD-23-0004 establishes financial eligibility and residency requirements respectively for the new separate CHIP FCEP
+      population. In addition, MD-23-0002-CHIP creates a new Health Services Initiative (HSI) program to cover postpartum
+      services to birth parents from the same population through the end of the month in which the 120th postpartum day occurs.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-23-0001-lead-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-23-0001-LEAD: Approval Package (approved August 10, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD-23-0001-LEAD.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-23-0001-lead/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0001-LEAD
+    cms_node_id: '151956'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=151956
+    approval_date: '2023-08-10'
+    effective_date: '2022-07-01'
+    summary: Through SPA MD-23-0001-LEAD, the state updates its two existing CHIP Health Services Initiative (HSI) programs;
+      Healthy Homes for Healthy Kids and Childhood Lead Positioning & Asthma Prevention and Environmental Case Management.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-17-0001-lead-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-17-0001-LEAD: Approval Package (approved June 15, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD/MD-17-0001-LEAD.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-17-0001-lead/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-17-0001-LEAD
+    cms_node_id: '3731'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3731
+    approval_date: '2017-06-15'
+    effective_date: '2017-07-01'
+    summary: Maryland's SPA MD-17-0001-LEAD implements a CHIP health services initiative (HSI) to improve the health of low-income
+      children by conducting lead hazard home assessments to identify lead hazards in the homes of low-income children with
+      elevated blood lead levels above 5ug\/dL reside in the state and abating any identified lead hazards in the children's
+      homes.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-14-0011-mc3-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-14-0011-MC3: Approval Package (approved December 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD/MD-14-0011-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-14-0011-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-14-0011-MC3
+    cms_node_id: '3286'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3286
+    approval_date: '2014-12-19'
+    effective_date: '2014-01-01'
+    summary: Provides coverage to a separate CHIP, for children subject to Section 2101 (f) of the ACA.
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-cspa-9-al-approval-package
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-CSPA-9-AL: Approval Package (approved January 1, 2013, effective January 2, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD/MD-CSPA-9-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-02'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-cspa-9-al/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-CSPA-9-AL
+    cms_node_id: '2271'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2271
+    approval_date: '2013-01-01'
+    effective_date: '2013-01-02'
+    summary: Funding through the HSI option at section 2105(a)(1)(D)(ii) of the Social Security Act.
+    topics:
+    - Current State Plan
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-md-cms-chip-state-plan-spa-md-cspa-08-final-approved-state-plan
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP SPA MD-CSPA-08: Final Approved State Plan (approved May 21, 2007, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD/MD-CSPA-8-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-md/policy/cms/chip-state-plan/spa/md-cspa-08/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MD-CSPA-08
+    cms_node_id: '1866'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1866
+    approval_date: '2007-05-21'
+    effective_date: '2003-06-01'
+    summary: Conversion of Separate CHIP into a Medicaid Expansion from being a combination state to a Medicaid Expansion
+      program.
+    topics:
+    - Expansion
+    link_label: Final Approved State Plan
+- source_id: us-md-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP compiled state plan: Factsheet (approved April 21, 2007, effective June 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD/MDCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-06-01'
+  citation_path: us-md/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: MD
+    cms_node_id: '1791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1791
+    approval_date: '2007-04-21'
+    effective_date: '2007-06-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 07-22-2009.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-md-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland CHIP compiled state plan: Current State Plan (approved April 21, 2007, effective June 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MD/MDCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-06-01'
+  citation_path: us-md/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MD
+    cms_node_id: '1791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1791
+    approval_date: '2007-04-21'
+    effective_date: '2007-06-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 07-22-2009.
+    topics: *id002
+    link_label: Current State Plan

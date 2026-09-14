@@ -1,0 +1,652 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-mo-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 22
+    index_records_total: 22
+- source_id: us-mo-cms-chip-state-plan-spa-mo-24-0023-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-24-0023: Approval Package (approved November 20, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-24-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-24-0023/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-24-0023
+    cms_node_id: '173096'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=173096
+    approval_date: '2024-11-20'
+    effective_date: '2024-10-01'
+    summary: Through this SPA, Missouri will accept CHIP eligibility determinations made by the Federally Facilitated Exchange
+      (FFE), pursuant to section 2107(e)(1)(U) of the Social Security Act and 42 CFR 457.348, which requires states to have
+      procedures in place for enrollment simplification and coordination with Exchanges and Medicaid.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-24-0014-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-24-0014: Approval Package (approved July 11, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-24-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-24-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-24-0014
+    cms_node_id: '169721'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169721
+    approval_date: '2024-07-11'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-23-0011-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-23-0011: Approval Package (approved May 14, 2024, effective September 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-09-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-23-0011/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-23-0011
+    cms_node_id: '165566'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=165566
+    approval_date: '2024-05-14'
+    effective_date: '2023-09-01'
+    summary: This SPA updates the CHIP state plan to remove the state’s premium assistance program as of January 1, 2023.
+      The state also makes non-substantive updates to its CHIP state plan to more clearly reflect existing policies. The updates
+      are effective September 1, 2023.
+    topics:
+    - Cost Sharing
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-23-0021-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-23-0021: Approval Package (approved November 14, 2023, effective July 7, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-23-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-07'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-23-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-23-0021
+    cms_node_id: '155771'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=155771
+    approval_date: '2023-11-14'
+    effective_date: '2023-07-07'
+    summary: This SPA provides Missouri with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-23-0001-dral-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-23-0001-DRAL: Approval Package (approved May 26, 2023, effective April 5, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-05'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-23-0001-DRAL
+    cms_node_id: '148411'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148411
+    approval_date: '2023-05-26'
+    effective_date: '2023-04-05'
+    summary: This letter reactivates Missouri's Evergreen Disaster Relief CHIP State Plan Amendment and is scheduled to end
+      on April 30, 2024.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-22-0034-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-22-0034: Approval Package (approved December 21, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-22-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-22-0034/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-22-0034
+    cms_node_id: '143176'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143176
+    approval_date: '2022-12-21'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-22-0032-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-22-0032: Approval Package (approved September 1, 2022, effective June 28, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-22-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-06-28'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-22-0032/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-22-0032
+    cms_node_id: '139621'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139621
+    approval_date: '2022-09-01'
+    effective_date: '2022-06-28'
+    summary: This SPA updates the CS29 Presumptive Eligibility for Pregnant Women eligibility template.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-20-0015-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-20-0015: Approval Package (approved August 17, 2021, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-20-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-20-0015
+    cms_node_id: '125626'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=125626
+    approval_date: '2021-08-17'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-20-0017-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-20-0017: Approval Package (approved December 9, 2020, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-20-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-20-0017
+    cms_node_id: '146846'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146846
+    approval_date: '2020-12-09'
+    effective_date: '2019-07-01'
+    summary: 'Through this SPA, the state modifies two existing health services initiatives (HSIs): 1) Newborn Services, and
+      2) Screening, Diagnosis, and Education of Public Health Issues. This SPA expands the settings where these HSIs may be
+      provided.'
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-19-0014-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-19-0014: Approval Package (approved July 25, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-19-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-19-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-19-0014
+    cms_node_id: '4076'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4076
+    approval_date: '2019-07-25'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-18-0015-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-18-0015: Approval Package (approved March 21, 2019, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-18-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-18-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-18-0015
+    cms_node_id: '3961'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3961
+    approval_date: '2019-03-21'
+    effective_date: '2017-07-01'
+    summary: Implements mental health parity requirements to ensure that treatment limitations applied to mental health (MH)
+      and substance use disorder (SUD) are no more restrictive than medical/surgical (M/S) benefits.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-14-0020-mc5-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-14-0020-MC5: Approval Package (approved November 18, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-14-0020-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-14-0020-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0020-MC5
+    cms_node_id: '2971'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2971
+    approval_date: '2015-11-18'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income Eligibility.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-14-0017-mc2-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-14-0017-MC2: Approval Package (approved November 13, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-14-0017-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-14-0017-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0017-MC2
+    cms_node_id: '2956'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2956
+    approval_date: '2015-11-13'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income Eligibility.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-14-0018-mc1-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-14-0018-MC1: Approval Package (approved November 13, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-14-0018-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-14-0018-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0018-MC1
+    cms_node_id: '2961'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2961
+    approval_date: '2015-11-13'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income Eligibility.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-14-0019-mc3-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-14-0019-MC3: Approval Package (approved June 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-14-0019-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-14-0019-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-14-0019-MC3
+    cms_node_id: '2966'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2966
+    approval_date: '2014-06-25'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income Eligibility.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-spa-mo-cspa-6-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-CSPA-6: Approval Package (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-CSPA-6-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-CSPA-6
+    cms_node_id: '1321'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1321
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Exempts temporary income earned working for the decennial census.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-mo-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP compiled state plan: Factsheet (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MOCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: MO
+    cms_node_id: '1671'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1671
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Current CHIP State Plan as amended by SPA 6 and Factsheet as of 10-14-2011.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-mo-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP compiled state plan: Current State Plan (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MOCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MO
+    cms_node_id: '1671'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1671
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Current CHIP State Plan as amended by SPA 6 and Factsheet as of 10-14-2011.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-mo-cms-chip-state-plan-spa-mo-cspa-5-approval-package
+  jurisdiction: us-mo
+  document_class: policy
+  title: 'Missouri CHIP SPA MO-CSPA-5: Approval Package (approved August 7, 2009, effective May 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-CSPA-5-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-05-01'
+  citation_path: us-mo/policy/cms/chip-state-plan/spa/mo-cspa-5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Missouri
+    source_discovery_group: us-mo/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MO-CSPA-5
+    cms_node_id: '2166'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2166
+    approval_date: '2009-08-07'
+    effective_date: '2009-05-01'
+    summary: Technical corrections related to premium calculations.
+    topics:
+    - Premiums
+    link_label: Approval Package

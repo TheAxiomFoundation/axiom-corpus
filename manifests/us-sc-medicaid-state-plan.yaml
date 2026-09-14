@@ -1,0 +1,1066 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-sc-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 300
+- source_id: us-sc-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 300
+- source_id: us-sc-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 300
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-25-0011-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-25-0011: Approval Document (approved March 16, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SC-25-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-25-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-25-0011
+    cms_node_id: '190396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190396
+    approval_date: '2026-03-16'
+    effective_date: '2025-10-01'
+    summary: This amendment will increase the Personal Needs Allowance (PNA) amount for individuals residing in nursing and
+      intermediate care facilities for individuals with intellectual disabilities (ICF/IID).
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-25-0008-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-25-0008: Approval Document (approved September 26, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SC-25-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-25-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-25-0008
+    cms_node_id: '185211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185211
+    approval_date: '2025-09-26'
+    effective_date: '2025-04-01'
+    summary: This amendment proposes to address the undue hardship waiver requirements for Estate Recovery.
+    topics:
+    - Eligibility
+    - Long-Term Services & Support
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-24-0017-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-24-0017: Approval Document (approved November 8, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SC-24-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-24-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-24-0017
+    cms_node_id: '172536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=172536
+    approval_date: '2024-11-08'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes to eliminate cost sharing for all Medicaid recipients and services.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-24-0016-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-24-0016: Approval Document (approved August 30, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SC-24-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-24-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-24-0016
+    cms_node_id: '168866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168866
+    approval_date: '2024-08-30'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes to bring the South Carolina Medicaid State Plan into compliance with the Third Party
+      Liability federal requirements reflected in the current state law.
+    topics:
+    - Preventative Services
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-23-0019-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-23-0019: Approval Document (approved March 8, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SC-23-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-23-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-23-0019
+    cms_node_id: '160856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160856
+    approval_date: '2024-03-08'
+    effective_date: '2023-10-01'
+    summary: This amendment proposes to align the limitations on non-covered medical expenses with the current Medicaid coverage
+      and benefits.
+    topics:
+    - Benefits
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-23-0002-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-23-0002: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/SC-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-23-0002
+    cms_node_id: '148216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148216
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: This amendment proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-21-0009-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-21-0009: Approval Document (approved June 3, 2021, effective April 20, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/SC-21-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-20'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-21-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-21-0009
+    cms_node_id: '109026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109026
+    approval_date: '2021-06-03'
+    effective_date: '2021-04-20'
+    summary: This plan amendment updates the name of the designee to submit State Plan Amendments (SPAs) for the state of
+      South Carolina.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-21-0001-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-21-0001: Approval Document (approved April 8, 2021, effective January 12, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/SC-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-12'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-21-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-21-0001
+    cms_node_id: '108356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108356
+    approval_date: '2021-04-08'
+    effective_date: '2021-01-12'
+    summary: This Plan amendment updates the name of the designee to Submit State Plans Amendments (SPAS} for the state of
+      South Carolina
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-20-0007-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-20-0007: Approval Document (approved May 8, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-20-0007
+    cms_node_id: '98311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98311
+    approval_date: '2020-05-08'
+    effective_date: '2020-03-18'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-17-0014-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-17-0014: Approval Document (approved November 20, 2019, effective July 7, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-17-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-07'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-17-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-17-0014
+    cms_node_id: '4156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4156
+    approval_date: '2019-11-20'
+    effective_date: '2017-07-07'
+    summary: Increases South Carolina Department of Mental Health clinic service rates based upon the calendar year 2017 Medicare
+      Economic Index trend rate of 1.2%.
+    topics:
+    - Financing & Reimbursement
+    - Premiums
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-19-0010-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-19-0010: Approval Document (approved November 4, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-19-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-19-0010
+    cms_node_id: '4366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4366
+    approval_date: '2019-11-04'
+    effective_date: '2019-10-01'
+    summary: Nursing Facility Rate Update and New Cost of Capital Reimbursement System.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-17-0001-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-17-0001: Approval Document (approved May 11, 2017, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-17-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-17-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-17-0001
+    cms_node_id: '15291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15291
+    approval_date: '2017-05-11'
+    effective_date: '2018-01-01'
+    summary: Allows for eligibility for certain pregnant women and children as described in section 1903(v)(4) and 2107 (e)(1)(J)
+      of the Social Security Act and who are otherwise eligible for assistance under the state plan (template S89).
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-15-009-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-15-009: Approval Document (approved November 10, 2015, effective October 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-15-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-15-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-15-009
+    cms_node_id: '21696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21696
+    approval_date: '2015-11-10'
+    effective_date: '2015-10-01'
+    summary: This SPA is to limit allowable pre-eligibility medical expenses applied to reduce recurring income for long term
+      care services to expenses incurred in the three months prior to the month of the Medicaid application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-14-0004-mm1-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-14-0004-MM1: Approval Document (approved March 10, 2015, effective November 4, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-14-0004-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-11-04'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-14-0004-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-14-0004-MM1
+    cms_node_id: '28466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28466
+    approval_date: '2015-03-10'
+    effective_date: '2014-11-04'
+    summary: Adds MAGI-Based Eligibility Group for Tuberculosis (TB) Template S55.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-14-0022-mm3-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-14-0022-MM3: Approval Document (approved September 10, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-14-0022-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-14-0022-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-14-0022-MM3
+    cms_node_id: '32906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32906
+    approval_date: '2014-09-10'
+    effective_date: '2014-04-01'
+    summary: The purpose of this new amendment was to align the Reasonably Predictable Changes in income selections on the
+      S10 plan page to what the state entered on their Federally Facilitated Marketplace (FFM) data collection tool.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-0017-mm5-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-0017-MM5: Approval Document (approved May 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0017-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0017-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0017-MM5
+    cms_node_id: '37016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37016
+    approval_date: '2014-05-14'
+    effective_date: '2014-01-01'
+    summary: Affirms State Residency Regulations and Addresses Interstate Agreements and Temporary Absence.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-0018-mm6-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-0018-MM6: Approval Document (approved February 14, 2014, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0018-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0018-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0018-MM6
+    cms_node_id: '38721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38721
+    approval_date: '2014-02-14'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-0015-mm2-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-0015-MM2: Approval Document (approved February 12, 2014, effective October 1,
+    2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0015-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0015-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0015-MM2
+    cms_node_id: '38716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38716
+    approval_date: '2014-02-12'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-0019-mm4-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-0019-MM4: Approval Document (approved February 12, 2014, effective January 1,
+    2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0019-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0019-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0019-MM4
+    cms_node_id: '38726'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38726
+    approval_date: '2014-02-12'
+    effective_date: '2014-01-01'
+    summary: Establishes Single State Agency and Entities Responsible for Determinations of Eligibility and Appeals/Fair Hearings.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-006-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-006: Approval Document (approved January 27, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-006
+    cms_node_id: '39066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39066
+    approval_date: '2014-01-27'
+    effective_date: '2013-10-01'
+    summary: Allows dual eligible Medicare Medicaid beneficiaries to voluntarily enroll in managed care revise state plan
+      language to have beneficiaries under one year of age enroll in a health plan and revise state plan language to reflect
+      SCDHHS will perform the face to face informed choice counseling with beneficiaries who are selecting a managed care
+      option.
+    topics:
+    - Benefits
+    - Eligibility
+    - Managed Care
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-0014-mm1-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-0014-MM1: Approval Document (approved January 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0014-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-0014-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0014-MM1
+    cms_node_id: '39241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39241
+    approval_date: '2014-01-10'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI Based Eligibility Group SPA into South Carolina State Plan in accordance with the Affordable
+      Care Act.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-001-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-001: Approval Document (approved June 10, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-001-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-001
+    cms_node_id: '46016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46016
+    approval_date: '2013-06-10'
+    effective_date: '2013-01-01'
+    summary: Allows primary care physicians that practice in family medicine, general internal medicine, pediatric medicine,
+      and related subspecialists to receive increased payments for certain primary care services and vaccine administration
+      in calendar years 2013 and 2014.
+    topics: &id002
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-001-attachment
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-001: Attachment (approved June 10, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-001-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-001/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: SC-13-001
+    cms_node_id: '46016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46016
+    approval_date: '2013-06-10'
+    effective_date: '2013-01-01'
+    summary: Allows primary care physicians that practice in family medicine, general internal medicine, pediatric medicine,
+      and related subspecialists to receive increased payments for certain primary care services and vaccine administration
+      in calendar years 2013 and 2014.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-13-001-form-cms-179
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-13-001: Form CMS-179 (approved June 10, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-001-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-13-001/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: SC-13-001
+    cms_node_id: '46016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46016
+    approval_date: '2013-06-10'
+    effective_date: '2013-01-01'
+    summary: Allows primary care physicians that practice in family medicine, general internal medicine, pediatric medicine,
+      and related subspecialists to receive increased payments for certain primary care services and vaccine administration
+      in calendar years 2013 and 2014.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-11-019-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-11-019: Approval Document (approved November 2, 2011, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-11-019-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-11-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-11-019
+    cms_node_id: '40611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40611
+    approval_date: '2011-11-02'
+    effective_date: '2011-10-01'
+    summary: Limiting patient discharges from hospitals to nursing facility within a 50 mile radius only will be eliminated.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-11-019-attachment
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-11-019: Attachment (approved November 2, 2011, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-11-019-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-11-019/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: SC-11-019
+    cms_node_id: '40611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40611
+    approval_date: '2011-11-02'
+    effective_date: '2011-10-01'
+    summary: Limiting patient discharges from hospitals to nursing facility within a 50 mile radius only will be eliminated.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-11-019-form-cms-179
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-11-019: Form CMS-179 (approved November 2, 2011, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-11-019-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-11-019/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: SC-11-019
+    cms_node_id: '40611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40611
+    approval_date: '2011-11-02'
+    effective_date: '2011-10-01'
+    summary: Limiting patient discharges from hospitals to nursing facility within a 50 mile radius only will be eliminated.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-09-010-approval-document
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-09-010: Approval Document (approved October 28, 2009, effective September 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-09-010-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-09-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-09-010
+    cms_node_id: '40651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40651
+    approval_date: '2009-10-28'
+    effective_date: '2009-09-01'
+    summary: Extension to the sunset provision to continue cost settling the clinical diagnostic lab services provided in
+      the outpatient hospital setting.
+    topics: &id004
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-09-010-attachment
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-09-010: Attachment (approved October 28, 2009, effective September 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-09-010-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-09-010/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: SC-09-010
+    cms_node_id: '40651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40651
+    approval_date: '2009-10-28'
+    effective_date: '2009-09-01'
+    summary: Extension to the sunset provision to continue cost settling the clinical diagnostic lab services provided in
+      the outpatient hospital setting.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-sc-cms-medicaid-state-plan-spa-sc-09-010-form-cms-179
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Medicaid SPA SC-09-010: Form CMS-179 (approved October 28, 2009, effective September 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-09-010-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-01'
+  citation_path: us-sc/policy/cms/medicaid-state-plan/spa/sc-09-010/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: SC-09-010
+    cms_node_id: '40651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40651
+    approval_date: '2009-10-28'
+    effective_date: '2009-09-01'
+    summary: Extension to the sunset provision to continue cost settling the clinical diagnostic lab services provided in
+      the outpatient hospital setting.
+    topics: *id004
+    link_label: Form CMS-179

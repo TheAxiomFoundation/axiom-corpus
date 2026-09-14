@@ -965,6 +965,7 @@ def fetch_released_scope_objects(
 
 
 _RELEASE_ACTIVATION_CHUNK_SIZE = 128 * 1024
+_RELEASE_ACTIVATION_CHUNK_PACING_SECONDS = 1.5
 
 
 # Column list must exactly match corpus.preview_corpus_release_activation's
@@ -1194,6 +1195,10 @@ def _stage_release_activation_upload(
                 f"unexpected stale release activation cleanup response: {stale_rows!r}"
             )
         for index, chunk in enumerate(chunks):
+            if index:
+                # Stay under the Management API's per-minute budget: a 761-scope
+                # release object is about 70 chunks, which unpaced exceeds it.
+                time.sleep(_RELEASE_ACTIVATION_CHUNK_PACING_SECONDS)
             rows = _management_api_post_json_with_curl(
                 endpoint,
                 payload={
@@ -1292,7 +1297,43 @@ def _require_complete_activation_scopes(
         )
 
 
+# The Supabase Management API throttles a project to a small per-minute request
+# budget and answers the excess with 429 "ThrottlerException: Too Many Requests".
+# A throttled request was not executed, so it is safe to wait and send it again.
+_MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS = (15.0, 30.0, 60.0, 60.0, 60.0)
+_MANAGEMENT_API_THROTTLE_MARKERS = ("Too Many Requests", "ThrottlerException")
+
+
+def _is_management_api_throttle(error: BaseException) -> bool:
+    text = str(error)
+    return any(marker in text for marker in _MANAGEMENT_API_THROTTLE_MARKERS)
+
+
 def _management_api_post_json_with_curl(
+    url: str,
+    *,
+    payload: Mapping[str, object],
+    access_token: str,
+    timeout: int,
+) -> object:
+    """POST JSON to the Management API, waiting out its per-minute throttle.
+
+    Every other failure (transport error, non-2xx that is not a throttle,
+    malformed JSON) propagates unchanged from the first attempt.
+    """
+    for backoff in (*_MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS, None):
+        try:
+            return _management_api_post_json_with_curl_once(
+                url, payload=payload, access_token=access_token, timeout=timeout
+            )
+        except RuntimeError as exc:
+            if backoff is None or not _is_management_api_throttle(exc):
+                raise
+            time.sleep(backoff)
+    raise AssertionError("management API throttle retry loop exhausted unexpectedly")
+
+
+def _management_api_post_json_with_curl_once(
     url: str,
     *,
     payload: Mapping[str, object],

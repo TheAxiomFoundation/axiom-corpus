@@ -1,0 +1,1451 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-co-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 545
+- source_id: us-co-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 545
+- source_id: us-co-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 545
+- source_id: us-co-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 545
+- source_id: us-co-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 545
+- source_id: us-co-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 6
+    index_records_on_page: 45
+    index_records_total: 545
+- source_id: us-co-cms-medicaid-state-plan-spa-co-25-0039-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-25-0039: Approval Document (approved June 25, 2026, effective July 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-25-0039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-25-0039/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-25-0039
+    cms_node_id: '193706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193706
+    approval_date: '2026-06-25'
+    effective_date: '2026-07-01'
+    summary: This amendment updates delegation of authority to conduct all fair hearings and issue certain final fair hearing
+      decisions to the Office of Administrative Courts (OAC).
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-25-0022-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-25-0022: Approval Document (approved June 25, 2026, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-25-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-25-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-25-0022
+    cms_node_id: '193716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193716
+    approval_date: '2026-06-25'
+    effective_date: '2025-07-01'
+    summary: This amendment proposes income and resource disregards for compensation paid for participation in the Medicaid
+      Advisory Committee (MAC) and Beneficiary Advisory Council (BAC).
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-25-0011-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-25-0011: Approval Document (approved May 8, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-25-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-25-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-25-0011
+    cms_node_id: '179506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179506
+    approval_date: '2025-05-08'
+    effective_date: '2025-01-01'
+    summary: This amendment add to bar liable third-party payers from refusing to reimburse the Medicaid program for an item
+      or service solely on the basis of no prior authorization.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-24-0010-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-24-0010: Approval Document (approved June 26, 2024, effective May 12, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-24-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-05-12'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-24-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-24-0010
+    cms_node_id: '166746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=166746
+    approval_date: '2024-06-26'
+    effective_date: '2024-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend the
+      waiver of premiums for the Buy-In program for Working Adults with Disabilities and the Buy-In program for Children with
+      Disabilities.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-23-0018-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-23-0018: Approval Document (approved August 17, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-23-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-23-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-23-0018
+    cms_node_id: '152076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152076
+    approval_date: '2023-08-17'
+    effective_date: '2023-07-01'
+    summary: This amendment remove all co-payments except those related to delivery of non-emergency services in a hospital
+      emergency room.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-22-0028-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-22-0028: Approval Document (approved June 26, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-22-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-22-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0028
+    cms_node_id: '150391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150391
+    approval_date: '2023-06-26'
+    effective_date: '2022-07-01'
+    summary: To revise Colorado's paper alternative single. streamlined application and the paper alternative application
+      used for multiple human services programs.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-23-0009-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-23-0009: Approval Document (approved June 1, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-23-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-23-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-23-0009
+    cms_node_id: '150366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150366
+    approval_date: '2023-06-01'
+    effective_date: '2023-01-01'
+    summary: The state adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as
+      enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-22-0043-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-22-0043: Approval Document (approved January 11, 2023, effective January 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-22-0043.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-12'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-22-0043/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0043
+    cms_node_id: '143611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143611
+    approval_date: '2023-01-11'
+    effective_date: '2023-01-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend the
+      waiver of premiums for the Buy-In program for Working Adults with Disabilities and the Buy-In program for Children with
+      Disabilities.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-22-0031-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-22-0031: Approval Document (approved December 13, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-22-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-22-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0031
+    cms_node_id: '142546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142546
+    approval_date: '2022-12-13'
+    effective_date: '2022-07-01'
+    summary: This Amendment increases the cost-sharing imposed for non-emergency use of a hospital’s emergency department
+      from $6 to $8, in accordance with the 2022 Colorado General Assembly Long Bill (House Bill 22-1329).
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-22-0007-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-22-0007: Approval Document (approved September 9, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-22-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-22-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0007
+    cms_node_id: '140481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140481
+    approval_date: '2022-09-09'
+    effective_date: '2022-07-01'
+    summary: The group will cover individuals with household income up to 260 percent of the federal poverty level (FPL),
+      the state’s current income standard for pregnant women in its Children’s Health Insurance Program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-22-0001-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-22-0001: Approval Document (approved June 16, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-22-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0001
+    cms_node_id: '137091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137091
+    approval_date: '2022-06-16'
+    effective_date: '2022-01-01'
+    summary: This Amendment applies a prudent layperson standard for cost-sharing imposed for nonemergency use of a hospital’s
+      emergency department.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-22-0010-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-22-0010: Approval Document (approved June 7, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-22-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-22-0010
+    cms_node_id: '139221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139221
+    approval_date: '2022-06-07'
+    effective_date: '2022-07-01'
+    summary: Added the “Work Incentives” eligibility group to the State Plan, in accordance with the Colorado Senate Bill
+      20-033.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-21-0046-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-21-0046: Approval Document (approved March 8, 2022, effective December 31, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CO-21-0046.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-12-31'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-21-0046/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-21-0046
+    cms_node_id: '133631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=133631
+    approval_date: '2022-03-08'
+    effective_date: '2021-12-31'
+    summary: This Amendment complies with an August 27, 2021, Center Information Bulletin that assist States in ensuring that
+      their Medicaid State Plans complied with Third Party Liability (TPL) requirements reflected in current law.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-21-0043-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-21-0043: Approval Document (approved December 15, 2021, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/CO-21-0043
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-21-0043/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-21-0043
+    cms_node_id: '128796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128796
+    approval_date: '2021-12-15'
+    effective_date: '2020-03-01'
+    summary: This amendment proposes to implement temporary policies, which are different from those policies and procedures
+      otherwise applied under your Medicaid state plan, during the period of the Presidential and Secretarial emergency declarations
+      related to the COVID- 19 outbreak (or any renewals thereof).
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-20-0010-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-20-0010: Approval Document (approved April 21, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-20-0010
+    cms_node_id: '97721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97721
+    approval_date: '2020-04-21'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to cover the new optional group for COVID testing, and waive cost-sharing for testing services,
+      testing-related services, and treatments for COVID-19.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-19-008-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-19-008: Approval Document (approved June 3, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-19-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-19-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-19-008
+    cms_node_id: '6116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6116
+    approval_date: '2019-06-03'
+    effective_date: '2019-07-01'
+    summary: Revises the methods and standards for payment rates of outpatient hospital services.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-19-0001-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-19-0001: Approval Document (approved February 28, 2019, effective February 12, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-19-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-02-12'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-19-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-19-0001
+    cms_node_id: '7061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7061
+    approval_date: '2019-02-28'
+    effective_date: '2019-02-12'
+    summary: Authorizes the closure of the 191 S(i) State Plan Benefits.
+    topics:
+    - Program Administration
+    - State Plan Factsheet
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-18-0031-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-18-0031: Approval Document (approved October 4, 2018, effective September 6, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-18-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-09-06'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-18-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-18-0031
+    cms_node_id: '8851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=8851
+    approval_date: '2018-10-04'
+    effective_date: '2018-09-06'
+    summary: This removes from the state plan the Accountable Care Collaborative (ACC) and ACC Prime payment reform pilot
+      program.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-16-0013-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-16-0013: Approval Document (approved March 10, 2017, effective October 30, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-16-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-30'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-16-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-16-0013
+    cms_node_id: '16291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16291
+    approval_date: '2017-03-10'
+    effective_date: '2016-10-30'
+    summary: This Amendment amends the income methodology provisions under the Medicaid Buy-In for Working Adults with Disabilities
+      program to disregard the income of the applicant's spouse for the purposes of determining eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-15-0035-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-15-0035: Approval Document (approved March 31, 2016, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-15-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-15-0035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-15-0035
+    cms_node_id: '20016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20016
+    approval_date: '2016-03-31'
+    effective_date: '2015-07-01'
+    summary: Provides Medicaid coverage to all lawfully present children who are otherwise eligible for Medicaid, up to age
+      of 19.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-051-mm-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-051-MM: Approval Document (approved July 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-051-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-051-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-051-MM
+    cms_node_id: '34811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34811
+    approval_date: '2014-07-21'
+    effective_date: '2014-01-01'
+    summary: Offers Medicaid Coverage for Individuals Determined Presumptively Eligible by a Qualified Hospital.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-050-mm-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-050-MM: Approval Document (approved May 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-050-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-050-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-050-MM
+    cms_node_id: '36821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36821
+    approval_date: '2014-05-20'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-0045-mm1-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-0045-MM1: Approval Document (approved December 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-0045-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-0045-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-0045-MM1
+    cms_node_id: '39766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39766
+    approval_date: '2013-12-18'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Mandatory and Optional Eligibility Group Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-046-mm-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-046-MM: Approval Document (approved December 10, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-046-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-046-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-046-MM
+    cms_node_id: '39806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39806
+    approval_date: '2013-12-10'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-047-mm-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-047-MM: Approval Document (approved October 29, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-047-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-047-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-047-MM
+    cms_node_id: '39906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39906
+    approval_date: '2013-10-29'
+    effective_date: '2014-01-01'
+    summary: Implements New Provision for MAGI Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-028-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-028: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-028-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-028
+    cms_node_id: '44596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44596
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Rate increase for Targeted Case Management for outpatient substance abuse treatment services.
+    topics: &id002
+    - Premiums
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-028-attachment
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-028: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-028-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-028/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CO-13-028
+    cms_node_id: '44596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44596
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Rate increase for Targeted Case Management for outpatient substance abuse treatment services.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-028-form-cms-179
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-028: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-028-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-028/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CO-13-028
+    cms_node_id: '44596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44596
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Rate increase for Targeted Case Management for outpatient substance abuse treatment services.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-027-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-027: Approval Document (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-027-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-027
+    cms_node_id: '44606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44606
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Rate increase for Outpatient Substance Abuse Treatment.
+    topics: &id003
+    - Premiums
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-027-attachment
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-027: Attachment (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-027-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-027/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CO-13-027
+    cms_node_id: '44606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44606
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Rate increase for Outpatient Substance Abuse Treatment.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-027-form-cms-179
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-027: Form CMS-179 (approved September 23, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-027-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-027/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CO-13-027
+    cms_node_id: '44606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44606
+    approval_date: '2013-09-23'
+    effective_date: '2013-07-01'
+    summary: Rate increase for Outpatient Substance Abuse Treatment.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-001-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-001: Approval Document (approved March 27, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-001-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-13-001
+    cms_node_id: '47556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47556
+    approval_date: '2013-03-27'
+    effective_date: '2013-01-01'
+    summary: Applies a 33% disregard of the Federal Poverty Level to children age 6 and older, making the income 133% for
+      this population.
+    topics: &id004
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-001-attachment
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-001: Attachment (approved March 27, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-001-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-001/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CO-13-001
+    cms_node_id: '47556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47556
+    approval_date: '2013-03-27'
+    effective_date: '2013-01-01'
+    summary: Applies a 33% disregard of the Federal Poverty Level to children age 6 and older, making the income 133% for
+      this population.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-co-cms-medicaid-state-plan-spa-co-13-001-form-cms-179
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-13-001: Form CMS-179 (approved March 27, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-13-001-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-13-001/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CO-13-001
+    cms_node_id: '47556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47556
+    approval_date: '2013-03-27'
+    effective_date: '2013-01-01'
+    summary: Applies a 33% disregard of the Federal Poverty Level to children age 6 and older, making the income 133% for
+      this population.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-co-cms-medicaid-state-plan-spa-co-11-051-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-11-051: Approval Document (approved March 23, 2012, effective November 14, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-11-051-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-11-14'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-11-051/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-11-051
+    cms_node_id: '24576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24576
+    approval_date: '2012-03-23'
+    effective_date: '2012-11-14'
+    summary: This SPA implements a simplified process for clients to apply for Medicaid using express lane eligibility.
+    topics: &id005
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-11-051-attachment
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-11-051: Attachment (approved March 23, 2012, effective November 14, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-11-051-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-11-14'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-11-051/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CO-11-051
+    cms_node_id: '24576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24576
+    approval_date: '2012-03-23'
+    effective_date: '2012-11-14'
+    summary: This SPA implements a simplified process for clients to apply for Medicaid using express lane eligibility.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-co-cms-medicaid-state-plan-spa-co-11-051-form-cms-179
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-11-051: Form CMS-179 (approved March 23, 2012, effective November 14, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-11-051-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-11-14'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-11-051/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CO-11-051
+    cms_node_id: '24576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24576
+    approval_date: '2012-03-23'
+    effective_date: '2012-11-14'
+    summary: This SPA implements a simplified process for clients to apply for Medicaid using express lane eligibility.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-co-cms-medicaid-state-plan-spa-co-12-005-approval-document
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-12-005: Approval Document (approved March 22, 2012, effective March 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-12-005-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-12-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CO-12-005
+    cms_node_id: '24571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24571
+    approval_date: '2012-03-22'
+    effective_date: '2012-03-01'
+    summary: Add TWWIIA Basic Coverage Group as a new eligibility category
+    topics: &id006
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-co-cms-medicaid-state-plan-spa-co-12-005-attachment
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-12-005: Attachment (approved March 22, 2012, effective March 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-12-005-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-12-005/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: CO-12-005
+    cms_node_id: '24571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24571
+    approval_date: '2012-03-22'
+    effective_date: '2012-03-01'
+    summary: Add TWWIIA Basic Coverage Group as a new eligibility category
+    topics: *id006
+    link_label: Attachment
+- source_id: us-co-cms-medicaid-state-plan-spa-co-12-005-form-cms-179
+  jurisdiction: us-co
+  document_class: policy
+  title: 'Colorado Medicaid SPA CO-12-005: Form CMS-179 (approved March 22, 2012, effective March 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/CO/CO-12-005-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-01'
+  citation_path: us-co/policy/cms/medicaid-state-plan/spa/co-12-005/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Colorado
+    source_discovery_group: us-co/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: CO-12-005
+    cms_node_id: '24571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24571
+    approval_date: '2012-03-22'
+    effective_date: '2012-03-01'
+    summary: Add TWWIIA Basic Coverage Group as a new eligibility category
+    topics: *id006
+    link_label: Form CMS-179

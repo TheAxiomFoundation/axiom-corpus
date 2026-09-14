@@ -1,0 +1,158 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-dc-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-dc/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 3
+    index_records_total: 3
+- source_id: us-dc-cms-chip-state-plan-spa-dc-13-0010-approval-package
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia CHIP SPA DC-13-0010: Approval Package (approved January 27, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DC/DC-13-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/chip-state-plan/spa/dc-13-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-0010
+    cms_node_id: '2331'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2331
+    approval_date: '2014-01-27'
+    effective_date: '2014-01-01'
+    summary: Describes State Plan to Provide Coverage in a Separate CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-dc-cms-chip-state-plan-spa-dc-13-12-mc2-approval-package
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia CHIP SPA DC-13-12-MC2: Approval Package (approved October 9, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DC/DC-13-12-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-dc/policy/cms/chip-state-plan/spa/dc-13-12-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DC-13-12-MC2
+    cms_node_id: '2336'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2336
+    approval_date: '2013-10-09'
+    effective_date: '2014-01-01'
+    summary: Converts the District's Existing Income Eligibility Standards to Modified Income Adjusted Gross Income MAGI Equivalent
+      Standards, by Age Group, for Children Covered in Its Title XXI Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-dc-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia CHIP compiled state plan: Factsheet (approved March 15, 2007, effective February 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DC/DCCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-02-01'
+  citation_path: us-dc/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: DC
+    cms_node_id: '1381'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1381
+    approval_date: '2007-03-15'
+    effective_date: '2007-02-01'
+    summary: Current CHIP State Plan as amended by SPA 2 and Factsheet as of 08-24-2009.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-dc-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-dc
+  document_class: policy
+  title: 'District of Columbia CHIP compiled state plan: Current State Plan (approved March 15, 2007, effective February 1,
+    2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DC/DCCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-02-01'
+  citation_path: us-dc/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: District of Columbia
+    source_discovery_group: us-dc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: DC
+    cms_node_id: '1381'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1381
+    approval_date: '2007-03-15'
+    effective_date: '2007-02-01'
+    summary: Current CHIP State Plan as amended by SPA 2 and Factsheet as of 08-24-2009.
+    topics: *id002
+    link_label: Current State Plan
