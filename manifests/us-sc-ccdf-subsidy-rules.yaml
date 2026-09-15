@@ -1,0 +1,31 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-sc-dss-child-care-scholarship-policy-manual-vol-39
+  jurisdiction: us-sc
+  document_class: manual
+  title: SC Child Care Scholarship Program Policy Manual Vol. 39
+  source_url: https://www.scchildcare.org/media/ib0bkc0n/2026manualrevisionfinal.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-02-09'
+  citation_path: us-sc/manual/dss/child-care-scholarship-policy-manual
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Social Services, Division of Early Care and Education
+    document_subtype: agency_policy_manual
+    program: CCDF
+    state_program: SC Child Care Scholarship Program
+    federal_program: CCDF
+    manual_landing_page: https://www.scchildcare.org/resources/
+    source_discovery_group: us-sc/manual/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://www.scchildcare.org/resources/
+    closure_elements:
+    - ccdf-s29
+    source_last_modified: '2026-02-06'
+    extraction_granularity: pdf_page
+    official_listing_title: SC Child Care Scholarship Program Policy Manual Vol. 39
+    manual_volume: 039
+    expression_date_note: page 1 prints 'Volume 039 - Revised 02/09/2026'
+    extraction_note: current volume (39) of the scholarship policy manual; volumes 36-38 stay listed as superseded
+    not_taken: DSS manuals page 'SC Voucher Program Policy Manual' (https://dss.sc.gov/media/2xtfv2xc/voucher-policy-manual-vol-28-color.pdf)
+      is Volume 028 dated 06/01/2018 of the program's former name (SC Voucher); superseded by this manual, not taken

@@ -586,6 +586,38 @@ RATE_PAGES_REPORTS_ONLY = {
 }
 
 
+# Wave 5 (2026-09-15, needs-closure-2026-09-14 ccdf-s30): the 13 EXTRACTABLE rate-schedule cells were re-read
+# one hop past the Lead Agency index page. Four states post the operative schedules (MS, UT, VT, WI: WI was a
+# REVIEW cell); the other ten pages and their program sub-pages still post only survey reports or no schedule.
+WAVE5_AS_OF = "2026-09-15"
+RATE_SCHEDULES_WAVE5: dict[str, dict] = {
+    "ms": {"index": "https://www.mdhs.ms.gov/eccd/parents/pay/", "agency": "Mississippi Department of Human Services, Division of Early Childhood Care and Development (Child Care Payment Program)", "docs": [
+        ("ccpp-copayment-fee-scale-2021-11-01", "https://www.mdhs.ms.gov/wp-content/uploads/2021/11/Copay-Table-Update-11_01_21.pdf", "Child Care Payment Program Family Co-Pay Fee Scale (Table 1), effective November 1, 2021", "2021-11-01", "pdf", {"note": "linked as 'Co-payment Fee Scale' from the ECCD Child Care Co-Payments page (one hop from the Reports and Archives index); the current schedule the page presents"})]},
+    "ut": {"index": "https://jobs.utah.gov/occ/provider/subsidy.html", "agency": "Utah Department of Workforce Services, Office of Child Care", "docs": [
+        ("income-eligibility-and-copayments-2025-10-01", "https://jobs.utah.gov/occ/provider/table1025.pdf", "Child Care Income Eligibility and Co-Payment Table (Table 4), effective October 1, 2025", "2025-10-01", "pdf", {}),
+        ("income-eligibility-and-copayments-2026-10-01", "https://jobs.utah.gov/occ/provider/table1026.pdf", "Child Care Income Eligibility and Co-Payment Table (Table 4), effective October 1, 2026", "2026-10-01", "pdf", {"note": "posted 2026-08-28 as the forthcoming table"}),
+        ("maximum-monthly-subsidy-payments-2024-10-01", "https://jobs.utah.gov/occ/provider/table30824.pdf", "Maximum Monthly Child Care Payments Based on Monthly Local Market Rates (Table 3), effective October 1, 2024", "2024-10-01", "pdf", {})]},
+    "vt": {"index": "https://dcf.vermont.gov/cdd/providers/care/ccfap", "agency": "Vermont Department for Children and Families, Child Development Division (CCFAP)", "docs": [
+        ("ccfap-state-rates-2025-07-13", "https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CDD-Guidance-CCFAP-Capped-Rates.pdf", "Child Care Financial Assistance State Rates, effective July 13, 2025", "2025-07-13", "pdf", {"note": "linked as 'Revised State Rates' from the CCFAP For Providers page"}),
+        ("ccfap-income-guidelines-2025-03-23", "https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CCFAP-Income-Guidelines.pdf", "Child Care Financial Assistance Income Guidelines (family share by income and household size), effective March 23, 2025", "2025-03-23", "pdf", {"note": "linked from the CCFAP benefits page https://dcf.vermont.gov/benefits/ccfap"})]},
+    "wi": {"index": "https://dcf.wisconsin.gov/wishares/maxrates", "agency": "Wisconsin Department of Children and Families (Wisconsin Shares Child Care Subsidy)", "docs": [
+        ("wisconsin-shares-maximum-rates-2025-10-01", "https://dcf.wisconsin.gov/files/wishares/pdf/max-rates-statewide.pdf", "2025 Wisconsin Shares Child Care Subsidy County and Tribal Maximum Rates, effective October 1, 2025", "2025-10-01", "pdf", {}),
+        ("wisconsin-shares-copayment-schedule-2026-02-01", "https://dcf.wisconsin.gov/files/wishares/pdf/wishares-copay-schedule.pdf", "Wisconsin Shares Copayment Schedule, effective February 1, 2026", "2026-02-01", "pdf", {})]},
+}
+RATE_PAGES_REVIEWED_WAVE5 = {
+    "co": "cdec.colorado.gov/resources/state-plans answers HTTP 403 (CloudFront 'request could not be satisfied') to the plain client, the block the 2026-09-10 retry note recorded; no impersonation is documented for the host",
+    "ct": "the OEC CCDF page lists the 2024/2022/2018 market rate survey reports and the Care 4 Kids overview page lists no rate or fee document; no schedule",
+    "ky": "the DCC page lists the KICCS provider portal and market rate surveys; no rate or copay schedule linked",
+    "la": "the LDOE policy guidance page lists the 2017/2020/2023 market rate surveys; the CCAP Providers page links the 2018 CCAP Provider Guide only; no schedule",
+    "mn": "dcyf.mn.gov/child-care-and-development-fund answered the plain client (HTTP 200) but lists the plan and QPR only; no rate or copay schedule linked",
+    "nj": "childcarenj.gov answers HTTP 403 (Cloudflare 'Attention Required') to the plain client, the block the 2026-09-10 retry note recorded",
+    "or": "the DELC State Plans page lists the 2022 alternate rate-setting report and the advisory-committee application only; no ERDC rate or copay schedule linked",
+    "pa": "the DHS Early Learning and Child Care page and its Child Care Works page link the 2025 MRS reports, the application and the eligibility regulations; no maximum child care allowance or copay schedule linked",
+    "ri": "the DHS State Plans page lists CCDF plans, amendments and the SSI/overpayment pages only; no schedule",
+    "va": "www.childcare.virginia.gov answered HTTP 503 to the plain client on 2026-09-15 (AkamaiGHost 403 on 2026-09-10); not re-probed with impersonation",
+}
+
+
 def _followup_metadata(jur: str, *, subtype: str, index: str, discovered: str) -> dict:
     return {
         "primary_source": True,
@@ -707,9 +739,12 @@ def build_amendments(queue: dict) -> int:
     return written
 
 
-def build_rate_schedules(queue: dict) -> int:
+def build_rate_schedules(queue: dict, *, as_of: str = FOLLOWUP_AS_OF) -> int:
+    specs = RATE_SCHEDULES if as_of == FOLLOWUP_AS_OF else RATE_SCHEDULES_WAVE5
+    reviewed = RATE_PAGES_REPORTS_ONLY if as_of == FOLLOWUP_AS_OF else RATE_PAGES_REVIEWED_WAVE5
+    rate_version = f"{as_of}-ccdf-rate-schedules"
     written = 0
-    for code, spec in RATE_SCHEDULES.items():
+    for code, spec in specs.items():
         jur = f"us-{code}"
         name = next(n for n, c in CODES.items() if c == code)
         docs = []
@@ -721,7 +756,7 @@ def build_rate_schedules(queue: dict) -> int:
                 "title": f"{name}: {title}",
                 "source_url": url,
                 "source_format": fmt,
-                "source_as_of": FOLLOWUP_AS_OF,
+                "source_as_of": as_of,
                 "expression_date": effective,
                 "citation_path": f"{jur}/policy/ccdf/rate-schedules/{slug}",
             }
@@ -740,7 +775,7 @@ def build_rate_schedules(queue: dict) -> int:
             if extra.get("note"):
                 doc["metadata"]["source_note"] = extra["note"]
             docs.append(doc)
-        manifest = {"version": RATE_VERSION, "documents": docs}
+        manifest = {"version": rate_version, "documents": docs}
         stem = f"{jur}-ccdf-rate-schedules"
         (ROOT / "manifests" / f"{stem}.yaml").write_text(yaml.safe_dump(manifest, sort_keys=False, allow_unicode=True, width=120))
         written += 1
@@ -750,22 +785,22 @@ def build_rate_schedules(queue: dict) -> int:
             "index_url": spec["index"],
             "primary_source_urls": [u for _s, u, _t, _e, _f, _x in spec["docs"]],
             "target_manifest": f"manifests/{stem}.yaml",
-            "target_scope": {"jurisdiction": jur, "document_class": "policy", "version": RATE_VERSION},
+            "target_scope": {"jurisdiction": jur, "document_class": "policy", "version": rate_version},
             "taken_count": len(docs),
-            "notes": f"Current-year rate and copay schedules posted by the Lead Agency, taken {FOLLOWUP_AS_OF} (closure ccdf-s30): " + "; ".join(t for _s, _u, t, _e, _f, _x in spec["docs"]) + ".",
+            "notes": f"Current-year rate and copay schedules posted by the Lead Agency, taken {as_of} (closure ccdf-s30): " + "; ".join(t for _s, _u, t, _e, _f, _x in spec["docs"]) + ".",
         })
-    for code, reason in RATE_PAGES_REPORTS_ONLY.items():
+    for code, reason in reviewed.items():
         attach_family(queue, f"us-{code}", {
             "family": "ccdf_rate_and_copay_schedules",
             "queue_status": "needs_review",
             "target_manifest": None,
             "taken_count": 0,
-            "notes": f"Reviewed {FOLLOWUP_AS_OF}: {reason}. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.",
+            "notes": f"Reviewed {as_of}: {reason}. Market rate survey and cost analysis reports are the basis for rates, not the operative schedule, and were not taken.",
         })
     return written
 
 
-def run_family(family: str) -> int:
+def run_family(family: str, *, as_of: str = FOLLOWUP_AS_OF) -> int:
     queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
     if family == "appendices":
@@ -779,7 +814,7 @@ def run_family(family: str) -> int:
     elif family == "amendments":
         written = build_amendments(queue)
     else:
-        written = build_rate_schedules(queue)
+        written = build_rate_schedules(queue, as_of=as_of)
     queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
     print(f"{family}: wrote {written} manifests; queue rows annotated under additional_families")
     return 0
@@ -793,9 +828,11 @@ def main() -> int:
     parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
                         help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
                              "queue rows (additional_families) instead of rebuilding the plan rows")
+    parser.add_argument("--as-of", default=FOLLOWUP_AS_OF, choices=[FOLLOWUP_AS_OF, WAVE5_AS_OF],
+                        help="rate-schedules only: which pass to build (2026-09-13 follow-up or 2026-09-15 wave 5)")
     args = parser.parse_args()
     if args.family:
-        return run_family(args.family)
+        return run_family(args.family, as_of=args.as_of)
     if args.only:
         print(f"queue {refresh_rows_only(args.only.split(','))}")
         return 0
