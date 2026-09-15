@@ -1,0 +1,43 @@
+{
+  "schema": "de-kindergeld-residence-followup-capture-audit.v1",
+  "version": "2026-09-15-de-kindergeld-residence-followup",
+  "scope": "Two complete official BFH decisions discovered by subject-matter search on AO §§8–9 and Kindergeld. Capture fidelity only; no independent BStBl membership, current legal disposition or executable coverage asserted.",
+  "runtime_manifest_sha256": "5f2b82f7f0da0bacd39423a6bdc217ce63488406b76ccd8c888a0c2623cbc420",
+  "public_manifest_sha256": "2f66eb7589b01e04f41b54d7fc06282abc7eefef1723b4ab8e8db1175c6d55ff",
+  "provisions_file": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-residence-followup.jsonl",
+  "provisions_sha256": "3bb5c25a905b9cd9b03c8a939d275686e825a847497a351c97f224f2d149855a",
+  "row_count": 4,
+  "source_file_count": 2,
+  "independent_review": {
+    "reviewer": "review_de_matcher",
+    "result": "Both complete PDFs, dates, identities and source/body hashes verified. The first decision four-column year table retains all values in reading order; original PDF retains layout.",
+    "repository_ingest": "Native repository artifacts byte-identical to reviewed external preflight."
+  },
+  "rows": [
+    {
+      "citation_path": "de/guidance/bfh-i-r-26-10-2011-06-22/document-1",
+      "source_sha256": "39ef8a072d378cfcb64cdcb8fb55b6bb7c7c148d5287be0a4fcb8f9160c87962",
+      "body_sha256": "30b3dfb5ff47187eeb43700768700a2eed5d6551d0187f1ea26c3996d423115d",
+      "body_length": 18621,
+      "expression_date": "2011-06-22",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-residence-followup/official-documents/bfh-i-r-26-10-2011-06-22.pdf",
+      "source_url": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201150571?type=1646225765",
+      "source_byte_count": 57079,
+      "pages": 5,
+      "nonwhitespace_conserved": true
+    },
+    {
+      "citation_path": "de/guidance/bfh-iii-r-6-20-2020-11-12/document-1",
+      "source_sha256": "eefa373989cf93c8fda6eba8f7f221fd100a94de718fb06edf1c33e890fc1b71",
+      "body_sha256": "30553445512989fa452ae8ed62a301be01fea63282e4a19ddde19ed850e7f7fd",
+      "body_length": 14139,
+      "expression_date": "2020-11-12",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-residence-followup/official-documents/bfh-iii-r-6-20-2020-11-12.pdf",
+      "source_url": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE202150057?type=1646225765",
+      "source_byte_count": 52170,
+      "pages": 4,
+      "nonwhitespace_conserved": true
+    }
+  ],
+  "visual_review": "All nine pages rendered and inspected in contact sheets; originals retained."
+}

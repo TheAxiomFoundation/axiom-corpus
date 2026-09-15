@@ -1,0 +1,60 @@
+{
+  "schema": "de-kindergeld-svev2025-capture-audit.v1",
+  "version": "2026-09-15-de-kindergeld-svev2025",
+  "scope": "Complete SvEV section 2 in its 2025 version and the complete original 2024 amendment. Native capture fidelity only; optional DA-KG A 19.6 valuation and executable coverage require separate rules.",
+  "runtime_manifest_sha256": "39f3b2522ddb81480de54366f401ad53185132e5651a5985b8cfc94bffe53bab",
+  "public_manifest_sha256": "9d73611b64c49c5608aa8eed7800fc98330ec018bde34b3943455a647c7b67e5",
+  "provisions_file": "data/corpus/provisions/de/regulation/2026-09-15-de-kindergeld-svev2025.jsonl",
+  "provisions_sha256": "2b2ce35347124e42906f2bdc34f9fe36ebc070b8ff39b8d18b0a42fb2e7fc4d8",
+  "row_count": 4,
+  "source_file_count": 2,
+  "independent_review": {
+    "reviewer": "review_de_matcher",
+    "result": "External native preflight fidelity and metadata reviewed; repository ingest must match these bytes before signing.",
+    "repository_ingest": "Native repository artifacts byte-identical to reviewed external preflight."
+  },
+  "rows": [
+    {
+      "citation_path": "de/regulation/svev/fassung-2025-01-01/2/inhalt",
+      "source_sha256": "91ddcf2c4983db211bbcae37a2cb122801abfdebae2b13c2af7f8c13a7a940bc",
+      "body_sha256": "ce7707590c8b75237be85084dadb8f74193e9cd11d8af26427932a3a18546c36",
+      "body_length": 3664,
+      "expression_date": "2025-01-01",
+      "source_file": "data/corpus/sources/de/regulation/2026-09-15-de-kindergeld-svev2025/official-documents/svev-fassung-2025-01-01-2.html",
+      "source_url": "https://amtliche-handbuecher.bundesfinanzministerium.de/lsth/2025/B-Anhaenge/Anhang-26/inhalt.html",
+      "source_byte_count": 820576,
+      "text_conservation": true
+    },
+    {
+      "citation_path": "de/regulation/bgbl-2024-i-394/svev-aenderung-15/document-1",
+      "source_sha256": "d4496aacf0d695bcf1f96dc8924d07f758af5b8a26edf3a0036fd452e8a30f11",
+      "body_sha256": "4a89b4cf057f0d4e0188d46c07919f0a0122c45dd507ff85f06ce1692c9c4fdf",
+      "body_length": 1654,
+      "expression_date": "2024-12-03",
+      "source_file": "data/corpus/sources/de/regulation/2026-09-15-de-kindergeld-svev2025/official-documents/svev-amendment-2024-394.pdf",
+      "source_url": "https://www.recht.bund.de/bgbl/1/2024/394/regelungstext.pdf?__blob=publicationFile&v=1",
+      "source_byte_count": 251280,
+      "text_conservation": true
+    }
+  ],
+  "html_editorial_note_handling": [
+    "21 § 2 Abs. 1 Satz 1 wurde durch Artikel 1 der Fünfzehnten Verordnung zur Änderung der Sozialversicherungsentgeltverordnung (Inkrafttreten 01.01.2025) geändert. 22 § 2 Abs. 1 Satz 2 Nr. 1, 2 und 3 wurde durch Artikel 1 der Fünfzehnten Verordnung zur Änderung der Sozialversicherungsentgeltverordnung (Inkrafttreten 01.01.2025) geändert.",
+    "31 § 2 Abs. 3 Satz 1 wurde durch Artikel 1 der Fünfzehnten Verordnung zur Änderung der Sozialversicherungsentgeltverordnung (Inkrafttreten 01.01.2025) geändert.",
+    "41 § 2 Abs. 4 Satz 2 wurde durch Artikel 1 der Fünfzehnten Verordnung zur Änderung der Sozialversicherungsentgeltverordnung (Inkrafttreten 01.01.2025) geändert."
+  ],
+  "conservation": {
+    "section2_norm_text_conserved": true,
+    "section3_and4_excluded": true,
+    "pdf_two_pages_conserved": true
+  },
+  "unusable_sources": [
+    {
+      "url": "https://lsth.bundesfinanzministerium.de/lsth/2025/B-Anhaenge/Anhang-26/inhalt.html",
+      "reason": "HTTP 200 Radware page loader, not legal text; excluded from corpus."
+    },
+    {
+      "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2024-12-10-steuerliche-behandlung-mahlzeiten-2025.pdf?__blob=publicationFile&v=5",
+      "reason": "HTTP 404; no BMF letter capture asserted."
+    }
+  ]
+}
