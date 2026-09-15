@@ -1,0 +1,25 @@
+version: 2026-09-15-medicaid-magi-verification-plan
+documents:
+- source_id: us-ia-cms-magi-verification-plan-iowa-verification-plan-template-final
+  jurisdiction: us-ia
+  document_class: policy
+  title: Iowa MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+  source_url: https://www.medicaid.gov/sites/default/files/2019-12/iowa-verification-plan-template-final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-ia/policy/cms/magi-verification-plan/iowa-verification-plan-template-final
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    document_subtype: magi_verification_plan_pdf
+    index_link_text: Iowa Eligibility Verification Plan
+    source_discovery_group: us-ia/policy/cms-magi-verification-plan
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); CMS verification-plan index https://www.medicaid.gov/medicaid/eligibility-policy/medicaid/chip-eligibility-verification-plans
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (index and PDF) on 2026-09-14; TLS verified,
+      no mirror
+    carries_elements: M-435-920 M-435-945 M-435-948 M-435-949 M-435-952 (closure schema plan_family)
