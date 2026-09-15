@@ -1,0 +1,71 @@
+version: '2026-09-15'
+documents:
+- source_id: us-ct-drs-ct-1040-ty2025
+  jurisdiction: us-ct
+  document_class: form
+  title: Form CT-1040 Connecticut Resident Income Tax Return (2025)
+  source_url: https://portal.ct.gov/-/media/drs/forms/2025/income/ct-1040_1225.pdf?rev=7235bf71d64740faa8fdcfe378795c6e&hash=DBEA2EB4DE5D794AF83365C6F47CB4BD
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ct/form/drs/ty2025/ct-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://portal.ct.gov/drs/drs-forms/current-year-forms/individual-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://portal.ct.gov/drs/drs-forms/current-year-forms/individual-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 4
+    first_page_first_line: Connecticut Resident Income Tax Return 2025
+- source_id: us-ct-drs-ct-1040-instructions-ty2025
+  jurisdiction: us-ct
+  document_class: form
+  title: 2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions (Rev. 12/25)
+  source_url: https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf?rev=d898db2e610641b9b3e6efe6f89c6fc2&hash=06D5D5DF44FBF63ABF90A972C507F9FE
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ct/form/drs/ty2025/ct-1040-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://portal.ct.gov/drs/drs-forms/current-year-forms/individual-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://portal.ct.gov/drs/drs-forms/current-year-forms/individual-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 28
+    first_page_first_line: Department of Revenue Services State of Connecticut (Rev. 12/25)
+- source_id: us-ct-drs-ct-1040-tcs-ty2025
+  jurisdiction: us-ct
+  document_class: form
+  title: Form CT-1040 TCS 2025 Tax Calculation Schedule
+  source_url: https://portal.ct.gov/-/media/drs/forms/2025/income/ct-1040-tcs_1225.pdf?rev=71831cc3f0ca480284b0aca2c0907f60&hash=286872E798AB942591726019D39BE336
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ct/form/drs/ty2025/ct-1040-tcs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://portal.ct.gov/drs/drs-forms/current-year-forms/calculators-and-tables
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://portal.ct.gov/drs/drs-forms/current-year-forms/calculators-and-tables
+      (read 2026-09-14)
+    page_count_at_research: 5
+    first_page_first_line: Form CT-1040 TCS
+    source_note: The 2025 Income Tax Tables PDF on the same page (2025-income-tax-tables.pdf, Microsoft Print To PDF) has
+      no text layer on any page and is not taken (no OCR).

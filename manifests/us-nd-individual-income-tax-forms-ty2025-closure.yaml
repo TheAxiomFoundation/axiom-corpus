@@ -1,0 +1,45 @@
+version: '2026-09-15'
+documents:
+- source_id: us-nd-otc-form-nd-1-ty2025
+  jurisdiction: us-nd
+  document_class: form
+  title: 2025 Form ND-1 Individual Income Tax Return
+  source_url: https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28702-form-nd-1-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-nd/form/otc/ty2025/form-nd-1
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.tax.nd.gov/forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.tax.nd.gov/forms (read 2026-09-14)
+    page_count_at_research: 2
+    first_page_first_line: INDIVIDUAL INCOME TAX RETURN
+- source_id: us-nd-otc-individual-income-tax-booklet-ty2025
+  jurisdiction: us-nd
+  document_class: form
+  title: 2025 North Dakota Individual Income Tax Booklet (Form ND-1 instructions and tables)
+  source_url: https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/2025-individual-income-tax-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-nd/form/otc/ty2025/individual-income-tax-booklet
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Office of State Tax Commissioner
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.tax.nd.gov/forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.tax.nd.gov/forms (read 2026-09-14)
+    page_count_at_research: 31
+    first_page_first_line: '2025'
