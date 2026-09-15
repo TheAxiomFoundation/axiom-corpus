@@ -2,10 +2,10 @@
   "schema": "de-kindergeld-priority-followup-capture-audit.v1",
   "version": "2026-09-15-de-kindergeld-priority-followup",
   "scope": "Four official originals, including three BFH decisions and the CURIA Trapkowski judgment; capture fidelity only. No BStBl membership, current legal disposition or executable coverage asserted.",
-  "runtime_manifest_sha256": "cc506ecaae02e9720cbac0a0f66e608816073153f89ba7162e7e404c94f19dcb",
-  "public_manifest_sha256": "326c73bff9ee1b3239cc0ec81af4a57ed4f209bf7f74b6021b298daff08c9105",
+  "runtime_manifest_sha256": "01542bb66f371b5880b2308b5ff18f4c440494f9d0bea58d31b854040bfb20e4",
+  "public_manifest_sha256": "ab1b2d8ad48895458b3a3825e16904e1cde7e50d11b8a0d60373cadcc8b39ede",
   "provisions_file": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-priority-followup.jsonl",
-  "provisions_sha256": "5cdabba3a80696fbbf90be361c07b22cb206a48ba1429727fa2a0221679807cf",
+  "provisions_sha256": "ede878d9909b89e1f0ae45b549d55129526d0158c32f3e3bca942d34dd99fbed",
   "row_count": 8,
   "source_file_count": 4,
   "pdf_page_count": 13,
@@ -61,13 +61,13 @@
       ]
     },
     {
-      "citation_path": "de/guidance/cjeu-c-378-14-2015-10-22/block-1",
+      "citation_path": "de/guidance/cjeu-c-378-14-2015-10-22/document-1",
       "source_url": "https://juris.curia.europa.eu/juris/document/document.jsf?docid=170306&doclang=DE",
       "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/cjeu-c-378-14-2015-10-22.html",
       "source_sha256": "ee2955a404a1d0cc04600afb1121f860986400ac3c358bd16c0886941ffa2c37",
       "source_byte_count": 42956,
-      "body_sha256": "0ad94542fb5ba5822abbac7537faed79129e0b4e211b74b8e2119b802601def9",
-      "body_character_count": 24881,
+      "body_sha256": "299754b3f91461bf530791d7bfb0d5b48a6647d74625db2bd69693eafa0a9e16",
+      "body_character_count": 24771,
       "source_body_matches": true,
       "pdf_page_count": null,
       "expression_date": "2015-10-22",
@@ -75,5 +75,6 @@
         "de-kg-suppl-149"
       ]
     }
-  ]
+  ],
+  "citation_note": "The HTML anchor-range capture assigns the complete judgment the stable document-1 suffix. No new irregular block-N path is added; the citation grammar ratchet is unchanged."
 }

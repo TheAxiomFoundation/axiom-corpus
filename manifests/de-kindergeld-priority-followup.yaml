@@ -99,8 +99,11 @@
       "expression_date": "2015-10-22",
       "language": "de",
       "extraction": {
-        "html_content_selector": "#document_content",
-        "segmentation": "single_block"
+        "html_content_selector": "#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": "#document_content",
+        "citation_suffix": "document-1",
+        "section_heading": "Urteil des Gerichtshofs vom 22. Oktober 2015, C-378/14, Trapkowski"
       },
       "metadata": {
         "primary_source": true,
