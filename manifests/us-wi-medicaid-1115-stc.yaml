@@ -1,0 +1,60 @@
+version: 2026-09-15-medicaid-1115-stc
+documents:
+- source_id: us-wi-cms-1115-stc-badgercare-reform
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin section 1115 demonstration "Wisconsin BadgerCare Reform": CMS approval document and special terms and
+    conditions (2025-05-12)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/wi-badgercare-reform-demo-approval-05152025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-05-12'
+  citation_path: us-wi/policy/cms/1115-stc/badgercare-reform
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: Wisconsin BadgerCare Reform
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83631
+    index_link_text: Demonstration Approval
+    approval_date: '2025-05-12'
+    carries: 'current STCs (2025-05-12 approval): childless adults up to 100% FPL, premiums, the demonstration''s eligibility
+      and enrollment terms; a 2024-12-23 expansion amendment is pending'
+    source_discovery_group: us-wi/policy/cms-1115-stc
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-09-14;
+      TLS verified, no mirror
+    carries_elements: 'M-ST-1315 (closure schema: CMS-approved 1115 demonstration special terms and conditions)'
+- source_id: us-wi-cms-1115-stc-seniorcare
+  jurisdiction: us-wi
+  document_class: policy
+  title: 'Wisconsin section 1115 demonstration "Wisconsin SeniorCare": CMS approval document and special terms and conditions
+    (2022-06-07)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/wi-senior-care-ca2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2022-06-07'
+  citation_path: us-wi/policy/cms/1115-stc/seniorcare
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wisconsin
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: Wisconsin SeniorCare
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/83576
+    index_link_text: COVID-19 Amendment Approval
+    approval_date: '2022-06-07'
+    carries: 'current STCs (COVID-19 amendment approval, re-issued 2022-06-07 after the 2022-06-06 demonstration approval):
+      prescription-drug coverage eligibility for residents 65+ by income band'
+    source_discovery_group: us-wi/policy/cms-1115-stc
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-09-14;
+      TLS verified, no mirror
+    carries_elements: 'M-ST-1315 (closure schema: CMS-approved 1115 demonstration special terms and conditions)'
