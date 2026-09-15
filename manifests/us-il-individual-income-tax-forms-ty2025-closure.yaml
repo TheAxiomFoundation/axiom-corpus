@@ -1,0 +1,49 @@
+version: '2026-09-15'
+documents:
+- source_id: us-il-idor-form-il-1040-ty2025
+  jurisdiction: us-il
+  document_class: form
+  title: 2025 Form IL-1040 Individual Income Tax Return
+  source_url: https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-il/form/idor/ty2025/form-il-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.illinois.gov/forms/incometax/currentyear/il-1040.html
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.illinois.gov/forms/incometax/currentyear/il-1040.html
+      (read 2026-09-14)
+    page_count_at_research: 2
+    first_page_first_line: Illinois Department of Revenue 2025 Form IL-1040 Individual Income Tax Return
+    source_note: The currentyear path is not year-stamped; the 2025 edition was taken on 2026-09-15.
+- source_id: us-il-idor-form-il-1040-instructions-ty2025
+  jurisdiction: us-il
+  document_class: form
+  title: 2025 Form IL-1040 Instructions
+  source_url: https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-il/form/idor/ty2025/form-il-1040-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.illinois.gov/forms/incometax/currentyear/il-1040.html
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.illinois.gov/forms/incometax/currentyear/il-1040.html
+      (read 2026-09-14)
+    page_count_at_research: 19
+    first_page_first_line: Illinois Department of Revenue 2025 Form IL-1040 Instructions
+    source_note: Illinois has a flat 4.95% rate and publishes no tax table.
