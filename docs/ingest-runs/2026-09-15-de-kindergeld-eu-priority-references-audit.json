@@ -1,0 +1,122 @@
+{
+  "schema": "de-kindergeld-eu-priority-references-capture-audit.v1",
+  "version": "2026-09-15-de-kindergeld-eu-priority-references",
+  "scope": "Seven complete German EU judgments, including one joined judgment. Capture fidelity only; no current legal disposition, BStBl II membership or executable coverage asserted.",
+  "runtime_manifest_sha256": "ff446dd67cf0fdd091c1253d4153cca528182ce033cbdef2e45ffdd47275b5a3",
+  "public_manifest_sha256": "04365f19772083377d9247c19502e0b0c2bb803d1307ee7a805f8f3b70b404ea",
+  "provisions_file": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-eu-priority-references.jsonl",
+  "provisions_sha256": "f5db3cbd0a173a36d38555970ba4c332803706a2fcd3aabb8c9d6cf744f10a6e",
+  "row_count": 14,
+  "source_file_count": 7,
+  "independent_review": {
+    "reviewer": "review_de_matcher",
+    "result": "Original bytes, identities, dates and complete non-whitespace text conservation verified; ingest exactly matches reviewed preflight."
+  },
+  "rows": [
+    {
+      "citation_path": "de/guidance/cjeu-c-85-99-2001-03-15/document-1",
+      "source_sha256": "1f8ffd55e45919a86f6fe653e3de1bdee0c0bcdd28e99f4a5cf028b3137992ba",
+      "body_sha256": "e8a22cdbb662de32005f69c2046b5a7747bc54c166bdf91f698d9723c7d021c8",
+      "body_length": 27143,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "2001-03-15",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-85-99-2001-03-15.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A61999CJ0085",
+      "source_byte_count": 166012,
+      "discovery_member_ids": [
+        "de-kg-suppl-160"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-177-12-2013-10-24/document-1",
+      "source_sha256": "bad324ba4b7f2ce216b7f43118dc9ffa69788cd0b74e87d366e6e478a1652170",
+      "body_sha256": "addc6e9e27554e0374b0a3ccb535386a63067273449a9861fb5d8a5fc4282541",
+      "body_length": 28223,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "2013-10-24",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-177-12-2013-10-24.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62012CJ0177",
+      "source_byte_count": 198492,
+      "discovery_member_ids": [
+        "de-kg-suppl-161"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-363-08-2009-11-26/document-1",
+      "source_sha256": "aebbc584b2e5c0b93dfc8b711e11ba1e5a64b3b11ff070e7e94a397b02d11a4f",
+      "body_sha256": "5a93fbd6ee9a9956027b557292143bff0995b88ce5e775a4c1ac91a3b72d3e5a",
+      "body_length": 22844,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "2009-11-26",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-363-08-2009-11-26.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62008CJ0363",
+      "source_byte_count": 167257,
+      "discovery_member_ids": [
+        "de-kg-suppl-162"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-16-09-2010-10-14/document-1",
+      "source_sha256": "eec627c3aabcb6f84666ca666aba0b24937b9e0e073a09c624e7157947f1102e",
+      "body_sha256": "9cdae5f58bba3f2e04a7cd075e8160988adacaca9865868dbcfb4ec7f5edd326",
+      "body_length": 42237,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "2010-10-14",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-16-09-2010-10-14.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62009CJ0016",
+      "source_byte_count": 205069,
+      "discovery_member_ids": [
+        "de-kg-suppl-163"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-245-94-c-312-94-1996-10-10/document-1",
+      "source_sha256": "514fbf97756a101f2425c85388909456733c59ed2ed338b3ba8f83bca4e8b890",
+      "body_sha256": "20b0efa8e3d7ce3cc6b56ff06023a0b650164bfc13e1166ab36bcd340f9d80c2",
+      "body_length": 28166,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "1996-10-10",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-245-94-c-312-94-1996-10-10.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A61994CJ0245",
+      "source_byte_count": 166834,
+      "discovery_member_ids": [
+        "de-kg-suppl-164"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-543-03-2005-06-07/document-1",
+      "source_sha256": "4f575350ed8d0ebd35b713e7ac360b327150ab9aad835b326b515b497fed8bf5",
+      "body_sha256": "7fd6c2fb11ca2a0c9b6cab307ec76917b7470bdb6850a530c0d4e47196f3582a",
+      "body_length": 40466,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "2005-06-07",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-543-03-2005-06-07.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62003CJ0543",
+      "source_byte_count": 198410,
+      "discovery_member_ids": [
+        "de-kg-suppl-165"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-153-03-2005-07-07/document-1",
+      "source_sha256": "1c4a0a6cd76c508ed0e99b0fe3d472c6497228e8128f345dae2b105024d72acc",
+      "body_sha256": "6c28f187944850865f5e1435cbcfb2c694edb460c22093a42ad653875866d3dc",
+      "body_length": 26241,
+      "text_conserved": true,
+      "only_removed_navigation": "one Top link",
+      "expression_date": "2005-07-07",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-153-03-2005-07-07.html",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62003CJ0153",
+      "source_byte_count": 177231,
+      "discovery_member_ids": [
+        "de-kg-suppl-166"
+      ]
+    }
+  ]
+}
