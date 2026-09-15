@@ -9,14 +9,14 @@ Branch `discovery/ingest-w5-medicaid-chip` cut from `main` 9b0641afc in the spar
 `~/axiom-corpus-worktrees/w5-medicaid-chip` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
 checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`), artifacts uncommitted. Timing: started
 2026-09-14T23:59Z (19:59 EDT), reading pass, probes and generators to 00:20Z, extractions 00:20Z-00:24Z, decisions file
-and this note to about 00:45Z; about 50 minutes of agent time, well inside the four-hour box. Disk: `df -h /` 26 GB free
-at the start, 28 GB at the end (the three new families hold 156 MB of source files under `data/corpus/sources`; the stop
+and this note to about 00:45Z, then the income-table pass to about 01:00Z; about 65 minutes of agent time, well inside the four-hour box. Disk: `df -h /` 26 GB free
+at the start, 28 GB at the end (the four new families hold 157 MB of source files under `data/corpus/sources`; the stop
 line of 5 GB was never approached; checked before each extraction loop and by the loops themselves).
 Impact analysis: not run (the GitNexus MCP tools are not available in this session). No library function under `src/` was
 modified; the code changes are two new generator scripts and one batch added to an existing generator (below).
 
-Outputs: this note; `docs/ingest-runs/2026-09-15-medicaid-chip-decisions.csv` (513 rows); 59 new manifests; the
-Medicaid agent queue; three generators. Nothing under `data/corpus/` is committed.
+Outputs: this note; `docs/ingest-runs/2026-09-15-medicaid-chip-decisions.csv` (513 rows); 63 new manifests; the
+Medicaid and CHIP agent queues; four generators. Nothing under `data/corpus/` is committed.
 
 ## Summary
 
@@ -27,7 +27,7 @@ Medicaid agent queue; three generators. Nothing under `data/corpus/` is committe
 | Wyoming Eligibility Online Manual | `us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure` | 1 (121 documents) | 458 | 362,513 | 53 WY EXTRACTABLE cells: 17 PRESENT, 5 REVIEW, 30 ABSENT (manual held, no hit), 1 OUTREACH (image-only tables) |
 | Held-text check of the 435.904/.908/.918/.912/.1200 cells | existing scopes | - | - | - | 34 ALREADY-HELD (check-pattern misses), 82 ABSENT with the carrying page named |
 | Reading pass (Part B) | existing scopes | - | - | - | 246 cells read across 41 elements: 83 PRESENT, 163 ABSENT-IN-CITED; 3 elements PATTERN-CONFIRMED, 18 ABSENT-IN-CITED, 20 mixed (stay REVIEW) |
-| Income and premium tables | - | - | - | - | 16 cells not attempted (WY's Table 1 is in the EOM scope: PRESENT) |
+| Annual income / premium tables | `us-xx/{manual,policy}/2026-09-15-medicaid-income-table-2026` (MN ID), `us-xx/policy/2026-09-15-chip-income-premium-table-2026` (SC ME) | 4 | 110 | 47,182 | 16 cells: 5 PRESENT (MN both programs, ID, SC, ME) + WY Table 1 in the EOM scope, 1 ALREADY-HELD (NM 8.291.430 NMAC), 1 OUTREACH (FL 403), 9 EXTRACTABLE with the probe recorded (AZ HI KS OH NH RI AK) |
 
 Every new scope reports coverage `complete: true`, 0 missing, 0 extra, 0 duplicate citation paths.
 
@@ -51,9 +51,18 @@ Every new scope reports coverage `complete: true`, 0 missing, 0 extra, 0 duplica
   an image inside that column with no text: inventoried as `eligibility_table_image_only`, not taken, OUTREACH (a text
   or spreadsheet export from WDH). Fourteen Tables are text (Table 1 FPL Standards effective 2026-04-01, Table 1A ABD
   income standards, ...).
-- No other publisher was contacted. The 16 income/premium-table cells (HI ID KS MN OH for Medicaid; AK AZ FL HI ME MN
-  NH NM OH RI SC for CHIP) were not attempted: each needs its own publisher research and the reading pass was the
-  priority; their queue notes still name the located index.
+- Income / premium tables, one probe per publisher (00:35Z-00:50Z, plain client): `hcopub.dhs.state.mn.us` EPM home
+  and Appendix F HTTP 200 (the one EPM topic the 09-10 scope left untaken); `healthandwelfare.idaho.gov` apply page
+  and "Medicaid Program Income Limits" HTTP 200 (13 tables, effective January 2026); `www.scdhhs.gov` "Program
+  Eligibility and Income Limits" HTTP 200 (12 tables, effective 03/01/2026; the `/eligibility-groups` lead is 404);
+  `www.maine.gov` OFI health-care-assistance page HTTP 200 linking the 2026 MaineCare Eligibility Guidelines chart PDF
+  (150,684 bytes, text layer; the `sos/cec/rules` lead is 404); `eohhs.ri.gov` FPL page HTTP 200 (the 2026 100% FPL
+  table only, not the RIte Care bands); `www.kancare.ks.gov` manuals and eligibility pages HTTP 200, no chart linked;
+  `medquest.hawaii.gov` home HTTP 200, no chart linked (eligibility page 404); `gc.nh.gov` He-W 800 HTTP 200, no
+  premium table; `www.hca.nm.gov` eligibility page HTTP 200, no table (but 8.291.430 NMAC in the held NM scope carries
+  the FPL table); `www.azahcccs.gov` KidsCare page HTTP 200 with its income-limit and premium sections rendered
+  client-side (no text served); `medicaid.ohio.gov` HTTP 404 (5,279 bytes) to the plain client, as batch 2 recorded
+  (200 only to impersonation, not used here); `www.floridakidcare.org` HTTP 403 (5,626 bytes): blocked, OUTREACH.
 - No TLS chain was broken; nothing added to `data/certs/`; `REQUESTS_CA_BUNDLE` pointed at certifi only.
 
 ## Part A1 - MAGI-based verification plans (new family, 51 scopes)
@@ -186,6 +195,21 @@ no text (Wyoming has no medically needy program, no 209(b) rules, no spousal-sup
 optional groups of 435.2xx are not described), 1 OUTREACH (the image-only Tables 7, 2a, 5b: resource standards and the
 ABD/institutional standards).
 
+## Part A5 - annual income and premium tables (new family, 4 scopes)
+
+New generator `scripts/build_medicaid_income_table_manifests.py`: a static selection (page, content selector, citation
+path, what it carries) re-read live at build time (the build fails if a page or its selector disappears or the content
+carries no dollar amounts), one manifest per state, `family: income_table` rows in the Medicaid queue (MN ID) and the
+CHIP queue (SC ME). Versions `2026-09-15-medicaid-income-table-2026` (MN `us-mn/manual/dhs/medicaid/appendix-f`, 25
+rows, 9,564 chars, 1 s; ID `us-id/policy/dhw/medicaid/program-income-limits`, 6 rows, 3,975 chars, 1 s) and
+`2026-09-15-chip-income-premium-table-2026` (SC `us-sc/policy/scdhhs/medicaid/program-eligibility-and-income-limits`,
+72 rows, 23,146 chars, 1 s; ME `us-me/policy/dhhs/mainecare/eligibility-guidelines-2026`, 7 rows, 10,497 chars, 1 s).
+MN Appendix F carries the MA standards and the MinnesotaCare income limits and points to the premium estimator table
+DHS-4139 (an eDocs form, not taken); SC and NM charge no CHIP premium; ME's chart carries the CubCare bands. The other
+cells: NM ALREADY-HELD (8.291.430 NMAC, 2025 FPL values, re-issued yearly), FL OUTREACH (403), AZ HI KS OH NH RI and
+AK stay EXTRACTABLE with the probe recorded in the decisions file (AK's held ADLTC Addendum 1 carries ABD standards
+only; the Denali KidCare standards are not in the held MAGI scope).
+
 ## Part A4 - the 435.904 / 435.908 / 435.918 / 435.912 / 435.1200 EXTRACTABLE cells (held-text check)
 
 The 09-14 check named an untaken family for each of these cells, but the elements are narrow (outstation locations,
@@ -250,13 +274,15 @@ per-group pages (MS, DE) and lost on the summary lists.
 ## Code changes
 
 - `scripts/build_medicaid_magi_verification_plan_manifests.py` (new), `scripts/build_medicaid_1115_stc_manifests.py`
-  (new): official-document manifests plus queue rows, as above; both read every cited page live.
+  (new), `scripts/build_medicaid_income_table_manifests.py` (new): official-document manifests plus queue rows, as
+  above; all three read every cited page live.
 - `scripts/build_medicaid_state_eligibility_manual_manifests.py`: batch 8 (`build_wy_closure`, `_wy_probe`,
   `VERSION_BATCH8`, the selector change in `build_wy`, the `BATCHES`/`BATCH_VERSIONS` entries, `--batch 8`,
   `builder_row_note` date and run-note for batch 8, the batch-8 row suffix).
-- `manifests/medicaid-agent-queue.yaml`: 51 `magi_verification_plan` rows, 13 `cms_1115_stc` rows, the us-wy first row
-  resolved, three policy notes; `status_counts` {needs_review 7, agent_ready 155, blocked_primary_source 7, done 6}.
-- `uv run ruff check` on the three generators: clean. Focused tests
+- `manifests/medicaid-agent-queue.yaml`: 51 `magi_verification_plan` rows, 13 `cms_1115_stc` rows, 2 `income_table` rows
+  (MN ID), the us-wy first row resolved, four policy notes; `status_counts` {needs_review 7, agent_ready 157,
+  blocked_primary_source 7, done 6}. `manifests/chip-agent-queue.yaml`: 2 `income_table` rows (SC ME), one policy note.
+- `uv run ruff check` on the four generators: clean. Focused tests
   `uv run --extra dev pytest -q -m "not integration and not slow" -k "medicaid or official_documents or manifest"`:
   9 passed, 1 failed - `tests/test_armenia_arlis.py::test_checked_in_tax_code_2024_continuity_sources_match_manifest`,
   the sparse-checkout fixture failure the wave-4 notes list (it needs a `data/corpus` artifact the worktree does not
@@ -264,11 +290,11 @@ per-group pages (MS, DE) and lost on the summary lists.
 
 ## What stays open
 
-- EXTRACTABLE (16): the income and premium tables for HI ID KS MN OH (Medicaid) and AK AZ FL HI ME MN NH NM OH RI SC
-  (CHIP), not attempted this wave; and `M-SS-BENEFITS` for every state (attachment 3.1-A/B via the CMS SPA "Benefits"
+- EXTRACTABLE (9 table cells): HI KS OH (Medicaid) and AK AZ HI NH OH RI (CHIP), each with the probe recorded; and
+  `M-SS-BENEFITS` for every state (attachment 3.1-A/B via the CMS SPA "Benefits"
   topic, a TAKE_TOPICS extension of `build_cms_state_plan_manifests.py`).
 - `M-ST-1315` for the 35 REVIEW states: the same STC family; the 2026-09-13 lead-list URL for the 1115 list is dead.
-- OUTREACH (1): the three image-only Wyoming Tables.
+- OUTREACH (2): the three image-only Wyoming Tables; floridakidcare.org (403).
 - REVIEW: the 20 mixed elements (per-cell verdicts recorded) and the 765 no-citation REVIEW rows, which are "not found"
   rows the checker should re-label.
 - Pattern fixes for the checker: `M-435-520`, `M-435-552`, `M-435-551`, the CMS CHIP-template sentences, the MACPro RU
@@ -277,7 +303,8 @@ per-group pages (MS, DE) and lost on the summary lists.
 ## Controller
 
 Additions only, no swaps: 51 `us-xx/policy/2026-09-15-medicaid-magi-verification-plan`, 7
-`us-xx/policy/2026-09-15-medicaid-1115-stc` (KY MT PA SD VA WI WY), 1 `us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure`.
+`us-xx/policy/2026-09-15-medicaid-1115-stc` (KY MT PA SD VA WI WY), 1 `us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure`,
+2 `2026-09-15-medicaid-income-table-2026` (us-mn/manual, us-id/policy), 2 `us-xx/policy/2026-09-15-chip-income-premium-table-2026` (SC ME).
 No existing scope is superseded (Wyoming had no released Medicaid manual scope; the collision scan of the new citation
 roots `cms/magi-verification-plan`, `cms/1115-stc` and `us-wy/manual/wdh/medicaid` against the same-jurisdiction scopes
 found no shared path). Artifacts are unsigned on the controller's disk.
@@ -290,6 +317,7 @@ export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where
 uv run python scripts/build_medicaid_magi_verification_plan_manifests.py
 uv run python scripts/build_medicaid_1115_stc_manifests.py
 uv run python scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 8 --only us-wy
+uv run python scripts/build_medicaid_income_table_manifests.py
 for m in manifests/us-*-medicaid-magi-verification-plan.yaml; do
   uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
     --version 2026-09-15-medicaid-magi-verification-plan --manifest $m --source-as-of 2026-09-15; done
@@ -299,4 +327,8 @@ for m in manifests/us-*-medicaid-1115-stc.yaml; do
 uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
   --version 2026-09-15-medicaid-eligibility-manual-closure --manifest manifests/us-wy-medicaid-eligibility-manual.yaml \
   --source-as-of 2026-09-15
+for j in mn id; do uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  --version 2026-09-15-medicaid-income-table-2026 --manifest manifests/us-$j-medicaid-income-table.yaml --source-as-of 2026-09-15; done
+for j in sc me; do uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  --version 2026-09-15-chip-income-premium-table-2026 --manifest manifests/us-$j-chip-income-table.yaml --source-as-of 2026-09-15; done
 ```

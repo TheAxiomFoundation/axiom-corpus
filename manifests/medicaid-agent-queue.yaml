@@ -66,6 +66,8 @@ policy:
   - 'Batch 8 (2026-09-15, wave-5 closure): the Wyoming EOM (Google Sites) taken with the div.UtePc content selector under
     version 2026-09-15-medicaid-eligibility-manual-closure; image-only Tables and dead index links inventoried and not taken.
     Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 8 --only us-wy; see docs/ingest-runs/2026-09-15-medicaid-chip.md.'
+  - 'Income table family (2026-09-15, wave-5 closure): `family: income_table` rows for the annual income-level / premium table
+    the agency posts as text, version 2026-09-15-medicaid-income-table-2026, citation path per state. Generator: scripts/build_medicaid_income_table_manifests.py.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -74,7 +76,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 7
-  agent_ready: 155
+  agent_ready: 157
   blocked_primary_source: 7
   done: 6
 states:
@@ -3882,6 +3884,29 @@ states:
     document); Idaho Childless Adults and Children''s Access Card are legacy listings without a current approval; Idaho Medicaid
     Plus (ID-04) is a 1915(b) waiver; Idaho Behavioral Health Transformation is SUD/SMI (read on the live list with the Approved
     filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+- jurisdiction: us-id
+  name: Idaho
+  family: income_table
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-id-medicaid-income-table.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-09-15-medicaid-income-table-2026
+  queue_status: agent_ready
+  source_kind: official_annual_income_table
+  primary_source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+  index_url: https://healthandwelfare.idaho.gov/services-programs/medicaid-health/apply-medicaid
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    annual_income_table_html:
+      found: 1
+      taken: 1
+  notes: 'Income table row (2026-09-15, wave-5 closure): the agency''s per-program income-limit tables (13 tables, household
+    size by dollar amount, 2026); carries M-SS-INCOME-TABLE. Fetched with the plain extractor client (HTTP 200, 4,507 characters
+    under the content selector, 0.5 s). Generator: scripts/build_medicaid_income_table_manifests.py.'
 - jurisdiction: us-il
   name: Illinois
   lead_counts: {}
@@ -5626,6 +5651,31 @@ states:
     taken, disaster addenda and mitigation plans inventoried and not taken). The plan is the closure schema''s carrying family
     for 435.920/.945/.948/.949/.952 (SSN verification, verification plan, electronic data sources, hub verification, reasonable
     compatibility). Index fetched in 0.5 s with the plain extractor client (HTTP 200; no impersonation). Generator: scripts/build_medicaid_magi_verification_plan_manifests.py.'
+- jurisdiction: us-mn
+  name: Minnesota
+  family: income_table
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mn-medicaid-income-table.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: manual
+    version: 2026-09-15-medicaid-income-table-2026
+  queue_status: agent_ready
+  source_kind: official_annual_income_table
+  primary_source_url: https://hcopub.dhs.state.mn.us/epm/appendix_f.htm
+  index_url: https://hcopub.dhs.state.mn.us/epm/home.htm
+  index_document_count: 1
+  taken_count: 1
+  index_families:
+    annual_income_table_html:
+      found: 1
+      taken: 1
+  notes: 'Income table row (2026-09-15, wave-5 closure): the EPM''s standards appendix: federal poverty guidelines, MA income
+    and asset standards, community spouse allowances, MinnesotaCare income limits and the pointer to the MinnesotaCare premium
+    table (DHS-4139); the one EPM topic the 2026-09-10 scope left untaken; carries M-SS-INCOME-TABLE and, for MinnesotaCare,
+    C-SS-INCOME-PREMIUM-TABLE. Fetched with the plain extractor client (HTTP 200, 11,796 characters under the content selector,
+    0.2 s). Generator: scripts/build_medicaid_income_table_manifests.py.'
 - jurisdiction: us-mo
   name: Missouri
   lead_counts: {}
