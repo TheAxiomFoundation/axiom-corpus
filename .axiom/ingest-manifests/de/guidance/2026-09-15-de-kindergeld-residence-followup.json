@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-15-de-kindergeld-residence-followup.json",
+      "sha256": "b9830d5582f9453937806e212ccc01d96b477fcbf0aca273019a449ab0e2f4a1"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-15-de-kindergeld-residence-followup.json",
+      "sha256": "08e85a7466b89dff77e3a8a73c5f715a0b0a3d37838e670e52c5878d52fefc05"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-residence-followup.jsonl",
+      "sha256": "3bb5c25a905b9cd9b03c8a939d275686e825a847497a351c97f224f2d149855a"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-residence-followup/official-documents/bfh-i-r-26-10-2011-06-22.pdf",
+      "sha256": "39ef8a072d378cfcb64cdcb8fb55b6bb7c7c148d5287be0a4fcb8f9160c87962"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-residence-followup/official-documents/bfh-iii-r-6-20-2020-11-12.pdf",
+      "sha256": "eefa373989cf93c8fda6eba8f7f221fd100a94de718fb06edf1c33e890fc1b71"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3472df84c06a7b14ba333c5d5c347d42c0def4d6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-15-de-kindergeld-residence-followup --manifest manifests/de-kindergeld-residence-followup.yaml; receipted local source snapshots, exact reviewed preflight bytes"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-15T19:47:24.589047+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-15-de-kindergeld-residence-followup-audit.json",
+      "sha256": "5220de4b22391e87b6a85018030b4feb074a6ea934ec9aaf37d4ad03e8720f00"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PBOAAp6bpqPWgiMBehq9PZ+QcP5y+hgZX0WiX2D0ZMeWp/2STuCHTAdcXHoLnrolFR91RBYByZ38Ni5paXOTDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-de-kindergeld-residence-followup"
+}

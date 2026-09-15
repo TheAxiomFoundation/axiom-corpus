@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-15-de-kindergeld-svev2025.json",
+      "sha256": "512ccd96042c59b9a75e5aba38cb2640e5755bfd13957005a133e97b58ffb9e6"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-15-de-kindergeld-svev2025.json",
+      "sha256": "2f6df3bd8c4e32cc4d59ef3ca5892492042ef550af43e8eab7cbc4e16c55db83"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-15-de-kindergeld-svev2025.jsonl",
+      "sha256": "2b2ce35347124e42906f2bdc34f9fe36ebc070b8ff39b8d18b0a42fb2e7fc4d8"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-15-de-kindergeld-svev2025/official-documents/svev-amendment-2024-394.pdf",
+      "sha256": "d4496aacf0d695bcf1f96dc8924d07f758af5b8a26edf3a0036fd452e8a30f11"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-15-de-kindergeld-svev2025/official-documents/svev-fassung-2025-01-01-2.html",
+      "sha256": "91ddcf2c4983db211bbcae37a2cb122801abfdebae2b13c2af7f8c13a7a940bc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3472df84c06a7b14ba333c5d5c347d42c0def4d6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-15-de-kindergeld-svev2025 --manifest manifests/de-kindergeld-svev2025.yaml; receipted local source snapshots, exact reviewed preflight bytes"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-15T19:47:23.593286+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-15-de-kindergeld-svev2025-audit.json",
+      "sha256": "8fb53f7111d316d34d577dfb53bbb86346a72c393ab00e581f7ea565ed2a3e23"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GP3ACFOVqPcLLEYJ8dgx2jbHwubAt2YNuyPo74DCwqDWKZqVqyT2CoermHKG1X2gEFMHKDFtOOAeadJHE02YBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-de-kindergeld-svev2025"
+}
