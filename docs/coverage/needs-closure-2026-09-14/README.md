@@ -6,32 +6,32 @@ Question: does the corpus, as cut by `manifests/releases/us-rulespec-2026-09-14-
 
 | Program | State cells | Present 09-11 | **Present now** | Extractable 09-11 | **Extractable now** | Absent | Outreach | Review now |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| SNAP | 3,111 | 79% | **81%** | 3% | **1%** | 10% | 2% | 7% |
-| WIC | 1,581 | 37% | **44%** | 1% | **1%** | 31% | 17% | 8% |
-| Medicaid | 7,089 | 48% | **61%** | 30% | **2%** | 6% | 2% | 29% |
-| CHIP | 2,550 | 47% | **73%** | 37% | **0%** | 0% | 0% | 26% |
-| TANF | 1,632 | 70% | **81%** | 9% | **1%** | 0% | 1% | 18% |
-| CCDF | 1,530 | 74% | **79%** | 8% | **4%** | 0% | 9% | 8% |
-| SSI | 6,681 | 48% | **96%** | 50% | **2%** | 1% | 0% | 1% |
-| LIHEAP | 2,091 | 34% | **83%** | 60% | **11%** | 1% | 0% | 5% |
-| Medicare | 3,468 | 37% | **95%** | 60% | **3%** | 0% | 1% | 2% |
-| Income tax | 1,465 | 54% | **69%** | 44% | **29%** | 0% | 0% | 2% |
-| **All ten** | 31,198 | 51% | **78%** | 34% | **4%** | 4% | 2% | 12% |
+| SNAP | 3,111 | 79% | **84%** | 3% | **0%** | 14% | 2% | 0% |
+| WIC | 1,581 | 37% | **44%** | 1% | **0%** | 31% | 19% | 5% |
+| Medicaid | 7,089 | 48% | **64%** | 30% | **0%** | 8% | 1% | 26% |
+| CHIP | 2,550 | 47% | **74%** | 37% | **0%** | 2% | 0% | 24% |
+| TANF | 1,632 | 70% | **83%** | 9% | **0%** | 4% | 2% | 11% |
+| CCDF | 1,530 | 74% | **80%** | 8% | **2%** | 1% | 10% | 8% |
+| SSI | 6,681 | 48% | **98%** | 50% | **0%** | 1% | 0% | 0% |
+| LIHEAP | 2,091 | 34% | **89%** | 60% | **0%** | 7% | 0% | 4% |
+| Medicare | 3,468 | 37% | **99%** | 60% | **0%** | 0% | 1% | 1% |
+| Income tax | 1,465 | 54% | **90%** | 44% | **1%** | 0% | 5% | 4% |
+| **All ten** | 31,198 | 51% | **82%** | 34% | **0%** | 6% | 2% | 10% |
 
 Federal rows (one per element, inherited by all 51 jurisdictions):
 
 | Program | Federal elements | Present 09-11 | Present now | Extractable now | Absent now |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| SNAP | 332 | 200 | 330 | 1 | 0 |
-| WIC | 83 | 59 | 82 | 1 | 0 |
+| SNAP | 332 | 200 | 331 | 0 | 0 |
+| WIC | 83 | 59 | 83 | 0 | 0 |
 | Medicaid | 302 | 259 | 296 | 0 | 0 |
 | CHIP | 186 | 183 | 183 | 0 | 0 |
-| TANF | 149 | 0 | 147 | 1 | 0 |
-| CCDF | 69 | 61 | 61 | 7 | 0 |
-| SSI | 131 | 60 | 123 | 2 | 6 |
-| LIHEAP | 41 | 0 | 20 | 3 | 18 |
-| Medicare | 68 | 20 | 59 | 2 | 7 |
-| Income tax | 164 | 98 | 128 | 35 | 1 |
+| TANF | 149 | 0 | 148 | 0 | 0 |
+| CCDF | 69 | 61 | 68 | 0 | 0 |
+| SSI | 131 | 60 | 125 | 0 | 6 |
+| LIHEAP | 41 | 0 | 21 | 0 | 20 |
+| Medicare | 68 | 20 | 61 | 0 | 7 |
+| Income tax | 164 | 98 | 163 | 0 | 1 |
 
 ## What moved, and why
 
@@ -84,3 +84,58 @@ $PY $D/verify_matrices.py --selector $SEL --programs ssi,liheap,medicare   # PRE
 ```
 
 Session: 2026-09-14 (recount launched 09-14 18:06, finished after the release-6 publish re-dispatch). Previous check: `../needs-closure-2026-09-11/README.md`.
+
+## After wave 5 (2026-09-15, five agents, draft PRs #714–#718)
+
+Wave 5 ran from the briefs in `wave5/` against these matrices. Each agent took its EXTRACTABLE families (federal documents
+first), read a bounded sample of REVIEW cells, and recorded every decision in `docs/ingest-runs/2026-09-15-<group>-decisions.csv`
+on its branch; `wave5/apply_decisions.py --write` folded all five files (2,214 rows) back into the matrices in this directory.
+**The numbers below assume the 121 wave-5 scopes are selected**: they are on disk (`2026-09-15-*`, unsigned, additions only
+except the North Carolina statute chapter, which collides with `2026-08-03-nc-income-tax-current-union` and must be a swap)
+and 515 PRESENT cells cite them. Until release 7 selects them, the "sixth cut" table above is the served state.
+
+| Program | State cells | Present before | Present after | Extractable before | after | Review before | after | changed |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| snap | 3,111 | 81% | 84% | 1% | 0% | 7% | 0% | 232 |
+| wic | 1,581 | 44% | 44% | 1% | 0% | 8% | 5% | 49 |
+| medicaid | 7,089 | 61% | 64% | 2% | 0% | 29% | 26% | 385 |
+| chip | 2,550 | 73% | 74% | 0% | 0% | 26% | 24% | 77 |
+| tanf | 1,632 | 81% | 83% | 1% | 0% | 18% | 11% | 118 |
+| ccdf | 1,530 | 79% | 80% | 4% | 2% | 8% | 8% | 40 |
+| ssi | 6,681 | 96% | 98% | 2% | 0% | 1% | 0% | 126 |
+| liheap | 2,091 | 83% | 89% | 11% | 0% | 5% | 4% | 249 |
+| medicare | 3,468 | 95% | 99% | 3% | 0% | 2% | 1% | 141 |
+| tax | 1,465 | 69% | 90% | 29% | 1% | 2% | 4% | 462 |
+
+What wave 5 found, beyond the cells:
+
+- **Most "EXTRACTABLE" was already held.** 22 of 34 SNAP/WIC cells, 166 of 286 tax statute cells, 60 LIHEAP manual cells, the
+  CCDBG Act, 42 U.S.C. 614, 26 U.S.C. 71/215 and the 26 CFR sections were check-pattern misses on text in selected scopes.
+  The run notes list the regex causes (thousands separators, 600-char windows, `tanf` in a version name excluding a scope,
+  PDF ligatures, headings such as "Page 65" matching `M-435-520`).
+- **Two schema elements are not law**: 45 CFR 96.80 and 96.87 are `[Reserved]` in the live eCFR structure. Drop them
+  (102 cells).
+- **The reading pass found structural evidence the checks never used**: the 2026-09-13 state-plan scopes hold MACPro
+  "Options for Coverage" election pages for 33–48 states per 42 CFR 435 section; 25 of the 27 wave-4 MSP-standards scopes
+  carry the 2026 figures for `MED-ST-7` and, for 12 states, `MED-ST-2/3/6`. Both are pattern changes for the next builder
+  pass, not crawls.
+- **Element verdicts**: PATTERN-CONFIRMED for `M-435-115`, `M-435-172`, `M-435-320`, `tanf-s14`; ABSENT-IN-CITED across the
+  samples for `tanf-s29`, `tanf-s16`, `tanf-s28` (carried by state plans and work-program manuals: new EXTRACTABLE
+  families), `M-435-520/551/552` (pattern defects) and the CHIP plan-template elements `C-457-340/410/1010/1005/1110`.
+- **Publisher blocks confirmed once each, not worked around**: AZ DES (Cloudflare), CO CDEC (CloudFront), NJ child care,
+  VA child care (503), FL DOE/KidCare, WI DCF manuals directory, KY Revenue and PA (client-rendered), MD Comptroller
+  (ServiceNow), IL ilga.gov (403), AR/MS/NJ/DC/UT rules (Lexis or portal-only), NY OTDA, OH LIHEAP CDN. `acf.gov` now
+  fronts an AWS WAF challenge; the LIHEAP Model Plan was taken with the documented chrome120 fallback and is flagged in
+  PR #718 for a decision.
+- **Corrections to the 09-11 inventory**: NM "8.150 NMAC child care" is the LIHEAP rule (child care is 8.9.3 NMAC); OH OAC
+  5101:2-16 moved to 5180:6-1; SC DSS "Voucher" manual is a 2018 superseded volume; AK ID ND NE NV SC have no approved
+  eligibility 1115 demonstration.
+- **Still open after wave 5**: REVIEW cells with no cited provision (765 Medicaid, 282 TANF/CCDF, 85 WIC, 124
+  SSI/LIHEAP/Medicare — research items, not reading); 55 tax statute cells on held chapters; Indiana's CCDF plan sections;
+  M-SS-BENEFITS (attachment 3.1-A/B via the CMS SPA "Benefits" topic) for every state; the 22 SSI-ST-2 state statutes;
+  MSP standards for FL IN KY LA MO OK UT WV WY.
+- Three PRESENT cells cite `us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461` (OAR 461, on disk, in no
+  union selector) — same class as the seven foundation scopes above; add to release 7.
+
+Release-7 selector inputs: the 121 `2026-09-15-*` scopes listed in the five run notes (NC statute as a swap), the OR
+chapter-461 scope, the seven foundation scopes, and North Dakota's SNAP supersede after 2026-10-01.
