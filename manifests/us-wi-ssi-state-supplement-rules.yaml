@@ -1,0 +1,36 @@
+version: 2026-09-15-ssi-state-supplement-rules
+documents:
+- source_id: us-wi-statutes-49-77
+  jurisdiction: us-wi
+  document_class: statute
+  title: Wis. Stat. 49.77 State supplemental payments (2023-24 Wisconsin Statutes updated through 2025 Wis. Act 247)
+  source_url: https://docs.legis.wisconsin.gov/statutes/statutes/49/v/77
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-04'
+  citation_path: us-wi/statute/49.77
+  extraction:
+    segmentation: anchor_range
+    html_start_selector: div[data-path="/statutes/statutes/49/v/77"]
+    html_stop_selector: div[data-path="/statutes/statutes/49/v/775"]
+    section_heading: 49.77 State supplemental payments.
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Legislative Reference Bureau (Wisconsin Legislature statutes site)
+    document_subtype: statute_section
+    program: SSI
+    state: WI
+    statute_section: '49.77'
+    statute_chapter: '49'
+    statute_subchapter: V
+    statutes_edition: 2023-24 Wisconsin Statutes updated through 2025 Wis. Act 247
+    expression_date_note: 'the page''s certification line: orders filed before and in effect on 2026-09-04'
+    permalink: https://docs.legis.wisconsin.gov/document/statutes/49.77
+    index_url: https://docs.legis.wisconsin.gov/statutes/statutes/49
+    citation_path_note: the section-number path the wisconsin-statutes adapter uses (us-wi/statute/71.01 in the chapter-71
+      scope); a later whole-chapter-49 statute scope would carry the same root path and needs the consolidation or swap route
+    closure_elements:
+    - SSI-ST-2
+    source_discovery_group: us-wi/statute/49
+    discovered_via: manual-review:ssi-agent-queue batch 6 (needs-closure-2026-09-14 SSI-ST-2, state authority); publisher
+      index

@@ -1,0 +1,236 @@
+version: 2026-09-15-medicare-cms-iom-100-05
+documents:
+- source_id: us-cms-iom-100-05-chapter-1
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 1 - General MSP Overview
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2022-12-21'
+  citation_path: us/manual/cms/iom/100-05/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^40\-\ Referral\ to\ the\ Regional\ Office$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-05
+    publication_title: Medicare Secondary Payer Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter: 1
+    chapter_title: General MSP Overview
+    latest_transmittal: Rev. 11755, issued 2022-12-21
+    expression_date_source: TOC header '(Rev. 11755, 12-21-22)'
+    pdf_page_count: 26
+    body_start_page: 3
+    toc_section_count: 21
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-05
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    http_last_modified: Tue, 24 Jan 2023 13:14:03 GMT
+- source_id: us-cms-iom-100-05-chapter-2
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 2 - MSP Provisions
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c02.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2023-12-28'
+  citation_path: us/manual/cms/iom/100-05/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^suppliers,\ attorneys,\ employers,\ and\ other\ payers\.$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-05
+    publication_title: Medicare Secondary Payer Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter: 2
+    chapter_title: MSP Provisions
+    latest_transmittal: Rev. 12436, issued 2023-12-28
+    expression_date_source: 'TOC header ''(Rev. 12436; Issued: 12-28-23)'''
+    pdf_page_count: 47
+    body_start_page: 3
+    toc_section_count: 39
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-05
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    http_last_modified: Wed, 21 Feb 2024 00:31:39 GMT
+- source_id: us-cms-iom-100-05-chapter-3
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 3 - MSP Provider, Physician, and Other Supplier Billing Requirements
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2023-02-23'
+  citation_path: us/manual/cms/iom/100-05/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^60\ \-\ Completing\ the\ Form\ CMS\-1500\ in\ MSP\ Situations\ by\ Physicians\ and\ Other\ Suppliers$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-05
+    publication_title: Medicare Secondary Payer Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter: 3
+    chapter_title: MSP Provider, Physician, and Other Supplier Billing Requirements
+    latest_transmittal: Rev. 11874, issued 2023-02-23
+    expression_date_source: TOC header '(Rev. 11874, 02-23-23)'
+    pdf_page_count: 48
+    body_start_page: 3
+    toc_section_count: 40
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-05
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    http_last_modified: Fri, 24 Mar 2023 12:45:36 GMT
+- source_id: us-cms-iom-100-05-chapter-5
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 5 - Contractor MSP Claims Prepayment Processing Requirements
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-07-10'
+  citation_path: us/manual/cms/iom/100-05/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^70\.5\.4\ \-\ Exhibit\ 4:\ Entrance\ Interview\ Checklist:\ Billing\ Procedures$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-05
+    publication_title: Medicare Secondary Payer Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter: 5
+    chapter_title: Contractor MSP Claims Prepayment Processing Requirements
+    latest_transmittal: Rev. 13856, issued 2026-07-10
+    expression_date_source: 'TOC header ''(Rev. 13856; Issued: 07-10-26)'''
+    pdf_page_count: 222
+    body_start_page: 7
+    toc_section_count: 154
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-05
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    http_last_modified: Tue, 11 Aug 2026 13:17:19 GMT
+- source_id: us-cms-iom-100-05-chapter-6
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 6 - Medicare Secondary Payer (MSP) CWF Process
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c06.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-06-09'
+  citation_path: us/manual/cms/iom/100-05/chapter-6
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^\(MSP\)\ Patient\ Relationship\ Codes$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-05
+    publication_title: Medicare Secondary Payer Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter: 6
+    chapter_title: Medicare Secondary Payer (MSP) CWF Process
+    latest_transmittal: Rev. 13262, issued 2025-06-09
+    expression_date_source: 'TOC header ''(Rev. 13262; Issued: 06-09-25)'''
+    pdf_page_count: 57
+    body_start_page: 3
+    toc_section_count: 37
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-05
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    http_last_modified: Wed, 17 Sep 2025 10:22:31 GMT
+- source_id: us-cms-iom-100-05-chapter-7
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 7 - MSP Recovery
+  source_url: https://www.cms.gov/files/document/chapter-7-msp-recovery.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-04-16'
+  citation_path: us/manual/cms/iom/100-05/chapter-7
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^80\.11\ –\ Appeal\ Requests\ Citing\ Bankruptcy\ Defense$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-05
+    publication_title: Medicare Secondary Payer Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    chapter: 7
+    chapter_title: MSP Recovery
+    latest_transmittal: Rev. 13156, issued 2025-04-16
+    expression_date_source: 'TOC header ''(Rev. 13156; Issued: 04-16-25)'''
+    pdf_page_count: 64
+    body_start_page: 6
+    toc_section_count: 134
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-05
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    http_last_modified: Wed, 04 Jun 2025 11:26:13 GMT

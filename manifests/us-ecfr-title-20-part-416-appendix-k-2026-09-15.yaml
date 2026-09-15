@@ -1,0 +1,39 @@
+version: 2026-09-15-title-20-part-416-appendix-k
+documents:
+- source_id: us-ecfr-title-20-part-416-appendix-subpart-k
+  jurisdiction: us
+  document_class: regulation
+  title: 20 CFR Part 416, Appendix to Subpart K - List of Types of Income Excluded Under the SSI Program as Provided by Federal
+    Laws Other Than the Social Security Act
+  source_url: https://www.ecfr.gov/current/title-20/chapter-III/part-416/appendix-Appendix%20to%20Subpart%20K%20of%20Part%20416
+  download_url: https://www.ecfr.gov/api/renderer/v1/content/enhanced/2026-09-11/title-20?part=416&appendix=Appendix%20to%20Subpart%20K%20of%20Part%20416
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-09'
+  citation_path: us/regulation/20/416/subpart-K/appendix
+  extraction:
+    html_content_selector: div.appendix
+  metadata:
+    primary_source: true
+    source_authority: Office of the Federal Register, Electronic Code of Federal Regulations (eCFR)
+    document_subtype: cfr_appendix
+    program: SSI
+    title: 20
+    part: '416'
+    subpart: K
+    appendix_identifier: Appendix to Subpart K of Part 416
+    parent_citation_path: us/regulation/20/416/subpart-K
+    ecfr_point_in_time: '2026-09-11'
+    expression_date_note: title 20 latest_issue_date / latest_amended_on 2026-09-09 (eCFR titles.json read 2026-09-15), the
+      expression date the sibling scope us/regulation/2026-09-11-title-20-part-416 carries; the appendix's own citation line
+      is '45 FR 65547, Oct. 3, 1980, as amended at ... 75 FR 1273, Jan. 11, 2010' (last amendment 2010-01-11)
+    download_note: the canonical eCFR page (source_url) redirects the corpus client to unblock.federalregister.gov; the eCFR
+      renderer API (download_url, the publisher's own rendering of the 2026-09-11 point-in-time text) serves the appendix
+      HTML; the div.appendix node is the document body
+    adapter_note: extract-ecfr --include-appendices accepts part-scoped 'Appendix X to Part N' identifiers only and raises
+      on this subpart-scoped one (run note 2026-09-11-federal-cfr-followon-parts); taken as an official document instead
+    source_discovery_group: us/regulation/ecfr
+    closure_elements:
+    - SSI-F-CFR416-APPK
+    discovered_via: manual-review:ssi-agent-queue; needs-closure-2026-09-14 SSI-F-CFR416-APPK; eCFR structure title-20 2026-09-11
+      (part 416 > subpart K > appendix)

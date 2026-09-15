@@ -1,0 +1,36 @@
+version: 2026-09-15-ssi-poms-si-00529
+documents:
+- source_id: ssa-poms-si-r00529-020-redacted-pdf
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS SI R00529.020: No Social Security Benefits for Prisoners (NSSBP) Title XVI Field Office (FO) Processing Instructions
+    (Redacted) (redacted PDF)'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500529020R
+  download_url: https://secure.ssa.gov/apps10/public/pomsimages.nsf/gfx_num/G-SI_R00529.020-1/$File/G-SI_R00529.020-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-05-13'
+  citation_path: us/manual/ssa/poms/si/r00529.020/redacted-pdf
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section_redacted_pdf
+    program: SSI
+    poms_part: SI
+    poms_chapter: SI 005
+    poms_chapter_title: Eligibility
+    poms_subchapter: SI 00529
+    poms_subchapter_title: No Social Security Benefits for Prisoners Title XVI
+    poms_section: SI R00529.020
+    poms_regional: R
+    effective_date_printed: '2026-05-13'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+    source_discovery_group: us/manual/ssa/poms/si
+    discovered_via: manual-review:ssi-agent-queue; needs-closure-2026-09-14 SSI-F-POMS-SI-00529; SSA POMS SI table of contents
+    html_page_note: the section page prints only the heading, 'Manual Netting - Redacted Version' and a 'View In PDF' link;
+      the section text is the linked PDF, taken here (the HTML stub is what the si-remainder scope holds under us/manual/ssa/poms/si/<section>)
+    pdf_note: page 1 of the PDF is an image without a text layer (skipped by the page-granular extraction); the remaining
+      pages carry the redacted section text

@@ -2363,6 +2363,290 @@ def update_queue_batch5(only: set[str] | None = None) -> dict:
     return queue["status_counts"]
 
 
+# ---------------------------------------------------------------- batch 6: state authority (2026-09-15, wave 5)
+# needs-closure-2026-09-14 SSI-ST-2 (OR, UT, VA, WI) and SSI-ST-4/ST-5 (OR): the statute or adopted rule that
+# establishes the supplement. OR and VA are already held (OAR chapter 461 in the TANF chapter-461 scopes,
+# 22VAC30-80 in the 2026-09-14 standards scope) and get pointer records; WI (Wis. Stat. 49.77) and UT (Utah
+# Admin. Code R414-306-6) are taken as official documents from their publishers.
+VERSION_6 = "2026-09-15-ssi-state-supplement-rules"
+SOURCE_AS_OF_6 = "2026-09-15"
+RUN_NOTE_6 = "docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md"
+DISCOVERED_VIA_6 = "manual-review:ssi-agent-queue batch 6 (needs-closure-2026-09-14 SSI-ST-2, state authority); publisher index"
+BUILDERS_6: dict[str, str] = {}
+
+
+def builder6(code: str):
+    def register(func):
+        BUILDERS_6[code] = func.__name__
+        return func
+
+    return register
+
+
+def manifest_path_6(code: str) -> Path:
+    return ROOT / "manifests" / f"us-{code.lower()}-ssi-state-supplement-rules.yaml"
+
+
+WI_STATUTE_URL = "https://docs.legis.wisconsin.gov/statutes/statutes/49/v/77"
+WI_STATUTE_DOCUMENT_URL = "https://docs.legis.wisconsin.gov/document/statutes/49.77"
+WI_CHAPTER_URL = "https://docs.legis.wisconsin.gov/statutes/statutes/49"
+WI_UPDATED_RE = re.compile(
+    r"(?P<edition>20\d\d-\d\d) Wisconsin Statutes updated through (?P<act>20\d\d Wis\. Act \d+) and through all Supreme "
+    r"Court(?: Orders)? and Controlled Substances Board Orders filed before and in effect on "
+    r"(?P<month>[A-Z][a-z]+) (?P<day>\d{1,2}), (?P<year>20\d\d)"
+)
+
+
+@builder6("WI")
+def build_wi_statute(session: requests.Session, cache_dir: Path) -> tuple[list[dict], dict]:
+    """Wis. Stat. 49.77 State supplemental payments, the authority for the state SSI supplement,
+    from the Legislature's statutes site (the /document/statutes/49.77 permalink resolves to the
+    subchapter V scroll page, whose section divs carry data-path anchors)."""
+    page = fetch(session, WI_STATUTE_DOCUMENT_URL, cache_dir / "wi" / "statutes-49-77.html")
+    match = WI_UPDATED_RE.search(" ".join(html.unescape(re.sub(r"<[^>]+>", " ", page)).split()))
+    if match is None:
+        raise SystemExit("Wisconsin statutes page: no 'updated through ... in effect on' certification line; layout changed?")
+    certified = dt.datetime.strptime(f"{match['month']} {match['day']} {match['year']}", "%B %d %Y").date().isoformat()
+    for anchor in ("/statutes/statutes/49/v/77", "/statutes/statutes/49/v/775"):
+        if f'data-path="{anchor}"' not in page:
+            raise SystemExit(f"Wisconsin statutes page: anchor {anchor} not found; layout changed?")
+    docs = [
+        {
+            "source_id": "us-wi-statutes-49-77",
+            "jurisdiction": "us-wi",
+            "document_class": "statute",
+            "title": f"Wis. Stat. 49.77 State supplemental payments ({match['edition']} Wisconsin Statutes updated through {match['act']})",
+            "source_url": WI_STATUTE_URL,
+            "source_format": "html",
+            "source_as_of": SOURCE_AS_OF_6,
+            "expression_date": certified,
+            "citation_path": "us-wi/statute/49.77",
+            "extraction": {
+                "segmentation": "anchor_range",
+                "html_start_selector": 'div[data-path="/statutes/statutes/49/v/77"]',
+                "html_stop_selector": 'div[data-path="/statutes/statutes/49/v/775"]',
+                "section_heading": "49.77 State supplemental payments.",
+            },
+            "metadata": {
+                "primary_source": True,
+                "source_authority": "Wisconsin Legislative Reference Bureau (Wisconsin Legislature statutes site)",
+                "document_subtype": "statute_section",
+                "program": "SSI",
+                "state": "WI",
+                "statute_section": "49.77",
+                "statute_chapter": "49",
+                "statute_subchapter": "V",
+                "statutes_edition": f"{match['edition']} Wisconsin Statutes updated through {match['act']}",
+                "expression_date_note": f"the page's certification line: orders filed before and in effect on {certified}",
+                "permalink": WI_STATUTE_DOCUMENT_URL,
+                "index_url": WI_CHAPTER_URL,
+                "citation_path_note": (
+                    "the section-number path the wisconsin-statutes adapter uses (us-wi/statute/71.01 in the chapter-71 "
+                    "scope); a later whole-chapter-49 statute scope would carry the same root path and needs the "
+                    "consolidation or swap route"
+                ),
+                "closure_elements": ["SSI-ST-2"],
+                "source_discovery_group": "us-wi/statute/49",
+                "discovered_via": DISCOVERED_VIA_6,
+            },
+        }
+    ]
+    index = {
+        "index_url": WI_CHAPTER_URL,
+        "index_document_count": 1,
+        "taken_count": 1,
+        "families": [{"family": "Wis. Stat. 49.77 (chapter 49 subchapter V section page, docs.legis.wisconsin.gov)", "found": 1, "taken": 1}],
+    }
+    return docs, index
+
+
+UT_RULE = "R414-306"
+UT_SEARCH_URL = f"https://adminrules.utah.gov/api/public/searchRuleDataTotal/{UT_RULE}/Current%20Rules"
+UT_RULE_ROUTE = f"https://adminrules.utah.gov/public/rule/{UT_RULE}/Current%20Rules"
+UT_GETFILE = "https://adminrules.utah.gov/api/public/getfile/"
+
+
+@builder6("UT")
+def build_ut_rule(session: requests.Session, cache_dir: Path) -> tuple[list[dict], dict]:
+    """Utah Admin. Code R414-306-6 State Supplemental Payments for Institutionalized SSI Recipients,
+    from the Office of Administrative Rules eRules public API (the single-page application's own data
+    source: the rule search returns the current rule record with its HTML file id, served by
+    /api/public/getfile/, the route the 2026-07-04 FEP R986-200-239 manifest used)."""
+    text = fetch(session, UT_SEARCH_URL, cache_dir / "ut" / "search-r414-306.json")
+    record = None
+    for agency in json.loads(text):
+        for program in agency.get("programs", []):
+            for rule in program.get("rules", []):
+                if rule.get("referenceNumber") == UT_RULE and rule.get("ruleType") == "Current Rules":
+                    record = rule
+    if record is None:
+        raise SystemExit(f"Utah eRules search: no current rule {UT_RULE} in {UT_SEARCH_URL}")
+    download_url = f"{UT_GETFILE}{record['htmlDownload']}/{record['htmlDownloadName']}"
+    rule_html = fetch(session, download_url, cache_dir / "ut" / record["htmlDownloadName"])
+    for needle in ("R414-306-6.  State Supplemental Payments for Institutionalized SSI Recipients.", "KEY:"):
+        if needle not in rule_html:
+            raise SystemExit(f"Utah {UT_RULE} HTML: {needle!r} not found; layout changed?")
+    effective = dt.datetime.strptime(record["effectiveDate"], "%m/%d/%Y").date().isoformat()
+    docs = [
+        {
+            "source_id": "ut-admin-rules-r414-306-6-current",
+            "jurisdiction": "us-ut",
+            "document_class": "regulation",
+            "title": "Utah Administrative Code R414-306-6: State Supplemental Payments for Institutionalized SSI Recipients",
+            "source_url": UT_RULE_ROUTE,
+            "download_url": download_url,
+            "source_format": "html",
+            "source_as_of": SOURCE_AS_OF_6,
+            "expression_date": effective,
+            "citation_path": "us-ut/regulation/admin-rules/r414/306",
+            # the getfile API answers a browser-style Accept header (text/html first, the extractor
+            # session's default) with the 2 KB application shell and any other Accept with the rule
+            # HTML; the curl range backend sends Accept: */* (the 2026-07-04 FEP R986-200-239 route)
+            "request": {"range_fetch": True, "range_backend": "curl", "range_chunk_size": 4194304},
+            "extraction": {
+                "segmentation": "anchor_range",
+                # the rule HTML is two absolutely positioned "awpage" divs; without a content selector the
+                # extractor's main-content heuristic keeps page 1 only and section 6 (page 2) is not found
+                "html_content_selector": "body",
+                "html_start_selector": 'div.awdiv:has(> span.awtext1:-soup-contains("R414-306-6."))',
+                "html_stop_selector": 'div.awdiv:has(> span.awtext1:-soup-contains("KEY:"))',
+                "section_label": "6",
+                "section_heading": "R414-306-6. State Supplemental Payments for Institutionalized SSI Recipients.",
+            },
+            "metadata": {
+                "primary_source": True,
+                "source_authority": "Utah Office of Administrative Rules",
+                "document_subtype": "administrative_code_rule_section",
+                "program": "SSI",
+                "state": "UT",
+                "rule_id": record["ruleId"],
+                "reference_number": UT_RULE,
+                "rule_title": record["name"],
+                "effective_date": effective,
+                "rule_filing_type": record.get("ruleFilingType"),
+                "agency": record.get("agencyName"),
+                "program_name": record.get("programName"),
+                "official_rule_route": UT_RULE_ROUTE,
+                "api_note": (
+                    "adminrules.utah.gov is a single-page application (its /public/rule/ route answers HTTP 404 with an "
+                    "empty body to any non-browser client); the rule record comes from the application's public search "
+                    "API (searchRuleDataTotal) and the HTML from its getfile API, both of which served the plain corpus "
+                    "client on 2026-09-15 (the getfile route returns the application shell to a request whose Accept "
+                    "header prefers text/html, so the document is fetched with the curl range backend, Accept */*); the "
+                    "2026-07-04 FEP R986-200-239 manifest used the same getfile route and backend"
+                ),
+                "parent_rule_source": "us-ut/regulation/admin-rules/r414/306",
+                "closure_elements": ["SSI-ST-2"],
+                "source_discovery_group": "us-ut/regulation/ssi",
+                "discovered_via": DISCOVERED_VIA_6,
+            },
+        }
+    ]
+    index = {
+        "index_url": UT_SEARCH_URL,
+        "index_document_count": 1,
+        "taken_count": 1,
+        "families": [{"family": f"Utah Admin. Code {UT_RULE} {record['name']} (eRules current rule, 6 sections; section 6 taken)", "found": 1, "taken": 1}],
+    }
+    return docs, index
+
+
+SOURCE_KINDS_6 = {"WI": "official_state_statute", "UT": "official_state_administrative_rule"}
+ROW_NOTES_6 = {
+    "WI": (
+        "Wis. Stat. 49.77 State supplemental payments (the authority for the DHS-administered state SSI supplement) taken "
+        "from the Legislature's statutes site as us-wi/statute/49.77 (anchor range of the subchapter V page; the "
+        "certification line dates the text). Closes SSI-ST-2 beside the 2026-09-10 handbook scope. (2026-09-15 wave-5 batch 6.)"
+    ),
+    "UT": (
+        "Utah Admin. Code R414-306-6 State Supplemental Payments for Institutionalized SSI Recipients ($15 to a Medicaid-"
+        "eligible resident of a medical institution whose SSI is reduced to $30) taken from the Office of Administrative "
+        "Rules eRules public API as us-ut/regulation/admin-rules/r414/306 (section 6). Closes SSI-ST-2 beside the DWS "
+        "manual pointer. (2026-09-15 wave-5 batch 6.)"
+    ),
+}
+POINTER_ROWS_6 = {
+    "OR": {
+        "status": "already_held",
+        "scopes": [
+            "us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461",
+            "us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461-r2026-09-14-150-316-consolidated",
+        ],
+        "citation_paths": [
+            "us-or/regulation/chapter-461/division-155/rule-461-155-0250",
+            "us-or/regulation/chapter-461/division-160/rule-461-160-0550",
+            "us-or/regulation/chapter-461/division-160/rule-461-160-0780",
+        ],
+        "closure_elements": ["SSI-ST-2", "SSI-ST-4", "SSI-ST-5"],
+        "note": (
+            "Already held: OAR chapter 461 (the OSIP adopted-rule family, secure.sos.state.or.us) was taken whole by the "
+            "TANF chapter-461 scope on 2026-09-10 and carried into its 2026-09-14 consolidated successor; 461-155-0250 "
+            "Income and Payment Standard; OSIPM (SSI-ST-2/ST-4), 461-160-0550 Income Deductions; Non-SSI OSIP and OSIPM "
+            "and 461-160-0780 Determining Adjusted Income; OSIP-EPD and OSIPM-EPD (SSI-ST-5) are rows of both. Nothing "
+            "fetched. (2026-09-15 wave-5 batch 6.)"
+        ),
+    },
+    "VA": {
+        "status": "already_held",
+        "scopes": ["us-va/regulation/2026-09-14-ssi-state-supplement-standards"],
+        "citation_paths": [f"us-va/regulation/22vac30-80/{n}" for n in (10, 15, 20, 30, 35, 40, 45, 50, 60, 70, 80, 9998)],
+        "closure_elements": ["SSI-ST-2"],
+        "note": (
+            "Already held: 22VAC30-80 Auxiliary Grants Program (all 12 sections, law.lis.virginia.gov) was taken on "
+            "2026-09-14 in the standards scope. Nothing fetched. (2026-09-15 wave-5 batch 6.)"
+        ),
+    },
+}
+
+
+def update_queue_batch6(results: dict[str, dict]) -> dict:
+    """Add an ``authority_scope`` record to the WI and UT rows (taken) and to the OR and VA rows
+    (already held, pointers); the rows' target_scope and status are left as they are."""
+    queue = yaml.safe_load(QUEUE.read_text())
+    rows: dict[str, dict] = {}
+    for row in queue["states"]:
+        rows.setdefault(row["jurisdiction"], row)
+    for code, index in results.items():
+        row = rows[f"us-{code.lower()}"]
+        docs = index["docs"]
+        row["authority_scope"] = {
+            "status": "taken",
+            "jurisdiction": f"us-{code.lower()}",
+            "document_class": docs[0]["document_class"],
+            "version": VERSION_6,
+            "target_manifest": str(manifest_path_6(code).relative_to(ROOT)),
+            "source_kind": index["source_kind"],
+            "index_url": index["index_url"],
+            "index_document_count": index["index_document_count"],
+            "taken_count": index["taken_count"],
+            "citation_paths": [d["citation_path"] for d in docs],
+            "closure_elements": ["SSI-ST-2"],
+            "run_note": RUN_NOTE_6,
+            "notes": index["note"],
+        }
+        if index["note"] not in str(row.get("notes") or ""):
+            row["notes"] = f"{row.get('notes') or ''} {index['note']}".strip()
+    for code, pointer in POINTER_ROWS_6.items():
+        row = rows[f"us-{code.lower()}"]
+        row["authority_scope"] = {**pointer, "run_note": RUN_NOTE_6}
+        if pointer["note"] not in str(row.get("notes") or ""):
+            row["notes"] = f"{row.get('notes') or ''} {pointer['note']}".strip()
+    queue["status_counts"] = {}
+    for row in queue["states"]:
+        queue["status_counts"][row["queue_status"]] = queue["status_counts"].get(row["queue_status"], 0) + 1
+    batch_note = (
+        "2026-09-15 SSI state-authority batch 6 (wave 5, needs-closure-2026-09-14 SSI-ST-2): "
+        "scripts/build_ssi_state_supplement_manifests.py --batch 6; WI (Wis. Stat. 49.77) and UT (R414-306-6) taken as "
+        f"{VERSION_6}; OR (OAR chapter 461, held in the TANF chapter-461 scopes) and VA (22VAC30-80, held in the 2026-09-14 "
+        "standards scope) recorded as already held; docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md."
+    )
+    notes = queue.setdefault("policy", {}).setdefault("notes", [])
+    if batch_note not in notes:
+        notes.append(batch_note)
+    QUEUE.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def index_markdown(code: str, index: dict) -> str:
     lines = [f"**us-{code.lower()}** — {index['index_url']}", "", "| Family | Found | Taken |", "| --- | ---: | ---: |"]
     for fam in index["families"]:
@@ -2377,9 +2661,10 @@ def main() -> int:
     parser.add_argument("--only", help="comma-separated state codes to build (default: all extractable states)")
     parser.add_argument("--print-index", action="store_true", help="print each publisher index inventory as markdown")
     parser.add_argument("--skip-queue", action="store_true", help="do not rewrite manifests/ssi-agent-queue.yaml")
-    parser.add_argument("--batch", type=int, choices=(1, 2, 3, 4, 5), default=3,
+    parser.add_argument("--batch", type=int, choices=(1, 2, 3, 4, 5, 6), default=3,
                         help="which batch's builders and queue rows to run (default 3; earlier batches' states are never regenerated by default; "
-                             "4 = territories, queue rows only; 5 = 2026-09-13 re-probe notes on the blocked rows, queue rows only)")
+                             "4 = territories, queue rows only; 5 = 2026-09-13 re-probe notes on the blocked rows, queue rows only; "
+                             "6 = 2026-09-15 state authority: WI statute and UT rule taken, OR and VA already-held pointers)")
     args = parser.parse_args()
     if args.batch in (4, 5):
         only = {c.strip().upper() for c in args.only.split(",")} if args.only else None
@@ -2387,9 +2672,11 @@ def main() -> int:
         return 0
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT})
-    builders = {1: BUILDERS, 2: BUILDERS_2, 3: BUILDERS_3}[args.batch]
-    source_kinds = {1: SOURCE_KINDS, 2: SOURCE_KINDS_2, 3: SOURCE_KINDS_3}[args.batch]
-    row_notes = {1: ROW_NOTES, 2: ROW_NOTES_2, 3: ROW_NOTES_3}[args.batch]
+    builders = {1: BUILDERS, 2: BUILDERS_2, 3: BUILDERS_3, 6: BUILDERS_6}[args.batch]
+    source_kinds = {1: SOURCE_KINDS, 2: SOURCE_KINDS_2, 3: SOURCE_KINDS_3, 6: SOURCE_KINDS_6}[args.batch]
+    row_notes = {1: ROW_NOTES, 2: ROW_NOTES_2, 3: ROW_NOTES_3, 6: ROW_NOTES_6}[args.batch]
+    version = VERSION_6 if args.batch == 6 else VERSION
+    path_for = manifest_path_6 if args.batch == 6 else manifest_path
     codes = [c.strip().upper() for c in args.only.split(",")] if args.only else list(builders)
     results: dict[str, dict] = {}
     for code in codes:
@@ -2398,8 +2685,8 @@ def main() -> int:
         paths = [d["citation_path"] for d in docs]
         if len(set(paths)) != len(paths):
             raise SystemExit(f"duplicate citation paths in {code} manifest")
-        manifest_path(code).write_text(
-            yaml.safe_dump({"version": VERSION, "documents": docs}, sort_keys=False, allow_unicode=True, width=120)
+        path_for(code).write_text(
+            yaml.safe_dump({"version": version, "documents": docs}, sort_keys=False, allow_unicode=True, width=120)
         )
         index.update({"docs": docs, "source_kind": source_kinds[code], "note": row_notes[code]})
         results[code] = index
@@ -2409,7 +2696,7 @@ def main() -> int:
             json.dumps(
                 {
                     "state": code,
-                    "manifest": str(manifest_path(code).relative_to(ROOT)),
+                    "manifest": str(path_for(code).relative_to(ROOT)),
                     "index_document_count": index["index_document_count"],
                     "taken_count": index["taken_count"],
                     "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -2417,7 +2704,7 @@ def main() -> int:
             )
         )
     if not args.skip_queue:
-        update = {1: update_queue, 2: update_queue_batch2, 3: update_queue_batch3}[args.batch]
+        update = {1: update_queue, 2: update_queue_batch2, 3: update_queue_batch3, 6: update_queue_batch6}[args.batch]
         print("queue status_counts:", update(results))
     return 0
 
