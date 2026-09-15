@@ -411,10 +411,20 @@ states:
     protection rules) taken as posted: 25 chapter PDFs on its publication page (chapters 1, 3-15, 16a, 16b, 17a-17d, 17f,
     18a-18c, 21; chapters 2, 17e, 19 and 20 are not posted), of which 23 carry text; chapters 3 (marketing) and 13 (grievances
     and appeals) are one-page pointers to standalone cms.gov guidance and are recorded, not taken. Chapter 21 is the joint
-    compliance program chapter also posted as Pub 100-18 chapter 9. 2026-09-13 closure run (needs-closure-2026-09-11 MED-F-IOM-100-16).'
+    compliance program chapter also posted as Pub 100-18 chapter 9. 2026-09-13 closure run (needs-closure-2026-09-11 MED-F-IOM-100-16).
+    Pub 100-03 (Medicare National Coverage Determinations Manual, the NCD text by section) taken in full: its one chapter,
+    Coverage Determinations, is posted as four part PDFs (part 1 sections 10-80.12, part 2 90-160.26, part 3 170-190.34, part
+    4 200-310.1), each a document keyed chapter-1-part-N; the two CIM/NCD crosswalk PDFs on the same page are finding aids
+    and are not taken. 2026-09-15 wave-5 closure run (needs-closure-2026-09-14 MED-F-IOM-100-03). Pub 100-05 (Medicare Secondary
+    Payer Manual) taken as posted: chapters 1, 2, 3, 5, 6 and 7 (chapter 7 is posted under /files/document/); chapters 4 (COBC
+    requirements) and 8 (affiliated contractor interaction with MSP RACs) were deleted by transmittal R11756MSP of 2022-12-22,
+    their PDFs print only the transmittal table (chapter 8 adds ''This chapter is obsolete and is not being used'') and they
+    are recorded, not taken; the ''Chapter 5.1 ECRS Web User Guide'' and ''Chapter 5.2 ECRS Quick Reference Card'' attachments
+    and the eight per-chapter crosswalks are not chapters and are not taken. 2026-09-15 wave-5 closure run (needs-closure-2026-09-14
+    MED-F-IOM-100-05).'
   index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
   index_document_count: 25
-  taken_count: 6
+  taken_count: 8
   publication_page:
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
     document_count: 8
@@ -455,7 +465,7 @@ states:
     other_documents:
     - Crosswalk from CIM to NCD Manual
     - Crosswalk from NCD Manual to Coverage Issues Manual (CIM)
-    taken: false
+    taken: true
   - publication: 100-04
     title: Medicare Claims Processing Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms018912
@@ -473,7 +483,7 @@ states:
     - Chapter 5.1 - ECRS Web User Guide
     - Chapter 5.2 - ECRS Quick Reference Card
     - 6 per-chapter crosswalks
-    taken: false
+    taken: true
   - publication: 100-06
     title: Medicare Financial Management Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019018
@@ -677,6 +687,23 @@ states:
     heading_style: bold 'N - Title' headings (a few chapters print 'N Title', 'N- Title' or 'N -- Title'); the body starts
       after the table of contents
     run_note: docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md
+  - publication: 100-03
+    title: Medicare National Coverage Determinations (NCD) Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms014961
+    target_manifest: manifests/us-cms-iom-100-03.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-15-medicare-cms-iom-100-03
+    document_count: 6
+    chapter_count: 4
+    chapters_taken: 4
+    not_taken:
+    - Crosswalk from CIM to NCD Manual
+    - Crosswalk from NCD Manual to Coverage Issues Manual (CIM)
+    heading_style: bold 'N - Title' / 'N – Title' headings (a few print 'N Title' or 'N- Title'); chapter 1 is posted as four
+      part PDFs, each with its own table of contents; the body starts after the table of contents
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
   - publication: 100-04
     title: Medicare Claims Processing Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms018912
@@ -723,6 +750,35 @@ states:
     heading_style: bold 'N - Title' headings (some chapters print 'N Title', 'N- Title' or 'N -Title'; chapter 1 opens with
       '01 - Foreword'); the body starts after the table of contents
     run_note: docs/ingest-runs/2026-09-11-medicare-cms-iom-100-02-100-04.md
+  - publication: 100-05
+    title: Medicare Secondary Payer Manual
+    url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019017
+    target_manifest: manifests/us-cms-iom-100-05.yaml
+    target_scope:
+      jurisdiction: us
+      document_class: manual
+      version: 2026-09-15-medicare-cms-iom-100-05
+    document_count: 16
+    chapter_count: 8
+    chapters_taken: 6
+    not_taken:
+    - Chapter 1 Crosswalk
+    - Chapter 2 Crosswalk
+    - Chapter 3 Crosswalk
+    - Chapter 4 Crosswalk
+    - Chapter 5 Crosswalk
+    - Chapter 5.1 - ECRS Web User Guide
+    - Chapter 5.2 - ECRS Quick Reference Card
+    - Chapter 6 Crosswalk
+    - 'Chapter 4 - Coordination of Benefits Contractor (COBC) Requirements (deleted chapter: transmittal R11756MSP (12/22/2022,
+      CR 13002, ''Deleting Internet Only Manuals (IOM) Pub. 100-05, Chapter 4 and Chapter 8'') left a PDF with the title page
+      and transmittal table only)'
+    - 'Chapter 8 - Affiliated Contractor Interaction with Medicare Secondary Payer (MSP) Recovery Audit Contractors (RACs)
+      (deleted chapter: the PDF prints ''This chapter is obsolete and is not being used'' under the title and the transmittal
+      table (R11756MSP, 12/22/2022, CR 13002))'
+    heading_style: bold 'N - Title' / 'N – Title' headings (chapter 1 prints 'N- Title' in places); the body starts after
+      the table of contents
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
   - publication: 100-16
     title: Medicare Managed Care Manual
     url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
@@ -799,7 +855,9 @@ states:
   - publication: 100-03
     title: Medicare National Coverage Determinations (NCD) Manual
     chapter_count: 4
-    status: not_taken
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-03.yaml
+    version: 2026-09-15-medicare-cms-iom-100-03
   - publication: 100-04
     title: Medicare Claims Processing Manual
     chapter_count: 41
@@ -809,7 +867,9 @@ states:
   - publication: 100-05
     title: Medicare Secondary Payer Manual
     chapter_count: 8
-    status: not_taken
+    status: taken
+    target_manifest: manifests/us-cms-iom-100-05.yaml
+    version: 2026-09-15-medicare-cms-iom-100-05
   - publication: 100-06
     title: Medicare Financial Management Manual
     chapter_count: 11
@@ -1249,104 +1309,6 @@ states:
     Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
     100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
     341 provisions). Nothing was fetched.'
-- jurisdiction: us-gu
-  name: Guam
-  lead_counts: {}
-  candidate_sources: []
-  queue_status: done
-  source_kind: federal_manual_pointer
-  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
-  target_manifest: manifests/us-cms-iom-100-01.yaml
-  target_scope:
-    jurisdiction: us
-    document_class: manual
-    version: 2026-09-10-medicare-cms-iom-100-01
-  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
-  index_document_count: 0
-  taken_count: 0
-  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Guam-specific section)
-  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
-    eligibility document; the CMS Pub 100-01 family is already in the corpus'
-  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Guam as federal law (42 U.S.C. 1395x(x) counts
-    the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency publishes
-    a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and Medicaid
-    publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub 100-01 (Medicare
-    General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters, 341 provisions).
-    Nothing was fetched.'
-- jurisdiction: us-mp
-  name: Northern Mariana Islands
-  lead_counts: {}
-  candidate_sources: []
-  queue_status: done
-  source_kind: federal_manual_pointer
-  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
-  target_manifest: manifests/us-cms-iom-100-01.yaml
-  target_scope:
-    jurisdiction: us
-    document_class: manual
-    version: 2026-09-10-medicare-cms-iom-100-01
-  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
-  index_document_count: 0
-  taken_count: 0
-  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Northern Mariana Islands-specific
-    section)
-  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
-    eligibility document; the CMS Pub 100-01 family is already in the corpus'
-  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Northern Mariana Islands as federal law (42
-    U.S.C. 1395x(x) counts the territories as part of the United States for title XVIII; the section is not in the corpus).
-    No territory agency publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health,
-    human-services and Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing
-    text is CMS Pub 100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10
-    (7 chapters, 341 provisions). Nothing was fetched.'
-- jurisdiction: us-pr
-  name: Puerto Rico
-  lead_counts: {}
-  candidate_sources: []
-  queue_status: done
-  source_kind: federal_manual_pointer
-  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
-  target_manifest: manifests/us-cms-iom-100-01.yaml
-  target_scope:
-    jurisdiction: us
-    document_class: manual
-    version: 2026-09-10-medicare-cms-iom-100-01
-  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
-  index_document_count: 0
-  taken_count: 0
-  pointer: us/manual/cms/iom/100-01/chapter-2/40.2 (automatic SMI enrollment does not apply to residents of Puerto Rico) and
-    chapter-1 (entitlement)
-  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
-    eligibility document; the CMS Pub 100-01 family is already in the corpus'
-  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Puerto Rico as federal law (42 U.S.C. 1395x(x)
-    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
-    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
-    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
-    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
-    341 provisions). Nothing was fetched.'
-- jurisdiction: us-vi
-  name: Virgin Islands
-  lead_counts: {}
-  candidate_sources: []
-  queue_status: done
-  source_kind: federal_manual_pointer
-  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
-  target_manifest: manifests/us-cms-iom-100-01.yaml
-  target_scope:
-    jurisdiction: us
-    document_class: manual
-    version: 2026-09-10-medicare-cms-iom-100-01
-  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
-  index_document_count: 0
-  taken_count: 0
-  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Virgin Islands-specific section)
-  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
-    eligibility document; the CMS Pub 100-01 family is already in the corpus'
-  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Virgin Islands as federal law (42 U.S.C. 1395x(x)
-    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
-    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
-    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
-    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
-    341 provisions). Nothing was fetched.'
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -1557,6 +1519,30 @@ states:
     documents: the one-page ''2026 Financial Limits, All Programs'' chart (income limits effective 3/1/2026, revised 3/5/2026:
     QMB/SLMB/QI-1/QDWI as FPL% + $20, resources $9,950/$14,910) and the three-page ''2026 Income and Resource Limits'' narrative
     (QMB only). The chart''s text layer is column-scrambled (dense landscape table).'
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Guam-specific section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Guam as federal law (42 U.S.C. 1395x(x) counts
+    the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency publishes
+    a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and Medicaid
+    publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub 100-01 (Medicare
+    General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters, 341 provisions).
+    Nothing was fetched.'
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1876,6 +1862,31 @@ states:
     04-01-26 and resource maximums $9,950/$14,910 effective 01-01-26. The selected scope us-mo/manual/2026-09-10-medicaid-state-eligibility-manual
     holds this same 07/2026 edition (us-mo/manual/dss/medicaid/mhabd/appendix-j/page-1). fsdimresources.mo.gov is Incapsula-blocked
     to both clients. Nothing new to take.'
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Northern Mariana Islands-specific
+    section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Northern Mariana Islands as federal law (42
+    U.S.C. 1395x(x) counts the territories as part of the United States for title XVIII; the section is not in the corpus).
+    No territory agency publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health,
+    human-services and Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing
+    text is CMS Pub 100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10
+    (7 chapters, 341 provisions). Nothing was fetched.'
 - jurisdiction: us-ms
   name: Mississippi
   lead_counts: {}
@@ -2176,6 +2187,31 @@ states:
     Costs'' page prints the four 2026 tiers for one- and two-person groups and states Oregon has no MSP asset test; taken
     as the standards page. The brochure host sharedsystems.dhsoha.state.or.us serves an incomplete TLS chain (not needed).
     Plain client HTTP 200.'
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-2/40.2 (automatic SMI enrollment does not apply to residents of Puerto Rico) and
+    chapter-1 (entitlement)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Puerto Rico as federal law (42 U.S.C. 1395x(x)
+    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
+    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
+    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
+    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
+    341 provisions). Nothing was fetched.'
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -2293,6 +2329,30 @@ states:
     define the tiers as percentages). TABLE II is already held in the selected scope us-ut/manual/2026-09-10-medicaid-state-eligibility-manual
     (us-ut/manual/dhhs/medicaid/tables-table-ii-...). No Utah publication with all three dollar tiers was found; nothing new
     to take.'
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Virgin Islands-specific section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Virgin Islands as federal law (42 U.S.C. 1395x(x)
+    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
+    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
+    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
+    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
+    341 provisions). Nothing was fetched.'
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}

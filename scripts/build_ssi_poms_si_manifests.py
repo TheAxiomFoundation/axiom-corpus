@@ -24,6 +24,13 @@ Families (``--family``):
 * ``hi``: the 2026-09-13 closure run, the whole of part HI (Health Insurance:
   Medicare entitlement, SMI enrollment, state buy-in, premiums, IRMAA, Part D
   Extra Help), version ``2026-09-13-medicare-poms-hi``.
+* ``si-00529``: the 2026-09-15 wave-5 closure run, subchapter SI 00529 (No Social
+  Security Benefits for Prisoners, Title XVI). Its only listed section, SI R00529.020,
+  is a redacted regional page whose HTML prints "Manual Netting - Redacted Version /
+  View In PDF" and links the section text as a PDF; the remainder scope holds that
+  46-character HTML stub, this family takes the linked PDF under the sibling citation
+  path ``us/manual/ssa/poms/si/r00529.020/redacted-pdf`` (``take_redacted_pdf``),
+  version ``2026-09-15-ssi-poms-si-00529``.
 
 Section pages are cached under ``--cache-dir`` (default ``~/.axiom/poms-<part>-cache``)
 so the script can be re-run without re-fetching; the corpus extractor still
@@ -95,6 +102,10 @@ class Family:
     include: tuple[str, ...] | None = None
     exclude: tuple[str, ...] = ()
     discovered_via: str = "manual-review:ssi-agent-queue; SSA POMS SI table of contents"
+    # a section whose HTML body is only the "View In PDF" link of a redacted version is
+    # taken as that PDF (source_url the section page, download_url the PDF) instead of
+    # the HTML stub the other families emit
+    take_redacted_pdf: bool = False
 
     @property
     def category(self) -> str:
@@ -137,7 +148,19 @@ FAMILIES = {
         manifest="us-ssa-poms-hi-2026-09-13.yaml",
         discovered_via="manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-POMS-HI; SSA POMS HI table of contents",
     ),
+    # 2026-09-15 wave-5 closure run (docs/coverage/needs-closure-2026-09-14/ssi.md, SSI-F-POMS-SI-00529):
+    # subchapter SI 00529, whose one listed section (SI R00529.020) is a redacted PDF.
+    "si-00529": Family(
+        name="si-00529", part="SI", version="2026-09-15-ssi-poms-si-00529", source_as_of="2026-09-15",
+        manifest="us-ssa-poms-si-00529-2026-09-15.yaml", include=("SI 00529",),
+        discovered_via="manual-review:ssi-agent-queue; needs-closure-2026-09-14 SSI-F-POMS-SI-00529; SSA POMS SI table of contents",
+        take_redacted_pdf=True,
+    ),
 }
+RUN_NOTE_2026_09_15 = "docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md"
+# the "View In PDF" link of a redacted section page (SI R00529.020):
+# /apps10/public/pomsimages.nsf/gfx_num/G-SI_R00529.020-1/$File/G-SI_R00529.020-1.pdf
+REDACTED_PDF_RE = re.compile(r'href="(/apps10/public/pomsimages\.nsf/gfx_num/[^"]+\.pdf)"', re.I)
 
 EXTRACTION = {
     # the section body; excludes the Effective Dates breadcrumb, Previous/Next links
@@ -323,6 +346,19 @@ def parse_section_page(text: str) -> tuple[str | None, str | None]:
     return effective, tn
 
 
+def redacted_pdf_link(page: str) -> str | None:
+    """The PDF a redacted POMS page links: the div.poms body prints only the section
+    heading, the 'Manual Netting - Redacted Version' caption and 'View In PDF'."""
+    body = re.search(r'class="poms">(.*?)To Link to this section', page, re.S)
+    if body is None:
+        return None
+    match = REDACTED_PDF_RE.search(body.group(1))
+    text = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", body.group(1))).split())
+    if match is None or "Redacted Version" not in text or len(text) > 400:
+        return None
+    return HOST + match.group(1)
+
+
 def build_documents(
     chapters: dict[str, dict],
     session: requests.Session,
@@ -366,6 +402,39 @@ def build_documents(
                     "source_discovery_group": f"us/manual/ssa/poms/{part.lower()}",
                     "discovered_via": family.discovered_via,
                 }
+                pdf_url = redacted_pdf_link(page) if family.take_redacted_pdf else None
+                if pdf_url:
+                    metadata.update(
+                        {
+                            "document_subtype": "poms_section_redacted_pdf",
+                            "html_page_note": (
+                                "the section page prints only the heading, 'Manual Netting - Redacted Version' and a "
+                                "'View In PDF' link; the section text is the linked PDF, taken here (the HTML stub is "
+                                "what the si-remainder scope holds under us/manual/ssa/poms/si/<section>)"
+                            ),
+                            "pdf_note": (
+                                "page 1 of the PDF is an image without a text layer (skipped by the page-granular "
+                                "extraction); the remaining pages carry the redacted section text"
+                            ),
+                        }
+                    )
+                    docs.append(
+                        {
+                            "source_id": f"ssa-poms-{part.lower()}-{number.replace('.', '-')}-redacted-pdf",
+                            "jurisdiction": "us",
+                            "document_class": "manual",
+                            "title": f"POMS {item['section']}: {item['title']} (redacted PDF)",
+                            "source_url": item["url"],
+                            "download_url": pdf_url,
+                            "source_format": "pdf",
+                            "source_as_of": family.source_as_of,
+                            "expression_date": effective or family.source_as_of,
+                            "citation_path": f"us/manual/ssa/poms/{part.lower()}/{number}/redacted-pdf",
+                            "request": {"browser_impersonation": True},
+                            "metadata": {k: v for k, v in metadata.items() if v is not None},
+                        }
+                    )
+                    continue
                 docs.append(
                     {
                         "source_id": f"ssa-poms-{part.lower()}-{number.replace('.', '-')}",
@@ -549,6 +618,36 @@ def update_queue_si_remainder(docs: list[dict], chapters: dict[str, dict], index
     return queue["status_counts"]
 
 
+def update_queue_si_00529(docs: list[dict], chapters: dict[str, dict], index_count: int) -> dict:
+    """Record the SI 00529 scope on the SSI queue's POMS federal row (the first of the
+    queue's federal rows; the eCFR and USC rows that follow it are left alone)."""
+    family = FAMILIES["si-00529"]
+    queue = yaml.safe_load(QUEUE.read_text())
+    federal = next(row for row in queue["states"] if row["jurisdiction"] == "us")
+    federal["poms_si_00529_scope"] = {
+        "jurisdiction": "us", "document_class": "manual", "version": family.version,
+        "target_manifest": str(family.manifest_path.relative_to(ROOT)),
+        "index_url": family.index_url,
+        "subchapter_index_url": SUBCHAPTER_URL.format(chapter="05005"),
+        "index_document_count": index_count,
+        "taken_count": len(docs),
+        "citation_paths": [d["citation_path"] for d in docs],
+        "closure_elements": ["SSI-F-POMS-SI-00529"],
+        "run_note": RUN_NOTE_2026_09_15,
+    }
+    note = (
+        "2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-POMS-SI-00529): subchapter SI 00529 lists one "
+        "section, SI R00529.020, a redacted regional page whose HTML carries only a 'View In PDF' link (the 46-character "
+        f"stub in the si-remainder scope); the linked PDF is taken as scope us/manual/{family.version} under "
+        "us/manual/ssa/poms/si/r00529.020/redacted-pdf through the same generator (--family si-00529)."
+    )
+    if note not in str(federal.get("notes") or ""):
+        federal["notes"] = f"{federal.get('notes') or ''} {note}".strip()
+    _recount(queue)
+    QUEUE.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def update_queue_hi(docs: list[dict], chapters: dict[str, dict], index_count: int) -> dict:
     """Record the POMS HI family on the Medicare queue's federal row (the CMS IOM
     generator owns the row's singular keys; this adds a sibling family record)."""
@@ -624,6 +723,8 @@ def main() -> int:
             print("queue status_counts:", update_queue(docs, index_count))
         elif family.name == "si-remainder":
             print("queue status_counts:", update_queue_si_remainder(docs, chapters, index_count))
+        elif family.name == "si-00529":
+            print("queue status_counts:", update_queue_si_00529(docs, chapters, index_count))
         else:
             print("queue status_counts:", update_queue_hi(docs, chapters, index_count))
     return 0
