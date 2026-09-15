@@ -42,6 +42,21 @@ states:
     jurisdiction: us
     document_class: guidance
     version: 2026-09-10-wic-fns-guidance
+  federal_register_scope:
+    jurisdiction: us
+    document_class: rulemaking
+    version: 2026-09-15-wic-federal-register-2024-07437-types-rule-term-revisions-in-the-wic-food-packages-limit-1
+    citation_paths:
+    - us/rulemaking/federal-register/2024-04-18/2024-07437
+    closure_elements:
+    - wic_g06
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:16
+    run_note: docs/ingest-runs/2026-09-15-snap-wic.md
+    notes: 'Wave 5 (2026-09-15): the 2024 food package final rule (89 FR 28488, FR document 2024-07437) extracted with
+      extract-federal-register from the federalregister.gov API (one document, full text). The FNA WIC Federal Register index
+      (resource_type 16; 7 pages read from the origin host fns-prod.azureedge.us, 17 distinct items) also lists the 2016 EBT
+      final rule (2016-04261), the 2014 food package rules, the 2023 online-ordering rule and the 2026-06-24 technical
+      corrections, none taken; the two income-guideline notices are the wic_g01 scope.'
   lead_counts:
     needs_review: 6
     excluded_secondary: 3
@@ -1447,6 +1462,21 @@ states:
   index_url: https://www.tn.gov/health/health-program-areas/fhw/wic.html
   index_document_count: 0
   taken_count: 0
+  state_regulation_scope:
+    jurisdiction: us-tn
+    document_class: regulation
+    version: 2026-09-15-wic-state-regulation
+    manifest: manifests/us-tn-wic-state-regulation.yaml
+    index_url: https://publications.tnsosfiles.com/rules/1200/1200-15/1200-15.htm
+    citation_paths:
+    - us-tn/regulation/1200-15/02
+    closure_elements:
+    - wic_s31
+    run_note: docs/ingest-runs/2026-09-15-snap-wic.md
+    notes: 'Wave 5 (2026-09-15): the WIC state rule chapter 1200-15-02 (Tenn. Comp. R. & Regs., rules .01-.10, September 2004
+      revision) taken from the Secretary of State compilation (publications.tnsosfiles.com; HTTP 403 to the plain client, served
+      to the browser-impersonated client as for the CoverKids rules); tn.gov/health/wic.html links the same PDF as "WIC State
+      Regulations" (not taken). The policy manual row above is unchanged.'
   notes: 'Tennessee Department of Health: www.tn.gov answered HTTP 403 (awselb/2.0) or timed out for every client in batch
     2. Retried 2026-09-10T21:34Z from a US network: the host now answers (two of six requests still failed with a TLS EOF),
     the batch-2 WIC URL (health-program-areas/fhw/wic.html) is 404 and the relocated WIC page (health/wic.html) links participant,
