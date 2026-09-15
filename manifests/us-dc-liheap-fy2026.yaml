@@ -1,0 +1,225 @@
+documents:
+  - source_id: dc-doee-liheap-fy2026-state-plan-categorical-eligibility
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/categorical-eligibility
+    title: District of Columbia FY2026 LIHEAP State Plan — Categorical Eligibility
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Categorical Eligibility,'
+      stop_text_pattern: '^SNAP Nominal Payments$'
+      section_heading_pattern: '^(?P<major>[1-5])\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>(?!a\.).+)$'
+      section_label_template: '{major}.{minor}'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_categorical_eligibility
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-state-plan-income-and-account-credit
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/income-and-account-credit
+    title: District of Columbia FY2026 LIHEAP State Plan — Income and Account Credit
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Determination of Eligibility - Countable Income$'
+      stop_text_pattern: '^1\.10\s'
+      section_heading_pattern: '^(?P<major>[1-5])\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>(?!a\.).+)$'
+      section_label_template: '{major}.{minor}'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_income_and_account_credit
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-state-plan-heating-assistance
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/heating-assistance
+    title: District of Columbia FY2026 LIHEAP State Plan — Heating Assistance
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Section 2 -'
+      stop_text_pattern: '^Section 3 -'
+      section_heading_pattern: '^(?P<major>[1-5])\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>(?!a\.).+)$'
+      section_label_template: '{major}.{minor}'
+      drop_line_patterns:
+        - '^U\.S\. Department of Health and Human Services'
+        - '^LOW INCOME HOME ENERGY ASSISTANCE PROGRAM'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_heating_assistance
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-state-plan-cooling-assistance
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/cooling-assistance
+    title: District of Columbia FY2026 LIHEAP State Plan — Cooling Assistance
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Section 3 -'
+      stop_text_pattern: '^Section 4 -'
+      section_heading_pattern: '^(?P<major>[1-5])\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>(?!a\.).+)$'
+      section_label_template: '{major}.{minor}'
+      drop_line_patterns:
+        - '^U\.S\. Department of Health and Human Services'
+        - '^LOW INCOME HOME ENERGY ASSISTANCE PROGRAM'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_cooling_assistance
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-state-plan-crisis-assistance
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/crisis-assistance
+    title: District of Columbia FY2026 LIHEAP State Plan — Crisis Assistance
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Section 4 -'
+      stop_text_pattern: '^Section 5 -'
+      section_heading_pattern: '^(?P<major>[1-5])\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>(?!a\.).+)$'
+      section_label_template: '{major}.{minor}'
+      drop_line_patterns:
+        - '^U\.S\. Department of Health and Human Services'
+        - '^LOW INCOME HOME ENERGY ASSISTANCE PROGRAM'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_crisis_assistance
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-state-plan-weatherization-assistance
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/weatherization-assistance
+    title: District of Columbia FY2026 LIHEAP State Plan — Weatherization Assistance
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Section 5 -'
+      stop_text_pattern: '^Section 6 -'
+      section_heading_pattern: '^(?P<major>[1-5])\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>(?!a\.).+)$'
+      section_label_template: '{major}.{minor}'
+      drop_line_patterns:
+        - '^U\.S\. Department of Health and Human Services'
+        - '^LOW INCOME HOME ENERGY ASSISTANCE PROGRAM'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_weatherization_assistance
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-state-plan-identity-and-verification
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/state-plan/identity-and-verification
+    title: District of Columbia FY2026 LIHEAP State Plan — Identity and Verification
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/FY%2026%20LIHEAP%20StatePlan%20-%20Final_Approved.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^Section 17 -'
+      stop_text_pattern: '^Section 18:'
+      section_heading_pattern: '^(?P<major>17)\s*\.\s*(?P<minor>\d+[a-z]?)\.?\s+(?P<body>.+)$'
+      section_label_template: '{major}.{minor}'
+      drop_line_patterns:
+        - '^U\.S\. Department of Health and Human Services'
+        - '^LOW INCOME HOME ENERGY ASSISTANCE PROGRAM'
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: federally_approved_state_plan_identity_and_verification
+      program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_plan
+      source_landing_page: https://doee.dc.gov/liheap
+
+  - source_id: dc-doee-liheap-fy2026-benefit-matrix
+    jurisdiction: us-dc
+    document_class: policy
+    citation_path: us-dc/policy/doee/liheap/fy-2026/benefit-matrix
+    title: District of Columbia FY2026 LIHEAP Benefit Matrix
+    source_url: https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DC%20DOEE%20-%20FY26%20LIHEAP%20Benefit%20Matrix.docx
+    source_format: docx
+    source_as_of: "2026-08-11"
+    expression_date: "2025-10-01"
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>Regular Benefits)$'
+      section_label_replacements:
+        Regular Benefits: regular-benefits-table
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: benefit_matrix
+      program: LIHEAP
+      federal_program: LIHEAP
+      fiscal_year: 2026
+      effective_from: "2025-10-01"
+      effective_to: "2026-09-30"
+      source_status: current_official_fy2026_benefit_matrix
+      source_landing_page: https://doee.dc.gov/liheap
+      source_discovery_group: us-dc/policy/liheap
+      discovered_via: official-doee-liheap-landing-page

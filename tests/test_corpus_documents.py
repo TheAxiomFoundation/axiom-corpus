@@ -3469,6 +3469,56 @@ documents:
     assert second_block.heading == "365.110 Residents of Institutions"
 
 
+def test_extract_official_documents_reads_content_control_wrapped_docx_cells(
+    tmp_path: Path,
+) -> None:
+    docx_path = tmp_path / "checkbox-table.docx"
+    document_xml = """\
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p>
+      <w:pPr><w:pStyle w:val="Heading1"/></w:pPr>
+      <w:r><w:t>Eligibility</w:t></w:r>
+    </w:p>
+    <w:tbl>
+      <w:tr>
+        <w:tc><w:p><w:r><w:t>Asset test?</w:t></w:r></w:p></w:tc>
+        <w:sdt><w:sdtContent><w:tc><w:p><w:r><w:t>☐</w:t></w:r></w:p></w:tc></w:sdtContent></w:sdt>
+        <w:tc><w:p><w:r><w:t>Yes</w:t></w:r></w:p></w:tc>
+        <w:sdt><w:sdtContent><w:tc><w:p><w:r><w:t>☒</w:t></w:r></w:p></w:tc></w:sdtContent></w:sdt>
+        <w:tc><w:p><w:r><w:t>No</w:t></w:r></w:p></w:tc>
+      </w:tr>
+    </w:tbl>
+  </w:body>
+</w:document>
+"""
+    with zipfile.ZipFile(docx_path, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: checkbox-table
+    jurisdiction: us-dc
+    document_class: policy
+    title: Checkbox table
+    source_url: https://example.gov/checkbox-table.docx
+    source_format: docx
+    local_path: {json.dumps(str(docx_path))}
+"""
+    )
+
+    report = extract_official_documents(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        manifest_path=manifest_path,
+        version="2026-08-11-checkbox-table",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert records[1].body == "Asset test? | ☐ | Yes | ☒ | No"
+
+
 def test_extract_official_documents_reads_legacy_word_doc(tmp_path: Path, monkeypatch) -> None:
     doc_path = tmp_path / "5030_10.doc"
     doc_path.write_bytes(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1legacy-word-content")
@@ -3573,6 +3623,52 @@ documents:
     assert records[2].body == (
         "Step 1: Identify earned income.\n\nStep 2: Subtract disregarded income."
     )
+
+
+def test_extract_labeled_docx_section_preserves_inline_body_group(
+    tmp_path: Path,
+) -> None:
+    docx_path = tmp_path / "inline-policy.docx"
+    document_xml = """\
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p><w:r><w:t>4.4 Crisis intervention deadline: 48 hours</w:t></w:r></w:p>
+    <w:p><w:r><w:t>4.5 Life-threatening deadline: 18 hours</w:t></w:r></w:p>
+  </w:body>
+</w:document>
+"""
+    with zipfile.ZipFile(docx_path, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: inline-policy
+    jurisdiction: us-dc
+    document_class: policy
+    title: Inline policy
+    source_url: https://example.gov/inline-policy.docx
+    source_format: docx
+    local_path: {json.dumps(str(docx_path))}
+    citation_path: us-dc/policy/example/inline-policy
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>4\\.\\d+)\\s+(?P<heading>.*?):\\s+(?P<body>\\d+ hours)$'
+"""
+    )
+
+    report = extract_official_documents(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        manifest_path=manifest_path,
+        version="2026-08-11-inline-docx-body",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "4.4 Crisis intervention deadline"
+    assert records[1].body == "48 hours"
+    assert records[2].heading == "4.5 Life-threatening deadline"
+    assert records[2].body == "18 hours"
 
 
 def test_extract_official_documents_reads_webworks_policy_divs(tmp_path: Path) -> None:

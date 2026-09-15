@@ -1830,10 +1830,17 @@ def _extract_labeled_docx_section_blocks(
         )
         if match:
             label, heading = match
+            inline_body = ""
+            if section_heading_re is not None:
+                heading_match = section_heading_re.match(line)
+                if heading_match is not None:
+                    inline_body = (
+                        heading_match.groupdict().get("body") or ""
+                    ).strip()
             flush()
             current_label = label
-            current_heading = heading or label
-            current_body = []
+            current_heading = heading or None
+            current_body = [inline_body] if inline_body else []
             continue
         if current_label is not None:
             current_body.append(line)
@@ -2039,12 +2046,27 @@ def _docx_table_text(table: ElementTree.Element) -> str:
     for row in table.findall("w:tr", _WORD_NS):
         cells = [
             _normalize_text(" ".join(_docx_text_chunks(cell)))
-            for cell in row.findall("w:tc", _WORD_NS)
+            for cell in _docx_row_cells(row)
         ]
         cells = [cell for cell in cells if cell]
         if cells:
             rows.append(" | ".join(cells))
     return "\n".join(rows)
+
+
+def _docx_row_cells(row: ElementTree.Element) -> tuple[ElementTree.Element, ...]:
+    """Return direct and content-control-wrapped cells in document order."""
+    cells: list[ElementTree.Element] = []
+    for child in row:
+        if child.tag == _word_tag("tc"):
+            cells.append(child)
+            continue
+        if child.tag != _word_tag("sdt"):
+            continue
+        wrapped_cell = child.find("w:sdtContent/w:tc", _WORD_NS)
+        if wrapped_cell is not None:
+            cells.append(wrapped_cell)
+    return tuple(cells)
 
 
 def _docx_text_chunks(node: ElementTree.Element) -> tuple[str, ...]:
