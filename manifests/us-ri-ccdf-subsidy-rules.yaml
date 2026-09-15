@@ -1,0 +1,68 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-ri-dhs-ccap-218-20-00-4
+  jurisdiction: us-ri
+  document_class: regulation
+  title: Child Care Assistance Program Rules and Regulations (218-RICR-20-00-4)
+  source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-4
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-11'
+  citation_path: us-ri/regulation/218-ricr/20/00/4
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Human Services
+    document_subtype: administrative_regulation
+    program: CCDF
+    state_program: Child Care Assistance Program (CCAP)
+    federal_program: CCDF
+    manual_landing_page: https://rules.sos.ri.gov/organizations/chapter/218-20
+    source_discovery_group: us-ri/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.sos.ri.gov/organizations/chapter/218-20
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Rhode Island Department of State
+    legal_identifier: 218-RICR-20-00-4
+    filing_type: Amendment
+    regulation_status: Active
+    regulation_effective_date: '2026-06-11'
+    filing_history_count: 77
+    pdf_candidates_on_page: 2
+    pdf_last_modified: '2026-05-22'
+    extraction_granularity: pdf_page
+    extraction_note: the Download Regulation PDF of the active filing, page-level like the 218-RICR-20-00-1 SNAP and 218-RICR-20-00-2
+      RIW scopes
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DHS/REG_13468_20260522112045640.pdf
+- source_id: us-ri-dhs-ccap-educators-218-20-00-13
+  jurisdiction: us-ri
+  document_class: regulation
+  title: Child Care Assistance Program for Child Care Educators and Child Care Staff Rules and Regulations
+  source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-13
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-11-16'
+  citation_path: us-ri/regulation/218-ricr/20/00/13
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Human Services
+    document_subtype: administrative_regulation
+    program: CCDF
+    state_program: Child Care Assistance Program for Child Care Educators and Child Care Staff
+    federal_program: CCDF
+    manual_landing_page: https://rules.sos.ri.gov/organizations/chapter/218-20
+    source_discovery_group: us-ri/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.sos.ri.gov/organizations/chapter/218-20
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Rhode Island Department of State
+    legal_identifier: 218-RICR-20-00-13
+    filing_type: Amendment
+    regulation_status: Active
+    regulation_effective_date: '2025-11-16'
+    filing_history_count: 4
+    pdf_candidates_on_page: 2
+    pdf_last_modified: '2025-10-27'
+    extraction_granularity: pdf_page
+    extraction_note: the Download Regulation PDF of the active filing, page-level like the 218-RICR-20-00-1 SNAP and 218-RICR-20-00-2
+      RIW scopes
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DHS/REG_13387_20251027151915099.pdf
