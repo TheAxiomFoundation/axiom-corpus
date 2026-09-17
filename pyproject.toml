@@ -7,7 +7,7 @@ name = "axiom-corpus"
 version = "0.1.0"
 description = "Axiom Corpus source services for statutes, regulations, guidance, and related government source files"
 readme = "README.md"
-license = {text = "Apache-2.0"}
+license = {text = "MIT"}
 authors = [
     {name = "The Axiom Foundation", email = "hello@axiom-foundation.org"}
 ]
@@ -15,7 +15,7 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Legal Industry",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.14",
     "Topic :: Text Processing :: Markup :: XML",
