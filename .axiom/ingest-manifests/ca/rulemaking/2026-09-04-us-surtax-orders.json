@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/rulemaking/2026-09-04-us-surtax-orders.json",
+      "sha256": "ef5af7c89244b7cff225479a0200bcb4d152f55bc5763fe9d73c64f91b9225ba"
+    },
+    {
+      "path": "data/corpus/inventory/ca/rulemaking/2026-09-04-us-surtax-orders.json",
+      "sha256": "cc0a97405eda17bfe58ce1dbce7279e1efb75e8a67f887d67f5849487d1e844e"
+    },
+    {
+      "path": "data/corpus/provisions/ca/rulemaking/2026-09-04-us-surtax-orders.jsonl",
+      "sha256": "fc25052140c773bed482721d1ca0044dbdfa8bbe7a4cafb8ddb3e73cd6da50ec"
+    },
+    {
+      "path": "data/corpus/sources/ca/rulemaking/2026-09-04-us-surtax-orders/official-documents/2026-09-04-pc-2026-0785-us-surtax-order-2026.html",
+      "sha256": "d9eab33ccd0e8e9ee16e31898f5d735c2931c8170088b06e1303e4b1ab4106b6"
+    },
+    {
+      "path": "data/corpus/sources/ca/rulemaking/2026-09-04-us-surtax-orders/official-documents/2026-09-04-pc-2026-0786-order-amending-steel-aluminum-2025.html",
+      "sha256": "9be01707d7f62c6305be0b8a89749e2465f1577b11dbb6ec0d4559c24e82befd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "87928f0d1a0ce0cf6c0419a91b531ab6a5d1e20b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src .venv/bin/python /Users/maxghenis/PolicyEngine/_tariff-p5/ca-countermeasures/ingest-lane/build_ca_surtax_orders.py --base data/corpus --finance-tsv /Users/maxghenis/PolicyEngine/_tariff-p5/ca-countermeasures/pins/2026-08-25-finance-product-list-extracted.tsv"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 743,
+    "missing_count": 0,
+    "provision_count": 743,
+    "source_count": 743
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-09-17T21:27:23.445320+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "igojKALxn/uu7tzLNY2IfY6BwjCNCuEB8MfCEk5etRP3VSa7n554XnSOgtfS0yr9XI4D3XMBZLH9dhpaUqNfBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-04-us-surtax-orders"
+}
