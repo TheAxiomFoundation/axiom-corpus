@@ -311,3 +311,42 @@ def test_virginia_section_detail_parts_handles_point_and_colon():
     assert _section_detail_parts("155") == ("155", "0", "0")
     assert _section_detail_parts("155.1") == ("155", "1", "0")
     assert _section_detail_parts("155.1:2") == ("155", "1", "2")
+
+
+def test_extract_virginia_vac_only_chapter_accepts_comma_separated_list(tmp_path):
+    source_dir = tmp_path / "vac-source"
+    _write_vac_sources(source_dir)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_virginia_vac(
+        store,
+        version="2026-09-14",
+        source_dir=source_dir,
+        only_title="1",
+        only_agency="7",
+        only_chapter="10,20",
+        limit=1,
+        workers=1,
+    )
+
+    assert report.coverage.complete
+    assert report.version == "2026-09-14-title-1-agency-7-chapter-10-20-limit-1"
+    assert report.chapter_count == 1
+    assert report.section_count == 1
+    records = load_provisions(report.provisions_path)
+    assert "us-va/regulation/title-1/agency-7/chapter-10" in [
+        record.citation_path for record in records
+    ]
+
+    unmatched = extract_virginia_vac(
+        store,
+        version="2026-09-14-none",
+        source_dir=source_dir,
+        only_title="1",
+        only_agency="7",
+        only_chapter="20,30",
+        limit=1,
+        workers=1,
+    )
+    assert unmatched.chapter_count == 0
+    assert unmatched.section_count == 0

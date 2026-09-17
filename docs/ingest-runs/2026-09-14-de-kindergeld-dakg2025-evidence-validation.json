@@ -1,0 +1,29 @@
+{
+  "reviewed_head": "5d0be63b0cf0332b9cafe1af0d2a9b88194910bf",
+  "independent_review": "No actionable findings: exact retained PDF provenance, full section/body hashes, page count and all 56 preceding scopes independently verified. No legal coverage claim.",
+  "focused_tests": {
+    "passed": 236
+  },
+  "full_tests": {
+    "passed": 4612,
+    "skipped": 103,
+    "deselected": 208
+  },
+  "ruff": "passed",
+  "mypy": "passed",
+  "towncrier": "passed",
+  "ingest_guard": "passed; four protected artifacts, no issues",
+  "release_dry_run": {
+    "scopes": 57,
+    "provision_rows": 10221,
+    "artifacts": 421
+  },
+  "local_log_sha256": {
+    "dakg2025-focused-tests.log": "968f5526ccf54d730e574f980345d65411821ed97537e06f8fdbdf4da7c7e269",
+    "dakg2025-full-tests.log": "6419c08456055bf10be500f1db27091c28ac7e2657f1edd6be8ab852df4a39dc",
+    "dakg2025-ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "dakg2025-mypy.log": "e82a76bfc0eb45231afea17b5228a00a04ed2e11d057f838437ba67a912b5bd8",
+    "dakg2025-towncrier.log": "3b2c4fc5cbbfcd0f7650dbb2f1f009aa4e19c0fb029f5c1cacd46872e2beb9bd",
+    "dakg2025-release-dry-run.log": "3083de83dc7112d3b05d70dd076a2048645068cf6c375c1a83fb145f33e3a741"
+  }
+}

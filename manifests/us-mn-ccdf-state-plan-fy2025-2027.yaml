@@ -1,0 +1,40 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-mn-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-mn
+  document_class: policy
+  title: Minnesota CCDF Plan, FFY 2025-2027
+  source_url: https://dcyf.mn.gov/sites/default/files/2026-09/CCDF%2025_27_plan_round_3_amendments.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-mn/policy/acf/ccdf-plan/fy2025-2027
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Amendment 3
+    plan_status: 'Approved as of 2026-08-11 (''Amended 25-27 CCDF Plan'', the only FFY 2025-2027 version posted by the Department
+      of Children, Youth, and Families, which replaced DHS as Lead Agency; the mn.gov page the ACF index links is a meta-refresh
+      to this page; retry 2 2026-09-10T21:35Z from a US network: plain requests are still redirected to the validate.perfdrive.com
+      challenge, curl_cffi chrome impersonation now completes TLS verification and receives the page and the PDF)'
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://dcyf.mn.gov/child-care-and-development-fund
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/MN-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-mn/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

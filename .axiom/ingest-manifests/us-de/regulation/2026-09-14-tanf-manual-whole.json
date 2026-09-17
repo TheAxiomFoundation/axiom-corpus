@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/regulation/2026-09-14-tanf-manual-whole.json",
+      "sha256": "43ff81d7a485acc160039f0436db0e473eb2eb4a87e355af5729060504d05a4a"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/regulation/2026-09-14-tanf-manual-whole.json",
+      "sha256": "453f59a48fe054624b85bc0d8bb6a033ccbb8a441bcca53130f4c42da6ab45eb"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/regulation/2026-09-14-tanf-manual-whole.jsonl",
+      "sha256": "484461607d05196b2a729b132312315c0ec230ebdd6df7df356e78f139f7903e"
+    },
+    {
+      "path": "data/corpus/sources/us-de/regulation/2026-09-14-tanf-manual-whole/official-documents/de-dhss-dss-3000-technical-eligibility-for-cash-assistance.pdf",
+      "sha256": "00e80370e0a59abfd80e8ada15ed3c5261d0b9407709ab1dc3c7e246d623dfe6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-tanf-manual-whole (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 133,
+    "missing_count": 0,
+    "provision_count": 133,
+    "source_count": 133
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:22:28.192810+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nGWpDNhsVAMhpG+tQy9EvCrLUqOirHatiKe4hNdfM1Q8gkHWwnbsEVcgFk99eeOw+TxD+yn/DLOcvT4c+0oTCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-tanf-manual-whole"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "49350cea9b3a0cb72cf75a043442a65e6c448552f2bb8cd972734e7bff11f90c"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "f92df0ab117cd90bfad750cadb48102e82d20a73be9a27563503cdb034fa5552"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "7cd6943d7e598d654fa48e67532f149adaf747e3634c766b827e994af240d68f"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-dc-dhs-snap-eligibility-requirements-fy2026.html",
+      "sha256": "c9415cabbaf54b60f6abe9e7d77f9f0df1615858e4a578d48a0a5aed488bdbc0"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-dc-dhs-snap-monthly-benefit-fy2026.html",
+      "sha256": "f6c85d330013bc7d602ae3e2fc690ca5520c81ebe5caa92cb732278bd5300b67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-dc-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:20:38.007049+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CFvxCxy8xNc8IdIGtbAyVYh71C2b1LkabsqTU4Qu1josW4wVmh3CKmpsxcp5gCh3kvLgg2GYt2xN1rLZWHIKAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

@@ -1,0 +1,648 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ma-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 23
+    index_records_total: 23
+- source_id: us-ma-cms-chip-state-plan-spa-ma-19-0013-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-19-0013: Approval Package (approved May 7, 2025, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-19-0013/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-19-0013
+    cms_node_id: '180581'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=180581
+    approval_date: '2025-05-07'
+    effective_date: '2018-07-01'
+    summary: This SPA demonstrates compliance with the CHIP managed care regulations at 42 CFR 457, Subpart L for utilization
+      of a managed care delivery system.
+    topics:
+    - Benefits
+    - Delivery System
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-24-0024-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-24-0024: Approval Package (approved September 16, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-24-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-24-0024/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-24-0024
+    cms_node_id: '170491'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170491
+    approval_date: '2024-09-16'
+    effective_date: '2024-10-01'
+    summary: Through this SPA, the state makes several updates to benefits under the CHIP state plan and updates its strategic
+      objective goals related to CHIP enrollment and removes an outdated performance goal. Additionally, the state has demonstrated
+      compliance with the Inflation Reduction Act (IRA) section 11405(b)(1) to cover adult vaccines, without cost sharing.
+      This SPA also documents the state’s compliance with the longstanding requirement to cover children’s vaccines under
+      current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which requires states to cover age-appropriate vaccines
+      in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-23-0001-dral-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-23-0001-DRAL: Approval Package (approved June 20, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-23-0001-DRAL
+    cms_node_id: '149176'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=149176
+    approval_date: '2023-06-20'
+    effective_date: '2023-04-01'
+    summary: This letter reactivates Massachusetts's approved Evergreen Disaster Relief State Plan Amendment.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-22-0015-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-22-0015: Approval Package (approved July 26, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-22-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-22-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-22-0015
+    cms_node_id: '138171'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=138171
+    approval_date: '2022-07-26'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Massachusetts with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-22-0016-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-22-0016: Approval Package (approved June 30, 2022, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-22-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-22-0016/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-22-0016
+    cms_node_id: '150246'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=150246
+    approval_date: '2022-06-30'
+    effective_date: '2021-07-01'
+    summary: This SPA increases the limits for inpatient rehabilitation, chronic disease hospital services, and nursing facility
+      services from 100 days to six months before prior authorization is required. The SPA also makes changes to section 8
+      of the state plan related to cost sharing.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-22-0011-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-22-0011: Approval Package (approved April 18, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-22-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-22-0011/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-22-0011
+    cms_node_id: '144791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144791
+    approval_date: '2022-04-18'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-18-0011-chip-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-18-0011-CHIP: Approval Package (approved July 19, 2021, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-18-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-18-0011-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-18-0011-CHIP
+    cms_node_id: '110991'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110991
+    approval_date: '2021-07-19'
+    effective_date: '2017-10-02'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-20-0015-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-20-0015: Approval Package (approved August 12, 2020, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-20-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-20-0015
+    cms_node_id: '101146'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=101146
+    approval_date: '2020-08-12'
+    effective_date: '2019-07-01'
+    summary: Through this SPA, the state provides presumptive eligibility to all of its separate CHIP populations.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-16-0004-chip-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-16-0004-CHIP: Approval Package (approved May 18, 2016, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-16-0004-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-16-0004-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-16-0004-CHIP
+    cms_node_id: '3511'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3511
+    approval_date: '2016-05-18'
+    effective_date: '2015-07-01'
+    summary: Adds applied behavior analysis (ABA) as a covered benefit for all CHIP eligible children with a diagnosis of
+      autism spectrum disorder.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-chipspa-15-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-CHIPSPA-15: Approval Package (approved March 11, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-CHIPSPA-15.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-chipspa-15/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-CHIPSPA-15
+    cms_node_id: '3381'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3381
+    approval_date: '2015-03-11'
+    effective_date: '2014-01-01'
+    summary: Expands the benefit package offered to unborn children in the separate CHIP from the state's section 1115 Basic
+      Benefit Level to the MassHealth Standard benefit.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-14-0003-mc2-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-14-0003-MC2: Approval Package (approved December 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-14-0003-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-14-0003-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-14-0003-MC2
+    cms_node_id: '3136'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3136
+    approval_date: '2014-12-22'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-chipspa-16-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-CHIPSPA-16: Approval Package (approved November 26, 2014, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-CHIPSPA-16.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-chipspa-16/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-CHIPSPA-16
+    cms_node_id: '3386'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3386
+    approval_date: '2014-11-26'
+    effective_date: '2013-07-01'
+    summary: 'Implements one additional health Services Initiative program: Services for Homeless Youth.'
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-14-0006-mc5-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-14-0006-MC5: Approval Package (approved September 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-14-0006-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-14-0006-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-14-0006-MC5
+    cms_node_id: '3146'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3146
+    approval_date: '2014-09-22'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-14-0013-mc1-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-14-0013-MC1: Approval Package (approved September 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-14-0013-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-14-0013-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-14-0013-MC1
+    cms_node_id: '3151'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3151
+    approval_date: '2014-09-22'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-13-0026-mc4-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-13-0026-MC4: Approval Package (approved May 5, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-13-0026-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-13-0026-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-13-0026-MC4
+    cms_node_id: '2721'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2721
+    approval_date: '2014-05-05'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements in accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-14-0005-mc3-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-14-0005-MC3: Approval Package (approved April 15, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-14-0005-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-14-0005-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-14-0005-MC3
+    cms_node_id: '3141'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3141
+    approval_date: '2014-04-15'
+    effective_date: '2014-01-01'
+    summary: Related to Modified Adjusted Gross Income (MAGI) Eligibility with an effective date of January 1, 2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-spa-ma-cspa-6-approval-package
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP SPA MA-CSPA-6: Approval Package (approved February 9, 2012, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MA-CSPA-06-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/spa/ma-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MA-CSPA-6
+    cms_node_id: '1511'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1511
+    approval_date: '2012-02-09'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion CHIPRA Section 501 - Oral Health and Robert Wood Johnson Foundation
+      (RWJF) grant funding added to State Plan.
+    topics:
+    - Dental
+    link_label: Approval Package
+- source_id: us-ma-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP compiled state plan: Factsheet (approved July 21, 2006, effective February 1, 2006)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MACurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2006-02-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: MA
+    cms_node_id: '1386'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1386
+    approval_date: '2006-07-21'
+    effective_date: '2006-02-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 07-29-2009.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ma-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ma
+  document_class: policy
+  title: 'Massachusetts CHIP compiled state plan: Current State Plan (approved July 21, 2006, effective February 1, 2006)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/MA/MACurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2006-02-01'
+  citation_path: us-ma/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Massachusetts
+    source_discovery_group: us-ma/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: MA
+    cms_node_id: '1386'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1386
+    approval_date: '2006-07-21'
+    effective_date: '2006-02-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 07-29-2009.
+    topics: *id002
+    link_label: Current State Plan

@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated.json",
+      "sha256": "1c3a55857a015646d129d8d546f99a41d4ac8b669d5d15d1803bc7a3076d6721"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated.json",
+      "sha256": "d11b7374569b267ead0838313da1797edf090168540f65959bfa6b52bb7ad73a"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated.jsonl",
+      "sha256": "fdc3621f62c4444dfcf2367e03ebd0e524a0d2def526d7c26635f72a9c88c1df"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-07-24-1401-coordination-repair-title-26-part-1/ecfr/title-26-part-1.xml",
+      "sha256": "1e5ca5d86df2ebf303d2df1eb9d162412e549896118779621d41139c9662001a"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/graphics/EC14NO91.175.png",
+      "sha256": "8fcad8bc0c3062c031eb11fee1222560078fe24d3edf00202f9f82db885986c1"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/graphics/ER05MY03.002.png",
+      "sha256": "d7bb822e184aaa0930f2914a4ef715ac8dcc87f8c65ffdd6edae6e40031d0ee4"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/graphics/ER21JY95.001.png",
+      "sha256": "06c02fa9b57cc1a7972090a310b24b6603b8d92b52832be301bd1e44a4376dc0"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/graphics/ER21JY95.002.png",
+      "sha256": "cb3a4fe479e68ab15c14dd028b2153d3f78e472af7772266790360df24dbd60d"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/graphics/ER21JY95.003.png",
+      "sha256": "e0683fd43fadc1271f12895f45842d5aaf4c225e7c4822778ea2bb68f461c5e5"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/graphics/ER21JY95.004.png",
+      "sha256": "f61b850c7bd18e5ae894c991dad5808372eae7cd2536415d55489f96f2590e76"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated/2026-09-13-title-26-part-1/ecfr/title-26-part-1.xml",
+      "sha256": "cbad1cf646425f85f951a0be49e2e103590cebd31e74b8f77059aa5e213ded5b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us --document-class regulation --target-version 2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated (run note: docs/ingest-runs/2026-09-11-release-consolidation.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 346,
+    "missing_count": 0,
+    "provision_count": 346,
+    "source_count": 346
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:40:30.033768+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SY7vZFl3wRVYI5K/t9zEC7NGzoeTyZN3HzmJc+Fp5gsMnUJs6QuCEQLuHTegMJbLLFKzaIVHhE4BNh73sthtDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated"
+}

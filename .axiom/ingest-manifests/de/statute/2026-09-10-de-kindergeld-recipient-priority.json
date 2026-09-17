@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-10-de-kindergeld-recipient-priority.json",
+      "sha256": "3a5cd6470af54ce26e7eb614b0cb378a4be2d9b656d3e75223b5a309fd29fa50"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-10-de-kindergeld-recipient-priority.json",
+      "sha256": "a3046e1be8b0e6af1e6a104b3f36e0d2c39fb3690537812fbbd8148c679a0ad6"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-10-de-kindergeld-recipient-priority.jsonl",
+      "sha256": "65a97192adfb640e7b09c4c92453872d671e25186875a848a17280691a9366f1"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-recipient-priority/famfg/BJNR258700008.xml",
+      "sha256": "906f738b347fc8a60fb1cbf3817de3e538de839a87f7de2a84f95772a30e6dba"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-recipient-priority/famfg/famfg.xml",
+      "sha256": "906f738b347fc8a60fb1cbf3817de3e538de839a87f7de2a84f95772a30e6dba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "17ab016dbcc64467d062b335e316a61a5d2903e9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native extract-de-gii with manifests/de-kindergeld-recipient-priority-gii.yaml; byte-identical retained source-dir replay, source-as-of and expression-date2026-09-10; complete598rowFamFGscope"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 598,
+    "missing_count": 0,
+    "provision_count": 598,
+    "source_count": 598
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-10T15:16:30.179464+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-recipient-priority-audit.json",
+      "sha256": "b6adc939e44c73286103e114ccacac9fc79088e61771c9f297edfd2b0584fae9"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-recipient-priority.md",
+      "sha256": "0dc651ecdf16730d4f9cfd9139d7188673f79bcf5f93efe3b6d257ba016fd82a"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jEUDV7N42uoGRCjjSG7JEBbTq9BHxTgCIUvH1CSE2me1MP9IXIjO+uWgt1VWno4M0ghSTEFJxSFLnO6Pl28VDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-recipient-priority"
+}

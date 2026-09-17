@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import io
 import re
+import zipfile
 from collections.abc import Iterable, Iterator
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from typing import Any, cast
@@ -409,13 +411,15 @@ def build_usc_inventory_from_xml(
     source_download_url: str | None = None,
     limit: int | None = None,
     allowed_citation_paths: set[str] | None = None,
+    source_path: str | None = None,
 ) -> UscInventory:
     document = parse_uslm_title(xml_content, title=title)
-    source_path = (
-        _usc_source_key(run_id, document.title)
-        if run_id is not None
-        else _usc_source_relative_name(document.title)
-    )
+    if source_path is None:
+        source_path = (
+            _usc_source_key(run_id, document.title)
+            if run_id is not None
+            else _usc_source_relative_name(document.title)
+        )
     title_item = SourceInventoryItem(
         citation_path=document.citation_path,
         source_url=_usc_title_url(document.title),
@@ -992,11 +996,36 @@ def _iter_nested_provisions_as_records(
         )
 
 
+def read_uslm_zip(source_zip: str | Path) -> tuple[str, bytes, bytes]:
+    """Return ``(member_name, member_bytes, zip_bytes)`` for a single-member OLRC USLM zip.
+
+    The publisher's per-title release-point download holds exactly one ``usc<title>.xml``
+    member; anything else is refused so the retained zip is unambiguous provenance.
+    """
+    zip_path = Path(source_zip)
+    zip_bytes = zip_path.read_bytes()
+    with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
+        members = [name for name in archive.namelist() if not name.endswith("/")]
+        xml_members = [name for name in members if name.lower().endswith(".xml")]
+        if len(members) != 1 or len(xml_members) != 1:
+            raise ValueError(
+                f"{zip_path} must hold exactly one USLM XML member, found {members!r}"
+            )
+        return xml_members[0], archive.read(xml_members[0]), zip_bytes
+
+
+def _with_archive_member_metadata(metadata: dict[str, Any] | None, member: str) -> dict[str, Any]:
+    updated = dict(metadata or {})
+    updated["source_archive_member"] = member
+    return updated
+
+
 def extract_usc(
     store: CorpusArtifactStore,
     *,
     version: str,
-    source_xml: str | Path,
+    source_xml: str | Path | None = None,
+    source_zip: str | Path | None = None,
     title: str | int | None = None,
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
@@ -1004,12 +1033,24 @@ def extract_usc(
     limit: int | None = None,
     allowed_citation_paths: set[str] | None = None,
 ) -> UscExtractReport:
-    source_xml_path = Path(source_xml)
-    source_bytes = source_xml_path.read_bytes()
-    xml_content = decode_uslm_bytes(source_bytes)
+    if (source_xml is None) == (source_zip is None):
+        raise ValueError("extract_usc takes exactly one of source_xml or source_zip")
+    archive_member: str | None = None
+    if source_zip is not None:
+        # Retain the publisher's zip byte-for-byte as the inventoried source and parse
+        # its sole member in memory; the member path is recorded in row metadata.
+        archive_member, member_bytes, source_bytes = read_uslm_zip(source_zip)
+        xml_content = decode_uslm_bytes(member_bytes)
+        source_relative_name = f"olrc/{Path(source_zip).name}"
+    else:
+        assert source_xml is not None
+        source_bytes = Path(source_xml).read_bytes()
+        xml_content = decode_uslm_bytes(source_bytes)
+        source_relative_name = None
     document = parse_uslm_title(xml_content, title=title)
     run_id = usc_run_id(version, document.title, limit)
-    source_relative_name = _usc_source_relative_name(document.title)
+    if source_relative_name is None:
+        source_relative_name = _usc_source_relative_name(document.title)
     source_artifact_path = store.source_path(
         "us",
         DocumentClass.STATUTE,
@@ -1017,7 +1058,11 @@ def extract_usc(
         source_relative_name,
     )
     source_sha256 = store.write_bytes(source_artifact_path, source_bytes)
-    source_key = _usc_source_key(run_id, document.title)
+    source_key = (
+        _usc_source_key(run_id, document.title)
+        if archive_member is None
+        else f"sources/us/{DocumentClass.STATUTE.value}/{run_id}/{source_relative_name}"
+    )
     inventory = build_usc_inventory_from_xml(
         xml_content,
         title=document.title,
@@ -1026,7 +1071,16 @@ def extract_usc(
         source_download_url=source_download_url,
         limit=limit,
         allowed_citation_paths=allowed_citation_paths,
+        source_path=source_key,
     )
+    if archive_member is not None:
+        inventory = replace(
+            inventory,
+            items=tuple(
+                replace(item, metadata=_with_archive_member_metadata(item.metadata, archive_member))
+                for item in inventory.items
+            ),
+        )
     inventory_citation_paths = {item.citation_path for item in inventory.items}
     records = tuple(
         record
@@ -1046,6 +1100,11 @@ def extract_usc(
         )
         if record.citation_path in inventory_citation_paths
     )
+    if archive_member is not None:
+        records = tuple(
+            replace(record, metadata=_with_archive_member_metadata(record.metadata, archive_member))
+            for record in records
+        )
     inventory_path = store.inventory_path("us", DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, inventory.items)
     provisions_path = store.provisions_path("us", DocumentClass.STATUTE, run_id)

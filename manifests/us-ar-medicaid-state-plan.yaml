@@ -1,0 +1,1057 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ar-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 226
+- source_id: us-ar-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 226
+- source_id: us-ar-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 26
+    index_records_total: 226
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-24-0008-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-24-0008: Approval Document (approved April 5, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-24-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-24-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-24-0008
+    cms_node_id: '162521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162521
+    approval_date: '2024-04-05'
+    effective_date: '2024-01-01'
+    summary: This Amendment provides Continuous Eligibility for Children.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-23-0015-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-23-0015: Approval Document (approved November 22, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-23-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-23-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-23-0015
+    cms_node_id: '156526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=156526
+    approval_date: '2023-11-22'
+    effective_date: '2024-01-01'
+    summary: The State adopts new financial disregards for certain optional non-MAGI eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-23-0016-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-23-0016: Approval Document (approved November 6, 2023, effective November 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-23-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-11-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-23-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-23-0016
+    cms_node_id: '155311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155311
+    approval_date: '2023-11-06'
+    effective_date: '2023-11-01'
+    summary: This Amendment updates the Third Party Liability attestation in the Arkansas Medicaid State Plan.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-22-0008-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-22-0008: Approval Document (approved February 8, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-22-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-22-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-22-0008
+    cms_node_id: '144461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=144461
+    approval_date: '2023-02-08'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to establish rules for cost sharing in Arkansas.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-22-0026-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-22-0026: Approval Document (approved February 8, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-22-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-22-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-22-0026
+    cms_node_id: '144466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=144466
+    approval_date: '2023-02-08'
+    effective_date: '2023-01-01'
+    summary: This amendment proposes to update cost sharing in Arkansas.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-22-0027-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-22-0027: Approval Document (approved January 13, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-22-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-22-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-22-0027
+    cms_node_id: '143696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143696
+    approval_date: '2023-01-13'
+    effective_date: '2023-01-01'
+    summary: Extend full Medicaid benefits to all enrollees in the Pregnant Women eligibility group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-21-0011-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-21-0011: Approval Document (approved December 9, 2021, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AR-21-0011
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-21-0011/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-21-0011
+    cms_node_id: '128696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128696
+    approval_date: '2021-12-09'
+    effective_date: '2022-01-01'
+    summary: 'This amendment proposes to add four types of clinicians to the providers qualified to provide core services
+      in Federally Qualified Health Centers: licensed certified social workers, licensed professional counselors, licensed
+      mental health counselors, and licensed marriage and family therapists.'
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-21-0005-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-21-0005: Approval Document (approved August 26, 2021, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AR-21-0005
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-21-0005/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-21-0005
+    cms_node_id: '125516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125516
+    approval_date: '2021-08-26'
+    effective_date: '2022-01-01'
+    summary: This amendment proposes extending benefit limits Acute Crisis Unit and Substance Abuse Detoxification services.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-21-0007-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-21-0007: Approval Document (approved August 1, 2021, effective June 24, 2021)'
+  source_url: https://www.medicaid.gov/media/file/spapercapprove2021-07-02.json-2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-06-24'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-21-0007/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-21-0007
+    cms_node_id: '109516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109516
+    approval_date: '2021-08-01'
+    effective_date: '2021-06-24'
+    summary: Effective August 1, 2021, this amendment corrects an error regarding the required frequency of contacts between
+      targeted case managers and beneficiaries.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-21-0003-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-21-0003: Approval Document (approved June 8, 2021, effective October 10, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AR-21-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-10'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-21-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-21-0003
+    cms_node_id: '109196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109196
+    approval_date: '2021-06-08'
+    effective_date: '2020-10-10'
+    summary: 'This amendment proposes to add a new section for Medication Assisted Treatment (MAT) based on guidance in CMS’s
+      State Health Official Letter #20005, dated December 30, 2020.'
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-20-0017-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-20-0017: Approval Document (approved October 1, 2020, effective December 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AR-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-12-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-20-0017
+    cms_node_id: '103671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103671
+    approval_date: '2020-10-01'
+    effective_date: '2020-12-01'
+    summary: removes brand names and make other minor technical changes
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ak-20-0002-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AK-20-0002: Approval Document (approved May 18, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AK-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ak-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-20-0002
+    cms_node_id: '98781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98781
+    approval_date: '2020-05-18'
+    effective_date: '2020-01-01'
+    summary: Updates the income standards for recipients of Alaska's Optional State Supplement Payments. In Alaska, individuals
+      are able to qualify for Medicaid by reducing their countable gross income through the use of approved Medicaid Qualifying
+      Trust
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-20-0015-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-20-0015: Approval Document (approved April 29, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-20-0015_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-20-0015
+    cms_node_id: '98066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98066
+    approval_date: '2020-04-29'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to suspend cost-sharing for all eligibility groups for COVID-19 testing and treatment, add new optional benefits
+      (management and evaluation service for adults with SMI; well-check service for children and adults with developmental
+      disabilities); adjust benefits currently in the state plan (exempt certain services from annual limits when associated
+      with testing or treatment of COVID-19); allow 90-day supplies of drugs and early refills; allow exceptions to the State's
+      preferred drug list in case of shortages; establish payments for the new optional benefits; increase rates for direct
+      care services and day habilitation; establish payments for delivering existing services through telehealth; and establish
+      rates for COVID-19 screening and testing.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-20-0011-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-20-0011: Approval Document (approved April 23, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AR-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-20-0011
+    cms_node_id: '183651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183651
+    approval_date: '2020-04-23'
+    effective_date: '2020-07-01'
+    summary: Establishes new provider qualification requirements for targeted case managers in ARChoices Personal Care.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-19-001-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-19-001: Approval Document (approved October 31, 2019, effective December 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-19-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-12-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-19-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-19-001
+    cms_node_id: '4426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4426
+    approval_date: '2019-10-31'
+    effective_date: '2019-12-01'
+    summary: Proposes to drop coverage of domiciliary services from the state plan and drop the copay associated with this
+      service.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-18-007-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-18-007: Approval Document (approved July 10, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-18-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-18-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-18-007
+    cms_node_id: '9851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9851
+    approval_date: '2018-07-10'
+    effective_date: '2018-07-01'
+    summary: This amendment was submitted to reflect that adults previously served by the Developmental Day Treatment Clinic
+      Service Centers will now be served by the Adult Developmental Day Treatment (ADDT) programs, where participants will
+      also be given the opportunity to receive nursing services with prior authorization.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-18-008-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-18-008: Approval Document (approved July 9, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-18-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-18-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-18-008
+    cms_node_id: '9856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9856
+    approval_date: '2018-07-09'
+    effective_date: '2018-07-01'
+    summary: This amendment was submitted to comply with all changes made to the Arkansas State Plan in July of 2017 regarding
+      the implementation of thresholds for occupational, physical, and speech therapies.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-15-011-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-15-011: Approval Document (approved February 1, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-15-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-15-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-15-011
+    cms_node_id: '20761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20761
+    approval_date: '2016-02-01'
+    effective_date: '2016-01-01'
+    summary: 'This state plan amendment makes corrections to the citations and page format for PACE pages of the State Plan,
+      per companion letter with SPA #15-0007 that adjusted rates for personal care services.'
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-0018-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-0018: Approval Document (approved November 3, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-0018
+    cms_node_id: '21796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21796
+    approval_date: '2015-11-03'
+    effective_date: '2014-01-01'
+    summary: Updates the Policies and Practices Related to Citizenship and Non-Citizenship Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-0013-mm4-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-0013-MM4: Approval Document (approved July 15, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-0013-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-0013-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-0013-MM4
+    cms_node_id: '34781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34781
+    approval_date: '2014-07-15'
+    effective_date: '2014-01-01'
+    summary: Implements Medicaid Modified Adjusted Gross Income MAGI Eligibility and Benefits SPA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-26-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-26: Approval Document (approved January 30, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-26/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-26
+    cms_node_id: '38876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38876
+    approval_date: '2014-01-30'
+    effective_date: '2014-01-01'
+    summary: To implement a patient centered home which aims to improve efficiency economy and quality of care by rewarding
+      high quality of care and outcomes encouraging clinical effectiveness promoting early intervention and coordination to
+      reduce complications and associated costs and when provider referrals are necessary.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-19-mm2-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-19-MM2: Approval Document (approved December 20, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-19-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-19-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-19-MM2
+    cms_node_id: '39006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39006
+    approval_date: '2013-12-20'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-17-mm5-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-17-MM5: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-17-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-17-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-17-MM5
+    cms_node_id: '39011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39011
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Approved State Residency Regulations and Policies regarding Interstate Agreements and Temporary Absence.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-14-mm3-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-14-MM3: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-14-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-14-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-14-MM3
+    cms_node_id: '39021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39021
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Approved of MAGI based income methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-20-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-20: Approval Document (approved December 12, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-20.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-20/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-20
+    cms_node_id: '39816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39816
+    approval_date: '2013-12-12'
+    effective_date: '2014-01-01'
+    summary: Removes the References to Providing Services for Presumptively Eligible Pregnant Women.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-15-mm1-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-15-MM1: Approval Document (approved December 10, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-15-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-15-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-15-MM1
+    cms_node_id: '39016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39016
+    approval_date: '2013-12-10'
+    effective_date: '2014-01-01'
+    summary: Approved Eligibility Standards for State Medicaid Mandatory and Optional Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-13-29-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-13-29: Approval Document (approved December 4, 2013, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-13-29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-13-29/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-13-29
+    cms_node_id: '39811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39811
+    approval_date: '2013-12-04'
+    effective_date: '2013-12-31'
+    summary: Allows the State to Disregard Income between the Net Income Standard of 100% FPL to a Gross Income of 142% FPL
+      for Mandatory Poverty-Level Related children aged 6-18.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-12-04-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-12-04: Approval Document (approved November 21, 2012, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-12-04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-12-04/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-12-04
+    cms_node_id: '31661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31661
+    approval_date: '2012-11-21'
+    effective_date: '2013-01-01'
+    summary: The plan amendment allows individuals under the age of 21 to receive treatment for terminal illness in addition
+      to hospice services. The plan amendment does not have a direct impact on Indians, Indian Health programs, or Urban Indian
+      Organizations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-11-13-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-11-13: Approval Document (approved May 9, 2012, effective February 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-11-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-02-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-11-13/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-11-13
+    cms_node_id: '31676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31676
+    approval_date: '2012-05-09'
+    effective_date: '2012-02-01'
+    summary: The plan was amended to cover additional inpatient psychiatric and mental health days above the current limit
+      of 24 days for individuals age 21 and above. The plan amendment has no direct impact on Indians, Indian Health programs,
+      or Urban Indian Organizations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ar-cms-medicaid-state-plan-spa-ar-11-010-approval-document
+  jurisdiction: us-ar
+  document_class: policy
+  title: 'Arkansas Medicaid SPA AR-11-010: Approval Document (approved December 16, 2011, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-11-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-ar/policy/cms/medicaid-state-plan/spa/ar-11-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Arkansas
+    source_discovery_group: us-ar/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AR-11-010
+    cms_node_id: '23256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23256
+    approval_date: '2011-12-16'
+    effective_date: '2012-10-01'
+    summary: To implement a conflict-free case management, adds a small population of clients transitioning into the community
+      from nursing facilities and revises the current reimbursement methodology for targeted case management beneficiaries
+      age 60 and older.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document

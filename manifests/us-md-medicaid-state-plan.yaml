@@ -1,0 +1,2404 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-md-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 276
+- source_id: us-md-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 276
+- source_id: us-md-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 76
+    index_records_total: 276
+- source_id: us-md-cms-medicaid-state-plan-spa-md-25-0004-a-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-25-0004-A: Approval Document (approved June 10, 2026, effective October 23, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-25-0004-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-23'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-25-0004-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-25-0004-A
+    cms_node_id: '193436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193436
+    approval_date: '2026-06-10'
+    effective_date: '2025-10-23'
+    summary: This amendment proposes to provide coverage for targeted case management in the 30-day pre-release and immediately
+      post-release to eligible incarcerated youth and young adults to comply with section 5121 of the Consolidated Appropriations
+      Act of 2023.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-26-0002-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-26-0002: Approval Document (approved May 20, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-26-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-26-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-26-0002
+    cms_node_id: '193516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193516
+    approval_date: '2026-05-20'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to implement a requirement that the Non-Emergency Medical Transportation (NEMT) program
+      cover related travel expenses to include lodging and meals for non-emergency transportation services.
+    topics:
+    - Coverage
+    - Eligibility
+    - Transportation
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-25-0012-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-25-0012: Approval Document (approved December 12, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-25-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-25-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-25-0012
+    cms_node_id: '187631'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187631
+    approval_date: '2025-12-12'
+    effective_date: '2025-07-01'
+    summary: This amendment is to update references in the Health Homes SPA pages from the old operating system (eMedicaid)
+      to the ASO management system.
+    topics:
+    - Coverage
+    - Eligibility
+    - Health Homes
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-25-0002-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-25-0002: Approval Document (approved April 25, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-25-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-25-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-25-0002
+    cms_node_id: '179516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179516
+    approval_date: '2025-04-25'
+    effective_date: '2025-04-01'
+    summary: 'This amendment is proposing the following changes to the 1915(i) program: Increase the timeframe that a face-to-face
+      psychosocial assessment must be completed or updated, expand participant eligibility, update the frequency for POC reviews
+      and Child and Family Team meetings, and remove the separate reimbursement for telephonic peer support services and clarify
+      that Family Peer Support Services can be provided in person and via AV and audio-only telehealth, and add coverage of
+      Youth Peer Support Services.'
+    topics:
+    - Coverage and Reimbursement
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-24-0017-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-24-0017: Approval Document (approved March 14, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-24-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-24-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-24-0017
+    cms_node_id: '178216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178216
+    approval_date: '2025-03-14'
+    effective_date: '2025-07-01'
+    summary: To implement Express Lane Eligibility (ELE) to streamline and expedite renewal of eligible individuals in the
+      Maryland Medicaid Assistance Program and Maryland Children’s Health Program (MCHP).
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-24-0012-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-24-0012: Approval Document (approved September 10, 2024, effective April 9, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-24-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-09'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-24-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-24-0012
+    cms_node_id: '169301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169301
+    approval_date: '2024-09-10'
+    effective_date: '2024-04-09'
+    summary: To permanently eliminate the premium payment requirement for children enrolled in MCHP with a family income 212
+      to 322 percent of the federal poverty limit.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-23-0016-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-23-0016: Approval Document (approved November 14, 2023, effective September 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-23-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-09-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-23-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0016
+    cms_node_id: '155836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155836
+    approval_date: '2023-11-14'
+    effective_date: '2023-09-01'
+    summary: To comply with federal requirements under section 5512 of the Consolidated Appropriations Act, 2023 (CAA 2023)
+      to provide 12 months of continuous eligibility for children in Medicaid and the Children’s Health Insurance Program
+      (CHIP) on or before January 1, 2024.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-23-0012-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-23-0012: Approval Document (approved October 26, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-23-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-23-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0012
+    cms_node_id: '155501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155501
+    approval_date: '2023-10-26'
+    effective_date: '2023-07-01'
+    summary: To include a self-directed model for some Community First Choice (CFC) services, implement changes to the current
+      Electronic Visit Verification (EVV) requirements for CFC, and better align the State Plan with current practice regarding
+      CFC covered services, limitations, and the program’s quality improvement strategy. CMS conducted the review of the state’s
+      submittal according to statutory requirements in Title XIX of the Social Security Act and relevant federal regulations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-23-0010-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-23-0010: Approval Document (approved October 3, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0010
+    cms_node_id: '157021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157021
+    approval_date: '2023-10-03'
+    effective_date: '2024-01-01'
+    summary: Expands the eligibility rules for its working disability group and modified the premium requirements for the
+      group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-23-0005-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-23-0005: Approval Document (approved June 23, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0005
+    cms_node_id: '150016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150016
+    approval_date: '2023-06-23'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-23-0007-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-23-0007: Approval Document (approved May 3, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-23-0007
+    cms_node_id: '147506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147506
+    approval_date: '2023-05-03'
+    effective_date: '2023-05-12'
+    summary: 'CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to continue a
+      premium resumption delay for the following group from the day after the end of the federal PHE through December 31,
+      2023: Employed Individuals With Disabilities (§1902(a)(10)(A)(ii)(XV) TWWIIA Basic group) and a premium resumption delay
+      for the following group from the day after the end of the PHE through April 30, 2024: Maryland Children''s Health Program
+      (MCHP) (§1902(a)(10)(A)(ii)(XIV) targeted low-income children).'
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-22-0019-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-22-0019: Approval Document (approved December 15, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-22-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-22-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-22-0019
+    cms_node_id: '142686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142686
+    approval_date: '2022-12-15'
+    effective_date: '2022-07-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to disregard resource income for ABD groups during the Public Health Emergency (PHE) and to waive
+      any signature requirements for the dispensing of drugs, to permit provision of a 14-day emergency supply, instead of
+      a 72-hour emergency supply of prescribed drug, and to waive of prior authorization requirements for non-preferred drugs.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-22-0019-a-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-22-0019-A: Approval Document (approved December 15, 2022, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-22-0019-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-22-0019-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-22-0019-A
+    cms_node_id: '142691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142691
+    approval_date: '2022-12-15'
+    effective_date: '2023-01-01'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to permit flexibility
+      regarding preparation of eligibility applications in - person by caseworkers employed by the State of Maryland and navigators.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-21-0006-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-21-0006: Approval Document (approved August 30, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-21-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-21-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-21-0006
+    cms_node_id: '125721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125721
+    approval_date: '2021-08-30'
+    effective_date: '2020-10-01'
+    summary: adds medication-assisted treatment (MAT) as a mandatory benefit in the Medicaid state plan.
+    topics:
+    - Benefits
+    - Medicaid Expansion
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-20-0010-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-20-0010: Approval Document (approved March 16, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MD-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-20-0010
+    cms_node_id: '107776'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107776
+    approval_date: '2021-03-16'
+    effective_date: '2020-10-01'
+    summary: Effective October 1, 2020, this amendment creates a public Emergency Service Transporter Supplemental Payment
+      Program (ESPP) for public emergency service transportation providers.
+    topics:
+    - Benefits
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-20-0002-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-20-0002: Approval Document (approved June 5, 2020, effective February 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-02-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-20-0002
+    cms_node_id: '99126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99126
+    approval_date: '2020-06-05'
+    effective_date: '2020-02-01'
+    summary: Makes a technical change previously announced in SPA ID MD-18-0005 to reflect integration into the streamlined
+      application and update the reviewable units for Family Planning to apply the MAGI household rules and income rules to
+      Family Planning Applicants
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-20-0001-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-20-0001: Approval Document (approved April 17, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-20-0001
+    cms_node_id: '95116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=95116
+    approval_date: '2020-04-17'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to suspend certain premium payments required under Maryland’s Medicaid state plan.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-19-0009-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-19-0009: Approval Document (approved October 29, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-19-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-19-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-19-0009
+    cms_node_id: '4331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4331
+    approval_date: '2019-10-29'
+    effective_date: '2019-07-01'
+    summary: Increases the rates for the Behavioral Health, Health Home program, by 3.5 percent.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-19-0008-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-19-0008: Approval Document (approved October 28, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-19-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-19-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-19-0008
+    cms_node_id: '4326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4326
+    approval_date: '2019-10-28'
+    effective_date: '2019-07-01'
+    summary: Changes in State regulations related to reimbursement for nursing facility services.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-19-0003-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-19-0003: Approval Document (approved June 12, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/md-19-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-19-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-19-0003
+    cms_node_id: '5876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5876
+    approval_date: '2019-06-12'
+    effective_date: '2019-10-01'
+    summary: MD-19-0003 amend the services and eligibility requirements of the 1915i program to expand access to necessary
+      behavioral health services
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-18-0005-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-18-0005: Approval Document (approved March 15, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-18-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-18-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-18-0005
+    cms_node_id: '6851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6851
+    approval_date: '2019-03-15'
+    effective_date: '2019-07-01'
+    summary: This moves the Family Planning Program into the Maryland State Plan and expands program eligibility. This amendment
+      would allow individuals of any age, with income at or below 259 percent of the federal poverty level, to qualify for
+      Maryland's Family Planning Program.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-14-03-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-14-03: Approval Document (approved July 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-14-03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-14-03/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-14-03
+    cms_node_id: '34661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34661
+    approval_date: '2014-07-23'
+    effective_date: '2014-01-01'
+    summary: Reflects Maryland's current exemption due to lack of a Recovery Audit Contractor (RAC), and the need for a protocol
+      in the absence of one.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-0023-mm4-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-0023-MM4: Approval Document (approved June 18, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-0023-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-0023-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-0023-MM4
+    cms_node_id: '35681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35681
+    approval_date: '2014-06-18'
+    effective_date: '2013-10-01'
+    summary: Addresses Single State Agencies' Delegation of Appeals and Determinations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-0021-mm2-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-0021-MM2: Approval Document (approved February 12, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-0021-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-0021-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-0021-MM2
+    cms_node_id: '38451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38451
+    approval_date: '2014-02-12'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI Based Eligibility Process Requirements including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-0022-mm3-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-0022-MM3: Approval Document (approved January 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-0022-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-0022-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-0022-MM3
+    cms_node_id: '38311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38311
+    approval_date: '2014-01-10'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI Based Income Methodology.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-0020-mm1-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-0020-MM1: Approval Document (approved December 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-0020-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-0020-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-0020-MM1
+    cms_node_id: '38516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38516
+    approval_date: '2013-12-18'
+    effective_date: '2014-01-01'
+    summary: Identifies MAGI-Based Eligibility Groups and Incorporates General Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-28-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-28 -: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-28.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-28/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-28 -
+    cms_node_id: '34171'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34171
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Discontinues Coverage for Women in the Breast and Cervical Cancer Screening Program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-27-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-27: Approval Document (approved November 19, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-27.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-27/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-27
+    cms_node_id: '34156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34156
+    approval_date: '2013-11-19'
+    effective_date: '2013-10-01'
+    summary: Specifies Eligibility of Pregnant Teens and Treatment of Income.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-13-16-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-13-16: Approval Document (approved October 25, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-13-16.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-13-16/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-13-16
+    cms_node_id: '34166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34166
+    approval_date: '2013-10-25'
+    effective_date: '2013-07-01'
+    summary: Clean-Ups Maryland's State Plan to Bring Maryland's State Plan Into Technical Conformity with Maryland's Income
+      Disregard Practice for Eligible Children Age One to Eighteen.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-12-03-m-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-12-03 M: Approval Document (approved May 30, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-12-03-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-12-03-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-12-03 M
+    cms_node_id: '45226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45226
+    approval_date: '2012-05-30'
+    effective_date: '2012-01-01'
+    summary: Provides assurance of compliance with the provider screening and enrollment provisions.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-12-03-m-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-12-03 M: Attachment (approved May 30, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-12-03-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-12-03-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-12-03 M
+    cms_node_id: '45226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45226
+    approval_date: '2012-05-30'
+    effective_date: '2012-01-01'
+    summary: Provides assurance of compliance with the provider screening and enrollment provisions.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-12-03-m-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-12-03 M: Form CMS-179 (approved May 30, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-12-03-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-12-03-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-12-03 M
+    cms_node_id: '45226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45226
+    approval_date: '2012-05-30'
+    effective_date: '2012-01-01'
+    summary: Provides assurance of compliance with the provider screening and enrollment provisions.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-21-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-21: Approval Document (approved February 2, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-21-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-21/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-21
+    cms_node_id: '43126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43126
+    approval_date: '2012-02-02'
+    effective_date: '2011-10-01'
+    summary: This SPA adds language that was inadvertently dropped on Maryland SPA 11-04, which expanded coverage to otherwise
+      pregnant women and children who are aliens, under the Childrens Health Insurance Program Reauthorization Act (CHIPRA)
+      Section 214 option.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-21-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-21: Attachment (approved February 2, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-21-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-21/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-21
+    cms_node_id: '43126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43126
+    approval_date: '2012-02-02'
+    effective_date: '2011-10-01'
+    summary: This SPA adds language that was inadvertently dropped on Maryland SPA 11-04, which expanded coverage to otherwise
+      pregnant women and children who are aliens, under the Childrens Health Insurance Program Reauthorization Act (CHIPRA)
+      Section 214 option.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-21-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-21: Form CMS-179 (approved February 2, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-21-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-21/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-21
+    cms_node_id: '43126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43126
+    approval_date: '2012-02-02'
+    effective_date: '2011-10-01'
+    summary: This SPA adds language that was inadvertently dropped on Maryland SPA 11-04, which expanded coverage to otherwise
+      pregnant women and children who are aliens, under the Childrens Health Insurance Program Reauthorization Act (CHIPRA)
+      Section 214 option.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-16-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-16: Approval Document (approved December 22, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-16-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-16/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-16
+    cms_node_id: '43146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43146
+    approval_date: '2011-12-22'
+    effective_date: '2011-07-01'
+    summary: 'This is a Pharmacy SPA: it reduces dispensing fees by five percent. In addition, this amendment adds language
+      regarding coverage of smoking cessation products for pregnant women to the pharmacy section of the State Plan. The pharmacy
+      section has also been reformatted for improved organization and clarity.'
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-16-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-16: Attachment (approved December 22, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-16-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-16/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-16
+    cms_node_id: '43146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43146
+    approval_date: '2011-12-22'
+    effective_date: '2011-07-01'
+    summary: 'This is a Pharmacy SPA: it reduces dispensing fees by five percent. In addition, this amendment adds language
+      regarding coverage of smoking cessation products for pregnant women to the pharmacy section of the State Plan. The pharmacy
+      section has also been reformatted for improved organization and clarity.'
+    topics: *id004
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-16-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-16: Form CMS-179 (approved December 22, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-16-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-16/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-16
+    cms_node_id: '43146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43146
+    approval_date: '2011-12-22'
+    effective_date: '2011-07-01'
+    summary: 'This is a Pharmacy SPA: it reduces dispensing fees by five percent. In addition, this amendment adds language
+      regarding coverage of smoking cessation products for pregnant women to the pharmacy section of the State Plan. The pharmacy
+      section has also been reformatted for improved organization and clarity.'
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-20-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-20: Approval Document (approved December 16, 2011, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-20-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-20/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-20
+    cms_node_id: '43131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43131
+    approval_date: '2011-12-16'
+    effective_date: '2011-10-01'
+    summary: This SPA, in accordance with Section 113 of the Childrens Health Insurance Program Reauthorization Act (CHIPRA),
+      eliminates the previous requirements for deemed newborn Medicaid eligibility that the newborn must come home from the
+      hospital to live with the mother, remain a member of the mothers household, and that the mother remain eligible for
+      Medicaid, or would remain eligible if still pregnant. By virtue of this change, all newborns born to women covered by
+      Medicaid for the child's birth, including coverage of an alien for labor and delivery as emergency medical services,
+      are now covered as mandatory categorically needy.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-20-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-20: Attachment (approved December 16, 2011, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-20-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-20/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-20
+    cms_node_id: '43131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43131
+    approval_date: '2011-12-16'
+    effective_date: '2011-10-01'
+    summary: This SPA, in accordance with Section 113 of the Childrens Health Insurance Program Reauthorization Act (CHIPRA),
+      eliminates the previous requirements for deemed newborn Medicaid eligibility that the newborn must come home from the
+      hospital to live with the mother, remain a member of the mothers household, and that the mother remain eligible for
+      Medicaid, or would remain eligible if still pregnant. By virtue of this change, all newborns born to women covered by
+      Medicaid for the child's birth, including coverage of an alien for labor and delivery as emergency medical services,
+      are now covered as mandatory categorically needy.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-20-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-20: Form CMS-179 (approved December 16, 2011, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-20-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-20/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-20
+    cms_node_id: '43131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43131
+    approval_date: '2011-12-16'
+    effective_date: '2011-10-01'
+    summary: This SPA, in accordance with Section 113 of the Childrens Health Insurance Program Reauthorization Act (CHIPRA),
+      eliminates the previous requirements for deemed newborn Medicaid eligibility that the newborn must come home from the
+      hospital to live with the mother, remain a member of the mothers household, and that the mother remain eligible for
+      Medicaid, or would remain eligible if still pregnant. By virtue of this change, all newborns born to women covered by
+      Medicaid for the child's birth, including coverage of an alien for labor and delivery as emergency medical services,
+      are now covered as mandatory categorically needy.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-09-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-09: Approval Document (approved September 9, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-09-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-09/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-09
+    cms_node_id: '45296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45296
+    approval_date: '2011-09-09'
+    effective_date: '2011-04-01'
+    summary: Updates certain State plan pages, including non-discrimination practices, methods of assuring high quality care,
+      removal of language on guidelines for assessing cost effectiveness of employer-based group health plans, and the definition
+      of a claim.
+    topics: &id006
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-09-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-09: Attachment (approved September 9, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-09-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-09/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-09
+    cms_node_id: '45296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45296
+    approval_date: '2011-09-09'
+    effective_date: '2011-04-01'
+    summary: Updates certain State plan pages, including non-discrimination practices, methods of assuring high quality care,
+      removal of language on guidelines for assessing cost effectiveness of employer-based group health plans, and the definition
+      of a claim.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-09-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-09: Form CMS-179 (approved September 9, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-09-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-09/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-09
+    cms_node_id: '45296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45296
+    approval_date: '2011-09-09'
+    effective_date: '2011-04-01'
+    summary: Updates certain State plan pages, including non-discrimination practices, methods of assuring high quality care,
+      removal of language on guidelines for assessing cost effectiveness of employer-based group health plans, and the definition
+      of a claim.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-06-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-06: Approval Document (approved July 29, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-06-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-06/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-06
+    cms_node_id: '45246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45246
+    approval_date: '2011-07-29'
+    effective_date: '2011-04-01'
+    summary: SPA updates the State plan to reflect current practices and language.
+    topics: &id007
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-06-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-06: Attachment (approved July 29, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-06-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-06/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-06
+    cms_node_id: '45246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45246
+    approval_date: '2011-07-29'
+    effective_date: '2011-04-01'
+    summary: SPA updates the State plan to reflect current practices and language.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-06-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-06: Form CMS-179 (approved July 29, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-06-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-06/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-06
+    cms_node_id: '45246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45246
+    approval_date: '2011-07-29'
+    effective_date: '2011-04-01'
+    summary: SPA updates the State plan to reflect current practices and language.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-10-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-10: Approval Document (approved July 26, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-10-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-10/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-10
+    cms_node_id: '45291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45291
+    approval_date: '2011-07-26'
+    effective_date: '2011-04-01'
+    summary: Provides hospice services to children eligible for Medicaid and children eligible for the Medicaid expansion
+      Children Health Insurance Program.
+    topics: &id008
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-10-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-10: Attachment (approved July 26, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-10-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-10/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-10
+    cms_node_id: '45291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45291
+    approval_date: '2011-07-26'
+    effective_date: '2011-04-01'
+    summary: Provides hospice services to children eligible for Medicaid and children eligible for the Medicaid expansion
+      Children Health Insurance Program.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-10-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-10: Form CMS-179 (approved July 26, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-10-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-10/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-10
+    cms_node_id: '45291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45291
+    approval_date: '2011-07-26'
+    effective_date: '2011-04-01'
+    summary: Provides hospice services to children eligible for Medicaid and children eligible for the Medicaid expansion
+      Children Health Insurance Program.
+    topics: *id008
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-04-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-04: Approval Document (approved July 9, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-04-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-04/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-04
+    cms_node_id: '45256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45256
+    approval_date: '2011-07-09'
+    effective_date: '2011-01-01'
+    summary: Provides guidance from CMS on Section 214 of the Childrens Health Insurance Program Reauthorization Act.
+    topics: &id009
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-04-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-04: Attachment (approved July 9, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-04-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-04/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-04
+    cms_node_id: '45256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45256
+    approval_date: '2011-07-09'
+    effective_date: '2011-01-01'
+    summary: Provides guidance from CMS on Section 214 of the Childrens Health Insurance Program Reauthorization Act.
+    topics: *id009
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-04-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-04: Form CMS-179 (approved July 9, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-04-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-04/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-04
+    cms_node_id: '45256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45256
+    approval_date: '2011-07-09'
+    effective_date: '2011-01-01'
+    summary: Provides guidance from CMS on Section 214 of the Childrens Health Insurance Program Reauthorization Act.
+    topics: *id009
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-03-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-03: Approval Document (approved June 13, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-03-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-03/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-11-03
+    cms_node_id: '45261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45261
+    approval_date: '2011-06-13'
+    effective_date: '2011-01-01'
+    summary: This SPA extends outpatient psychiatric care as a physician service through video telemental health technologies
+      for eligible individuals in designated rural areas.
+    topics: &id010
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-03-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-03: Attachment (approved June 13, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-03-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-03/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-11-03
+    cms_node_id: '45261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45261
+    approval_date: '2011-06-13'
+    effective_date: '2011-01-01'
+    summary: This SPA extends outpatient psychiatric care as a physician service through video telemental health technologies
+      for eligible individuals in designated rural areas.
+    topics: *id010
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-11-03-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-11-03: Form CMS-179 (approved June 13, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-11-03-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-11-03/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-11-03
+    cms_node_id: '45261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45261
+    approval_date: '2011-06-13'
+    effective_date: '2011-01-01'
+    summary: This SPA extends outpatient psychiatric care as a physician service through video telemental health technologies
+      for eligible individuals in designated rural areas.
+    topics: *id010
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-13-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-13: Approval Document (approved March 2, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-13-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-13/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-10-13
+    cms_node_id: '43176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43176
+    approval_date: '2011-03-02'
+    effective_date: '2010-10-01'
+    summary: This SPA ensures compliance with the Qualifying Individual Program Supplemental Funding Act of 2008, whereby
+      the State has an eligibility determination system that provides for data matching with medical assistance programs operated
+      by other States in order to prevent duplicate enrollments.
+    topics: &id011
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-13-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-13: Attachment (approved March 2, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-13-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-13/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-10-13
+    cms_node_id: '43176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43176
+    approval_date: '2011-03-02'
+    effective_date: '2010-10-01'
+    summary: This SPA ensures compliance with the Qualifying Individual Program Supplemental Funding Act of 2008, whereby
+      the State has an eligibility determination system that provides for data matching with medical assistance programs operated
+      by other States in order to prevent duplicate enrollments.
+    topics: *id011
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-13-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-13: Form CMS-179 (approved March 2, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-13-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-13/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-10-13
+    cms_node_id: '43176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43176
+    approval_date: '2011-03-02'
+    effective_date: '2010-10-01'
+    summary: This SPA ensures compliance with the Qualifying Individual Program Supplemental Funding Act of 2008, whereby
+      the State has an eligibility determination system that provides for data matching with medical assistance programs operated
+      by other States in order to prevent duplicate enrollments.
+    topics: *id011
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-09-m-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-09 M: Approval Document (approved September 28, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-09-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-09-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-10-09 M
+    cms_node_id: '43196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43196
+    approval_date: '2010-09-28'
+    effective_date: '2010-04-01'
+    summary: This SPA implements Express Lane Eligibility for children, in which the Maryland Comptroller will identify through
+      annual State income tax returns those families who are below 300 percent of the Federal Poverty Level and who indicate
+      that their children do not have health insurance coverage.
+    topics: &id012
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-09-m-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-09 M: Attachment (approved September 28, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-09-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-09-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-10-09 M
+    cms_node_id: '43196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43196
+    approval_date: '2010-09-28'
+    effective_date: '2010-04-01'
+    summary: This SPA implements Express Lane Eligibility for children, in which the Maryland Comptroller will identify through
+      annual State income tax returns those families who are below 300 percent of the Federal Poverty Level and who indicate
+      that their children do not have health insurance coverage.
+    topics: *id012
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-09-m-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-09 M: Form CMS-179 (approved September 28, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-09-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-09-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-10-09 M
+    cms_node_id: '43196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43196
+    approval_date: '2010-09-28'
+    effective_date: '2010-04-01'
+    summary: This SPA implements Express Lane Eligibility for children, in which the Maryland Comptroller will identify through
+      annual State income tax returns those families who are below 300 percent of the Federal Poverty Level and who indicate
+      that their children do not have health insurance coverage.
+    topics: *id012
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-08-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-08: Approval Document (approved September 14, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-08-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-08/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-10-08
+    cms_node_id: '43201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43201
+    approval_date: '2010-09-14'
+    effective_date: '2010-04-01'
+    summary: This SPA extends Medicaid to independent foster care adolescents, in accordance with State legislation, to provide
+      for individuals who were in foster care under the responsibility of the State on their 18th birthday and have not reached
+      the age of 21.
+    topics: &id013
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-08-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-08: Attachment (approved September 14, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-08-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-08/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-10-08
+    cms_node_id: '43201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43201
+    approval_date: '2010-09-14'
+    effective_date: '2010-04-01'
+    summary: This SPA extends Medicaid to independent foster care adolescents, in accordance with State legislation, to provide
+      for individuals who were in foster care under the responsibility of the State on their 18th birthday and have not reached
+      the age of 21.
+    topics: *id013
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-10-08-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-10-08: Form CMS-179 (approved September 14, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-10-08-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-10-08/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-10-08
+    cms_node_id: '43201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43201
+    approval_date: '2010-09-14'
+    effective_date: '2010-04-01'
+    summary: This SPA extends Medicaid to independent foster care adolescents, in accordance with State legislation, to provide
+      for individuals who were in foster care under the responsibility of the State on their 18th birthday and have not reached
+      the age of 21.
+    topics: *id013
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-09-07-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-09-07: Approval Document (approved March 4, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-09-07-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-09-07/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-09-07
+    cms_node_id: '43251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43251
+    approval_date: '2010-03-04'
+    effective_date: '2009-04-01'
+    summary: This SPA provides coverage to qualified alien children with incomes up to 300% of the Federal Poverty Level (FPL)
+      and qualified alien pregnant women with incomes up to 250% FPL, in accordance with Section 214 of CHIPRA.
+    topics: &id014
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-09-07-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-09-07: Attachment (approved March 4, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-09-07-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-09-07/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-09-07
+    cms_node_id: '43251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43251
+    approval_date: '2010-03-04'
+    effective_date: '2009-04-01'
+    summary: This SPA provides coverage to qualified alien children with incomes up to 300% of the Federal Poverty Level (FPL)
+      and qualified alien pregnant women with incomes up to 250% FPL, in accordance with Section 214 of CHIPRA.
+    topics: *id014
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-09-07-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-09-07: Form CMS-179 (approved March 4, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-09-07-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-09-07/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-09-07
+    cms_node_id: '43251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43251
+    approval_date: '2010-03-04'
+    effective_date: '2009-04-01'
+    summary: This SPA provides coverage to qualified alien children with incomes up to 300% of the Federal Poverty Level (FPL)
+      and qualified alien pregnant women with incomes up to 250% FPL, in accordance with Section 214 of CHIPRA.
+    topics: *id014
+    link_label: Form CMS-179
+- source_id: us-md-cms-medicaid-state-plan-spa-md-09-03-approval-document
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-09-03: Approval Document (approved March 31, 2009, effective October 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-09-03-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-09-03/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MD-09-03
+    cms_node_id: '43266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43266
+    approval_date: '2009-03-31'
+    effective_date: '2008-10-01'
+    summary: This SPA proposes to add Employed Individuals with Disabilities into the State plan under the eligibility groups
+      authorized under section 1902( a)(1 O)(A)(ii)(XV) of the Social Security Act.
+    topics: &id015
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-md-cms-medicaid-state-plan-spa-md-09-03-attachment
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-09-03: Attachment (approved March 31, 2009, effective October 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-09-03-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-09-03/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MD-09-03
+    cms_node_id: '43266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43266
+    approval_date: '2009-03-31'
+    effective_date: '2008-10-01'
+    summary: This SPA proposes to add Employed Individuals with Disabilities into the State plan under the eligibility groups
+      authorized under section 1902( a)(1 O)(A)(ii)(XV) of the Social Security Act.
+    topics: *id015
+    link_label: Attachment
+- source_id: us-md-cms-medicaid-state-plan-spa-md-09-03-form-cms-179
+  jurisdiction: us-md
+  document_class: policy
+  title: 'Maryland Medicaid SPA MD-09-03: Form CMS-179 (approved March 31, 2009, effective October 1, 2008)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MD/MD-09-03-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-10-01'
+  citation_path: us-md/policy/cms/medicaid-state-plan/spa/md-09-03/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maryland
+    source_discovery_group: us-md/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MD-09-03
+    cms_node_id: '43266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43266
+    approval_date: '2009-03-31'
+    effective_date: '2008-10-01'
+    summary: This SPA proposes to add Employed Individuals with Disabilities into the State plan under the eligibility groups
+      authorized under section 1902( a)(1 O)(A)(ii)(XV) of the Social Security Act.
+    topics: *id015
+    link_label: Form CMS-179

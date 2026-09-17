@@ -1,0 +1,2318 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: mo-dss-snc-0600-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0600.000.00 Supplemental Nursing Care (SNC)'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0600-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0600-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: &id001
+    - https://dssmanuals.mo.gov/wp-sitemap-posts-page-1.xml
+    - https://dssmanuals.mo.gov/wp-sitemap-posts-page-2.xml
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0600-000-00-0600-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0600-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0600-000-00/0600-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0600-000-00/0600-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0605-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0605.000.00 Eligibility'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0605-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0605-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0605-000-00-0605-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0605-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0605-000-00/0605-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0605-000-00/0605-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0605-000-00-0605-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0605-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0605-000-00/0605-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0605-000-00/0605-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0605-000-00-0605-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0605-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0605-000-00/0605-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0605-000-00/0605-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0610-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0610.000.00 Financial Need'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0610-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0610-000-00-0610-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0610-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0610-000-00/0610-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0610-000-00-0610-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0610-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0610-000-00/0610-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0610-000-00-0610-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0610-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0610-000-00/0610-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0610-000-00-0610-020-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0610-020-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-020-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0610-000-00/0610-020-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0610-000-00-0610-025-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0610-025-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-025-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0610-000-00/0610-025-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0615-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0615.000.00 Payment and Amount of Grant'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0615-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0615-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0615-000-00-0615-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0615-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0615-000-00/0615-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0615-000-00/0615-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0615-000-00-0615-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0615-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0615-000-00/0615-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0615-000-00/0615-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0620-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0620.000.00 Medicaid Coverage'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0620-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0620-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0620-000-00-0620-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0620-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0620-000-00/0620-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0620-000-00/0620-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0620-000-00-0620-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0620-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0620-000-00/0620-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0620-000-00/0620-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0620-000-00-0620-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0620-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0620-000-00/0620-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0620-000-00/0620-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0625-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0625.000.00 Prompt Disposition'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0625-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0625-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0625-000-00-0625-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0625-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0625-000-00/0625-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0625-000-00/0625-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630.000.00 Annual Renewals and Change in Circumstance'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00-0630-015-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/0630-015-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00/0630-015-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00-0630-015-10
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-10'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/0630-015-10/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00/0630-015-10
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00-0630-015-15
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-15'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/0630-015-15/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00/0630-015-15
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00-0630-015-20
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-20'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/0630-015-20/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00/0630-015-20
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00-0630-015-25
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-25'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/0630-015-25/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00/0630-015-25
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-015-00-0630-015-30
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-015-30'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-015-00/0630-015-30/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-015-00/0630-015-30
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-020-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-020-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-020-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-020-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0630-000-00-0630-020-00-0630-020-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0630-020-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0630-000-00/0630-020-00/0630-020-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0630-000-00/0630-020-00/0630-020-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0635-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0635.000.00 Location of SNC Case Records'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0635-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0635-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-snc-0635-000-00-0635-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Nursing Care (SNC) Manual: 0635-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0635-000-00/0635-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/snc/0635-000-00/0635-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Nursing Care (SNC) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-nursing-care/
+    program: ssi_state_supplement
+    state_program: Supplemental Nursing Care (SNC)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/snc
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-nursing-care/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0400-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0400.000.00 Supplemental Aid to the Blind (SAB)'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0400-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0400-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0400-000-00-0400-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0400-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0400-000-00/0400-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0400-000-00/0400-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405.000.00 Eligibility Requirements'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-020-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-020-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-020-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-020-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-025-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-025-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-025-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-025-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-030-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-030-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-030-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-030-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-035-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-035-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-035-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-035-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-035-00-0405-035-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-035-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-035-00/0405-035-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-035-00/0405-035-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-040-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-040-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-040-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-040-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-045-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-045-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-045-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-045-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-050-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-050-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-050-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-050-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-055-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-055-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-055-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-055-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-060-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-060-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-060-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-060-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-065-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-065-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-065-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-065-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0405-000-00-0405-070-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0405-070-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-070-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0405-000-00/0405-070-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410.000.00 Determining Need'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-005-00-0410-005-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-005-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-005-00/0410-005-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-005-00/0410-005-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-010-00-0410-010-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-010-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-010-00/0410-010-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-010-00/0410-010-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-010-00-0410-010-10
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-010-10'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-010-00/0410-010-10/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-010-00/0410-010-10
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-010-00-0410-010-15
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-010-15'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-010-00/0410-010-15/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-010-00/0410-010-15
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-010-00-0410-010-20
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-010-20'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-010-00/0410-010-20/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-010-00/0410-010-20
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-05-0410-015-05-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-05-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/0410-015-05-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-05/0410-015-05-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-05-0410-015-05-10
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-05-10'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/0410-015-05-10/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-05/0410-015-05-10
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-05-0410-015-05-20
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-05-20'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/0410-015-05-20/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-05/0410-015-05-20
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-05-0410-015-05-25
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-05-25'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/0410-015-05-25/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-05/0410-015-05-25
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-10
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-10'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-10/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-10
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-015-00-0410-015-15
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-015-15'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-15/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-015-00/0410-015-15
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0410-000-00-0410-020-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0410-020-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-020-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0410-000-00/0410-020-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0415-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0415.000.00 Payment and Amount of Grant'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0415-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0415-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0415-000-00-0415-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0415-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0415-000-00/0415-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0415-000-00/0415-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0415-000-00-0415-005-00-0415-005-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0415-005-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0415-000-00/0415-005-00/0415-005-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0415-000-00/0415-005-00/0415-005-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0420-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0420.000.00 Medicaid Eligibility'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0420-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0420-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0425-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0425.000.00 Application Processing'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0425-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0425-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0425-000-00-0425-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0425-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0425-000-00/0425-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0425-000-00/0425-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0425-000-00-0425-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0425-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0425-000-00/0425-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0425-000-00/0425-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0425-000-00-0425-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0425-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0425-000-00/0425-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0425-000-00/0425-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430.000.00 Annual Renewals and Change in Circumstance'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-005-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-005-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-005-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-010-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-010-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-010-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-010-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-010-00-0430-010-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-010-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-010-00/0430-010-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-010-00/0430-010-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-010-00-0430-010-10
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-010-10'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-010-00/0430-010-10/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-010-00/0430-010-10
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-010-00-0430-010-15
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-010-15'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-010-00/0430-010-15/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-010-00/0430-010-15
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-010-00-0430-010-20
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-010-20'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-010-00/0430-010-20/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-010-00/0430-010-20
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-015-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-015-00'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-015-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-015-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0430-000-00-0430-015-00-0430-015-05
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0430-015-05'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0430-000-00/0430-015-00/0430-015-05/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0430-000-00/0430-015-00/0430-015-05
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0435-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0435.000.00 Referral to Rehabilitation Services for the Blind'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0435-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0435-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date
+- source_id: mo-dss-sab-0440-000-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Supplemental Aid to the Blind (SAB) Manual: 0440.000.00 Location of SAB Case Records'
+  source_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0440-000-00/
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mo/manual/dss/sab/0440-000-00
+  extraction:
+    html_content_selector: .entry-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: eligibility_manual_section
+    manual: Missouri Supplemental Aid to the Blind (SAB) Manual
+    manual_index_url: https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    program: ssi_state_supplement
+    state_program: Supplemental Aid to the Blind (SAB)
+    federal_program: SSI
+    state: MO
+    index_url: https://dssmanuals.mo.gov/
+    source_sitemap_urls: *id001
+    source_discovery_group: us-mo/manual/dss/sab
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/
+    expression_date_note: fetch date; each section prints its own IM memo date

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "cd495171461d490e0d0670011703951343b1bd211e695acd03a095582031464c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "7bc59b16ffa2e21d5017859bebb1cebf6c422934c658a3dc3cc217ad217cee54"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "e10fa006a17c380761dafb6730db5fdd4f837872499d8e10688c11764daaab51"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ms-dom-epm-appendix-a-3.pdf",
+      "sha256": "70f1e370a7b847535e5fe3550a5a8655b458741ce6548cef9367a3c753ba2fec"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ms-dom-epm-chapter-101.pdf",
+      "sha256": "32314e1ebe59cf887d03dbe81834ead08eac970b8dcee0954e0eeb053c83e75f"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ms-dom-epm-chapter-400.pdf",
+      "sha256": "3a1c86a7e3073befacdd085f6ff5260e9dde4a0256beb3d3bf248b52dcb98fd6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ms-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 201,
+    "missing_count": 0,
+    "provision_count": 201,
+    "source_count": 201
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:04:53.559232+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kZF4YXUo6z3HlQKWVxuKtPT/2w3xxJmrMTbK5PmLBXxRdRA8ppOVVBO/og9QDT9SaccYdHr3Y9cPKlazQt0zAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

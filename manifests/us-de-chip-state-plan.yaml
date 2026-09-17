@@ -1,0 +1,772 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-de-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=796&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-de/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 21
+    index_records_total: 21
+- source_id: us-de-cms-chip-state-plan-spa-de-20-0004-chip-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-20-0004-CHIP: Approval Package (approved July 21, 2026, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-20-0004-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-20-0004-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-20-0004-CHIP
+    cms_node_id: '194176'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=194176
+    approval_date: '2026-07-21'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-24-0003-and-de-24-0003-chip-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-24-0003 and DE-24-0003-CHIP: Approval Package (approved September 5, 2024, effective January
+    1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-24-0003-DE-24-0003-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-24-0003-and-de-24-0003-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-24-0003 and DE-24-0003-CHIP
+    cms_node_id: '170471'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170471
+    approval_date: '2024-09-05'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023). Additionally,
+      through this SPA the state removes all premiums from the CHIP state plan effective July 1, 2024.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-24-0004-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-24-0004: Approval Package (approved July 16, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-24-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-24-0004
+    cms_node_id: '169216'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169216
+    approval_date: '2024-07-16'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-23-0001-dral-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-23-0001-DRAL: Approval Package (approved August 31, 2023, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-23-0001-DRAL
+    cms_node_id: '152571'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=152571
+    approval_date: '2023-08-31'
+    effective_date: '2020-03-01'
+    summary: 'This letter extends Delaware''s approved Evergreen Disaster Relief State Plan Amendment to include the following
+      flexibilities: state will continue to provide continuous eligibility to CHIP enrollees, waive all premiums for CHIP
+      enrollees, and not disenroll beneficiaries for failure to pay premiums. These flexibilities are effective through June
+      30, 2024.'
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-22-0012-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-22-0012: Approval Package (approved May 15, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-22-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-22-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-22-0012
+    cms_node_id: '147911'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147911
+    approval_date: '2023-05-15'
+    effective_date: '2022-07-01'
+    summary: This SPA provides Delaware with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-22-0014-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-22-0014: Approval Package (approved February 13, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-22-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-22-0014/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-22-0014
+    cms_node_id: '144656'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144656
+    approval_date: '2023-02-13'
+    effective_date: '2023-07-01'
+    summary: Through this SPA, the state aligns its services provided to children under the CHIP state plan with services
+      provided to children under the Medicaid state plan, such that coverage of all benefits provided to children under the
+      CHIP state plan are the same as coverage provided under the Medicaid State plan, including Early Periodic Screening
+      Diagnosis and Treatment (EPSDT) services.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-22-0005-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-22-0005: Approval Package (approved November 15, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-22-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-22-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-22-0005
+    cms_node_id: '143251'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143251
+    approval_date: '2022-11-15'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-20-0007-chip-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-20-0007-CHIP: Approval Package (approved March 16, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-20-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-20-0007-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-20-0007-CHIP
+    cms_node_id: '133446'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=133446
+    approval_date: '2021-03-16'
+    effective_date: '2020-10-01'
+    summary: This amendment implements a health services initiative (HSI) to modify the school eligibility criteria in order
+      to align with the US Department of Agriculture’s Community Eligibility Provision school requirements. Also, this SPA
+      revises the data collection process to aid in identification of uninsured children.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-17-0013-chip-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-17-0013-CHIP: Approval Package (approved November 19, 2019, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE-17-0013-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-17-0013-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-17-0013-CHIP
+    cms_node_id: '153896'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=153896
+    approval_date: '2019-11-19'
+    effective_date: '2017-10-02'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-19-0004-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-19-0004: Approval Package (approved August 29, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-19-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-19-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-19-0004
+    cms_node_id: '4061'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4061
+    approval_date: '2019-08-29'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-18-0003-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-18-0003: Approval Package (approved January 17, 2019, effective October 12, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-18-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-12'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-18-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-18-0003
+    cms_node_id: '3971'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3971
+    approval_date: '2019-01-17'
+    effective_date: '2018-10-12'
+    summary: Updates the CHIP premium requirements by adding a $10 premium for children.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-16-0001-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-16-0001: Approval Package (approved May 26, 2017, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-16-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-16-0001
+    cms_node_id: '3561'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3561
+    approval_date: '2017-05-26'
+    effective_date: '2017-01-01'
+    summary: Implements a CHIP HSI to improve the health of low-income children by increasing their access to needed vision
+      services and glasses through a targeted, school-based initiative to increase children's access to vision services.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-chipspa-7-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-CHIPSPA-7: Approval Package (approved May 19, 2016, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-CHIPSPA-7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-chipspa-7/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-CHIPSPA-7
+    cms_node_id: '3566'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3566
+    approval_date: '2016-05-19'
+    effective_date: '2014-07-01'
+    summary: This Delaware SPA updates its CHIP family premium cost sharing amounts to be consistent with the state's approved
+      Modified Adjusted Gross Income conversion plan. Effective July 1, 2014, CHIP families are now required to pay monthly
+      premiums according to federal poverty level (FPL) as detailed in the following table:.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-13-0014-mc4-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-13-0014-MC4: Approval Package (approved December 12, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-13-0014-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-13-0014-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0014-MC4
+    cms_node_id: '2701'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2701
+    approval_date: '2013-12-12'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements, including the single streamlined application,
+      into Delaware's CHIP State Plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-13-0015-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-13-0015: Approval Package (approved December 9, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-13-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-13-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0015
+    cms_node_id: '2351'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2351
+    approval_date: '2013-12-09'
+    effective_date: '2014-01-01'
+    summary: Clarifies the State's Non-Financial Eligibility Policies on Residency; Citizenship; Social Security Numbers,
+      Substitution of Coverage, Non-Payment of Premiums and Continuous Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-13-0016-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-13-0016: Approval Package (approved November 15, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-13-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-13-0016/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0016
+    cms_node_id: '2341'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2341
+    approval_date: '2013-11-15'
+    effective_date: '2014-01-01'
+    summary: Authorizes State to Provide Coverage in its Separate CHIP.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-13-0013-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-13-0013: Approval Package (approved November 15, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-13-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-13-0013/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0013
+    cms_node_id: '2346'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2346
+    approval_date: '2013-11-15'
+    effective_date: '2014-01-01'
+    summary: Converts State Existing Income Eligibility Standards to Modified Adjusted Gross Income MAGI Equivalent Standards,
+      by Age Group, for Children Covered in Its XXI Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-cspa-6-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-CSPA-6: Approval Package (approved January 11, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-CSPA-6-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-CSPA-6
+    cms_node_id: '1341'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1341
+    approval_date: '2011-01-11'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-cspa-6-final-approved-state-plan
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-CSPA-6: Final Approved State Plan (approved January 11, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-CSPA-6-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-cspa-6/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: DE-CSPA-6
+    cms_node_id: '1341'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1341
+    approval_date: '2011-01-11'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-de-cms-chip-state-plan-spa-de-cspa-5-approval-package
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-CSPA-5: Approval Package (approved July 28, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-CSPA-5-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-cspa-5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-CSPA-5
+    cms_node_id: '1421'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1421
+    approval_date: '2009-07-28'
+    effective_date: '2009-04-01'
+    summary: Exempts temporary income earned working for the decennial census.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-de-cms-chip-state-plan-spa-de-cspa-5-final-approved-state-plan
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP SPA DE-CSPA-5: Final Approved State Plan (approved July 28, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DE-CSPA-5-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-de/policy/cms/chip-state-plan/spa/de-cspa-5/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: DE-CSPA-5
+    cms_node_id: '1421'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1421
+    approval_date: '2009-07-28'
+    effective_date: '2009-04-01'
+    summary: Exempts temporary income earned working for the decennial census.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-de-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP compiled state plan: Factsheet (approved July 28, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DECurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-de/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: DE
+    cms_node_id: '2241'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2241
+    approval_date: '2009-07-28'
+    effective_date: '2009-04-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 07-23-2009.
+    topics: &id004
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-de-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware CHIP compiled state plan: Current State Plan (approved July 28, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/DE/DECurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-de/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: DE
+    cms_node_id: '2241'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2241
+    approval_date: '2009-07-28'
+    effective_date: '2009-04-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 07-23-2009.
+    topics: *id004
+    link_label: Current State Plan

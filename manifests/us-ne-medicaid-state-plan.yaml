@@ -1,0 +1,3412 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ne-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 279
+- source_id: us-ne-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 279
+- source_id: us-ne-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 79
+    index_records_total: 279
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-26-0002-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-26-0002: Approval Document (approved September 4, 2026, effective May 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-26-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-05-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-26-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-26-0002
+    cms_node_id: '195481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=195481
+    approval_date: '2026-09-04'
+    effective_date: '2026-05-01'
+    summary: This amendment implements community engagement requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-25-0019-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-25-0019: Approval Document (approved September 12, 2025, effective June 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-25-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-06-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-25-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-25-0019
+    cms_node_id: '185086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185086
+    approval_date: '2025-09-12'
+    effective_date: '2025-06-01'
+    summary: This Amendment disregards income and resources received as compensation for participation in the Medicaid Advisory
+      Committee (MAC) and/or the Beneficiary Advisory Committee (BAC).
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-23-0016-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-23-0016: Approval Document (approved September 17, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-23-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-23-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-23-0016
+    cms_node_id: '169381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169381
+    approval_date: '2024-09-17'
+    effective_date: '2023-10-01'
+    summary: This Amendment approves the newly implemented iServe electronic application.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-24-0018-a-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-24-0018-A: Approval Document (approved September 9, 2024, effective May 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-24-0018-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-05-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-24-0018-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-24-0018-A
+    cms_node_id: '169091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169091
+    approval_date: '2024-09-09'
+    effective_date: '2024-05-01'
+    summary: This amendment makes changes to the Nebraska State Plan to no longer assess copayments for selected services.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-24-0017-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-24-0017: Approval Document (approved July 9, 2024, effective May 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-24-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-05-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-24-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-24-0017
+    cms_node_id: '167156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167156
+    approval_date: '2024-07-09'
+    effective_date: '2024-05-01'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend the
+      waiver of premiums for the Buy-In program for Working Adults with Disabilities and the Buy-In program for Children with
+      Disabilities.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-24-0016-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-24-0016: Approval Document (approved July 5, 2024, effective May 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-24-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-05-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-24-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-24-0016
+    cms_node_id: '167046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167046
+    approval_date: '2024-07-05'
+    effective_date: '2024-05-01'
+    summary: This amendment is to make changes to the Nebraska State Plan regarding cost-sharing provisions for certain Medicaid
+      beneficiaries enrolled in the Medicaid Insurance for Workers with Disabilities (MIWD) program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-24-0004-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-24-0004: Approval Document (approved April 30, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-24-0004
+    cms_node_id: '163636'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163636
+    approval_date: '2024-04-30'
+    effective_date: '2024-01-01'
+    summary: This Amendment implements Section 5112 of the Consolidated Appropriations Act, 2023. This section provides 12
+      months of continuous eligibility for children enrolled in Medicaid.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-23-0013-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-23-0013: Approval Document (approved December 15, 2023, effective September 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-23-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-09-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-23-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-23-0013
+    cms_node_id: '157206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157206
+    approval_date: '2023-12-15'
+    effective_date: '2023-09-01'
+    summary: This SPA increase the aged, blind, or disabled personal needs allowance (PNA) from $60 to $75 for individuals,
+      and from $120 to $150 for couples.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-23-0014-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-23-0014: Approval Document (approved December 11, 2023, effective September 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-23-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-09-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-23-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-23-0014
+    cms_node_id: '157316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157316
+    approval_date: '2023-12-11'
+    effective_date: '2023-09-01'
+    summary: With this Amendment the state will disregard the resource value of certain vehicles under the authority of section
+      1902(r)(2) of the Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-23-0005-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-23-0005: Approval Document (approved June 30, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-23-0005
+    cms_node_id: '150066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150066
+    approval_date: '2023-06-30'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend Premiums
+      and Cost-sharing provisions.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-23-0004-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-23-0004: Approval Document (approved January 16, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-23-0004
+    cms_node_id: '150376'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150376
+    approval_date: '2023-01-16'
+    effective_date: '2023-01-01'
+    summary: The State adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-21-0012-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-21-0012: Approval Document (approved December 17, 2021, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/NE-21-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-21-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-21-0012
+    cms_node_id: '139316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139316
+    approval_date: '2021-12-17'
+    effective_date: '2021-10-01'
+    summary: Implements the Ticket to Work Basic and Medically Improved Coverage Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-19-0014-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-19-0014: Approval Document (approved July 6, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-19-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-19-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-19-0014
+    cms_node_id: '100106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100106
+    approval_date: '2020-07-06'
+    effective_date: '2020-10-01'
+    summary: This state plan amendment establishes an Alternative Benefit Plan to serve persons eligible for Medicaid under
+      Section 1902(a)(10)(A)(VIII) of the Social Security Act. This plan will offer Basic benefits equal to the current State
+      Plan benefits offered in the state minus adult dental, vision, and over the counter drugs.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-19-0001-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-19-0001: Approval Document (approved July 6, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-19-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-19-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-19-0001
+    cms_node_id: '100111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100111
+    approval_date: '2020-07-06'
+    effective_date: '2020-10-01'
+    summary: This state plan amendment establishes an Alternative Benefit Plan to serve persons eligible for Medicaid under
+      Section 1902(a)(10)(A)(VIII) of the Social Security Act. This plan will offer Prime benefits equal to the current State
+      Plan benefits offered in the state.
+    topics:
+    - Benefits
+    - Dental
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-20-0011-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-20-0011: Approval Document (approved June 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-20-0011
+    cms_node_id: '99546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99546
+    approval_date: '2020-06-18'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to suspend cost sharing for testing services, testing-related services, and treatment for COVID-19 (including vaccines,
+      specialized equipment and therapies); Suspends premiums for Working Disabled and TMA; Allow Home health to be ordered
+      and plans of care authorized by new provider types (Nurse Practitioner, Physician Assistant, Clinical Nurse Specialist;
+      and Nurse Midwife); Increase the NF bedhold to 90 days provided the bed has not been filled; Add teledentistry reevaluation
+      - post operative visit; and add codes and rates for teledentistry services added.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-20-0014-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-20-0014: Approval Document (approved June 18, 2020, effective May 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-20-0014_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-05-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-20-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-20-0014
+    cms_node_id: '99556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99556
+    approval_date: '2020-06-18'
+    effective_date: '2020-05-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to suspend all cost sharing for all eligibility groups effective May 1, 2020, through the remainder of the public
+      health emergency.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-20-0010-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-20-0010: Approval Document (approved April 24, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-20-0010
+    cms_node_id: '97971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97971
+    approval_date: '2020-04-24'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover individuals evacuated from the state or absent due to disaster, extend the reasonable opportunity period,
+      designate new populations for presumptive eligibility to be determined by qualified entities who previously determined
+      presumptive eligibility for Pregnant women only expanded telehealth to specific named providers; to provide new rates
+      and billing codes for telehealth services, and provide new test codes and rates.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-19-0002-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-19-0002: Approval Document (approved March 10, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-19-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-19-0002
+    cms_node_id: '86476'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86476
+    approval_date: '2020-03-10'
+    effective_date: '2020-10-01'
+    summary: This SPA adds coverage for the eligibility group for adults with income below 133% of the FPL under Section 1902(a)(10)(A)(viii)
+      of the Social Security Act
+    topics:
+    - Current State Plan
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-15-0012-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-15-0012: Approval Document (approved March 28, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-15-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-15-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-15-0012
+    cms_node_id: '19851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19851
+    approval_date: '2016-03-28'
+    effective_date: '2016-01-01'
+    summary: Updates the state plan to reflect existing practices in determining eligibility of persons who qualify as medically
+      needy to update optional state supplemental payment standard, and to update the allowed exemption amount for irrevocable
+      burial trusts.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-15-0005-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-15-0005: Approval Document (approved November 23, 2015, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-15-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-15-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-15-0005
+    cms_node_id: '21621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21621
+    approval_date: '2015-11-23'
+    effective_date: '2015-07-01'
+    summary: Proposes to increase the fee schedule rate by 2.00% with a proposed effective date of July 1, 2015.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-15-0011-mm1-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-15-0011-MM1: Approval Document (approved November 10, 2015, effective November 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-15-0011-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-11-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-15-0011-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-15-0011-MM1
+    cms_node_id: '21701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21701
+    approval_date: '2015-11-10'
+    effective_date: '2015-11-01'
+    summary: Proposed to use 51 percent of the Federal Poverty Level (FPL) for the Modified Adjusted Gross Income (MAGI) standard
+      for individuals eligible through the reasonable classification groups under 42 CFR 435.222 rather than the fixed dollar
+      standards previously used. This is the same percentage used by the federally facilitated marketplace when assessing
+      Medicaid eligibility for this group. Use of the FPL percentage income test will provide a more seamless coordination
+      with the health care marketplace and reduce the administrative complexity of making eligibility determinations.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-14-017-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-14-017: Approval Document (approved December 16, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-14-017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-14-017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-14-017
+    cms_node_id: '30071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30071
+    approval_date: '2014-12-16'
+    effective_date: '2014-07-01'
+    summary: Updates Nebraska's Program of All-Inclusive Care for the Elderly (PACE).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-0033-mm7-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-0033-MM7: Approval Document (approved July 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-0033-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-0033-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-0033-MM7
+    cms_node_id: '35746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35746
+    approval_date: '2014-07-10'
+    effective_date: '2014-01-01'
+    summary: Describes the Modified Adjusted Gross Income (MAGI) Based Hospital Presumptive Eligibility Criteria.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-0028-mm2-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-0028-MM2: Approval Document (approved March 14, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-0028-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-0028-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-0028-MM2
+    cms_node_id: '38241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38241
+    approval_date: '2014-03-14'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-0031-mm5-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-0031-MM5: Approval Document (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-0031-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-0031-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-0031-MM5
+    cms_node_id: '38251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38251
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: Describes Modified Adjusted Gross Income MAGI Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-0032-mm6-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-0032-MM6: Approval Document (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-0032-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-0032-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-0032-MM6
+    cms_node_id: '38266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38266
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: This SPA describes Modified Adjusted Gross Income (MAGI) citizenship and immigration status requirements.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-012-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-012: Approval Document (approved March 13, 2014, effective December 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-012
+    cms_node_id: '38056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38056
+    approval_date: '2014-03-13'
+    effective_date: '2013-12-01'
+    summary: Eliminates the requirement of a pretreatment and biopsychosocial assessments from Inpatient Hospital, Early and
+      Periodic Screening and Diagnosis and Treatment and Rehabilitative services.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-0030-mm4-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-0030-MM4: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-0030-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-0030-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-0030-MM4
+    cms_node_id: '38246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38246
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: Amends the administration of 1) Designation of authority 2) organization and administration 3) assurances and
+      4) tribal consultation.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-0029-mm3-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-0029-MM3: Approval Document (approved January 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-0029-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-0029-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-0029-MM3
+    cms_node_id: '37626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37626
+    approval_date: '2014-01-10'
+    effective_date: '2014-01-01'
+    summary: Describes Financial Eligibility Methodologies that will apply to all Modified Adjusted Gross Income MAGI Based
+      Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-19-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-19: Approval Document (approved September 20, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-19-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-19/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-13-19
+    cms_node_id: '41866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41866
+    approval_date: '2013-09-20'
+    effective_date: '2013-07-01'
+    summary: Proposes to increase the fee schedule rate by 2.25% with a proposed effective date of July 1, 2013.
+    topics: &id002
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-19-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-19: Attachment (approved September 20, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-19-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-19/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-13-19
+    cms_node_id: '41866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41866
+    approval_date: '2013-09-20'
+    effective_date: '2013-07-01'
+    summary: Proposes to increase the fee schedule rate by 2.25% with a proposed effective date of July 1, 2013.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-13-19-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-13-19: Form CMS-179 (approved September 20, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-13-19-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-13-19/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-13-19
+    cms_node_id: '41866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41866
+    approval_date: '2013-09-20'
+    effective_date: '2013-07-01'
+    summary: Proposes to increase the fee schedule rate by 2.25% with a proposed effective date of July 1, 2013.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-07-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-07: Approval Document (approved April 25, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-07-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-07/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-07
+    cms_node_id: '41956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41956
+    approval_date: '2013-04-25'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rates for clinical diagnostic laboratory services and injectable medications
+      by 1.5% with a proposed effective date of July 1, 2012.
+    topics: &id003
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-07-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-07: Attachment (approved April 25, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-07-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-07/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-07
+    cms_node_id: '41956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41956
+    approval_date: '2013-04-25'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rates for clinical diagnostic laboratory services and injectable medications
+      by 1.5% with a proposed effective date of July 1, 2012.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-07-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-07: Form CMS-179 (approved April 25, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-07-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-07/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-07
+    cms_node_id: '41956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41956
+    approval_date: '2013-04-25'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rates for clinical diagnostic laboratory services and injectable medications
+      by 1.5% with a proposed effective date of July 1, 2012.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-18-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-18: Approval Document (approved April 3, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-18-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-18/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-18
+    cms_node_id: '41916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41916
+    approval_date: '2013-04-03'
+    effective_date: '2012-07-01'
+    summary: Inpatient Hospital Rate Increase.
+    topics: &id004
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-18-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-18: Attachment (approved April 3, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-18-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-18/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-18
+    cms_node_id: '41916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41916
+    approval_date: '2013-04-03'
+    effective_date: '2012-07-01'
+    summary: Inpatient Hospital Rate Increase.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-18-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-18: Form CMS-179 (approved April 3, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-18-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-18/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-18
+    cms_node_id: '41916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41916
+    approval_date: '2013-04-03'
+    effective_date: '2012-07-01'
+    summary: Inpatient Hospital Rate Increase.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-09-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-09: Approval Document (approved April 3, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-09-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-09/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-09
+    cms_node_id: '41946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41946
+    approval_date: '2013-04-03'
+    effective_date: '2012-07-01'
+    summary: Childrens Mental Health and substance abuse rate change.
+    topics: &id005
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-09-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-09: Attachment (approved April 3, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-09-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-09/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-09
+    cms_node_id: '41946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41946
+    approval_date: '2013-04-03'
+    effective_date: '2012-07-01'
+    summary: Childrens Mental Health and substance abuse rate change.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-09-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-09: Form CMS-179 (approved April 3, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-09-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-09/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-09
+    cms_node_id: '41946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41946
+    approval_date: '2013-04-03'
+    effective_date: '2012-07-01'
+    summary: Childrens Mental Health and substance abuse rate change.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-17-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-17: Approval Document (approved March 11, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-17-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-17/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-17
+    cms_node_id: '41921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41921
+    approval_date: '2013-03-11'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rates for outpatient hospital services by 1.5%.
+    topics: &id006
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-17-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-17: Attachment (approved March 11, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-17-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-17/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-17
+    cms_node_id: '41921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41921
+    approval_date: '2013-03-11'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rates for outpatient hospital services by 1.5%.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-17-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-17: Form CMS-179 (approved March 11, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-17-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-17/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-17
+    cms_node_id: '41921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41921
+    approval_date: '2013-03-11'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rates for outpatient hospital services by 1.5%.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-10-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-10: Approval Document (approved November 30, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-10-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-10/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-10
+    cms_node_id: '41941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41941
+    approval_date: '2012-11-30'
+    effective_date: '2012-07-01'
+    summary: Childrens Mental Health and substance abuse rate change.
+    topics: &id007
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-10-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-10: Attachment (approved November 30, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-10-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-10/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-10
+    cms_node_id: '41941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41941
+    approval_date: '2012-11-30'
+    effective_date: '2012-07-01'
+    summary: Childrens Mental Health and substance abuse rate change.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-10-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-10: Form CMS-179 (approved November 30, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-10-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-10/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-10
+    cms_node_id: '41941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41941
+    approval_date: '2012-11-30'
+    effective_date: '2012-07-01'
+    summary: Childrens Mental Health and substance abuse rate change.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-13-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-13: Approval Document (approved November 5, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-13-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-13/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-13
+    cms_node_id: '41926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41926
+    approval_date: '2012-11-05'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rate by 1.5%.
+    topics: &id008
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-13-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-13: Attachment (approved November 5, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-13-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-13/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-13
+    cms_node_id: '41926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41926
+    approval_date: '2012-11-05'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rate by 1.5%.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-13-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-13: Form CMS-179 (approved November 5, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-13-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-13/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-13
+    cms_node_id: '41926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41926
+    approval_date: '2012-11-05'
+    effective_date: '2012-07-01'
+    summary: Proposes to increase the fee schedule rate by 1.5%.
+    topics: *id008
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-04-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-04: Approval Document (approved October 25, 2012, effective February 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-04-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-02-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-04/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-04
+    cms_node_id: '41971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41971
+    approval_date: '2012-10-25'
+    effective_date: '2013-02-01'
+    summary: This PACE program will provide additional long-term care options for eligible individuals, age 55 and older,
+      by offering a comprehensive array of Medicare & Medicaid institutional and community-based services for those who meet
+      a nursing facility level of care and live in the designated service area of a PACE provider.
+    topics: &id009
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-04-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-04: Attachment (approved October 25, 2012, effective February 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-04-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-02-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-04/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-04
+    cms_node_id: '41971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41971
+    approval_date: '2012-10-25'
+    effective_date: '2013-02-01'
+    summary: This PACE program will provide additional long-term care options for eligible individuals, age 55 and older,
+      by offering a comprehensive array of Medicare & Medicaid institutional and community-based services for those who meet
+      a nursing facility level of care and live in the designated service area of a PACE provider.
+    topics: *id009
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-04-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-04: Form CMS-179 (approved October 25, 2012, effective February 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-04-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-02-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-04/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-04
+    cms_node_id: '41971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41971
+    approval_date: '2012-10-25'
+    effective_date: '2013-02-01'
+    summary: This PACE program will provide additional long-term care options for eligible individuals, age 55 and older,
+      by offering a comprehensive array of Medicare & Medicaid institutional and community-based services for those who meet
+      a nursing facility level of care and live in the designated service area of a PACE provider.
+    topics: *id009
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-11-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-11: Approval Document (approved September 19, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-11-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-11/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-12-11
+    cms_node_id: '41936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41936
+    approval_date: '2012-09-19'
+    effective_date: '2012-04-01'
+    summary: Payment for nursing facility leave days.
+    topics: &id010
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-11-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-11: Attachment (approved September 19, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-11-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-11/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-12-11
+    cms_node_id: '41936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41936
+    approval_date: '2012-09-19'
+    effective_date: '2012-04-01'
+    summary: Payment for nursing facility leave days.
+    topics: *id010
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-12-11-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-12-11: Form CMS-179 (approved September 19, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-12-11-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-12-11/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-12-11
+    cms_node_id: '41936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41936
+    approval_date: '2012-09-19'
+    effective_date: '2012-04-01'
+    summary: Payment for nursing facility leave days.
+    topics: *id010
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-29-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-29 M: Approval Document (approved April 13, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-29-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-29-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-29 M
+    cms_node_id: '42001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42001
+    approval_date: '2012-04-13'
+    effective_date: '2011-07-01'
+    summary: Implement nursing facility provider tax.
+    topics: &id011
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-29-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-29 M: Attachment (approved April 13, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-29-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-29-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-29 M
+    cms_node_id: '42001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42001
+    approval_date: '2012-04-13'
+    effective_date: '2011-07-01'
+    summary: Implement nursing facility provider tax.
+    topics: *id011
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-29-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-29 M: Form CMS-179 (approved April 13, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-29-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-29-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-29 M
+    cms_node_id: '42001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42001
+    approval_date: '2012-04-13'
+    effective_date: '2011-07-01'
+    summary: Implement nursing facility provider tax.
+    topics: *id011
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-24-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-24 M: Approval Document (approved April 13, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-24-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-24-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-24 M
+    cms_node_id: '42021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42021
+    approval_date: '2012-04-13'
+    effective_date: '2011-07-01'
+    summary: Rate reduction for nursing facilities and ICF-MR.
+    topics: &id012
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-24-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-24 M: Attachment (approved April 13, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-24-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-24-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-24 M
+    cms_node_id: '42021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42021
+    approval_date: '2012-04-13'
+    effective_date: '2011-07-01'
+    summary: Rate reduction for nursing facilities and ICF-MR.
+    topics: *id012
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-24-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-24 M: Form CMS-179 (approved April 13, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-24-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-24-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-24 M
+    cms_node_id: '42021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42021
+    approval_date: '2012-04-13'
+    effective_date: '2011-07-01'
+    summary: Rate reduction for nursing facilities and ICF-MR.
+    topics: *id012
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-32-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-32 M: Approval Document (approved March 19, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-32-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-32-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-32 M
+    cms_node_id: '41991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41991
+    approval_date: '2012-03-19'
+    effective_date: '2012-10-01'
+    summary: Provides for Medicaid coverage of comprehensive tobacco cessation services for pregnant women, including both
+      counseling and pharmacotherapy, without cost sharing.
+    topics: &id013
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-32-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-32 M: Attachment (approved March 19, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-32-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-32-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-32 M
+    cms_node_id: '41991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41991
+    approval_date: '2012-03-19'
+    effective_date: '2012-10-01'
+    summary: Provides for Medicaid coverage of comprehensive tobacco cessation services for pregnant women, including both
+      counseling and pharmacotherapy, without cost sharing.
+    topics: *id013
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-32-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-32 M: Form CMS-179 (approved March 19, 2012, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-32-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-32-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-32 M
+    cms_node_id: '41991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41991
+    approval_date: '2012-03-19'
+    effective_date: '2012-10-01'
+    summary: Provides for Medicaid coverage of comprehensive tobacco cessation services for pregnant women, including both
+      counseling and pharmacotherapy, without cost sharing.
+    topics: *id013
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-28-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-28 M: Approval Document (approved March 6, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-28-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-28-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-28 M
+    cms_node_id: '42006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42006
+    approval_date: '2012-03-06'
+    effective_date: '2011-07-01'
+    summary: Which proposes to reduce the fee schedule rates by 2.5% with a proposed effective date of July 1, 2011.
+    topics: &id014
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-28-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-28 M: Attachment (approved March 6, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-28-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-28-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-28 M
+    cms_node_id: '42006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42006
+    approval_date: '2012-03-06'
+    effective_date: '2011-07-01'
+    summary: Which proposes to reduce the fee schedule rates by 2.5% with a proposed effective date of July 1, 2011.
+    topics: *id014
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-28-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-28 M: Form CMS-179 (approved March 6, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-28-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-28-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-28 M
+    cms_node_id: '42006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42006
+    approval_date: '2012-03-06'
+    effective_date: '2011-07-01'
+    summary: Which proposes to reduce the fee schedule rates by 2.5% with a proposed effective date of July 1, 2011.
+    topics: *id014
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-25-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-25 M: Approval Document (approved March 6, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-25-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-25-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-25 M
+    cms_node_id: '42016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42016
+    approval_date: '2012-03-06'
+    effective_date: '2011-07-01'
+    summary: Which proposes to reduce the fee schedule rates for clinical laboratory services by 2.5% with a proposed effective
+      date of July 1, 2011.
+    topics: &id015
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-25-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-25 M: Attachment (approved March 6, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-25-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-25-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-25 M
+    cms_node_id: '42016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42016
+    approval_date: '2012-03-06'
+    effective_date: '2011-07-01'
+    summary: Which proposes to reduce the fee schedule rates for clinical laboratory services by 2.5% with a proposed effective
+      date of July 1, 2011.
+    topics: *id015
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-25-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-25 M: Form CMS-179 (approved March 6, 2012, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-25-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-25-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-25 M
+    cms_node_id: '42016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42016
+    approval_date: '2012-03-06'
+    effective_date: '2011-07-01'
+    summary: Which proposes to reduce the fee schedule rates for clinical laboratory services by 2.5% with a proposed effective
+      date of July 1, 2011.
+    topics: *id015
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-23-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-23 M: Approval Document (approved March 6, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-23-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-23-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-23 M
+    cms_node_id: '42026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42026
+    approval_date: '2012-03-06'
+    effective_date: '2012-07-01'
+    summary: Which proposes to reduce the fee schedule rates for outpatient hospital and lab services by 2.5% with a proposed
+      effective date of July 1, 2011.
+    topics: &id016
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-23-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-23 M: Attachment (approved March 6, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-23-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-23-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-23 M
+    cms_node_id: '42026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42026
+    approval_date: '2012-03-06'
+    effective_date: '2012-07-01'
+    summary: Which proposes to reduce the fee schedule rates for outpatient hospital and lab services by 2.5% with a proposed
+      effective date of July 1, 2011.
+    topics: *id016
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-23-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-23 M: Form CMS-179 (approved March 6, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-23-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-23-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-23 M
+    cms_node_id: '42026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42026
+    approval_date: '2012-03-06'
+    effective_date: '2012-07-01'
+    summary: Which proposes to reduce the fee schedule rates for outpatient hospital and lab services by 2.5% with a proposed
+      effective date of July 1, 2011.
+    topics: *id016
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-19-m-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-19 M: Approval Document (approved March 6, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-19-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-19-m/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-19 M
+    cms_node_id: '42041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42041
+    approval_date: '2012-03-06'
+    effective_date: '2012-07-01'
+    summary: Proposes to reduce the fee schedule rate for physician services by 2.5% with a proposed effective date of July
+      1, 2011.
+    topics: &id017
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-19-m-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-19 M: Attachment (approved March 6, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-19-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-19-m/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-19 M
+    cms_node_id: '42041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42041
+    approval_date: '2012-03-06'
+    effective_date: '2012-07-01'
+    summary: Proposes to reduce the fee schedule rate for physician services by 2.5% with a proposed effective date of July
+      1, 2011.
+    topics: *id017
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-19-m-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-19 M: Form CMS-179 (approved March 6, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-19-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-19-m/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-19 M
+    cms_node_id: '42041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42041
+    approval_date: '2012-03-06'
+    effective_date: '2012-07-01'
+    summary: Proposes to reduce the fee schedule rate for physician services by 2.5% with a proposed effective date of July
+      1, 2011.
+    topics: *id017
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-016-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-016: Approval Document (approved March 2, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-016-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-016
+    cms_node_id: '42051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42051
+    approval_date: '2012-03-02'
+    effective_date: '2011-04-01'
+    summary: Distribution of disproportionate share hospital payments.
+    topics: &id018
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-016-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-016: Attachment (approved March 2, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-016-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-016/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-016
+    cms_node_id: '42051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42051
+    approval_date: '2012-03-02'
+    effective_date: '2011-04-01'
+    summary: Distribution of disproportionate share hospital payments.
+    topics: *id018
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-016-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-016: Form CMS-179 (approved March 2, 2012, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-016-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-016/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-016
+    cms_node_id: '42051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42051
+    approval_date: '2012-03-02'
+    effective_date: '2011-04-01'
+    summary: Distribution of disproportionate share hospital payments.
+    topics: *id018
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-20-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-20: Approval Document (approved December 22, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-20-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-20/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-20
+    cms_node_id: '42036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42036
+    approval_date: '2011-12-22'
+    effective_date: '2011-07-01'
+    summary: Update the effective date of rates for Pediatric Feeding Disorder Clinic Intensive Day Treatment Services.
+    topics: &id019
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-20-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-20: Attachment (approved December 22, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-20-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-20/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-20
+    cms_node_id: '42036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42036
+    approval_date: '2011-12-22'
+    effective_date: '2011-07-01'
+    summary: Update the effective date of rates for Pediatric Feeding Disorder Clinic Intensive Day Treatment Services.
+    topics: *id019
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-20-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-20: Form CMS-179 (approved December 22, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-20-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-20/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-20
+    cms_node_id: '42036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42036
+    approval_date: '2011-12-22'
+    effective_date: '2011-07-01'
+    summary: Update the effective date of rates for Pediatric Feeding Disorder Clinic Intensive Day Treatment Services.
+    topics: *id019
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-14-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-14: Approval Document (approved December 21, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-14-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-14/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-14
+    cms_node_id: '42061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42061
+    approval_date: '2011-12-21'
+    effective_date: '2011-07-01'
+    summary: Conforming with section 2302 of the Patient Protection and Affordable Care Act (Affordable Care Act), P.L. 111-148,
+      which amended Title XIX (Medicaid) of the Social Security Act (the ACT) in requiring that children who are enrolled
+      in either Medicaid or CHIP be allowed to receive hospice services without foregoing curative treatment related to a
+      terminal illness effective July 1, 2011.
+    topics: &id020
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-14-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-14: Attachment (approved December 21, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-14-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-14/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-14
+    cms_node_id: '42061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42061
+    approval_date: '2011-12-21'
+    effective_date: '2011-07-01'
+    summary: Conforming with section 2302 of the Patient Protection and Affordable Care Act (Affordable Care Act), P.L. 111-148,
+      which amended Title XIX (Medicaid) of the Social Security Act (the ACT) in requiring that children who are enrolled
+      in either Medicaid or CHIP be allowed to receive hospice services without foregoing curative treatment related to a
+      terminal illness effective July 1, 2011.
+    topics: *id020
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-14-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-14: Form CMS-179 (approved December 21, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-14-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-14/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-14
+    cms_node_id: '42061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42061
+    approval_date: '2011-12-21'
+    effective_date: '2011-07-01'
+    summary: Conforming with section 2302 of the Patient Protection and Affordable Care Act (Affordable Care Act), P.L. 111-148,
+      which amended Title XIX (Medicaid) of the Social Security Act (the ACT) in requiring that children who are enrolled
+      in either Medicaid or CHIP be allowed to receive hospice services without foregoing curative treatment related to a
+      terminal illness effective July 1, 2011.
+    topics: *id020
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-15-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-15: Approval Document (approved October 13, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-15-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-15/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-15
+    cms_node_id: '42056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42056
+    approval_date: '2011-10-13'
+    effective_date: '2011-07-01'
+    summary: Revising the State's Tribal consultation process. This SPA added language changing the current process of Tribal
+      consulting on all proposed SPAs and waivers regardless of impact, to not providing Tribal consultation on SPAs that
+      are purely technical in nature (i.e. pagination changes, renumbering of lists, etc.) and therefore; have no direct impact
+      on the Tribes. This SPA also provided evidence of your continued process of informing and seeking input from all federally
+      recognized Native American Tribes and Indian Health Programs within the State of Nebraska regarding all other SPAs and
+      waivers, the overall Tribal consultation process and required timeframes, as well as, discussing any possible impact
+      proposed SPAs might have on the Tribes.
+    topics: &id021
+    - Eligibility
+    - Tribal Issues
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-15-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-15: Attachment (approved October 13, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-15-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-15/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-15
+    cms_node_id: '42056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42056
+    approval_date: '2011-10-13'
+    effective_date: '2011-07-01'
+    summary: Revising the State's Tribal consultation process. This SPA added language changing the current process of Tribal
+      consulting on all proposed SPAs and waivers regardless of impact, to not providing Tribal consultation on SPAs that
+      are purely technical in nature (i.e. pagination changes, renumbering of lists, etc.) and therefore; have no direct impact
+      on the Tribes. This SPA also provided evidence of your continued process of informing and seeking input from all federally
+      recognized Native American Tribes and Indian Health Programs within the State of Nebraska regarding all other SPAs and
+      waivers, the overall Tribal consultation process and required timeframes, as well as, discussing any possible impact
+      proposed SPAs might have on the Tribes.
+    topics: *id021
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-15-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-15: Form CMS-179 (approved October 13, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-15-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-15/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-15
+    cms_node_id: '42056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42056
+    approval_date: '2011-10-13'
+    effective_date: '2011-07-01'
+    summary: Revising the State's Tribal consultation process. This SPA added language changing the current process of Tribal
+      consulting on all proposed SPAs and waivers regardless of impact, to not providing Tribal consultation on SPAs that
+      are purely technical in nature (i.e. pagination changes, renumbering of lists, etc.) and therefore; have no direct impact
+      on the Tribes. This SPA also provided evidence of your continued process of informing and seeking input from all federally
+      recognized Native American Tribes and Indian Health Programs within the State of Nebraska regarding all other SPAs and
+      waivers, the overall Tribal consultation process and required timeframes, as well as, discussing any possible impact
+      proposed SPAs might have on the Tribes.
+    topics: *id021
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-20-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-20: Approval Document (approved September 27, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-20-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-20/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-10-20
+    cms_node_id: '42126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42126
+    approval_date: '2011-09-27'
+    effective_date: '2010-07-01'
+    summary: Proposes to implement a .5% increase in the fee schedule for a number of services.
+    topics: &id022
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-20-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-20: Attachment (approved September 27, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-20-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-20/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-10-20
+    cms_node_id: '42126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42126
+    approval_date: '2011-09-27'
+    effective_date: '2010-07-01'
+    summary: Proposes to implement a .5% increase in the fee schedule for a number of services.
+    topics: *id022
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-20-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-20: Form CMS-179 (approved September 27, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-20-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-20/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-10-20
+    cms_node_id: '42126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42126
+    approval_date: '2011-09-27'
+    effective_date: '2010-07-01'
+    summary: Proposes to implement a .5% increase in the fee schedule for a number of services.
+    topics: *id022
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-08-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-08: Approval Document (approved August 16, 2011, effective June 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-08-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-06-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-08/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-11-08
+    cms_node_id: '42086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42086
+    approval_date: '2011-08-16'
+    effective_date: '2011-06-01'
+    summary: Proposes to correct the fee schedule rate for secure psychiatric residential rehabilitation services.
+    topics: &id023
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-08-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-08: Attachment (approved August 16, 2011, effective June 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-08-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-06-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-08/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-11-08
+    cms_node_id: '42086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42086
+    approval_date: '2011-08-16'
+    effective_date: '2011-06-01'
+    summary: Proposes to correct the fee schedule rate for secure psychiatric residential rehabilitation services.
+    topics: *id023
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-11-08-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-11-08: Form CMS-179 (approved August 16, 2011, effective June 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-11-08-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-06-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-11-08/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-11-08
+    cms_node_id: '42086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42086
+    approval_date: '2011-08-16'
+    effective_date: '2011-06-01'
+    summary: Proposes to correct the fee schedule rate for secure psychiatric residential rehabilitation services.
+    topics: *id023
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-09-08-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-09-08: Approval Document (approved June 16, 2011, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-09-08-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-09-08/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-09-08
+    cms_node_id: '42196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42196
+    approval_date: '2011-06-16'
+    effective_date: '2009-07-01'
+    summary: Fee Schedule Rates.
+    topics: &id024
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-09-08-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-09-08: Attachment (approved June 16, 2011, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-09-08-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-09-08/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-09-08
+    cms_node_id: '42196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42196
+    approval_date: '2011-06-16'
+    effective_date: '2009-07-01'
+    summary: Fee Schedule Rates.
+    topics: *id024
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-09-08-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-09-08: Form CMS-179 (approved June 16, 2011, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-09-08-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-09-08/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-09-08
+    cms_node_id: '42196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42196
+    approval_date: '2011-06-16'
+    effective_date: '2009-07-01'
+    summary: Fee Schedule Rates.
+    topics: *id024
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-012-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-012: Approval Document (approved August 18, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-012-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-10-012
+    cms_node_id: '42151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42151
+    approval_date: '2010-08-18'
+    effective_date: '2010-07-01'
+    summary: Inpatient Hospital Rate Change.
+    topics: &id025
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-012-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-012: Attachment (approved August 18, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-012-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-012/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-10-012
+    cms_node_id: '42151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42151
+    approval_date: '2010-08-18'
+    effective_date: '2010-07-01'
+    summary: Inpatient Hospital Rate Change.
+    topics: *id025
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-012-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-012: Form CMS-179 (approved August 18, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-012-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-012/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-10-012
+    cms_node_id: '42151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42151
+    approval_date: '2010-08-18'
+    effective_date: '2010-07-01'
+    summary: Inpatient Hospital Rate Change.
+    topics: *id025
+    link_label: Form CMS-179
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-10-01-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-10-01: Approval Document (approved March 18, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-10-01-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-10-01/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-10-01
+    cms_node_id: '42186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42186
+    approval_date: '2010-03-18'
+    effective_date: '2010-01-01'
+    summary: Revises cost-sharing provision which apply premiums to certain children eligible under Nebraska's Autism Home
+      and Community Based Services Waiver.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-09-06-approval-document
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-09-06: Approval Document (approved October 20, 2009, effective September 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-09-06-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-09-06/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NE-09-06
+    cms_node_id: '42206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42206
+    approval_date: '2009-10-20'
+    effective_date: '2009-09-01'
+    summary: Low Income Children Eligibility.
+    topics: &id026
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-09-06-attachment
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-09-06: Attachment (approved October 20, 2009, effective September 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-09-06-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-09-06/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: NE-09-06
+    cms_node_id: '42206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42206
+    approval_date: '2009-10-20'
+    effective_date: '2009-09-01'
+    summary: Low Income Children Eligibility.
+    topics: *id026
+    link_label: Attachment
+- source_id: us-ne-cms-medicaid-state-plan-spa-ne-09-06-form-cms-179
+  jurisdiction: us-ne
+  document_class: policy
+  title: 'Nebraska Medicaid SPA NE-09-06: Form CMS-179 (approved October 20, 2009, effective September 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NE/NE-09-06-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-01'
+  citation_path: us-ne/policy/cms/medicaid-state-plan/spa/ne-09-06/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Nebraska
+    source_discovery_group: us-ne/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: NE-09-06
+    cms_node_id: '42206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42206
+    approval_date: '2009-10-20'
+    effective_date: '2009-09-01'
+    summary: Low Income Children Eligibility.
+    topics: *id026
+    link_label: Form CMS-179

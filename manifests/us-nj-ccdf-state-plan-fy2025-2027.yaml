@@ -1,0 +1,37 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-nj-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-nj
+  document_class: policy
+  title: New Jersey CCDF Plan, FFY 2025-2027
+  source_url: https://www.childcarenj.gov/ChildCareNJ/media/media_library/CCDF_State_Plan_for_New_Jersey_FFY25-27.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-nj/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: Certified as of 2024-09-27 (submitted version linked directly from the ACF index; approved print not posted;
+      the PDF answered HTTP 200 on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 cloudflare on the first two
+      passes)
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/NJ-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-nj/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

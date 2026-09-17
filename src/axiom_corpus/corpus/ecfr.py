@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import gzip
 import json
 import re
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import zlib
 from collections.abc import Callable, Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -98,29 +100,54 @@ def ecfr_run_id(
 _scoped_run_id = ecfr_run_id
 
 
+def _fetch_ecfr_api_bytes(url: str, *, timeout: int) -> bytes:
+    """Fetch one eCFR Versioner API resource.
+
+    Since September 2026 the ``full`` XML endpoint answers ``406 Not Acceptable``
+    (support code 11, "This endpoint requires response compression") unless the
+    request advertises a compressed encoding, so every API fetch offers gzip and
+    deflate and transparently decodes whatever the publisher chose.
+    """
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept-Encoding": "gzip, deflate"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        data = bytes(resp.read())
+        headers = getattr(resp, "headers", None)
+        encoding = (headers.get("Content-Encoding") if headers is not None else None) or ""
+    return _decode_content_encoding(data, encoding)
+
+
+def _decode_content_encoding(data: bytes, encoding: str) -> bytes:
+    normalized = encoding.strip().lower()
+    if normalized == "gzip" or normalized == "x-gzip":
+        return gzip.decompress(data)
+    if normalized == "deflate":
+        try:
+            return zlib.decompress(data)
+        except zlib.error:
+            return zlib.decompress(data, -zlib.MAX_WBITS)
+    if normalized in ("", "identity"):
+        return data
+    raise ValueError(f"unsupported eCFR content encoding: {encoding!r}")
+
+
 def fetch_ecfr_structure(title: int, as_of: str) -> dict[str, Any]:
     url = f"{ECFR_API_BASE}/structure/{as_of}/title-{title}.json"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read())
+    data = json.loads(_fetch_ecfr_api_bytes(url, timeout=60))
     return cast(dict[str, Any], data)
 
 
 def fetch_ecfr_title_xml(title: int, as_of: str) -> str:
     url = f"{ECFR_API_BASE}/full/{as_of}/title-{title}.xml"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        data = resp.read()
-    return bytes(data).decode("utf-8")
+    return _fetch_ecfr_api_bytes(url, timeout=600).decode("utf-8")
 
 
 def fetch_ecfr_part_xml(title: int, part: str, as_of: str) -> str:
     part_query = urllib.parse.quote(part, safe="")
     url = f"{ECFR_API_BASE}/full/{as_of}/title-{title}.xml?part={part_query}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=180) as resp:
-        data = resp.read()
-    return bytes(data).decode("utf-8")
+    return _fetch_ecfr_api_bytes(url, timeout=180).decode("utf-8")
 
 
 def fetch_ecfr_graphic(identifier: str) -> bytes:
@@ -313,12 +340,31 @@ def _ecfr_source_key(run_id: str, title: int, only_part: str | None) -> str:
     )
 
 
+# An eCFR section identifier is PART.SECTION. Title 26 numbers many sections after the
+# Code subsection they implement, so SECTION may carry parenthesised groups
+# ("1.401(k)-1", "31.3121(a)(1)-1", "31.3121(a)-1T"). Parentheses are not legal in a
+# citation-path segment (schema/citation-path.v1.json), so the path segment folds each
+# group into hyphens ("401-k-1", "3121-a-1-1") while labels, identifiers, metadata and
+# the eCFR URL keep the official form.
+_SECTION_IDENTIFIER_PATTERN = r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.()-]*)"
+
+
+def _section_path_segment(section: str) -> str:
+    segment = re.sub(r"[()]", "-", section)
+    segment = re.sub(r"-{2,}", "-", segment)
+    return segment.strip("-")
+
+
+def _section_citation_path(title: int, part: str, section: str) -> str:
+    return f"us/regulation/{title}/{part}/{_section_path_segment(section)}"
+
+
 def _section_citation_from_identifier(title: int, identifier: str) -> tuple[str, str] | None:
-    match = re.fullmatch(r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.-]*)", identifier)
+    match = re.fullmatch(_SECTION_IDENTIFIER_PATTERN, identifier)
     if not match:
         return None
     part, section = match.groups()
-    return f"us/regulation/{title}/{part}/{section}", section
+    return _section_citation_path(title, part, section), section
 
 
 def _title_from_citation_path(citation_path: str) -> int:
@@ -330,11 +376,11 @@ def _title_from_citation_path(citation_path: str) -> int:
 
 def _section_citation_from_element(title: int, elem: ET.Element) -> tuple[str, str, str] | None:
     n_attr = elem.get("N", "")
-    match = re.search(r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.-]*)", n_attr)
+    match = re.search(_SECTION_IDENTIFIER_PATTERN, n_attr)
     if not match:
         return None
     part, section = match.groups()
-    return f"us/regulation/{title}/{part}/{section}", part, section
+    return _section_citation_path(title, part, section), part, section
 
 
 def _appendix_citation_from_identifier(
@@ -774,10 +820,7 @@ def _filter_ecfr_inventory_sections(
 ) -> list[SourceInventoryItem]:
     requested = tuple(dict.fromkeys(only_sections))
     for selector in requested:
-        if not re.fullmatch(
-            r"[0-9A-Za-z]+\.[0-9A-Za-z][0-9A-Za-z.-]*",
-            selector,
-        ):
+        if not re.fullmatch(_SECTION_IDENTIFIER_PATTERN, selector):
             raise ValueError(
                 f"invalid eCFR section selector {selector!r}; expected PART.SECTION"
             )

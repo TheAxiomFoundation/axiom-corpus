@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-or-liheap-ohcs-energy-assistance-intake-operations-policy-manual
+  jurisdiction: us-or
+  document_class: manual
+  title: Oregon LIHEAP and OEAP Intake Operations and Policy Manual, Program Year 2026
+  source_url: https://www.oregon.gov/ohcs/energy-weatherization/Documents/2026%20Final%20Energy%20Assistance%20Intake%20Operations%20&%20Policy%20Manual.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-or/manual/ohcs/energy-assistance-intake-operations-policy-manual
+  metadata:
+    primary_source: true
+    source_authority: Oregon Housing and Community Services
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: OR
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://www.oregon.gov/ohcs/energy-weatherization/pages/energy-service-provider-resources.aspx
+    on_clearinghouse_index: true
+    source_discovery_group: us-or/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.oregon.gov/ohcs/energy-weatherization/pages/energy-service-provider-resources.aspx
+    extraction_granularity: pdf_page
+    expression_date_note: printed 'Effective October 1, 2025 - September 30, 2026'; PDF dated 2026-06-30
+    access_note: oregon.gov HTTP 200 to the plain client; the Clearinghouse-listed 2022 manual URL answers 404
+    page_count: 95
+    benefit_matrix_pdf_pages: 77-80
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

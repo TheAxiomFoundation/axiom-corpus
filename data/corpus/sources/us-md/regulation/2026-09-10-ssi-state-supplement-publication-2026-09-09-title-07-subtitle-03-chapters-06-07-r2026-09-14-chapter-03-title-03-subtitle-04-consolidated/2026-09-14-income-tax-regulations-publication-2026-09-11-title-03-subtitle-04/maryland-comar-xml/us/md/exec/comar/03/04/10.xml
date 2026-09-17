@@ -1,0 +1,490 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>10</num>
+  <heading>Maryland Research and Development Tax Credit</heading>
+  <section cache:ref-path="03|04|10|.01">
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Definitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this chapter, the following terms have the meanings indicated.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Terms Defined.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Basic credit” means the research and development tax credit described in <cite path="|03|04|10|.02|C.|(1)">Regulation .02C(1) of this chapter</cite>.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Business entity” means a sole proprietorship, partnership, corporation, or other entity doing business in the State.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>“Credit year” means the year for which the credit is being claimed.</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>“Department” means the Department of Business and Economic Development.</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>“Growth credit” means the research and development tax credit described in <cite path="|03|04|10|.02|C.|(2)">Regulation .02C(2) of this chapter</cite>.</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>“Maryland base amount” means the base amount as defined in §41(c) of the Internal Revenue Code, that is attributable to Maryland, determined by:</text>
+        <para>
+          <num>(a)</num>
+          <text>Substituting “Maryland qualified research and development expense” for “qualified research expense”;</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Substituting “Maryland qualified research and development” for “qualified research”; and</text>
+        </para>
+        <para>
+          <num>(c)</num>
+          <text>Using, instead of the “fixed base percentage”:</text>
+          <para>
+            <num>(i)</num>
+            <text>The percentage that the Maryland qualified research and development expense for the 4 taxable years immediately preceding the taxable year in which the expense is incurred is of the gross receipts for those years; or</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>For a taxpayer that has fewer than 4 but at least 1 prior taxable year, the percentage as determined under <cite path="03|04|10|.01|B.|(6)|(c)|(i)">§B(6)(c)(i) of this regulation</cite>, determined using the number of immediately preceding taxable years that the taxpayer has.</text>
+          </para>
+        </para>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>“Maryland adjusted base amount” means the Maryland base amount modified for a period of less than 12 months.</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>“Maryland gross receipts” means gross receipts that are reasonably attributable to the conduct of a trade or business in the State, determined under <cite path="03.04.03.08">COMAR 03.04.03.08</cite>.</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>“Maryland qualified research and development” means qualified research, as defined in §41(d) of the Internal Revenue Code and regulations thereunder, that is conducted in the State.</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>“Maryland qualified research and development expense” means qualified research expenses, as defined in §41(b) of the Internal Revenue Code and regulations thereunder, incurred for Maryland qualified research and development.</text>
+      </para>
+      <para>
+        <num>(11)</num>
+        <text>“Small business” means a for-profit corporation, limited liability company, partnership, or sole proprietorship with net book value assets totaling, at the beginning or the end of the taxable year for which Maryland qualified research and development expenses are incurred, as reported on the balance sheet, less than $5,000,000.</text>
+      </para>
+      <para>
+        <num>(12)</num>
+        <text>“Taxpayer” means an individual or a corporation required to pay an income tax or file an income tax return.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|10|.02">
+    <prefix>Regulation</prefix>
+    <num>.02</num>
+    <heading>Calculation of Credit.</heading>
+    <para>
+      <num>A.</num>
+      <text>The Maryland base percentage is:</text>
+      <para>
+        <num>(1)</num>
+        <text>The percentage that the Maryland qualified research and development expense for the 4 taxable years immediately preceding the taxable year in which the expense is incurred is of the business entity's Maryland gross receipts for those years; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>For a business entity that has fewer than 4 but at least 1 taxable year, the percentage as determined under <cite path="03|04|10|.02|A.|(1)">§A(1) of this regulation</cite> using the number of immediately preceding taxable years that the business entity has.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The Maryland base amount is:</text>
+      <para>
+        <num>(1)</num>
+        <text>For a business entity with gross receipts in at least 1 of the immediately preceding 4 taxable years, the product of multiplying the Maryland base percentage by the average annual Maryland gross receipts of the business entity for the 4 taxable years immediately preceding the credit year; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>For a business entity with no Maryland gross receipts during any of the immediately preceding 4 taxable years, the Maryland base amount is zero.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Subject to the limitations of this regulation, the taxpayer may claim against the State income tax:</text>
+      <para>
+        <num>(1)</num>
+        <text>The basic credit in the amount of 3 percent of the Maryland qualified research and development expenses, not exceeding the Maryland base amount for the business entity, paid or incurred by the business entity during the taxable year; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The growth credit in the amount of 10 percent of the amount by which the Maryland qualified research and development expenses paid or incurred by the business entity during the taxable year exceed the Maryland base amount for the business entity.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.03</num>
+    <heading>Calculation of Credit for Partial or Short Tax Year.</heading>
+    <para>
+      <num>A.</num>
+      <text>The Maryland adjusted base amount for a partial or short year taxpayer is the Maryland base amount multiplied by a fraction:</text>
+      <para>
+        <num>(1)</num>
+        <text>The numerator of which is the number of days in the calendar year included in the partial or short tax year; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The denominator of which is 365.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The Maryland qualified research and development expenses for a partial year taxpayer are:</text>
+      <para>
+        <num>(1)</num>
+        <text>The actual Maryland qualified research and development expenses incurred during the partial tax year incurred during the calendar year; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The total Maryland qualified research and development expenses incurred during the entire tax year multiplied by a fraction:</text>
+        <para>
+          <num>(a)</num>
+          <text>The numerator of which is the number of days in the calendar year included in the partial tax year; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>The denominator of which is 365.</text>
+        </para>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Subject to the limitations of this regulation, the partial or short year taxpayer may claim against the State income tax:</text>
+      <para>
+        <num>(1)</num>
+        <text>The basic credit in the amount of 3 percent of the Maryland qualified research and development expenses, not exceeding the Maryland adjusted base amount for the business entity, paid or incurred by the business entity during the taxable year; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The growth credit in the amount of 10 percent of the amount by which the Maryland qualified research and development expenses paid or incurred by the business entity during the taxable year exceed the Maryland adjusted base amount for the business entity.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|10|.04">
+    <prefix>Regulation</prefix>
+    <num>.04</num>
+    <heading>Maximum Annual Credits.</heading>
+    <para>
+      <num>A.</num>
+      <text>Except as provided in <cite path="03|04|10|.04|D.">§D of this regulation</cite>, the total amount of basic credits approved by the Department under Regulations .02C(1) and .03C(1) of this chapter may not exceed $4,000,000 for any calendar year.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>For any calendar year, if the total amount of basic credits applied for by all business entities is less than $4,000,000, the maximum growth credit specified under <cite path="03|04|10|.04|C.">§C of this regulation</cite> shall be increased for that calendar year by the amount equal to $4,000,000 minus the total amount of the basic credits applied for by all business entities.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Except as provided in <cite path="03|04|10|.04|B.">§B of this regulation</cite>, the total amount of growth credits approved by the Department under Regulations .02C(2) and .03C(2) of this chapter may not exceed $4,000,000 for any calendar year.</text>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>For any calendar year, if the total amount of growth credits applied for by all business entities is less than $4,000,000, the maximum basic credit specified under <cite path="03|04|10|.04|A.">§A of this regulation</cite> shall be increased for that calendar year by the amount equal to $4,000,000 minus the total amount of the growth credits applied for by all business entities.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.05</num>
+    <heading>Application for Credit.</heading>
+    <para>
+      <num>A.</num>
+      <text>Application. By September 15 of the calendar year following the end of the taxable year in which the Maryland qualified research and development expenses were incurred, a business entity shall submit to the Department a completed application for certification on the form prescribed by the Department. The business entity shall provide the following information:</text>
+      <para>
+        <num>(1)</num>
+        <text>The business entity's name and address;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The business entity's federal identification number;</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>The beginning and ending dates of the business entity's fiscal year, or, if a partial year, then the fraction of a year for which the credit is being claimed;</text>
+      </para>
+      <para>
+        <num>(4)</num>
+        <text>The North American Industrial Classification System (NAICS) code number for the business entity;</text>
+      </para>
+      <para>
+        <num>(5)</num>
+        <text>The amount of the research and development expenses eligible for the federal research and development credit for the current and each of the previous 4 tax years and the corresponding average for the previous 4 tax years;</text>
+      </para>
+      <para>
+        <num>(6)</num>
+        <text>The amount of Maryland qualified research and development expenses for the current tax year, the previous 4 tax years, and the corresponding average for the previous 4 tax years;</text>
+      </para>
+      <para>
+        <num>(7)</num>
+        <text>The basic credit being applied for in the current tax year, before allocation and certification by the Department;</text>
+      </para>
+      <para>
+        <num>(8)</num>
+        <text>The growth credit being applied for in the current tax year;</text>
+      </para>
+      <para>
+        <num>(9)</num>
+        <text>The Maryland base percentage;</text>
+      </para>
+      <para>
+        <num>(10)</num>
+        <text>The Maryland base amount or Maryland adjusted base amount; and</text>
+      </para>
+      <para>
+        <num>(11)</num>
+        <text>Any other information required by the Department.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The Department may require that the information required by this regulation be verified by an independent auditor retained by the business entity.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.06</num>
+    <heading>Certification of Credit.</heading>
+    <para>
+      <num>A.</num>
+      <text>The Department shall certify to the taxpayer the amount of the basic and growth research and development tax credits approved by the Department for the taxpayer. The Department shall issue this certification by December 15 of the calendar year following the end of the taxable year in which the Maryland qualified research and development expenses were incurred.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>If the total amount of the credits applied for by all business entities under <cite path="|03|04|10|.05">Regulation .05 of this chapter</cite> exceeds the maximum credit amounts available under <cite path="|03|04|10|.04">Regulation .04 of this chapter</cite>, then the Department shall approve a credit for each applicant in an amount equal to the product of multiplying the credit applied for by the applicant times a fraction:</text>
+      <para>
+        <num>(1)</num>
+        <text>The numerator of which is the maximum specified under <cite path="|03|04|10|.04">Regulation .04 of this chapter</cite>; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The denominator of which is the total of all credits applied for by all applicants under <cite path="|03|04|10|.05">Regulation .05 of this chapter</cite> in the calendar year.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.07</num>
+    <heading>Claiming the Credit.</heading>
+    <text>To claim the credits approved by the Department, a taxpayer shall:</text>
+    <para>
+      <num>A.</num>
+      <text>File an amended income tax return for the taxable year in which the Maryland qualified research and development expense was incurred; and</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Attach a copy of the Department's certification to the amended income tax return.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|10|.08">
+    <prefix>Regulation</prefix>
+    <num>.08</num>
+    <heading>Carryover of Tax Credits.</heading>
+    <para>
+      <num>A.</num>
+      <text>Except as provided in <cite path="03|04|10|.08|C.">§C of this regulation</cite>, if the credit allowed in any taxable year exceeds the State income tax for that taxable year, a taxpayer may apply the excess as a credit against the State income tax for succeeding taxable years until the earlier of:</text>
+      <para>
+        <num>(1)</num>
+        <text>The full amount of the excess is used;</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>For credits certified by the Department before July 1, 2005, the expiration of the 15th taxable year after the taxable year in which the Maryland qualified research and development expense was incurred; or</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>For credits certified by the Department after June 30, 2005, the expiration of the 7th taxable year after the taxable year in which the Maryland qualified research and development expense was incurred.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>A tax credit may not be carried back to a preceding taxable year.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>If the credit allowed in any taxable year exceeds the State income tax for that taxable year, a small business may claim a refund in the amount of the excess.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.09</num>
+    <heading>Affiliated Corporations and Entities Under Common Control.</heading>
+    <para>
+      <num>A.</num>
+      <text>All members of the same controlled group of corporations, as defined in §41(f) of the Internal Revenue Code, and all entities under common control, whether incorporated or not, shall be treated as a single taxpayer for purposes of these tax credits.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The credits allowable to each member shall be determined by multiplying the total credits certified by the Department for the controlled group by a fraction:</text>
+      <para>
+        <num>(1)</num>
+        <text>The numerator of which is the Maryland qualified research and development expenses incurred by the separate member; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The denominator of which is the total Maryland qualified research and development expenses incurred by all members of the controlled group.</text>
+      </para>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>The computation of the Maryland base amount or the Maryland adjusted base amount shall include all of the qualified research and development expenses of an acquired, consolidated, restructured, or merged entity.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.10</num>
+    <heading>Mergers and Acquisitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In determining the carryover of unused credits and the effect of a merger or acquisition, federal law shall be applied to the corporations as if they were separate corporations. Any provisions under federal law that would allow separate corporations that are merged or acquired to carry forward unused credits on the surviving corporation's returns shall apply to the carryover of this credit for State purposes.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Unused Credits.</text>
+      <para>
+        <num>(1)</num>
+        <text>In a transaction involving an asset purchase, unused credits:</text>
+        <para>
+          <num>(a)</num>
+          <text>Do not transfer from the target company to the purchaser; and</text>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Remain with the target company.</text>
+        </para>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Unused credits may not be sold or purchased.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.11</num>
+    <heading>Short Taxable Years.</heading>
+    <para>
+      <num>A.</num>
+      <text>Eligible Expenses. A taxpayer may only claim the credit for Maryland qualified research and development expenses incurred during its taxable year. If the business entity has a short taxable year, only the Maryland qualified research and development expenses incurred during the short taxable year are allowed on the short year return.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>If the taxpayer incurs Maryland qualified research and development expenses in 2 taxable years during a calendar year, one of which is a short taxable year, the business entity may only claim a credit on the short taxable year return in an amount equal to the total credits certified by the Department multiplied by a fraction:</text>
+      <para>
+        <num>(1)</num>
+        <text>The numerator of which is the Maryland qualified research and development expenses incurred during the short taxable year; and</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>The denominator of which is the Maryland qualified research and development expenses incurred during the entire calendar year.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.12</num>
+    <heading>Addition Modifications.</heading>
+    <para>
+      <num>A.</num>
+      <text>Individuals. To the extent an individual is allowed a credit on the Maryland individual income tax return under <cite path="|03|04|10|.05">Regulation .05 of this chapter</cite>, the amount of the credit claimed shall be added to federal adjusted gross income to calculate the individual's Maryland adjusted gross income.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Corporations. To the extent a corporation is allowed a credit on its Maryland income tax return under <cite path="|03|04|10|.05">Regulation .05 of this chapter</cite>, the amount of the credit claimed shall be added to federal taxable income to calculate the corporation's Maryland modified income.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.13</num>
+    <heading>Partnerships, S Corporations, Limited Liability Companies, Business Trusts, Estates, and Trusts.</heading>
+    <para>
+      <num>A.</num>
+      <text>Partnerships, S Corporations, Limited Liability Companies, and Business Trusts. In the case of a subchapter S corporation, partnership, limited liability company, or business trust, the amount of the credits computed for the pass-through entity shall be allocated among the owners as agreed to in writing by the owners. If there is no written agreement governing the allocation of this credit, the credit shall be allocated in the same proportion as other items are allocated for the taxable year.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Estates and Trusts. In the case of an estate or trust, the amount of the credits computed for the estate or trust for any taxable year shall be apportioned among the estate or trust and the beneficiaries on the basis of the income of the estate or trust allocable to each.</text>
+    </para>
+    <para>
+      <num>C.</num>
+      <text>Statements to Partners, Shareholders, Members, and Beneficiaries.</text>
+      <para>
+        <num>(1)</num>
+        <text>Requirements. A partnership, S Corporation, limited liability company, business trust, estate, or trust shall provide each of its partners, shareholders, members, or beneficiaries with an income tax statement.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>Form and Contents of Statement.</text>
+        <para>
+          <num>(a)</num>
+          <text>Form. A partnership, S corporation, limited liability company, business trust, estate, or trust may elect to use a:</text>
+          <para>
+            <num>(i)</num>
+            <text>Maryland Form 510, Schedule K-1;</text>
+          </para>
+          <para>
+            <num>(ii)</num>
+            <text>Modified federal Schedule K-1; or</text>
+          </para>
+          <para>
+            <num>(iii)</num>
+            <text>Statement prepared on its own form.</text>
+          </para>
+        </para>
+        <para>
+          <num>(b)</num>
+          <text>Contents. In addition to the contents required under <cite path="03.04.07.04|B.|(2)">COMAR 03.04.07.04B(2)</cite>, the statement shall contain the amount of each credit apportioned to the individual partner, shareholder, member, or beneficiary.</text>
+        </para>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>Statement Attached to Return. A partner, shareholder, member, or beneficiary shall attach a copy of the statement to the income tax return on which the credit is claimed.</text>
+      </para>
+    </para>
+    <para>
+      <num>D.</num>
+      <text>Year in which Credits are Claimed. The credit apportioned to a taxpayer under this regulation shall be claimed on the taxpayer's Maryland tax return in the taxable year of the taxpayer within which the taxable year of the pass-through entity ends.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.14</num>
+    <heading>Continuity if Federal Provisions Repealed or Terminate.</heading>
+    <text>If the provisions of §41 of the Internal Revenue Code governing the federal research and development tax credit are repealed or terminate, the provisions of this chapter shall continue to operate as if the provisions of §41 of the Internal Revenue Code remain in effect, and the Maryland research and development tax credit under this chapter shall continue to be available.</text>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container">Tax-General Article, §§<cite doc="Md. Code" path="gtg|2-103">2-103</cite> and <cite doc="Md. Code" path="gtg|10-721">10-721</cite>, Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2002-03-04">Effective date: March 4, 2002 (29:4 Md. R. 416)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-03-31"><cite path="|03|04|10|.01|B.">Regulation .01B</cite> amended effective March 31, 2014 (41:6 Md. R. 377)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-03-31"><cite path="|03|04|10|.04">Regulation .04</cite> amended effective March 31, 2014 (41:6 Md. R. 377)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-03-31"><cite path="|03|04|10|.08|A.">Regulation .08A</cite> amended effective October 9, 2006 (33:20 Md. R. 1613); March 31, 2014 (41:6 Md. R. 377)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2014-03-31"><cite path="|03|04|10|.08|C.">Regulation .08C</cite> adopted effective March 31, 2014 (41:6 Md. R. 377)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2011-03-21"><cite path="|03|04|10|.13|C.">Regulation .13C</cite> amended effective March 21, 2011 (38:6 Md. R. 393)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2009-02-09"><cite path="|03|04|10|.14">Regulation .14</cite> adopted effective February 9, 2009 (36:3 Md. R. 207)</annotation>
+  </annotations>
+</container>

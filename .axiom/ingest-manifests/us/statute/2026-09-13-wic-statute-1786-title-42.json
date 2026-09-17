@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-wic-statute-1786-title-42.json",
+      "sha256": "fed9f1a92ad6a51dc8de23467d0d26a9dc213da7395b45a5a2c2b44f81eb7920"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-wic-statute-1786-title-42.json",
+      "sha256": "017ea4e97eba6699fae7af33e58a8bd713b670a76e6fa83bc8e55861fd0e6203"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-wic-statute-1786-title-42.jsonl",
+      "sha256": "64d718bb6019ae9f6afae2f00dca90ad010ff943adf719cd990d0df9a4bd180a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-wic-statute-1786-title-42/olrc/xml_usc42@119-103.zip",
+      "sha256": "28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-statute-1786-title-42 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 622,
+    "missing_count": 0,
+    "provision_count": 622,
+    "source_count": 622
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:58:53.567387+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8efFDDt8p6J83ZfsTjDjTBSMNnDhPS2XTGXZgAPt208vnXh4BiRXeINK5+mRwcka0ic8AuPfBE4pIjBBMKDdAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-statute-1786-title-42"
+}

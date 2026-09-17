@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "844865ec25efe29705593c4bc18707fdb5d8e5630e39bae0a2a52dcec166a012"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "d359529e3892cdd116010f8ab4ebfc93b011680ada62b2b8fb40e89c04a1051b"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "baf85b01dc6a69b3f8d22a0664c7193ffe4bf3ed7d638cb0dfe5018ae6c53c5d"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-oh-odt-annual-tax-rates-ty2025.html",
+      "sha256": "8cd02aad3a83008c93a6eaa3ea06eb06cfd36dba1827c8f3daa27def8e3eb622"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-oh-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:43:19.970629+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uNpGO768ZP4SKvZDDn7ytMErWJVpjPgLhLWhNhQvGaihhwe3pYunOxWclFgR7TnCHEbhsglxnpwT3zxQ1rnADg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

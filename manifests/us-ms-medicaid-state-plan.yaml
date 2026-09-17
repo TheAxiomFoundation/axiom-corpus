@@ -1,0 +1,1003 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ms-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 262
+- source_id: us-ms-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 262
+- source_id: us-ms-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 62
+    index_records_total: 262
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-24-0010-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-24-0010: Approval Document (approved July 17, 2025, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MS-24-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-24-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-24-0010
+    cms_node_id: '182576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=182576
+    approval_date: '2025-07-17'
+    effective_date: '2024-07-01'
+    summary: This amendment is to provide presumptive eligibility for pregnant women.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-23-0011-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-23-0011: Approval Document (approved August 11, 2023, effective May 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MS-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-23-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-23-0011
+    cms_node_id: '152051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152051
+    approval_date: '2023-08-11'
+    effective_date: '2023-05-01'
+    summary: This amendment proposes to allow the Division of Medicaid (DOM) to remove copays from Medicaid services.
+    topics:
+    - Cost Sharing
+    - Coverage
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-21-0016-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-21-0016: Approval Document (approved December 6, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MS-21-0016
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-21-0016/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-21-0016
+    cms_node_id: '128791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128791
+    approval_date: '2021-12-06'
+    effective_date: '2021-07-01'
+    summary: This amendment proposes to (1) clarify the different types of encounters when reimbursement is made for more
+      than one encounter performed on the same days; (2) adds requirements for Federally Qualified Health Centers (FQHC) mobile
+      units; and (3) adds language to refer to Attachment 3.1-A Introductory Pages for coverage of telehealth services to
+      be in compliance with the Mississippi Code Annotated as amended by Senate Bill 2799, effective July 1, 2021.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-21-0002-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-21-0002: Approval Document (approved May 24, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MS-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-21-0002
+    cms_node_id: '108711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108711
+    approval_date: '2021-05-24'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment allows the Division of Medicaid (DOM) to remove the list of specific
+      Current Dental Terminology (CDT) codes.
+    topics:
+    - Benefits
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-20-0021-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-20-0021: Approval Document (approved November 10, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ms-20-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-20-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-20-0021
+    cms_node_id: '103856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103856
+    approval_date: '2020-11-10'
+    effective_date: '2020-07-01'
+    summary: Updates the out-of-state transplant rates as published in the Milliman U.S. Organ and Tissue Transplant Cost
+      Estimates and Discussion
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-20-0003-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-20-0003: Approval Document (approved September 10, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MS-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-20-0003
+    cms_node_id: '102201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102201
+    approval_date: '2020-09-10'
+    effective_date: '2020-07-01'
+    summary: Modifies Attachment 4.19-A of Mississippi’s Title XIX State Plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-20-0017-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-20-0017: Approval Document (approved August 31, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MS-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-20-0017
+    cms_node_id: '101756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101756
+    approval_date: '2020-08-31'
+    effective_date: '2020-04-01'
+    summary: Proposes to allow the state to revise language in the plan for providers to submit cost reports and any supporting
+      data from hard copy to electronic upload
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-20-0004-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-20-0004: Approval Document (approved August 31, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MS-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-20-0004
+    cms_node_id: '101941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101941
+    approval_date: '2020-08-31'
+    effective_date: '2020-04-01'
+    summary: Proposes to revise language in the plan for providers to submit cost reports and any supporting data from hard
+      copy to electronic upload
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-20-0011-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-20-0011: Approval Document (approved June 30, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-20-0011
+    cms_node_id: '99936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99936
+    approval_date: '2020-06-30'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to waive all cost sharing for all beneficiaries, regardless of the ultimate diagnosis, for testing services and treatments
+      for COVID-19, including vaccines, specialized equipment, and therapies.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-19-0018-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-19-0018: Approval Document (approved October 18, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-19-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-19-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-19-0018
+    cms_node_id: '4671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4671
+    approval_date: '2019-10-18'
+    effective_date: '2019-07-01'
+    summary: Allows qualified Medicaid eligible SSI beneficiaries under the age of nineteen (19), to continue to exclude two
+      (2) automobiles. Those qualified beneficiaries that are over the age of nineteen (19) will only exclude one (1) automobile.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-19-0020-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-19-0020: Approval Document (approved September 30, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-19-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-19-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-19-0020
+    cms_node_id: '4806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4806
+    approval_date: '2019-09-30'
+    effective_date: '2019-07-01'
+    summary: All Patient Refined-Diagnosis Related Groups (APR-DRG) Reimbursement is being submitted to update the following
+      hospital inpatient services.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-19-0013-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-19-0013: Approval Document (approved August 14, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-19-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-19-0013
+    cms_node_id: '5226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5226
+    approval_date: '2019-08-14'
+    effective_date: '2019-07-01'
+    summary: Updates hospital outpatient reimbursement.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-19-0009-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-19-0009: Approval Document (approved May 13, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-19-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-19-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-19-0009
+    cms_node_id: '6221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6221
+    approval_date: '2019-05-13'
+    effective_date: '2019-01-01'
+    summary: This allows the MS Division of Medicaid to include less restrictive language for reporting transitional medical
+      assistance (TMA) under Section 1931 of the Social Security Act, allowing the DOM to continue Medicaid eligibility under
+      TMA for an initial period of twelve (12) months.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-15-019-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-15-019: Approval Document (approved January 25, 2016, effective December 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-15-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-12-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-15-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-15-019
+    cms_node_id: '20836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20836
+    approval_date: '2016-01-25'
+    effective_date: '2015-12-01'
+    summary: This SPA submitted to remove language that Medicaid beneficiaries in a PRTF are excluded from the MSCAN program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-15-0001-mm2-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-15-0001-MM2: Approval Document (approved May 1, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-15-0001-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-15-0001-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-15-0001-MM2
+    cms_node_id: '27161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27161
+    approval_date: '2015-05-01'
+    effective_date: '2015-01-01'
+    summary: Incorporates the Modified Adjusted Gross Income (MAGI) based eligibility process requirements, including the
+      single streamlined application into the Medicaid state plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-14-024-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-14-024: Approval Document (approved February 26, 2015, effective December 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-14-024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-12-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-14-024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-14-024
+    cms_node_id: '28581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28581
+    approval_date: '2015-02-26'
+    effective_date: '2014-12-01'
+    summary: This SPA increases the percentage of Medicaid enrollees, adds additional categories of eligibility, and requires
+      mandatory participation in Mississippi Coordinated Access Network (MSCAN) for certain Medicaid beneficiaries.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-0024-mm7-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-0024-MM7: Approval Document (approved March 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0024-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0024-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-0024-MM7
+    cms_node_id: '37666'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37666
+    approval_date: '2014-03-19'
+    effective_date: '2014-01-01'
+    summary: Establishes that One or More Qualified Hospitals are Determining Presumptive Eligibility, and that the State
+      is Providing Coverage for Individuals Determined Presumptively Eligible.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-0023-mm6-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-0023-MM6: Approval Document (approved March 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0023-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0023-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-0023-MM6
+    cms_node_id: '37676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37676
+    approval_date: '2014-03-19'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-0022-mm5-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-0022-MM5: Approval Document (approved March 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0022-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0022-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-0022-MM5
+    cms_node_id: '37681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37681
+    approval_date: '2014-03-19'
+    effective_date: '2014-01-01'
+    summary: Affirms State Residency Regulations and Addresses Interstate Agreements and Temporary Absence.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-013-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-013: Approval Document (approved January 17, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-013
+    cms_node_id: '39161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39161
+    approval_date: '2014-01-17'
+    effective_date: '2013-10-01'
+    summary: Adding the option that hospice care is provided in accordance with section 2302 of the Affordable Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-0019-mm1-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-0019-MM1: Approval Document (approved December 31, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0019-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-0019-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-0019-MM1
+    cms_node_id: '39251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39251
+    approval_date: '2013-12-31'
+    effective_date: '2014-01-01'
+    summary: Incorporates mandatory and optional Modified Adjusted Gross Income based eligibility groups into the Medicaid
+      state plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-017-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-017: Approval Document (approved November 21, 2013, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-017-MSPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-017
+    cms_node_id: '39851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39851
+    approval_date: '2013-11-21'
+    effective_date: '2013-12-31'
+    summary: Continues coverage of pregnant minors under age 19 regardless of income who qualify under IV-E Adoption Assistance
+      Children regardless of income.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-007-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-007: Approval Document (approved August 8, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-007-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-13-007
+    cms_node_id: '45651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45651
+    approval_date: '2013-08-08'
+    effective_date: '2013-07-01'
+    summary: Requests prior authorization for certain advanced imaging procedures except when performed during an inpatient
+      hospitalization, an emergency room visit, or during a twenty-three hour observation period.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-007-attachment
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-007: Attachment (approved August 8, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-007-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-007/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MS-13-007
+    cms_node_id: '45651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45651
+    approval_date: '2013-08-08'
+    effective_date: '2013-07-01'
+    summary: Requests prior authorization for certain advanced imaging procedures except when performed during an inpatient
+      hospitalization, an emergency room visit, or during a twenty-three hour observation period.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-13-007-form-cms-179
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-13-007: Form CMS-179 (approved August 8, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-007-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-13-007/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MS-13-007
+    cms_node_id: '45651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45651
+    approval_date: '2013-08-08'
+    effective_date: '2013-07-01'
+    summary: Requests prior authorization for certain advanced imaging procedures except when performed during an inpatient
+      hospitalization, an emergency room visit, or during a twenty-three hour observation period.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-12-002-approval-document
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-12-002: Approval Document (approved October 19, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-12-002-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-12-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MS-12-002
+    cms_node_id: '42526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42526
+    approval_date: '2012-10-19'
+    effective_date: '2012-07-01'
+    summary: This SPA was submitted to make changes to Optometrist services available in the Mississippi State Plan. It will
+      add Optometrist services as a covered service allowing Optometrist coverage to all eligible beneficiaries, not just
+      the Early Periodic Screening, Diagnosis, and Treatment (EPSDT) beneficiaries.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-12-002-attachment
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-12-002: Attachment (approved October 19, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-12-002-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-12-002/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MS-12-002
+    cms_node_id: '42526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42526
+    approval_date: '2012-10-19'
+    effective_date: '2012-07-01'
+    summary: This SPA was submitted to make changes to Optometrist services available in the Mississippi State Plan. It will
+      add Optometrist services as a covered service allowing Optometrist coverage to all eligible beneficiaries, not just
+      the Early Periodic Screening, Diagnosis, and Treatment (EPSDT) beneficiaries.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-ms-cms-medicaid-state-plan-spa-ms-12-002-form-cms-179
+  jurisdiction: us-ms
+  document_class: policy
+  title: 'Mississippi Medicaid SPA MS-12-002: Form CMS-179 (approved October 19, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-12-002-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-ms/policy/cms/medicaid-state-plan/spa/ms-12-002/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Mississippi
+    source_discovery_group: us-ms/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MS-12-002
+    cms_node_id: '42526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42526
+    approval_date: '2012-10-19'
+    effective_date: '2012-07-01'
+    summary: This SPA was submitted to make changes to Optometrist services available in the Mississippi State Plan. It will
+      add Optometrist services as a covered service allowing Optometrist coverage to all eligible beneficiaries, not just
+      the Early Periodic Screening, Diagnosis, and Treatment (EPSDT) beneficiaries.
+    topics: *id003
+    link_label: Form CMS-179

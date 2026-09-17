@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -72,6 +73,7 @@ class DelawareCodeProvision:
     status: str | None = None
     canonical_citation_path: str | None = None
     variant: str | None = None
+    publisher_section_id: str | None = None
 
     @property
     def citation_path(self) -> str:
@@ -709,9 +711,13 @@ def _section_from_tag(
     occurrence_by_section[occurrence_key] = occurrence_by_section.get(occurrence_key, 0) + 1
     occurrence = occurrence_by_section[occurrence_key]
     variant = _variant_for_section(heading, occurrence)
-    source_id = section_id if variant is None else f"{section_id}@{variant}"
+    # Combined repealed headings ("§§ 1159, 1160") and same-number variants must
+    # stay inside the citation-path grammar: the comma folds to a hyphen and a
+    # variant joins with "--" (the NM/VT convention), never "@".
+    section_segment = citation_segment(section_id)
+    source_id = variant_segment(section_segment, variant)
     citation_path = f"us-de/statute/{title}/{source_id}"
-    canonical = f"us-de/statute/{title}/{section_id}" if variant is not None else None
+    canonical = f"us-de/statute/{title}/{section_segment}" if variant is not None else None
     references_to = tuple(dict.fromkeys(ref for ref in references if ref != citation_path))
     return DelawareCodeProvision(
         kind="section",
@@ -736,6 +742,7 @@ def _section_from_tag(
         status=status,
         canonical_citation_path=canonical,
         variant=variant,
+        publisher_section_id=section_id if section_segment != section_id else None,
     )
 
 
@@ -931,6 +938,8 @@ def _metadata(provision: DelawareCodeProvision) -> dict[str, Any]:
         metadata["variant"] = provision.variant
     if provision.canonical_citation_path:
         metadata["canonical_citation_path"] = provision.canonical_citation_path
+    if provision.publisher_section_id:
+        metadata["publisher_section_id"] = provision.publisher_section_id
     return metadata
 
 

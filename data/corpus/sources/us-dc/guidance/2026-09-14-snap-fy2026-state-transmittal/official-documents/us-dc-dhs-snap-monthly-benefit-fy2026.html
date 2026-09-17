@@ -1,0 +1,3894 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
+<html lang="en" dir="ltr" version="HTML+RDFa 1.1"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:sioct="http://rdfs.org/sioc/types#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"348872d504",applicationID:"496267014",browserID:"496267118"};;/*! For license information please see nr-loader-rum-1.321.0.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let s in a)if(void 0!==e[s])try{if(null===e[s]){r[s]=null;continue}Array.isArray(e[s])&&Array.isArray(t[s])?r[s]=Array.from(new Set([...e[s],...t[s]])):e[s]instanceof Map||e[s]instanceof Set||e[s]instanceof Date||e[s]instanceof RegExp?r[s]=e[s]:"object"==typeof e[s]&&null!==t[s]&&"object"==typeof t[s]?r[s]=i(e[s],t[s]):r[s]=e[s]}catch(e){r[s]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>s});var n=r(384),i=r(8122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function s(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,a)])},7699(e,t,r){"use strict";var n=r(860);const i={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,1e6,"KC",0,i,"qh",0,"SESSION_ERROR"])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.321.0"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),s=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===s?.document?.visibilityState),c=""+s?.location,u=/iPad|iPhone|iPod/.test(s.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=s.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,a,"gm",0,s,"m",0,c,"mw",0,o,"sb",0,d,"zk",0,()=>{const e=s?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<s.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>o,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),a=r(860),s=r(2646);function o(e,t){if(!e)return;const r={staged:!1,priority:a.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const a=e.ee,o=i.i.handlers;if(a&&!a.aborted&&a.backlog&&o){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=a.backlog[t],r=o[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof s.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}a.isolatedBacklog||delete o[t],a.backlog[t]=null,a.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),a=r(2646),s=r(5607);const o="nr@context:".concat(s.W),c=function e(t,r){var n={},s={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var o=g(n);m(e).forEach(e=>{e.apply(o,r)});var u=v()[s[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{s[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,o,()=>new a.y(o)):new a.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,o,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(9908);a.on=s;var i=a.handlers={};function a(e,t,r,a){s(a||n.d,i,e,t,r)}function s(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var s=t[a]=t[a]||{};(s[r]=s[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>s,bz:()=>a});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,a=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const s=[];for(var o=0;o<e;o++)s.push(i(r,a++).toString(16));return s.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),a=t.includes("nrWrapper");return r||a||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>s,Qr:()=>c,sB:()=>o});var n=r(3878),i=r(6389);function a(){return"undefined"==typeof document||"complete"===document.readyState}function s(e,t){if(a())return e();const r=(0,i.J)(e),s=setInterval(()=>{a()&&(clearInterval(s),r())},500);(0,n.sp)("load",r,t)}function o(e){if(a())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(a())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),a=r(944),s=r(1910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,s.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,a.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,o])},2843(e,t,r){"use strict";r.d(t,{G:()=>a,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function a(e,t,r){(0,n.sp)("pagehide",e,t,r)}},9300(e,t,r){"use strict";r(860).K7.ajax;r.d(t,["mo",0,{NONE:"none",FAILURES:"failures",ALL:"all"}])},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>a});var n=r(9566),i=r(1741);class a extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(4261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),a=r(1863),s=r(944),o=r(3969),c=r(8362),u=r(860);function d(e,t,r,a){const d=a||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(o.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,s.R)(23,e)}})}function l(e,t,r,n,s){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(s||null===r)&&(0,i.p)("api-"+n,[(0,a.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",a="browser/blobs",s="browser/logs",o={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[o.pageViewEvent]:1,[o.pageViewTiming]:2,[o.metrics]:3,[o.jserrors]:4,[o.softNav]:5,[o.ajax]:6,[o.sessionTrace]:7,[o.sessionReplay]:8,[o.logging]:9,[o.genericEvents]:10},u={[o.pageViewEvent]:"rum",[o.pageViewTiming]:n,[o.ajax]:n,[o.softNav]:n,[o.metrics]:i,[o.jserrors]:i,[o.sessionTrace]:a,[o.sessionReplay]:a,[o.logging]:s,[o.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,o,"P3",0,c,"XX",0,i,"Yy",0,s,"df",0,a,"hg",0,"connect"])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const a=t[n]={exports:{}};return e[n](a,a.exports,r),a.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],a=t[n++];r.o(e,i)?0===a&&n++:0===a?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:a})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.321.0.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.321.0.PROD:";r.l=(n,i,a,s)=>{if(e[n])return void e[n].push(i);let o,c;if(void 0!==a){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+a){o=r;break}}}if(!o){c=!0;var d={296:"sha512-auOJN989wXoxmQeiyRE/ZlrR6yqeuq5/WjLH1btsNQ6Iqm/RK+IqmjTuvad7oOBZyozPaWg6y2Uu2qAZy3e0cQ=="};o=document.createElement("script"),o.charset="utf-8",r.nc&&o.setAttribute("nonce",r.nc),o.setAttribute("data-webpack",t+a),o.src=n,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),d[s]&&(o.integrity=d[s])}e[n]=[i];const l=(t,r)=>{o.onerror=o.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],o.parentNode?.removeChild(o),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=l.bind(null,o.onerror),o.onload=l.bind(null,o.onload),c&&document.head.appendChild(o)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const a=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=a);const s=r.p+r.u(t),o=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;o.message="Loading chunk "+t+" failed: ("+e+": "+r+")",o.name="ChunkLoadError",o.type=e,o.request=r,i[1](o)}};r.l(s,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,a,s]=n;var o,c,u=0;if(i.some(t=>0!==e[t])){for(o in a)r.o(a,o)&&(r.m[o]=a[o]);if(s)s(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.321.0.PROD"]=self["webpackChunk:NRBA-1.321.0.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),a=r(1741);var s=r(2555),o=r(981);t.K7.genericEvents,o.R.PA,o.R.UA,o.R.BP;const c={RESOURCES:"experimental.resources",REGISTER:"register"};var u=r(9300);const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var l=r(2614),f=r(944),g=r(8122);const p="[data-nr-mask]",m=e=>(0,g.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1,iframe_bridge:!1,iframe_domains:[]},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:u.mo.NONE},api:{register:{get enabled(){return e.feature_flags.includes(c.REGISTER)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1,get allow_iframe_bridge(){return e.feature_flags.includes(c.IFRAME_BRIDGE)||e.experimental.iframe_bridge},set allow_iframe_bridge(t){e.experimental.iframe_bridge=t},get iframe_domains(){return e.experimental.iframe_domains},set iframe_domains(t){Array.isArray(t)?e.experimental.iframe_domains=t:(0,f.R)(1,t)}}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:l.wk,inactiveMs:l.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(p):""===t||null===t?e.mask_selector=p:(0,f.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,f.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,f.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var h=r(6154),v=r(9324);let b=0;const y={buildEnv:"PROD",distMethod:"CDN",version:v.xv,originTime:h.WN},_={consented:!1},w={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||_.consented},set consented(e){_.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,connector:void 0,harvester:void 0,v2Target:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++b},listeningForIframeMessages:!1},R="BA";var A=r(7836),x=r(3241);const E={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};var S=r(9908);const k="newrelic-iframe-";function T(e,t={},n,o){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var p;e.init=m(c||{}),e.loader_config=(p=d||{},(0,g.a)(p,E)),u.jsAttributes??={},h.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,s.D)(u);const v=e.init;e.runtime??=(e=>{const t=(0,g.a)(e,w),r=Object.keys(y).reduce((e,t)=>(e[t]={value:y[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),e.runtime.v2Target??={type:R,instance:e.agentIdentifier,get id(){return e.runtime.appMetadata?.agents?.[0]?.entityGuid},get attributes(){return{"entity.guid":this.id,appId:e.info.applicationID}}},v.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(v.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(a.W.prototype).forEach(r=>{const n=a.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=A.ee.get(e.agentIdentifier),e.exposed=f,(0,x.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.init.api.register.allow_iframe_bridge&&h.gm.addEventListener("message",t=>{"string"==typeof t.data?.type&&t.data.type.startsWith(k)&&(0,S.p)("iframe-message",[t],void 0,"IFRAME",e.ee)}),e.runtime.configured=!0)}var j=r(1863),P=r(4261),N=r(1738);var O=r(1687),M=r(4234),I=r(5289),D=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,D.V)(e)&&!0===e?.session_trace.enabled}var W=r(6389),B=r(7699);const C=new WeakSet,K=new WeakMap;class U extends M.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,W.J)(()=>{(0,O.Ak)(e,this.featureName),t()}))}):(0,O.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,s.f)(e.info))return(0,f.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);try{await async function(e,t,n){if(K.has(e))return K.get(e);const i=(async()=>{if((0,D.V)(e.init))try{const{setupAgentSession:t}=await r.e(296).then(r.bind(r,8391));t(e)}catch(e){(0,f.R)(20,e),t.emit("internal-error",[e]),(0,S.p)(B.qh,[e],void 0,n,t)}if(e.init.api.register.allow_iframe_bridge)try{const{setupIframeMFEMessageListener:t}=await Promise.resolve().then(function(){const e=new Error("Cannot find module '../../loaders/configure/iframe-message-handler'");throw e.code="MODULE_NOT_FOUND",e});t(e)}catch(e){(0,f.R)(23,e)}const[{Connector:i},{Harvester:a}]=await Promise.all([r.e(296).then(r.bind(r,6589)),r.e(296).then(r.bind(r,5237))]);e.runtime.connector=new i(e),e.runtime.harvester=new a(e);const s=Object.values(e.features).filter(t=>e.runtime.drainRegistry.has(t.featureName));Promise.all(s.map(e=>e.onAggregateImported)).then(()=>e.runtime.harvester.startTimer())})();K.set(e,i),await i}(e,this.ee,this.featureName)}catch(e){return(0,f.R)(79,e),this.ee.abort(),void this.loadedSuccessfully(!1)}try{if(!this.#r(this.featureName,e.runtime.session,e.init))return this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,f.R)(34,e),this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1)}};h.RI?(0,I.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!C.has(e)&&(C.add(e),!(0,s.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}T(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var L=r(6630);class F extends U{static featureName=L.T;constructor(e){var t;super(e,L.T),this.setupInspectionEvents(),t=e,(0,N.Y)(P.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,S.p)("api-"+P.Fw,[(0,j.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>e.init.feature_flags.includes("rum_v2")?r.e(296).then(r.bind(r,908)):r.e(296).then(r.bind(r,7927)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,x.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,I.sB)(t=>{e(t,"DOMContentLoaded")}),(0,I.GG)(t=>{e(t,"load")}),(0,I.Qr)(t=>{e(t,"navigate")}),this.ee.on(l.tS.UPDATE,(e,t)=>{(0,x.W)({type:"lifecycle",name:"session",data:t})})}}class G extends e.d{constructor(e){var t;(super(),h.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(F),T(this,e,e.loaderType||"agent"),t=this,(0,N.Y)(P.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,N.U)(t,e,r,P.cD,n);(0,f.R)(40,typeof r)}else(0,f.R)(39,typeof e)},t),function(e){(0,N.Y)(P.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,f.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,S.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,N.U)(e,"enduser.id",t,P.Dl,!0)},e)}(this),function(e){(0,N.Y)(P.nb,function(t){if("string"==typeof t||null===t)return(0,N.U)(e,"application.version",t,P.nb,!1);(0,f.R)(42,typeof t)},e)}(this),function(e){(0,N.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,N.Y)(P.Pv,function(t=!0){if("boolean"==typeof t){if((0,S.p)("api-"+P.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum?.()})}}else(0,f.R)(65,typeof t)},e)}(this),this.run()):(0,f.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures],i=this.init.feature_flags.includes("rum_v2");r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&(i||r.featureName!==t.K7.pageViewEvent))return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,f.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,f.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var H=r(2843),z=r(782);class Y extends U{static featureName=z.T;constructor(e){super(e,z.T),h.RI&&((0,H.u)(()=>(0,S.p)("docHidden",[(0,j.t)()],void 0,z.T,this.ee),!0),(0,H.G)(()=>(0,S.p)("winPagehide",[(0,j.t)()],void 0,z.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9981))))}}var Z=r(3969);class q extends U{static featureName=Z.TZ;constructor(e){super(e,Z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new G({features:[F,Y,q],loaderType:"lite"})})()})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, minimum-scale=1, user-scalable=yes" />
+<meta name="description" content="The total amount that monthly benefit-eligible Supplemental Nutrition Assistance Program (SNAP) households receive is based on several factors including income, expenses, and the number of individuals in the households." />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="https://dhs.dc.gov/service/snap-monthly-benefit" />
+<link rel="shortlink" href="https://dhs.dc.gov/service/snap-monthly-benefit" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://dhs.dc.gov/service/snap-monthly-benefit" />
+<meta name="twitter:title" content="SNAP Monthly Benefit" />
+<meta name="twitter:description" content="The total amount that monthly benefit-eligible Supplemental Nutrition Assistance Program (SNAP) households receive is based on several factors including income, expenses, and the number of individuals in the households." />
+  <title>SNAP Monthly Benefit | dhs</title>  
+  <style type="text/css" media="all">
+@import url("https://dhs.dc.gov/modules/system/system.base.css?szii6f");
+@import url("https://dhs.dc.gov/modules/system/system.menus.css?szii6f");
+@import url("https://dhs.dc.gov/modules/system/system.messages.css?szii6f");
+@import url("https://dhs.dc.gov/modules/system/system.theme.css?szii6f");
+</style>
+<style type="text/css" media="all">
+@import url("https://dhs.dc.gov/modules/book/book.css?szii6f");
+@import url("https://dhs.dc.gov/modules/comment/comment.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/date/date_api/date.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/date/date_popup/themes/datepicker.1.7.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/date/date_repeat_field/date_repeat_field.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/domain/domain_nav/domain_nav.css?szii6f");
+@import url("https://dhs.dc.gov/modules/field/theme/field.css?szii6f");
+@import url("https://dhs.dc.gov/modules/node/node.css?szii6f");
+@import url("https://dhs.dc.gov/modules/search/search.css?szii6f");
+@import url("https://dhs.dc.gov/modules/user/user.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/calendar/css/calendar_multiday.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/views/css/views.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/ckeditor/css/ckeditor.css?szii6f");
+</style>
+<style type="text/css" media="all">
+@import url("https://dhs.dc.gov/sites/all/modules/ctools/css/ctools.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/contrib/flickrgallery/flickrgallery.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/panels/css/panels.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/rate/rate.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/text_resize/text_resize.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/modules/extlink/extlink.css?szii6f");
+</style>
+<style type="text/css" media="all">
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/alpha-reset.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/alpha-mobile.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/omega/css/omega-text.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/omega/css/omega-branding.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/omega/css/omega-forms.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/global.css?szii6f");
+</style>
+
+<!--[if (lt IE 9)&(!IEMobile)]>
+<style type="text/css" media="all">
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default-normal.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-12.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-24.css?szii6f");
+</style>
+<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape)">
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default-narrow.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/narrow/alpha-default-narrow-12.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/narrow/alpha-default-narrow-24.css?szii6f");
+</style>
+<!--<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)">
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default-normal.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-12.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-24.css?szii6f");
+</style>
+<!--<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 1220px)">
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/css/dc-agency-statehood-alpha-default-wide.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/wide/alpha-default-wide-12.css?szii6f");
+@import url("https://dhs.dc.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/wide/alpha-default-wide-24.css?szii6f");
+</style>
+<!--<![endif]-->
+  <script type="text/javascript" src="https://dhs.dc.gov/sites/all/modules/contrib/jquery_update/replace/jquery/1.8/jquery.min.js?v=1.8.3"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/misc/jquery-extend-3.4.0.js?v=1.8.3"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/misc/jquery-html-prefilter-3.5.0-backport.js?v=1.8.3"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/misc/jquery.once.js?v=1.2"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/misc/drupal.js?szii6f"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+      // close script tag for SecKit protection
+      //--><!]]>
+      </script>
+      <script type="text/javascript" src="/sites/all/modules/contrib/seckit/js/seckit.document_write.js"></script>
+      <link type="text/css" rel="stylesheet" id="seckit-clickjacking-no-body" media="all" href="/sites/all/modules/contrib/seckit/css/seckit.no_body.css" />
+      <!-- stop SecKit protection -->
+      <noscript>
+      <link type="text/css" rel="stylesheet" id="seckit-clickjacking-noscript-tag" media="all" href="/sites/all/modules/contrib/seckit/css/seckit.noscript_tag.css" />
+      <div id="seckit-noscript-tag">
+        Sorry, you need to enable JavaScript to visit this website.
+      </div>
+      </noscript>
+      <script type="text/javascript">
+      <!--//--><![CDATA[//><!--
+      // open script tag to avoid syntax errors
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://dhs.dc.gov/sites/all/modules/text_resize/jquery.cookie.js?szii6f"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var text_resize_scope = "not-front #main, #zone-content";
+    var text_resize_minimum = "12";
+    var text_resize_maximum = "25";
+    var text_resize_line_height_allow = 1;
+    var text_resize_line_height_min = "16";
+    var text_resize_line_height_max = "36";
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://dhs.dc.gov/sites/all/modules/text_resize/text_resize.js?szii6f"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/sites/all/modules/extlink/extlink.js?szii6f"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/sites/all/modules/google_analytics/googleanalytics.js?szii6f"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create", "UA-2638726-1", {"cookieDomain":"auto"});ga("send", "pageview");
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://dhs.dc.gov/sites/all/themes/dc_agency_statehood/js/dcAgency.js?szii6f"></script>
+<script type="text/javascript" src="https://dhs.dc.gov/sites/all/themes/omega/omega/js/omega-mediaqueries.js?szii6f"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"dc_agency_statehood","theme_token":"tauk4tR8A96LaFJPsmaOTwfAuvRvovYgrzsR9hHeyV8","js":{"sites\/all\/modules\/contrib\/jquery_update\/replace\/jquery\/1.8\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"0":1,"sites\/all\/modules\/text_resize\/jquery.cookie.js":1,"1":1,"sites\/all\/modules\/text_resize\/text_resize.js":1,"sites\/all\/modules\/extlink\/extlink.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"2":1,"sites\/all\/themes\/dc_agency_statehood\/js\/dcAgency.js":1,"sites\/all\/themes\/omega\/omega\/js\/omega-mediaqueries.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/book\/book.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css":1,"sites\/all\/modules\/domain\/domain_nav\/domain_nav.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/flickrgallery\/flickrgallery.css":1,"sites\/all\/modules\/panels\/css\/panels.css":1,"sites\/all\/modules\/rate\/rate.css":1,"sites\/all\/modules\/text_resize\/text_resize.css":1,"sites\/all\/modules\/extlink\/extlink.css":1,"sites\/all\/themes\/dc_agency_statehood\/css\/normalize.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-reset.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-mobile.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-text.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-branding.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-forms.css":1,"sites\/all\/themes\/dc_agency_statehood\/css\/global.css":1,"ie::normal::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default.css":1,"ie::normal::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default-normal.css":1,"ie::normal::sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-12.css":1,"ie::normal::sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-24.css":1,"narrow::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default.css":1,"narrow::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default-narrow.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/narrow\/alpha-default-narrow-12.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/narrow\/alpha-default-narrow-24.css":1,"normal::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default.css":1,"normal::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default-normal.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-12.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-24.css":1,"wide::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default.css":1,"wide::sites\/all\/themes\/dc_agency_statehood\/css\/dc-agency-statehood-alpha-default-wide.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/wide\/alpha-default-wide-12.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/wide\/alpha-default-wide-24.css":1}},"extlink":{"extTarget":"_blank","extClass":"ext","extSubdomains":1,"extExclude":"http[s]*:\/\/[a-zA-Z0-9\\-\\.]*dc.gov[\\\/a-zA-Z0-9\\-\\.\\?\\=]*","extInclude":"","extAlert":0,"extAlertText":"The District government has provided links as a courtesy and is not responsible for information on websites outside the DC portal. Inquiries should be made to the sponsoring organizations.","mailtoClass":"mailto"},"better_exposed_filters":{"views":{"agency_information":{"displays":{"block":{"filters":[]},"agency_director":{"filters":[]}}},"alerts":{"displays":{"emergency_alerts_block":{"filters":[]}}},"custom_headers_and_footers":{"displays":{"custom_agency_header":{"filters":[]},"custom_agency_footer1":{"filters":[]}}}}},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"omega":{"layouts":{"primary":"normal","order":["narrow","normal","wide"],"queries":{"narrow":"all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape)","normal":"all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)","wide":"all and (min-width: 1220px)"}}}});
+//--><!]]>
+</script>
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XLLLT5975Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XLLLT5975Z');
+</script>
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-1530026 node-type-service domain-dhs-dc-gov i18n-en context-service">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+  <div class="region region-page-top" id="region-page-top">
+  <div class="region-inner region-page-top-inner">
+      </div>
+</div>  <div class="page clearfix" id="page">
+      <header id="section-header" class="section section-header">
+  <div id="zone-branding-wrapper" class="zone-wrapper zone-branding-wrapper clearfix">  
+  <div id="zone-branding" class="zone zone-branding clearfix container-12">
+    <div class="grid-12 region region-branding" id="region-branding">
+  <div class="region-inner region-branding-inner">
+        <div class="branding-data clearfix">
+                        <hgroup class="site-name-slogan">        
+                                <h2 class="site-name"><a href="/" title="Home">dhs</a></h2>
+                                        <h6 class="site-slogan">DHS</h6>
+              </hgroup>
+          </div>
+          </div>
+</div>  </div>
+</div><div id="zone-menu-wrapper" class="zone-wrapper zone-menu-wrapper clearfix">  
+  <div id="zone-menu" class="zone zone-menu clearfix container-12">
+    <div class="grid-12 region region-menu" id="region-menu">
+  <div class="region-inner region-menu-inner">
+          </div>
+</div>
+  </div>
+</div><div id="zone-header-wrapper" class="zone-wrapper zone-header-wrapper clearfix">  
+  <div id="zone-header" class="zone zone-header clearfix container-24">
+    <div class="grid-24 region region-header-first" id="region-header-first">
+  <div class="region-inner region-header-first-inner">
+    <div class="block block-views block-alerts-emergency-alerts-block block-views-alerts-emergency-alerts-block odd block-without-title" id="block-views-alerts-emergency-alerts-block">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="view view-alerts view-id-alerts view-display-id-emergency_alerts_block view-dom-id-b2b48f5000795d58e2b5a05f4066a438">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+          <p class="rtecenter" data-renderer-start-pos="291"><strong>If you are traveling out of state and have difficulty using your EBT card, please call OPRMI at 202-671-4460 and select option 1.</strong><br />
+<strong>Protect Your Benefits! It&#39;s important to keep your EBT card safe.</strong>&nbsp;<em><a data-auth="NotApplicable" data-ogsc="" href="https://dhs.dc.gov/page/what-you-can-do-protect-your-benefits" id="LPlnk832681" rel="noopener noreferrer" target="_blank">Learn more</a></em><br />
+<strong>NOTICE: DHS disclosure on recent data privacy incidents. </strong><a href="/node/1841471" title="Data Privacy"><em>Learn more</em></a><br />
+<strong>SNAP ABAWD work requirements implementation started&nbsp;on June&nbsp;1, 2026.</strong>&nbsp;<a href="https://dhs.dc.gov/page/snap-work-requirements"><em>Learn more</em></a><br />
+<b>Update: Changes to stabilize TANF begin October 2027.</b><strong> </strong><a href="https://dhs.dc.gov/page/tanf-program-update"><em>Learn more</em></a></p>
+    </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</div><div class="block block-views block-995d45b00eb29375765ad0295f641a94 block-views-995d45b00eb29375765ad0295f641a94 even block-without-title" id="block-views-995d45b00eb29375765ad0295f641a94">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="view view-custom-headers-and-footers view-id-custom_headers_and_footers view-display-id-custom_agency_header view-dom-id-3bceb031342ac1ace4653df360c4466a">
+        
+  
+  
+      <div class="view-content">
+        <div>
+      
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+<link href="https://fonts.cdnfonts.com/css/gotham-narrow?styles=26145" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:300i,400,500,700&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" />
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+<style type="text/css">@import url('https://fonts.cdnfonts.com/css/gotham-narrow?styles=26145');
+
+
+* {
+                box-sizing: border-box;
+              }
+              nav {
+                background-color: #fff;
+                box-shadow: none;
+              }
+              .front h1#page-title.title {
+                display: none;
+              }
+              .zone-content-wrapper {
+                margin-top: 0;
+              }
+              .front .grid-12 {
+                text-align: left;
+              }
+              .zone-postscript-wrapper,
+              .front .zone-content-wrapper nav.node-links,
+.zone-postscript-wrapper .views-field-field-related {
+                display: none;
+              }
+
+              #region-content {
+                width: 100%;
+                margin: 0 auto;
+              }
+              .container-24 .grid-24,
+              .container-24 .grid-8,
+              .container-24 {
+                width: 100%;
+                margin: 0;
+              }
+              #zone-footer-wrapper .container-12 .grid-12,
+              #zone-footer-wrapper .container-12 .grid-12,
+              #zone-footer.container-12 {
+                width: 100%;
+                margin: 0;
+              }
+        
+              body {
+                color: #4a4a4a;
+                font-family: "Roboto", sans-serif;
+                font-size: 18px;
+              }
+              a,
+              .blue-text {
+                color: #1f4f6c !important;
+              }
+              h1,
+              h2,
+              h3,
+              h4,
+              h5,
+              h6 {
+               font-family: 'Gotham XNarrow', sans-serif;
+              /*  color: #1f4f6c !important;*/
+                letter-spacing: normal;
+              }
+              h1,
+              h2 {
+                font-family: 'Gotham XNarrow', sans-serif;
+                font-size: 1.7rem;
+                font-weight: 500;
+              }
+              h2.title {
+                margin: 50px 0 50px 0;
+              }
+h3{
+font-size: 1.5rem;}
+              h3,
+              h4,
+              h5,
+              h6, .field-name-field-attachment .field-label, .field-name-field-related .field-label, .field-name-field-tty .field-label{
+               /* font-size: 25px;*/
+font-weight:500;
+              }
+
+.node ol, .node ul {
+margin-bottom: 20px;
+}
+
+.node ol {
+list-style: decimal;
+}
+
+.not-front p, .not-front h1, .not-front h2, .not-front h3, .not-front h4, .not-front h5, .not-front h6 {
+margin-bottom: 20px;
+}
+.not-front article {
+padding: 20px;
+}
+.field-name-field-tty {
+display: none;
+}
+.header nav, .branding{
+font-family: 'Gotham XNarrow', sans-serif;
+}
+        
+              .center-section {
+                margin-top: 0;
+              }
+              .card .card-content p {
+                margin: 16px 0;
+              }
+.card .card-content .card-title, .front h2.block-title{
+font-size:40px;
+color:#313131;}
+
+
+              .blue {
+                background-color: #1f4f6c !important;
+              }
+        
+              .yellow {
+                background-color: #885500 !important;
+              }
+              .callout-list-section ol {
+                counter-reset: list-counter;
+                list-style: none;
+              }
+              .callout-list-section li {
+                /* margin: 0 0 1em 0;
+                      position: relative;
+                      padding-left: 5em;
+                      font-size: 1.2rem; */
+                margin: 0 0 0 20px;
+              }
+              .callout-list-section ul.collapsible > li {
+                margin: 0;
+              }
+              .callout-list-section ol li:before {
+                content: counter(list-counter);
+                counter-increment: list-counter;
+                width: 1.5em;
+                height: 1.5em;
+                /* padding: 0.3em; */
+                margin-right: 1em;
+                border-radius: 50%;
+                /* border: 0.25em solid #ccc; */
+                background: #1f4f6c;
+                color: #fff;
+                font-family: arial;
+                font-weight: bold;
+                text-align: center;
+                /* display: inline-block; */
+                font-size: 1.5rem;
+                /*position: absolute;*/
+                top: 50%;
+                transform: translate(-50%, -50%);
+                margin-left: -2em;
+                padding: 3px 10px;
+              }
+              .callout-title-section span:nth-of-type(1) {
+                flex: 2 !important;
+              }
+              .two-box-section {
+                display: block;
+              }
+        
+              .two-box-section .col {
+                flex: 1;
+                padding: 0;
+              }
+              /* .two-box-section .col .card {
+                                      height: 100%;
+                                    } */
+              
+              .lower-container {
+                /* background-image: url("./images/backgroundbottom.png"); */
+                background-size: cover;
+                background-repeat: no-repeat;
+                padding-bottom: 50px;
+              }
+              .logo {
+                /* padding: 50px 0 0 0; */
+                font-size: 2rem;
+                color: #fff;
+                text-transform: uppercase;
+        text-align:center;
+              }
+              .logo img {
+                width: 30%;
+              }
+              .main-callout-image img {
+                width: 100%;
+              }
+              .main-callout .main-callout-text {
+                flex: 3;
+                padding: 0 50px 0 0;
+              }
+              .main-callout-text .button a {
+                font-size: 15px;
+              }
+              .main-callout .main-callout-image {
+                flex: 2;
+              }
+              .center-section img {
+                width: 50px;
+              }
+              /* .top-section .button {
+                                      margin: 20px 0;
+                                    } */
+              .button a {
+                font-size: 1rem;
+              }
+              .btn {
+                text-transform: none;
+              }
+              .card .card-title {
+                font-weight: 700;
+                font-size: 25px;
+                color: #000;
+              }
+              .card-panel {
+                padding: 15px;
+                border-radius: 5px;
+              }
+              .btn-small {
+                border: 1px solid #1f4f6c;
+                box-shadow: none;
+                width: 100%;
+                padding: 20px;
+                line-height: normal;
+                height: auto;
+                font-size: 1rem;
+              }
+              .btn-small,
+              .btn-small:hover {
+                border: 0;
+              }
+              .resource-blocks {
+                display: grid;
+                grid: auto-flow / 1fr;
+                grid-gap: 30px;
+                z-index: 10;
+                position: RELATIVE;
+              }
+              .resource-blocks .card-panel {
+                justify-content: space-between;
+              }
+              .resource-blocks .white-text,
+              .faq {
+                font-size: 18px;
+                font-weight: 500;
+              }
+              .resource-blocks img {
+                height: 43px;
+                margin: 0 auto;
+              }
+              .resource-blocks .btn {
+                padding: 0 5px;
+              }
+              .bottom-message {
+                font-style: italic;
+                color: #4a4a4a;
+              }
+              .z-depth-3 {
+                box-shadow: 0 24px 38px 3px rgb(237, 235, 251),
+                  0 9px 46px 8px rgb(237, 235, 251), 0 11px 15px -7px rgb(237, 235, 251);
+              }
+              .z-depth-2 {
+                box-shadow: 0 4px 5px 0 rgb(237, 235, 251),
+                  0 1px 10px 0 rgb(237, 235, 251), 0 2px 4px -1px rgb(237, 235, 251);
+              }
+        
+              .collapsible-body {
+                background-color: #fff;
+              }
+              .faq {
+                /* position: absolute; */
+                z-index: 5;
+              }
+              .iconExpand {
+                display: inline-block;
+                width: 35px;
+                vertical-align: middle;
+              }
+        
+              .iconCollapse {
+                display: none !important;
+                width: 35px;
+                vertical-align: middle;
+                margin-right: 5px;
+              }
+        
+              li.active .collapsible-header .iconExpand {
+                display: none;
+              }
+        
+              li.active .collapsible-header .iconCollapse {
+                display: inline-block !important;
+              }
+              .resource-blocks .card-panel {
+                padding: 25px 5px;
+                text-align: center;
+                margin: 0;
+              }
+              header .top-header {
+                font-size: 0.7rem;
+              }
+              header .top-header {
+                padding: 10px 10px;
+              }
+              header img {
+                height: 20px;
+              }
+              header .row2 .menu-links {
+                display: grid;
+                justify-content: space-between;
+                align-items: center;
+                grid: auto-flow / 1fr 1fr 1fr;
+              }
+        
+              .sub-head {
+                font-size: 0.9rem;
+                background-color: #013c61;
+                padding: 25px 0;
+                text-transform: capitalize;
+                color: #fff;
+                padding: 15px 5%;
+                min-height: 45px;
+              }
+              .sub-head a {
+                color: #fff !important;
+                text-decoration: none;
+              }
+              .top-header .links a {
+                text-transform: capitalize;
+                text-decoration: none !important;
+                font-size: 0.9rem !important;
+                font-weight: 500;
+              }
+              .section-content .buttons {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+              }
+              .column-container {
+                display: flex;
+                flex-wrap: wrap;
+              }
+              .column-container > div {
+                /* flex: 1; */
+                margin: 10px;
+              }
+        
+              .content-grid {
+                display: grid;
+                margin: 20px 0;
+                column-gap: 10px;
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                  " top-column-1 "
+                  " mid-column-1 "
+                  " mid2-column-1 "
+                  " bottom-column-1 "
+                  " top-column-2 "
+                  " mid-column-2 "
+                  " mid2-column-2 "
+                  " bottom-column-2 "
+                  " top-column-3 "
+                  " mid-column-3 "
+                  " mid2-column-3 "
+                  " bottom-column-3 ";
+              }
+              .content-grid > div:nth-child(1) {
+                grid-area: top-column-1;
+              }
+              .content-grid > div:nth-child(2) {
+                grid-area: top-column-2;
+              }
+              .content-grid > div:nth-child(3) {
+                grid-area: top-column-3;
+              }
+              .content-grid > div:nth-child(4) {
+                grid-area: mid-column-1;
+                border-bottom: 1px solid #ccc;
+              }
+              .content-grid > div:nth-child(5) {
+                grid-area: mid-column-2;
+                border-bottom: 1px solid #ccc;
+              }
+              .content-grid > div:nth-child(6) {
+                grid-area: mid-column-3;
+                border-bottom: 1px solid #ccc;
+              }
+              .content-grid > div:nth-child(7) {
+                grid-area: mid2-column-1;
+              }
+              .content-grid > div:nth-child(8) {
+                grid-area: mid2-column-2;
+              }
+              .content-grid > div:nth-child(9) {
+                grid-area: mid2-column-3;
+              }
+              .content-grid > div:nth-child(10) {
+                grid-area: bottom-column-1;
+                margin-bottom: 10px;
+              }
+              .content-grid > div:nth-child(11) {
+                grid-area: bottom-column-2;
+                margin-bottom: 10px;
+              }
+              .content-grid > div:nth-child(12) {
+                grid-area: bottom-column-3;
+                margin-bottom: 10px;
+              }
+              .top-border {
+                padding: 25px 5px;
+                border: 1px solid #ccc;
+                border-bottom: 0;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+                background-color: #fff;
+                padding: 15px !important;
+                text-align: center;
+              }
+              .middle-border {
+                border-left: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+                padding: 15px !important;
+                background-color: #fff;
+              }
+              .bottom-border {
+                padding: 25px 5px;
+                border: 1px solid #ccc;
+                border-top: 0;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                background-color: #fff;
+                padding: 15px !important;
+              }
+              a.pdf {
+                color: #033248 !important;
+              }
+              .button-dark-blue {
+                background-color: #033248 !important;
+              }
+              .button-light-blue {
+                background-color: #0097be !important;
+              }
+              a.link {
+                color: #0097be !important;
+              }
+              .button-red {
+                background-color: #c00626 !important;
+              }
+
+ .learn-more{
+        text-align: center;
+margin: 20px auto;
+/*width: max-content;*/
+padding: 10px 20px;
+border-radius: 10px;
+background: transparent;
+border: 2px solid #313131;
+        }
+.view-id-agency_home_responsive .view-footer:hover, .learn-more:hover, .view-display-id-upcoming_events .views-row .more-link:hover, .view-display-id-upcoming_events .view-footer a:hover, .front .region-content-inner, .region-agency-home-3col-a {
+background-color: #173C66;
+color: #fff!important;
+}
+.view-id-agency_home_responsive .view-footer{
+background-color: #173C66!important;
+color: #fff!important;
+}
+.view-display-id-upcoming_events .views-row .more-link a:hover, .view-id-agency_home_responsive .view-footer a:hover{
+    color: #fff!important;
+}
+        
+              a.support {
+                color: #c00626 !important;
+              }
+              #slide-out {
+                font-size: 0.9rem;
+                background-color: #112c3b;
+                padding: 25px 0;
+                text-transform: uppercase;
+                color: #fff;
+              }
+              #slide-out a {
+                color: #fff !important;
+              }
+              #slide-out,
+              #slide-out li {
+                list-style-type: none;
+              }
+              .section-content .title {
+                margin-top: 30px;
+              }
+              .video-galley-container {
+                display: grid;
+                justify-content: space-between;
+                grid-template-columns: 1fr;
+                grid-gap: 10px;
+                padding: 10px;
+                margin: 0;
+              }
+              .image img {
+                width: 100%;
+              }
+              .two-box-section .material-icons {
+                font-size: 4rem;
+                color: #f32837;
+                font-weight: 700;
+                transform: rotate(90deg);
+              }
+              .two-box-section .col {
+                text-align: center;
+              }
+        .row .col.s12.block{height:100%;}
+        
+        /* Override statehood base theme */
+        .zone-postscript-wrapper,.front .zone-content-wrapper div.item-list{
+            display:block;
+        }
+        .front #block-system-main, .view-id-agency_responsive_featured_news_home{display:none;}
+.field-name-field-position{padding:0 0 10px 0;}
+.field-name-field-position .field-label{float:left;}
+.top-section {       
+/*padding-top:100px;*/
+                }
+              /* Narrow */
+              @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+                .not-front h1,
+                .not-front h2 {
+                  font-size: 1.5rem;
+                }
+        
+                .resource-blocks {
+                  grid: auto-flow / 1fr 1fr;
+                }
+        
+                header .row2 .menu-links {
+                  display: flex;
+                  text-align: center;
+                }
+                .sub-head {
+                  font-size: 1.1rem;
+                  padding: 25px 100px;
+                }
+                .top-header .links a {
+                  text-transform: uppercase;
+                  text-decoration: none !important;
+                }
+                .section-content .buttons {
+                  display: flex;
+                  justify-content: space-around;
+                  flex-wrap: nowrap;
+                }
+                .top-section {
+                /*  margin-top: 82px;*/
+display: flex;
+align-items: center;
+/*padding-top:100px;*/
+                }
+                .top-section .container {
+                  /*margin: 0;
+                  position: absolute;
+                  top: 63%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+        width:70%;*/
+                }
+                header .top-header {
+                  padding: 10px 100px;
+                }
+                .sub-head a {
+                  padding: 5px;
+                }
+                .column-container {
+                  flex-wrap: nowrap;
+                }
+                .column-container > div {
+                  flex: 1;
+                }
+                .content-grid {
+                  grid-template-columns: 1fr 1fr 1fr;
+                  grid-template-areas:
+                    " top-column-1 top-column-2 top-column-3"
+                    " mid-column-1 mid-column-2 mid-column-3 "
+                    " mid2-column-1 mid2-column-2 mid2-column-3 "
+                    " bottom-column-1 bottom-column-2 bottom-column-3 ";
+                }
+                .section-content .title {
+                  /* margin-top: 100px; */
+                }
+                .video-galley-container {
+                  grid-template-columns: 1fr 1fr;
+                }
+                .video {
+                  text-align: center;
+                  overflow: hidden;
+                  /* padding-top: 56.25%; */
+                  position: relative;
+                }
+                .video iframe {
+                  height: 100%;
+                  left: 0;
+                  position: absolute;
+                  top: 0;
+                  width: 100%;
+                }
+                .video-caption {
+                  text-align: center;
+                }
+                .two-box-section .material-icons {
+                  transform: rotate(0deg);
+                  text-align: center;
+                }
+                .two-box-section {
+                  display: grid;
+                  grid-template-columns: 1fr 50px 1fr 50px 1fr;
+                  align-items: center;
+                }
+              }
+/* Table styles */
+.not-front .region-content table tr th{
+  font-weight: bold;
+}
+.not-front .region-content table td, .not-front .region-content table th {
+  border: 1px solid #898989;
+}
+              /* Normal */
+              @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+.container-24 .grid-6{
+width: 230px !important;
+}
+.form-item-sort-by {
+    right: -110px;
+    z-index: 1;
+}                
+.container {
+                  width: 65%;
+                }
+                /* .two-box-section {
+                        display: flex;
+                        flex-wrap: wrap;
+                      } */
+                .middle-section {
+                  margin-top: 50px;
+                }
+                .resource-blocks .white-text {
+                  font-size: 18px;
+                }
+        
+                .resource-blocks .white-text {
+                  font-size: 18px;
+                }
+                .resource-blocks {
+                  grid: auto-flow / 1fr 1fr 1fr;
+                }
+                header .top-header {
+                  font-size: 1rem;
+                }
+                header .top-header {
+                  padding: 5px 100px;
+                }
+        
+                .section-content ol {
+                  margin: 50px;
+                }
+.section-content article ol{
+margin:0 0 20px 20px;
+}
+.card .card-content .card-title{
+font-size:20px;
+}
+              }
+              @media only screen and (min-width: 1220px) {
+                .container {
+                  width: 60%;
+                }
+                .resource-blocks .white-text {
+                  font-size: 22px;
+                }
+.card .card-content .card-title{
+font-size:40px;
+}
+
+              }
+        
+              a:link,
+              a:visited {
+                text-decoration: none;
+              }
+              .front #zone-content .node {
+                display: block;
+              }
+              .front .region-inner h1#page-title.title {
+                display: none;
+              }
+              .front .zone-content-wrapper {
+                margin-top: 0;
+              }
+              #section-header,
+              #section-content {
+                padding: 0;
+              }
+              header .row1 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+        
+              .two-box-section img {
+                width: 40%;
+              }
+              .card,
+              .card-panel {
+                border-radius: 20px;
+                height: 100%;
+              }
+              .btn,
+              .btn-large,
+              .btn-small,
+              .btn-flat {
+                border-radius: 5px;
+font-size:20px;
+              }
+              .btn-floating.btn-large {
+                border-radius: 50%;
+                margin: 5px;
+    background-color: #f32837;
+              }
+              .sm-icon {
+                text-align: right;
+              }
+              .video {
+                text-align: center;
+              }
+              .resource-section i {
+                font-size: 45px;
+              }
+              section {
+                /* height:100vh; */
+                padding: 50px 0;
+              }
+              /* section:nth-child(odd) {
+                background-color: rgba(239, 239, 249, 0.54);
+              } */
+              .section-footer-text {
+                text-align: center;
+                margin: 10px;
+                font-size: 1.4rem;
+                font-style: italic;
+                background-color: #c00626 !important;
+                padding: 50px;
+                margin-top: 30px;
+                color: #fff;
+              }
+              .section-footer-text a {
+                color: #fff !important;
+              }
+              .section-content .title {
+                /*position: -webkit-sticky;
+                position: sticky;*/
+                top: 0;
+                padding: 5px;
+                z-index: 1;
+              }
+              h2.title/*,
+                    #get-ready*/ {
+                padding-top: 75px;
+              }
+        
+              .buttons .button,
+              .buttons .button a {
+                width: 100%;
+                margin: 10px;
+              }
+              header {
+                position: relative;
+                top: 0;
+                z-index: 25;
+                width: 100%;
+              }
+              header .top-header {
+                text-transform: uppercase;
+                background-color: #fff;
+              }
+              header .octologo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              }
+              header.container {
+                width: 100%;
+              }
+        
+              header .top-header a {
+                text-decoration: underline;
+              }
+        
+              section {
+                position: relative;
+              }
+        
+              .card-panel:hover,
+              .button a:hover {
+                background-color: rgba(24, 103, 220, 0.1) !important;
+                /* border: 1px solid #1f4f6c; */
+              }
+              .button a:hover {
+                color: #1f4f6c !important;
+              }
+              .resource-blocks .card-panel:hover {
+                animation: iconHover 0.25s forwards 0s ease;
+              }
+              .resource-blocks .card-panel {
+                animation: iconHoverOut 0.25s forwards 0s ease;
+              }
+        
+              .logo {
+                animation: mainLogoAnimation 0.5s forwards 0s linear;
+              }
+        
+              .block-a a {
+                animation: yourAnimation 0.5s forwards 0s linear;
+              }
+              .block-b a {
+                animation: yourAnimation2 0.5s forwards 0s linear;
+              }
+              .video {
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 56.25%;
+                margin: 50px 0;
+              }
+              .video iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+              }
+              .top-section ul:not(.browser-default) {
+                list-style-type: none;
+                padding-left: 0;
+              }
+              ul:not(.browser-default) > li {
+                list-style-type: disc;
+              }
+        
+              .bg-title {
+                background-color: #102d3b;
+                color: #fff;
+                padding: 5px;
+              }
+              .bg-shaded-section {
+                background-color: rgba(213, 218, 218, 0.42);
+              }
+              .column-container {
+                display: flex;
+              }
+              .column-container > div {
+                flex: 1;
+                margin: 10px;
+              }
+              ul:not(.browser-default) {
+                padding-left: 20px;
+              }
+              ul.collapsible,
+              ul.collapsible > li {
+                list-style-type: none;
+              }
+              ul.collapsible {
+                padding-left: 0;
+              }
+              .collapsible-header:focus,
+              li.active .collapsible-header {
+                background-color: #eee;
+              }
+              /* .branding-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              } */
+              .branding {
+                font-size: 40px;
+color: #fff;
+                display: flex;
+                margin: 0 0 20px 0;
+line-height: 48px;
+text-align:center;
+              }
+              .dot {
+                font-weight: 700;
+              }
+              .card img {
+                width: 100%;
+                border-top-right-radius: 20px;
+                border-top-left-radius: 20px;
+              }
+              .card-content .button a.btn-flat {
+                border: 2px solid #000 !important;
+              }
+        
+         /****************************************************
+         *     BASE THEME OVERRIDES 
+        *****************************************************/
+         /*-------NARROW-------*/
+         /* @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+            } */
+        
+            /*-------NORMAL-------*/
+            /* @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+            } */
+            /*-------WIDE-------*/
+            /* @media only screen and (min-width: 1220px) {
+               
+            } */
+        
+              /*---------------------
+              LAYOUT OVERRIDES
+              ---------------------*/
+        
+              .view-display-id-homepage_d, .view-display-id-upcoming_events,  .quicktabs-wrapper, .view-display-id-block_1{
+                  margin: 0 10%;
+                  /* border:10px solid green; */
+                  padding: 50px 0 0 0;
+              }
+              .view-display-id-homepage_d{
+                  padding:0;
+              }
+.view-display-id-homepage_a .view-content {
+margin-top:50px;
+}
+              /* .container-24 .grid-24, .container-24 .grid-8, .container-24{
+                  width: auto;
+              } */
+              .zone-postscript-wrapper{
+                  padding:0;
+                  background-color: #fff;
+              }
+              .zone-postscript-wrapper tr {
+            border-bottom: 0;
+            }
+                /* .front #zone-postscript, .view-id-agency_home_responsive .view-content .views-row{
+                    display: flex;
+                }
+                .view-id-agency_home_responsive .view-content {} */
+        
+            .view-display-id-mobile_responsive_homepage_banner_full_rotator{
+                    display: none;
+            }
+            .block-views-features-blocks-homepage-a, .block-views-features-blocks-homepage-b{
+                border-right: 0;
+            }
+#block-views-features-blocks-upcoming-events{
+display:none;
+}
+.block-agency-home-responsive-block-1 .view-content>div{
+ /*flex-grow: 1;*/
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+border-radius: 20px;
+padding: 10px;
+margin: 20px;
+cursor:pointer;
+}
+.owl-carousel.owl-drag .owl-item{
+cursor:pointer;
+}
+.owl-carousel.owl-drag .owl-item:hover, .block-agency-home-responsive-block-1 .view-content>div:hover{
+background: #dde8ff;
+}
+            /*-------NARROW-------*/
+            @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+                .front #zone-postscript, .block-agency-home-responsive-block-1 .view-content,
+                .view-display-id-upcoming_events .view-content{
+                    display: flex;
+flex-wrap: wrap;
+                    justify-content: space-around;
+                }
+.block-agency-home-responsive-block-1 .view-content>div{
+ /*flex-grow: 1;*/
+  width: 30%;
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+border-radius: 20px;
+padding: 10px;
+margin: 10px;
+}
+
+            }
+        
+            /*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+            }
+            /*-------WIDE-------*/
+            @media only screen and (min-width: 1220px) {
+               
+            }
+        
+              /*------------------------------------------
+              *        COMMON STYLES 
+              ------------------------------------------*/
+            /*----------- FONTS-------- */
+#toolbar a{color:#fff!important;}
+              .block-views-features-blocks-homepage-a, .block-views-features-blocks-homepage-b, .block-views-features-blocks-homepage-c{
+                  color:#313131;
+              }
+              a, h2, h3, #desktop-main-menu > li ul.menu-sub a{
+                color:#313131!important;
+              }
+.view-id-agency_home_responsive .view-footer a{
+color:#fff!important;
+font-size: 19px;
+padding: 10px 50px;
+}
+#desktop-main-menu > li ul.menu-sub a:hover, #desktop-main-menu > li ul.menu-sub li:hover a{color:#fff!important;}
+.not-front #zone-content a{
+color:#0062A0!important;
+}
+#desktop-main-menu > li ul.menu-sub a{
+font-size:15px;
+font-weight:400;
+font-family: 'Montserrat', sans-serif;
+}
+nav ul a:hover{
+background-color: transparent;
+}
+              /*----------- BUTTONS-------- */
+              .quicktabs-style-sky .view-footer, .view-id-agency_home_responsive .view-footer, .view-display-id-upcoming_events .view-footer a{
+                text-align: center;
+                margin: 20px auto;
+                width: max-content;
+                padding: 10px 20px;
+                border-radius: 10px;
+                background:transparent;    
+               }
+               .quicktabs-style-sky .view-footer{
+                border:2px solid #fff;
+               }
+.quicktabs-style-sky .view-footer{
+color:#173C66!important;
+background-color:#fff!important;
+}
+               .view-id-agency_home_responsive .view-footer, .view-display-id-upcoming_events .view-footer a{
+                border:2px solid #313131;
+               }
+               .view-id-agency_home_responsive .view-footer h3{
+                   margin:0;
+               }
+               .view-footer{
+                   margin:20px auto;
+               }
+.nav i.material-icons{font-size:30px;}
+               /*----------- HEADINGS-------- */
+.block-views-features-blocks-homepage-a h2.views-field-title, .block-views-features-blocks-homepage-b h2.views-field-title, .block-views-features-blocks-homepage-c h2.views-field-title, .block-views-features-blocks-homepage-a h2.views-field-title-field, .block-views-features-blocks-homepage-b h2.views-field-title-field, .block-views-features-blocks-homepage-c h2.views-field-title-field, .view-display-id-homepage_d .views-field-title{
+font-weight:500;
+/*font-family: "Roboto", sans-serif;*/
+display:none;
+}
+               .block-views-features-blocks-upcoming-events h2.block-title, h2.block-title, .block-agency-featured-news-home .block-title, h1#page-title.title{
+                display: block;
+                margin:0 auto;
+                width: fit-content;
+                font-size: 2rem;
+                color:#313131!important;
+               }
+        .block-menu-block h2.block-title{
+        font-size: 2rem;
+        }
+.front h2.block-title{
+font-size: 40px;
+}
+
+        h1#page-title.title{
+        font-family: "Roboto", sans-serif;
+        margin:0;
+        }
+               h2.block-title{
+                /* margin-top:-10px; */
+                background-color: #fff;
+                padding:0 10px;
+                text-align: center;
+               }
+               .zone-postscript-wrapper h2.block-title{
+                padding:25px 0 50px 0;
+               }
+               .block-agency-featured-news-home .block-title{
+                   background-color:#173C66;
+                   color:#fff!important;
+                   z-index:2;
+               }
+        
+            .block-views-features-blocks-upcoming-events .front h2.block-title:after, .front h2.block-title:after, .block-agency-featured-news-home .block-title:after {
+                border-bottom: 2px solid #313131;
+                -webkit-box-shadow: 0 1px 0 0 #313131;
+                -moz-box-shadow: 0 1px 0 0 #313131;
+                box-shadow: 0 1px 0 0 #313131;
+                content: "";
+                margin: 0 auto; /* this centers the line to the full width specified */
+                position: absolute;
+                top: 75px; left: 0; right: 0;
+                width: 45%;
+                z-index: -1;
+            }
+            /* .block-agency-featured-news-home .block-title:after {
+                border-bottom: 2px solid #fff;
+                -webkit-box-shadow: 0 1px 0 0 #fff;
+                -moz-box-shadow: 0 1px 0 0 #fff;
+                box-shadow: 0 1px 0 0 #fff;
+                z-index: 1;
+            } */
+               
+               .block-agency-featured-news-home .block-title {
+                color: #fff!important;
+                }
+.block-views-features-blocks-homepage-c h2.views-field-title,
+        .view-id-agency_home_responsive h3, .view-display-id-upcoming_events .views-field-field-date-time-rep{
+            font-size: 18px;
+            font-weight: 500;
+
+        }
+        .view-id-agency_home_responsive .views-field-body, .view-display-id-upcoming_events .views-field-title {
+            font-size: 16px;
+        }
+.view-display-id-upcoming_events, .view-display-id-upcoming_events .view-footer a{
+            text-transform: none;
+        }
+.view-id-agency_home_responsive .view-footer h3{
+font-weight:normal;
+font-size: 16px;
+}
+ .view-display-id-upcoming_events .view-footer a, .view-id-agency_home_responsive .view-footer h3, .learn-more,
+        .view-display-id-upcoming_events .views-row .more-link, .view-display-id-upcoming_events .view-footer a{
+            font-size: 14px;
+        }
+/*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+
+h1#page-title.title{
+                font-size: 3rem;
+               }
+}
+                /*----------- IMAGES-------- */
+        
+        .fullpage-banner-image img{
+        width:100%;
+        height:100%;
+        }
+        .fullpage-banner-image{
+        max-height: 488px;
+        overflow: hidden;
+        /* 2:35margin-top: 88px;*/
+        
+        }
+.fullpage-banner-image{
+    padding: 50px 10%;
+    background-color: #E4E4E4;
+    display: flex;
+flex-wrap:wrap;
+}
+#banner-title-text{
+flex: 3;
+background: #fff;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 20px;
+}
+
+#banner-image{
+flex: 1 350px;
+    min-height: 300px;
+}
+.node-type-biography #banner-title-text{
+    flex: 4;
+}
+.node-type-biography #banner-image{
+flex: 1 50px;
+    min-height: auto;
+}
+
+.file-icon{
+height: 50px;
+margin: 10px;
+}
+.file{
+display: flex;
+align-items: center;
+}
+
+                /*----------- CARDS-------- */
+.callout-title-section.valign-wrapper {
+    margin-bottom: 20px;
+}
+                .view-display-id-upcoming_events .views-row{
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+                border-radius: 20px;
+                padding: 10px;
+                margin: 10px;
+                }
+        .region-agency-home-3col-a, .region-agency-home-3col-b, .region-agency-home-3col-c{
+        /*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+        border-radius: 20px;*/
+        margin:20px 0!important;
+        }
+.region-agency-home-3col-a{
+width:100%;}
+        .region-agency-home-3col-b, .region-agency-home-3col-c{
+display:none;
+}
+                .view-display-id-upcoming_events .views-row{
+                    display: grid;
+            grid-template-columns: auto auto;
+            grid-column-gap: 10px;
+                }
+                .view-display-id-upcoming_events .views-row .more-link{
+                 /*   grid-row-start: 2;
+                */grid-column-start: 1;
+            grid-row-end: 3;
+            grid-column-end: 3;
+            text-align: center;
+            margin: 20px auto;
+            width: max-content;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: transparent;
+            border: 2px solid #313131;
+        
+                }
+                .block-views-features-blocks-homepage-a, .block-views-features-blocks-homepage-b, .block-views-features-blocks-homepage-c{
+                    padding:0;
+                }
+        
+                .container-24 .grid-8{
+                   width: 100%;
+                }
+        .region-agency-home-3col-a .views-view-grid td, .region-agency-home-3col-b .views-view-grid td, .region-agency-home-3col-c .views-view-grid td,
+        .zone-postscript .view-features-blocks .view-content{
+        padding:0;
+        }
+        .views-field-field-image-link-url img{
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            width: 100%;
+            height:100%;
+        
+        }
+         .zone-postscript .views-field-title, .zone-postscript .views-field-body{
+             padding:0 20px;
+         }
+.front #zone-postscript {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.container-24 .grid-8 {
+   /* max-width: 295px;*/
+    text-align: center;
+    margin: 20px auto !important;
+}
+         /*-------NARROW-------*/
+         @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+            .view-display-id-upcoming_events .views-row .more-link{
+                grid-row-start: 1;
+                grid-column-start: 2;
+        
+                }
+                .views-field-field-image-link-url img{
+
+           /* width: auto;
+            height:auto;*/
+        
+        }
+        .block-views-features-blocks-homepage-a, .block-views-features-blocks-homepage-b, .block-views-features-blocks-homepage-c{
+                    padding:0;
+                    width:100%;
+                }
+
+            
+            }
+ /*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+
+.view-display-id-upcoming_events .views-row .more-link{
+                    grid-row-start: 2;
+                grid-column-start: 1;
+
+}
+}
+              /*****************************************************
+              *    CONTAINER OVERRIDES
+              *****************************************************/
+            /* -------Header--------- */
+        
+            .header, .header nav{
+                  display: flex;
+                  justify-content: space-around;
+                  align-items: center;
+              }
+            .header-title, #desktop-head, .region-branding-inner form, .header-form, #search_form_header{
+                  display:none;
+              }
+            .header-icons, header-search{
+                  display:block;
+              }
+              .header .mmb-logo img{
+                  height:50px;
+              } 
+              .section-header, .header nav{
+                  background-color: #173C66;
+              }
+              .header-menu{
+margin-top:0;
+}
+nav{
+line-height: normal;
+}
+            /*-------NARROW-------*/
+          @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+            .header-icons{
+margin-top:0;
+              }
+}
+        
+            /*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+             .header{
+                 min-height: 100px;
+    margin: 10px 10%;
+             }
+/*.mmb-logo{
+flex-grow:4;
+}*/
+              .header-icons{
+                  display:none;
+              }
+              .header .mmb-logo img{
+                  height:100px;
+              }
+              .header-search{
+                  display: none;
+              }
+              .header-form, #desktop-head, #search_form_header{
+                  display:block;
+              }
+              .header a:link, .header a:visited{
+                color:#fff!important;
+    padding: 5px 15px;
+              }
+              #desktop-main-menu, .header nav{
+                  display: flex;
+                  margin-bottom: 0;
+align-items:center;
+font-size:22px;
+              }
+#desktop-main-menu ul a, nav ul a{
+font-size:22px;
+}
+              .dcSearchButtonIcon{
+                  background:url('/sites/default/files/dc/shared_assets/MagGlass.png') no-repeat scroll 0px 0px / 17px 17px transparent;
+        
+              }
+              .header ul li.leaf{
+                  list-style: none;
+              }
+              .header input{
+                  color:#fff;
+              }
+             
+            }
+              
+        /*----------- MENU CSS-------- */
+
+#desktop-main-menu-container ul li.expanded,  #desktop-main-menu-container ul.menu-sub li.expanded, #desktop-main-menu-container ul:not(.browser-default) > li {
+    list-style-image: none;
+list-style-type: none;
+    padding: 5px 0;
+}
+#desktop-main-menu-container ul.menu-sub li {
+float:none;
+padding: 5px 0;
+text-align:left;
+}
+#desktop-head ul > li:hover {
+    /*border-bottom: 1px solid #fff;*/
+
+}
+#desktop-head ul > li{
+text-align:center;
+}
+.menu-name-menu-dhs-nav-version-2 a.active-trail.active{
+        background-color: #ebebeb;
+    padding: 5px 5px;
+    }
+        /*-------NARROW-------*/
+#block-domain-conf-domain-main-links ul.menu-sub {
+    margin-right: auto;
+    margin-left: auto;
+    width: 230px;
+    padding: 10px;
+}
+           #block-domain-conf-domain-main-links ul li.expanded .menu-sub{
+padding-bottom: 0;
+margin-bottom: 0;
+}
+
+#block-domain-conf-domain-main-links ul li.expanded .menu-sub li:first-child{
+display:none;
+}
+#block-domain-conf-domain-main-links ul li.expanded .menu-sub li{
+font-size: 14px;
+font-weight: 300;
+/*text-align:center;*/
+}
+#block-domain-conf-domain-main-links ul li.expanded:after{
+top: 7px;
+position: absolute;
+right: -4px;
+border: solid #fff;
+content: '+';
+font-size: 30px;
+border: 0;
+transform: none;
+margin: 0;
+padding: 0;
+}
+#block-domain-conf-domain-main-links ul li.expanded.dropdown:after{
+content: '-';
+}
+#block-domain-conf-domain-main-links{
+  background-color: #173C66;
+}
+#block-domain-conf-domain-main-links li a, #block-domain-conf-domain-main-links li a:active, #block-domain-conf-domain-main-links li a:link, #block-domain-conf-domain-main-links li a:visited{
+  color:#fff!important;
+}
+#block-domain-conf-domain-main-links ul li{
+  border-bottom: 1px solid #fff;
+position:relative;
+color: #FFFFFF;
+font-family: Montserrat;
+font-size: 16px;
+font-weight: 600;
+}
+#block-domain-conf-domain-main-links #search_form{display:none;}
+#block-domain-conf-domain-main-links #search_form2{display:block;}
+#block-domain-conf-domain-main-links {
+    background-color: #173C66;
+    /*width: 100%!important;*/
+  /*  border-top: 20px solid #31394F;*/
+}
+
+#block-domain-conf-domain-main-links ul li{
+  border-bottom:0;
+text-align:left;
+font-size:16px;
+}
+.closebtn{
+background-color:#f32837;
+color:#fff!important;
+}
+            @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+            }
+        /*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+                #desktop-main-menu > li ul.menu-sub{
+                    display: none;
+                    position: absolute;
+                    z-index: 1000;
+                    background-color: #fff;
+                    padding: 10px 0;
+                    text-align: left;
+                    border-radius: 0 0 10px 10px;
+    margin-top: 5px;
+box-shadow: rgba(0, 0, 0, 0.57) 1px 1px 16px 0px;
+}
+                }
+        
+                #desktop-main-menu li.expanded ul.menu-sub li:first-child{
+                    display:none;
+                }
+#desktop-main-menu li.expanded ul.menu-sub li:hover{
+background-color:#2071ce;
+}
+
+.region-sidebar-first  .block-menu-block h2.block-title{
+font-size:18px;
+margin:0;
+}
+.region-sidebar-first h2.block-title{text-align:left;}
+#block-menu-block-1{padding-top:0;}
+            }
+        /*-------WIDE-------*/
+            @media only screen and (min-width: 1220px) {
+               
+          }
+        /*----------- END MENU -------- */
+              /* -------Block D--------- */
+              #region-agency-home-main-content, .grid-24.region-agency-home-main-content{
+                width: 100%;
+                background-color: #fff;
+                box-shadow: none;
+                top: 0;
+                padding: 0;
+                margin: 0;
+                border:0;
+                /* background-color: #173C66; */
+              }
+              .block-views-features-blocks-homepage-d{
+                background-color: #173C66;
+              }
+.block-views-features-blocks-homepage-d .content{
+    background-image: url('/sites/default/files/dc/sites/config/featured_content/images/heroimage.png');
+    background-position: center;
+    background-size: cover;
+    }
+              table.views-view-grid{
+                  margin-bottom: 0;
+              }
+              .region-agency-home-main-content .view-display-id-homepage_d .views-field-body{
+                width: 100%;
+              }
+              .region-agency-home-main-content .views-field-field-image-link-url, .region-agency-home-main-content .views-field-field-external-link-url{
+                  display: none;
+              }
+              .social-media-section{
+                  /* display: flex; */
+                  justify-content: center;
+                  align-items: center;
+                  margin: 20px;
+                  color:#fff;
+                  text-align: center;
+              }
+              .social-media-section .sub-text{
+                text-transform: uppercase;
+            margin: 0 0 0 10px;
+            font-style: italic;
+              }
+              .social-media-section img{
+                  width:50px;
+                  margin:0 20px;
+              }
+              .social-media-section h2{
+                  font-size:3rem;
+                  margin: 0 0 10px 0;
+              }
+              .region-agency-home-main-content .view-display-id-homepage_d .views-field-body{
+                min-height: auto;
+            line-height: 100px;
+              }
+              .region-agency-home-main-content .view-display-id-homepage_d .views-field-body .field-content{
+                display: block;
+              }
+               /*-------NARROW-------*/
+            @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+                .social-media-section{
+                  display: flex;
+                
+              }
+            }
+            /* ------- End Block D--------- */
+              
+            /* ------- Featured News--------- */
+               section.block-agency-featured-news-home{
+                background-color: #173C66;
+               }
+             
+               .quicktabs_main.quicktabs-style-sky{
+                   background: transparent;
+                   border:0;
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky{
+                    display: flex;
+                    justify-content: space-between;
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky li.active a, ul.quicktabs-tabs.quicktabs-style-sky li.active a:visited, ul.quicktabs-tabs.quicktabs-style-sky li a{
+                   background: transparent;
+                   color:#fff!important;
+                   border:0;
+                   height: 3.35em;
+                   min-height: 3.35em;
+                line-height: 3.35em;
+                font-size:1.5rem;
+font-family: 'Gotham XNarrow', sans-serif;
+
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky li a:hover, ul.quicktabs-tabs.quicktabs-style-sky li.active a:hover{
+                border-color: transparent;
+            background: transparent;
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky li a:hover{
+                   border-bottom:1px solid #fff;
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky li.active a{
+                   border-bottom:1px solid #fff;
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky li:first-child a{
+                   border-left:0;
+               }
+               ul.quicktabs-tabs.quicktabs-style-sky li{
+                margin: -0.3em 0 0 0;
+               }
+               body .quicktabs_main.quicktabs-style-sky{
+                   top:20px;
+               }
+               
+               #quicktabs-container-agency_featured_news_home .quicktabs-tabpage, .view-id-featured_news_home .view-content{
+                   height: 100%;
+                   min-height: 300px;
+               }
+               .quicktabs-tabpage a:link, .quicktabs-tabpage a:visited{
+                color:#fff!important;
+        font-size: 1.2rem;
+               }
+.quicktabs-tabpage .view-footer a:link, .quicktabs-tabpage .view-footer a:visited{
+    color: #173C66!important;
+font-family: 'Gotham XNarrow', sans-serif;
+}
+               .quicktabs-tabpage tr.even, .quicktabs-tabpage tr.odd{
+                   background-color: transparent;
+                   border:0;
+        
+               }
+               .views-align-left{
+                   display:flex;
+        align-items:center;
+               }
+               .front span.date-display-single{
+                background: #f32837;
+                color: #fff;
+                padding: 10px;
+                display: block;
+                font-size: 1.5rem;
+        text-align:center;
+        min-width:64px;     
+               }
+.view-newsroom .views-field-field-date, .view-resources .views-field-field-date, .view-events-landing .views-field-field-date-time-rep{
+background-color:#f32837;
+}
+
+               .release_date_day{
+                font-weight: 600;
+            font-size: 1.7em;
+        }
+        .release_date_month{
+            font-size: 1.3rem;
+            line-height: .5px;
+            padding-bottom: 9px;
+        }
+               /*-------NARROW-------*/
+            @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+
+                #quicktabs-container-agency_featured_news_home{
+                   margin:0 100px;
+               }
+            }
+            /* ------- End Featured News---------- */
+        
+             /* ------- Upcoming Events---------- */
+        
+            /* .view-display-id-upcoming_events .view-content{
+                display: flex;
+            } */
+            .view-display-id-upcoming_events .views-row{
+                border-bottom: 0;
+flex:1;
+            }
+            .view-display-id-upcoming_events .views-field-field-date-time-rep{
+                float: none;
+            min-width: auto;
+            clear: none;
+            min-height: auto;
+            }
+            .view-display-id-upcoming_events{
+                text-align: left;
+                color:#313131;
+            }
+            .front .view-display-id-upcoming_events .views-field-title{
+                /* width:50%; */
+            }
+            .front .view-display-id-upcoming_events .view-footer{
+                text-align: center;
+            }
+/* Normal */
+              @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+.view-display-id-upcoming_events .views-row{
+flex:1;
+            }
+}
+             /* ------- End Upcoming Events---------- */
+        /* ------- Rotator---------- */
+        /*mobile rotator*/
+#block-views-8ccf6c212087901c07069fe6263d4bce{
+display:none;
+}
+        .slide #text{
+                position: relative;
+                    left: auto;
+            transform: initial;
+                margin-top: 0;
+        }
+       .owl-stage{
+display:flex;
+}
+        .owl-nav, .owl-dots{
+            display:none;
+        }
+        
+        .region-agency-home-rotator{
+            overflow: initial;
+            max-height: initial;
+        }
+        
+        
+   .owl-carousel .owl-item{
+ /*   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);*/
+border-radius: 20px;
+padding: 20px;
+border:1px solid #ccc;
+/*min-height:460px;*/
+}     
+            .region-agency-home-rotator-inner .owl-carousel .owl-item img {
+                    max-height: 100%;
+             }
+.caption-text-wrapper{
+padding-top:20px;}
+/*.region-agency-home-rotator-inner .owl-carousel .owl-item:after{
+position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	background-color: rgba(0,0,0,.5);
+  	top: 0;
+  	left: 0;
+  	display: block;
+  	content: "";
+}*/
+            
+             .view-id-agency_home_responsive .views-field-body .slide .item-list ul, .item-list ul li{
+                 margin:0;
+                 padding:0;
+             }
+             .slide{
+                 position: relative;
+             }
+             .branding-container, .arrow{
+                display: none;
+              }
+              .slide #text{
+                  padding:0;
+                      margin-top: 0;
+                      background-color: transparent;
+color:#313131!important;
+
+              }
+              .top-section {
+                background-size: cover;
+                background-repeat: no-repeat;
+                /* min-height: 620px;
+                margin-top: 45px; */
+        position:relative;
+              }
+              .zone-preface-wrapper{
+background-color: #fff;
+padding:50px 0;
+}
+.zone-preface-wrapper .block-title{
+margin-bottom:50px;}
+              
+        /*-------NARROW-------*/
+            @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+        
+             .slide #text {
+            /*          margin: 0;
+            position: absolute;
+            top: 26%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;*/
+           /* background-color: rgba(0,0,0,.4);*/
+           /* margin-top: -80px;*/
+        }
+        .region-agency-home-rotator {
+            max-height: 650px;
+             }
+             .region-agency-home-rotator{
+            overflow: hidden;
+        }
+        .branding-container {
+                display: flex;
+                justify-content: center;
+               /* align-items: center;
+    visibility: hidden;*/
+              }
+        
+        .arrow{
+            display:block;
+        }
+        .top-section {
+               
+                min-height: 550px;
+                margin-top: 45px;
+              }
+            }
+
+            /*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+         
+                .slide #text {
+            margin-top: 0;
+            
+                /* background-color: rgba(0,0,0,.7); */
+        }
+.zone-preface-wrapper{
+  /*  margin-top: 110px;*/
+width:100%;
+margin-bottom:50px;
+}
+            }
+        /* ------- End Rotator---------- */
+        
+        /* ------- Featured Services---------- */
+        .block-agency-home-responsive-block-1 .views-field-field-icon .field-content, .views-field-field-icon .field-content {
+        padding: 10px;
+        width: 80px;
+        margin:0 auto;
+        }
+        .views-field-field-icon .field-content, .view-resource-listing-views.field-content, .view-id-services.field-content{
+            margin: 10px;
+        background: #173C66;
+        border-radius: 50%;
+        -webkit-box-shadow: #ccc 0px 0 5px;
+        -moz-box-shadow: #ccc 0 0 5px;
+        box-shadow: #ccc 0 0 5px;
+        border: 2px solid #ffffff;
+        text-align: center;
+        }
+        .front .views-field-field-icon img{
+width:50px;height:50px;
+}
+        #region-agency-home-main-content, .grid-24.region-agency-home-main-content{
+            text-align: left;
+            color:#313131!important;
+        }
+        .view-display-id-block_1{
+            text-align: center;
+        }
+         /*-------NARROW-------*/
+         @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+            .views-field-field-icon{
+            float:left;
+min-height: 120px;
+margin-right: 20px;
+        }
+        .view-display-id-block_1{
+            text-align: left;
+        }
+        .block-agency-home-responsive-block-1 .views-field-field-icon .field-content, .views-field-field-icon .field-content {
+       
+        }
+         }
+
+
+
+        /* ------- End Featured Services---------- */
+        
+        /*----------- INTERNAL PAGES CSS -------- */
+        .not-front .zone-content-wrapper{
+            padding: 0 10%;
+            /*margin-top: 130px;*/
+/*margin-top: 200px;*/
+margin-bottom:50px;
+        }
+/*2:35.not-front + .zone-content-wrapper{
+margin-top: 200px;
+}*/
+.fullpage-banner-image+.zone-content-wrapper{
+             margin-top:0;
+         }
+/*2:35.not-front .zone-preface-wrapper +  .zone-content-wrapper{
+    margin-top: 200px;
+}*/
+.fullpage-banner-image + .zone-preface-wrapper +  .zone-content-wrapper{
+    margin-top: 0;
+}
+        .page-services .zone-content-wrapper, .page-newsroom .zone-content-wrapper, .page-newsroom .zone-content-wrapper, .page-publications .zone-content-wrapper, .page-events .zone-content-wrapper {
+           /* margin-top: 150px;*/
+        }
+        .not-front select{
+            display:block;
+        }
+i{
+color: inherit;
+font-family: inherit;
+font-size: inherit;
+}
+        
+         /*-------NARROW-------*/
+         @media all and (min-device-width: 740px) and (min-width: 740px) and (orientation: landscape) {
+            .not-front .zone-content{
+        display:flex;
+        }
+        .region-sidebar-first {
+        border-right: 1px solid #000;
+        }
+        }
+        
+        /*-------NORMAL-------*/
+            @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+        
+            .fullpage-banner-image{
+                max-height: 450px;
+                overflow: hidden;
+               /*2:35 margin-top: 155px;*/
+            }
+        
+            }
+        /*-------WIDE-------*/
+            @media only screen and (min-width: 1220px) {
+            
+            }
+        /*----------- END INTERNAL PAGES CSS -------- */
+#block-views-alerts-emergency-alerts-block, #block-views-alerts-emergency-alerts-block a{
+color:#fff!important;
+padding:5px;
+}
+#block-views-alerts-emergency-alerts-block{
+padding:5px;
+text-align:center;
+font-size:13px;
+}
+#block-views-alerts-emergency-alerts-block p{
+margin-bottom:0;
+}
+
+/* GSE Search CSS */
+.gcse-search{
+opacity:0;
+}
+#___gcse_0{
+margin-bottom: 20px;
+    width: 200px;
+    margin: 10px auto;
+display:none;
+opacity:0;
+}
+#___gcse_0 td, #___gcse_0 th{
+padding:0;
+}
+.gsc-control-cse{
+    background-color: transparent;
+    border: 0;
+padding:0;
+}
+.gsc-input input{
+    background: 0 !important;
+    padding: 10px !important;
+}
+.gsc-input table{
+    margin:0!important;
+}
+.gsc-search-button-v2, .gsc-search-button-v2:hover, .gsc-search-button-v2:focus{
+    padding: 11px!important;
+    background-color: #132460!important;
+    border-radius: 21px!important;
+}
+.gsc-search-button-v2{
+    border-color:transparent;
+}
+.gsc-input input:focus{
+    border:0;
+    outline: none;
+    box-shadow: none;
+}
+.gsc-input input{
+color:#000;
+}
+.gsc-search-box{
+    display:block!important;
+}
+.gsc-results-wrapper-overlay{
+    text-align:left;
+}
+/*.gsc-results-wrapper-overlay .gsc-webResult .header a:link, .gsc-results-wrapper-overlay .gsc-webResult .header a:visited{
+color: #1F4F6C!important;
+}*/
+#search_form{
+    display:none;
+}
+/* Normal */
+@media all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape){
+#___gcse_0{
+display:block;
+}
+}
+
+
+/***********  Max Layout adjustments  ***************/
+.zone-header,
+.zone-preface, 
+.footer-wrapper, 
+.not-front .container-24 .grid-24, 
+.not-front .container-24 .grid-8, 
+.not-front .container-24, 
+.region-agency-home-rotator-inner,
+.view-display-id-block_1,#quicktabs-agency_featured_news_home,
+.region-agency-home-3col-a .view-content, 
+.block-quicktabs-agency-featured-news-home .content, 
+.top-section .container{
+    margin-left: auto!important;
+    margin-right: auto!important;
+    max-width: 1400px!important;
+}
+.top-section .container{
+width:100%;
+}
+
+.zone-footer-wrapper{
+    background-color: #4A4A4A!important;
+}
+.footer-wrapper{
+    padding:0!important;
+}
+
+h1#page-title.title{
+    padding-left:0!important;
+}
+#section-content .fullpage-banner-image + #page-title{
+    margin-top:0;
+    text-align:center!important;
+}
+/***
+Google Translate css
+***/
+#google_translate_element{
+display: flex;
+margin: 0 20px;
+margin-right: 200px;
+}
+.goog-te-gadget, a.goog-logo-link{
+    color:#fff!important;
+}
+.goog-te-combo{
+    color:#4a4a4a!important;
+}
+.goog-te-gadget{
+    display: flex;
+justify-content: space-between;
+align-items: center;
+/*flex-wrap:wrap;
+width: 150px;*/
+}
+.goog-logo-link{
+display: flex;
+align-items: flex-end;
+align-content: center;
+justify-content: space-between;
+}
+div#\:0\.targetLanguage{
+padding-right:10px;
+min-width: 135px;
+}
+/* Normal */
+              @media all and (min-width: 980px) and (min-device-width: 980px),
+                all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+#google_translate_element{
+justify-content: flex-end;
+}
+}
+/***********  Max Layout adjustments  ***************/
+
+.view-display-id-block_1 .views-row, .view-display-id-block_hero_image .views-row{
+cursor-pointer:pointer;}
+</style>
+<!-- Google Translate -->
+<div id="google_translate_element">&nbsp;</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'am,zh-CN,fr,ko,es,vi,en'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<div class="header">
+<nav>
+<div class="mmb-logo"><a href="/" title="Department of Human Services"><img alt="DHS" src="/sites/default/files/dc/sites/dhs/dhslogo.png" title="Department of Human Services" /></a></div>
+
+<div class="header-agency-logo mobile">&nbsp;</div>
+
+<div class="header-agency-logo desktop">&nbsp;</div>
+
+<div class="header-title">DDOT</div>
+
+<div class="header-icons">
+<div class="header-menu"><!--img id="menu-btn" src="/sites/default/files/dc/shared_assets/Menu.png" title="Menu" /--><img alt="Menu Button" id="menu-btn" src="/sites/default/files/dc/shared_assets/Menu.png" title="Menu" /></div>
+
+<div class="header-search"><img alt="Search icon" id="search-btn" src="/sites/default/files/dc/shared_assets/MagGlass.png" title="Search" /></div>
+</div>
+
+<div class="nav-wrapper"><script async src="https://cse.google.com/cse.js?cx=2d618894035d0d742"></script>
+<div class="hidden lg:right-2 lg:w-40 right-10 xl:w-10 lg:block flex-1 gse-search-container"><i class="header-search-icon fas fa-search text-xl">&nbsp;</i>
+
+<div class="gcse-search">&nbsp;</div>
+</div>
+</div>
+</nav>
+</div>
+<script>
+      jQuery(document).ready(function () {
+        //Desktop Menu
+
+        function checkresponsive() {
+          if (jQuery("#desktop-head").length < 1) {
+            jQuery(
+              "<div id='desktop-head'><div id='desktop-main-menu-container'><ul id='desktop-main-menu'></ul></div>"
+            ).insertAfter(".header-agency-logo.desktop");
+            jQuery("#block-domain-conf-domain-main-links ul:first-child")
+              .children()
+              .each(function () {
+                jQuery(this).clone().appendTo("#desktop-main-menu");
+              });
+          }
+
+          jQuery("#search_form").clone().appendTo(".region-branding-inner");
+          jQuery(
+            "<script>function submitForm(){document.getElementById('search_form').affiliate.value='dc_ddot';document.getElementById('search_form').action='https://search.usa.gov/search';document.getElementById('search_form').submit();}<\/script>"
+          ).appendTo(".region-branding-inner");
+
+          jQuery("dcSearchButtonContainer").attr("type", "submit");
+
+          //////////////   Menu dropdown script   //////////////////////
+
+          jQuery(".region-header-first-inner li.expanded > a").each(
+            function () {
+              var list = jQuery(this).siblings("ul.menu-sub");
+              jQuery(this).clone().prependTo(list).wrap("<li></li>");
+            }
+          );
+
+          jQuery(
+            ".region-header-first-inner #block-domain-conf-domain-main-links div.content > ul.menu-sub > li.expanded > a"
+          ).click(function () {
+            console.log("link was clicked");
+            var list = jQuery(this).children("ul");
+            console.log(list);
+            console.log(jQuery(this));
+            jQuery(this).parent().children("ul").slideToggle();
+            return false;
+          });
+        } //End function
+
+        checkresponsive();
+
+        //Adds hover class to top navigation on hover and active secondary level until mouseout
+        jQuery("#desktop-main-menu > li").hover(
+          function () {
+            jQuery(this).addClass("hover");
+            jQuery(this).children("ul").show();
+          },
+          function () {
+            jQuery(this).removeClass("hover");
+            jQuery("#desktop-main-menu li.expanded ul").hide();
+          }
+        );
+
+        //removed js
+
+        //Update search value
+        jQuery(".region-branding-inner #affiliate").attr("value", "dc_ddot");
+        jQuery(
+          "#block-domain-conf-domain-main-links #search_form #affiliate"
+        ).attr("value", "dc_ddot");
+
+        jQuery("#block-domain-conf-domain-main-links .sidenav-search").attr(
+          "id",
+          "query"
+        );
+        jQuery("#block-domain-conf-domain-main-links .sidenav-search").attr(
+          "name",
+          "query"
+        );
+        jQuery(".region-branding-inner .sidenav-search").attr("id", "query");
+        jQuery(".region-branding-inner .sidenav-search").attr("name", "query");
+
+        jQuery(
+          ".views-field-field-external-link-url .field-content a, .view-display-id-upcoming_events .view-footer a"
+        ).each(function () {
+          var text = jQuery(this).text();
+          jQuery(this).text(text.replace("more", "More »"));
+        });
+
+        document
+          .querySelectorAll(".views-field-field-image-link-url")
+          .forEach(function (element, index) {
+            console.log("here is the element", element);
+            let s = element.previousElementSibling;
+console.log(s);
+            element.insertAdjacentElement("afterend", s);
+          });
+
+// Feature blocks Learn more links creation and placment
+let featureBlockEl = document.querySelectorAll('.views-field-field-image-link-url a');
+let featureBlockLinks = [];
+featureBlockEl.forEach((el, index)=>{
+   featureBlockLinks.push(el.getAttribute('href'))
+})
+//let featureBlockSection = document.querySelectorAll('.zone-postscript .views-field-body .field-content');
+//featureBlockSection.forEach((el, index)=>{
+//    let cleanLink = featureBlockLinks[index];
+//    el.insertAdjacentHTML('afterend', "<a href='" + cleanLink + "'><div class='learn-more'>Learn More</div></a>");
+//})
+
+//Event Title and url modifications
+let eventLink = document.querySelectorAll('.view-display-id-upcoming_events .views-field-title .field-content a');
+        eventLinks = [];
+        eventLink.forEach((el)=>{
+           let link =  el.getAttribute('href');
+            eventLinks.push(link);
+           
+        })
+        document
+          .querySelectorAll(
+            ".view-display-id-upcoming_events .views-row .views-field-title"
+          )
+          .forEach(function (element, index) {
+            element.insertAdjacentHTML(
+              "afterend",
+              "<a  class='more-link' href='" + eventLinks[index] + "' title='more'><div>More Info</div></a>"
+            );
+          });
+
+        // Move Div sections
+        if (document.getElementById("region-agency-home-main-content")) {
+          let region_agency_home_main_content = document.getElementById(
+            "region-agency-home-main-content"
+          ); // some E DOM instance
+          let feature_servies_block = document.getElementById(
+            "block-views-agency-home-responsive-block-1"
+          ); //element which should be first in E
+          region_agency_home_main_content.insertBefore(
+            feature_servies_block,
+            region_agency_home_main_content.firstChild
+          );
+
+          let region_content = document.getElementById("region-content");
+          let zone_postscript_wrapper = document.getElementById(
+            "zone-postscript-wrapper"
+          ); //element which should be first in E
+          region_content.insertBefore(
+            zone_postscript_wrapper,
+            region_content.firstChild
+          );
+
+         // zone_postscript_wrapper.insertAdjacentHTML(
+         //   "beforeend",
+         //   "<h2 class='block-title'>What's Happening At DHS</h2>"
+         // );
+        }
+
+        //Change Names
+        if (
+          document.getElementById("quicktabs-agency_featured_news_home")
+        ) {
+         
+
+          //Rewrite Dates
+          document
+            .querySelectorAll(".date-display-single")
+            .forEach(function (element, index) {
+console.log(element.innerHTML);
+              let dcdate = new Date(Date.parse(element.innerHTML));
+              let month = dcdate.toUTCString().split(" ")[2];
+              let day = dcdate.getDate();
+console.log("dcdate", dcdate);              
+console.log("month", month);
+console.log("day", day);
+              console.log(element.innerHTML);
+              element.innerHTML =
+                "<div class='release_date_day'>" +
+                day +
+                "</div><div class='release_date_month'>" +
+                month +
+                "</div>";
+            });
+        }
+
+//Move divs
+if (jQuery(".front").length > 0){
+console.log("We are on the front page");
+jQuery("#block-views-features-blocks-homepage-d").prependTo("#section-content");
+//jQuery("<h2 class='block-title'>What's Happening At DHS</h2>").appendTo("#zone-postscript")
+jQuery("#zone-preface-wrapper").appendTo("#region-agency-home-main-content")
+jQuery("#region-agency-home-main-content").insertAfter("#block-views-features-blocks-homepage-d")
+jQuery("#region-agency-home-3col-a").insertAfter("#region-agency-home-main-content")
+jQuery("<h2 class='block-title'>What's Happening At DHS</h2>").prependTo("#zone-preface-wrapper")
+jQuery("#block-views-agency-home-responsive-block-1").prependTo("#zone-content-wrapper")
+
+if(jQuery(".block-views-featured-homepage-events-block").length > 0){
+//Remove empty events block
+let eventsEl = document.getElementById("block-views-featured-homepage-events-block") 
+if(eventsEl.querySelector(".view-empty")){eventsEl.style.display = "none"}
+} 
+}
+
+
+
+
+        // Add header banner image to top of page
+        if (jQuery(".not-front .field-name-field-image").length > 0) {
+          //jQuery(".fullpage-banner-image").prependTo(".section-content");
+          jQuery(
+            "<div class='fullpage-banner-image' id='internal-banner'><div class='banner-title' id='banner-title-text'></div><div id='banner-image'></div></div>"
+          ).prependTo(".section-content");
+
+          //Banner adjustments
+          let banner = document.getElementById("banner-image");
+          let leadImg = document.querySelector(".field-name-field-image img");
+          console.log(leadImg);
+          let stylesURL = leadImg.getAttribute("src");
+          let rawURL = stylesURL.replace("/styles/medium/public/", "/");
+          //banner.insertAdjacentHTML("afterbegin", "<img src="+rawURL+"/>");
+          jQuery(".field-name-field-image img")
+            .attr("src", rawURL)
+            .prependTo("#banner-image");
+
+          //Page Title
+          //let bannerTitle =  document.getElementById("banner-title-text");
+          //let pageTitle = document.getElementById("page-title");
+          //bannerTitle.insertAdjacentHTML("afterbegin", pageTitle.innerHTML);
+          jQuery("#page-title").prependTo("#banner-title-text");
+        }
+
+        // Override PDF icon
+        if (jQuery(".file-icon").length > 0) {
+          let fileicon = document.querySelectorAll(".file-icon");
+          console.log(fileicon);
+          fileicon.forEach((el) => {
+            console.log(el);
+            el.setAttribute(
+              "src",
+              "/sites/default/files/dc/sites/ddot/pdf-icon.png"
+            );
+          });
+        }
+
+
+//jQuery(".form-type-date-popup input").attr("class", "no-autoinit");
+//  jQuery('.form-text date-popup-init').datepicker({
+//format: "yyyy/mm/dd" ,   
+//});
+//  document.addEventListener('DOMContentLoaded', function() {
+//    var date_elems = document.querySelectorAll('.date-popup-init');
+//var options = {
+//format: "mm/dd/yyyy",
+//}
+//    var instances = M.Datepicker.init(date_elems, options);
+//  });
+         
+      }); //End jQuery
+</script><script>
+jQuery(document).ready(function() {
+
+//Rotator initiation script
+//Add container div for captions
+
+        jQuery(".view-display-id-block_hero_image .view-content").addClass("owl-carousel");
+        jQuery(".view-display-id-block_hero_image .view-content").addClass("owl-theme");
+        
+   
+    if(jQuery('.view-display-id-block_hero_image .view-content').length > 0){
+    var owl = jQuery('.view-display-id-block_hero_image .view-content'); 
+
+            owl.owlCarousel({
+                stagePadding: 0,
+                margin:10,
+                lazyLoad:true,
+                loop:true,
+                nav:true,
+                loop:true,
+                dots:true,
+                responsive:{
+                            0:{
+                                items:1
+                            },
+                            750:{
+                                items:3
+                            },
+                        },
+                        autoplay:true,
+                        autoplayTimeout:9000,
+                        autoplayHoverPause:true,
+            })
+
+    }
+
+jQuery( ".header-search-icon" ).click( function() {
+        jQuery( "#___gcse_0" ).css({
+            opacity: 1,
+        });
+        jQuery(this).hide();
+
+        });
+
+
+     //Make entire view rows clickable, usefull for mobile
+  jQuery('.view-display-id-block_1 .views-row, .view-display-id-block_hero_image .views-row').click(function() {
+    var href = jQuery(this).find("a").attr("href");
+    if(href) {
+       window.location = href;
+    }
+  });
+})//End jQuery
+</script>    </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</div><div class="block block-domain-conf block-domain-main-links block-domain-conf-domain-main-links odd block-without-title" id="block-domain-conf-domain-main-links">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu-sub"><li class="first expanded active-trail"><a href="/page/public-benefits" class="active-trail">Public Benefits</a><ul class="menu-sub"><li class="first leaf"><a href="/page/district-direct-help">District Direct Help</a></li>
+<li class="leaf"><a href="/page/know-you-go-1">Know Before You Go</a></li>
+<li class="expanded active-trail"><a href="/service/supplemental-nutrition-assistance-program-snap" class="active-trail active-trail">Supplemental Nutrition Assistance (SNAP)</a><ul class="menu-sub"><li class="first leaf"><a href="/service/snap-eligibility-requirements">SNAP Eligibility</a></li>
+<li class="leaf"><a href="/page/snap-work-requirements">SNAP Work Requirements</a></li>
+<li class="leaf"><a href="/page/snap-interviews">SNAP Interviews</a></li>
+<li class="leaf active-trail"><a href="/service/snap-monthly-benefit" class="active-trail active-trail active">Monthly Benefit</a></li>
+<li class="leaf"><a href="/service/snap-quality-control">SNAP Quality Control</a></li>
+<li class="last leaf"><a href="https://dhs.dc.gov/page/supplemental-nutrition-assistance-employment-and-training-program-snap-et" title="">SNAP E&amp;T</a></li>
+</ul></li>
+<li class="collapsed"><a href="/page/cash-assistance">Cash Assistance</a></li>
+<li class="leaf"><a href="/service/medical-assistance">Medical Assistance</a></li>
+<li class="leaf"><a href="/service/child-care-services">Child Care Services</a></li>
+<li class="last collapsed"><a href="/page/electric-benefits-transfer-ebt-cards">EBT Card Updates</a></li>
+</ul></li>
+<li class="expanded"><a href="/page/homeless-services-housing">Homeless Services &amp; Housing</a><ul class="menu-sub"><li class="first collapsed"><a href="/service/services-families-experiencing-homelessness%C2%A0">Families</a></li>
+<li class="collapsed"><a href="/page/services-individuals-experiencing-homelessness">Individuals</a></li>
+<li class="leaf"><a href="/page/youth-homeless-services">Youth</a></li>
+<li class="leaf"><a href="/page/coordinated-assessment-housing-placement-cahp">Coordinated Assessment &amp; Housing Placement (CAHP)</a></li>
+<li class="last leaf"><a href="/service/vital-documents-identification-cards">Vital Documents &amp; Identification Cards</a></li>
+</ul></li>
+<li class="expanded"><a href="/service/youth-community-services">Youth &amp; Community Services</a><ul class="menu-sub"><li class="first collapsed"><a href="/page/youth-services-support">Youth Services and Support</a></li>
+<li class="leaf"><a href="/service/gen2gen-dc">Gen2Gen DC</a></li>
+<li class="leaf"><a href="/page/community-and-social-services-block-grants">Community and Social Services Block Grants</a></li>
+<li class="leaf"><a href="/service/strong-families-family-crisis-support" title="">Family Crisis Support (Strong Family)</a></li>
+<li class="last leaf"><a href="/service/domestic-violence-survivor-supports" title="">Domestic Violence Survivor Supports</a></li>
+</ul></li>
+<li class="expanded"><a href="/page/contact-us19">Contact Us</a><ul class="menu-sub"><li class="first collapsed"><a href="https://dhs.dc.gov/service/find-service-center-near-you" title="">Find a Service Center</a></li>
+<li class="collapsed"><a href="/page/media">For the Media</a></li>
+<li class="leaf"><a href="https://dhs-asks.dc.gov/" title="">Submit A Concern</a></li>
+<li class="last leaf"><a href="https://esacallcenter.dhs.dc.gov/" title="">Public Benefits Call Center</a></li>
+</ul></li>
+<li class="last expanded"><a href="/page/about-dhs">About DHS</a><ul class="menu-sub"><li class="first collapsed"><a href="/page/meet-our-executive-team-">Meet our Executive Team</a></li>
+<li class="leaf"><a href="/publication/department-human-services-organizational-chart">DHS Organizational Chart</a></li>
+<li class="leaf"><a href="/page/data-and-storymaps">Data and Storymaps</a></li>
+<li class="leaf"><a href="/page/open-government-and-foia-">Open Government and FOIA</a></li>
+<li class="leaf"><a href="/page/data-privacy" title="Data Privacy">Data Privacy</a></li>
+<li class="last leaf"><a href="/page/office-program-review-monitoring-and-investigation">Office of Program Review, Monitoring, and Investigation</a></li>
+</ul></li>
+</ul>    </div>
+  </div>
+</div>  </div>
+</div>  </div>
+</div></header>    
+      <section id="section-content" class="section section-content">
+  <div id="zone-preface-wrapper" class="zone-wrapper zone-preface-wrapper clearfix">  
+  <div id="zone-preface" class="zone zone-preface clearfix container-24">
+      </div>
+</div><div id="zone-content-wrapper" class="zone-wrapper zone-content-wrapper clearfix">  
+  <div id="zone-content" class="zone zone-content clearfix container-24">    
+        
+        <aside class="grid-6 region region-sidebar-first" id="region-sidebar-first">
+  <div class="region-inner region-sidebar-first-inner">
+    <section class="block block-menu-block block-1 block-menu-block-1 odd" id="block-menu-block-1">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">Public Benefits</h2>
+            
+    <div class="content clearfix">
+      <div class="menu-block-wrapper menu-block-1 menu-name-menu-dhs-nav-version-2 parent-mlid-0 menu-level-2">
+  <ul class="menu-sub"><li class="first leaf menu-mlid-221906"><a href="/page/district-direct-help">District Direct Help</a></li>
+<li class="leaf menu-mlid-244551"><a href="/page/know-you-go-1">Know Before You Go</a></li>
+<li class="expanded active-trail menu-mlid-221911"><a href="/service/supplemental-nutrition-assistance-program-snap" class="active-trail">Supplemental Nutrition Assistance (SNAP)</a><ul class="menu-sub"><li class="first leaf menu-mlid-221926"><a href="/service/snap-eligibility-requirements">SNAP Eligibility</a></li>
+<li class="leaf menu-mlid-245451"><a href="/page/snap-work-requirements">SNAP Work Requirements</a></li>
+<li class="leaf menu-mlid-244571"><a href="/page/snap-interviews">SNAP Interviews</a></li>
+<li class="leaf active-trail active menu-mlid-221916"><a href="/service/snap-monthly-benefit" class="active-trail active">Monthly Benefit</a></li>
+<li class="leaf menu-mlid-221931"><a href="/service/snap-quality-control">SNAP Quality Control</a></li>
+<li class="last leaf menu-mlid-245456"><a href="https://dhs.dc.gov/page/supplemental-nutrition-assistance-employment-and-training-program-snap-et" title="">SNAP E&amp;T</a></li>
+</ul></li>
+<li class="collapsed menu-mlid-244556"><a href="/page/cash-assistance">Cash Assistance</a></li>
+<li class="leaf menu-mlid-221666"><a href="/service/medical-assistance">Medical Assistance</a></li>
+<li class="leaf menu-mlid-221641"><a href="/service/child-care-services">Child Care Services</a></li>
+<li class="last collapsed menu-mlid-241636"><a href="/page/electric-benefits-transfer-ebt-cards">EBT Card Updates</a></li>
+</ul></div>
+    </div>
+  </div>
+</section><div class="block block-views block-agency-information-block block-views-agency-information-block even block-without-title" id="block-views-agency-information-block">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="view view-agency-information view-id-agency_information view-display-id-block view-dom-id-f8583c861d1db44041bf1326e3eb19a7">
+        
+  
+  
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</div><div class="block block-views block-d57ea9063772fb95c21cdfa73d7c2d80 block-views-d57ea9063772fb95c21cdfa73d7c2d80 odd block-without-title" id="block-views-d57ea9063772fb95c21cdfa73d7c2d80">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="view view-agency-information view-id-agency_information view-display-id-agency_director view-dom-id-333b986a025dc0dfcede20e943ae55fe">
+        
+  
+  
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</div>  </div>
+</aside><div class="grid-12 region region-content" id="region-content">
+  <div class="region-inner region-content-inner">
+          <script src="//cdn1.readspeaker.com/script/6295/webReader/webReader.js?pids=wr" type="text/javascript"></script>
+            <style>
+        .readspeaker_button1 i {
+          color: #333
+        }
+        #rsbtn_scrollcontrols i {
+          color: #333;
+        }
+        .readspeaker_button1 {
+          display: none;
+        }
+      </style>
+      <div id="readspeaker_button1" class="readspeaker_button1 rs_skip rsbtn rs_preserve">
+        <a rel="nofollow" class="rsbtn_play" accesskey="L" title="Listen to this page using ReadSpeaker webReader" href="//app-na.readspeaker.com/cgi-bin/rsent?customerid=6295&amp;lang=en_us&amp;readid=content-start&amp;url=https://dhs.dc.gov/service/snap-monthly-benefit">
+          <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+          <span class="rsbtn_right rsimg rsplay rspart"></span>
+        </a>
+      </div>
+    
+    <a id="main-content"></a>
+                  <h1 class="title" id="page-title">SNAP Monthly Benefit</h1>
+                          <div class="block block-system block-main block-system-main odd block-without-title" id="block-system-main">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <article about="/service/snap-monthly-benefit" typeof="sioc:Item foaf:Document" class="node node-service node-published node-not-promoted node-not-sticky author-jonellthompson odd clearfix" id="node-service-1530026">
+        <span property="dc:title" content="SNAP Monthly Benefit" class="rdf-meta element-hidden"></span><span property="sioc:num_replies" content="0" datatype="xsd:integer" class="rdf-meta element-hidden"></span>    
+  
+  <div class="content clearfix">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>The total amount that monthly benefit-eligible <strong><a href="https://dhs.dc.gov/service/supplemental-nutrition-assistance-program-snap" rel="noreferrer noopener" target="_blank">Supplemental Nutrition Assistance Program (SNAP)</a></strong> households receive is based on several factors including income, expenses, and the number of individuals in the households. The monthly benefit is called an allotment.&nbsp; SNAP benefits are placed on an<strong> <a href="https://dcgovict.sharepoint.com/:w:/s/DHS-ChiefofStaffDHS/EQ-OJEdQMfdPslgtDZlVO_0BIYqfVe87w8H_RSUQLfsObA?e=VsNl0m" rel="noreferrer noopener" target="_blank">Electronic Benefits Transfer (EBT) card</a> </strong>and the benefits can be used to purchase food at local retailers and participating online retailers.&nbsp;</p>
+
+<h3 paraeid="{741a0619-8fbd-43e2-93ea-22fb3fe74db9}{151}" paraid="404563250"><strong>Maximum Monthly Benefit Levels&nbsp;</strong></h3>
+
+<p paraeid="{741a0619-8fbd-43e2-93ea-22fb3fe74db9}{157}" paraid="93990482">Because SNAP households are expected to spend about 30 percent of their own resources on food, your allotment is calculated by multiplying your household&rsquo;s net monthly income by 0.3 and subtracting the result from the maximum monthly allotment for your household size.&nbsp;</p>
+
+<p paraeid="{741a0619-8fbd-43e2-93ea-22fb3fe74db9}{167}" paraid="430368913">The below represents the maximum SNAP monthly allotment by household size. These allotment levels are set by the Federal government and are subject to change each October 1.&nbsp; SNAP households may receive less than the maximum monthly allotment.&nbsp;</p>
+
+<div align="center">
+<table class="Table" style="width:344.6pt; border-collapse:collapse; border:solid #8eaadb 1.0pt" width="459">
+	<tbody>
+		<tr>
+			<td colspan="2" style="width:344.6pt; border:solid #4472c4 1.0pt; background:#4472c4" width="459">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:white">Effective October 1, 2025 &ndash; September 30, 2026</span></span></span></b></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Household Size</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">Maximum Monthly Allotment</span></span></span></b></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">1</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#4a4a4a">$298</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">2</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">$546</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">3</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#4a4a4a">$785</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">4</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">$994</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">5</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#4a4a4a">$1,183</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">6</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">$1,421</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">7</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#4a4a4a">$1,571</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">8</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">$1,789</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border-top:none; border-left:solid #8eaadb 1.0pt; border-bottom:none; border-right:solid #8eaadb 1.0pt" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">Each Additional Member</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border:none; border-right:solid #8eaadb 1.0pt" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#4a4a4a">$218</span></span></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:151.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="201">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><b><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#444444">Minimum Allotment</span></span></span></b></span></p>
+			</td>
+			<td style="width:193.5pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="258">
+			<p align="center" style="text-align:center; padding:11.25pt 3.75pt 11.25pt 3.75pt"><span style="vertical-align:baseline"><span style="border:none windowtext 1.0pt; font-size:10.0pt; padding:0in"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:black">$24</span></span></span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 class="rteleft"><br />
+<strong>Monthly Benefit Distribution Schedule</strong></h3>
+
+<p class="rteleft">The day your benefits are available on your EBT Card is based on the first letter of your last name. Please see the schedule below for the day your benefits will be on your card.&nbsp;</p>
+
+<div align="center">
+<table class="MsoTable15Grid4Accent1" style="border-collapse:collapse; border:solid #8eaadb 1.0pt">
+	<tbody>
+		<tr>
+			<td colspan="2" style="width:229.8pt; border:solid #4472c4 1.0pt; background:#4472c4" width="306">
+			<p align="center" style="margin-bottom:0in; text-align:center; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:white">SNAP Monthly Issuance Schedule</span></b></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">First Letter of Last Name</span></b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">Date</span></b></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b>A or B</b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%">1<sup>st</sup> of month</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">C</span></b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><span style="color:black">2<sup>nd</sup> of month</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b>D, E, or F</b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%">3<sup>rd</sup> of month</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">G or H</span></b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><span style="color:black">4<sup>th</sup> of month</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b>I, J, or K</b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%">5<sup>th</sup> of month</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">L or M</span></b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><span style="color:black">6<sup>th</sup> of month</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b>N, O, P, or Q</b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%">7<sup>th</sup> of month</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">R or S</span></b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><span style="color:black">8<sup>th</sup> of month</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b>T, U, or V</b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%">9<sup>th</sup> of month</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:148.1pt; border:solid #8eaadb 1.0pt; border-top:none; background:#d9e2f3" width="197">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><b><span style="color:black">W, X, Y, or Z</span></b></span></p>
+			</td>
+			<td style="width:81.7pt; border-top:none; border-left:none; border-bottom:solid #8eaadb 1.0pt; border-right:solid #8eaadb 1.0pt; background:#d9e2f3" width="109">
+			<p style="margin-bottom:0in; padding:0in 5.4pt 0in 5.4pt"><span style="line-height:115%"><span style="color:black">10<sup>th</sup> of month</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+</div>
+</div>
+</div></div></div><div class="field field-name-field-tty field-type-text field-label-above"><div class="field-label">Contact TTY:&nbsp;</div><div class="field-items"><div class="field-item even">711</div></div></div>  </div>
+  
+  <div class="clearfix">
+          <nav class="links node-links clearfix"></nav>
+    
+      </div>
+</article>
+    </div>
+  </div>
+</div>    
+  </div>
+</div>
+  </div>
+</div><div id="zone-postscript-wrapper" class="zone-wrapper zone-postscript-wrapper clearfix">  
+  <div id="zone-postscript" class="zone zone-postscript clearfix container-24">
+      </div>
+</div></section>    
+  
+      <footer id="section-footer" class="section section-footer">
+  <div id="zone-footer-wrapper" class="zone-wrapper zone-footer-wrapper clearfix">  
+  <div id="zone-footer" class="zone zone-footer clearfix container-12">
+    <div class="grid-12 region region-footer-first" id="region-footer-first">
+  <div class="region-inner region-footer-first-inner">
+    <div class="block block-views block-282b46b508c004bef35c3f43a1b5ee7b block-views-282b46b508c004bef35c3f43a1b5ee7b odd block-without-title" id="block-views-282b46b508c004bef35c3f43a1b5ee7b">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="view view-custom-headers-and-footers view-id-custom_headers_and_footers view-display-id-custom_agency_footer1 view-dom-id-56e267f2e945ef603c943d6bbee144c7">
+        
+  
+  
+      <div class="view-content">
+        <div>
+      
+          <style type="text/css">.footer-wrapper {
+  background-color: #4A4A4A;
+  padding: 25px 10%;
+  font-family: open;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.zone-footer-wrapper {
+  background-color: #fff;
+  color: #fff;
+  padding: 0;
+}
+.section-footer{
+  padding:0;
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  padding: 20px;
+}
+.zone-footer-wrapper a, .footer-links {
+  color: #fff!important;
+}
+.footer-icons img {
+  height: 25px;
+  padding: 0 5px;
+}
+
+img.footer-agency-logo{
+width: 250px;
+padding:20px 0;
+}
+.footer-link ul{ 
+display:flex;
+padding: 0 10px;
+flex-wrap:wrap;
+}
+.footer-link ul:not(.browser-default) > li{
+list-style-type:none;
+}
+/*.footer-text.item {
+  padding: 10px;
+}*/
+.footer-content.last {
+  border: 0;
+}
+.footer-text.item.right{
+  text-align:center;
+  padding:20px;
+align-self: flex-start;
+}
+
+.footer-header {
+  font-weight: 900;
+}
+.link-list{
+  display:block;
+  text-align:center;
+}
+.link-list {
+  display: block;
+  list-style: none;
+      list-style-image: none;
+  list-style-image: none;
+  flex: 2;
+
+}
+.link-list > li {
+  list-style-type: none !important;
+padding-right:10px;
+}
+span.ext {
+  display: none;
+}
+.lg\:pr-10:nth-of-type(1) {
+padding-right: 2.5rem;
+}
+.socials{
+text-align:center;
+} 
+.fa-twitter::before {
+  content: "";
+}
+.fa-twitter {
+  background: url(/sites/default/files/dc/shared_assets/social_icons/x-logo-white.png) no-repeat center;
+  background-size: 30px;
+}
+.footer-connect-section{
+flex:2;
+flex-wrap: wrap;
+}
+.footer-connect-section>div:nth-of-type(1){
+flex:1;
+}
+.footer-languages {
+display: flex;
+justify-content: flex-end;
+flex-wrap: wrap;
+color: #fff;
+border-bottom: 1px solid;
+padding: 20px;
+}
+/*-------NARROW-------*/
+@media all and (min-device-width: 740px) and (min-width: 740px), (max-device-width: 979px) and (min-width: 740px) and (orientation: landscape) {
+
+.footer-section.lower .footer-content>div:nth-of-type(1){
+flex:1;
+}
+.footer-connect-section {
+flex: 1;
+}
+.upper .footer-content {
+  justify-content: flex-end;
+}
+
+.lg\:pr-10:nth-of-type(1),
+.lg\:pr-10:nth-of-type(2) {
+padding-right: 2.5rem;
+}
+} 
+      
+/*-------NORMAL-------*/
+@media all and (min-width: 980px) and (min-device-width: 980px),
+all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+
+.footer-content{
+justify-content: space-between;
+}
+.footer-text.item.right {
+text-align: right;
+align-self: flex-start;
+padding:0 0 0 125px;
+}
+.footer-text.item.right:nth-of-type(1) {
+padding: 0 0 0 20px;
+}
+.link-list {
+  display: flex;
+}
+.footer-connect-section {
+flex: 1;
+display: flex;
+justify-content: flex-end;
+
+}
+.footer-text.agency-logo {
+flex: 1;
+align-self: flex-end;
+}
+.socials{
+/*align-self: flex-end; */
+flex:1;
+text-align:left;
+} 
+.fa-twitter {
+  background-size: 30px;
+}
+img.footer-agency-logo{
+padding:20px 0 20px 20px;
+}
+}
+/*-------WIDE-------*/
+/* @media only screen and (min-width: 1220px) {
+
+} */
+
+
+/* Tab Styles */
+
+.front ul.tabs {
+      margin: 50px;
+/*padding: 11px;*/
+float: left;
+list-style: none;
+/*height: 32px;*/
+/* border-bottom: 1px solid #333; */
+width: 100%;
+}
+
+.front ul.tabs li {
+float: left;
+
+margin: 0 20px;
+cursor: pointer;
+/*padding: 10px 20px;
+ background-color: #666; */
+color: #fff;
+overflow: hidden;
+position: relative;
+  font-size: 27px;
+  font-weight: 900;
+}
+
+/* .tab_last { border-right: 1px solid #333; } */
+
+.front ul.tabs li:hover {
+/* background-color: #ccc; */
+color: #fff;
+}
+
+.front ul.tabs li.active {
+/* background-color: #fff; */
+color: #fff;
+border-bottom: 5px solid #fff; 
+display: block;
+}
+
+.tab_container {
+/* border: 1px solid #333;
+border-top: none; */
+clear: both;
+float: left;
+width: 100%;
+/* background: #fff; */
+overflow: auto;
+}
+
+.tab_content {
+padding: 20px;
+display: none;
+}
+.tab_content h2{
+font-size:16px;
+}
+.tab_content tr.even, .tab_content  tr.odd, .tab_content .views-row{
+  background-color: transparent;
+  min-height: 120px;
+clear:both;
+}
+.tab_content a, .tab_content h2, .tab_content h3{
+  color: #fff!important;
+}
+.tab_content a, .tab_content h2, .tab_content h3{
+  color: #fff!important;
+}
+.tab_drawer_heading{ display: none; }
+
+@media screen and (max-width: 680px) {
+.tabs {
+  display: none;
+}
+.tab_drawer_heading {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 5px 20px;
+  display: block;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+color: #fff!important;
+}
+.d_active {
+  background-color: #bababa;
+  color: #fff;
+}
+
+}
+.view-display-id-featured_homepage_publications_block, #quicktabs-agency_featured_news_home{display:none;}
+.tab_content .view-footer, .tab_content .more-link {
+  text-align: center;
+}
+.tab_content .view-footer a{ 
+  font-size: 1.2rem;
+  text-align: center;
+margin: 20px auto;
+width: max-content;
+padding: 10px 20px;
+border-radius: 50px;
+background: transparent;
+background-color: #015384;
+border: 2px solid #fff;
+
+}
+.views-align-left {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+}
+.tabs{
+background-color:transparent;}
+
+.front .views-field-field-date{
+float: left;
+padding: 0 10px 0 0;
+min-height: 100px;
+}
+tr.even, tr.odd, tr{
+border-bottom:0;
+}
+
+/* faqs */
+
+.faq {
+      margin: 0px;
+      padding: 20px 0px 0px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    h3.question {
+      font-size: 18px !important;
+    }
+    .answer {
+      display: none;
+    }
+    .question.expanded::after {
+      content: url(/sites/default/files/dc/shared_assets/Close2.png);
+      float: right;
+    }
+    .question::after {
+      content: url(/sites/default/files/dc/shared_assets/Expand2.png);
+      float: right;
+    }
+</style>
+<div class="footer-wrapper footer" id="footer">
+<div class="footer-section upper">
+<div class="footer-languages">
+<div class="item">&nbsp; &nbsp;&nbsp;</div>
+</div>
+
+<div class="footer-content ">
+<div class="item lg:pr-10"><a href="https://dcgov.seamlessdocs.com/f/DHSWebsiteFeedback" target="_blank" title="Website Feedback">Website Feedback</a></div>
+
+<div class="item lg:pr-10"><a href="https://dhs-asks.dc.gov/" target="_blank" title="Ask the Director">Ask the Director</a></div>
+
+<div class="item"><a href="https://oca.dc.gov/node/160652" target="_blank" title="Agency Performance">Agency Performance</a></div>
+</div>
+
+<div class="footer-section lower">
+<div class="footer-content">
+<div class="socials"><img alt="Mayor Logo" class="footer-agency-logo" src="/sites/default/files/dc/sites/dhs/MayorBlogo.png" style="display: inline-block;" />
+<div class="mt-6 sm:mt-0 sm:mx-4 m:flex lg:mx-0"><a class="ext" href="https://www.facebook.com/DHSDC" target="_blank"><i class="fab fa-facebook-f text-white text-3xl sm:text-5xl font-extrabold px-4  transition duration-500 ease-in-out bg-transparent hover:bg-transparent transform hover:-translate-y-2 hover:scale-110">&nbsp;</i></a> <a href="https://twitter.com/DCHumanServ" target="_blank" title="Follow Us on X"><i class="fab fa-twitter text-white text-3xl sm:text-5xl font-extrabold px-4 transition duration-500 ease-in-out bg-transparent hover:bg-transparent transform hover:-translate-y-2 hover:scale-110">&nbsp;</i></a> <a href="https://www.instagram.com/DCHumanServ/" target="_blank"><i class="fab fa-instagram text-white text-3xl sm:text-5xl font-extrabold px-4 transition duration-500 ease-in-out bg-transparent hover:bg-transparent transform hover:-translate-y-2 hover:scale-110">&nbsp;</i></a> <a class="ext" href="https://www.linkedin.com/company/dc-department-of-human-services" target="_blank"><i class="fab fa-linkedin text-white text-3xl sm:text-5xl font-extrabold px-4 transition duration-500 ease-in-out bg-transparent hover:bg-transparent transform hover:-translate-y-2 hover:scale-110">&nbsp;</i></a></div>
+</div>
+
+<div class="footer-text item right">
+<div class="footer-header">Connect with DHS<br />
+Homeless Services Hotline: <a href="tel:2023997093">(202) 399-7093</a></div>
+
+<div class="footer-header">Public Benefits Call Center:&nbsp;<a href="tel:2023997093">(202) 727-5355</a><br />
+General: <a class="mailto" href="/cdn-cgi/l/email-protection#26424e5566424508414950" title="dhs@dc.gov"><span class="__cf_email__" data-cfemail="06626e7546626528616970">[email&#160;protected]</span></a> | <a href="tel:2026714200">(202) 671-4200</a></div>
+
+<div class="footer-header">Email: <a data-auth="NotApplicable" data-linkindex="1" href="https://dhs-asks.dc.gov/" id="LPlnk289475" rel="noopener noreferrer" target="_blank" title="https://dhs-asks.dc.gov/">https://dhs-asks.dc.gov/</a></div>
+</div>
+
+<div class="footer-text item right">
+<div class="footer-header">Office hours</div>
+
+<div>64 New York Avenue, NE, 6th Floor,<br />
+Washington, DC 20002<br />
+Monday to Friday, 8:15 am to 4:45 pm, except District holidays</div>
+</div>
+</div>
+</div>
+
+<div class="footer-section lower">
+<div class="footer-content last">
+<ul class="link-list">
+	<li class="list-item"><a href="https://dc.gov/node/298582" title="Accessibility">Accessibility</a></li>
+	<li class="list-item"><a href="https://dc.gov/node/298592" title="Privacy and Security">Privacy and Security</a></li>
+	<li class="list-item"><a href="https://dc.gov/node/819092" title="About DC.Gov">About DC.Gov</a></li>
+	<li class="last list-item"><a href="https://dc.gov/node/900572" title="Terms and Conditions">Terms and Conditions</a></li>
+</ul>
+
+<div class="footer-text item right">&copy; 2022 District of Columbia</div>
+</div>
+</div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+
+//Tab function
+
+jQuery(document).ready(function() {
+
+   // FAQ toggle
+     if (jQuery('.question')) {
+                    jQuery('.question').click(function () {
+                        console.log('im clicked');
+                        jQuery(this).siblings('div').slideToggle();
+                        jQuery(this).toggleClass('expanded');
+                    });
+                }
+
+
+if(jQuery("body.front").length > 0){
+console.log("We are on the front page");
+jQuery('<ul class="tabs"></ul><div class="tab_container"></div>').appendTo('#block-quicktabs-agency-featured-news-home .content');
+
+  var tabs = document.querySelectorAll('.quicktabs-tabs li a');
+                      const tabContentItems =  document.querySelectorAll('.quicktabs-tabpage .view-content');
+const tabContentItemsFooter =  document.querySelectorAll('.quicktabs-tabpage .view-footer');
+                      const finalTab = 'Publications';
+                      const finalTabContent = document.querySelector('.view-display-id-featured_homepage_publications_block .view-content');
+const finalTabContentFooter = document.querySelector('.view-display-id-featured_homepage_publications_block .view-footer');
+                      let tabby=[];
+                      let tabContent=[];
+
+                      var newTabs = document.querySelector('.tabs');
+                      var newTabContainer = document.querySelector('.tab_container');
+
+                      //console.log(tabs[0].innerHTML)
+                      for(var i=0; i<tabs.length;i++){
+                          let title = tabs[i].innerHTML;
+                          if(i===0){
+                              // console.log('inside if index is' + i)
+                              console.log(title)
+                              newTabs.innerHTML += `<li class="active" rel=tab${i}>${title}</li>`;
+
+                              newTabContainer.innerHTML += `<h3 class="d_active tab_drawer_heading" rel="tab${i}">${title}</h3>`
+                              newTabContainer.innerHTML += `<div id="tab${i}" class="tab_content">${tabContentItems[i].outerHTML}${tabContentItemsFooter[i].outerHTML}</div>`
+
+                          }else{
+                              console.log(title)
+                              newTabs.innerHTML += `<li rel=tab${i}>${title}</li>`;
+                              newTabContainer.innerHTML += `<h3 class="tab_drawer_heading" rel="tab${i}">${title}</h3>`
+                              newTabContainer.innerHTML += `<div id="tab${i}" class="tab_content">${tabContentItems[i].outerHTML}${tabContentItemsFooter[i].outerHTML}</div>`
+                          }
+                         
+                      }
+                      newTabs.innerHTML += `<li rel=tab${i}>Publications</li>`;
+                          newTabContainer.innerHTML += `<h3 class="tab_drawer_heading" rel="tab${i}">Publications</h3>`
+                          newTabContainer.innerHTML += `<div id="tab${i}" class="tab_content">${finalTabContent.outerHTML}${finalTabContentFooter.outerHTML}</div>`
+
+
+
+
+  jQuery(".tab_content").hide();
+  jQuery(".tab_content:first").show();
+
+/* if in tab mode */
+  jQuery("ul.tabs li").click(function() {
+  
+    jQuery(".tab_content").hide();
+    var activeTab = jQuery(this).attr("rel"); 
+    jQuery("#"+activeTab).fadeIn();		
+  
+    jQuery("ul.tabs li").removeClass("active");
+    jQuery(this).addClass("active");
+
+  jQuery(".tab_drawer_heading").removeClass("d_active");
+  jQuery(".tab_drawer_heading[rel^='"+activeTab+"']").addClass("d_active");
+  
+  });
+/* if in drawer mode */
+jQuery(".tab_drawer_heading").click(function() {
+    
+    jQuery(".tab_content").hide();
+    var d_activeTab = jQuery(this).attr("rel"); 
+    jQuery("#"+d_activeTab).fadeIn();
+  
+  jQuery(".tab_drawer_heading").removeClass("d_active");
+    jQuery(this).addClass("d_active");
+  
+  jQuery("ul.tabs li").removeClass("active");
+  jQuery("ul.tabs li[rel^='"+d_activeTab+"']").addClass("active");
+  });
+
+
+/* Extra class "tab_last" 
+   to add border to right side
+   of last tab */
+jQuery('ul.tabs li').last().addClass("tab_last");
+}
+
+});
+
+
+
+ if (document.getElementById("block-views-features-blocks-homepage-d")) {
+      var ddElement = document.getElementById("#select-category1");
+      var ddElement2 = document.getElementById("#select-category2");
+      var step1 = document.getElementById("step1-icon");
+      var step2 = document.getElementById("step2-icon");
+      var step3 = document.getElementById("step3-icon");
+      ddElement.options[0] = new Option("Apply", "Apply");
+      ddElement.options[1] = new Option("Find", "Find");
+      //ddElement.options[2] = new Option("Learn", "Learn");
+      //Add pulse class to icons
+      console.log(step1);
+      step1.classList.add("pulse");
+      step3.classList.remove("pulse");
+
+      // let verb = ddElement.options[0].value.split(" ");
+      let verb = ddElement.options[0].value;
+      console.log(verb);
+      // let action = verb[0];
+      let action = verb;
+      let actionTitles = document.querySelectorAll(".category-title");
+      let actionTitleButton = document.getElementById("#category-link");
+
+      //Set inital value for button link
+      document.getElementById("#category-link").setAttribute("href", "https://dhs.dc.gov/page/apply-recertify-benefits");
+      actionTitles.forEach((item) => {
+        item.innerHTML = `${action}`;
+      });
+actionTitleButton.innerHTML = `${action} Now`;
+
+      ddElement2.options[0] = new Option(
+        "Complete a new application for benefits",
+        "https://dhs.dc.gov/page/apply-recertify-benefits"
+      );
+      ddElement2.options[1] = new Option(
+          "Complete the Recertification & Midcertification Application for Public Benefits",
+          "https://dhs.dc.gov/page/recertification-mid-certification-public-benefits"
+        );
+      ddElement2.options[2] = new Option(
+          "Burial Assistance",
+          "https://dhs.dc.gov/service/burial-assistance"
+      );
+      ddElement2.options[3] = new Option(
+          "Child Care Services",
+          "https://dhs.dc.gov/service/child-care-services"
+        );
+        ddElement2.options[4] = new Option(
+          "Electronic Benefits Transfer (EBT)",
+          "https://dhs.dc.gov/page/ebt-card-updates"
+        );
+        ddElement2.options[5] = new Option(
+          "Emergency Rental Assistance Program (ERAP)",
+          "https://dhs.dc.gov/service/homelessness-prevention-0"
+        );
+        ddElement2.options[6] = new Option(
+          "Eviction Prevention & Rent Assistance",
+          "https://dhs.dc.gov/service/eviction-prevention-rent-assistance"
+        );
+        ddElement2.options[7] = new Option(
+          "No Fee Birth Certificate or DMV Non-Driver Identification",
+          "https://dhs.dc.gov/nofeebcvoucher"
+        );
+        ddElement2.options[8] = new Option(
+          "Interim Disability Assistance",
+          "https://dhs.dc.gov/service/interim-disability-assistance"
+        );
+        ddElement2.options[9] = new Option(
+          "Medical Assistance",
+          "https://dhs.dc.gov/service/medical-assistance"
+        );
+        ddElement2.options[10] = new Option(
+          "Refugee Assistance",
+          "https://dhs.dc.gov/service/refugee-assistance"
+        );
+        ddElement2.options[11] = new Option(
+          "Supplemental Nutrition Assistance (SNAP)",
+          "https://dhs.dc.gov/snapinfo"
+        );
+        ddElement2.options[12] = new Option(
+          "Temporary Cash Assistance (TANF)",
+          "https://dhs.dc.gov/service/tanf-district-families"
+        );
+        ddElement2.options[13] = new Option(
+          "Youth Services",
+          "https://dhs.dc.gov/page/youth-services-division"
+        );
+        ddElement2.options[14] = new Option(
+          "Pandemic Electronic Benefits Transfer (P-EBT)",
+          "https://dhs.dc.gov/service/pandemic-electronic-benefits-transfer-p-ebt-program"
+        );
+        
+      function loadCategory() {
+        console.log("inside loadCategory function");
+        let ddElement2 = document.getElementById("#select-category2");
+        let categoryChoice = ddElement.options[ddElement.selectedIndex].value;
+        step1.classList.remove("pulse");
+        step2.classList.add("pulse");
+        step3.classList.remove("pulse");
+
+        if (categoryChoice == "Apply") {
+          // let verb = ddElement.options[0].value.split(" ");
+          let verb = ddElement.options[0].value;
+          console.log(verb);
+          // let action = verb[0];
+          let action = verb;
+          let actionTitles = document.querySelectorAll(".category-title");
+let actionTitleButton = document.getElementById("#category-link");
+
+          actionTitles.forEach((item) => {
+            // item.insertAdjacentHTML("afterbeging", action);
+            item.innerHTML = `${action}`;
+          });
+actionTitleButton.innerHTML = `${action} Now`;
+          //console.log(dd2Title);
+          ddElement2.options.length = 0;
+          ddElement2.options[0] = new Option(
+              "Complete a new application for benefits",
+              "https://dhs.dc.gov/page/apply-recertify-benefits"
+            );
+            ddElement2.options[1] = new Option(
+                "Complete the Recertification & Midcertification Application for Public Benefits",
+                "https://dhs.dc.gov/page/recertification-mid-certification-public-benefits"
+              );
+            ddElement2.options[2] = new Option(
+                "Burial Assistance",
+                "https://dhs.dc.gov/service/burial-assistance"
+            );
+            ddElement2.options[3] = new Option(
+                "Child Care Services",
+                "https://dhs.dc.gov/service/child-care-services"
+              );
+              ddElement2.options[4] = new Option(
+                "Electronic Benefits Transfer (EBT)",
+                "https://dhs.dc.gov/page/ebt-card-updates"
+              );
+              ddElement2.options[5] = new Option(
+                "Emergency Rental Assistance Program (ERAP)",
+                "https://dhs.dc.gov/service/homelessness-prevention-0"
+              );
+              ddElement2.options[6] = new Option(
+                "Eviction Prevention & Rent Assistance",
+                "https://dhs.dc.gov/service/eviction-prevention-rent-assistance"
+              );
+              ddElement2.options[7] = new Option(
+                "No Fee Birth Certificate or DMV Non-Driver Identification",
+                "https://dhs.dc.gov/nofeebcvoucher"
+              );
+              ddElement2.options[8] = new Option(
+                "Interim Disability Assistance",
+                "https://dhs.dc.gov/service/interim-disability-assistance"
+              );
+              ddElement2.options[9] = new Option(
+                "Medical Assistance",
+                "https://dhs.dc.gov/service/medical-assistance"
+              );
+              ddElement2.options[10] = new Option(
+                "Refugee Assistance",
+                "https://dhs.dc.gov/service/refugee-assistance"
+              );
+              ddElement2.options[11] = new Option(
+                "Supplemental Nutrition Assistance (SNAP)",
+                "https://dhs.dc.gov/snapinfo"
+              );
+              ddElement2.options[12] = new Option(
+                "Temporary Cash Assistance (TANF)",
+                "https://dhs.dc.gov/service/tanf-district-families"
+              );
+              ddElement2.options[13] = new Option(
+                "Youth Services",
+                "https://dhs.dc.gov/page/youth-services-division"
+              );
+              ddElement2.options[14] = new Option(
+                  "Pandemic Electronic Benefits Transfer (P-EBT)",
+                  "https://dhs.dc.gov/service/pandemic-electronic-benefits-transfer-p-ebt-program"
+                );
+                
+          
+          let categoryLink =
+            ddElement2.options[ddElement2.selectedIndex].value;
+          var elems = document.querySelectorAll("select");
+          var instances = M.FormSelect.init(elems);
+        } else if (categoryChoice == "Find") {
+          console.log("switched category");
+          let verb = categoryChoice;
+          let action = verb;
+          let actionTitles = document.querySelectorAll(".category-title");
+let actionTitleButton = document.getElementById("#category-link");
+
+          actionTitles.forEach((item) => {
+            item.innerHTML = `${action}`;
+          });
+actionTitleButton.innerHTML = `${action} Now`;
+
+          
+          ddElement2.options.length = 0;
+          ddElement2.options[0] = new Option(
+              "Apply & Recertify for Benefits",
+              "https://dhs.dc.gov/service/apply-and-recertify-benefits"
+            );
+ddElement2.options[1] = new Option(
+                  "Benefits Frequently Asked Questions",
+                  "https://dhs.dc.gov/page/esa-frequently-asked-questions"
+                );
+ddElement2.options[2] = new Option(
+    "Burial Assistance",
+    "https://dhs.dc.gov/service/burial-assistance"
+);
+ddElement2.options[3] = new Option(
+    "Child Care Services",
+    "https://dhs.dc.gov/service/child-care-services"
+  );
+  ddElement2.options[4] = new Option(
+    "Day Services Centers",
+    "https://dhs.dc.gov/page/day-services-centers"
+  );
+  
+  ddElement2.options[5] = new Option(
+    "Electronic Benefits Transfer (EBT)",
+    "https://dhs.dc.gov/page/ebt-card-updates"
+  );
+  ddElement2.options[6] = new Option(
+    "Emergency Shelter for Families",
+    "https://dhs.dc.gov/page/how-access-short-term-family-housing"
+  );
+  ddElement2.options[7] = new Option(
+    "Emergency Shelter for Individuals",
+    "https://dhs.dc.gov/page/how-access-shelter"
+  );
+  ddElement2.options[8] = new Option(
+    "Eviction Prevention & Rent Assistance",
+    "https://dhs.dc.gov/service/eviction-prevention-rent-assistance"
+  );
+  ddElement2.options[9] = new Option(
+    "Find a Service Center",
+    "https://dhs.dc.gov/service/find-service-center-near-you"
+  );
+  ddElement2.options[10] = new Option(
+    "Family Services Administration Grant Opportunities",
+    "https://dhs.dc.gov/page/family-services-administration-grant-opportunities"
+  );
+   ddElement2.options[11] = new Option(
+                "Gen2Gen DC",
+                "https://dhs.dc.gov/service/gen2gen-dc-formerly-families-first"
+              );
+  ddElement2.options[12] = new Option(
+                "Homeless Services",
+                "https://dhs.dc.gov/page/homeless-and-homelessness-prevention-services"
+              );
+  ddElement2.options[13] = new Option(
+    "Housing Resources for Families",
+    "https://dhs.dc.gov/page/housing-resources-families"
+  );
+  ddElement2.options[14] = new Option(
+    "Housing Resources for Individuals",
+    "https://dhs.dc.gov/page/housing-resources-0"
+  );
+  ddElement2.options[15] = new Option(
+      "Housing Supportive Service",
+      "https://dhs.dc.gov/service/housing-supportive-services%C2%A0"
+    );
+   ddElement2.options[16] = new Option(
+    "Interim Disability Assistance",
+    "https://dhs.dc.gov/service/interim-disability-assistance"
+  );
+   ddElement2.options[17] = new Option(
+      "Medical Assistance",
+      "https://dhs.dc.gov/service/medical-assistance"
+    );
+  ddElement2.options[18] = new Option(
+  "New application for benefits",
+  "https://dhs.dc.gov/page/apply-recertify-benefits"
+);
+  ddElement2.options[19] = new Option(
+    "No Fee Birth Certificates or DMV Non-Driver ID",
+    "https://dhs.dc.gov/nofeebcvoucher"
+  );
+    ddElement2.options[20] = new Option(
+      "Pandemic Electronic Benefits Transfer (P-EBT)",
+      "https://dhs.dc.gov/p-ebt"
+    );
+    ddElement2.options[21] = new Option(
+    "Recertification & Midcertification Application for Public Benefits",
+    "https://dhs.dc.gov/page/recertification-mid-certification-public-benefits"
+  );
+    ddElement2.options[22] = new Option(
+      "Refugee Assistance",
+      "https://dhs.dc.gov/service/refugee-assistance"
+    );
+    ddElement2.options[23] = new Option(
+                  "Services for Families Experiencing Homelessness",
+                  "https://dhs.dc.gov/service/services-families-experience-homelessness%C2%A0"
+                );
+  ddElement2.options[24] = new Option(
+                  "Services for Individuals Experiencing Homelessness",
+                  "https://dhs.dc.gov/page/services-individuals-experiencing-homelessness"
+                );
+    ddElement2.options[25] = new Option(
+      "Services for Survivors of Family or Domestic Violence",
+      "https://dhs.dc.gov/service/family-violence-prevention-program-fvpp"
+    );
+    ddElement2.options[26] = new Option(
+      "Supplemental Nutrition Assistance (SNAP)",
+      "https://dhs.dc.gov/snapinfo"
+    );
+    ddElement2.options[27] = new Option(
+      "Temporary Cash Assistance (TANF)",
+      "https://dhs.dc.gov/service/tanf-district-families"
+    );
+    ddElement2.options[28] = new Option(
+          "ESA Call Center Wait times",
+          "https://esacallcenter.dhs.dc.gov/"
+        );
+    ddElement2.options[29] = new Option(
+      "Virginia Williams Family Resource Center",
+      "https://dhs.dc.gov/page/how-access-short-term-family-housing"
+    );
+    ddElement2.options[30] = new Option(
+      "Youth Services and Supports",
+      "https://dhs.dc.gov/page/youth-services-division"
+    );
+    
+         
+          let categoryLink =
+            ddElement2.options[ddElement2.selectedIndex].value;
+          var elems = document.querySelectorAll("select");
+          var instances = M.FormSelect.init(elems);
+        } 
+      }
+      function loadStep3() {
+        step1.classList.remove("pulse");
+        step2.classList.remove("pulse");
+        step3.classList.add("pulse");
+      }
+      ddElement2.addEventListener("change", function () {
+        let val = this.options[this.selectedIndex].value;
+        document.getElementById("#category-link").setAttribute("href", val);
+      });
+      ddElement.addEventListener("change", function () {
+        let val = ddElement2.options[ddElement2.selectedIndex].value;
+        document.getElementById("#category-link").setAttribute("href", val);
+      });
+    }
+  </script><script>//let popupField = document.getElementById("edit-field-date-time-rep-value-value-datepicker-popup-0");
+//console.log(popupField);
+//document.getElementById("edit-field-date-time-rep-value-value-datepicker-popup-0").setAttribute("class", "datepicker no-autoinit");
+</script><!-- Compiled and minified JavaScript ><script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"--><!-- GovDelivery Subscription Overlay --><!--script src="https://content.govdelivery.com/overlay/js/10841.js"></script--><!-- End GovDelivery Overlay --></div>
+    </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</div>  </div>
+</div>  </div>
+</div></footer>
+<script async src=https://siteimproveanalytics.com/js/siteanalyze_6002505.js></script>
+  </div>  <div class="region region-page-bottom" id="region-page-bottom">
+  <div class="region-inner region-page-bottom-inner">
+      </div>
+</div><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"348872d504","applicationID":"496267014","transactionName":"YVYAZxQEC0EHBhVYWVgcI1ASDApcSQsOVVNpQwNUAzoTWwMS","queueTime":10,"applicationTime":459,"atts":"TREXEVweGB5EBEMLTUtO","errorBeacon":"bam.nr-data.net","agent":""}</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3aff446f9cc1b53',t:'MTc4OTM5NDgwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"40173a06e921460ebb3fe70b55ba3d2f","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

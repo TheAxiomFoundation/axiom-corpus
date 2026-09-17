@@ -48,8 +48,16 @@ def test_north_dakota_manifest_matches_the_live_release_boundary() -> None:
     assert len(topics) == EXPECTED_TOPIC_COUNT
     assert len({document["source_id"] for document in documents}) == len(documents)
     assert len({document["citation_path"] for document in documents}) == len(documents)
-    assert {document["source_as_of"] for document in documents} == {"2026-07-21"}
-    assert {document["expression_date"] for document in documents} == {"2026-06-15"}
+    # The manifest now describes the superseding edition (Release 26.7, "Last published
+    # Sep 02, 2026"): every re-published landing, TOC and topic file carries the
+    # publisher's 2026-09-02 revision date; the Release 26.5 PDF is unchanged.
+    for document in documents:
+        if document["source_id"] == "nd-hhs-snap-release-26-5":
+            assert document["source_as_of"] == "2026-07-21"
+            assert document["expression_date"] == "2026-06-15"
+        else:
+            assert document["source_as_of"] == "2026-09-11"
+            assert document["expression_date"] == "2026-09-02"
     assert all(document["metadata"]["primary_source"] is True for document in documents)
     assert toc_paths == manifest_paths
 

@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "e0955a0af74a054b3228376701172028dc89b5e11dce147d6305d0670c943752"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "928d1a13010b5c0aebf19c1b2d91f7b75240e1fa36e844c6928fd1972f393d78"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "579f5e1f58cc24e9d4e6a32d413a4cf6c12e22f1fdd88b913bbd74ae07a08ece"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.31.pdf",
+      "sha256": "75f3f96f48d51819b4f48e1c2b1b2eb701f14a9d355acfd67ce0fe8b77c56f44"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.32.pdf",
+      "sha256": "1fa56ee479832cc7824c2fd297fd0fbb0e43cece94d1580ae982ebf3cda51d3c"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.33.pdf",
+      "sha256": "e39cb752df9e41213f395686e5f432f9d764d3ecf72d2b6d9a455b1bc15f3416"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.34.pdf",
+      "sha256": "d2d67afe47a9492f9386b2130666392631990e8c18d6f3129e78938fd972617f"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.35.pdf",
+      "sha256": "0d8a58122675b3c4e5672fbb3710d101bf25f223124d71c9abbf77852bfde9ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.38.pdf",
+      "sha256": "83d4edcdf74427abe586163ff6b770662618f6300a044215d32f6bed0b1402db"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.45.pdf",
+      "sha256": "c9d8d59d5b34a5fa17a9053362b363dffd68e16bee0b0481d960b63e27b9e498"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.47.pdf",
+      "sha256": "1cf921db46ad0abcdb404b0bda3b176e519bef183f390fabca9e313eb59276e8"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-wic-state-policy-manual/official-documents/us-nj-wic-manual-1.50.pdf",
+      "sha256": "0d42fb9db8979e749a3821d70bfa2b555fcd23224e8d2e78373040e8766ff54d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-nj-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:18:35.784880+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WZlXpM5F2PPOzQMxfkAOzR/FvVgXnhB5PdcaT22/W/Xio9qZ6j44PXe9+ZfILik17X53QdfIbGAKT3s6vwOrBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

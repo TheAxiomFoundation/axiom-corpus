@@ -31,6 +31,7 @@ from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
+from axiom_corpus.corpus.citation_segment import citation_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -390,6 +391,12 @@ def _download_document(
             verify=verify,
             chunk_size=int(request_config.get("range_chunk_size", _RANGE_FETCH_CHUNK_SIZE_BYTES)),
         )
+    if request_config.get("fresh_session"):
+        # Publishers such as govt.westlaw.com answer a cookie-bearing session with a
+        # browser-check interstitial after the first page; fetch with a fresh session.
+        fresh_session = requests.Session()
+        fresh_session.headers.update(session.headers)
+        session = fresh_session
     response = _get_with_retries(session, download_url, headers=request_headers, verify=verify)
     if _needs_browser_fallback(source, response):
         response.close()
@@ -423,6 +430,26 @@ def _download_document(
     )
 
 
+def _browser_impersonation_headers(
+    headers: dict[str, str] | None,
+    *,
+    impersonate: str,
+) -> dict[str, str]:
+    """Headers for a curl_cffi fetch that stay consistent with the impersonated browser.
+
+    Chromium profiles (the default ``chrome120``, ``edge``) keep the official Chrome
+    User-Agent. For a Safari or Firefox profile no User-Agent is forced: a Chrome
+    User-Agent on a Safari TLS fingerprint is itself a bot signal (Cloudflare answers
+    HTTP 403 to it), so curl_cffi sends the profile's own User-Agent instead.
+    """
+    request_headers = dict(headers or {})
+    if impersonate.startswith(("chrome", "edge")):
+        request_headers.setdefault("User-Agent", OFFICIAL_DOCUMENT_BROWSER_USER_AGENT)
+    else:
+        request_headers.pop("User-Agent", None)
+    return request_headers
+
+
 def _download_document_by_browser_impersonation(
     source: OfficialDocumentSource,
     download_url: str,
@@ -437,10 +464,7 @@ def _download_document_by_browser_impersonation(
     except ImportError as exc:  # pragma: no cover - exercised only in incomplete installs
         raise RuntimeError("browser_impersonation official-document fetches require curl-cffi") from exc
 
-    request_headers = {
-        "User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
-        **(headers or {}),
-    }
+    request_headers = _browser_impersonation_headers(headers, impersonate=impersonate)
     for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
         try:
             response = curl_requests.get(
@@ -680,9 +704,15 @@ def _parse_curl_header_dump(header_dump: str) -> tuple[int, dict[str, str]]:
 
 
 def _request_headers_from_config(request_config: dict[str, Any]) -> dict[str, str] | None:
-    if not request_config.get("browser_user_agent"):
-        return None
-    return {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    headers: dict[str, str] = {}
+    if request_config.get("browser_user_agent"):
+        headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+    cookies = request_config.get("cookies")
+    if isinstance(cookies, dict) and cookies:
+        # Publisher-declared cookies (for example the govt.westlaw.com browser-check
+        # cookies) sent with every request for the document.
+        headers["Cookie"] = "; ".join(f"{name}={value}" for name, value in cookies.items())
+    return headers or None
 
 
 def _needs_browser_fallback(
@@ -1368,6 +1398,11 @@ def _extract_labeled_pdf_section_blocks(
 def _extract_docx_blocks(
     content: bytes, *, extraction: dict[str, Any] | None
 ) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "styled_labeled_sections":
+        return _extract_styled_labeled_docx_section_blocks(
+            content,
+            extraction=extraction or {},
+        )
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_docx_section_blocks(
             content,
@@ -1804,6 +1839,154 @@ def _extract_labeled_docx_section_blocks(
             current_body.append(line)
     flush()
     return tuple(sections)
+
+
+_STYLED_LABELED_CONTINUATION_SUFFIX = r"\s*\((?:Continued|Cont\.)\)\s*$"
+
+
+def _extract_styled_labeled_docx_section_blocks(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[_DocumentBlock, ...]:
+    """Extract DOCX sections that start at Word heading-styled paragraphs.
+
+    Only paragraphs carrying a Word heading style (``Heading1``, ``Title`` ...)
+    are candidate section starts unless ``heading_paragraphs_only`` is false,
+    in which case any body paragraph (never a table cell) is a candidate; they
+    must match ``section_heading_pattern`` (named groups ``label`` and
+    ``heading``) and, when ``heading_text_pattern`` is set, the heading text
+    must match it too (for example an all-caps requirement). Every other
+    paragraph and every table row belongs to the body of the open section, so
+    section numbers quoted in body text or relocation tables never start a new
+    section. A heading whose
+    label was already seen (page-break restatements such as ``44-207 INCOME
+    ELIGIBILITY (Continued)``) is merged into the existing section, keeping
+    the first heading; ``heading_continuation_suffix_pattern`` (default
+    ``(Continued)``/``(Cont.)``) is stripped before matching. ``drop_lines``,
+    ``drop_line_patterns``, ``start_after_pattern`` and ``stop_text_pattern``
+    behave as in ``labeled_sections``.
+    """
+    heading_pattern = extraction.get("section_heading_pattern")
+    if heading_pattern is None:
+        raise ValueError(
+            "styled_labeled_sections DOCX extraction requires section_heading_pattern"
+        )
+    section_heading_re = re.compile(str(heading_pattern))
+    label_template = extraction.get("section_label_template")
+    label_replacements = _section_label_replacements(extraction)
+    continuation_re = re.compile(
+        str(
+            extraction.get(
+                "heading_continuation_suffix_pattern",
+                _STYLED_LABELED_CONTINUATION_SUFFIX,
+            )
+        )
+    )
+    start_after_pattern = extraction.get("start_after_pattern")
+    start_after_re = (
+        re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
+    )
+    stop_pattern = extraction.get("stop_text_pattern")
+    stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
+    drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
+    drop_line_patterns = tuple(
+        re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
+    )
+    merge_repeated = bool(extraction.get("merge_repeated_labels", True))
+    heading_paragraphs_only = bool(extraction.get("heading_paragraphs_only", True))
+    heading_text_pattern = extraction.get("heading_text_pattern")
+    heading_text_re = (
+        re.compile(str(heading_text_pattern)) if heading_text_pattern is not None else None
+    )
+
+    with zipfile.ZipFile(BytesIO(content)) as document:
+        xml = document.read("word/document.xml")
+    root = ElementTree.fromstring(xml)
+    body = root.find("w:body", _WORD_NS)
+    if body is None:
+        return ()
+
+    sections: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    current_label: str | None = None
+    started = start_after_re is None
+    stopped = False
+
+    def keep_line(line: str) -> bool:
+        return not _drop_pdf_line(line, drop_lines, drop_line_patterns)
+
+    for child in body:
+        if stopped:
+            break
+        if child.tag == _word_tag("p"):
+            text = _docx_paragraph_text(child)
+            if not text:
+                continue
+            if not started:
+                if start_after_re is not None and start_after_re.search(text):
+                    started = True
+                continue
+            if stop_re is not None and stop_re.search(text):
+                stopped = True
+                break
+            if heading_paragraphs_only is False or _docx_paragraph_is_heading(child):
+                heading_line = continuation_re.sub("", text).strip()
+                match = _match_labeled_pdf_section(
+                    heading_line,
+                    section_heading_re,
+                    None,
+                    label_template=str(label_template) if label_template is not None else None,
+                    label_replacements=label_replacements,
+                )
+                if (
+                    match is not None
+                    and heading_text_re is not None
+                    and not heading_text_re.match(match[1])
+                ):
+                    match = None
+                if match is not None:
+                    label, heading_text = match
+                    if label in sections:
+                        if not merge_repeated:
+                            raise ValueError(
+                                f"styled_labeled_sections: repeated section label {label!r}"
+                            )
+                        sections[label]["occurrences"] += 1
+                    else:
+                        sections[label] = {
+                            "heading": f"{label} {heading_text}".strip(),
+                            "body": [],
+                            "occurrences": 1,
+                        }
+                        order.append(label)
+                    current_label = label
+                    continue
+            if current_label is not None and keep_line(text):
+                sections[current_label]["body"].append(text)
+        elif child.tag == _word_tag("tbl"):
+            if not started or current_label is None:
+                continue
+            table_text = _docx_table_text(child)
+            rows = [row for row in table_text.splitlines() if row and keep_line(row)]
+            if rows:
+                sections[current_label]["body"].append("\n".join(rows))
+
+    blocks: list[_DocumentBlock] = []
+    for label in order:
+        section = sections[label]
+        blocks.append(
+            _DocumentBlock(
+                kind="section",
+                ordinal=len(blocks) + 1,
+                heading=section["heading"],
+                body=_normalize_text("\n\n".join(section["body"])),
+                metadata={
+                    "citation_suffix": label,
+                    "section_label": label,
+                    "heading_occurrences": section["occurrences"],
+                },
+            )
+        )
+    return tuple(blocks)
 
 
 def _docx_lines(content: bytes) -> tuple[str, ...]:
@@ -2271,9 +2454,7 @@ def _extract_html_blocks(
             )
         parts = []
 
-    for node in root.find_all(_TEXT_TAGS):
-        if not isinstance(node, Tag) or _inside_text_tag(node):
-            continue
+    for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
@@ -2627,9 +2808,7 @@ def _extract_labeled_html_section_blocks(
         current_heading = None
         current_body = []
 
-    for node in root.find_all(_TEXT_TAGS):
-        if not isinstance(node, Tag) or _inside_text_tag(node):
-            continue
+    for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
@@ -2979,6 +3158,32 @@ def _document_title(soup: BeautifulSoup) -> str | None:
     return None
 
 
+def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[Tag, ...]:
+    """Return the block-level text nodes of ``root`` in document order.
+
+    By default these are the heading, paragraph, list-item, table and blockquote tags
+    (nested ones are read through their outermost ancestor). ``html_text_selector``
+    names the nodes explicitly for publishers that print provision text inside ``div``
+    or ``span`` containers; a selected node inside another selected node is skipped so
+    the text is read once.
+    """
+
+    selector = (extraction or {}).get("html_text_selector")
+    if not selector:
+        return tuple(
+            node
+            for node in root.find_all(_TEXT_TAGS)
+            if isinstance(node, Tag) and not _inside_text_tag(node)
+        )
+    selected = [node for node in root.select(str(selector)) if isinstance(node, Tag)]
+    selected_ids = {id(node) for node in selected}
+    return tuple(
+        node
+        for node in selected
+        if not any(id(parent) in selected_ids for parent in node.parents)
+    )
+
+
 def _inside_text_tag(node: Tag) -> bool:
     for parent in node.parents:
         if not isinstance(parent, Tag):
@@ -3023,7 +3228,12 @@ def _inventory_items(
                 source_path=source_key,
                 source_format=source_format,
                 sha256=source_sha,
-                metadata={"kind": block.kind, **metadata, **block.metadata},
+                metadata={
+                    "kind": block.kind,
+                    **metadata,
+                    **block.metadata,
+                    **_block_segment_metadata(source, block),
+                },
             )
         )
     return tuple(items)
@@ -3104,7 +3314,12 @@ def _provision_records(
                 level=level,
                 ordinal=block.ordinal,
                 kind=block.kind,
-                metadata={"kind": block.kind, **metadata, **block.metadata},
+                metadata={
+                    "kind": block.kind,
+                    **metadata,
+                    **block.metadata,
+                    **_block_segment_metadata(source, block),
+                },
             )
         )
     return tuple(records)
@@ -3142,9 +3357,37 @@ def _root_citation_path(source: OfficialDocumentSource) -> str:
 def _block_citation_path(source: OfficialDocumentSource, block: _DocumentBlock) -> str:
     citation_suffix = block.metadata.get("citation_suffix")
     if isinstance(citation_suffix, str) and citation_suffix:
-        safe_suffix = "/".join(safe_segment(part) for part in citation_suffix.split("/"))
-        return f"{_root_citation_path(source)}/{safe_suffix}"
+        return f"{_root_citation_path(source)}/{_block_citation_suffix(source, citation_suffix)}"
     return f"{_root_citation_path(source)}/{block.kind}-{block.ordinal}"
+
+
+def _block_citation_suffix(source: OfficialDocumentSource, citation_suffix: str) -> str:
+    """Return the grammar-safe hierarchy segments for a block's citation suffix.
+
+    Publisher section labels are carried verbatim in ``metadata.section_label``;
+    the path segment folds characters outside the citation-path grammar
+    (commas, parentheses, ``@``...) into hyphens, and
+    ``normalize_citation_segment_dashes: true`` additionally turns en-dashes
+    and em-dashes into hyphens for publishers that use them as ordinary
+    separators (Colorado ``39-22-303–1``).
+    """
+    normalize_dashes = bool(
+        (source.extraction or {}).get("normalize_citation_segment_dashes", False)
+    )
+    return "/".join(
+        citation_segment(safe_segment(part), normalize_dashes=normalize_dashes)
+        for part in citation_suffix.split("/")
+    )
+
+
+def _block_segment_metadata(source: OfficialDocumentSource, block: _DocumentBlock) -> dict[str, str]:
+    """Record the publisher identifier when the path segment had to be slugified."""
+    citation_suffix = block.metadata.get("citation_suffix")
+    if not isinstance(citation_suffix, str) or not citation_suffix:
+        return {}
+    if _block_citation_suffix(source, citation_suffix) == citation_suffix:
+        return {}
+    return {"publisher_section_id": citation_suffix.rsplit("/", 1)[-1]}
 
 
 def _validate_citation_path(

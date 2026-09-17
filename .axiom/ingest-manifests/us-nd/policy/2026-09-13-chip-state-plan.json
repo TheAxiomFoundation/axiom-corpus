@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "e0157560e11e6edf763c3c3b78ecba433171a9fbbddda34314ad518348853d83"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "c13fdb6591bd9429c324311a8eaa6bd3a7d588f4f9461ad8b2a6f5106db14360"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "af934aee39fd001a2fd067b22006adf7ced5552840ee0c4d43fb53b3bf0ff293"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "9c555c06715499f5f85fe4fb92c6a11727e2103067efd6a7522a8e81279b447e"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "b1c54e9c248abd940c9868a80f0c635594c48985c9a803ab28002a6238bdd134"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "42ddfad740ec2ff7dc42d9239aa84f7b32ad3180f39ded7918012989bcc2fe62"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-18-0012-approval-package.pdf",
+      "sha256": "604625ce796f96bf065f132835df0c227317ff8824034a51014218131a47a12c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-19-0013-factsheet.pdf",
+      "sha256": "46cc6fab19947c3411d06016d232f09f58019ed4e276466e0435d81b42f1ff50"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-20-0014-approval-package.pdf",
+      "sha256": "35100fa62fe1d7b1a665457d0c57e633cdbc80d3df4c5621f2f8dc2024cb350a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-24-0101-approval-package.pdf",
+      "sha256": "3cf001b6dc862622360390df22fb67e5f2c5fe2f2aedfc8f2e00e666ee9d66d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-chipspa-11-approval-package.pdf",
+      "sha256": "37a3e625ebd64b89a17e5bd2a4a18f90b43ba449456ff71c548cf77c79535af6"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-cspa-7-approval-package.pdf",
+      "sha256": "b8585b499dfb92038c000a5f2885e931213451bb09bf640b930ccfd4290389a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-cspa-9-approval-package.pdf",
+      "sha256": "e51ab7a673720cca82a2fabafabbee138e32f3c43bde39ce142e9eb5d49ac535"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/policy/2026-09-13-chip-state-plan/official-documents/us-nd-cms-chip-state-plan-spa-nd-cspa-9-final-approved-state-plan.pdf",
+      "sha256": "e51ab7a673720cca82a2fabafabbee138e32f3c43bde39ce142e9eb5d49ac535"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 324,
+    "missing_count": 0,
+    "provision_count": 324,
+    "source_count": 324
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:08:39.497276+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iA2kUCnkVRGdspQtkhPIml1fQYD2AGpDARYrEmF0oVCaIOcOg6SyzRhuxxBRQAoSAw0kSY9woh6KjuAxusL7Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}

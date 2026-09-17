@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.illinois_admin_code import extract_illinois_admin_code
@@ -150,3 +152,111 @@ def test_extract_illinois_admin_code_cli_local_sources(tmp_path, capsys):
     assert '"section_count": 1' in out
     assert '"appendix_count": 1' in out
     assert '"coverage_complete": true' in out
+
+
+def test_extract_illinois_admin_code_only_part_filters_listing_entries(tmp_path):
+    source_dir = tmp_path / "illinois-source"
+    _write_illinois_sources(source_dir)
+    listing = source_dir / "001/index.html"
+    listing.write_text(
+        listing.read_text(encoding="utf-8").replace(
+            "</pre>",
+            ' 4/14/2023 11:00 PM         2100 <A HREF="/JCAR/AdminCode/001/001002000A01000R.html">'
+            "001002000A01000R.html</A><br>\n</pre>",
+        ),
+        encoding="utf-8",
+    )
+    _write(
+        source_dir / "001/001002000A01000R.html",
+        """<html>
+<head>
+<meta name="sectionname" content="Section 200.100  Purpose">
+</head>
+<body><table><tr><td><div align="center" class="heading">TITLE 1: GENERAL PROVISIONS<br>CHAPTER I: SECRETARY OF STATE<br>PART 200<br>ADMINISTRATIVE CODE PUBLICATION<br>SECTION 200.100 PURPOSE</div><br>
+<hr>
+<div>
+<p class=MsoNormal><b>Section 200.100 Purpose</b></p>
+<p class=MsoNormal>This Part describes publication of the Illinois Administrative Code.</p>
+</div>
+</td></tr></table></body></html>
+""",
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    unfiltered = extract_illinois_admin_code(
+        store,
+        version="2026-09-14-all",
+        source_dir=source_dir,
+        only_title="1",
+        workers=1,
+    )
+    assert unfiltered.part_count == 2
+
+    report = extract_illinois_admin_code(
+        store,
+        version="2026-09-14",
+        source_dir=source_dir,
+        only_title="1",
+        only_part="100",
+        workers=1,
+    )
+
+    assert report.coverage.complete
+    assert report.version == "2026-09-14-title-001-part-00100"
+    assert report.part_count == 1
+    assert report.section_count == 1
+    assert report.appendix_count == 1
+    records = load_provisions(report.provisions_path)
+    paths = [record.citation_path for record in records]
+    assert "us-il/regulation/title-001/chapter-i/part-100/section-100-100" in paths
+    assert not any("/part-200" in path for path in paths)
+
+    both = extract_illinois_admin_code(
+        store,
+        version="2026-09-14-both",
+        source_dir=source_dir,
+        only_title="1",
+        only_part="100,200",
+        workers=1,
+    )
+    assert both.part_count == 2
+    assert both.version == "2026-09-14-both-title-001-part-00100-00200"
+
+    with pytest.raises(ValueError, match="no Illinois Administrative Code part selected"):
+        extract_illinois_admin_code(
+            store,
+            version="2026-09-14-none",
+            source_dir=source_dir,
+            only_title="1",
+            only_part="300",
+            workers=1,
+        )
+
+
+def test_extract_illinois_admin_code_cli_only_part(tmp_path, capsys):
+    source_dir = tmp_path / "illinois-source"
+    _write_illinois_sources(source_dir)
+    base = tmp_path / "corpus"
+
+    exit_code = main(
+        [
+            "extract-illinois-admin-code",
+            "--base",
+            str(base),
+            "--version",
+            "2026-09-14",
+            "--source-dir",
+            str(source_dir),
+            "--only-title",
+            "1",
+            "--only-part",
+            "100",
+            "--workers",
+            "1",
+        ]
+    )
+
+    assert exit_code == 0
+    out = capsys.readouterr().out
+    assert '"version": "2026-09-14-title-001-part-00100"' in out
+    assert '"part_count": 1' in out

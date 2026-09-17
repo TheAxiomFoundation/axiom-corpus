@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "f7435338d2c9bc8fa31957659cbd5a6fe2898898143fab4e34638a41a98b3b95"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "15ab326e83289b2f3565572a98dd292f6b85607e5f5d0713bddd955980268bcc"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "674f0b5098a651edd2e486c83bd60bf1b5b97c93f4b34e167091ff5fa844c9c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-nc-ncdor-tax-rate-schedules-ty2026.html",
+      "sha256": "7603ce639408c6cc779227eaf26602b70a962982d2ff551512424f8bb0f7d3a3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-nc-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:10:53.651390+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uZ4Rn5Qzfy3VZKdtm070/v/Wbxjq5V/4vq8/jxk2b9Qh5+HWNl9ZSm6i1JtVUph56bUqWT4PEGHJc/loKvq+CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ga-tanf-state-plan-fy2026
+  jurisdiction: us-ga
+  document_class: policy
+  title: Georgia TANF State Plan Renewal FY2026
+  source_url: https://dfcs.georgia.gov/document/document/georgias-tanf-state-plan-renewal-fy2026pdf/download
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ga/policy/acf/tanf-plan/fy2026
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services, Division of Family and Children Services
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Georgia's TANF State Plan Renewal FY2026, effective January 2026 (the earlier 'draft' renewal file is also
+      posted, not taken)
+    publisher_index_url: https://dfcs.georgia.gov/services/temporary-assistance-needy-families
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ga/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://dfcs.georgia.gov/services/temporary-assistance-needy-families
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

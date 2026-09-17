@@ -1,0 +1,677 @@
+version: 2026-09-11-medicare-cms-iom-100-02
+documents:
+- source_id: us-cms-iom-100-02-chapter-1
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 1 - Inpatient Hospital Services Covered Under Part A
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2021-08-06'
+  citation_path: us/manual/cms/iom/100-02/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Benefit$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 1
+    chapter_title: Inpatient Hospital Services Covered Under Part A
+    latest_transmittal: Rev. 10892, issued 2021-08-06
+    expression_date_source: TOC header transmittal line '(Rev. 10892, 08-06-21)'
+    pdf_page_count: 56
+    body_start_page: 4
+    toc_section_count: 58
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: true
+    heading_label_form: one to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Wed, 05 Jan 2022 17:38:38 GMT
+- source_id: us-cms-iom-100-02-chapter-2
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 2 - Inpatient Psychiatric Hospital Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c02.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2018-12-14'
+  citation_path: us/manual/cms/iom/100-02/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^90\ \-\ Benefits\ Exhaust$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 2
+    chapter_title: Inpatient Psychiatric Hospital Services
+    latest_transmittal: Rev. 253, issued 2018-12-14
+    expression_date_source: TOC header transmittal line '(Rev. 253, 12-14-18)'
+    pdf_page_count: 18
+    body_start_page: 3
+    toc_section_count: 29
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Fri, 07 Jan 2022 17:24:58 GMT
+- source_id: us-cms-iom-100-02-chapter-3
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 3 - Duration of Covered Inpatient Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c03pdf.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2019-10-04'
+  citation_path: us/manual/cms/iom/100-02/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^30\ \-\ Inpatient\ Days\ Counting\ Toward\ Benefit\ Maximums$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 3
+    chapter_title: Duration of Covered Inpatient Services
+    latest_transmittal: Rev. 261, issued 2019-10-04
+    expression_date_source: 'TOC header transmittal line ''(Rev. 261; Issued: 10-04-19)'''
+    pdf_page_count: 7
+    body_start_page: 2
+    toc_section_count: 7
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+- source_id: us-cms-iom-100-02-chapter-4
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 4 - Inpatient Psychiatric Benefit Days Reduction and Lifetime
+    Limitation
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2003-10-01'
+  citation_path: us/manual/cms/iom/100-02/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^50\ \-\ Inpatient\ Psychiatric\ Hospital\ Services\ \-\ Lifetime\ Limitation$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 4
+    chapter_title: Inpatient Psychiatric Benefit Days Reduction and Lifetime Limitation
+    latest_transmittal: Rev. 1, issued 2003-10-01
+    expression_date_source: TOC header transmittal line '(Rev. 1, 10-01-03)'
+    pdf_page_count: 7
+    body_start_page: 2
+    toc_section_count: 7
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Fri, 15 Nov 2019 01:11:30 GMT
+- source_id: us-cms-iom-100-02-chapter-5
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 5 - Lifetime Reserve Days
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2019-03-01'
+  citation_path: us/manual/cms/iom/100-02/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^40\.2\.1\ \-\ Revocation\ Format$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 5
+    chapter_title: Lifetime Reserve Days
+    latest_transmittal: Rev. 257, issued 2019-03-01
+    expression_date_source: TOC header transmittal line '(Rev. 257, 03-01-19)'
+    pdf_page_count: 14
+    body_start_page: 2
+    toc_section_count: 22
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Fri, 15 Nov 2019 01:11:31 GMT
+- source_id: us-cms-iom-100-02-chapter-6
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 6 - Hospital Services Covered Under Part B
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c06.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2023-12-21'
+  citation_path: us/manual/cms/iom/100-02/chapter-6
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^90\ \-\ Services\ of\ Interns\ And\ Residents$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 6
+    chapter_title: Hospital Services Covered Under Part B
+    latest_transmittal: Rev. 12425, issued 2023-12-21
+    expression_date_source: TOC header transmittal line '(Rev. 12425; Issued; 12-21-23)'
+    pdf_page_count: 47
+    body_start_page: 3
+    toc_section_count: 34
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Tue, 02 Jan 2024 14:42:54 GMT
+- source_id: us-cms-iom-100-02-chapter-7
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 7 - Home Health Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c07.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2023-12-21'
+  citation_path: us/manual/cms/iom/100-02/chapter-7
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    text_replacements:
+      30.2. 8 - Facsimile Signatures: 30.2.8 - Facsimile Signatures
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^110\ \-\ Use\ of\ Telehealth\ in\ Delivery\ of\ Home\ Health\ Services$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 7
+    chapter_title: Home Health Services
+    latest_transmittal: Rev. 12425, issued 2023-12-21
+    expression_date_source: 'TOC header transmittal line ''(Rev. 12425 Issued: 12-21-23)'''
+    pdf_page_count: 108
+    body_start_page: 6
+    toc_section_count: 108
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_override: the body prints section 30.2.8 as '30.2. 8 - Facsimile Signatures' (space inside the label)
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Tue, 02 Jan 2024 14:44:39 GMT
+- source_id: us-cms-iom-100-02-chapter-8
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 8 - Coverage of Extended Care (SNF) Services Under Hospital
+    Insurance
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c08pdf.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2023-10-05'
+  citation_path: us/manual/cms/iom/100-02/chapter-8
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^70\.4\ \-\ Services\ Furnished\ Under\ Arrangements\ With\ Providers$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 8
+    chapter_title: Coverage of Extended Care (SNF) Services Under Hospital Insurance
+    latest_transmittal: Rev. 12283, issued 2023-10-05
+    expression_date_source: 'TOC header transmittal line ''(Rev. 12283; Issued: 10-05-23)'''
+    pdf_page_count: 58
+    body_start_page: 4
+    toc_section_count: 66
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Tue, 16 Jan 2024 14:16:15 GMT
+- source_id: us-cms-iom-100-02-chapter-9
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 9 - Coverage of Hospice Services Under Hospital Insurance
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c09.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-03-05'
+  citation_path: us/manual/cms/iom/100-02/chapter-9
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^90\.3\ \-\ Administrative\ Appeals$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 9
+    chapter_title: Coverage of Hospice Services Under Hospital Insurance
+    latest_transmittal: Rev. 13664, issued 2026-03-05
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13664; Issued: 03-05-26)'''
+    pdf_page_count: 62
+    body_start_page: 4
+    toc_section_count: 58
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Thu, 09 Apr 2026 11:43:33 GMT
+- source_id: us-cms-iom-100-02-chapter-10
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 10 - Ambulance Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c10.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-11-26'
+  citation_path: us/manual/cms/iom/100-02/chapter-10
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^30\.1\.2\ \-\ Air\ Ambulance\ Services$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 10
+    chapter_title: Ambulance Services
+    latest_transmittal: Rev. 13459, issued 2025-11-26
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13459, Issued: 11-26-25)'''
+    pdf_page_count: 34
+    body_start_page: 3
+    toc_section_count: 44
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Tue, 21 Jul 2026 18:38:06 GMT
+- source_id: us-cms-iom-100-02-chapter-11
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 11 - End Stage Renal Disease (ESRD)
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c11.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-01-30'
+  citation_path: us/manual/cms/iom/100-02/chapter-11
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    text_replacements:
+      100.6.1. Dialysis Modality: 100.6.1 - Dialysis Modality
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^140\.18\ \-\ Hospitals\ that\ Excise\ but\ Do\ Not\ Transplant\ Kidneys$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 11
+    chapter_title: End Stage Renal Disease (ESRD)
+    latest_transmittal: Rev. 13599, issued 2026-01-30
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13599; Issued: 01-30-26)'''
+    pdf_page_count: 88
+    body_start_page: 4
+    toc_section_count: 59
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_override: the body prints section 100.6.1 as '100.6.1. Dialysis Modality' (trailing dot on the label)
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Thu, 09 Jul 2026 14:34:55 GMT
+- source_id: us-cms-iom-100-02-chapter-12
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 12 - Comprehensive Outpatient Rehabilitation Facility (CORF)
+    Coverage
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c12.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2019-01-25'
+  citation_path: us/manual/cms/iom/100-02/chapter-12
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^40\.11\ \-\ Vaccines$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 12
+    chapter_title: Comprehensive Outpatient Rehabilitation Facility (CORF) Coverage
+    latest_transmittal: Rev. 255, issued 2019-01-25
+    expression_date_source: TOC header transmittal line '(Rev. 255, 01-25-19)'
+    pdf_page_count: 18
+    body_start_page: 2
+    toc_section_count: 18
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Tue, 22 Oct 2019 18:23:05 GMT
+- source_id: us-cms-iom-100-02-chapter-13
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 13 - Rural Health Clinic (RHC) and Federally Qualified Health
+    Center (FQHC) Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-02-20'
+  citation_path: us/manual/cms/iom/100-02/chapter-13
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^USPSTF\ –\ U\.S\.\ Preventive\ Services\ Task\ Force$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 13
+    chapter_title: Rural Health Clinic (RHC) and Federally Qualified Health Center (FQHC) Services
+    latest_transmittal: Rev. 13600, issued 2026-02-20
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13600; Issued: 02-20-26)'''
+    pdf_page_count: 72
+    body_start_page: 7
+    toc_section_count: 88
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Wed, 25 Mar 2026 15:57:55 GMT
+- source_id: us-cms-iom-100-02-chapter-14
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 14 - Medical Devices
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c14.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2014-11-06'
+  citation_path: us/manual/cms/iom/100-02/chapter-14
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Under\ Medicare$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 14
+    chapter_title: Medical Devices
+    latest_transmittal: Rev. 198, issued 2014-11-06
+    expression_date_source: TOC header transmittal line '(Rev. 198, 11- 06-14)'
+    pdf_page_count: 9
+    body_start_page: 2
+    toc_section_count: 10
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+- source_id: us-cms-iom-100-02-chapter-15
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 15 - Covered Medical and Other Health Services
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c15.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-07-30'
+  citation_path: us/manual/cms/iom/100-02/chapter-15
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*))?$
+    label_only_heading_pattern: ^[-–—]\s*[A-Z(].*$
+    label_only_requires_heading: true
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^340\-\ Mental\ Health\ Counselor\ \(MHC\)\ Services$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 15
+    chapter_title: Covered Medical and Other Health Services
+    latest_transmittal: Rev. 13889, issued 2026-07-30
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13889; Issued: 07-30-26)'''
+    pdf_page_count: 311
+    body_start_page: 7
+    toc_section_count: 223
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_override: section 320.7.1 prints its bold label alone with '- Determining Qualifying Home Infusion Drugs' on
+      the next line; a bare label is a heading only when the next line starts with a dash
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Mon, 31 Aug 2026 12:03:31 GMT
+- source_id: us-cms-iom-100-02-chapter-16
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 16 - General Exclusions from Coverage
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c16.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-01-26'
+  citation_path: us/manual/cms/iom/100-02/chapter-16
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Under\ Medicare$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 16
+    chapter_title: General Exclusions from Coverage
+    latest_transmittal: Rev. 13593, issued 2026-01-26
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13593; Issued: 01-26-26)'''
+    pdf_page_count: 39
+    body_start_page: 3
+    toc_section_count: 38
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Mon, 27 Apr 2026 16:07:49 GMT
+- source_id: us-cms-iom-100-02-chapter-17
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-02 Medicare Benefit Policy Manual, Chapter 17 - Opioid Treatment Programs (OTPs)
+  source_url: https://www.cms.gov/files/document/chapter-17-opioid-treatment-programs-otps.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-03-03'
+  citation_path: us/manual/cms/iom/100-02/chapter-17
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^50\.2\.\ \-\ Annual\ Update$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-02
+    publication_title: Medicare Benefit Policy Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    chapter: 17
+    chapter_title: Opioid Treatment Programs (OTPs)
+    latest_transmittal: Rev. 13572, issued 2026-03-03
+    expression_date_source: 'TOC header transmittal line ''(Rev. 13572; Issued: 03-03-26)'''
+    pdf_page_count: 15
+    body_start_page: 2
+    toc_section_count: 8
+    body_start_rule: first bold heading followed by its transmittal line
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-02
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms012673
+    http_last_modified: Tue, 02 Jun 2026 12:17:16 GMT

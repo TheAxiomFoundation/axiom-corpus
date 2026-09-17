@@ -2033,3 +2033,147 @@ def test_build_ecfr_inventory_skips_missing_titles_in_full_mode(monkeypatch):
 
     assert inventory.title_count == 1
     assert len(inventory.items) == 3
+
+
+def test_fetch_ecfr_api_bytes_offers_and_decodes_gzip(monkeypatch):
+    import gzip
+    import io
+
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    seen: dict[str, object] = {}
+
+    class FakeResponse(io.BytesIO):
+        headers = {"Content-Encoding": "gzip"}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            self.close()
+            return False
+
+    def fake_urlopen(req, timeout):
+        seen["accept_encoding"] = req.get_header("Accept-encoding")
+        seen["user_agent"] = req.get_header("User-agent")
+        seen["timeout"] = timeout
+        return FakeResponse(gzip.compress(b"<DIV5 N=\"98\" TYPE=\"PART\"/>"))
+
+    monkeypatch.setattr(ecfr.urllib.request, "urlopen", fake_urlopen)
+
+    xml = ecfr.fetch_ecfr_part_xml(45, "98", "2026-09-09")
+
+    assert xml == '<DIV5 N="98" TYPE="PART"/>'
+    assert seen["accept_encoding"] == "gzip, deflate"
+    assert seen["user_agent"] == ecfr.USER_AGENT
+    assert seen["timeout"] == 180
+
+
+def test_decode_content_encoding_rejects_unknown_encoding():
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    assert ecfr._decode_content_encoding(b"plain", "") == b"plain"
+    assert ecfr._decode_content_encoding(b"plain", "identity") == b"plain"
+    with pytest.raises(ValueError, match="unsupported eCFR content encoding"):
+        ecfr._decode_content_encoding(b"x", "br")
+
+
+# Title 26 numbers many sections after the Code subsection they implement ("1.401(k)-1",
+# "31.3121(a)(1)-1", "31.3121(a)-1T"). Parentheses are not legal in a citation-path segment,
+# so the path folds each group into hyphens while labels and metadata keep the official form.
+PARENTHESISED_STRUCTURE = {
+    "identifier": "26",
+    "label": "Title 26-Internal Revenue",
+    "type": "title",
+    "children": [
+        {
+            "identifier": "I",
+            "label": "Chapter I-Internal Revenue Service",
+            "type": "chapter",
+            "children": [
+                {
+                    "identifier": "A",
+                    "label": "Subchapter A-Income Tax",
+                    "type": "subchapter",
+                    "children": [
+                        {
+                            "identifier": "1",
+                            "label": "Part 1-Income Taxes",
+                            "type": "part",
+                            "children": [
+                                {
+                                    "identifier": "1.401-1",
+                                    "label": "§ 1.401-1 Qualified pension, profit-sharing, and stock bonus plans.",
+                                    "label_description": "Qualified pension, profit-sharing, and stock bonus plans.",
+                                    "type": "section",
+                                },
+                                {
+                                    "identifier": "1.401(k)-1",
+                                    "label": "§ 1.401(k)-1 Certain cash or deferred arrangements.",
+                                    "label_description": "Certain cash or deferred arrangements.",
+                                    "type": "section",
+                                },
+                                {
+                                    "identifier": "1.3121(a)(1)-1T",
+                                    "label": "§ 1.3121(a)(1)-1T Nested groups (temporary).",
+                                    "label_description": "Nested groups (temporary).",
+                                    "type": "section",
+                                },
+                            ],
+                        }
+                    ],
+                }
+            ],
+        }
+    ],
+}
+
+
+def test_build_ecfr_inventory_folds_parenthesised_section_identifiers_into_paths():
+    inventory = build_ecfr_inventory_from_structures((PARENTHESISED_STRUCTURE,), only_part="1")
+
+    assert [item.citation_path for item in inventory.items] == [
+        "us/regulation/26/1",
+        "us/regulation/26/1/401-1",
+        "us/regulation/26/1/401-k-1",
+        "us/regulation/26/1/3121-a-1-1T",
+    ]
+    # The official section identifier survives in metadata and the reader URL.
+    parenthesised = inventory.items[2]
+    assert parenthesised.metadata["section"] == "401(k)-1"
+    assert parenthesised.source_url.endswith("/part-1#p-1.401(k)-1")
+
+
+def test_build_ecfr_inventory_accepts_parenthesised_section_selector():
+    inventory = build_ecfr_inventory_from_structures(
+        (PARENTHESISED_STRUCTURE,),
+        only_part="1",
+        only_sections=("1.401(k)-1",),
+    )
+
+    assert [item.citation_path for item in inventory.items] == [
+        "us/regulation/26/1",
+        "us/regulation/26/1/401-k-1",
+    ]
+
+
+def test_section_citation_from_element_keeps_parenthesised_identifier_distinct():
+    import xml.etree.ElementTree as ET
+
+    from axiom_corpus.corpus.ecfr import _section_citation_from_element
+
+    plain = ET.fromstring('<DIV8 N="§ 1.401-1" TYPE="SECTION"/>')
+    grouped = ET.fromstring('<DIV8 N="§ 1.401(k)-1" TYPE="SECTION"/>')
+    nested = ET.fromstring('<DIV8 N="§ 31.3121(a)(1)-1" TYPE="SECTION"/>')
+
+    assert _section_citation_from_element(26, plain) == ("us/regulation/26/1/401-1", "1", "401-1")
+    assert _section_citation_from_element(26, grouped) == (
+        "us/regulation/26/1/401-k-1",
+        "1",
+        "401(k)-1",
+    )
+    assert _section_citation_from_element(26, nested) == (
+        "us/regulation/26/31/3121-a-1-1",
+        "31",
+        "3121(a)(1)-1",
+    )

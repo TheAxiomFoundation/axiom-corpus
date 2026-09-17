@@ -1,0 +1,245 @@
+version: '2026-09-14'
+documents:
+- source_id: ia-legis-iac-701-300
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/300
+  title: 'Iowa Administrative Code 701—Chapter 300: Administration'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-301
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/301
+  title: 'Iowa Administrative Code 701—Chapter 301: Filing Return and Payment of Tax'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.301.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-302
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/302
+  title: 'Iowa Administrative Code 701—Chapter 302: Determination of Net Income'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.302.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-303
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/303
+  title: 'Iowa Administrative Code 701—Chapter 303: Determination of Taxable Income'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.303.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-304
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/304
+  title: 'Iowa Administrative Code 701—Chapter 304: Adjustments to Computed Tax and Tax Credits'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.304.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-305
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/305
+  title: 'Iowa Administrative Code 701—Chapter 305: Assessments and Refunds'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.305.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-306
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/306
+  title: 'Iowa Administrative Code 701—Chapter 306: Penalty and Interest'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.306.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-307
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/307
+  title: 'Iowa Administrative Code 701—Chapter 307: Withholding'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.307.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701
+- source_id: ia-legis-iac-701-308
+  jurisdiction: us-ia
+  document_class: regulation
+  citation_path: us-ia/regulation/iac/701/308
+  title: 'Iowa Administrative Code 701—Chapter 308: Estimated Income Tax for Individuals'
+  source_url: https://www.legis.iowa.gov/docs/iac/chapter/701.308.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^701[—-](?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - ^IAC \d+/\d+/\d+\s+Revenue\[701\]\s+Ch \d+, p\.\d+$
+    - ^Ch \d+, p\.\d+\s+Revenue\[701\]\s+IAC \d+/\d+/\d+$
+    - ^Revenue\[701\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$
+    - ^Revenue\[701\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$
+    - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    official_publisher: Iowa Legislature, Legislative Services Agency
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ia/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.legis.iowa.gov/law/administrativeRules/chapters?agency=701

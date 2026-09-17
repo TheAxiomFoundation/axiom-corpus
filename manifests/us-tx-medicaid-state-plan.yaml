@@ -1,0 +1,1115 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 7
+    index_records_on_page: 100
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 7
+    index_records_on_page: 100
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 7
+    index_records_on_page: 100
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 7
+    index_records_on_page: 100
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 7
+    index_records_on_page: 100
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 7
+    index_records_on_page: 100
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-index-p07
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 7 of 7'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=6
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p07
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 7
+    index_pages: 7
+    index_records_on_page: 46
+    index_records_total: 646
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-24-0001-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-24-0001: Approval Document (approved May 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TX-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-24-0001
+    cms_node_id: '164806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=164806
+    approval_date: '2024-05-15'
+    effective_date: '2024-01-01'
+    summary: This amendment is to provide children under age 19 with 12 months of continuous eligibility in Medicaid, in accordance
+      with Section 1902(e)(12) of the Social Security Act, as amended by Section 5112 of the Consolidated Appropriations Act,
+      2023. Children under age 19 will remain continuously eligible for the full 12-month certification period, regardless
+      of changes in circumstances with certain exceptions.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-23-0027-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-23-0027: Approval Document (approved February 13, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TX-23-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-23-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-23-0027
+    cms_node_id: '159436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159436
+    approval_date: '2024-02-13'
+    effective_date: '2024-01-01'
+    summary: This amendment is to update the state's minimum personal needs allowance for individuals residing in a nursing
+      facility (NF), assisted living facility, intermediate care facilities for individuals with intellectual disabilities
+      (ICFs/IID), or other similar long-term care facility from $60 to $75 for individuals and from $120 to $150 for couples.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-23-0015-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-23-0015: Approval Document (approved January 25, 2024, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TX-23-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-23-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-23-0015
+    cms_node_id: '158841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158841
+    approval_date: '2024-01-25'
+    effective_date: '2023-01-01'
+    summary: This amendment is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-23-0028-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-23-0028: Approval Document (approved January 17, 2024, effective March 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TX-23-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-23-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-23-0028
+    cms_node_id: '158156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158156
+    approval_date: '2024-01-17'
+    effective_date: '2024-03-01'
+    summary: This SPA provides Texas with approval to provide 12 months of continuous postpartum coverage to individuals enrolled
+      in its Medicaid program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-21-0048-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-21-0048: Approval Document (approved December 14, 2021, effective September 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/TX-21-0048
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-09-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-21-0048/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-21-0048
+    cms_node_id: '128801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128801
+    approval_date: '2021-12-14'
+    effective_date: '2021-09-01'
+    summary: The proposed amendment updates the Home Health fee schedules.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-21-0021-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-21-0021: Approval Document (approved June 2, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/TX-21-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-21-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-21-0021
+    cms_node_id: '108986'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108986
+    approval_date: '2021-06-02'
+    effective_date: '2021-01-01'
+    summary: This state plan amendment updates the fee schedule for clinical diagnostic laboratory services
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-20-0020-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-20-0020: Approval Document (approved November 9, 2020, effective September 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/TX-20-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-09-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-20-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-20-0020
+    cms_node_id: '103696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103696
+    approval_date: '2020-11-09'
+    effective_date: '2020-09-01'
+    summary: This state plan amendment updates the durable medical equipment, prosthetics, orthotics, supplies (DMEPOS) and
+      vision care services fee schedules.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-20-0003-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-20-0003: Approval Document (approved August 31, 2020, effective September 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/TX-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-09-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-20-0003
+    cms_node_id: '101826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101826
+    approval_date: '2020-08-31'
+    effective_date: '2020-09-01'
+    summary: renew Texas’ §1915(i) HCBS State Plan benefit
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-20-0006-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-20-0006: Approval Document (approved June 17, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-20-0005_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-20-0006
+    cms_node_id: '99816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99816
+    approval_date: '2020-06-17'
+    effective_date: '2020-01-01'
+    summary: Updates the clinical laboratory services page of the State Plan as a result of the 2020 calendar year fee review
+      of clinical diagnostic laboratory services
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-19-0029-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-19-0029: Approval Document (approved November 7, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-19-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-19-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-19-0029
+    cms_node_id: '4371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4371
+    approval_date: '2019-11-07'
+    effective_date: '2019-09-01'
+    summary: Updates the home health and personal care services fee schedules.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-19-0027-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-19-0027: Approval Document (approved October 18, 2019, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-19-027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-19-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-19-0027
+    cms_node_id: '4611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4611
+    approval_date: '2019-10-18'
+    effective_date: '2019-08-01'
+    summary: Updates the durable medical equipment, prosthetics, orthotics, and supplies fee schedules.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-19-0007-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-19-0007: Approval Document (approved May 7, 2019, effective March 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-19-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-03-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-19-0007
+    cms_node_id: '6336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6336
+    approval_date: '2019-05-07'
+    effective_date: '2019-03-01'
+    summary: Updates the physicians' and other practitioners' state plan pages by identifying the new conversion factor (CF)
+      for anesthesia services provided by certain children's hospitals.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-18-0001-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-18-0001: Approval Document (approved May 15, 2018, effective February 15, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-02-15'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-18-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-18-0001
+    cms_node_id: '10366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10366
+    approval_date: '2018-05-15'
+    effective_date: '2018-02-15'
+    summary: This SPA updates the section of the State Plan that addresses the State Medicaid Supplemental Drug Rebate Agreements.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-16-0001-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-16-0001: Approval Document (approved December 18, 2017, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-16-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-16-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-16-0001
+    cms_node_id: '12101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=12101
+    approval_date: '2017-12-18'
+    effective_date: '2016-07-01'
+    summary: This amendment expands the needs based-eligibility criteria for the Home and Community-Based Services - Adult
+      Mental Health (HCBS-AMH) 1915(i) programs to include adults with a diagnosis of a serious mental illness (SMI) who have
+      a history of psychiatric crisis and repeated discharges from correctional facilities, as well as adults with a diagnosis
+      of SMI who have a pattern of emergency department utilization.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-17-0024-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-17-0024: Approval Document (approved December 13, 2017, effective August 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-17-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-08-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-17-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-17-0024
+    cms_node_id: '12076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=12076
+    approval_date: '2017-12-13'
+    effective_date: '2017-08-01'
+    summary: MAGI-Based Methodologies.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-15-033-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-15-033: Approval Document (approved January 20, 2016, effective October 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-15-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-10-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-15-033/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-15-033
+    cms_node_id: '20896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20896
+    approval_date: '2016-01-20'
+    effective_date: '2015-10-01'
+    summary: Updates Physicians and Other Practitioners' Fee Schedule and Changes the Reimbursement Methodology for Physician
+      Administered Drugs and Biological Products When a New National Procedure Code is Assigned.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-15-026-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-15-026: Approval Document (approved January 12, 2016, effective September 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-15-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-09-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-15-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-15-026
+    cms_node_id: '20921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20921
+    approval_date: '2016-01-12'
+    effective_date: '2015-09-01'
+    summary: Implements Changes to the Outpatient Hospital Services Reimbursement Methodology.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-15-0004-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-15-0004: Approval Document (approved June 5, 2015, effective April 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-15-04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-04-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-15-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-15-0004
+    cms_node_id: '26921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26921
+    approval_date: '2015-06-05'
+    effective_date: '2015-04-01'
+    summary: Describes the Eligibility Requirements for Medicaid as it relates to Marriage.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-14-0003-mm3-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-14-0003-MM3: Approval Document (approved September 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-14-0003-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-14-0003-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-14-0003-MM3
+    cms_node_id: '32646'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32646
+    approval_date: '2014-09-24'
+    effective_date: '2014-01-01'
+    summary: Establishes that the Texas Health and Human Services Commission (HHSC) will determine financial eligibility for
+      most Medicaid programs using the new federal income rules.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-14-02-mm1-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-14-02-MM1: Approval Document (approved August 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-14-02-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-14-02-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-14-02-MM1
+    cms_node_id: '32901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32901
+    approval_date: '2014-08-25'
+    effective_date: '2014-01-01'
+    summary: This state plan amendment establishes that the State is using federally required modified adjusted gross income
+      (MAGI) methodology for determining Medicaid eligibility criteria for children, parents and caretakers, pregnant women,
+      and individuals under age 21 who were formerly under Texas conservatorship.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-45-mm2-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-45-MM2: Approval Document (approved July 15, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-45-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-45-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-13-45-MM2
+    cms_node_id: '34871'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34871
+    approval_date: '2014-07-15'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-51-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-51: Approval Document (approved May 9, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-51.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-51/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-13-51
+    cms_node_id: '36976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36976
+    approval_date: '2014-05-09'
+    effective_date: '2013-12-31'
+    summary: Disregards all income when considering eligibility for children under age 21 for whom the Texas Department of
+      Family and Protective Services assume financial responsibility in whole or in part or who are under the age of 18 and
+      are in the managing conservatorship of TDFPS.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-32-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-32: Approval Document (approved April 2, 2014, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-32.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-32/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-13-32
+    cms_node_id: '37791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37791
+    approval_date: '2014-04-02'
+    effective_date: '2013-07-01'
+    summary: This SPA updates the fee schedule for dental services under the Early and Periodic Screening, Diagnosis and Treatment
+      program.
+    topics:
+    - Benefits
+    - Dental
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-28-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-28: Approval Document (approved December 3, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-28.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-28/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-13-28
+    cms_node_id: '38946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38946
+    approval_date: '2013-12-03'
+    effective_date: '2013-07-01'
+    summary: Updates the chemical dependency treatment facility services fee schedule.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-022-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-022: Approval Document (approved August 28, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-022-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-13-022
+    cms_node_id: '45396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45396
+    approval_date: '2013-08-28'
+    effective_date: '2013-04-01'
+    summary: Updates the Medicaid payments for dental services provided under the Early and Periodic Screening, Diagnosis
+      and Treatment program for fee for service dental claims.
+    topics: &id002
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-022-attachment
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-022: Attachment (approved August 28, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-022-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-022/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: TX-13-022
+    cms_node_id: '45396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45396
+    approval_date: '2013-08-28'
+    effective_date: '2013-04-01'
+    summary: Updates the Medicaid payments for dental services provided under the Early and Periodic Screening, Diagnosis
+      and Treatment program for fee for service dental claims.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-13-022-form-cms-179
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-13-022: Form CMS-179 (approved August 28, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-13-022-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-13-022/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: TX-13-022
+    cms_node_id: '45396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45396
+    approval_date: '2013-08-28'
+    effective_date: '2013-04-01'
+    summary: Updates the Medicaid payments for dental services provided under the Early and Periodic Screening, Diagnosis
+      and Treatment program for fee for service dental claims.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-tx-cms-medicaid-state-plan-spa-tx-10-001-approval-document
+  jurisdiction: us-tx
+  document_class: policy
+  title: 'Texas Medicaid SPA TX-10-001: Approval Document (approved April 27, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/TX/TX-10-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-tx/policy/cms/medicaid-state-plan/spa/tx-10-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Texas
+    source_discovery_group: us-tx/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: TX-10-001
+    cms_node_id: '23791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23791
+    approval_date: '2010-04-27'
+    effective_date: '2010-01-01'
+    summary: Clarifies the eligibility criteria for extended Medicaid benefits.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document

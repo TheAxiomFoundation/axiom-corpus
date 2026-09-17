@@ -1,0 +1,27 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-mi-tanf-state-plan-2026
+  jurisdiction: us-mi
+  document_class: policy
+  title: Michigan TANF State Plan, effective January 1, 2026
+  source_url: https://www.michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Inside-MDHHS/Reports-and-Statistics---Human-Services/State-Plans-and-Federal-Regulations/TANF_State_Plan_Effective_01-01-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-mi/policy/acf/tanf-plan/2026
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Health and Human Services (Family Independence Program)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: TANF State Plan Effective January 1, 2026 (the 2023 plan and its 2024/2025 revisions are also listed)
+    publisher_index_url: https://www.michigan.gov/mdhhs/inside-mdhhs/state-plans-and-amendments
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-mi/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.michigan.gov/mdhhs/inside-mdhhs/state-plans-and-amendments
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

@@ -1,0 +1,94 @@
+{
+  "documents": [
+    {
+      "source_id": "de-sgbvii2-absatz-1a",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/sgb-7/2/absatz-1a",
+      "title": "SGB VII § 2 Absatz 1a — Freiwilligendienst aller Generationen",
+      "source_url": "https://www.gesetze-im-internet.de/sgb_7/__2.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-10",
+      "expression_date": "2026-09-10",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": ".jnhtml",
+        "segmentation": "anchor_range",
+        "html_start_selector": ".jurAbsatz:-soup-contains(\"(1a)\")",
+        "html_stop_selector": ".jurAbsatz:-soup-contains(\"(2)\")",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz und für Verbraucherschutz / Bundesamt für Justiz, Gesetze im Internet",
+        "snapshot_sha256": "4ca1251cfefc85b3a7dc71ee6646d394fb60519d215b19f7e2138f4e1c904ea9",
+        "full_section_citation_path": "de/statute/sgb-7/2",
+        "paragraph": "1a",
+        "source_note": "Complete paragraph1a from official GII HTML, isolated by native anchored paragraph selectors. Includes service definition, provider requirements and both recordkeeping sentences. Full section remains independently captured. Capture date is not commencement; historical applicability is separate. No manually edited legal body."
+      }
+    },
+    {
+      "source_id": "de-bgb126-absatz-1",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/bgb/126/absatz-1",
+      "title": "BGB § 126 Absatz 1 — Schriftform",
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__126.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-10",
+      "expression_date": "2026-09-10",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": ".jnhtml",
+        "segmentation": "anchor_range",
+        "html_start_selector": ".jurAbsatz:-soup-contains(\"(1)\")",
+        "html_stop_selector": ".jurAbsatz:-soup-contains(\"(2)\")",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz und für Verbraucherschutz / Bundesamt für Justiz, Gesetze im Internet",
+        "snapshot_sha256": "bd09c0b1fd1b847706c8f0a69971cee5ff80c6a8b01d71f408018a0ca1b3bf4f",
+        "full_section_citation_path": "de/statute/bgb/126",
+        "paragraph": "1",
+        "source_note": "Complete paragraph from official GII HTML using native anchored paragraph selectors. The full section remains available; other paragraphs and writing substitutes are not excluded by this narrower capture. Paragraphs1–2 are expressly applied in the captured BFH III R68/11 decision for the statutory voluntary-service written agreement. Capture date is not commencement. No manually edited legal body."
+      }
+    },
+    {
+      "source_id": "de-bgb126-absatz-2",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/bgb/126/absatz-2",
+      "title": "BGB § 126 Absatz 2 — Schriftform",
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__126.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-10",
+      "expression_date": "2026-09-10",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": ".jnhtml",
+        "segmentation": "anchor_range",
+        "html_start_selector": ".jurAbsatz:-soup-contains(\"(2)\")",
+        "html_stop_selector": ".jurAbsatz:-soup-contains(\"(3)\")",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz und für Verbraucherschutz / Bundesamt für Justiz, Gesetze im Internet",
+        "snapshot_sha256": "bd09c0b1fd1b847706c8f0a69971cee5ff80c6a8b01d71f408018a0ca1b3bf4f",
+        "full_section_citation_path": "de/statute/bgb/126",
+        "paragraph": "2",
+        "source_note": "Complete paragraph from official GII HTML using native anchored paragraph selectors. The full section remains available; other paragraphs and writing substitutes are not excluded by this narrower capture. Paragraphs1–2 are expressly applied in the captured BFH III R68/11 decision for the statutory voluntary-service written agreement. Capture date is not commencement. No manually edited legal body."
+      }
+    }
+  ]
+}

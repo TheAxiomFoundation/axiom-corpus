@@ -1,0 +1,705 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30.json",
+      "sha256": "59ddec440df9ed8b1eb5302893b19add1f72a732ffc5aef8b64570369060191f"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30.json",
+      "sha256": "21abce249ce253f27a59ac71e1f55c39f8e55c615c7b3b9a8cfbbc7fd7b4bc22"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30.jsonl",
+      "sha256": "42aa05c1498e28507b5c109fd39148ae449c03d112cdd1eab014daaa524c8a49"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-chapter-html/title-63/chapter-30.html",
+      "sha256": "ca93cc9c23e0c047e72ad54f953c37002c6d8326d25781b2a19f7b01545f23bf"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3001.html",
+      "sha256": "90afd7f69429bf1868a7836be6189db434072e9a103d5f4105d9b565fbadb535"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3002.html",
+      "sha256": "0889232d59c17322c1622f2e29b6f2ee4f677ead29a80d79fd4f22025ef17f48"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3003.html",
+      "sha256": "993d566ea38c0f19b91d3e7bf94ce2ef7315cb8fa1cd1eb383e3a66da52d6829"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3004.html",
+      "sha256": "f104f6f3aa8a24dcf47a58b0d95102f3fa871dd2179f97d4b4908da7170c72f7"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3005.html",
+      "sha256": "897a4a7465d8553663f3a83db59f4b4d9498a63bceda2d9f358aee926d29e574"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3006.html",
+      "sha256": "cb56a680140a4d1aecf20b9711cde34125e2e3dbcc939a356217f2973e44d36e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3006A.html",
+      "sha256": "a707594870b1045dd0ad96687f5ca156f99ec63406dfea2219b62bd5b79ddd8b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3006B.html",
+      "sha256": "e2cb549dae308a02ddb13fef5cb035cbc2d922c718a06acf8f3cdd803bfdb0ba"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3006C.html",
+      "sha256": "05b8cce92a59db84ce4f3c982afbf9418ec856ccfa9f5e357b3f1d09fd782600"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3007.html",
+      "sha256": "2c5fc2a443fdd2d9fb8c1721297cc19c58a57cbbf89a162271f80f1b82ad28de"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3008.html",
+      "sha256": "346e1042192e76ce99bc5b2a1cbe6137f68bcb25f40f164ebe12a68b9987a62f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3009.html",
+      "sha256": "65cb170a1007c15e016cd0441d2d469aa784091b1002aadadc2a5dbad29af0c9"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3010.html",
+      "sha256": "d0cc32dec264df5394ba4e6074f06d41b20cb4beffafe2d33ebed23415c49942"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3011.html",
+      "sha256": "4d2c769d231478b19c1978cd60877bbf564a8e015735baa0a8e58fa4fcd303f1"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3011A.html",
+      "sha256": "e46b5449e2c2ffa0a678c73486aae11abd603cbfa7137456c12e9fc0ee3b110f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3011B.html",
+      "sha256": "1bf5bf17b29a9ed13fbdb6b4f55b04c58fabb5ba4423cb460a9a1c5f3a8b7b38"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3011C.html",
+      "sha256": "af9d9f380b47d757883c5e9700b6df29682ec8d24ac81bf0b0908841833c1e2a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3012.html",
+      "sha256": "a6886ad8eef0e8d23035d4ecb5af906602a4679b8135203620b7aba59c31aff2"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3013.html",
+      "sha256": "5b3bebc73639bf3ae0390142e660c2c009c508a2f7ddf4fd3f34d6989a66efe1"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3013A.html",
+      "sha256": "2a2dbd02275fb4c72d12f92730398a932e79faa60f6cf91f131d5b4a2c31ecde"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3014.html",
+      "sha256": "3740c7c920c74e19393c0b3851753c04e554768c72a36f8c45ce217e9ea6af6b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3015.html",
+      "sha256": "78a2c22804cddda38d68235db82a6f8400ee245e4e5ffc363cf0d3b07a762d0a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3016.html",
+      "sha256": "5ba1fa05217193274c3313a9f77eb573f87df131cd98a09d10e53756c091a11d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3017.html",
+      "sha256": "44b100a908dae1312833e964568c1436c2d0d24bfb123c88d173fda256eccc20"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3018.html",
+      "sha256": "38e28236cd53275fc137e77ac827849fe33f27fae6abf11795a0832de0e44da5"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3020.html",
+      "sha256": "648053114070d18428e16e3e2670a4dbe4cd7b7cfcbddc3033281c39e46c2c1d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3021.html",
+      "sha256": "bbe41dbb309aa196bb1a136e8fa1aa5c2279ecf8d2bce62a5f04dacf05093edb"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3021A.html",
+      "sha256": "f15bd611e0e5cff7144012bbd26c49da3f3122fcb698d9992e509de2f60f331c"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022.html",
+      "sha256": "f53975cc96d88044e76b4e438fba716df9aa6feb6a8435b9a3d953848186a558"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022A.html",
+      "sha256": "4fc6232d2dbb0b1615a386a75008e72e8e069710e11dec1c994228b383f6d7f3"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022B.html",
+      "sha256": "c6ee53b357c14a89807ad5122edd1f4bda86414462273665076aa837ea4bc024"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022C.html",
+      "sha256": "25ffd71195dd60eb7aa3c93eb339073fd04581a266e0e4544b6fb742c8e51070"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022D.html",
+      "sha256": "215e04cbe1e99d03cc6cb637e73d600f1cc6a10bf26241af706244e7f58f2b6b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022E.html",
+      "sha256": "87dc6b02af75bc3e8fc32e1e75a842c06ccac4a8513d99b580baf8909f9865bd"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022F.html",
+      "sha256": "eb7872551771adf7f6f31847cebae9ddc0f1acb672b1d2065b77c7ccc25e51c8"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022G.html",
+      "sha256": "e54cc04243cf1fc0ae67987d52e141e0c23c8942e155f00d67b82131abdf045d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022H.html",
+      "sha256": "d5d86b00e2dc8999fc03b6f5bdb95177bff336a67cfbfcad5060a490e35ec3a7"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022I.html",
+      "sha256": "de5f9853929ef2795eb214d152e623f75b790fe5998d514b41bafc8d68838232"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022J.html",
+      "sha256": "b4cd3a4839c888d3524715ed06ee6764cd351bc29b627fbf0af596f40e684320"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022K.html",
+      "sha256": "4bd553dcafa867cedb68c6ecd6a05dbd43415433832fa359228f23078a5b484a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022L.html",
+      "sha256": "85d904fc39ad097ec43a404e32ace1bcd6133e9614b08b9b5ecfd2adff57ecf8"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022M.html",
+      "sha256": "48e46ae31bf108657002ad7a35115f7624ed3c833ea8b1dd8498237ce7620e87"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022N.html",
+      "sha256": "e3f69a8d6bdd9c1f7f14a6d4fb9d995b6799516837332604b000265f823fb0f2"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022O.html",
+      "sha256": "c4af8aec94067c9e1b1d7b454e6a45629aa45fac16d7ecb0baf206ef53118f55"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022P.html",
+      "sha256": "c413e98e9cb2e5a63dcb20a351046310327c1d5d4a0ee8c54203e9373ca0d0f6"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022Q.html",
+      "sha256": "618bc7a6ba5b037eb415c4a742314f504ff4482b66755782b832ed07aba14e9a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022R.html",
+      "sha256": "c0b885b2f0331eeac132741c0e60e1e2b45d32aae2b1c2c58e67e9626a105a57"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022S.html",
+      "sha256": "34c2b6be79d0f0ab6fb257056bf588b9a3a98b845702d89b25a56947511d312b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022U.html",
+      "sha256": "9c0d49f84da538b718433091be3502d4f4ab7629619345e2657fa76a963f748b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3022V.html",
+      "sha256": "f49c6263e09ae26aa2be5a52e87930a430971eaa9cba05188a1fb73fd48f6989"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3023.html",
+      "sha256": "eb3e61c0d204c2bb722bbebf284108675fe55c0ffb7ef9934bcff08a8aea7391"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3024.html",
+      "sha256": "1a978d0c5617cfa697655ae5a868a869b1118d4284521aa4da6df9ab095d21a3"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3024A.html",
+      "sha256": "c54eada420719b8aadbd62b161f452d1c456db850b2c999f8cc7fbcb77e31ddc"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3024B.html",
+      "sha256": "01b91e858ed210da9d1e7fe53d3efd00c7c1d4791185aaafeb1021552c8a9323"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3025.html",
+      "sha256": "79cad50b8b81bf02c68b8b5b85d4ec9900d22027746537792d15469814887177"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3025A.html",
+      "sha256": "2985d77476d66615d438e27c72329c359c4e1391e1dc72c96caef525436a9667"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3025B.html",
+      "sha256": "fa91aa02baca39b9b8df394d01bb23581d565d17ae50e1df9f3f354dc18043a0"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3025C.html",
+      "sha256": "fa7b47d6fa855a28bd3ae473583eaacb72fdebb3e4bb10c667826ebfcd2e23d0"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3025D.html",
+      "sha256": "adfc1391e6461762cf796f08933285efe4514167ca6daced310b8fc77059ea71"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3026.html",
+      "sha256": "7adc9fd9b336843ac0050e5d1cbbc7b7d4a8cc763e0c6c4c95ddf2e3215ede90"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3026A.html",
+      "sha256": "475b24e1b6d6380f94cd9442469495f6d3e5234ac09923804610fbda0aafd546"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3026B.html",
+      "sha256": "4e1d43556bd7eec5c4a4a371d05d2864676faaa59d100b6b2ced95b9a7b827c3"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3027.html",
+      "sha256": "317be46327b2f97d67fc15b2d3cfe0a89b0fb9ce84012c41e5f923ac55c180f0"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3027A.html",
+      "sha256": "6d00482bcf0a26a73d0be49e304195d9cbe833ae13878254b83170fed99437d3"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3027B.html",
+      "sha256": "154d0146034ee0c109f0b2136a441e86452aa4e8d516210696568495c8641280"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3027C.html",
+      "sha256": "6d948f74addce4873f20939b4b6f3a8c41464743d429d16c3f90a98ffdd03d6c"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3027D.html",
+      "sha256": "22679badb718ebadd08542734800f98a46423c65a8c70fbf00ee3061bf6d91a5"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3027E.html",
+      "sha256": "2ffb9e95d19f8d5dc3978d9a64d1094098aeb40908ba2069d3f1aa4051a3889e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029.html",
+      "sha256": "4d9733a4163721e0cbc53ed0f9e3851b672f84e497882c2bffb43b8519d36a36"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029A.html",
+      "sha256": "1bfb7ecf9d65ab5404d2a4d2af560fa6e3114cd212b9ea931efbc43cdb53293b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029B.html",
+      "sha256": "54f49e92c5aafb34aeb153a15a696af6d74c77a019ac5b9dd2f9654cab2fe51a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029C.html",
+      "sha256": "5f82b72a7571f3ab0eddac4404a9db50d75bd3878c4a8a0b4769ef454e943002"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029D.html",
+      "sha256": "a0b572daa7f88ecc168c20a5bc95728734a1ed5af3387626fa3746c06774e718"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029F.html",
+      "sha256": "91989a4d1c47883dbcd2bc0e2cd30182d4fb4be9be060dc774e457010ec457bc"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029G.html",
+      "sha256": "4b2d189c71fe1fbab1141f35bb852df3bc367a250ecab22aa5696da014815653"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029I.html",
+      "sha256": "806de98f534a8a07e7a70015e0600d210326d8116be7d9c14558997ba163dd27"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029K.html",
+      "sha256": "78b9b7d4e7222a25b2ab258dc9ec6068b741d26e18e193683f746cb9eecfeada"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029L.html",
+      "sha256": "fd0a0f50f2f2bd420ba9feeee64ccd9354dd6466ffcd300977f1081028575ef0"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029M.html",
+      "sha256": "fb94cdf9f5655cb57b0d1361e81bf7dab26c0668900ac33dcbff49d08a5a91c2"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029N.html",
+      "sha256": "ea217d7bb333247f54253c1d862ae1d686ff7b0b8c4c684c788e14632cf6a66c"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3029P.html",
+      "sha256": "74400de23b617dc7327a855a254acf725bd995f9082a3f62c43198cca997b4e6"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3030.html",
+      "sha256": "00dd7eee11671cbfc71612a993f5a178315b833be9f0eaca305778f03444671f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3030A.html",
+      "sha256": "1426923bbb697663908eeb15621540b69c332065f210ea4c94cc9c0e0cd2f0a4"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3031.html",
+      "sha256": "701c166471743251c0fe1722f6759ac83db909d622730c9230237a7cda927749"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3032.html",
+      "sha256": "0309a0cb06c725f3f4c2f28a1dc01a066b856035f629303b15e6c8a70fe5e230"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3033.html",
+      "sha256": "8915265dc97781cdc4c86bb7f0ac75decb41fb526aaadf4a7e633a4d7e19c4c0"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3034.html",
+      "sha256": "31dde80f0c12dc380ff818770494148c9c6aea5725358786cac2534fa054550e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3035.html",
+      "sha256": "5b84bac7f3daaf6ea6eb9e84a6da2787133ec34653e101225a7e6af4385604d0"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3035A.html",
+      "sha256": "425decd7c1affc7d599872997171a53a634844b561fa5a3614c68d7df2c9db64"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3035B.html",
+      "sha256": "8a3718af5d85ab7252ab5b61de9404ab3e1192f0a693ae31579cd7ea9d807f41"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3035C.html",
+      "sha256": "d662b57d7227bf247ec9ed53be07c8f0a4000fdb693e77bc7e88aae4b854cb09"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3036.html",
+      "sha256": "603b7fc7482c96b948079f57fa4f803b0284b6da62b6ad01947c5f5ab76d39b7"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3036A.html",
+      "sha256": "88d1b4aad4bb718eb0e75064fa0964be2721cb819094d90b929c3a61f10b794f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3036B.html",
+      "sha256": "d05ad52aeb8d8b46bc9bca5915357946404b32a8e66bf04d2547083975f6fa20"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3037.html",
+      "sha256": "fd51a3086c14be557942b91dd7fed42735a12d480588cf5d01769787eddd751b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3038.html",
+      "sha256": "d5e2bdf1a019ec6b11a2e55b0c7f336392284c943e2cdcb10dd0cae216e177a8"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3039.html",
+      "sha256": "668bbb468611c26bfeae289f499ea0b90c1d217e4951bad68b59751b41e64785"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3040.html",
+      "sha256": "996209384a1d1305a7e42caf2152b6a6dcff95c384f0da76520b2ba657da7b00"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3041.html",
+      "sha256": "d2509d54d72bc0968cd21f47a0cc9de36e107ee36b1891038e982a25622aec4d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3042.html",
+      "sha256": "501d06ed8d0280e1d8c1d207aa611415a115ae06cc802b888912933dac21fa32"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3042A.html",
+      "sha256": "0abf40ed0ec42051b0ce6c1add8536ed5b8def943af8d498b752dc7b35a9a9a6"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3043.html",
+      "sha256": "a880472952a78a5b6c3e3aa3fd3620d035f65261015ee0346b2f44fe24e02104"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3044.html",
+      "sha256": "d912298917102783b6bd82068c0274653a79c8f763c9ee3d49fc158b338fd9fd"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3045.html",
+      "sha256": "b3e6b533d3b3caf80aa3f77cbea40514d08295e59f73904a1b0157e8cd879c40"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3045A.html",
+      "sha256": "b7be33f3252680f8f935c5a0ecd4de23fefec087fd5502b238edfa00bca9f92d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3045B.html",
+      "sha256": "bcd9a4562c5b67ea9fc1522098c9106463b2e227c5e194e4b0eec5f99f0cb1af"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3046.html",
+      "sha256": "301f109a12e52fcde806308b1d6c9842afe5d182ee1bf985820d62281ac87789"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3046A.html",
+      "sha256": "20ddba04329c5e49a9712e53979a1175f14fac80ad4d5dd4b6dd66cd0d512aea"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3046B.html",
+      "sha256": "fa03f6e7b0365095be50c8a133fa3c22f6aab7ab94930ef286fa823a389c865d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3047.html",
+      "sha256": "883de5f0d94a21e6b7b55fa80f8ee5543d9e0bcb4e47823a20662cc947696104"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3048.html",
+      "sha256": "71f4540b44ea4db45f9b1c1e45a4150ba5963d886b59777318c8a775d663db49"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3049.html",
+      "sha256": "4b85889c065426ab0983cbd917c5a4f7701abdb0781ecca6632aaa68305dc8af"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3050.html",
+      "sha256": "3253738c8ce2ba042e7ab2b308c06ac7e20324186e7afdc2a8032bd1b7924129"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3050A.html",
+      "sha256": "44b192e28461ee2b3c58a3dd4f34841c5947abfb75ebde0398c4f06d64343853"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3051.html",
+      "sha256": "4b8ac34111f4d907a9311b43eae58b5488ab7e2fb4d23fa12eeb751f03bdfdec"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3055.html",
+      "sha256": "0a9d756a91f7f93a25fda8af453781e7f95f85fa4c40f9492a0bd080324cdc4d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3056.html",
+      "sha256": "8b8c3ff876e36b539350160db72cf2415904ea804e4820ad660dc36cc341e623"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3057.html",
+      "sha256": "71972be4e8338b0a43e6ce8bca6696f4b3882088becf5047036651667b78211e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3058.html",
+      "sha256": "e220d492eca242994f52a1be8ee744bfaf1f20b8b702c9cd45b48fbeef39ab1e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3059.html",
+      "sha256": "f758e5c071aa2c6614a948aa1cfbab1c1e8111a94d59b01f5c29abc27075a69d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3060.html",
+      "sha256": "03b100f87d1e97c7ad4c882cdfe804e26158a832fd55266fd57bd5de822556d8"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3060A.html",
+      "sha256": "984a20d95c13d95bca7b555d1d8c85c9f6060b969bf31a35c00829163acbaca2"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3061.html",
+      "sha256": "2bf8a19fec3fd4da00b484f0c87364176e3355a8ac1e258b3bee7233ac2ee618"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3061A.html",
+      "sha256": "8a197da416f409c937757711275977d34abd026e4c766fb6fa8b482f08162f15"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3062.html",
+      "sha256": "1a8919b30156e6b629731a2ab1ad30367b1708b819bc1764343bfc349bc10340"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3063.html",
+      "sha256": "6359211e8e6798d82cd1c241d2a8fc577708b13332b8b8044e6da88534f8a237"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3064.html",
+      "sha256": "c8800111597d126ca09d61c0763ad30669ed00b516f55a0cf4d656ebf08135f1"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3065.html",
+      "sha256": "5e50e0c1e10ea0128a20bfdfef1147ba9420918bf6fc61888542a57d313f391e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3065A.html",
+      "sha256": "371fe3c8f6180a6602db055bfa368534b18b56784a33bbf37aef17dafb5d9c56"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3066.html",
+      "sha256": "1baaabbc462dd23d8ec0d17054b5d9423aa336a1556714c9ab7f7e07969d7a04"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3067.html",
+      "sha256": "74ba6fcaef85717e59087584212d6a1294f9315ce22a3962b3e19c04a128e713"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3067A.html",
+      "sha256": "6913b3c3721c0245e314fbf937fee4d38726571bbb9fb6d606490af33c023f19"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3067B.html",
+      "sha256": "525b370e9482620bd6f41fcf5901831a8b04c5f584f3caaa7a987c99c4ec6f2a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3067D.html",
+      "sha256": "bc85ee2c206305ccd8976520cb5c838635fd520854c0df262f7db1282a9639f4"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3068.html",
+      "sha256": "976795d634edb24f2e78690f5b760f1c7af5cde0731c122a0cca74ed59d6472b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3069.html",
+      "sha256": "50abb4f65d6381451dc2bce73a06c93f554628247d09410968393cdb0bc684ed"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3069A.html",
+      "sha256": "2cddf52e4539121766113dcff09508e116ae94af6c04fbc8309664256c3a6679"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3070.html",
+      "sha256": "80bdd81174a1685a614a6a51025a517f45065cd45d6c4098b5fc52452c41b110"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3071.html",
+      "sha256": "2fff8936011c0e1d4c15bc7e052914cc5d2db71c302a2fb0b8536af627eca29f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3072.html",
+      "sha256": "5e917063ed0257332cc801c2c8a4f7a9aed78eb65eb5d6adfd0da6668e61b690"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3073.html",
+      "sha256": "90bda7dc60f85210375928072e7c11f2ba0b6cbbe2044e91c8a67e82c036a482"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3074.html",
+      "sha256": "c18572b2ce8c7ff99d0c35759888b9664d4697c1598e53ee462ef89d6a0ed839"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3075.html",
+      "sha256": "8c23d292f970cca4e90ed2c92fb05634b3b3ad8b1513f3ff9e7a1ed4887164c1"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3076.html",
+      "sha256": "9e03b8af3a8c62e578a6730baa9e111472a14e5605c8a701c64c2c8c1031939f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077.html",
+      "sha256": "ccdb30d0128e12a10ad44d6adbd56bf27c3c5bfcb812f995efa8a6120e403849"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077A.html",
+      "sha256": "d4eb698c5ef7397777ba75547c8759a1436fbf9758c5658a505ccd1d74a0cff4"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077B.html",
+      "sha256": "8d17bf02de39ab90bba1ae1db0a4de5eedfd884fbe1d416b7663719b0ee0ad26"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077C.html",
+      "sha256": "37864b203593b3acd0ae7db954f77afb0fa19765ff8bad8a6d1f915aed97aa5a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077D.html",
+      "sha256": "a9596eded597fe205002fbcea0451327141ed2cdccba6aee591c95781f5218af"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077E.html",
+      "sha256": "3075d94488de3f2fec461cc9657b49d85c7bc86dcd32f12a4c5a7615eca5922b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077F.html",
+      "sha256": "987bf5504a350ff691cd523320b81951a8ba46c3c855334cf71957abb7e5080c"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077G.html",
+      "sha256": "9f6dccf13238bf1f467d82aa933c572b0d3eed9bcf744c46484cd07182c7884b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3077H.html",
+      "sha256": "ab324bdbcffa219146ccbc34a81fa529040bc2788023fa4d61bfeb469abb42ba"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3078.html",
+      "sha256": "fa1a362eeab06e740653384d264eaf139a0bcbaad450acda0c3952f81843e404"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3079.html",
+      "sha256": "dec3258b836d471d87600262a4ad91970b8139c3dcc2dc6d66d82b490bc81043"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3080.html",
+      "sha256": "b345cda55aae6da200b8f630513bd4a22c869788d1769ad9bbd68fb16e363af9"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3082.html",
+      "sha256": "6c58be82fa6d2dfe41862bf7443ddebb90eaa4955edfe938a34091cecca11c63"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3083.html",
+      "sha256": "c54945172cced2b9347ead4230a692f1216358488485164f276be23bcaca4f55"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3084.html",
+      "sha256": "0f1521fe1460a09b89c10618aa020dce488ac8d2e645c897b1478b261a6dda5d"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3085.html",
+      "sha256": "1ac9e7a4cc8656360fe548e19f159b82f40a293afebb841a3af33692ec0e7381"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3086.html",
+      "sha256": "ab6baf58580cc567e6f8891fb60202174fc05d5c248769ee1cce1322ac4b0093"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-section-html/title-63/chapter-30/63-3087.html",
+      "sha256": "54951f1d1ae661f913a4e62b634854938e36a0ba9d4b11e6df7c1b47f80c31ac"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-title-html/title-63.html",
+      "sha256": "48fd0fccc2cff899f430980845f91da54b9b4faa1480ddfa36fab171d2db5fbb"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30/idaho-statutes-title-index-html/index.html",
+      "sha256": "71e2edf73ea40c320af98bc62a107893d932f55aa8925203621aaf6b916e7912"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-us-id-title-63-chapter-30 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 164,
+    "missing_count": 0,
+    "provision_count": 164,
+    "source_count": 164
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T16:31:18.482640+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HEYynDErN8dmfAhcpttChWOiJNkG/I/W0SbxjQjrpLK/uE9WgfuBJbWYaV5h8xZ0Z6v+9O+FCOuAPLci/fLhAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-us-id-title-63-chapter-30"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "6ae13951ea54c37760df03ab37d807eec062bb54e0c5110c8fe726cd81b90f74"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "70a8c1cfd9a12d3e254dc6f8b1e108226a0213d0f2c2fb42eb75461acf3dd966"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "a6abf72052c6c6e054167cbcbcd518479e8f710085d05fe39e5990fbb83d9f24"
+    },
+    {
+      "path": "data/corpus/sources/us-in/regulation/2026-09-14-income-tax-regulations/official-documents/in-iar-45-iac-3-1-adjusted-gross-income-tax.json",
+      "sha256": "f50d61caa5582497aa72728402f488f9005e081b0659920a79d2054e7059405d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 172,
+    "missing_count": 0,
+    "provision_count": 172,
+    "source_count": 172
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:33:25.944944+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fAiXOynFFOokTZujXZL7iSuo4TFFMtTgBNSgeHYRsqFILOjQhR5BYjgAi0XdRkUNu/F7cRc7ZDvUjnP6RiOLBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

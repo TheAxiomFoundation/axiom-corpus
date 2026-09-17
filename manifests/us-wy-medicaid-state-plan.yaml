@@ -1,0 +1,769 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-wy-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 146
+- source_id: us-wy-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 46
+    index_records_total: 146
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-26-0004-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-26-0004: Approval Document (approved June 12, 2026, effective July 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-26-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-26-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-26-0004
+    cms_node_id: '193431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193431
+    approval_date: '2026-06-12'
+    effective_date: '2026-07-01'
+    summary: This SPA increases the home equity limit for individuals applying for Wyoming Medicaid long-term care services
+      to $1,000,000.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-25-0005-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-25-0005: Approval Document (approved August 29, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-25-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-25-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-25-0005
+    cms_node_id: '184111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=184111
+    approval_date: '2025-08-29'
+    effective_date: '2025-07-01'
+    summary: This SPA revises the personal needs allowance to authorize a $20 monthly deduction for administrative fees associated
+      with maintaining a Medicaid-compliant Irrevocable Income Trust (Miller Trust).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-24-0007-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-24-0007: Approval Document (approved December 18, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-24-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-24-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-24-0007
+    cms_node_id: '175221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=175221
+    approval_date: '2024-12-18'
+    effective_date: '2024-07-01'
+    summary: This SPA will permanently remove beneficiary cost sharing requirements for non-emergency services provided in
+      a hospital emergency departments and beneficiary pharmacy cost sharing requirements for claims with a date of service
+      (DOS) from July 1, 2024 forward.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-24-0004-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-24-0004: Approval Document (approved December 9, 2024, effective February 22, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-22'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-24-0004
+    cms_node_id: '173896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173896
+    approval_date: '2024-12-09'
+    effective_date: '2024-02-22'
+    summary: This amendment temporarily suspends beneficiary cost sharing for pharmacy claims with dates of service from February
+      22, 2024 to June 30, 2024. The terms of this State Plan Amendment sunset at midnight on June 30, 2024.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-24-0006-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-24-0006: Approval Document (approved November 27, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-24-0006
+    cms_node_id: '173426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173426
+    approval_date: '2024-11-27'
+    effective_date: '2024-10-01'
+    summary: This amendment complies with the Consolidated Appropriations Act of 2022 and makes changes to the state plan
+      so that health insurance companies cannot deny reclamation claims for the Agency not obtaining prior authorization for
+      the item or service through the health insurance company and requiring health insurance companies to process reclamation
+      claims within 60 days of receipt of such claims.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-23-0005-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-23-0005: Approval Document (approved September 14, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-23-0005
+    cms_node_id: '152981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=152981
+    approval_date: '2023-09-14'
+    effective_date: '2023-07-01'
+    summary: This SPA amendment is to elect the option described in section 1902(e)(16) of the Social Security Act to provide
+      12 months of postpartum coverage to Medicaid-eligible pregnant women.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-23-0007-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-23-0007: Approval Document (approved July 21, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-23-0007
+    cms_node_id: '150801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150801
+    approval_date: '2023-07-21'
+    effective_date: '2023-04-01'
+    summary: This amendment is to update the requirements for Third Party Liability – Payment of Claims for Third Party Liability-
+      Identifying Liable Resources.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-23-0003-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-23-0003: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-23-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-23-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-23-0003
+    cms_node_id: '148196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148196
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-20-0007-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-20-0007: Approval Document (approved November 23, 2022, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-20-0007
+    cms_node_id: '142506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142506
+    approval_date: '2022-11-23'
+    effective_date: '2020-10-01'
+    summary: This amendment is to approve the state’s online single streamlined application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-22-0004-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-22-0004: Approval Document (approved July 15, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-22-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-22-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-22-0004
+    cms_node_id: '137846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137846
+    approval_date: '2022-07-15'
+    effective_date: '2022-04-01'
+    summary: This SPA eliminates the “deprivation” requirement relating to dependent children living with individuals who
+      seek Medicaid on the basis or being parents and other caretaker relatives.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-22-0002-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-22-0002: Approval Document (approved June 24, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WY-22-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-22-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-22-0002
+    cms_node_id: '137246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137246
+    approval_date: '2022-06-24'
+    effective_date: '2021-10-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to temporarily eliminate the "Deprivation" requirement relating to dependent children living with
+      individuals who seek Medicaid on the basis of being parents and other caretaker relatives.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-21-0010-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-21-0010: Approval Document (approved September 8, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WY 21-0010C.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-21-0010
+    cms_node_id: '125891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125891
+    approval_date: '2021-09-08'
+    effective_date: '2021-04-01'
+    summary: Wyoming will be removing the 40 Quarters requirement for Medicaid eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-21-0009-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-21-0009: Approval Document (approved August 10, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WY-21-0009
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-21-0009/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-21-0009
+    cms_node_id: '125511'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125511
+    approval_date: '2021-08-10'
+    effective_date: '2021-04-01'
+    summary: To remove the optional eligibility group for Program of All-Inclusive Care for the Elderly (PACE) participants.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-20-0008-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-20-0008: Approval Document (approved May 13, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WY-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-20-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-20-0008
+    cms_node_id: '109066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109066
+    approval_date: '2021-05-13'
+    effective_date: '2020-10-01'
+    summary: Adds the Optional Targeted Low Income Children eligibility group to the Medicaid state plan. This SPA is part
+      of the state's transition of its separate Children's Health Insurance Program (CHIP) to a Medicaid expansion program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-20-0003-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-20-0003: Approval Document (approved April 7, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-20-0003
+    cms_node_id: '91056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=91056
+    approval_date: '2020-04-07'
+    effective_date: '2020-04-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purposes
+      of this amendment is to suspend premiums for the Employed Individuals with Disabilities program eligibility group.
+    topics:
+    - Disaster Relief
+    - Premiums
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-13-0012-mm4-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-13-0012-MM4: Approval Document (approved June 16, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0012-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0012-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-13-0012-MM4
+    cms_node_id: '36116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36116
+    approval_date: '2014-06-16'
+    effective_date: '2014-01-01'
+    summary: Addresses Single State Agencies Delegation of Appeals and Determinations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-13-0008-mm1-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-13-0008-MM1: Approval Document (approved June 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0008-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-13-0008-MM1
+    cms_node_id: '36111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36111
+    approval_date: '2014-06-12'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Mandatory and Optional Eligibility Groups Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-14-008-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-14-008: Approval Document (approved April 23, 2014, effective February 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-14-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-02-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-14-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-14-008
+    cms_node_id: '24201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24201
+    approval_date: '2014-04-23'
+    effective_date: '2014-02-01'
+    summary: Updates Targeted Case Management to include eligible services provided to children with a serious emotional disturbance.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-13-0009-mm-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-13-0009 MM: Approval Document (approved December 31, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0009-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0009-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-13-0009 MM
+    cms_node_id: '38986'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38986
+    approval_date: '2013-12-31'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI based eligibility process requirements, including the single streamlined application, into
+      Wyoming state plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-13-0007-mm3-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-13-0007-MM3: Approval Document (approved November 26, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0007-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0007-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-13-0007-MM3
+    cms_node_id: '39956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39956
+    approval_date: '2013-11-26'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodology Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-13-0010-mm-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-13-0010-MM: Approval Document (approved November 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0010-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0010-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-13-0010-MM
+    cms_node_id: '35711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35711
+    approval_date: '2013-11-20'
+    effective_date: '2014-01-01'
+    summary: Affirms Residency Regulations and Addresses Interstate Agreements and Temporary Absence Protocol.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wy-cms-medicaid-state-plan-spa-wy-13-0011-approval-document
+  jurisdiction: us-wy
+  document_class: policy
+  title: 'Wyoming Medicaid SPA WY-13-0011: Approval Document (approved November 6, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Wyoming
+    source_discovery_group: us-wy/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WY-13-0011
+    cms_node_id: '39951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39951
+    approval_date: '2013-11-06'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
