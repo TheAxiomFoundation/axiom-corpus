@@ -1,0 +1,29 @@
+documents:
+  - source_id: dc-doee-liheap-fy2026-program-page
+    jurisdiction: us-dc
+    document_class: guidance
+    citation_path: us-dc/guidance/doee/liheap/fy-2026/program-page
+    title: District of Columbia FY2026 LIHEAP Program Page
+    source_url: https://doee.dc.gov/liheap
+    source_format: html
+    source_as_of: "2026-08-11"
+    expression_date: "2026-08-11"
+    extraction:
+      html_content_selector: .field-name-body
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>UPDATE|How to apply|How to apply in-person|How to apply via the mail)\s*:\s*(?P<body>.*)$'
+      section_label_replacements:
+        UPDATE: current-status-and-benefits
+        How to apply: application-documentation
+        How to apply in-person: in-person-application
+        How to apply via the mail: mail-application-and-income-guidelines
+    metadata:
+      primary_source: true
+      source_authority: District of Columbia Department of Energy and Environment
+      document_subtype: current_program_guidance
+      program: LIHEAP
+      federal_program: LIHEAP
+      fiscal_year: 2026
+      source_status: current_official_program_page
+      source_discovery_group: us-dc/guidance/liheap
+      discovered_via: canonical-doee-program-url
