@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="Description" content="Chapter 319bb - Services for the Elderly"/>
+<meta name="Number" content="319bb"/>
+<title>Chapter 319bb - Services for the Elderly</title>
+<style type="text/css" media="screen"><!--
+/* High-level style defs for page */
+html {
+background-color: #ffffff;
+color: #000000;
+}
+body {
+padding: 0em 0.5em;
+font-family : "Times New Roman", Times, serif;
+font-size: medium;
+}
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+color : #000000;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.1;
+margin : 0em 0em;
+text-align : center;
+text-decoration : none;
+text-indent : 0em;
+}
+h1, h2, h3 {
+font-weight : bold;
+}
+h5, h6 {
+margin-top: 2em;
+}
+h1.title-no, h1.title-name {
+color: #800000;
+}
+h2.chap-no, h2.chap-name {
+/* nothing special */
+}
+h3.part-name {
+margin-top: 0.5em;
+}
+h3.part-no {
+margin-top: 2em;
+}
+h4.chap_toc_hd {
+font-weight: bold;
+margin: 1.5em 0em 1em 0em;
+text-align: left;
+}
+h4.subpart-name {
+font-weight: bold;
+margin-top: 0.5em;
+}
+h4.subpart-no {
+font-weight: bold;
+margin-top: 2em;
+}
+/* HORIZONTAL RULES */
+hr.titles_pg_bar {
+background-color: #a0a0a0;
+border-width: 0;
+color: #a0a0a0;
+height: .5em;
+margin: 1em 0em;
+width: 100%;
+}
+hr.chaps_pg_bar {
+background-color: #8b0000;
+border-width: 0;
+color: #8b0000;
+height: .8em;
+margin: .5em 0em;
+width: 100%;
+}
+hr.titles_toc_spcr {
+background-color: #ffcc00;
+border-width: 0;
+color: #ffcc00;
+height: 1em;
+margin: 0.1em .5em;
+text-align: left;
+vertical-align: top;
+width: 150px;
+}
+/* IMAGES */
+img.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* PARAGRAPHS */
+p {
+font-size : 1em;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.2;
+margin : 1em 0em 0em 0em;
+text-align : justify;
+text-justify:distribute;
+text-decoration : none;
+text-indent: 1em;
+}
+p.annotation, p.annotation-first {
+color: #ff3333;
+}
+p.cross-ref, p.cross-ref-first {
+color: #009900;
+}
+p.front-note, p.front-note-first {
+color : #ff6600;
+}
+p.history, p.history-first {
+color : #9900FF;
+}
+p.source, p.source-first {
+color : #996600;
+}
+p.Form-center, p.Text-center, p.Form-head, p.lesser-head {
+text-align : center;
+text-indent: 0em;
+}
+p.Form-head, p.lesser-head {
+margin-top: 2em;
+}
+p.Form-left, p.Text-left {
+text-align : justify;
+text-indent: 0em;
+}
+p.Text-left1 {
+text-align : justify;
+text-indent: 0em;
+margin-top: 0em;
+}
+p.Form-right {
+text-align : right;
+text-indent: 0em;
+}
+p.tb, p.tb-left, p.tb-left1, p.tb-left2, p.tb-center, p.tb-right {
+text-align : justify;
+text-indent : 0em;
+margin : 0.5em 0em 0em 0em;
+}
+p.tb, p.tb-left1 {
+margin-left: 1em;
+}
+p.tb-left2 {
+margin-left: 2em;
+}
+p.tb-center {
+text-align : center;
+}
+p.tb-right {
+text-align : right;
+}
+p.nolead {
+margin-top: 0em;
+}
+p.flush {
+text-align : left;
+text-indent : 0em;
+}
+/* TABLES */
+table {
+/* consider border-collapse : collapse; */
+border-style: none;
+font-size: 1em;
+text-align: left;
+vertical-align: top;
+margin: 1em 0em 1em 0em;
+}
+tbody, thead, tfoot, tr, td, th {
+text-indent: 0em;
+vertical-align: top;
+}
+table.center {
+margin-left: auto;
+margin-right: auto;
+}
+table.nav_tbl {
+border: 0;
+width: 50%;
+padding: 2px;
+border-spacing: 2px;
+text-align: center;
+margin: 1em 0em 2em 0em;
+}
+table.ttl_toc_vol_hd {
+border: 0;
+padding: 0px;
+border-right: 15px;
+vertical-align: middle;
+margin-top: 2em;
+}
+td.bottom {
+vertical-align: bottom;
+}
+td.left_25pct {
+width: 25%;
+}
+td.left_38pct {
+width: 38%;
+}
+td.left_40pct {
+width: 40%;
+}
+/* SPANS */
+span.inline_hd {
+font-weight : bold;
+}
+span.catchln {
+color: #8b0000;
+font-weight : bold;
+}
+span.toc_vol_no {
+font-size: 1.2em;
+font-style : normal;
+font-weight : bold;
+}
+span.toc_ttl_desig, span.toc_ttl_name {
+font-size: 1.1em;
+font-weight: bold;
+color: #003399;
+}
+span.toc_rng_chaps {
+font-size: 1.1em;
+font-weight: bold;
+color: #cc0033;
+}
+/* etc. */
+.titles_main_hd {
+color: #ff0000;
+}
+.toc_rng_secs {
+color: #cc0033;
+font-weight: bold;
+}
+.toc_catchln {
+color: #8b0000;
+margin : .1em 0em 0em 2em;
+max-width: 90%;
+text-indent: -2em;
+}
+.toc_catchln * {
+color: #8b0000;
+}
+.toc_ch_link {
+display: inline-block;
+color: #0000ff;
+font-size: 1.1em;
+font-weight: normal;
+}
+.nav_link {
+color: #0000ff;
+}
+.full-width {
+width: 100%;
+}
+.half-width {
+width: 50%;
+}
+.third-width {
+width: 33%;
+}
+--></style>
+</head>
+<body>
+<div id="chap_319bb.htm" lang="en-US">
+<h2 class="chap-no">CHAPTER 319bb</h2>
+<h2 class="chap-name">SERVICES FOR THE ELDERLY</h2>
+<h4 class="chap_toc_hd" id="TOC">Table of Contents</h4>
+<br/><h4>
+<a target="_blank" href ="/2026/sup/titles.htm">Note: Readers should refer to the 2026 Supplement, revised to January 1, 2026, for updated versions of statutes amended, repealed or added during the 2025 legislative sessions.</a>
+<h4/>
+<br/>
+<p class="toc_catchln"><a href="#sec_17b-420">Sec. 17b-420. Commission on Aging. Membership. Duties. Authority. Personnel. Agreements with state agencies.</a></p>
+<p class="toc_catchln"><a href="#sec_17b-420a">Sec. 17b-420a. &#x201C;Livable Communities&#x201D; initiative. Internet portal. Report. Community recognition.</a></p>
+<p class="toc_catchln"><a href="#secs_17b-421_to_17b-423">Secs. 17b-421 to 17b-423.</a> <b>Transferred</b></p>
+<p class="toc_catchln"><a href="#sec_17b-424">Sec. 17b-424. Adult foster care program.</a></p>
+<p class="toc_catchln"><a href="#secs_17b-425_to_17b-427">Secs. 17b-425 to 17b-427.</a> <b>Transferred</b></p>
+<p class="toc_catchln"><a href="#sec_17b-427a">Sec. 17b-427a. Medicare consumers guide.</a></p>
+<p class="toc_catchln"><a href="#sec_17b-428">Sec. 17b-428. Program of All-Inclusive Care for the Elderly (PACE).</a></p>
+<p class="toc_catchln"><a href="#sec_17b-429">Sec. 17b-429. Information on pharmaceutical drug programs for indigent persons.</a></p>
+<p class="toc_catchln"><a href="#secs_17b-430_to_17b-449">Secs. 17b-430 to 17b-449.</a> <b>Reserved</b></p>
+<hr class="chaps_pg_bar"/>
+<p><span class="catchln" id="sec_17b-420">Sec. 17b-420. Commission on Aging. Membership. Duties. Authority. Personnel. Agreements with state agencies.</span> Section <a href ="chap_319bb.htm#sec_17b-420">17b-420</a> is repealed, effective July 1, 2016.</p>
+<p class="source-first">(P.A. 93-262, S. 5, 87; 93-381, S. 9, 39; 93-435, S. 59, 95; P.A. 95-250, S. 1; 95-257, S. 11, 12, 21, 58; P.A. 05-77, S. 1; P.A. 07-73, S. 2(b); Sept. Sp. Sess. P.A. 09-7, S. 146; P.A. 10-1, S. 5; P.A. 11-139, S. 1; P.A. 14-182, S. 14; May Sp. Sess. P.A. 16-3, S. 209.)</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_17b-420a">Sec. 17b-420a. &#x201C;Livable Communities&#x201D; initiative. Internet portal. Report. Community recognition.</span> (a) For purposes of this section, (1) &#x201C;livable community&#x201D; means a community with affordable and appropriate housing, infrastructure, community services and transportation options for residents of all ages, and (2) &#x201C;age in place&#x201D; means the ability of residents to stay in their own homes or community settings of their choice regardless of age or disability.</p>
+<p>(b) The Commission on Women, Children, Seniors, Equity and Opportunity shall establish a &#x201C;Livable Communities&#x201D; initiative to serve as a forum for best practices and a clearinghouse for resources to help municipal and state leaders to design livable communities to allow residents of this state to age in place.</p>
+<p>(c) The Commission on Women, Children, Seniors, Equity and Opportunity shall establish and facilitate partnerships with (1) municipal leaders, (2) representatives of municipal senior and social services offices, (3) community stakeholders, (4) planning and zoning boards and commissions, (5) representatives of philanthropic organizations, and (6) representatives of social services and health organizations to (A) plan informational forums on livable communities, (B) investigate innovative approaches to livable communities nationwide, and (C) identify various public, private and philanthropic funding sources to design such communities.</p>
+<p>(d) The Commission on Women, Children, Seniors, Equity and Opportunity shall establish a single portal on its Internet web site for information and resources concerning the &#x201C;Livable Communities&#x201D; initiative.</p>
+<p>(e) Not later than July 1, 2017, and annually thereafter, the Commission on Women, Children, Seniors, Equity and Opportunity, in accordance with the provisions of section <a href ="chap_188.htm#sec_11-4a">11-4a</a>, shall submit a report on the initiative to the joint standing committees of the General Assembly having cognizance of matters relating to aging, housing, human services and transportation.</p>
+<p>(f) The Commission on Women, Children, Seniors, Equity and Opportunity, as part of the livable community initiative established pursuant to this section, shall recognize communities that have implemented livable community initiatives allowing individuals to age in place and to remain in the home setting of their choice. Such initiatives shall include, but not be limited to: (1) Affordable and accessible housing, (2) community and social services, (3) planning and zoning regulations, (4) walkability, and (5) transportation-related infrastructure.</p>
+<p class="source-first">(P.A. 13-109, S. 1; P.A. 14-73, S. 1; May Sp. Sess. P.A. 16-3, S. 170; P.A. 19-117, S. 126.)</p>
+<p class="history-first">History: P.A. 13-109 effective July 1, 2013; P.A. 14-73 added Subsec. (f) re recognition of communities, effective July 1, 2014; May Sp. Sess. P.A. 16-3 amended Subsecs. (b) to (f) by replacing &#x201C;Commission on Aging&#x201D; with &#x201C;Commission on Women, Children and Seniors&#x201D;, amended Subsec. (d) by deleting reference to January 1, 2014, amended Subsec. (e) by replacing &#x201C;July 1, 2014&#x201D; with &#x201C;July 1, 2017&#x201D; and amended Subsec. (f) by deleting reference to January 1, 2015, effective July 1, 2016; P.A. 19-117 amended Subsecs. (b) to (f) by replacing &#x201C;Commission on Women, Children and Seniors&#x201D; with &#x201C;Commission on Women, Children, Seniors, Equity and Opportunity&#x201D;, effective July 1, 2019.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="secs_17b-421_to_17b-423">Secs. 17b-421 to 17b-423.</span> Transferred to Chapter 319d, Secs. <a href ="chap_319d.htm#sec_17a-304">17a-304</a> to <a href ="chap_319d.htm#sec_17a-306">17a-306</a>, inclusive.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_17b-424">Sec. 17b-424. Adult foster care program.</span> Section <a href ="chap_319bb.htm#sec_17b-424">17b-424</a> is repealed, effective July 1, 2011.</p>
+<p class="source-first">(P.A. 93-212, S. 1, 2; 93-262, S. 1, 87; 93-435, S. 59, 95; P.A. 11-44, S. 178.)</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="secs_17b-425_to_17b-427">Secs. 17b-425 to 17b-427.</span> Transferred to Chapter 319d, Secs. <a href ="chap_319d.htm#sec_17a-310">17a-310</a>, <a href ="chap_319d.htm#sec_17a-313">17a-313</a> and <a href ="chap_319d.htm#sec_17a-314">17a-314</a>.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_17b-427a">Sec. 17b-427a. Medicare consumers guide.</span> Section <a href ="chap_319bb.htm#sec_17b-427a">17b-427a</a> is repealed, effective May 31, 2001.</p>
+<p class="source-first">(P.A. 99-177, S. 1, 2; P.A. 01-39, S. 2, 3.)</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_17b-428">Sec. 17b-428. Program of All-Inclusive Care for the Elderly (PACE).</span> (a) As used in this section:</p>
+<p>(1) &#x201C;Commissioner&#x201D; means the Commissioner of Social Services;</p>
+<p>(2) &#x201C;PACE program&#x201D; has the same meaning as provided in 42 USC 1395eee, as amended from time to time, and includes a program of all-inclusive care for the elderly;</p>
+<p>(3) &#x201C;Eligible individual&#x201D; means &#x201C;PACE program eligible individual&#x201D;, as defined in 42 USC 1395eee, as amended from time to time, or in a Medicaid state plan amendment approved by the United States Department of Health and Human Services;</p>
+<p>(4) &#x201C;PACE program agreement&#x201D; means &#x201C;PACE program agreement&#x201D;, as defined in 42 USC 1395eee, as amended from time to time;</p>
+<p>(5) &#x201C;PACE provider&#x201D; means &#x201C;PACE provider&#x201D;, as defined in 42 USC 1395eee, as amended from time to time; and</p>
+<p>(6) &#x201C;State administering agency&#x201D; means &#x201C;state administering agency&#x201D;, as defined in 42 USC 1395eee, as amended from time to time.</p>
+<p>(b) The commissioner may submit a Medicaid state plan amendment to add PACE program services, within available appropriations, to the Medicaid state plan.</p>
+<p>(c) The Department of Social Services shall be the state administering agency for the state of Connecticut responsible for administering PACE program agreement services. Upon approval of the Medicaid state plan amendment, the department shall establish participation criteria for eligible individuals and PACE providers and make payments for PACE program services from funds appropriated to the Medicaid account.</p>
+<p>(d) The commissioner may adopt regulations in accordance with chapter 54 to implement the provisions of this section. The commissioner, pursuant to section <a href ="chap_319o.htm#sec_17b-10">17b-10</a>, may implement policies and procedures to implement the provisions of this section while in the process of adopting such policies and procedures in regulation form, provided the commissioner posts notice of the intent to adopt the regulation on the eRegulations System not later than twenty days after the date of implementation. Such policies and procedures shall be valid until the time final regulations are adopted.</p>
+<p class="source-first">(P.A. 98-198, S. 1, 4; P.A. 23-30, S. 2; 23-204, S. 165.)</p>
+<p class="history-first">History: P.A. 98-198 effective June 8, 1998; P.A. 23-30 amended Subsec. (a) by adding new Subdiv. (2) defining &#x201C;PACE program&#x201D;, redesignating existing Subdiv. (2) as new Subdiv. (3) and substituting &#x201C;Medicaid state plan amendment&#x201D; for &#x201C;waiver application&#x201D;, deleting former Subdiv. (3) defining &#x201C;PACE program&#x201D;, deleting former Subdiv. (6) defining &#x201C;Secretary&#x201D;, redesignated existing Subdiv. (7) as new Subdiv. (6) and substituting &#x201C;42 USC 1395eee&#x201D; for &#x201C;Subtitle I of Public Law 105-33&#x201D; throughout, substantially revised Subsec. (b) by deleting provisions re the PACE pilot program and adding provision permitting submission of a Medicaid state plan amendment to add PACE program services to the Medicaid state plan, amended Subsec. (c) by deleting provision re department assistance to Secretary of the United States Department of Health and Human Services in establishing certain procedures for PACE agreements and adding provisions re establishment of participation criteria and payments for services, deleted former Subsec. (d) re provision of medical assistance for PACE program services, redesignated Subsec. (e) as new Subsec. (d) and added provision re implementation of policies and procedures, and made technical and conforming changes, effective July 1, 2023; P.A. 23-204 made identical changes as P.A. 23-30, effective July 1, 2023.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="sec_17b-429">Sec. 17b-429. Information on pharmaceutical drug programs for indigent persons.</span> Section <a href ="chap_319bb.htm#sec_17b-429">17b-429</a> is repealed, effective July 1, 2013.</p>
+<p class="source-first">(June Sp. Sess. P.A. 01-9, S. 104, 131; P.A. 04-257, S. 34; P.A. 13-125, S. 29.)</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+<p><span class="catchln" id="secs_17b-430_to_17b-449">Secs. 17b-430 to 17b-449.</span> Reserved for future use.</p>
+<p>Note: Chapter 319cc is also reserved for future use.</p>
+<table class="nav_tbl">
+<tr>
+<td><a class="nav_link" href="#TOC">(Return to Chapter<br/>Table of Contents)</a></td>
+<td><a class="nav_link" href="title_17b.htm">(Return to<br/>List of Chapters)</a></td>
+<td><a class="nav_link" href="titles.htm">(Return to<br/>List of Titles)</a></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

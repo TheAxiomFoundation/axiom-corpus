@@ -1,0 +1,45 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ut-ustc-tc-40-ty2025
+  jurisdiction: us-ut
+  document_class: form
+  title: Form TC-40, Utah Individual Income Tax Return (2025)
+  source_url: https://tax.utah.gov/forms-pubs/
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ut/form/ustc/ty2025/tc-40
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Utah State Tax Commission
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ut/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.utah.gov/forms-pubs/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.utah.gov/forms-pubs/
+  download_url: https://files.tax.utah.gov/tax/forms/current/tc-40.pdf
+- source_id: us-ut-ustc-tc-40-instructions-ty2025
+  jurisdiction: us-ut
+  document_class: form
+  title: TC-40 Forms and Instructions, Utah Individual Income Tax Return Instructions (2025)
+  source_url: https://tax.utah.gov/forms-pubs/
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ut/form/ustc/ty2025/tc-40-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah State Tax Commission
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ut/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.utah.gov/forms-pubs/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.utah.gov/forms-pubs/
+  download_url: https://files.tax.utah.gov/tax/forms/current/tc-40inst.pdf

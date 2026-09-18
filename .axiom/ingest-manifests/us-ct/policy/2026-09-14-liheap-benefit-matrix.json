@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "14c766c9c0e20ff5ac81207d12cfcb7ef8735bb2ba3fb75e59dde6bebd95edad"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "2a8c47c45d6161036e08fa59841649a605b0b5fcfc23bef3ef35c018b759908b"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/policy/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "0dd7414224aeffcf32a7338ff6598442126416ca30d64d9906a43eb7abe94b91"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ct-liheap-dss-liheap-allocation-plan-ffy2026.pdf",
+      "sha256": "d23470a63b861bf30567c8b1faa6eca902e84521ff20ebe3bc39c42f70dcd7e7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-ct-liheap-benefit-matrix-attachments.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T16:17:05.456092+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "K5mKpNsC6T3LbfIDYoEK8nIJcd+cJHipQFcSgU1c6BiOwifB4YCgeugBb24XAo7FFfqSOffI9EhRXLofrYYUDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

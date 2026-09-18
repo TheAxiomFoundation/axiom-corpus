@@ -1,0 +1,37 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: me-ofi-mainecare-eligibility-manual-part-11
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 11: State Supplement'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-29'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-11
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 11$
+    stop_text_pattern: ^PART 12$
+    section_heading_pattern: ^SECTION (?P<section>\d+):\s+(?P<heading>.+?)\s*$
+    section_label_template: section-{section}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services Office for Family Independence
+    publication_authority: Maine Secretary of State Administrative Procedure Act Office
+    document_subtype: administrative_rules_part
+    program: ssi_state_supplement
+    state_program: State Supplement (State Optional Supplement Program, 1974)
+    federal_program: SSI
+    state: ME
+    rule_chapter: 10-144 C.M.R. Chapter 332
+    rule_part: '11'
+    rule_filing: 2025-101
+    manual_landing_page: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    index_url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
+    source_discovery_group: us-me/regulation/ssi-state-supplement
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
+    extraction_note: 'the chapter Word document carries all 18 parts; Part 11 is cut from the body heading ''PART 11'' (the
+      table-of-contents line ''PART 11: STATE SUPPLEMENT'' is not matched) to ''PART 12''; the Part 11 preamble before SECTION
+      1 is not a labeled section'
+    expression_date_note: filing 2025-101; the same date the 2026-09-10 CHIP scope records for this document

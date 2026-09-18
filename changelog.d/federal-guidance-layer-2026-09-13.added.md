@@ -1,0 +1,1 @@
+Add the 2026-09-13 federal guidance layer: SSA POMS part SI remainder (778 sections) and part HI (922 sections), CMS IOM Pub 100-16 and Pub 100-18, FNS SNAP tables and OBBB memoranda, WIC guidance documents, and the 2026 Medicare and LIHEAP annual figure notices, with the generator support for lettered IOM chapters, publisher chapter pages and POMS part families.

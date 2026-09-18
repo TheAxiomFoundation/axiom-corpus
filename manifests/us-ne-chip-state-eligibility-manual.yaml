@@ -1,0 +1,33 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ne-dhhs-title-477-chapter-19
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 19: Modified Adjusted Gross Income (MAGI)-Based Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2019%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-19
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: CHIP
+    source_discovery_group: us-ne/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1759
+    chapter_number: '19'
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 19 (07-29-2020).pdf
+    state_program: 599 CHIP

@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "4851a1788b664b98d223183326e12fca90347a98b6ec0385a5a4ca8ce1a417a4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "f2e72bac5e862fea56b97c148fc143da92289dd921275454be71012c976ef4ef"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "994974649270af602133d561ebfb87ecfe3097cf2b6fc2c52f08f6f497f416db"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-categorical-factors.pdf",
+      "sha256": "19275e2cfd3808bb151f55d194f4e419ec25bababd236d4ddee9a10ab903189d"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-glossary.pdf",
+      "sha256": "9201523fe7179970f93ce9bf9b9ca22b59cfd8f9435037c1ca566a62a91b8676"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-income.pdf",
+      "sha256": "d967c7c10c08d09706711552bf0345bf91fe967364420eb1a9ec029feba68802"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-introduction.pdf",
+      "sha256": "0473dc2fcc2a1d53eae3acc4e0b62979bba9c5d1386c8f478d209cbe2676d513"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-master-index.pdf",
+      "sha256": "65c7b20ace84bc2b4670c4121fb398f79485e1ae62f02eafbfec21f83a7ac4ae"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-other-eligibility-requirements.pdf",
+      "sha256": "e18711fbec8b9ac440ca9b14a1df710e77e86fa09823774280906eb96eb4a947"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-reference.pdf",
+      "sha256": "4fee2d283ff937e3f461dcb2a6997270d08084b40ec2fec0104ddc369e276d2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ny-medicaid-resources.pdf",
+      "sha256": "fa154cd7d3146d96e1713555f2cbf469467daaf787a1f593b0f1f9917267ca9f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ny-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 978,
+    "missing_count": 0,
+    "provision_count": 978,
+    "source_count": 978
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:26:12.402526+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PBtWBSdq1DM96XqjalStzqDEebSnsVAw7sRdGex/h0W4xWj6A1AGlSP+VRIWQdpITAKBAdOKFTjTUWDlhaQNBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

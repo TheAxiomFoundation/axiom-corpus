@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-isles-of-scilly/manual/2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027.json",
+      "sha256": "fab58cdf3a88b61833229f2ea2c2072ec043f897d1ce5df455b0732ec7367ea1"
+    },
+    {
+      "path": "data/corpus/inventory/uk-isles-of-scilly/manual/2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027.json",
+      "sha256": "65e13b5207e3cf2e1844be1daa84cff172e72d5746ed6c0d124b2102792e6851"
+    },
+    {
+      "path": "data/corpus/provisions/uk-isles-of-scilly/manual/2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "de637e9b1a73684a22a29dbe518a25b57cc6d55046fe31f9386e9c2a5f1d4da8"
+    },
+    {
+      "path": "data/corpus/sources/uk-isles-of-scilly/manual/2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027/official-documents/isles-of-scilly-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "8edbc306c47d8ef54f159f7330ddc728c659b13b236a996d7e8d6fee32e35f64"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8571ba04c52b068ade4cab4dd5b5f44d9082b79c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-isles-of-scilly-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 144,
+    "missing_count": 0,
+    "provision_count": 144,
+    "source_count": 144
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:29:25.199173+00:00",
+  "jurisdiction": "uk-isles-of-scilly",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C3hrKbjOzRH2Gs72xEdtTJigGqmdd2ucOJLRNUQ4/xB66Kht5NmA1tAFvDacP9dDOt278kEBJtecEHSzRlwOBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027"
+}

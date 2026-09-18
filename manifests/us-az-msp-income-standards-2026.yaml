@@ -1,0 +1,27 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-az-ahcccs-eligibility-requirements-2026-02
+  jurisdiction: us-az
+  document_class: guidance
+  title: AHCCCS Eligibility Requirements, February 1, 2026 (FPL and Income Eligibility Chart)
+  source_url: https://www.azahcccs.gov/Members/GetCovered/
+  download_url: https://www.azahcccs.gov/Members/Downloads/EligibilityRequirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-02-01'
+  citation_path: us-az/guidance/ahcccs/eligibility-requirements-chart/2026-02
+  metadata:
+    primary_source: true
+    source_authority: Arizona Health Care Cost Containment System (AHCCCS)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-az/guidance
+    index_url: https://www.azahcccs.gov/Members/GetCovered/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_standards_chart
+    effective_date: '2026-02-01'
+    msp_groups: 'QMB, SLMB, QI-1 (page 2); resource test: none'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

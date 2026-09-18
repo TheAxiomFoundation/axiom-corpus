@@ -1,0 +1,31 @@
+version: '2026-09-14'
+documents:
+- source_id: id-oar-idapa-35-01-01-income-tax
+  jurisdiction: us-id
+  document_class: regulation
+  citation_path: us-id/regulation/idapa/35/01/01
+  title: 'IDAPA 35.01.01: Income Tax Administrative Rules (Idaho State Tax Commission)'
+  source_url: https://adminrules.idaho.gov/rules/current/35/350101.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{3})\.\s+(?P<heading>[A-Z][A-Z0-9 ,;:'&()\-/–]+?)\.?$
+    section_label_pattern: ^(?P<label>\d{3})\.$
+    label_only_heading_pattern: ^[A-Z][A-Z0-9 ,;:'&()\-/–]+\.?$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^IDAHO ADMINISTRATIVE CODE.*$
+    - ^Idaho State Tax Commission.*$
+    - ^IDAPA 35\.01\.01.*$
+    - ^Section \d+\s+Page \d+.*$
+    - ^Page \d+$
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    official_publisher: Idaho Office of the Administrative Rules Coordinator
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-id/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://adminrules.idaho.gov/rules/current/35/

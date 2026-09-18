@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-barking-and-dagenham/manual/2026-09-05-barking-and-dagenham-council-tax-reduction-2026-2027.json",
+      "sha256": "cf16674083b7c1a07f27d778082d9b673636b200a0fd014bea58d2f025f91e6a"
+    },
+    {
+      "path": "data/corpus/inventory/uk-barking-and-dagenham/manual/2026-09-05-barking-and-dagenham-council-tax-reduction-2026-2027.json",
+      "sha256": "b6db292c524237006185030fab995e9381650349babc50d163cecce9a24c4d86"
+    },
+    {
+      "path": "data/corpus/provisions/uk-barking-and-dagenham/manual/2026-09-05-barking-and-dagenham-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "c35a8d5abffd7b42f39535bd7f30fcb20ef488adc10b9670be9a783ddf79fe63"
+    },
+    {
+      "path": "data/corpus/sources/uk-barking-and-dagenham/manual/2026-09-05-barking-and-dagenham-council-tax-reduction-2026-2027/official-documents/barking-and-dagenham-council-tax-reduction-scheme-2026-2027.docx",
+      "sha256": "832ef519c412e344185c81c0389d5f39bd1560e109921751d09f7007ad9108b6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-barking-and-dagenham-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-barking-and-dagenham-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 65,
+    "missing_count": 0,
+    "provision_count": 65,
+    "source_count": 65
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:46.217993+00:00",
+  "jurisdiction": "uk-barking-and-dagenham",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LyZdQnJrjin9OIkfYmPqroI9jmbZmxEXIxNUD93mqohzbwd5rZIKjAFEcZqsS/aKseqoIBaMyYe9PnnhqBgdDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-barking-and-dagenham-council-tax-reduction-2026-2027"
+}

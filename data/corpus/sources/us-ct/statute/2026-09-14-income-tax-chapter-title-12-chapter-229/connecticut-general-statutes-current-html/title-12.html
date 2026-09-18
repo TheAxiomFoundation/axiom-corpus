@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="Description" content="Title 12 - Taxation"/>
+<meta name="Number" content="12"/>
+<title>Title 12 - Taxation</title>
+<style type="text/css" media="screen"><!--
+/* High-level style defs for page */
+html {
+background-color: #ffffff;
+color: #000000;
+}
+body {
+padding: 0em 0.5em;
+font-family : "Times New Roman", Times, serif;
+font-size: medium;
+}
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+color : #000000;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.1;
+margin : 0em 0em;
+text-align : center;
+text-decoration : none;
+text-indent : 0em;
+}
+h1, h2, h3 {
+font-weight : bold;
+}
+h5, h6 {
+margin-top: 2em;
+}
+h1.title-no, h1.title-name {
+color: #800000;
+}
+h2.chap-no, h2.chap-name {
+/* nothing special */
+}
+h3.part-name {
+margin-top: 0.5em;
+}
+h3.part-no {
+margin-top: 2em;
+}
+h4.chap_toc_hd {
+font-weight: bold;
+margin: 1.5em 0em 1em 0em;
+text-align: left;
+}
+h4.subpart-name {
+font-weight: bold;
+margin-top: 0.5em;
+}
+h4.subpart-no {
+font-weight: bold;
+margin-top: 2em;
+}
+/* HORIZONTAL RULES */
+hr.titles_pg_bar {
+background-color: #a0a0a0;
+border-width: 0;
+color: #a0a0a0;
+height: .5em;
+margin: 1em 0em;
+width: 100%;
+}
+hr.chaps_pg_bar {
+background-color: #8b0000;
+border-width: 0;
+color: #8b0000;
+height: .8em;
+margin: .5em 0em;
+width: 100%;
+}
+hr.titles_toc_spcr {
+background-color: #ffcc00;
+border-width: 0;
+color: #ffcc00;
+height: 1em;
+margin: 0.1em .5em;
+text-align: left;
+vertical-align: top;
+width: 150px;
+}
+/* IMAGES */
+img.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* PARAGRAPHS */
+p {
+font-size : 1em;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.2;
+margin : 1em 0em 0em 0em;
+text-align : justify;
+text-justify:distribute;
+text-decoration : none;
+text-indent: 1em;
+}
+p.annotation, p.annotation-first {
+color: #ff3333;
+}
+p.cross-ref, p.cross-ref-first {
+color: #009900;
+}
+p.front-note, p.front-note-first {
+color : #ff6600;
+}
+p.history, p.history-first {
+color : #9900FF;
+}
+p.source, p.source-first {
+color : #996600;
+}
+p.Form-center, p.Text-center, p.Form-head, p.lesser-head {
+text-align : center;
+text-indent: 0em;
+}
+p.Form-head, p.lesser-head {
+margin-top: 2em;
+}
+p.Form-left, p.Text-left {
+text-align : justify;
+text-indent: 0em;
+}
+p.Text-left1 {
+text-align : justify;
+text-indent: 0em;
+margin-top: 0em;
+}
+p.Form-right {
+text-align : right;
+text-indent: 0em;
+}
+p.tb, p.tb-left, p.tb-left1, p.tb-left2, p.tb-center, p.tb-right {
+text-align : justify;
+text-indent : 0em;
+margin : 0.5em 0em 0em 0em;
+}
+p.tb, p.tb-left1 {
+margin-left: 1em;
+}
+p.tb-left2 {
+margin-left: 2em;
+}
+p.tb-center {
+text-align : center;
+}
+p.tb-right {
+text-align : right;
+}
+p.nolead {
+margin-top: 0em;
+}
+p.flush {
+text-align : left;
+text-indent : 0em;
+}
+/* TABLES */
+table {
+/* consider border-collapse : collapse; */
+border-style: none;
+font-size: 1em;
+text-align: left;
+vertical-align: top;
+margin: 1em 0em 1em 0em;
+}
+tbody, thead, tfoot, tr, td, th {
+text-indent: 0em;
+vertical-align: top;
+}
+table.center {
+margin-left: auto;
+margin-right: auto;
+}
+table.nav_tbl {
+border: 0;
+width: 50%;
+padding: 2px;
+border-spacing: 2px;
+text-align: center;
+margin: 1em 0em 2em 0em;
+}
+table.ttl_toc_vol_hd {
+border: 0;
+padding: 0px;
+border-right: 15px;
+vertical-align: middle;
+margin-top: 2em;
+}
+td.bottom {
+vertical-align: bottom;
+}
+td.left_25pct {
+width: 25%;
+}
+td.left_38pct {
+width: 38%;
+}
+td.left_40pct {
+width: 40%;
+}
+/* SPANS */
+span.inline_hd {
+font-weight : bold;
+}
+span.catchln {
+color: #8b0000;
+font-weight : bold;
+}
+span.toc_vol_no {
+font-size: 1.2em;
+font-style : normal;
+font-weight : bold;
+}
+span.toc_ttl_desig, span.toc_ttl_name {
+font-size: 1.1em;
+font-weight: bold;
+color: #003399;
+}
+span.toc_rng_chaps {
+font-size: 1.1em;
+font-weight: bold;
+color: #cc0033;
+}
+/* etc. */
+.titles_main_hd {
+color: #ff0000;
+}
+.toc_rng_secs {
+color: #cc0033;
+font-weight: bold;
+}
+.toc_catchln {
+color: #8b0000;
+margin : .1em 0em 0em 2em;
+max-width: 90%;
+text-indent: -2em;
+}
+.toc_catchln * {
+color: #8b0000;
+}
+.toc_ch_link {
+display: inline-block;
+color: #0000ff;
+font-size: 1.1em;
+font-weight: normal;
+}
+.nav_link {
+color: #0000ff;
+}
+.full-width {
+width: 100%;
+}
+.half-width {
+width: 50%;
+}
+.third-width {
+width: 33%;
+}
+--></style>
+</head>
+<body>
+<div id="title_12.htm" lang="en-US">
+<h1 class="title-no">TITLE 12*</h1>
+<h1 class="title-name">TAXATION</h1>
+<p class="front-note-first">*Cited. 207 C. 683.</p>
+<br/>
+<table style="width:80%">
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_201.htm">Chapter 201</a> <span class="toc_rng_secs">Secs. 12-1 to 12-34e</span></td>
+<td><a class="toc_ch_link" href="chap_201.htm">State and Local Revenue Services. Department of Revenue Services</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_202.htm">Chapter 202</a> <span class="toc_rng_secs">Secs. 12-35 to 12-39dd</span></td>
+<td><a class="toc_ch_link" href="chap_202.htm">Collection of State Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_203.htm">Chapter 203</a> <span class="toc_rng_secs">Secs. 12-40 to 12-121z</span></td>
+<td><a class="toc_ch_link" href="chap_203.htm">Property Tax Assessment</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_203a.htm">Chapter 203a</a> <span class="toc_rng_secs">Secs. 12-121aa to 12-121cc</span></td>
+<td><a class="toc_ch_link" href="chap_203a.htm">The Connecticut Appeals Board for Property Valuation</a> (<i>Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_204.htm">Chapter 204</a> <span class="toc_rng_secs">Secs. 12-122 to 12-170</span></td>
+<td><a class="toc_ch_link" href="chap_204.htm">Local Levy and Collection of Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_204a.htm">Chapter 204a</a> <span class="toc_rng_secs">Secs. 12-170a to 12-170dd</span></td>
+<td><a class="toc_ch_link" href="chap_204a.htm">Property Tax Relief for Elderly Homeowners and Renters and Persons with Permanent Total Disability</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_205.htm">Chapter 205</a> <span class="toc_rng_secs">Secs. 12-171 to 12-195h</span></td>
+<td><a class="toc_ch_link" href="chap_205.htm">Municipal Tax Liens</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_206.htm">Chapter 206</a> <span class="toc_rng_secs">Secs. 12-196 to 12-200</span></td>
+<td><a class="toc_ch_link" href="chap_206.htm">School District Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_207.htm">Chapter 207</a> <span class="toc_rng_secs">Secs. 12-201 to 12-212c</span></td>
+<td><a class="toc_ch_link" href="chap_207.htm">Insurance Companies and Health Care Centers Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_208.htm">Chapter 208</a> <span class="toc_rng_secs">Secs. 12-213 to 12-242z</span></td>
+<td><a class="toc_ch_link" href="chap_208.htm">Corporation Business Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_208a.htm">Chapter 208a</a> <span class="toc_rng_secs">Secs. 12-242aa to 12-242dd</span></td>
+<td><a class="toc_ch_link" href="chap_208a.htm">Unrelated Business Income of Nonprofit Corporations Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_208b.htm">Chapter 208b</a> <span class="toc_rng_secs">Secs. 12-242ee to 12-242yy</span></td>
+<td><a class="toc_ch_link" href="chap_208b.htm">Taxation of Interest on Certain Obligations of the State of Connecticut</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_209.htm">Chapter 209</a> <span class="toc_rng_secs">Secs. 12-243 to 12-248</span></td>
+<td><a class="toc_ch_link" href="chap_209.htm">Air Carriers Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_210.htm">Chapter 210</a> <span class="toc_rng_secs">Secs. 12-249 to 12-255</span></td>
+<td><a class="toc_ch_link" href="chap_210.htm">Railroad Companies Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_210a.htm">Chapter 210a</a> <span class="toc_rng_secs">Secs. 12-255a to 12-255t</span></td>
+<td><a class="toc_ch_link" href="chap_210a.htm">Telecommunications Service Company Tax</a> (<i>Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_211.htm">Chapter 211</a> <span class="toc_rng_secs">Secs. 12-256 to 12-263</span></td>
+<td><a class="toc_ch_link" href="chap_211.htm">Community Antenna Television Systems and One-Way Satellite Transmission Businesses Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_211a.htm">Chapter 211a</a> <span class="toc_rng_secs">Secs. 12-263a to 12-263<i>l</i></span></td>
+<td><a class="toc_ch_link" href="chap_211a.htm">Ambulatory Surgical Centers Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_211b.htm">Chapter 211b</a> <span class="toc_rng_secs">Secs. 12-263m to 12-263o</span></td>
+<td><a class="toc_ch_link" href="chap_211b.htm">Dry Cleaning Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_211c.htm">Chapter 211c</a> <span class="toc_rng_secs">Secs. 12-263p to 12-263zz</span></td>
+<td><a class="toc_ch_link" href="chap_211c.htm">Hospitals Tax and Nursing Home and Intermediate Care Facility User Fees</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_212.htm">Chapter 212</a> <span class="toc_rng_secs">Secs. 12-264 to 12-268</span></td>
+<td><a class="toc_ch_link" href="chap_212.htm">Utility Companies Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_212a.htm">Chapter 212a</a> <span class="toc_rng_secs">Secs. 12-268a to 12-268r</span></td>
+<td><a class="toc_ch_link" href="chap_212a.htm">Public Service Companies Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_212b.htm">Chapter 212b</a> <span class="toc_rng_secs">Sec. 12-268s</span></td>
+<td><a class="toc_ch_link" href="chap_212b.htm">Electric Generation Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_213.htm">Chapter 213</a> <span class="toc_rng_secs">Secs. 12-269 to 12-284a</span></td>
+<td><a class="toc_ch_link" href="chap_213.htm">Unincorporated Business Tax</a> (<i>Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_213a.htm">Chapter 213a</a> <span class="toc_rng_secs">Sec. 12-284b</span></td>
+<td><a class="toc_ch_link" href="chap_213a.htm">Limited Liability Companies, Limited Liability Partnerships, Limited Partnerships and S Corporations Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_214.htm">Chapter 214</a> <span class="toc_rng_secs">Secs. 12-285 to 12-330</span></td>
+<td><a class="toc_ch_link" href="chap_214.htm">Cigarette Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_214a.htm">Chapter 214a</a> <span class="toc_rng_secs">Secs. 12-330a to 12-330dd</span></td>
+<td><a class="toc_ch_link" href="chap_214a.htm">Tobacco Products Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_214b.htm">Chapter 214b</a> <span class="toc_rng_secs">Secs. 12-330ee to 12-330kk</span></td>
+<td><a class="toc_ch_link" href="chap_214b.htm">Electronic Cigarette Products Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_214c.htm">Chapter 214c</a> <span class="toc_rng_secs">Secs. 12-330<i>ll</i> to 12-330nn</span></td>
+<td><a class="toc_ch_link" href="chap_214c.htm">Cannabis Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_215.htm">Chapter 215</a> <span class="toc_rng_secs">Secs. 12-331 to 12-339b</span></td>
+<td><a class="toc_ch_link" href="chap_215.htm">Amusement Places Tax</a> (<i>Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_216.htm">Chapter 216</a> <span class="toc_rng_secs">Secs. 12-340 to 12-390</span></td>
+<td><a class="toc_ch_link" href="chap_216.htm">Succession and Transfer Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_216a.htm">Chapter 216a</a> <span class="toc_rng_secs">Secs. 12-390a to 12-390e</span></td>
+<td><a class="toc_ch_link" href="chap_216a.htm">Generation-Skipping Transfer Tax</a> (<i>Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_217.htm">Chapter 217</a> <span class="toc_rng_secs">Secs. 12-391 to 12-399</span></td>
+<td><a class="toc_ch_link" href="chap_217.htm">Estate Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_218.htm">Chapter 218</a> <span class="toc_rng_secs">Secs. 12-400 to 12-405</span></td>
+<td><a class="toc_ch_link" href="chap_218.htm">Federal and State Estate Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_218a.htm">Chapter 218a</a> <span class="toc_rng_secs">Secs. 12-405a to 12-405m</span></td>
+<td><a class="toc_ch_link" href="chap_218a.htm">Estate Income Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_219.htm">Chapter 219</a> <span class="toc_rng_secs">Secs. 12-406 to 12-432c</span></td>
+<td><a class="toc_ch_link" href="chap_219.htm">Sales and Use Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_220.htm">Chapter 220</a> <span class="toc_rng_secs">Secs. 12-433 to 12-454</span></td>
+<td><a class="toc_ch_link" href="chap_220.htm">Alcoholic Beverages Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_221.htm">Chapter 221</a> <span class="toc_rng_secs">Secs. 12-455 to 12-477b</span></td>
+<td><a class="toc_ch_link" href="chap_221.htm">Motor Vehicle Fuels Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_221a.htm">Chapter 221a</a> <span class="toc_rng_secs">Sec. 12-477aa</span></td>
+<td><a class="toc_ch_link" href="chap_221a.htm">Aviation Fuel Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_222.htm">Chapter 222</a> <span class="toc_rng_secs">Secs. 12-478 to 12-493</span></td>
+<td><a class="toc_ch_link" href="chap_222.htm">Motor Carrier Road Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_222a.htm">Chapter 222a</a> <span class="toc_rng_secs">Sec. 12-493a</span></td>
+<td><a class="toc_ch_link" href="chap_222a.htm">Highway Use Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_223.htm">Chapter 223</a> <span class="toc_rng_secs">Secs. 12-494 to 12-504h</span></td>
+<td><a class="toc_ch_link" href="chap_223.htm">Real Estate Conveyance Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_224.htm">Chapter 224</a> <span class="toc_rng_secs">Secs. 12-505 to 12-522a</span></td>
+<td><a class="toc_ch_link" href="chap_224.htm">Dividends, Interest Income and Capital Gains Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_225.htm">Chapter 225</a> <span class="toc_rng_secs">Secs. 12-523 to 12-556g</span></td>
+<td><a class="toc_ch_link" href="chap_225.htm">Admissions and Dues Taxes</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_226.htm">Chapter 226</a> <span class="toc_rng_secs">Secs. 12-557 to 12-578bb</span></td>
+<td><a class="toc_ch_link" href="chap_226.htm">Gaming Policy, Regulation and Revenue</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_226a.htm">Chapter 226a</a> <span class="toc_rng_secs">Secs. 12-579 to 12-582</span></td>
+<td><a class="toc_ch_link" href="chap_226a.htm">Municipal Admissions Tax on Places Licensed by the Department of Consumer Protection</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_226b.htm">Chapter 226b</a> <span class="toc_rng_secs">Secs. 12-583 to 12-586e</span></td>
+<td><a class="toc_ch_link" href="chap_226b.htm">Disclosure Statements with Regard to Pari-Mutuel Betting</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_226c.htm">Chapter 226c</a> <span class="toc_rng_secs">Secs. 12-586f to 12-586g</span></td>
+<td><a class="toc_ch_link" href="chap_226c.htm">Administration of Tribal-State Compacts</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_227.htm">Chapter 227</a> <span class="toc_rng_secs">Secs. 12-587 to 12-609</span></td>
+<td><a class="toc_ch_link" href="chap_227.htm">Sale of Petroleum Products Gross Earnings Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228.htm">Chapter 228</a> <span class="toc_rng_secs">Secs. 12-610 to 12-630z</span></td>
+<td><a class="toc_ch_link" href="chap_228.htm">Unincorporated Business Tax</a> (<i>Conditionally Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228a.htm">Chapter 228a</a> <span class="toc_rng_secs">Secs. 12-630aa to 12-638</span></td>
+<td><a class="toc_ch_link" href="chap_228a.htm">R.E. Van Norstrand Neighborhood Assistance Act</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228b.htm">Chapter 228b</a> <span class="toc_rng_secs">Secs. 12-638a to 12-639</span></td>
+<td><a class="toc_ch_link" href="chap_228b.htm">Controlling Interest Transfer Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228c.htm">Chapter 228c</a> <span class="toc_rng_secs">Secs. 12-640 to 12-649</span></td>
+<td><a class="toc_ch_link" href="chap_228c.htm">Gift Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228d.htm">Chapter 228d</a> <span class="toc_rng_secs">Secs. 12-650 to 12-664</span></td>
+<td><a class="toc_ch_link" href="chap_228d.htm">Marijuana and Controlled Substances Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228e.htm">Chapter 228e</a> <span class="toc_rng_secs">Secs. 12-665 to 12-674</span></td>
+<td><a class="toc_ch_link" href="chap_228e.htm">Tourism Account Surcharge</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228f.htm">Chapter 228f</a> <span class="toc_rng_secs">Secs. 12-675 to 12-684</span></td>
+<td><a class="toc_ch_link" href="chap_228f.htm">Nursing Home Tax</a> (<i>Repealed</i>)</td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228g.htm">Chapter 228g</a> <span class="toc_rng_secs">Secs. 12-685 to 12-691</span></td>
+<td><a class="toc_ch_link" href="chap_228g.htm">Filings and Electronic Funds Transfers</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228h.htm">Chapter 228h</a> <span class="toc_rng_secs">Secs. 12-692 to 12-698</span></td>
+<td><a class="toc_ch_link" href="chap_228h.htm">Charges, Fees and Surcharge on Motor Vehicle, Truck and Machinery Rental</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_228z.htm">Chapter 228z</a> <span class="toc_rng_secs">Secs. 12-699 to 12-699z</span></td>
+<td><a class="toc_ch_link" href="chap_228z.htm">Affected Business Entity Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_229.htm">Chapter 229</a> <span class="toc_rng_secs">Secs. 12-700 to 12-799</span></td>
+<td><a class="toc_ch_link" href="chap_229.htm">Income Tax</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_229a.htm">Chapter 229a</a> <span class="toc_rng_secs">Secs. 12-800 to 12-849</span></td>
+<td><a class="toc_ch_link" href="chap_229a.htm">Connecticut Lottery Corporation</a></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="chap_229b.htm">Chapter 229b</a> <span class="toc_rng_secs">Secs. 12-850 to 12-872</span></td>
+<td><a class="toc_ch_link" href="chap_229b.htm">Licensing and Regulation of Online Casino Gaming, Sports Wagering, Fantasy Contests, Keno and Online Sale of Lottery Tickets</a></td>
+</tr>
+<tr>
+<td class="left_40pct">&#160;</td>
+<td></td>
+</tr>
+<tr>
+<td class="left_40pct"><a class="toc_ch_link" href="titles.htm">(Return to List of Titles)</a></td>
+<td></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

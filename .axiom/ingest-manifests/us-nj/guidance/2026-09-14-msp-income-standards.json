@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "13c6c7a1c8961346aae83f3f092117bd375d988697439829e2be1a4278976259"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "2e94b2672aa2b4bcb27dc35342ca6d45106d63e97d5e85d587165862c60230ad"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "11882c95de39e6c5466d111bd1b9d2fb7ac529586096d263b853517c7f4bbbab"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-09-14-msp-income-standards/official-documents/us-nj-dmahs-medicaid-communication-26-03.pdf",
+      "sha256": "b80ae565a22426dcf10451284fd7e3c2d4d6a1b497a05185b7e1f93b851e763a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-nj-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:27:09.940149+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3K6xyCGApRc43QCIoWomyaC5Bs7t9Em8zq2DiiZUOI5z98vZfy9K4WmPteiPtO98r2up0+neHPrs7JAPGugoDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

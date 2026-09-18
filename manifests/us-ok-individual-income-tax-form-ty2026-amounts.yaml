@@ -1,0 +1,27 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-ok-otc-ow-8-es-ty2026
+  jurisdiction: us-ok
+  document_class: form
+  title: Form OW-8-ES Oklahoma Individual Estimated Tax, Tax Year 2026 Worksheet and Coupon
+  source_url: https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/OW-8-ES.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ok/form/otc/ty2026/ow-8-es
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Tax Commission
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-06-01'
+    amounts_carried:
+    - personal exemption ($1,000)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://oklahoma.gov/tax/forms.html
+    discovered_via: manual-review:tax-agent-queue; index https://oklahoma.gov/tax/forms.html (read 2026-09-13)
+    source_note: Prints the exemption amount only; no rate schedule or standard deduction.

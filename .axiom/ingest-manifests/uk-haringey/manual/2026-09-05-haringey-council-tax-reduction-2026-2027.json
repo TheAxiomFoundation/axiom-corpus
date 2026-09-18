@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-haringey/manual/2026-09-05-haringey-council-tax-reduction-2026-2027.json",
+      "sha256": "f5361e307ecc993dde77b1220fab2a529007650dd24d098e14a3a18b32ba604e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-haringey/manual/2026-09-05-haringey-council-tax-reduction-2026-2027.json",
+      "sha256": "be8b53afead7dcd1ab6b2d6eb28545dee1d5b4740ff11bce3fb7fa549c309ab6"
+    },
+    {
+      "path": "data/corpus/provisions/uk-haringey/manual/2026-09-05-haringey-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "a8f4ba1cf0adead264874f0a69d8df79759f043fbe0af99f9b933b697154279a"
+    },
+    {
+      "path": "data/corpus/sources/uk-haringey/manual/2026-09-05-haringey-council-tax-reduction-2026-2027/official-documents/haringey-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "85ecad98ce21e9b891456fd31e546b28eb950f46a897d1cd527f73089dd5b682"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9d92c0708536b826f4a78201c38a581dcadf11b4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-haringey-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-haringey-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 222,
+    "missing_count": 0,
+    "provision_count": 222,
+    "source_count": 222
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:27:07.607138+00:00",
+  "jurisdiction": "uk-haringey",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XO7z5qaiKKpYM1NKuDatNYJhPs0jAEqu5U0ZdQdfQzQrCNCHvi4ewmhpe7rpwOuK05vTHuKGHxCimHK2hXtQAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-haringey-council-tax-reduction-2026-2027"
+}

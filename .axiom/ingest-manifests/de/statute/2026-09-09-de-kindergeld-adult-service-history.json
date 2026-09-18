@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-adult-service-history.json",
+      "sha256": "976c80124780e905e0a6fe633a5e6f02bf3e4121072417e1b8fd5715f02355a3"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-adult-service-history.json",
+      "sha256": "fd02fe2e8a1ab9eec16f108ff2a87f7c66605c9bfa37077b5b4ce426800ff4f7"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-adult-service-history.jsonl",
+      "sha256": "1f527d8277373aedd79bbd6562662bd3a6b5d8ac68b3e14a0afd472985632235"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-adult-service-history/official-documents/de-sg-58b-2025-history.html",
+      "sha256": "adbeee56908a82812b85247823ec2fbba9a5f1bd7cf343173f2f1c0bdf522343"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "692942c8ac9be6b3c4b5c49c8ac12b7db88f25c0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-adult-service-history --manifest /private/tmp/de-kindergeld-closure/adult-service-history-replay.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-09T07:10:12.632328+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "78qoKfFFvXp6eGpKk8+Z3thOB4eKcquU2jwRqq6FO97nOs68I8HndI0Xo4nI2+O+pf/WmMeA2ZQNmrUNNYQVDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-adult-service-history"
+}

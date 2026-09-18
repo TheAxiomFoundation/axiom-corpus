@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated.json",
+      "sha256": "702f752d6c7f9fadbf047ae4a56b9fdca51fad60323ccd916f1b672ac743a421"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated.json",
+      "sha256": "deff67a41577db2135c130e4afb3949d20c0f8657ea4c1be3a3cd055f67a6c9e"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated.jsonl",
+      "sha256": "f10ed40698a98bd38c806e36b4a2401c6ab4d31d862352237a99d674deac7035"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated/2026-05-27-hi-snap-rules-r2026-07-15-self-contained/official-documents/release-scope-us-hi-regulation-2026-05-27-hi-snap-rules-r2026-07-15-self-contained",
+      "sha256": "fceaba9b656670aa74927281379c9c44f6e5aace6706dc1b67f1e72f5cd7d5e8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated/2026-05-27-hi-snap-rules-r2026-07-15-self-contained/provenance/release-scope-us-hi-regulation-2026-05-27-hi-snap-rules-r2026-07-15-self-contained.json",
+      "sha256": "9e337ad6c1de9205b091d9b6ed6184a42f393cc7751f75744d2c63630bfd1195"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated/2026-07-03-hi-tanf-admin-rules/official-documents/hi-dhs-har-17-656-1-tanf.pdf",
+      "sha256": "c73efa00c3fd2e126927b6ebfc810d1ab46adbe2b478dfa944329a6f5516eaea"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated/2026-07-03-hi-tanf-admin-rules/official-documents/hi-dhs-har-17-676-income-tanf.pdf",
+      "sha256": "4b5ccaaea4ae1707df15b73db28176c30fb4cb91f576769ac2e45517a6eb29f6"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated/2026-07-03-hi-tanf-admin-rules/official-documents/hi-dhs-har-17-678-financial-assistance-standards-2025.pdf",
+      "sha256": "7e857182a54400cf54867b3b0a98838b0d93d7ab4b6194a13abb86c7e3dead81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de9a23d2d7610775f446ff26f26e48c9b04a9b7e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-hi --document-class regulation --target-version 2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated (run note: docs/ingest-runs/2026-09-11-release-consolidation.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 717,
+    "missing_count": 0,
+    "provision_count": 717,
+    "source_count": 717
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:33:59.779980+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5JV/bSxdyPaCSgo9eNVIcwADQKZbxYeyNA/qfx+MkpBKId5yJ/LGwwtS6HhutUodvJtEFy/xfO6X2AJoy8CxDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated"
+}

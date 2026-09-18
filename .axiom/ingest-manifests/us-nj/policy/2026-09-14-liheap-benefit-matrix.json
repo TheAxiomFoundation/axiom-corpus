@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "68c0f84f654ef66229aa4c1082f83c0e4260ff931823e3d6eda440adc2ef7c16"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "512c6776150e84c122afe7e64cd4cd4e4a2751d42b95aedd2fbdcd4fc78205e7"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/policy/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "ece37652e8bb0f96f4a1ff3a1b53604cc87dfd5a732fd7361892f4722c0dcaef"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-nj-liheap-dca-liheap-fy2026.pdf",
+      "sha256": "6a8b7156409bd7f3449dc6a4e426a312c4d0bc10c572569f56bc8014addeea7e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-nj-liheap-benefit-matrix-attachments.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T17:29:35.238794+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IU8c8Ucecwao8MBrVMpF95WBAfK9W4eo7U08q+/TdVDDSy6GWPTFdhmOyMHBGF5JlkfBV0tLR8QxQlgOMIt2Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

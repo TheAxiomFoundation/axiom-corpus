@@ -1,0 +1,29 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: pa-dhs-chip-enrollment-and-benefits-handbook
+  jurisdiction: us-pa
+  document_class: manual
+  title: Pennsylvania DHS Children's Health Insurance Program (CHIP) Enrollment and Benefits Handbook
+  source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dhs/documents/chip/eligibility-and-benefits/documents/chip-enrollment-and-benefits-handbook.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-01-01'
+  citation_path: us-pa/manual/dhs/chip/enrollment-and-benefits-handbook
+  extraction:
+    segmentation: labeled_sections
+    start_page: 6
+    section_heading_pattern: ^CHAPTER (?P<num>\d+):\s+(?P<heading>[A-Z].*?)\s*$
+    section_label_template: chapter-{num}
+    heading_continuation_pattern: (?!)
+    drop_line_patterns:
+    - ^\s*Released January 1, 2026\s*$
+    - ^\s*\d{1,2}\s*$
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Human Services
+    document_subtype: policy_handbook_pdf
+    program: CHIP
+    source_discovery_group: us-pa/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 2; publisher index confirmed by agent 2026-09-10
+    state_program: Pennsylvania CHIP
+    released: '2026-01-01'

@@ -143,6 +143,19 @@ axiom-corpus-ingest extract-ecfr \
 Use an eCFR date that the public API actually serves. The corpus version can be
 the local build or release date; the source `as_of` date remains provenance.
 
+The Versioner API's full-XML endpoint requires response compression (it answers
+`406 Not Acceptable`, support code 11, to a request without an `Accept-Encoding`
+header); the adapter offers gzip and deflate and decodes the reply itself.
+
+Title 26 numbers many sections after the Code subsection they implement
+(`1.401(k)-1`, `31.3121(a)(1)-1`, `31.3121(a)-1T`). Parentheses are not legal in a
+citation-path segment, so the adapter folds each parenthesised group into hyphens in the
+path (`us/regulation/26/1/401-k-1`, `us/regulation/26/31/3121-a-1-1`) while the
+citation label, legal identifier, `ecfr:section` identifier, metadata and reader URL keep
+the official form. `--section` selectors take the official form (`--section '1.401(k)-1'`).
+Before 2026-09-13 such identifiers were skipped by the inventory and truncated by the XML
+pass, so no earlier scope contains one.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
@@ -208,6 +221,22 @@ The title is inferred from USLM `docNumber` or identifiers by default. If
 USLM file's `dcterms:created` date when present. Targeted smoke runs can use
 `--limit`; that produces a scoped run id such as `2026-04-29-title-26-limit-25`
 and only certifies coverage for that scoped inventory.
+
+`--source-zip` takes the publisher's single-member release-point zip
+(`xml_usc42@119-103.zip`) instead of `--source-xml`. The zip is then retained
+byte-for-byte as the inventoried source under `sources/us/statute/{run_id}/olrc/`
+(inventory and provision `source_path` and `sha256` point at the zip, and
+`metadata.source_archive_member` names the parsed member), which keeps Title 42
+scopes under GitHub's 100 MB file limit: the extracted `usc42.xml` is 113 MB.
+
+```bash
+axiom-corpus-ingest extract-usc \
+  --base data/corpus \
+  --version 2026-09-13-wic-statute-1786 \
+  --source-zip xml_usc42@119-103.zip --title 42 \
+  --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip \
+  --section 1786
+```
 
 For a complete local US Code source directory:
 

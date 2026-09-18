@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-newark-and-sherwood/manual/2026-09-05-newark-and-sherwood-council-tax-reduction-2026-2027.json",
+      "sha256": "5bd02eaf667edfbc820f25bd5dbe6c97b3df897b1fab7006e56e5a98fd82a703"
+    },
+    {
+      "path": "data/corpus/inventory/uk-newark-and-sherwood/manual/2026-09-05-newark-and-sherwood-council-tax-reduction-2026-2027.json",
+      "sha256": "841c14f695fa2f1aa5726314b5c77387137704584c674edf5cd7e7de9c8c765d"
+    },
+    {
+      "path": "data/corpus/provisions/uk-newark-and-sherwood/manual/2026-09-05-newark-and-sherwood-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "a8bf95d2c86589672ca670713b1676062e9461a2619c4495ac1e8f7216ed0b2b"
+    },
+    {
+      "path": "data/corpus/sources/uk-newark-and-sherwood/manual/2026-09-05-newark-and-sherwood-council-tax-reduction-2026-2027/official-documents/newark-and-sherwood-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1c590f0e370850c3eb96bf7d4598b42abe5b941cd6beb93d708853c0b5990c58"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-newark-and-sherwood-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-newark-and-sherwood-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 249,
+    "missing_count": 0,
+    "provision_count": 249,
+    "source_count": 249
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:52.418875+00:00",
+  "jurisdiction": "uk-newark-and-sherwood",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lkIY4tSxkMKNJBrREYAHnSJSOLWZzArdjBJP/MkXApbYgC+QW0vAcQKSuN8/INAQWT1kvJiLqTwDoJvkfVx/Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-newark-and-sherwood-council-tax-reduction-2026-2027"
+}

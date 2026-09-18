@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-amber-valley/manual/2026-09-05-amber-valley-council-tax-reduction-2026-2027.json",
+      "sha256": "7ec9e4a31603f3b693edaae0cc265f9377e10ca3dbad95e66c23023c23e128a4"
+    },
+    {
+      "path": "data/corpus/inventory/uk-amber-valley/manual/2026-09-05-amber-valley-council-tax-reduction-2026-2027.json",
+      "sha256": "2be9511f4eb23f5d731d348a3e6b8f0c67bf0988d779a20d4869ef85a25d5c14"
+    },
+    {
+      "path": "data/corpus/provisions/uk-amber-valley/manual/2026-09-05-amber-valley-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "a6899d475e27500a4d7e0825639de2995babd8c72f506d821e221585763bb2e1"
+    },
+    {
+      "path": "data/corpus/sources/uk-amber-valley/manual/2026-09-05-amber-valley-council-tax-reduction-2026-2027/official-documents/amber-valley-council-adoption-2026-27.pdf",
+      "sha256": "26fcc492d4ca1516f49f8ca8f27c9eb7ce47d1e674d20a3ac7d53aeda907e22c"
+    },
+    {
+      "path": "data/corpus/sources/uk-amber-valley/manual/2026-09-05-amber-valley-council-tax-reduction-2026-2027/official-documents/amber-valley-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "3fbb2b67ccb0c808c970807279d0ab8791c7087eb81459c63959874ed66a7c9f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7acb3bacfdb01c57a2aa84d07c6f0b3649b418e1",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-amber-valley-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-amber-valley-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 180,
+    "missing_count": 0,
+    "provision_count": 180,
+    "source_count": 180
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T22:13:43.677461+00:00",
+  "jurisdiction": "uk-amber-valley",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wsSMv/miU8APPhMtwZqets4yF7IKdIwLemtG56nNFSnppsRl4wBMLksH7Rd6z/Cpt3PNSjHsUwGZ0NI0Xf2MAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-amber-valley-council-tax-reduction-2026-2027"
+}

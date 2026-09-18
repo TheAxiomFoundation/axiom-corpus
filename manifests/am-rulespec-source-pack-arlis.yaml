@@ -1,0 +1,101 @@
+documents:
+  - source_id: tax-code-2024-q1
+    jurisdiction: am
+    document_class: statute
+    act_id: "187950"
+    base_act_id: "109017"
+    official_number: "ՀՕ-165-Ն"
+    adopted: "2016-10-04"
+    title: "ՀՀ ՀԱՐԿԱՅԻՆ ՕՐԵՆՍԳԻՐՔ"
+    source_url: "https://www.arlis.am/hy/acts/187950"
+    source_file: tax-code-187950-2024-01-01.html
+    sha256: 8422d01122d0561f4311e3761fb7c13dc0e9b0ebccee884d3106188cd4176723
+    source_as_of: "2026-08-30"
+    expression_date: "2024-01-01"
+    expression_end_date: "2024-03-24"
+    language: hy
+    expected_article_count: 461
+
+  - source_id: tax-code-2024-year-end
+    jurisdiction: am
+    document_class: statute
+    act_id: "201213"
+    base_act_id: "109017"
+    official_number: "ՀՕ-165-Ն"
+    adopted: "2016-10-04"
+    title: "ՀՀ ՀԱՐԿԱՅԻՆ ՕՐԵՆՍԳԻՐՔ"
+    source_url: "https://www.arlis.am/hy/acts/201213"
+    source_file: tax-code-201213-2024-12-23.html
+    sha256: d8113e16cf7aaf3277d45ef3a70cb84dfb2db0f962dcb253793b20ea608f7ab0
+    source_as_of: "2026-08-30"
+    expression_date: "2024-12-23"
+    expression_end_date: "2025-01-01"
+    language: hy
+    expected_article_count: 470
+
+  - source_id: funded-pensions-2024-q1
+    jurisdiction: am
+    document_class: statute
+    act_id: "183145"
+    base_act_id: "64546"
+    official_number: "ՀՕ-244-Ն"
+    adopted: "2010-12-22"
+    title: "ՀՀ ՕՐԵՆՔԸ ԿՈՒՏԱԿԱՅԻՆ ԿԵՆՍԱԹՈՇԱԿՆԵՐԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/183145"
+    source_file: funded-pensions-183145-2023-10-13.html
+    sha256: ecfe02ac1f23dc1d7b5ac24154e95bf13c34a5c4c61e532e30a6e48139cac514
+    source_as_of: "2026-08-30"
+    expression_date: "2023-10-13"
+    expression_end_date: "2024-03-27"
+    language: hy
+    expected_article_count: 81
+
+  - source_id: funded-pensions-2024-q2
+    jurisdiction: am
+    document_class: statute
+    act_id: "191184"
+    base_act_id: "64546"
+    official_number: "ՀՕ-244-Ն"
+    adopted: "2010-12-22"
+    title: "ՀՀ ՕՐԵՆՔԸ ԿՈՒՏԱԿԱՅԻՆ ԿԵՆՍԱԹՈՇԱԿՆԵՐԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/191184"
+    source_file: funded-pensions-191184-2024-03-27.html
+    sha256: 65a4540e28ff3c0120e4aeee73957b06fce56fc19b5aac9a27748317ed89a07b
+    source_as_of: "2026-08-30"
+    expression_date: "2024-03-27"
+    expression_end_date: "2024-07-09"
+    language: hy
+    expected_article_count: 81
+
+  - source_id: funded-pensions-2024-h2
+    jurisdiction: am
+    document_class: statute
+    act_id: "194995"
+    base_act_id: "64546"
+    official_number: "ՀՕ-244-Ն"
+    adopted: "2010-12-22"
+    title: "ՀՀ ՕՐԵՆՔԸ ԿՈՒՏԱԿԱՅԻՆ ԿԵՆՍԱԹՈՇԱԿՆԵՐԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/194995"
+    source_file: funded-pensions-194995-2024-07-09.html
+    sha256: d715fbb324bc38f3f27b3652797c88860ed893fe3f575fd98f1abcffd2afbdee
+    source_as_of: "2026-08-30"
+    expression_date: "2024-07-09"
+    expression_end_date: "2025-01-01"
+    language: hy
+    expected_article_count: 81
+
+  - source_id: minimum-wage-2024
+    jurisdiction: am
+    document_class: statute
+    act_id: "172160"
+    base_act_id: "1457"
+    official_number: "ՀՕ-66-Ն"
+    adopted: "2003-12-17"
+    title: "ՀՀ ՕՐԵՆՔԸ ՆՎԱԶԱԳՈՒՅՆ ԱՄՍԱԿԱՆ ԱՇԽԱՏԱՎԱՐՁԻ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/172160"
+    source_file: minimum-wage-172160-2022-12-23.html
+    sha256: ee5bfa8fa589f2b2444c1fb2e4ffc5180f814e10f4d0d91d476ab484a2199e96
+    source_as_of: "2026-08-30"
+    expression_date: "2022-12-23"
+    language: hy
+    expected_article_count: 7

@@ -1,0 +1,742 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-va-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-va/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 28
+    index_records_total: 28
+- source_id: us-va-cms-chip-state-plan-spa-va-24-0012-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-24-0012: Approval Package (approved September 5, 2024, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-24-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-24-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-24-0012
+    cms_node_id: '170536'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170536
+    approval_date: '2024-09-05'
+    effective_date: '2023-07-01'
+    summary: Through this SPA, the state makes several benefit changes to their CHIP state plan.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-24-0006-chip-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-24-0006-CHIP: Approval Package (approved July 18, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-24-0006-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-24-0006-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-24-0006-CHIP
+    cms_node_id: '169741'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169741
+    approval_date: '2024-07-18'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-23-0027-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-23-0027: Approval Package (approved February 20, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-23-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-23-0027/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-23-0027
+    cms_node_id: '159736'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=159736
+    approval_date: '2024-02-20'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-22-0021-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-22-0021: Approval Package (approved December 23, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-22-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-22-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-22-0021
+    cms_node_id: '145986'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145986
+    approval_date: '2022-12-23'
+    effective_date: '2022-07-01'
+    summary: This SPA permanently removes copayments for all health care services for CHIP enrollees.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-20-0015-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-20-0015: Approval Package (approved July 26, 2022, effective October 24, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-24'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-20-0015/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-20-0015
+    cms_node_id: '139381'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139381
+    approval_date: '2022-07-26'
+    effective_date: '2020-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-22-0011-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-22-0011: Approval Package (approved July 26, 2022, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-22-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-22-0011/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-22-0011
+    cms_node_id: '139386'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139386
+    approval_date: '2022-07-26'
+    effective_date: '2021-07-01'
+    summary: This SPA adds several new behavioral health services.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-22-0010-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-22-0010: Approval Package (approved April 22, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-22-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-22-0010
+    cms_node_id: '135216'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135216
+    approval_date: '2022-04-22'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-21-0021-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-21-0021: Approval Package (approved August 5, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-21-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-21-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-21-0021
+    cms_node_id: '110766'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110766
+    approval_date: '2021-08-05'
+    effective_date: '2021-07-01'
+    summary: This SPA provides assurance on page CS9 and CS21 that provides eligibility, using the approved methodology.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-21-0010-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-21-0010: Approval Package (approved June 24, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-21-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-21-0010
+    cms_node_id: '133471'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=133471
+    approval_date: '2021-06-24'
+    effective_date: '2021-07-01'
+    summary: This amendment implements a health services initiative (HSI) to provide support for Virginia’s poison control
+      centers.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-18-0012-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-18-0012: Approval Package (approved May 10, 2021, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-18-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-18-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-18-0012
+    cms_node_id: '110726'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110726
+    approval_date: '2021-05-10'
+    effective_date: '2017-07-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-19-0010-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-19-0010: Approval Package (approved August 29, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-19-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-19-0010
+    cms_node_id: '4071'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4071
+    approval_date: '2019-08-29'
+    effective_date: '2018-07-01'
+    summary: Compliance with the CHIP managed care regulations and makes technical updates to remove outdated references and
+      clarifies current practices.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-18-0016-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-18-0016: Approval Package (approved November 7, 2018, effective November 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-18-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-11-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-18-0016/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-18-0016
+    cms_node_id: '3996'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3996
+    approval_date: '2018-11-07'
+    effective_date: '2018-11-01'
+    summary: Revises the state's paper and online applications, amends the provisions related to eligibility determinations
+      made by the Federally Facilitated Exchange (FFE).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-17-0012-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-17-0012: Approval Package (approved August 3, 2017, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-17-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-17-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-17-0012
+    cms_node_id: '3701'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3701
+    approval_date: '2017-08-03'
+    effective_date: '2017-04-01'
+    summary: This SPA expands Virginia's outpatient substance abuse treatment services to include intensive outpatient, partial
+      hospitalization, medication assisted treatment, and case management. Effective July 1, 2017, this SPA adds peer support
+      services to its benefits package.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-cspa-16-0003-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-CSPA-16-0003: Approval Package (approved August 18, 2016, effective September 1, 2016)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-CSPA-16-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-09-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-cspa-16-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-CSPA-16-0003
+    cms_node_id: '3696'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3696
+    approval_date: '2016-08-18'
+    effective_date: '2016-09-01'
+    summary: Under this SPA, Virginia adds behavioral therapy services, including applied behavioral analysis, to its CHIP
+      benefit package, with an effective date of September 1, 2016.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-13-0018-mc4-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-13-0018-MC4: Approval Package (approved June 17, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-13-0018-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-13-0018-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0018-MC4
+    cms_node_id: '2771'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2771
+    approval_date: '2014-06-17'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements in accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-14-0002-mc2-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-14-0002-MC2: Approval Package (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-14-0002-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-14-0002-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-14-0002-MC2
+    cms_node_id: '3181'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3181
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-13-0015-mc1-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-13-0015-MC1: Approval Package (approved December 24, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-13-0015-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-13-0015-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0015-MC1
+    cms_node_id: '3176'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3176
+    approval_date: '2013-12-24'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-13-0017-mc3-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-13-0017-MC3: Approval Package (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-13-0017-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-13-0017-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0017-MC3
+    cms_node_id: '3186'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3186
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-13-0019-mc5-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-13-0019-MC5: Approval Package (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-13-0019-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-13-0019-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0019-MC5
+    cms_node_id: '3191'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3191
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-spa-va-cspa-10-approval-package
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP SPA VA-CSPA-10: Approval Package (approved January 14, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VA-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-va/policy/cms/chip-state-plan/spa/va-cspa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-CSPA-10
+    cms_node_id: '1446'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1446
+    approval_date: '2011-01-14'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 503 - Prospective Payment System for FQHCs & RHCs, enhanced translation services, implements citizenship.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-va-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VACurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-va/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: VA
+    cms_node_id: '2016'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2016
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan and Factsheet.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-va-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VA/VACurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-va/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: VA
+    cms_node_id: '2016'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2016
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan and Factsheet.
+    topics: *id002
+    link_label: Current State Plan

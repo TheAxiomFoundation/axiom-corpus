@@ -1,0 +1,27 @@
+version: '2026-09-10'
+documents:
+- source_id: us-nh-dra-tir-2025-001-ty2025
+  jurisdiction: us-nh
+  document_class: guidance
+  title: TIR 2025-001, Interest and Dividends Tax Repealed Effective January 1, 2025
+  source_url: https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/2025-001-technical-information-release-repeal.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-nh/guidance/dra/tir-2025-001
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Hampshire Department of Revenue Administration
+    document_subtype: technical_information_release
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-nh/guidance/individual-income-tax
+    source_family: state-individual-income-tax-guidance-ty2025
+    index_url: https://www.revenue.nh.gov/resource-center/current-year-forms-and-instructions
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.nh.gov/resource-center/current-year-forms-and-instructions
+  request:
+    browser_user_agent: true
+    browser_impersonation: true
+    browser_impersonation_direct: true

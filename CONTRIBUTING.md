@@ -3,9 +3,29 @@
 Use short-lived branches off `main` and open a pull request back to `main`.
 Keep PRs focused, describe the checks you ran, and wait for CI before merging.
 
+## Branches, not forks
+
+Org members have write access to this repository, so push your branch to
+`TheAxiomFoundation/axiom-corpus` and open the pull request from it. Do not
+work from a fork: a fork-head pull request run does not receive this
+repository's Actions variable `AXIOM_CORPUS_INGEST_PUBLIC_KEY`, so the
+authentication-gate tests in `tests/test_state_snap_manual_queue.py` (and
+`guard-ingested`, when the change touches protected corpus artifacts,
+manifest-attested reasoning logs, or the ingest manifests attesting them) fail
+by design, and that is what fails the `test` job. The `FAIL Required test
+coverage` line in the same log is informational, not the failure (a real
+coverage failure prints `ERROR: Coverage failure`). This is the trust boundary
+working as intended and does not depend on the author's permissions (#600's
+author already had write access). Never weaken those tests or embed key material
+to get past it (#357 tried a checked-in fallback key and was closed). If you
+already opened a fork PR, push the same commits to a branch here and open a new
+PR from it, or ask a maintainer to mirror the fork head into a same-repo branch
+(precedent: #600 → #606). Contributors without write access take the maintainer
+path.
+
 ## Pull request flow
 
-1. Create a branch from an up-to-date `main`.
+1. Create a branch from an up-to-date `main` in this repository (not a fork).
 2. Make the smallest coherent change and include tests for behavior changes.
 3. Add a Towncrier fragment under `changelog.d/` unless the PR is docs,
    tests-only, or otherwise has no user-visible release note.

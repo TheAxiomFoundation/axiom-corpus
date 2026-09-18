@@ -1,0 +1,58 @@
+version: 2026-09-13-snap-et-state-plan
+documents:
+- source_id: nm-snap-et-state-plan-ffy2026
+  jurisdiction: us-nm
+  document_class: policy
+  title: New Mexico SNAP E&T State Plan FFY 2026 (original submission, approved)
+  source_url: https://www.hca.nm.gov/wp-content/uploads/StatePlan_NM_2026_Original-Submission_Approved.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-nm/policy/snap-et-state-plan/ffy2026
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority, Income Support Division
+    document_subtype: state_plan
+    program: SNAP
+    topic: employment_and_training
+    fiscal_year: '2026'
+    effective_start: '2025-10-01'
+    effective_end: '2026-09-30'
+    source_status: current
+    policy_status: current
+    extraction_granularity: pdf_page
+    publisher_index_url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+    publisher_page_url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+    source_discovery_group: us-nm/policy/snap-et-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; FNA index links the state's FFY 2025 PDF; the ISD
+      Plans and Reports page lists the FFY 2026 final plan and Amendment 1, which supersede it
+    closure_element: snap_s31
+    plan_version: original submission, FNS approved
+- source_id: nm-snap-et-state-plan-ffy2026-amendment-1
+  jurisdiction: us-nm
+  document_class: policy
+  title: New Mexico SNAP E&T State Plan FFY 2026, Amendment 1
+  source_url: https://www.hca.nm.gov/wp-content/uploads/StatePlan_NM_2026_Amendment.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-nm/policy/snap-et-state-plan/ffy2026/amendment-1
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority, Income Support Division
+    document_subtype: state_plan
+    program: SNAP
+    topic: employment_and_training
+    fiscal_year: '2026'
+    effective_start: '2025-10-01'
+    effective_end: '2026-09-30'
+    source_status: current
+    policy_status: current
+    extraction_granularity: pdf_page
+    publisher_index_url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+    publisher_page_url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+    source_discovery_group: us-nm/policy/snap-et-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; FNA index links the state's FFY 2025 PDF; the ISD
+      Plans and Reports page lists the FFY 2026 final plan and Amendment 1, which supersede it
+    closure_element: snap_s31
+    plan_version: Amendment 1

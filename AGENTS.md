@@ -8,6 +8,7 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
 - Use this repository's corpus adapters, manifests, CLI commands, release tooling, and Axiom project instructions as the operating procedure for corpus work.
 - Do not use PolicyEngine workflow skills or PolicyEngine implementation skills for Axiom corpus, RuleSpec, encoding, or oracle-parity tasks. PolicyEngine may appear as downstream comparison context, but it does not define the ingestion workflow.
 - If a reusable workflow is missing, add or propose an Axiom-specific Codex skill or project instruction instead of borrowing a PolicyEngine skill.
+- Push branches to this repository, never to a fork: a fork-head pull request run does not receive this repository's Actions variable `AXIOM_CORPUS_INGEST_PUBLIC_KEY`, so the authentication-gate tests in `tests/test_state_snap_manual_queue.py` fail by design. See CONTRIBUTING.md.
 
 ## Corpus Architecture
 

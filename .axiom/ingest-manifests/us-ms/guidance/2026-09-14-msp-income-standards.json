@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "96e524e27681858143beef959588307f51c63c3bc955fb27d2607952fe754aa5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "8bc081f3f47ba9876dbe985d992d5940ed77671ff122d45a6bc81c7b009d5c42"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "d437edc03eedb416f0579084b80205948ab17a7be214542925b3c938c71bd1fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-09-14-msp-income-standards/official-documents/us-ms-dom-medicare-cost-sharing-eligibility-guide-2026-03.pdf",
+      "sha256": "7b0e1c61e4260f02beab442e7fc3ac3f063457c67d2b420b890e6e05389592fb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ms-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:04:30.536190+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uYHgxrhGPdn7R5FGH6JN5CYHhKPuM6OritEDcHKu5r5HkBiINGlZ3PaW7SGX6/LN1PxoSJcBuH4W0dxGt/xNAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

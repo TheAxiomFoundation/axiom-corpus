@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/am/statute/2026-08-29-am-taxben-core.json",
+      "sha256": "a893c85518a1477b5133ecd1193da5af34fb8f21e3a3b3440c6e061e9b22d5fa"
+    },
+    {
+      "path": "data/corpus/inventory/am/statute/2026-08-29-am-taxben-core.json",
+      "sha256": "5591c2103d8ac41839cba8a960d4c8e5283491e175084deb6ce4f7bfdbdfcd8b"
+    },
+    {
+      "path": "data/corpus/provisions/am/statute/2026-08-29-am-taxben-core.jsonl",
+      "sha256": "19567215a3fae8ed10b2b9837f7279be2e62521e991c01dbea38aae9006a8107"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis/funded-pensions-224823-latest.html",
+      "sha256": "47f05a03172f5369900bffb8c975a3ca19edf530ca7340cf17ebdfc6e412d055"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis/servicemen-compensation-230046-latest.html",
+      "sha256": "1673b7fa18f97e1fc0146aea8d1d181e9d27159022c3543d143d12426de4c3f1"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis/state-benefits-230168-latest.html",
+      "sha256": "3c02c6e57499621154eae1b965c917e3d9a38c67b37cdda580648686df448a07"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis/state-pensions-230043-latest.html",
+      "sha256": "b4fa77e1d1228c6b3b007730660aa3c5b3e01251ea7a62300020885b07a85a2c"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis/tax-code-230171-latest.html",
+      "sha256": "9c940bce5f3f50a5dc458d2faed4a993b053fe1008f3ae4de3fb83cd9b5b9055"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis/universal-health-insurance-224417-latest.html",
+      "sha256": "5d4773f42f0dc04830264709fad9df7420f558cc965adb697d0270db10ffc4ce"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9282825ae0191b1e8e5e7f5cc83a10dedb305669",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-am-arlis --base data/corpus --version 2026-08-29-am-taxben-core --manifest manifests/am-taxben-core-arlis.yaml --source-dir data/corpus/sources/am/statute/2026-08-29-am-taxben-core/arlis"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 908,
+    "missing_count": 0,
+    "provision_count": 908,
+    "source_count": 908
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-30T11:32:56.785219+00:00",
+  "jurisdiction": "am",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "U00/1NywIVtQNJ9iAYH81urke//L0b8xRA0VwCLK4XzG8MOvVtEbB7RQTjmmNxT30BfHkH87/rdkWsyDbLwHBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-29-am-taxben-core"
+}

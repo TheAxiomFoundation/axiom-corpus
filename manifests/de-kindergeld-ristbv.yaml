@@ -1,0 +1,30 @@
+{
+  "documents": [
+    {
+      "source_id": "de-ristbv-2023",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/ristbv-2023",
+      "title": "Richtlinien für das Strafverfahren und das Bußgeldverfahren, BAnz AT 19.06.2023 B1",
+      "source_url": "https://www.verwaltungsvorschriften-im-internet.de/bsvwvbund_28032023_BMJRB3313104000060001.htm",
+      "source_format": "html",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2023-03-28",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#paddingLR12",
+        "segmentation": "anchor_range",
+        "html_start_selector": ".vv1html_v2",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz, Verwaltungsvorschriften im Internet",
+        "source_note": "Neufassung vom 28. März 2023, BAnz AT 19.06.2023 B1; official HTML capture for de-kg-suppl-017."
+      }
+    }
+  ]
+}

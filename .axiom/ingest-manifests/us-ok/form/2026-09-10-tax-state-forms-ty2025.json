@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "5f1fae1a4fb75de0a5d49baa3026b1c3878f89a9b73a4e489720e466c8f797c0"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "ffa02aecd9678b38d03c7de89a0d7d06615f5c1cacf775ea947fadee044cfa56"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "772f65492dcb414fa807735d935d015ca574354bbcd330aff43eb1417420cd5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-ok-otc-form-511-packet-ty2025.pdf",
+      "sha256": "c90cf30381cca6262ec94050acde8db1ee58885360f0af4ec21e045d1cc5a572"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T22:29:51.312149+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "95PZ1Gcj22r2/eh04SQBhIg+O9ZsMofOpNAQ3Z6lZLTJjjj9ev5mr1P2KhCJ42nvlZTRMMEtUHq/D5u78IvEBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

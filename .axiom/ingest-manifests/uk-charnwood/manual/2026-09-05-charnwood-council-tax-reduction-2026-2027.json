@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-charnwood/manual/2026-09-05-charnwood-council-tax-reduction-2026-2027.json",
+      "sha256": "4d6905879ac59d57164a574ffa399db72239b9a16ce0a9f030de7a1d3448f92a"
+    },
+    {
+      "path": "data/corpus/inventory/uk-charnwood/manual/2026-09-05-charnwood-council-tax-reduction-2026-2027.json",
+      "sha256": "020e76689e86fbc01769ed950aaee2cb4c6be6daa2cf8b6e7b8da8c5d5d70702"
+    },
+    {
+      "path": "data/corpus/provisions/uk-charnwood/manual/2026-09-05-charnwood-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6f6dc29659c733fb493ddd17f931c99fc4e0c2fc037f4572c60c29fc36d18c70"
+    },
+    {
+      "path": "data/corpus/sources/uk-charnwood/manual/2026-09-05-charnwood-council-tax-reduction-2026-2027/official-documents/charnwood-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "f3b9623fe4626695225c62de1b0759024a99cc2f0c5e2009362a8401ea205a48"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3aa571d4672ebc68e619bc712e448b1662ac100f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-charnwood-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-charnwood-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 210,
+    "missing_count": 0,
+    "provision_count": 210,
+    "source_count": 210
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:32:16.086023+00:00",
+  "jurisdiction": "uk-charnwood",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RDqG0aZHSn4vFW7V1FKKJbuLyNgr5YSWEtA07DteaLL2Nuo1dsbME+XByMKpWbGba8MgX3dNg55aElydJkGIAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-charnwood-council-tax-reduction-2026-2027"
+}

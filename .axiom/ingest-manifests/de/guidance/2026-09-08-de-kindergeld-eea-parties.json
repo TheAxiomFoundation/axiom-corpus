@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-08-de-kindergeld-eea-parties.json",
+      "sha256": "8d3c120938baff72400ec11a6f89189305906e9943488a5f14979c58827a9f23"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-08-de-kindergeld-eea-parties.json",
+      "sha256": "21fe11fffb91908b23414dd8187f1050ee3edad287c3b31b7bf6ff1af0808efc"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-08-de-kindergeld-eea-parties.jsonl",
+      "sha256": "8b2f92d88c2b7b2a87d1b7d3839c5c00c574899513bbcc206b4c04f22e806bff"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-eea-parties/official-documents/de-kindergeld-eea-efta-states.html",
+      "sha256": "b2b89976c605dfd72cf0f35aec8d1a2f6c0203cf8e142db6a11ee84774dbbed4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T14:21:44.291236+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hHwvh5cYOCe5R+hEOfA8Wai7TJ6702AicXUfsgdRBqZ/GszcqoaSyXHUmV22mg66Bp9kJwLkxTSyFF21R5SDDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-eea-parties"
+}

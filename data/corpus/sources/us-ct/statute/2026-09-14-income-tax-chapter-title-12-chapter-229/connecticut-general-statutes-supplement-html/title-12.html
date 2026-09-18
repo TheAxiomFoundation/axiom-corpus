@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="Description" content="Title 12 - Taxation"/>
+<meta name="Number" content="12"/>
+<title>Title 12 - Taxation</title>
+<style type="text/css" media="screen"><!--
+/* High-level style defs for page */
+html {
+background-color: #ffffff;
+color: #000000;
+}
+body {
+padding: 0em 0.5em;
+font-family : "Times New Roman", Times, serif;
+font-size: medium;
+}
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+color : #000000;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.1;
+margin : 0em 0em;
+text-align : center;
+text-decoration : none;
+text-indent : 0em;
+}
+h1, h2, h3 {
+font-weight : bold;
+}
+h5, h6 {
+margin-top: 2em;
+}
+h1.title-no, h1.title-name {
+color: #800000;
+}
+h2.chap-no, h2.chap-name {
+/* nothing special */
+}
+h3.part-name {
+margin-top: 0.5em;
+}
+h3.part-no {
+margin-top: 2em;
+}
+h4.chap_toc_hd {
+font-weight: bold;
+margin: 1.5em 0em 1em 0em;
+text-align: left;
+}
+h4.subpart-name {
+font-weight: bold;
+margin-top: 0.5em;
+}
+h4.subpart-no {
+font-weight: bold;
+margin-top: 2em;
+}
+/* HORIZONTAL RULES */
+hr.titles_pg_bar {
+background-color: #a0a0a0;
+border-width: 0;
+color: #a0a0a0;
+height: .5em;
+margin: 1em 0em;
+width: 100%;
+}
+hr.chaps_pg_bar {
+background-color: #8b0000;
+border-width: 0;
+color: #8b0000;
+height: .8em;
+margin: .5em 0em;
+width: 100%;
+}
+hr.titles_toc_spcr {
+background-color: #ffcc00;
+border-width: 0;
+color: #ffcc00;
+height: 1em;
+margin: 0.1em .5em;
+text-align: left;
+vertical-align: top;
+width: 150px;
+}
+/* IMAGES */
+img.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* PARAGRAPHS */
+p {
+font-size : 1em;
+font-style : normal;
+font-variant : normal;
+font-weight : normal;
+line-height : 1.2;
+margin : 1em 0em 0em 0em;
+text-align : justify;
+text-justify:distribute;
+text-decoration : none;
+text-indent: 1em;
+}
+p.annotation, p.annotation-first {
+color: #ff3333;
+}
+p.cross-ref, p.cross-ref-first {
+color: #009900;
+}
+p.front-note, p.front-note-first {
+color : #ff6600;
+}
+p.history, p.history-first {
+color : #9900FF;
+}
+p.source, p.source-first {
+color : #996600;
+}
+p.Form-center, p.Text-center, p.Form-head, p.lesser-head {
+text-align : center;
+text-indent: 0em;
+}
+p.Form-head, p.lesser-head {
+margin-top: 2em;
+}
+p.Form-left, p.Text-left {
+text-align : justify;
+text-indent: 0em;
+}
+p.Text-left1 {
+text-align : justify;
+text-indent: 0em;
+margin-top: 0em;
+}
+p.Form-right {
+text-align : right;
+text-indent: 0em;
+}
+p.tb, p.tb-left, p.tb-left1, p.tb-left2, p.tb-center, p.tb-right {
+text-align : justify;
+text-indent : 0em;
+margin : 0.5em 0em 0em 0em;
+}
+p.tb, p.tb-left1 {
+margin-left: 1em;
+}
+p.tb-left2 {
+margin-left: 2em;
+}
+p.tb-center {
+text-align : center;
+}
+p.tb-right {
+text-align : right;
+}
+p.nolead {
+margin-top: 0em;
+}
+p.flush {
+text-align : left;
+text-indent : 0em;
+}
+/* TABLES */
+table {
+/* consider border-collapse : collapse; */
+border-style: none;
+font-size: 1em;
+text-align: left;
+vertical-align: top;
+margin: 1em 0em 1em 0em;
+}
+tbody, thead, tfoot, tr, td, th {
+text-indent: 0em;
+vertical-align: top;
+}
+table.center {
+margin-left: auto;
+margin-right: auto;
+}
+table.nav_tbl {
+border: 0;
+width: 50%;
+padding: 2px;
+border-spacing: 2px;
+text-align: center;
+margin: 1em 0em 2em 0em;
+}
+table.ttl_toc_vol_hd {
+border: 0;
+padding: 0px;
+border-right: 15px;
+vertical-align: middle;
+margin-top: 2em;
+}
+td.bottom {
+vertical-align: bottom;
+}
+td.left_25pct {
+width: 25%;
+}
+td.left_38pct {
+width: 38%;
+}
+td.left_40pct {
+width: 40%;
+}
+/* SPANS */
+span.inline_hd {
+font-weight : bold;
+}
+span.catchln {
+color: #8b0000;
+font-weight : bold;
+}
+span.toc_vol_no {
+font-size: 1.2em;
+font-style : normal;
+font-weight : bold;
+}
+span.toc_ttl_desig, span.toc_ttl_name {
+font-size: 1.1em;
+font-weight: bold;
+color: #003399;
+}
+span.toc_rng_chaps {
+font-size: 1.1em;
+font-weight: bold;
+color: #cc0033;
+}
+/* etc. */
+.titles_main_hd {
+color: #ff0000;
+}
+.toc_rng_secs {
+color: #cc0033;
+font-weight: bold;
+}
+.toc_catchln {
+color: #8b0000;
+margin : .1em 0em 0em 2em;
+max-width: 90%;
+text-indent: -2em;
+}
+.toc_catchln * {
+color: #8b0000;
+}
+.toc_ch_link {
+display: inline-block;
+color: #0000ff;
+font-size: 1.1em;
+font-weight: normal;
+}
+.nav_link {
+color: #0000ff;
+}
+.full-width {
+width: 100%;
+}
+.half-width {
+width: 50%;
+}
+.third-width {
+width: 33%;
+}
+--></style>
+</head>
+<body>
+<div id="title_12.htm" lang="en-us">
+<h1 class="title-no">TITLE 12</h1>
+<h1 class="title-name">TAXATION</h1>
+<br/>
+<table style="width:80%">
+<tbody>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_201.htm">Chapter 201</a></td>
+<td><a class="toc_ch_link" href="chap_201.htm">State and Local Revenue Services. Department of Revenue Services</a><br/><span class="toc_rng_secs">Sec. 12-7c, 12-7d, 12-7e, 12-15, 12-18b, 12-34f, 12-34g, 12-34h</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_202.htm">Chapter 202</a></td>
+<td><a class="toc_ch_link" href="chap_202.htm">Collection of State Taxes</a><br/><span class="toc_rng_secs">Sec. 12-35a</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_203.htm">Chapter 203</a></td>
+<td><a class="toc_ch_link" href="chap_203.htm">Property Tax Assessment</a><br/><span class="toc_rng_secs">Sec. 12-57, 12-60, 12-63, 12-81, 12-81cc, 12-81ii, 12-81oo, 12-81pp, 12-81qq, 12-91, 12-93, 12-93a, 12-94, 12-95, 12-107e</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_203b.htm">Chapter 203b</a></td>
+<td><a class="toc_ch_link" href="chap_203b.htm">Uniform Solar Capacity Tax</a><br/><span class="toc_rng_secs">Sec. 12-121dd</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_204.htm">Chapter 204</a></td>
+<td><a class="toc_ch_link" href="chap_204.htm">Local Levy and Collection of Taxes</a><br/><span class="toc_rng_secs">Sec. 12-129</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_204a.htm">Chapter 204a</a></td>
+<td><a class="toc_ch_link" href="chap_204a.htm">Property Tax Relief for Elderly Homeowners and Renters and Persons with Permanent Total Disability</a><br/><span class="toc_rng_secs">Sec. 12-170d</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_205.htm">Chapter 205</a></td>
+<td><a class="toc_ch_link" href="chap_205.htm">Municipal Tax Liens</a><br/><span class="toc_rng_secs">Sec. 12-195a, 12-195f, 12-195h</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_207.htm">Chapter 207</a></td>
+<td><a class="toc_ch_link" href="chap_207.htm">Insurance Companies and Health Care Centers Taxes</a><br/><span class="toc_rng_secs">Sec. 12-211a</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_208.htm">Chapter 208</a></td>
+<td><a class="toc_ch_link" href="chap_208.htm">Corporation Business Tax</a><br/><span class="toc_rng_secs">Sec. 12-214, 12-217, 12-217j, 12-217n, 12-217ee, 12-217jj, 12-217kk, 12-217<i>ll</i>, 12-217rr, 12-217uu, 12-217vv, 12-217ww, 12-217xx, 12-217zz, 12-218e, 12-218h, 12-219</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_211c.htm">Chapter 211c</a></td>
+<td><a class="toc_ch_link" href="chap_211c.htm">Hospitals Tax and Nursing Home and Intermediate Care Facility User Fees</a><br/><span class="toc_rng_secs">Sec. 12-263p, 12-263q, 12-263r, 12-263s, 12-263aa</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_214.htm">Chapter 214</a></td>
+<td><a class="toc_ch_link" href="chap_214.htm">Cigarette Taxes</a><br/><span class="toc_rng_secs">Sec. 12-285, 12-287, 12-287a</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_214c.htm">Chapter 214c</a></td>
+<td><a class="toc_ch_link" href="chap_214c.htm">Cannabis Taxes</a><br/><span class="toc_rng_secs">Sec. 12-330<i>ll</i></span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_219.htm">Chapter 219</a></td>
+<td><a class="toc_ch_link" href="chap_219.htm">Sales and Use Taxes</a><br/><span class="toc_rng_secs">Sec. 12-407, 12-410, 12-412</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_225.htm">Chapter 225</a></td>
+<td><a class="toc_ch_link" href="chap_225.htm">Admissions and Dues Taxes</a><br/><span class="toc_rng_secs">Sec. 12-543</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_226.htm">Chapter 226</a></td>
+<td><a class="toc_ch_link" href="chap_226.htm">Gaming Policy, Regulation and Revenue</a><br/><span class="toc_rng_secs">Sec. 12-569</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_226c.htm">Chapter 226c</a></td>
+<td><a class="toc_ch_link" href="chap_226c.htm">Administration of Tribal-State Compacts</a><br/><span class="toc_rng_secs">Sec. 12-586f, 12-586g</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_229.htm">Chapter 229</a></td>
+<td><a class="toc_ch_link" href="chap_229.htm">Income Tax</a><br/><span class="toc_rng_secs">Sec. 12-701, 12-704e, 12-704j, 12-704k, 12-705, 12-724b, 12-743</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_229a.htm">Chapter 229a</a></td>
+<td><a class="toc_ch_link" href="chap_229a.htm">Connecticut Lottery Corporation</a><br/><span class="toc_rng_secs">Sec. 12-806, 12-806b, 12-810, 12-814, 12-815a</span></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="chap_229b.htm">Chapter 229b</a></td>
+<td><a class="toc_ch_link" href="chap_229b.htm">Licensing and Regulation of Online Casino Gaming, Sports Wagering, Fantasy Contests, Keno and Online Sale of Lottery Tickets</a><br/><span class="toc_rng_secs">Sec. 12-850, 12-858, 12-859, 12-859a, 12-859c, 12-863, 12-863a, 12-864a, 12-866</span></td>
+</tr>
+<tr>
+<td class="left_25pct">&#x00A0;</td>
+<td></td>
+</tr>
+<tr>
+<td class="left_25pct"><a class="toc_ch_link" href="titles.htm">(Return to List of Titles)</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

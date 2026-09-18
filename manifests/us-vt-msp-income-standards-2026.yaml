@@ -1,0 +1,48 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-vt-dvha-mabd-pil-fpl-income-chart-2026
+  jurisdiction: us-vt
+  document_class: guidance
+  title: 2026 MABD PIL FPL Income Chart, Effective 4/1/2026 (Protected Income Level and Percentage of FPL)
+  source_url: https://dvha.vermont.gov/sites/dvha/files/documents/MABD_PIL_Income_Chart_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-vt/guidance/dvha/mabd-pil-fpl-income-chart/2026
+  metadata:
+    primary_source: true
+    source_authority: Department of Vermont Health Access (DVHA)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-vt/guidance
+    index_url: https://dvha.vermont.gov/members/medicaid/medicaid-aged-blind-or-disabled-mabd
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: income_standards_chart
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+- source_id: us-vt-dvha-standards-change-for-healthcare-2026
+  jurisdiction: us-vt
+  document_class: guidance
+  title: 2026 Standards Change for Healthcare (Version 4, updated 07/13/2026)
+  source_url: https://dvha.vermont.gov/sites/dvha/files/documents/Standards_Change_for_Healthcare_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-vt/guidance/dvha/standards-change-for-healthcare/2026
+  metadata:
+    primary_source: true
+    source_authority: Department of Vermont Health Access (DVHA)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-vt/guidance
+    index_url: https://dvha.vermont.gov/members/medicaid/medicaid-aged-blind-or-disabled-mabd
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: standards_change_notice
+    version_date: '2026-07-13'
+    closure_elements_extra:
+    - MED-ST-1
+    - MED-ST-2
+    - MED-ST-3

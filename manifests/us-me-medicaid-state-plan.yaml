@@ -1,0 +1,1823 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-me-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 320
+- source_id: us-me-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 320
+- source_id: us-me-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 320
+- source_id: us-me-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 20
+    index_records_total: 320
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0034-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0034: Approval Document (approved May 29, 2026, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0034/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0034
+    cms_node_id: '192936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192936
+    approval_date: '2026-05-29'
+    effective_date: '2024-10-01'
+    summary: This amendment proposes to permanently remove co-payments for substance use services, mental health clinic services
+      and rural health clinic services.
+    topics:
+    - Cost Sharing
+    - Coverage
+    - Premiums
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-25-0016-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-25-0016: Approval Document (approved December 12, 2025, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-25-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-25-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-25-0016
+    cms_node_id: '187636'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187636
+    approval_date: '2025-12-12'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to memorialize the new income standards for recipients of its optional state supplemental
+      program, recipients of which are eligible for Medicaid under Maine's State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0019-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0019: Approval Document (approved December 13, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0019
+    cms_node_id: '174806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=174806
+    approval_date: '2024-12-13'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes several clarifications to the MaineCare Accountable Communities (AC) Program.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0029-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0029: Approval Document (approved December 9, 2024, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0029
+    cms_node_id: '174831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=174831
+    approval_date: '2024-12-09'
+    effective_date: '2025-01-01'
+    summary: This amendment proposed to memorialize its new income standards for its optional state supplement program, the
+      beneficiaries of which are eligible for Medicaid under Maine's State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0021-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0021: Approval Document (approved August 30, 2024, effective April 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0021
+    cms_node_id: '169041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169041
+    approval_date: '2024-08-30'
+    effective_date: '2024-04-01'
+    summary: This Amendment will adopt the 12-month continuous eligibility mandate for children, as enacted by Section 5112
+      of the Consolidated Appropriations Act of 2023.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0020-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0020: Approval Document (approved July 23, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0020
+    cms_node_id: '167641'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167641
+    approval_date: '2024-07-23'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes to amend requirements for individuals receiving targeted case management (TCM) services,
+      specifically for members experiencing homelessness, by adding the allowance that a member may also have a history of
+      homelessness and a Service Prioritization Decision Assistance Tool (SPDAT) score of 20-60 and qualify for this level
+      of TCM services.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0010-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0010: Approval Document (approved June 13, 2024, effective June 7, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-06-07'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0010
+    cms_node_id: '165901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165901
+    approval_date: '2024-06-13'
+    effective_date: '2024-06-07'
+    summary: This amendment proposed income disregards for the Qualified Medicare Beneficiary (QMB) and Qualifying Individual
+      (QI) eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid-Medicare Issues
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-24-0001-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-24-0001: Approval Document (approved April 30, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0001
+    cms_node_id: '163671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163671
+    approval_date: '2024-04-30'
+    effective_date: '2024-01-01'
+    summary: This amendment is to confirm compliance with third-party liability requirements under federal law.
+    topics:
+    - Program Administration
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-23-0026-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-23-0026: Approval Document (approved January 26, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-23-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-23-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0026
+    cms_node_id: '158856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158856
+    approval_date: '2024-01-26'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to memorialize the new income standards for its optional state supplement program, the
+      beneficiaries of which are eligible for Medicaid under Maine's state plan.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-23-0024-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-23-0024: Approval Document (approved January 12, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-23-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-23-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0024
+    cms_node_id: '158091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158091
+    approval_date: '2024-01-12'
+    effective_date: '2024-01-01'
+    summary: This amendment proposed to eliminate the resource test for the QMB, SLMB, and QI eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-23-0017-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-23-0017: Approval Document (approved October 6, 2023, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-23-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-23-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0017
+    cms_node_id: '154046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=154046
+    approval_date: '2023-10-06'
+    effective_date: '2023-10-01'
+    summary: This amendment proposed to increase the maximum income eligibility standard for children under 21.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-23-0011-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-23-0011: Approval Document (approved June 6, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-23-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0011
+    cms_node_id: '151216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151216
+    approval_date: '2023-06-06'
+    effective_date: '2023-01-01'
+    summary: The state proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-23-0010-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-23-0010: Approval Document (approved April 12, 2023, effective March 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-03-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0010
+    cms_node_id: '151211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151211
+    approval_date: '2023-04-12'
+    effective_date: '2023-03-01'
+    summary: This SPA proposed to transition children enrolled in its separate Children's Health Insurance Program to its
+      Medicaid program, and to adopt a new Medicaid eligibility group for certain insured children under age 19 with income
+      up to 208% of the federal poverty level.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-22-0023-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-22-0023: Approval Document (approved December 19, 2022, effective August 15, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-22-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-08-15'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-22-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-22-0023
+    cms_node_id: '143571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143571
+    approval_date: '2022-12-19'
+    effective_date: '2022-08-15'
+    summary: This SPA updates Maine’s Medicaid application on paper and online.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-22-0043-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-22-0043: Approval Document (approved December 5, 2022, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-22-0043.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-22-0043/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-22-0043
+    cms_node_id: '142251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142251
+    approval_date: '2022-12-05'
+    effective_date: '2023-01-01'
+    summary: This amendment proposed to update the income standards of Maine's Optional State Supplemental Program, the beneficiaries
+      of which are eligible for Medicaid.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-21-0023-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-21-0023: Approval Document (approved December 10, 2021, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-21-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-21-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-21-0023
+    cms_node_id: '168811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168811
+    approval_date: '2021-12-10'
+    effective_date: '2022-01-01'
+    summary: This SPA updates the income standards for recipients of Maine’s optional state supplement payments.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-21-0017-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-21-0017: Approval Document (approved December 7, 2021, effective August 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/ME-21-0017
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-08-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-21-0017/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-21-0017
+    cms_node_id: '128656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128656
+    approval_date: '2021-12-07'
+    effective_date: '2021-08-01'
+    summary: This amendment proposes changes to Maine’s Accountable Community Program, including updates to performance years,
+      lead entity requirements, TCOC (Total Cost of Care) core service inclusions as well as member assignments clarifications.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-20-0009-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-20-0009: Approval Document (approved March 19, 2021, effective January 2, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-02'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0009
+    cms_node_id: '107256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107256
+    approval_date: '2021-03-19'
+    effective_date: '2021-01-02'
+    summary: Effective January 01, 2021, this amendment updates the income standards for recipients of Maine's Optional State
+      Supplement Payments.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-20-0008-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-20-0008: Approval Document (approved September 22, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ME-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-20-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0008
+    cms_node_id: '102801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102801
+    approval_date: '2020-09-22'
+    effective_date: '2020-10-01'
+    summary: Designates entities that furnish health care items and services covered under the state plan as qualified entities
+      to make presumptive eligibility determinations for the family planning group
+    topics:
+    - Current State Plan
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-20-0015-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-20-0015: Approval Document (approved August 4, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/media/file/me-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0015
+    cms_node_id: '101311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101311
+    approval_date: '2020-08-04'
+    effective_date: '2020-04-01'
+    summary: Changes Maine’s cost effectiveness test for the MaineCare Private Health Insurance Premium (PHIP) benefit.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-20-0013-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-20-0013: Approval Document (approved June 24, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-20-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-20-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0013
+    cms_node_id: '99926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99926
+    approval_date: '2020-06-24'
+    effective_date: '2020-04-01'
+    summary: Adds provisions for two legislatively mandated special supplemental wage allowances for nursing facilities services
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-20-0020-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-20-0020: Approval Document (approved April 24, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-20-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-20-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0020
+    cms_node_id: '97956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97956
+    approval_date: '2020-04-24'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing, allow evacuated individuals to continue to be residents, suspend
+      co-payment obligations for certain services, suspend premiums for all beneficiaries, add coronavirus-related benefits
+      (lab test, telehealth and pharmacy exceptions), provide reimbursement for lab tests and telehealth, increase reimbursement
+      for private non-medical institutions and supplemental payments for hospitals.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-19-0024-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-19-0024: Approval Document (approved March 6, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-19-0024_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-19-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-19-0024
+    cms_node_id: '86446'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86446
+    approval_date: '2020-03-06'
+    effective_date: '2019-10-01'
+    summary: Proposes reimbursement to hospitals other than critical access hospitals for each day after the tenth (10th)
+      day that an eligible individual is in the care of the hospital while awaiting placement in a nursing facility
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-19-0001-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-19-0001: Approval Document (approved March 2, 2020, effective December 4, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-19-0001_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-12-04'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-19-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-19-0001
+    cms_node_id: '86441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86441
+    approval_date: '2020-03-02'
+    effective_date: '2019-12-04'
+    summary: This eligibility SPA increases the eligibility thresholds for the state’s Medicare Savings Program eligibility
+      groups effective 2/1/20. This SPA also updates the levels for the Optional State Supplement Beneficiaries group effective
+      1/1/20
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-19-021-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-19-021: Approval Document (approved February 6, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-19-021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-19-021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-19-021
+    cms_node_id: '58806'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58806
+    approval_date: '2020-02-06'
+    effective_date: '2019-10-01'
+    summary: Proposes to allow the state to comply with the Medicaid Drug Utilization Review (DUR) provisions included in
+      Section 1004 of the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment (SUPPORT) for Patients
+      and Communities Act
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-014-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-014: Approval Document (approved January 28, 2020, effective September 23, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME 10-014 combined
+    approval letter-CMS 179-approved pages (official header) TO POST_Redacted.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-09-23'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-10-014
+    cms_node_id: '58576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58576
+    approval_date: '2020-01-28'
+    effective_date: '2010-09-23'
+    summary: updates the rehabilitation service language in Attachment 3.1-A of the State plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-016-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-016: Approval Document (approved January 28, 2020, effective September 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME 10-016 approval
+    letter-CMS 179 and Approved Pages final FOR POSTING_Redacted.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-09-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-10-016
+    cms_node_id: '58581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58581
+    approval_date: '2020-01-28'
+    effective_date: '2010-09-01'
+    summary: Updates the personal care service language in Attachment 3.1-A of the State plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-19-0005-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-19-0005: Approval Document (approved October 23, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-19-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-19-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-19-0005
+    cms_node_id: '4526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4526
+    approval_date: '2019-10-23'
+    effective_date: '2020-01-01'
+    summary: Changes the State's Transitional Medical Assistance program to provide coverage for a 12-month period to families
+      whose eligibility for Medicaid assistance terminated due to an increase in earned income or employment hours.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-19-019-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-19-019: Approval Document (approved August 8, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-19-019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-19-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-19-019
+    cms_node_id: '4891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4891
+    approval_date: '2019-08-08'
+    effective_date: '2019-07-01'
+    summary: Extend the exception to the Recovery Audit Contractor requirement in the state plan for an additional 2 years.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-18-0006-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-18-0006: Approval Document (approved April 3, 2019, effective July 2, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/me/me-18-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-02'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-18-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-18-0006
+    cms_node_id: '6781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6781
+    approval_date: '2019-04-03'
+    effective_date: '2018-07-02'
+    summary: Establish a coverage group for adults between the ages of 19 and 64 who do not otherwise have a coverage group
+      (formerly CMS form S32).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-18-0005-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-18-0005: Approval Document (approved August 15, 2018, effective April 9, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-18-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-04-09'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-18-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-18-0005
+    cms_node_id: '9401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9401
+    approval_date: '2018-08-15'
+    effective_date: '2018-04-09'
+    summary: This amends the State's approved Title XIX State Plan to update telehealth and telemonitoring in the Medicaid
+      State Plan. This SPA is estimated to have no Federal budget impact.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-17-003-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-17-003: Approval Document (approved January 25, 2018, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-17-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-17-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-17-003
+    cms_node_id: '11921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11921
+    approval_date: '2018-01-25'
+    effective_date: '2017-07-01'
+    summary: Allows CHIP eligibility for all children with access to public employee coverage based on family members employment.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-15-025-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-15-025: Approval Document (approved March 14, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-15-025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-15-025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-15-025
+    cms_node_id: '20306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20306
+    approval_date: '2016-03-14'
+    effective_date: '2016-07-01'
+    summary: Clarifies the State's coverage of family planning and family planning related services to go along with SPA 15
+      026 which added the Family Planning eligibility option to the State Plan.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-15-026-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-15-026: Approval Document (approved March 3, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-15-026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-15-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-15-026
+    cms_node_id: '19861'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19861
+    approval_date: '2016-03-03'
+    effective_date: '2016-07-01'
+    summary: Adds the optional Medicaid eligibility group which provides coverage to women and men that is limited to family
+      planning and family planning-related services under the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-14-0005-mm7-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-14-0005-MM7: Approval Document (approved January 13, 2015, effective March 30, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-14-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-03-30'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-14-0005-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-14-0005-MM7
+    cms_node_id: '29056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29056
+    approval_date: '2015-01-13'
+    effective_date: '2014-03-30'
+    summary: This SPA was submitted to revise your approved Title XIX State plan to describe the state's policies related
+      to hospital presumptive eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-13-0028-mm5-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-13-0028-MM5: Approval Document (approved March 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-13-0028-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-13-0028-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-0028-MM5
+    cms_node_id: '34896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34896
+    approval_date: '2014-03-20'
+    effective_date: '2014-01-01'
+    summary: Updates Residency Language in the State Plan and Provides Medicaid to Otherwise Eligible Residents of the State,
+      Including Residents Who Are Absent from the State Under Certain Conditions.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-12-0028-mm5-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-12-0028-MM5: Approval Document (approved March 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-12-0028-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-12-0028-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-12-0028-MM5
+    cms_node_id: '38136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38136
+    approval_date: '2014-03-20'
+    effective_date: '2014-01-01'
+    summary: Updates Residency Language and Provides Medicaid to otherwise eligible residents of the state, including residents
+      who are absent from the state under certain conditions.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-13-0029-mm6-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-13-0029-MM6: Approval Document (approved March 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-13-0029-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-13-0029-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-0029-MM6
+    cms_node_id: '38141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38141
+    approval_date: '2014-03-20'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizenship Regulations, Specifies Reasonable Opportunity Period Options, and Specifies Policy Options
+      Related to Eligible Non-Citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-13-038-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-13-038: Approval Document (approved March 11, 2014, effective December 20, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-13-038.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-20'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-13-038/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-038
+    cms_node_id: '37031'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37031
+    approval_date: '2014-03-11'
+    effective_date: '2013-12-20'
+    summary: Update eligibility criteria by adding child and adolescent Needs and Strengths assessment to eligibility criteria
+      for Targeted Case Management services.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-13-0025-mm2-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-13-0025-MM2: Approval Document (approved December 10, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-13-005-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-13-0025-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-0025-MM2
+    cms_node_id: '34891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34891
+    approval_date: '2013-12-10'
+    effective_date: '2013-10-01'
+    summary: Incorporates the MAGI Based Eligibility Process Requirements Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-12-015-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-12-015: Approval Document (approved August 29, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-12-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-12-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-12-015
+    cms_node_id: '34846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34846
+    approval_date: '2013-08-29'
+    effective_date: '2014-01-01'
+    summary: Amends the Cost Sharing sections of the State's approved Title XIX State Plan to permit Retail and Specialty
+      Pharmacy Services providers to require, as a condition for providing care, items, or services, the payment of any cost
+      sharing.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-11-009-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-11-009: Approval Document (approved January 12, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-11-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-11-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-11-009
+    cms_node_id: '31521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31521
+    approval_date: '2012-01-12'
+    effective_date: '2011-10-01'
+    summary: This SPA transmitted a proposed amendment to Maine's approved Title XIX State plan to amend its State Plan so
+      that the State can be in compliance with the mandatory provision in Section 2302 of the Patient Protection and Affordable
+      Care Act (PPACA), entitled Hospice Care for Children. Section 2302 requires that children are able to receive hospice
+      and curative care concurrently.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-011-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-011: Approval Document (approved December 21, 2010, effective September 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-09-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-10-011
+    cms_node_id: '29366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29366
+    approval_date: '2010-12-21'
+    effective_date: '2010-09-01'
+    summary: This SPA transmitted an amendment to your approved Title XIX State plan to assure comparability amount, scope
+      and duration of services made available to categorically and medically needy populations in the State plan. This amendment
+      clarifies that all services provided for medically needy groups are identical in amount, duration, and scope as those
+      for categorically needy groups.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-005-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-005: Approval Document (approved July 9, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-005-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-10-005
+    cms_node_id: '45181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45181
+    approval_date: '2010-07-09'
+    effective_date: '2010-04-01'
+    summary: It requires States to increase the resource exemption for individuals eligible as Qualified Medicare Beneficiaries
+      Specified Low-income Medicare Beneficiaries and Qualified Individuals to three times the resource limits of the Supplemental
+      Security Income program.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-005-attachment
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-005: Attachment (approved July 9, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-005-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-005/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: ME-10-005
+    cms_node_id: '45181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45181
+    approval_date: '2010-07-09'
+    effective_date: '2010-04-01'
+    summary: It requires States to increase the resource exemption for individuals eligible as Qualified Medicare Beneficiaries
+      Specified Low-income Medicare Beneficiaries and Qualified Individuals to three times the resource limits of the Supplemental
+      Security Income program.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-005-form-cms-179
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-005: Form CMS-179 (approved July 9, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-005-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-005/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: ME-10-005
+    cms_node_id: '45181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45181
+    approval_date: '2010-07-09'
+    effective_date: '2010-04-01'
+    summary: It requires States to increase the resource exemption for individuals eligible as Qualified Medicare Beneficiaries
+      Specified Low-income Medicare Beneficiaries and Qualified Individuals to three times the resource limits of the Supplemental
+      Security Income program.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-003-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-003: Approval Document (approved May 19, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-003-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-10-003
+    cms_node_id: '45186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45186
+    approval_date: '2010-05-19'
+    effective_date: '2010-01-01'
+    summary: To encourage dual eligible beneficiaries to more fully utilize Medicare cost-sharing benefits available through
+      the Medicare Savings Program.
+    topics: &id003
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-003-attachment
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-003: Attachment (approved May 19, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: ME-10-003
+    cms_node_id: '45186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45186
+    approval_date: '2010-05-19'
+    effective_date: '2010-01-01'
+    summary: To encourage dual eligible beneficiaries to more fully utilize Medicare cost-sharing benefits available through
+      the Medicare Savings Program.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-me-cms-medicaid-state-plan-spa-me-10-003-form-cms-179
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-10-003: Form CMS-179 (approved May 19, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-10-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-10-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: ME-10-003
+    cms_node_id: '45186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45186
+    approval_date: '2010-05-19'
+    effective_date: '2010-01-01'
+    summary: To encourage dual eligible beneficiaries to more fully utilize Medicare cost-sharing benefits available through
+      the Medicare Savings Program.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-me-cms-medicaid-state-plan-spa-me-09-008-approval-document
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-09-008: Approval Document (approved December 15, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-09-008-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-09-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-09-008
+    cms_node_id: '45546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45546
+    approval_date: '2009-12-15'
+    effective_date: '2009-07-01'
+    summary: Grants full Medicaid coverage to all otherwise eligible alien children or pregnant women fully residing in the
+      United States.
+    topics: &id004
+    - Benefits
+    - Eligibility
+    - Health Services Initiatives
+    link_label: Approval Document
+- source_id: us-me-cms-medicaid-state-plan-spa-me-09-008-attachment
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-09-008: Attachment (approved December 15, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-09-008-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-09-008/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: ME-09-008
+    cms_node_id: '45546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45546
+    approval_date: '2009-12-15'
+    effective_date: '2009-07-01'
+    summary: Grants full Medicaid coverage to all otherwise eligible alien children or pregnant women fully residing in the
+      United States.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-me-cms-medicaid-state-plan-spa-me-09-008-form-cms-179
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine Medicaid SPA ME-09-008: Form CMS-179 (approved December 15, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ME/ME-09-008-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-me/policy/cms/medicaid-state-plan/spa/me-09-008/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Maine
+    source_discovery_group: us-me/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: ME-09-008
+    cms_node_id: '45546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45546
+    approval_date: '2009-12-15'
+    effective_date: '2009-07-01'
+    summary: Grants full Medicaid coverage to all otherwise eligible alien children or pregnant women fully residing in the
+      United States.
+    topics: *id004
+    link_label: Form CMS-179

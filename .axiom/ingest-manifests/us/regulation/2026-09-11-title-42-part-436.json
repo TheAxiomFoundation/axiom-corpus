@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-11-title-42-part-436.json",
+      "sha256": "bea0ae1477ab9afb3c3ebebcecc83075c3518ca778c11a4eb0be4a2b168a6b78"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-11-title-42-part-436.json",
+      "sha256": "52049d62c976f9d75de645c39627d75c8326284b20a4316b473c086b71bd3e0d"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-11-title-42-part-436.jsonl",
+      "sha256": "26997dee831c308c041fdc16b603569a99a6a06bf2846729e051f21f8ac301fd"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-11-title-42-part-436/ecfr/title-42-part-436.xml",
+      "sha256": "ae8612a1b04f9d397cf351ddf2227ab95bb2732bc1e873e9a781f49f0a4fb56f"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-11-title-42-part-436/ecfr/title-42.structure.json",
+      "sha256": "e26fcf6a5b5d463b8402883ca8159ecfdbdc37f3c215fdfaef9efce4d0faf1ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de9a23d2d7610775f446ff26f26e48c9b04a9b7e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-title-42-part-436 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 87,
+    "missing_count": 0,
+    "provision_count": 87,
+    "source_count": 87
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:28:56.545450+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Rp1uA/98uWEk41xxg6E92/y+BHyUpeKWpWpd1ENXsYvQncl3AeEHpUJXKbqXxNreb91nie5eZGoSgLPlX8KmBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-title-42-part-436"
+}

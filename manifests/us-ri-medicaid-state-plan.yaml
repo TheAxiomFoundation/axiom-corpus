@@ -1,0 +1,1246 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ri-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 212
+- source_id: us-ri-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 212
+- source_id: us-ri-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 12
+    index_records_total: 212
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-26-0003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-26-0003: Approval Document (approved April 13, 2026, effective February 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-26-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-02-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-26-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-26-0003
+    cms_node_id: '191656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=191656
+    approval_date: '2026-04-13'
+    effective_date: '2026-02-01'
+    summary: This amendment proposed income disregards for its Qualified Medicare Beneficiary (QMB) and Qualified Individual
+      (QI) eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-26-0001-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-26-0001: Approval Document (approved March 20, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-26-0001
+    cms_node_id: '190421'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190421
+    approval_date: '2026-03-20'
+    effective_date: '2026-01-01'
+    summary: This amendment proposed to memorialize its new income standards for its state supplementary payment program and
+      medically needy groups, and to adjust the parent/caretaker income limit to 133 percent of the federal poverty level.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-25-0019-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-25-0019: Approval Document (approved February 23, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-25-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-25-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-25-0019
+    cms_node_id: '189286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189286
+    approval_date: '2026-02-23'
+    effective_date: '2025-10-01'
+    summary: This amendment updates the state’s Alternative Benefit Plan (ABP) to include services added to the Medicaid State
+      Plan between 2013 and 2025 and to reflect the elimination of the Primary Care Case Management (PCCM) program. This amendment
+      to the Medicaid State Plan is strictly intended to align the state's ABP with all services currently covered by Rhode
+      Island Medicaid.
+    topics:
+    - Alternative Benefit Plan
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-25-0018-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-25-0018: Approval Document (approved January 30, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-25-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-25-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-25-0018
+    cms_node_id: '189081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189081
+    approval_date: '2026-01-30'
+    effective_date: '2025-10-01'
+    summary: This amendment indicates that third-party payers must accept authorizations provided by the state medical assistance
+      program for items or services covered by Medicaid. These authorizations should be treated as prior authorizations by
+      the third-party health insurer.
+    topics:
+    - Coverage
+    - Prior Authorization
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-25-0006-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-25-0006: Approval Document (approved May 2, 2025, effective March 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-03-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-25-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-25-0006
+    cms_node_id: '179536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179536
+    approval_date: '2025-05-02'
+    effective_date: '2025-03-01'
+    summary: This amendment will revise the Medicaid PACE Rate methodology to ensure that legislatively mandated fee schedule
+      adjustments are reflected in the rates paid to PACE.
+    topics:
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-25-0003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-25-0003: Approval Document (approved April 18, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-25-0003
+    cms_node_id: '178866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178866
+    approval_date: '2025-04-18'
+    effective_date: '2025-01-01'
+    summary: This amendment is to modify its Medically Needy Income Levels and confirm the new income standards for its optional
+      state supplement program, beneficiaries of which are eligible for Medicaid under Rhode Island's state plan.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-24-0004-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-24-0004: Approval Document (approved May 10, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-24-0004
+    cms_node_id: '164011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=164011
+    approval_date: '2024-05-10'
+    effective_date: '2024-01-01'
+    summary: This amendment is to provide 12 months of continuous eligibility (CE) for children under the age of 19 in Medicaid.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-24-0003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-24-0003: Approval Document (approved April 5, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-24-0003
+    cms_node_id: '162616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162616
+    approval_date: '2024-04-05'
+    effective_date: '2024-01-01'
+    summary: This amendment proposes to memorialize the new income standards for its optional state supplement program and
+      increase its medically needy income level.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-23-0012-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-23-0012: Approval Document (approved March 1, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-23-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-23-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-23-0012
+    cms_node_id: '160321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160321
+    approval_date: '2024-03-01'
+    effective_date: '2023-10-01'
+    summary: This amendment proposed to adopt the eligibility group authorized by the Ticket to Work Incentives Improvement
+      Act that serves working individuals who have disabilities.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-23-0011-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-23-0011: Approval Document (approved March 1, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-23-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-23-0011
+    cms_node_id: '160451'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160451
+    approval_date: '2024-03-01'
+    effective_date: '2023-10-01'
+    summary: This amendment proposes to implement premiums for working adults who have disabilities as authorized by the Ticket
+      to Work and Work Incentives Improvement Act.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    - Premiums
+    - Preventative Services
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-23-0006-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-23-0006: Approval Document (approved September 22, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-23-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-23-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-23-0006
+    cms_node_id: '153426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=153426
+    approval_date: '2023-09-22'
+    effective_date: '2023-04-01'
+    summary: This amendment is to confirm in its state plan the eligibility requirements for the Medicare Savings Program
+      eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-23-0004-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-23-0004: Approval Document (approved June 15, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-23-0004
+    cms_node_id: '151096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151096
+    approval_date: '2023-06-15'
+    effective_date: '2023-01-01'
+    summary: The state proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-23-0005-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-23-0005: Approval Document (approved May 18, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-23-0005
+    cms_node_id: '151101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151101
+    approval_date: '2023-05-18'
+    effective_date: '2023-01-01'
+    summary: The state proposed to modify its Medically Needy Income Levels and confirm the new income standards for its optional
+      state supplement program, beneficiaries of which are eligible for Medicaid under Rhode Island's state plan.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-22-0003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-22-0003: Approval Document (approved May 24, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-22-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-22-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-22-0003
+    cms_node_id: '136141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=136141
+    approval_date: '2022-05-24'
+    effective_date: '2022-01-01'
+    summary: Rhode Island State Plan Amendment (SPA) RI-22-0003 which proposed to update the state supplementary payment eligibility
+      standards and the medically needy income limit.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-21-0004-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-21-0004: Approval Document (approved May 28, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-21-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-21-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-21-0004
+    cms_node_id: '135676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135676
+    approval_date: '2021-05-28'
+    effective_date: '2021-01-01'
+    summary: To make the annual update to the Medicaid State Plan to reflect the 1.3% cost-of-living increase for 2021 on
+      the State Supplementary Payments and the Medically Needy Income.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-20-0011-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-20-0011: Approval Document (approved August 25, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/RI-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-20-0011
+    cms_node_id: '101481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101481
+    approval_date: '2020-08-25'
+    effective_date: '2020-03-18'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to rescind the election of the COVID optional eligibility group.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-20-0004-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-20-0004: Approval Document (approved April 18, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-20-0004
+    cms_node_id: '97756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97756
+    approval_date: '2020-04-18'
+    effective_date: '2020-01-01'
+    summary: Update the Medically Needy Income Levels and to also update the standards for the Optional State Supplement Beneficiaries
+      eligibility group
+    topics:
+    - Current State Plan
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-20-0003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-20-0003: Approval Document (approved April 8, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-20-0003
+    cms_node_id: '91436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=91436
+    approval_date: '2020-04-08'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purposes
+      of this amendment is to expand eligibility to cover COVID-19 testing for uninsured individuals, make other eligibility
+      and enrollment changes, suspend premiums for the Employed Individuals with Disabilities program eligibility group, automatically
+      renew prior authorization for medications, and adjust post eligibility treatment of income
+    topics:
+    - Disaster Relief
+    - Eligibility
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-19-0010-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-19-0010: Approval Document (approved October 23, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-19-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-19-0010
+    cms_node_id: '4541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4541
+    approval_date: '2019-10-23'
+    effective_date: '2019-07-01'
+    summary: Eliminates inpatient hospital Upper Payment Limit supplemental payments.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-19-005-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-19-005: Approval Document (approved August 7, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-19-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-19-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-19-005
+    cms_node_id: '5101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5101
+    approval_date: '2019-08-07'
+    effective_date: '2019-07-01'
+    summary: Update cost-sharing pages in the State Plan to reflect current practice.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-19-002-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-19-002: Approval Document (approved June 4, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-19-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-19-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-19-002
+    cms_node_id: '6096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6096
+    approval_date: '2019-06-04'
+    effective_date: '2019-01-01'
+    summary: Update the Medically Needy Income Levels and to also update the standards for the Optional State Supplement Beneficiaries
+      eligibility group.
+    topics:
+    - Benefits
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-18-004-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-18-004: Approval Document (approved July 6, 2018, effective September 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-18-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-09-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-18-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-18-004
+    cms_node_id: '9811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9811
+    approval_date: '2018-07-06'
+    effective_date: '2018-09-01'
+    summary: This is an amendment to Rhode Island's Title XIX State plan to implement an electronic Asset Verification System
+      (AVS) that will verify the assets of aged, blind, and disabled applicants and recipients of Medicaid as required by
+      Section 1904(a) of the Social Security Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-18-001-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-18-001: Approval Document (approved May 14, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-18-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-18-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-18-001
+    cms_node_id: '10536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10536
+    approval_date: '2018-05-14'
+    effective_date: '2018-01-01'
+    summary: This eligibility SPA increases the Medically Needy Income Limits for 2018.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-14-003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-14-003: Approval Document (approved May 10, 2016, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-14-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-14-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-14-003
+    cms_node_id: '19481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19481
+    approval_date: '2016-05-10'
+    effective_date: '2014-01-01'
+    summary: To implement hospital presumptive eligibility in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-022-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-022: Approval Document (approved March 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-022
+    cms_node_id: '35036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35036
+    approval_date: '2014-03-11'
+    effective_date: '2014-01-01'
+    summary: Incorporates Standards for Non-Financial Eligibility - Citizenship and Non-Citizenship Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-0019-mm2-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-0019-MM2: Approval Document (approved March 11, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-019-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-0019-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-0019-MM2
+    cms_node_id: '37886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37886
+    approval_date: '2014-03-11'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-0020-mm3-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-0020-MM3: Approval Document (approved February 7, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-0020-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-0020-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-0020-MM3
+    cms_node_id: '38731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38731
+    approval_date: '2014-02-07'
+    effective_date: '2014-01-01'
+    summary: Designates Income Options Selected by State for 2014.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-0018-mm1-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-0018-MM1: Approval Document (approved January 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-0018-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-0018-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-0018-MM1
+    cms_node_id: '39046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39046
+    approval_date: '2014-01-10'
+    effective_date: '2014-01-01'
+    summary: MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-032-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-032: Approval Document (approved January 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-032
+    cms_node_id: '38116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38116
+    approval_date: '2014-01-10'
+    effective_date: '2014-01-01'
+    summary: Provides Coverage to Reasonable Categories of Individuals Under the Age of 21.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-0030-mm1-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-0030-MM1: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-0030-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-0030-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-0030-MM1
+    cms_node_id: '39546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39546
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Grants MAGI-Eligibility Group Medicaid Coverage for Individuals with Incomes Below 133% of FPL.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-003: Approval Document (approved April 29, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-003-ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-13-003
+    cms_node_id: '45886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45886
+    approval_date: '2013-04-29'
+    effective_date: '2013-01-01'
+    summary: Increases the amount of allowable home equity interest for individuals seeking Medicaid eligibility for nursing
+      facility services or other long-term care services.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Health Services Initiatives
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-003-attachment
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-003: Attachment (approved April 29, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: RI-13-003
+    cms_node_id: '45886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45886
+    approval_date: '2013-04-29'
+    effective_date: '2013-01-01'
+    summary: Increases the amount of allowable home equity interest for individuals seeking Medicaid eligibility for nursing
+      facility services or other long-term care services.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-13-003-form-cms-179
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-13-003: Form CMS-179 (approved April 29, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-13-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-13-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: RI-13-003
+    cms_node_id: '45886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45886
+    approval_date: '2013-04-29'
+    effective_date: '2013-01-01'
+    summary: Increases the amount of allowable home equity interest for individuals seeking Medicaid eligibility for nursing
+      facility services or other long-term care services.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-11-003-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-11-003: Approval Document (approved August 1, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-11-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-11-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-11-003
+    cms_node_id: '25886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25886
+    approval_date: '2011-08-01'
+    effective_date: '2011-04-01'
+    summary: Proposed amendment to your Department's approved Title XIX State plan concerning an eligibility determination
+      system that provides for data matching through the Public Assistance Reporting Information System (PARIS) project or
+      any successor system. Section 1903(r) of the Social Security Act as amended by §3 of the Qualifying Individual Program
+      Supplemental Funding Act of 2008. Public Law 110-379. Requires that States have eligibility determination systems that
+      provide for data matching through the PARIS project or any successor system.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ri-cms-medicaid-state-plan-spa-ri-09-006-approval-document
+  jurisdiction: us-ri
+  document_class: policy
+  title: 'Rhode Island Medicaid SPA RI-09-006: Approval Document (approved October 30, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-09-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ri/policy/cms/medicaid-state-plan/spa/ri-09-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Rhode Island
+    source_discovery_group: us-ri/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: RI-09-006
+    cms_node_id: '25961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25961
+    approval_date: '2009-10-30'
+    effective_date: '2009-07-01'
+    summary: Proposed amendment to your approved Title XIX State plan to elect the option in §214 of the Children's Health
+      Insurance Program Reauthorization Act of 2009, Public Law No. 111-3. This option allows State to provide full Medicaid
+      coverage to otherwise eligible alien children or pregnant women lawfully residing in the United States.
+    topics:
+    - Eligibility
+    link_label: Approval Document

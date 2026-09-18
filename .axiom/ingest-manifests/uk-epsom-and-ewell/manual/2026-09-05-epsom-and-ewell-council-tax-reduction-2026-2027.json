@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-epsom-and-ewell/manual/2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027.json",
+      "sha256": "ae7ea634dcfc50eed079550b8e372bb754e0197ab2d0ab4720af3129c2c9073e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-epsom-and-ewell/manual/2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027.json",
+      "sha256": "40246f185522443c50a20c4cb3341d06104f187a407bbd2e3ae08c2fe0522e1e"
+    },
+    {
+      "path": "data/corpus/provisions/uk-epsom-and-ewell/manual/2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f4453fc7a6efed2d7f76f3ff2e1a033a8b1c9612634b38b1479683eebf392c07"
+    },
+    {
+      "path": "data/corpus/sources/uk-epsom-and-ewell/manual/2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027/official-documents/epsom-and-ewell-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "8bddacdc09c5d0f0bb3d98b149629ef698876c89f8baf6c379b2b1e7fafa4b89"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-epsom-and-ewell-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 107,
+    "missing_count": 0,
+    "provision_count": 107,
+    "source_count": 107
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:34:57.878957+00:00",
+  "jurisdiction": "uk-epsom-and-ewell",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2/yvf/NCJH/205YkEXJxtLITNWG1bCg2cp4OQqjRf240tz9r/Z7S7/LF5S7n0sHqq5HPoTka6ONqjck2Us5XCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027"
+}

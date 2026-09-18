@@ -1,0 +1,26 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-nm-hca-mad-029-2026-04-01
+  jurisdiction: us-nm
+  document_class: guidance
+  title: 'MAD 029: Aged, Blind and Disabled Medicaid Programs (Revised 04/01/2026; 2026-2027)'
+  source_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+  download_url: https://www.hca.nm.gov/wp-content/uploads/MAD-029-Final-2026-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-nm/guidance/hca/mad-029/2026-04-01
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority, Medical Assistance Division
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-nm/guidance
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-eligibility-federal-poverty-level-guidelines/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_standards_form
+    document_number: MAD 029
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

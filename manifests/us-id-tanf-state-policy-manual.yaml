@@ -1,0 +1,43 @@
+version: '2026-09-10'
+documents:
+- source_id: us-id-dhw-idapa-16-03-08-tafi
+  jurisdiction: us-id
+  document_class: regulation
+  title: IDAPA 16.03.08 - Federal Welfare Programs
+  source_url: https://adminrules.idaho.gov/rules/current/16/160308.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-07-01'
+  citation_path: us-id/regulation/idapa/16/03/08
+  extraction:
+    segmentation: numbered_sections
+    start_page: 3
+    sort_text: true
+    drop_lines:
+    - IDAHO ADMINISTRATIVE CODE
+    - Department of Health and Welfare
+    drop_line_patterns:
+    - ^Section [0-9]+\s+Page [0-9]+.*$
+    - ^IDAHO ADMINISTRATIVE CODE\s+IDAPA 16\.03\.08$
+    - ^Department of Health and Welfare\s+Federal Welfare Programs$
+    - ^16\.03\.08 – FEDERAL WELFARE PROGRAMS$
+    - ^\d{3}\. – \d{3}\.\s+\(RESERVED\)$
+    - ^TANF PROGRAM$
+    - ^LIHEAP$
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare
+    document_subtype: administrative_rules
+    program: TANF
+    state_program: Temporary Assistance for Families in Idaho (TAFI)
+    federal_program: TANF
+    manual_landing_page: https://adminrules.idaho.gov/current-rules/
+    source_discovery_group: us-id/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://adminrules.idaho.gov/current-rules/
+    official_publisher: Idaho Office of the Administrative Rules Coordinator
+    idapa_chapter: 16.03.08
+    source_last_modified: '2026-09-10'
+    rule_effective_marks:
+      7-1-26: 54
+    extraction_note: numbered_sections like the IDAPA 16.03.05 scope; the rule is short (TAFI plus LIHEAP standards) after
+      Idaho's rule reduction

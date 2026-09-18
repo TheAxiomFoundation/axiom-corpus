@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "c4346e774afeba34543c0b94ea8c16e0bfe31925b44fa596c034a7abfc7196a2"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "4a0eea7793dca9bd972b819b9e49cdc525c95ac1433ccc15f23eedbc9de46c0a"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "896f3807aca71657e71d18bc9b60ce9d891b4d8cec69c319acef048da050ca63"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-1.pdf",
+      "sha256": "62c6f25630def6591143c17a82d5b9bf4cd2ef1efaf80a55d70be5f87efc76b6"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-2.pdf",
+      "sha256": "add9ae035867cd184f75d6d7bba2b91cbbd19cffad75407bb866b67c40c7da63"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-3.pdf",
+      "sha256": "c1b8e22fbf9f2c123160ee560f028533ee5618f4255dcd6bd4e5ade38072313c"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-4.pdf",
+      "sha256": "a31842a221e4d2e920c36eb4255c045dee411c9a7085387251b16f9ba2764d08"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-5.pdf",
+      "sha256": "9965a00908e6ce6962d60702b30334da120758ad2b97ed2345a665ffb8a1c977"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-7.pdf",
+      "sha256": "d97d75bd6b6dc29ab61c30d253ec5a25227167ca91422d2ff29e892ff2601d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/vt-ahs-hbee-part-8.pdf",
+      "sha256": "a913f84774d4f3472289727532f089a3ad77137cd14ee7429cc68d486a2bb283"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-vt-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 186,
+    "missing_count": 0,
+    "provision_count": 186,
+    "source_count": 186
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:02:38.941743+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gODtdJHVU6z91cP1DaWazQ1zH+yc/ZhmSNegEDZAdEpQzJO80CbV4pODcYRlNBTAUrjammSzQc6ekHtvQEtCBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

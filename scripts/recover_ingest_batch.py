@@ -22,12 +22,6 @@ from axiom_corpus.corpus.anchors import generate_anchors_for_provision
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.california_mpp import _section_provision, _subsection_provision
 from axiom_corpus.corpus.coverage import compare_provision_coverage
-from axiom_corpus.corpus.documents import (
-    OfficialDocumentSource,
-    _extract_blocks,
-    _inventory_items,
-    _provision_records,
-)
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from axiom_corpus.corpus.ingest_manifests import build_ingest_manifest, default_ingest_manifest_path
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -39,6 +33,11 @@ from axiom_corpus.corpus.usc import (
     parse_uslm_title,
 )
 from axiom_corpus.parsers.us_ca.regulations import extract_paragraphs, parse_mpp_sections
+
+if __package__:
+    from .recover_ingest import assert_ecfr_recovery_supported
+else:
+    from recover_ingest import assert_ecfr_recovery_supported
 
 REPO = Path(__file__).parents[1]
 FETCHED = REPO / "recovered-fetched"
@@ -628,6 +627,13 @@ def _california_mpp(
 def _generic(
     entry: dict[str, Any], path: Path, data: bytes, provenance: dict[str, Any], source_key: str
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    from axiom_corpus.corpus.documents import (
+        OfficialDocumentSource,
+        _extract_blocks,
+        _inventory_items,
+        _provision_records,
+    )
+
     source_format = _format(data)
     parser = str(entry["parser"])
     extract_data = data
@@ -948,6 +954,7 @@ def _uslm_planned_descendants(
 def _parse(
     entry: dict[str, Any], path: Path, data: bytes, provenance: dict[str, Any], source_key: str
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    assert_ecfr_recovery_supported(entry)
     parser = str(entry["parser"])
     document_id = str(entry["document_id"])
     if document_id in ASSEMBLED_SCOPE_REPLACEMENTS:
@@ -1080,6 +1087,11 @@ def main() -> int:
                 ignored_duplicates.append(path.name)
         else:
             files[document_id] = path
+
+    # Preflight the whole selected batch before any writes or reuse of a prior
+    # success report: appendix replay needs scope and graphics we cannot restore.
+    for document_id in files:
+        assert_ecfr_recovery_supported(entries[document_id], base=BASE)
 
     store = CorpusArtifactStore(BASE)
     scoped_items: dict[tuple[str, str, str], list[SourceInventoryItem]] = defaultdict(list)

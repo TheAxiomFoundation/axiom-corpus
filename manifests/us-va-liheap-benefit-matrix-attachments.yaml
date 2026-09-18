@@ -1,0 +1,43 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-va-liheap-acf-liheap-plan-fy2026-benefit-matrix
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia LIHEAP FY 2026 plan attachment: Energy Assistance Manual excerpts with FFY 2026 income limits'
+  source_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/VA_BenefitMatrix_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-va/policy/acf/liheap-plan/fy2026-benefit-matrix
+  extraction:
+    ocr: true
+    ocr_dpi: 300
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Social Services
+    document_subtype: plan_attachment_benefit_matrix_pdf
+    program: LIHEAP
+    state: VA
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://www.dss.virginia.gov/relief/ea/
+    on_clearinghouse_index: true
+    source_discovery_group: us-va/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.dss.virginia.gov/relief/ea/
+    extraction_granularity: pdf_page
+    expression_date_note: FY 2026 attachment (PDF dated 2025-08-27)
+    access_note: dss.virginia.gov HTTP 200 to the plain client (the Clearinghouse-listed /files/division/bp/ea/ URL answers
+      404); liheapch.acf.gov HTTP 200 with the CA bundle
+    page_count: 7
+    benefit_matrix_pdf_pages: 1-7
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+    tls_note: liheapch.acf.gov omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem
+    hosting_authority: HHS Administration for Children and Families, Office of Community Services (LIHEAP Clearinghouse)
+    clearinghouse_matrix_note: FY 2026 benefit matrix as submitted with the state's FY 2026 plan, served by the ACF LIHEAP
+      Clearinghouse under /docs/2026/benefits-matricies/ (the plan attachment the Clearinghouse plan PDF omits); the file
+      is not linked from any Clearinghouse index page read on 2026-09-13 (stateplans.htm, the state profile pages, tables/benefits.htm,
+      delivery/benefits.htm) and was located by the publisher's own file naming; 21 states have a 2026 file
+    ocr_note: image-only PDF (707 characters of text layer); read with tesseract at 300 dpi

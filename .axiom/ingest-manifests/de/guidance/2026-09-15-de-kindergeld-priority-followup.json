@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-15-de-kindergeld-priority-followup.json",
+      "sha256": "f5969a351f421d6b4a177d68ffeab1ccc1e9bf9d9c18cf1cbbc680c26336f957"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-15-de-kindergeld-priority-followup.json",
+      "sha256": "a2a0ffc6203dedb1f0bceeb8748c134f8841830dde32d689f68437fd33e45282"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-priority-followup.jsonl",
+      "sha256": "ede878d9909b89e1f0ae45b549d55129526d0158c32f3e3bca942d34dd99fbed"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/bfh-iii-b-127-14-2015-04-27.pdf",
+      "sha256": "b8d9b25b33efc9010d2c859d1bb05e09c5f6b693b36f97481d362fc238e4ca6a"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/bfh-iii-r-17-13-2014-05-08.pdf",
+      "sha256": "f2db917e8c36ef40b64af6c5797da2e728da501dbb66457a17bbb2cced3b99cf"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/bfh-iii-r-68-13-2016-04-28.pdf",
+      "sha256": "a3f40b08424fcca3c53c12b57e7af7fd553f71d798b54f77b187fbfe5060ac6b"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/cjeu-c-378-14-2015-10-22.html",
+      "sha256": "ee2955a404a1d0cc04600afb1121f860986400ac3c358bd16c0886941ffa2c37"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3e1d039f456b6676f2db5bf224c6483e92e15202",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-15-de-kindergeld-priority-followup --manifest manifests/de-kindergeld-priority-followup.yaml (exact receipted local_path runtime variant; see capture audit)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-15T16:59:17.439790+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-15-de-kindergeld-priority-followup-audit.json",
+      "sha256": "ab353479c7d7be3365124ef4daa38980ef30783e47b53475cbd1da298ee5a7c3"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jUEA5jMO3tnuSiqv6xJWtk7MyVQk/rCHN3kigfpx7vMc6FrZMH0KpGgROmpYTPzUtO9auMta5OZn/papBq0WAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-de-kindergeld-priority-followup"
+}

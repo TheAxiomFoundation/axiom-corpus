@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-isle-of-wight/manual/2026-08-14-isle-of-wight-council-tax-reduction-2026-2027.json",
+      "sha256": "1bbcc49afd4d21831aa10f60e9aafe48e9767b0f2f5ecb14aea99fd60c9130e6"
+    },
+    {
+      "path": "data/corpus/inventory/uk-isle-of-wight/manual/2026-08-14-isle-of-wight-council-tax-reduction-2026-2027.json",
+      "sha256": "3281d2703c32a4eef75fd48070b75f5e57b381822f8ddacabceddc7959c3e516"
+    },
+    {
+      "path": "data/corpus/provisions/uk-isle-of-wight/manual/2026-08-14-isle-of-wight-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "b6d5aa8ae1e132ef2467259190f1ab8f78c152599890b0f2e9a8ecfdb3919b8c"
+    },
+    {
+      "path": "data/corpus/sources/uk-isle-of-wight/manual/2026-08-14-isle-of-wight-council-tax-reduction-2026-2027/official-documents/isle-of-wight-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "ade90112d091dd233d26f9bcc60bdf32672c8d1f22671e9a970d0669eafe5300"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7c99cd489c9c62762b060fda3516284dd9553c96",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-14-isle-of-wight-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-isle-of-wight-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 107,
+    "missing_count": 0,
+    "provision_count": 107,
+    "source_count": 107
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-14T14:59:22.511983+00:00",
+  "jurisdiction": "uk-isle-of-wight",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9Il8A/kJPbePHrA+aSgChmVSUnjL6eTQMvOxTA75wNtDUl0pRJ41H1F03JMgrjihi4viCeNYderkADjfTPYvBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-14-isle-of-wight-council-tax-reduction-2026-2027"
+}

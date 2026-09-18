@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-stafford/manual/2026-09-05-stafford-council-tax-reduction-2026-2027.json",
+      "sha256": "392abbba748e91a8abd319b40f2d45bb0db9e097d137c1bcdf85da748f0e0433"
+    },
+    {
+      "path": "data/corpus/inventory/uk-stafford/manual/2026-09-05-stafford-council-tax-reduction-2026-2027.json",
+      "sha256": "761cef3b9186c188eb8359624d1a6ca0a00793a99028d1afb88877336017b323"
+    },
+    {
+      "path": "data/corpus/provisions/uk-stafford/manual/2026-09-05-stafford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "8ef47b38101c15e3f0c306fb95c1feedea2b1e9f3c5cccfb01cd2cf7b0f93575"
+    },
+    {
+      "path": "data/corpus/sources/uk-stafford/manual/2026-09-05-stafford-council-tax-reduction-2026-2027/official-documents/stafford-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "19784c25839d45d795ff2de40a4c8703647d1c9e3a1136c4d4ac928586dd3432"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-stafford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-stafford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 124,
+    "missing_count": 0,
+    "provision_count": 124,
+    "source_count": 124
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:58.669374+00:00",
+  "jurisdiction": "uk-stafford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bARQg0SMf18tH7ENWSq7kQkP4Rm+4YA2hUfdCPqOEFbtCLhHv4DU9rOO6gx8jAWnvBcCSueRPeh0yRhMT2G0DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-stafford-council-tax-reduction-2026-2027"
+}

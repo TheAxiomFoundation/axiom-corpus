@@ -1,0 +1,36 @@
+{
+  "documents": [
+    {
+      "source_id": "de-bt-drs-20-12778-kindergeld-explanation",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bt-drs-20-12778/kindergeld-explanation",
+      "title": "BT-Drucksache 20/12778, 9. September 2024 — title and Kindergeld explanatory memorandum (retained PDF pages 1 and 64)",
+      "source_url": "https://dserver.bundestag.de/btd/20/127/2012778.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2024-09-09",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block",
+        "page_windows": [
+          {
+            "start_page": 1,
+            "end_page": 1
+          },
+          {
+            "start_page": 64,
+            "end_page": 64
+          }
+        ]
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutscher Bundestag, official document server",
+        "document_type": "legislative explanatory memorandum excerpt, not enacted law",
+        "source_note": "Existing extractor retains only PDF pages 1 and 64 from the unchanged 110-page official PDF. The source PDF is retained in full; this is a disclosed bounded excerpt, not the complete document. Page 64 explains the combined child allowances percentage, simultaneous Kindergeld adjustment, rounding and continued fixed amount in EStG66(1). The draft numbering is not the final enacted article numbering. The memorandum does not enact any amount or commencement; final amounts and effective dates must bind BGBl2024I449 and EStG32/66. Other draft provisions are outside this excerpt and are not certified irrelevant.",
+        "snapshot_sha256": "e88696d40b46f2841ec0b7cc0ce56fe8bfaf269aa1cb67c4e5bc6ab5aadb26ee"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-oh-guidance-dbh-residential-state-supplement-brochure
+  jurisdiction: us-oh
+  document_class: guidance
+  title: 'Ohio Department of Behavioral Health: Residential State Supplement (RSS) brochure'
+  source_url: https://dam.assets.ohio.gov/image/upload/mha.ohio.gov/learnandfindhelp/RecoverySupports/RSS/RSS-Brochure.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2023-07-01'
+  citation_path: us-oh/guidance/dbh/residential-state-supplement-brochure
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Behavioral Health (formerly OhioMHAS)
+    hosting_authority: Ohio digital asset management service (dam.assets.ohio.gov)
+    document_subtype: program_brochure_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: OH
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://dbh.ohio.gov/get-help/recovery-supports/residential-state-supplement
+    source_discovery_group: us-oh/guidance/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://dbh.ohio.gov/get-help/recovery-supports/residential-state-supplement
+    extraction_granularity: pdf_page
+    expression_date_note: footnote '$1,600 per month effective July 1, 2023'; PDF dated 2024-02-08
+    access_note: dam.assets.ohio.gov HTTP 200 to the plain client; dbh.ohio.gov HTTP 404 to the plain client and 200 to a
+      Chrome UA; codes.ohio.gov HTTP 200
+    page_count: 2

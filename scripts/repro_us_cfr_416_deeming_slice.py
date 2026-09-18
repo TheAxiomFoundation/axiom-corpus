@@ -215,6 +215,9 @@ def _build_staged_scope(
         only_part=PART,
         run_id=VERSION,
         source_sha256_by_title={TITLE: xml_digest},
+        # The pinned 622-path hierarchy and approved slice contain sections
+        # and their containers; subpart appendices are outside this scope.
+        include_appendices=False,
     )
     if len(full_inventory.items) != EXPECTED_FULL_PATH_COUNT:
         raise ValueError(

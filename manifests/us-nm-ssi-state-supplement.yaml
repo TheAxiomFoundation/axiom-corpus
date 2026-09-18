@@ -1,0 +1,580 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: nm-srca-nmac-8-106-100
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.100 NMAC Recipient Policies - Definitions And Acronyms
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0100.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2023-11-01'
+  citation_path: us-nm/regulation/nmac/8/106/100
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*100\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.100
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '100'
+    effective_date_printed: '2023-11-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-110
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.110 NMAC General Operating Policies - Applications
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0110.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/110
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*110\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.110
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '110'
+    effective_date_printed: '2024-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-120
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.120 NMAC Eligibility Policy - Case Administration
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0120.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/120
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*120\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.120
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '120'
+    effective_date_printed: '2024-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-230
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.230 NMAC General Financial - Payables And Disbursement
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0230.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/230
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*230\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.230
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '230'
+    effective_date_printed: '2024-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-400
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.400 NMAC Recipient Policies - Defining The Benefit Group
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0400.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2009-12-01'
+  citation_path: us-nm/regulation/nmac/8/106/400
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*400\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.400
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '400'
+    effective_date_printed: '2009-12-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-410
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.410 NMAC Recipient Policies - General Recipient Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0410.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2009-12-01'
+  citation_path: us-nm/regulation/nmac/8/106/410
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*410\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.410
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '410'
+    effective_date_printed: '2009-12-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-420
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.420 NMAC Recipient Policies - Requirements For Determining Disability
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0420.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2009-12-01'
+  citation_path: us-nm/regulation/nmac/8/106/420
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*420\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.420
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '420'
+    effective_date_printed: '2009-12-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-430
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.430 NMAC Recipient Policies - Requirements For Dependent Children
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0430.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2004-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/430
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*430\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.430
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '430'
+    effective_date_printed: '2004-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-431
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.431 NMAC Pre Certified Victims Of Human Trafficking
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0431.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2013-12-01'
+  citation_path: us-nm/regulation/nmac/8/106/431
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*431\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.431
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '431'
+    effective_date_printed: '2013-12-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-500
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.500 NMAC Eligibility Policy - General Information
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0500.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-03-01'
+  citation_path: us-nm/regulation/nmac/8/106/500
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*500\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.500
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '500'
+    effective_date_printed: '2025-03-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-502
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.502 NMAC General Information - Burial Assistance
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0502.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2009-12-01'
+  citation_path: us-nm/regulation/nmac/8/106/502
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*502\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.502
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '502'
+    effective_date_printed: '2009-12-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-510
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.510 NMAC Eligibility Policy - Resources/Property
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0510.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2004-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/510
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*510\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.510
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '510'
+    effective_date_printed: '2004-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-520
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.520 NMAC Eligibility Policy - Income
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0520.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2023-11-01'
+  citation_path: us-nm/regulation/nmac/8/106/520
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*520\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.520
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '520'
+    effective_date_printed: '2023-11-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-610
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.610 NMAC Description Of Program/Benefits - Benefit Delivery
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0610.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2004-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/610
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*610\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.610
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '610'
+    effective_date_printed: '2004-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-620
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.620 NMAC Description Of Program Benefits - Benefit Determination/General
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0620.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2004-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/620
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*620\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.620
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '620'
+    effective_date_printed: '2004-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-630
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.630 NMAC Description Of Program/Benefits - Changes In Eligibility
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0630.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2004-07-01'
+  citation_path: us-nm/regulation/nmac/8/106/630
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*630\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.630
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '630'
+    effective_date_printed: '2004-07-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+- source_id: nm-srca-nmac-8-106-631
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.106.631 NMAC Heat And Eat Program
+  source_url: https://www.srca.nm.gov/parts/title08/08.106.0631.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-03-01'
+  citation_path: us-nm/regulation/nmac/8/106/631
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*106\.\s*631\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives (NMAC publisher)
+    issuing_agency: New Mexico Health Care Authority, Income Support Division
+    document_subtype: administrative_code
+    program: ssi_state_supplement
+    state_program: Supplement for SSI recipients in adult residential shelter care homes (ARSCH); General Assistance (same
+      chapter)
+    federal_program: SSI
+    state: NM
+    nmac_citation: 8.106.631
+    nmac_title: '8'
+    nmac_chapter: '106'
+    nmac_part: '631'
+    effective_date_printed: '2025-03-01'
+    index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    srca_chapter_page: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-106-state-funded-assistance-programs/
+    source_discovery_group: us-nm/regulation/nmac/8/106
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/

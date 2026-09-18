@@ -1,0 +1,97 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "13f8c0903b1b8d006e744c872dd1a5fee68d44b4fcf30d4dbfca36a67fd0f889"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "6897d15c596e3a46fbd8fa66cdf1fa6338f09d30c3602db5b17e9ab1dd2eff42"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/manual/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "17496e5484c84b31f29e95643de5aebe0211648a143ab6d7a4829fb9952261d8"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-admin-1-1.html",
+      "sha256": "0724756d56f0f3f4cd456d7a6f6aab0b863e571faeeb8d5556b4fe5885af7a4f"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-admin-2-1.html",
+      "sha256": "820095501b1886e9f8d29e1220472b765a321caa34de1f3d18adc87425a7f20b"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-admin-3-1.html",
+      "sha256": "a69c9ce67b416b6884f66433fa0e4bde6d526cb1dbeb0bf2a4e70eed08ce7ece"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-admin-4-1.html",
+      "sha256": "1498e6c58b95d463dbea60fcccd46577a5cbcd7d6ef395478473c5c292ecb706"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-admin-4-2.html",
+      "sha256": "5c170946e631de8d89cfe82adb8edc2613030981868885763495fd56066ea0da"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-1-1.html",
+      "sha256": "30207da61791893b40dd6c81dc88be6d3a51beeaf5b9f712319497da2b734000"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-2-1.html",
+      "sha256": "ff614cb4e77a005400fb1d722a0927199055563d41fa0f7622718efee0598b25"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-3-1.html",
+      "sha256": "be6602736f16d876a57574e980b0ec5c7fae3116ded3f421f6102d3fed883c6f"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-4-1.html",
+      "sha256": "55b309cf54cbc81aa2fdb1119ef0f3c36605978f2a9907065a9292d6913a57e8"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-5-1.html",
+      "sha256": "b41b445200c02958140f3a5b02df97bfde7cb7d11f9e03183314eaf56a7796f3"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-6-1.html",
+      "sha256": "46602ca30354285b40fb2c9bc3dd01edaef2371702f9713063eeda3a7b435622"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-6-2.html",
+      "sha256": "1d3d7f9734c634b4a640bde50e8a563f66eeccfd7a796cf42fd298a0c7bfd0b0"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-ssi-state-supplement/official-documents/wi-dhs-ssi-e-6.html",
+      "sha256": "81eeaa706ca8f4fe72c562c148d000855c52baa2f580433dd0a399f554ff6163"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-wi-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 151,
+    "missing_count": 0,
+    "provision_count": 151,
+    "source_count": 151
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:08:41.334924+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0eWAsA50BhgcN570ZxURbsHNQEnDsdsUWQiVLbQI3L4H1cTpKicL5sNmcWFUkuzf3tgcp6QmdwYwrYWBzpQwCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

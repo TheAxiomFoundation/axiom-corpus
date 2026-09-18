@@ -1,0 +1,22 @@
+version: '2026-09-14'
+documents:
+- source_id: mi-ars-r-206-income-tax
+  jurisdiction: us-mi
+  document_class: regulation
+  citation_path: us-mi/regulation/r-206
+  title: 'Michigan Administrative Code R 206.1 to R 206.33: Income Tax (Department of Treasury)'
+  source_url: https://ars.apps.lara.state.mi.us/AdminCode/DownloadAdminCodeFile?FileName=1613_2016-006TY_AdminCode.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^R (?P<label>206\.\d+)\s+(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    official_publisher: Michigan Office of Administrative Hearings and Rules (ARS)
+    document_subtype: administrative_code_rule_set
+    program: individual_income_tax
+    source_discovery_group: us-mi/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://ars.apps.lara.state.mi.us/AdminCode/DeptBureauAdminCode?Department=Treasury&Bureau=All

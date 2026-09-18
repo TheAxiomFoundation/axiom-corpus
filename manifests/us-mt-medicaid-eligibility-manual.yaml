@@ -1,0 +1,2763 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-mt-medicaid-cmatoc
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: 0-1 Table of Contents'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMATOC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cmatoc
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: 0-1
+- source_id: us-mt-medicaid-cma0-3july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: 0-3 Introduction'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA0-3July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma0-3july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: 0-3
+- source_id: us-mt-medicaid-cma04
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: 0-4 Acronyms and Glossary'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma04
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: 0-4
+- source_id: us-mt-medicaid-cma001
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 001 General Resource Limits'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 001
+- source_id: us-mt-medicaid-cma002
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 002 Medically Needy – Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma002
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 002
+- source_id: us-mt-medicaid-aca003
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ACA FMA 003 ACA Parent Care Taker Relative'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca003
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ACA FMA 003
+- source_id: us-mt-medicaid-aca004
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ACA FMA 004 ACA Pregnancy Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca004
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ACA FMA 004
+- source_id: us-mt-medicaid-aca005
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ACA FMA 005 Healthy Montana Kids (HMK and HMKP)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca005
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ACA FMA 005
+- source_id: us-mt-medicaid-aca006
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ACA FMA 006 Breast and Cervical Cancer Treatment'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca006
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ACA FMA 006
+- source_id: us-mt-medicaid-aca007
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ACA FMA 007 ACA Adult'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca007
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ACA FMA 007
+- source_id: us-mt-medicaid-abd008
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 008 Categorically Needy- Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd008
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 008
+- source_id: us-mt-medicaid-abd009
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 009 Medicare Savings Programs – Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd009
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 009
+- source_id: us-mt-medicaid-abd011
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 011 Pickle Eligibility – Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd011
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 011
+- source_id: us-mt-medicaid-abd012
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 012 Qualified Disabled Working Individuals (QDWI)
+    – Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd012
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 012
+- source_id: us-mt-medicaid-abd013
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 013 Nursing Home Residents – Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd013
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 013
+- source_id: us-mt-medicaid-abd014
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 014 Poverty Guidelines'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd014
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 014
+- source_id: us-mt-medicaid-abd01501012022
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 015 Standard Payment Amounts (SPA)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD01501012022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd01501012022
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 015
+- source_id: us-mt-medicaid-abd017july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 017 Life Estate Interest Table'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD017July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd017july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 017
+- source_id: us-mt-medicaid-aca018
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ACA FMA 018 Table of Standards - Plan First'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca018
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ACA FMA 018
+- source_id: us-mt-medicaid-cma101-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 101-1 Confidentiality'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA101-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma101-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 101-1
+- source_id: us-mt-medicaid-cma102-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 102-1 Civil Rights'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA102.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma102-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 102-1
+- source_id: us-mt-medicaid-cma102-2july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 102-2 General Complaint Procedure'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA102-2July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma102-2july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 102-2
+- source_id: us-mt-medicaid-cma103-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 103-1 Application, Eligibility Determination
+    & Furnishing Assistance'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA103.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma103-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 103-1
+- source_id: us-mt-medicaid-cma103-2july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 103-2 Interview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA103-2July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma103-2july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 103-2
+- source_id: us-mt-medicaid-cma103-3july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 103-3 Client Rights and Responsibilities'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA103-3July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma103-3july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 103-3
+- source_id: us-mt-medicaid-cma103-4
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 103-4 Verification & Documentation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA103.4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma103-4
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 103-4
+- source_id: us-mt-medicaid-cma103-67-22
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 103-6 Voter Registration'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA103.67.22.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma103-67-22
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 103-6
+- source_id: us-mt-medicaid-cma104-1may012017
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 104-1 Retroactive Medicaid Coverage'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA104-1May012017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma104-1may012017
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 104-1
+- source_id: us-mt-medicaid-abd105-1jan012017
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 105-1 Disability Determination Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD105-1Jan012017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd105-1jan012017
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 105-1
+- source_id: us-mt-medicaid-fma105-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 105-1 Presumptive Medicaid'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA105.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma105-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 105-1
+- source_id: us-mt-medicaid-abd200july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 200 General Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD200July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd200july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 200
+- source_id: us-mt-medicaid-fma200
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 200 Covered Groups Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA200.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 200
+- source_id: us-mt-medicaid-fma200-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 200-1 ACA Filing Unit'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA200.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma200-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 200-1
+- source_id: us-mt-medicaid-abd201-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-1 SSI Cash Recipients'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-1
+- source_id: us-mt-medicaid-fma201-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-1 ACA Parent Caretaker Relative'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-1
+- source_id: us-mt-medicaid-abd2012042022
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-2 Pickle Eligibility (Loss of SSI Due to
+    Increase in SSA Benefits)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD2012042022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd2012042022
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-2
+- source_id: us-mt-medicaid-fma201-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-2 ACA Pregnancy'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-2
+- source_id: us-mt-medicaid-abd201-3july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-3 Early Widows and Widowers/Divorced Surviving
+    Spouse'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201-3July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-3july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-3
+- source_id: us-mt-medicaid-fma201-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-3 Child Newborn'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-3
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-3
+- source_id: us-mt-medicaid-abd201-4july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-4 Social Security Increase of July 1972'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201-4July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-4july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-4
+- source_id: us-mt-medicaid-aca201-4
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-4 Healthy Montana Kids Plus'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA201.4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca201-4
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-4
+- source_id: us-mt-medicaid-abd201-5july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-5 Disabled Adult Children'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201-5July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-5july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-5
+- source_id: us-mt-medicaid-aca201-5
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-5 ACA Healthy Montana Kids (HMK)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA201.5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca201-5
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-5
+- source_id: us-mt-medicaid-abd201-6
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-6 Montana Medicaid for Workers with Disabilities
+    (MWD)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201.6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-6
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-6
+- source_id: us-mt-medicaid-fma201-6
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-6 Former Foster Care'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-6
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-6
+- source_id: us-mt-medicaid-abd201-7july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-7 Qualified Disabled Working individuals
+    (QDWI)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201-7July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-7july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-7
+- source_id: us-mt-medicaid-aca201-7
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-7 ACA Adult'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA201.7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca201-7
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-7
+- source_id: us-mt-medicaid-abd201-8
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-8 Medicare Savings Programs'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201.8.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-8
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-8
+- source_id: us-mt-medicaid-fma201-8
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-8 ACA Adult Medicaid'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.8.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-8
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-8
+- source_id: us-mt-medicaid-abd201-9july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 201-9 Residents in Medical Institutions Prior
+    to October 1, 1989'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD201-9July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd201-9july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 201-9
+- source_id: us-mt-medicaid-fma201-9
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-9 Breast and Cervical Cancer'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.9.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-9
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-9
+- source_id: us-mt-medicaid-fma201-10
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-10 Family Medically Needy'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.10.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-10
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-10
+- source_id: us-mt-medicaid-fma201-11
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-11 ACA Qualified Pregnant Woman'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.11.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-11
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-11
+- source_id: us-mt-medicaid-fma201-12
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-12 Extended Postpartum'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.12.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-12
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-12
+- source_id: us-mt-medicaid-fma201-13
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-13 Transitional Medicaid'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-13
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-13
+- source_id: us-mt-medicaid-fma201-14
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 201-14 Plan First'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA201.14.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma201-14
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 201-14
+- source_id: us-mt-medicaid-cma202-110-22
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 202-1 Adding or Removing Household Members'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA202.110.22.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma202-110-22
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 202-1
+- source_id: us-mt-medicaid-cma300
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 300 Non-Financial Requirements'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 300
+- source_id: us-mt-medicaid-cma301-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 301-1 Citizenship and Identity'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA301.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma301-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 301-1
+- source_id: us-mt-medicaid-cma301-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 301-2 Alien Status'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA301.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma301-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 301-2
+- source_id: us-mt-medicaid-cma301-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 301-3 Emergency Alien Medical Coverage'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA301.3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma301-3
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 301-3
+- source_id: us-mt-medicaid-cma302-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 302-1 State Residency'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA302-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma302-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 302-1
+- source_id: us-mt-medicaid-cma302-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 302-2 Temporary Absence from the Home'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA302-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma302-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 302-2
+- source_id: us-mt-medicaid-cma302-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 302-3 Incarcerated Individuals'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA302.3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma302-3
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 302-3
+- source_id: us-mt-medicaid-cma303-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 303-1 Social Security Number'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA303-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma303-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 303-1
+- source_id: us-mt-medicaid-cma304-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 304-1 Health Insurance Coverage - Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA304-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma304-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 304-1
+- source_id: us-mt-medicaid-cma304-2july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 304-2 Health Insurance Coverage - HIPPS'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA304-2July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma304-2july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 304-2
+- source_id: us-mt-medicaid-cma304-3july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 304-3 Trauma Questionnaires'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA304-3July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma304-3july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 304-3
+- source_id: us-mt-medicaid-cma304-4-7-23
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: 04-4 Lien and Estate Recovery'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA304.4.7.23.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma304-4-7-23
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: 04-4
+- source_id: us-mt-medicaid-cma304-5jan012018
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 304-5 Out of Pocket Maximum'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA304-5Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma304-5jan012018
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 304-5
+- source_id: us-mt-medicaid-cma305-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 305-1 Age'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA305-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma305-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 305-1
+- source_id: us-mt-medicaid-cma306-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CAM 306-1 Managed Care Program'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA306-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma306-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CAM 306-1
+- source_id: us-mt-medicaid-cma307-1oct012017
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 307-1 COBRA 75'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA307-1Oct012017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma307-1oct012017
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 307-1
+- source_id: us-mt-medicaid-cma308-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 308-1 Application and Other Benefits'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA308-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma308-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 308-1
+- source_id: us-mt-medicaid-fma308-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 308-2 Common Law Marriage'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA308.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma308-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 308-2
+- source_id: us-mt-medicaid-fma309-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 309-1 Healthy Montana Kids - Other Insurance'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA309.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma309-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 309-1
+- source_id: us-mt-medicaid-cma310-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 310-1 Community Engagement and Exclusions'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA310.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma310-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 310-1
+- source_id: us-mt-medicaid-cma401-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 401-1 Ownership/Accessibility/Equity Value'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA401.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma401-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 401-1
+- source_id: us-mt-medicaid-cma402-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 402-1 Countable & Excluded Resources'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA402.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma402-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 402-1
+- source_id: us-mt-medicaid-cma402-2july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 402-2 Native American Resources'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA402-2July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma402-2july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 402-2
+- source_id: us-mt-medicaid-cma4023-062022
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 402-3 Trust Funds'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA4023.062022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma4023-062022
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 402-3
+- source_id: us-mt-medicaid-abd402-4july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 402-4 Conditional Assistance'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD402-4July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd402-4july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 402-4
+- source_id: us-mt-medicaid-cma403-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 403-1 Vehicles'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA403-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma403-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 403-1
+- source_id: us-mt-medicaid-cma404-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 404-1 Asset Transfers'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA404.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma404-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 404-1
+- source_id: us-mt-medicaid-cma404-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 404-2 Penalty Periods for Asset Transfers'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA404.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma404-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 404-2
+- source_id: us-mt-medicaid-cma404-3july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 404-3 Asset Transfers Involving Life Estates'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA404-3July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma404-3july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 404-3
+- source_id: us-mt-medicaid-cma404-4july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 404-4 Asset Transfers to Trusts On or After
+    8/11/93'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA404-4July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma404-4july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 404-4
+- source_id: us-mt-medicaid-abd404-5july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 404-5 Pursuing Claims on Property & Estates'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD404-5July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd404-5july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 404-5
+- source_id: us-mt-medicaid-cma500
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 500 Income Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 500
+- source_id: us-mt-medicaid-cma501-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 501-1 Unearned Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA501.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma501-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 501-1
+- source_id: us-mt-medicaid-cma501-2june012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 501-2 Native American Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA501-2June012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma501-2june012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 501-2
+- source_id: us-mt-medicaid-cma502-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 502-1 Earned Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA502.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma502-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 502-1
+- source_id: us-mt-medicaid-cma503-1nc
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 503-1 Self-Employment'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA503.1nc.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma503-1nc
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 503-1
+- source_id: us-mt-medicaid-cma601-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 601-1 Prospective Budgeting'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA601-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma601-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 601-1
+- source_id: us-mt-medicaid-cma602-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 602-1 Income Disregards and Deductions'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA602.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma602-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 602-1
+- source_id: us-mt-medicaid-cma603-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 603-1 Deeming'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA603.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma603-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 603-1
+- source_id: us-mt-medicaid-cma700march012017
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 700 Medically Needy Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA700March012017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma700march012017
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 700
+- source_id: us-mt-medicaid-cma701-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 701-2 Cash Option/Cost Share Refunds'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA701.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma701-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 701-2
+- source_id: us-mt-medicaid-cma702-1jan012020
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 702-1 Medical Expense Option'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA702-1Jan012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma702-1jan012020
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 702-1
+- source_id: us-mt-medicaid-abd800
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 800 Residential Medical Institutes Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD800.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd800
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 800
+- source_id: us-mt-medicaid-cma801-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 801-1 Penal Institutions'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA801.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma801-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 801-1
+- source_id: us-mt-medicaid-cma802-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 802-1 Preadmission Screening'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA802.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma802-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 802-1
+- source_id: us-mt-medicaid-cma803-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 803-1 Institution & Waiver Resource Assessments'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA803.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma803-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 803-1
+- source_id: us-mt-medicaid-abd804-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 804-1 Long Term Care Partnership'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD804-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd804-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 804-1
+- source_id: us-mt-medicaid-fma804-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 804-1 Public and Mental Disease Institutions'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA804.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma804-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 804-1
+- source_id: us-mt-medicaid-abd805-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 805-1 Budgeting'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD805-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd805-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 805-1
+- source_id: us-mt-medicaid-aca805-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 805-1 Residential Chemical Dependency Treatment'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ACA805.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/aca805-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 805-1
+- source_id: us-mt-medicaid-abd805-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 805-2 Post Eligibility Treatment of Income (PETI)'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD805.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd805-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 805-2
+- source_id: us-mt-medicaid-abd806-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 806-1 Montana State Hospital Residents'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD806-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd806-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 806-1
+- source_id: us-mt-medicaid-fma806-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 806-1 Intermediate Care/Psychiatric Residential
+    Treatment'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA806.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma806-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 806-1
+- source_id: us-mt-medicaid-abd900
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 900 HCBS/Waiver Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD900.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd900
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 900
+- source_id: us-mt-medicaid-fma900
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: FMA 900 Child Support Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA900.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma900
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: FMA 900
+- source_id: us-mt-medicaid-abd901-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 901-1 Income Budgeting FMA 901-1 Child Support
+    Cooperation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD901.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd901-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 901-1
+- source_id: us-mt-medicaid-abd902-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: ABD 902-1 Medically Needy'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/ABD902-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/abd902-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: ABD 902-1
+- source_id: us-mt-medicaid-fma1000
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: Foster Care Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA1000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma1000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: Foster Care Overview
+- source_id: us-mt-medicaid-fma1001
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: Subsidized Adoption Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/FMA1001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/fma1001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: Subsidized Adoption Overview
+- source_id: us-mt-medicaid-cma1300july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1300 HIPAA'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1300July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1300july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1300
+- source_id: us-mt-medicaid-cma1501-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1501-1 Reporting Changes'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1501.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1501-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1501-1
+- source_id: us-mt-medicaid-cma1502-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1502-1 Renewals'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1502.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1502-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1502-1
+- source_id: us-mt-medicaid-cma1503-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1503-1 Timely and Adequate Notice'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA1503.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1503-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1503-1
+- source_id: us-mt-medicaid-cma1504-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1504-1 Over and Under Issuance'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1504-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1504-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1504-1
+- source_id: us-mt-medicaid-cma1505-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1505-1 Fair Hearings, Administrative Reviews
+    & Appeals'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1505-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1505-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1505-1
+- source_id: us-mt-medicaid-cma1506-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1506-1 Case Notes'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1506-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1506-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1506-1
+- source_id: us-mt-medicaid-cma1507-1july012016
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1507-1 Program Compliance, Quality Control Reviews'
+  source_url: https://dphhs.mt.gov/assets/hcsd/mamanual/CMA1507-1July012016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1507-1july012016
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1507-1
+- source_id: us-mt-medicaid-cma1509-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: CMA 1509-1 Case File Retention'
+  source_url: https://dphhs.mt.gov/assets/hcsd/fmamanual/CMA1509.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-mt/manual/dphhs/medicaid/cma1509-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: manual_section_pdf
+    program: MEDICAID
+    manual: Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual
+    manual_index_url: https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    source_discovery_group: us-mt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://dphhs.mt.gov/hcsd/Manuals/CMAPolicyManual
+    extraction_granularity: pdf_page
+    section: CMA 1509-1

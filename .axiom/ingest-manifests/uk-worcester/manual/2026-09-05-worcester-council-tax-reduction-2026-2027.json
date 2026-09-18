@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-worcester/manual/2026-09-05-worcester-council-tax-reduction-2026-2027.json",
+      "sha256": "e748ff63e28b4a3bb0c5414d2f92d59d36d3995b30b112911a56fa6ee9f27a92"
+    },
+    {
+      "path": "data/corpus/inventory/uk-worcester/manual/2026-09-05-worcester-council-tax-reduction-2026-2027.json",
+      "sha256": "77ffeb247c7563c14654fae81c6f215738c22b9e703aa0ac68826dc58c324aed"
+    },
+    {
+      "path": "data/corpus/provisions/uk-worcester/manual/2026-09-05-worcester-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "03f54e3cf83e0c82bced193d8756e1e77d06233b37205a036411f1c1d713c3f5"
+    },
+    {
+      "path": "data/corpus/sources/uk-worcester/manual/2026-09-05-worcester-council-tax-reduction-2026-2027/official-documents/worcester-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "c2a963dc4c9e0033cd2c047b9f7ea77c9d535e9b057e42e797b539a0d1767572"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ddb0d85c507c5815069a7d8fe991bd6e24e2fe61",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-worcester-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-worcester-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 135,
+    "missing_count": 0,
+    "provision_count": 135,
+    "source_count": 135
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:52:56.680161+00:00",
+  "jurisdiction": "uk-worcester",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BJhhn0S6CcxFmkG+ax3ysWWBw9xz2tmtvqJqWEJnW1OOrmS0n9QTNEWSg6X8p4o6yFAf3avI9U7TyO1PmHm6Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-worcester-council-tax-reduction-2026-2027"
+}

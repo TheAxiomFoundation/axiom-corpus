@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "96c8f3462fac53e24cce1bb9c922df35a5d672fe6fad96177abcf0da3994ccda"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "e9cfbf8e6a1a98e79d49e0aae88375afaf2edcfcfd0be0fef3241bf7b926ed69"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "fd378d4d5b4cffef3ff87faf8a02639364e86fdc45aef088b8639d9c30521cee"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-14-income-tax-regulations/official-documents/vt-tax-reg-1-5811-11-a-i-domicile.pdf",
+      "sha256": "8def1474b7c735fbc8f272c5ecd3376fb5037ea2a1103efb65b202d279d7818d"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-14-income-tax-regulations/official-documents/vt-tax-reg-1-5811-21-b-ii-capital-gains-exclusion.pdf",
+      "sha256": "949938d8269103bb41e3dc2500e16554037324e669e1578486fdf84eb02be5dd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T18:29:32.727307+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AX9zgNaQ25odK41ry8wW+Y6P1NA75Kz6+QNG/CpkQkoXX7nobkXCYNUHC9igZ+0e3Gc70eWSopukfQw0/yMeAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

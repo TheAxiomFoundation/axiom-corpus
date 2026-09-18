@@ -1,0 +1,124 @@
+# Israel tax-benefit pilot: the two instruments the pilot encoding cites, and the
+# 2026 amending act whose commencement section dates amendment 288 to the Ordinance.
+#
+# Source tier is declared, not implied.  The Knesset National Legislation
+# Database renders client-side and points its "לחוק המלא" link at the
+# he.wikisource.org ספר החוקים הפתוח project, so this consolidation — not an
+# official gazette text — is what the pilot ingests.  That link was verified for
+# the Ordinance and is still pending for the National Insurance Law, so the two
+# acts declare different tiers.  AGENTS.md prefers primary
+# official sources; this scope is the explicitly directed non-canonical
+# experiment for the Israel pilot and is labelled as such on every row
+# (metadata.source_tier).
+#
+# expression_date comes from the Knesset registry, not from the page: OData
+# KNS_IsraelLaw.LatestPublicationDate, queried 2026-09-06 and captured at
+# ops/il-lane/sources/knesset-israel-law-metadata.json
+# (sha256 3843c7a4afe07db21a1a20ce07f712a3c876d839dd5bb22a75179cea8b3876fb).
+documents:
+  - source_id: income-tax-ordinance
+    jurisdiction: il
+    document_class: statute
+    instrument_slug: income-tax-ordinance
+    israel_law_id: "2000944"
+    title: "פקודת מס הכנסה [נוסח חדש]"
+    title_en: "Income Tax Ordinance [New Version]"
+    source_url: "https://he.wikisource.org/wiki/%D7%A4%D7%A7%D7%95%D7%93%D7%AA_%D7%9E%D7%A1_%D7%94%D7%9B%D7%A0%D7%A1%D7%94"
+    source_file: ito-wikisource.html
+    sha256: "87535c2b8cd8aa50b27d32301dc2ddd768390ef64e9fb4f391c3e65fe99dc228"
+    source_as_of: "2026-09-06"
+    expression_date: "2026-06-08"
+    expression_date_basis: "Knesset OData KNS_IsraelLaw.LatestPublicationDate for IsraelLawID 2000944, retrieved 2026-09-06"
+    # The Knesset database's "לחוק המלא" link was followed to this Wikisource page.
+    source_tier: consolidation-knesset-linked
+    language: he
+    expected_section_count: 577
+    expected_schedule_item_count: 16
+    expected_schedule_count: 4
+    expected_part_count: 16
+    expected_chapter_count: 41
+    expected_sign_count: 31
+    # The full-page render hits MediaWiki's 2 MiB post-expand include budget
+    # exactly (Post-expand include size: 2097152/2097152) and silently stops
+    # expanding templates, emitting 240
+    # "WARNING: template omitted, post-expand include size too large" markers.
+    # Sections 235-247 and the four תוספות are missing from it, and §235 is left
+    # half-rendered. The adapter cuts the primary at the start of §235 and takes
+    # the rest from the supplement, which is the SAME revision's wikitext tail
+    # re-rendered on its own so it stays under the budget.
+    render_truncated_after_section: "234"
+    supplement_files:
+      - source_file: ito-wikisource-tail-235-247.html
+        sha256: "6cc14dd6bdd6caf14d1f0d63a6f9f74bc83706aefae46b000933d82d84abb9e8"
+        note: >-
+          Sections 235-247 and תוספות ראשונה / ראשונה א׳ / ראשונה א׳1 / שניה,
+          rendered from revision 3079834's own wikitext via the MediaWiki
+          action=parse API. Reproduction recipe and provenance:
+          ops/il-lane/sources/ito-wikisource-tail-235-247.html.provenance.json
+    # The bilingual glossary the project appends is its own editorial material,
+    # not part of the Ordinance.
+    excluded_headings:
+      - "תוכן עניינים"
+      - "מונחים המשמשים בפקודת מס הכנסה"
+
+  - source_id: national-insurance-law-1995
+    jurisdiction: il
+    document_class: statute
+    instrument_slug: national-insurance-law-1995
+    israel_law_id: "2000198"
+    title: "חוק הביטוח הלאומי [נוסח משולב], התשנ״ה–1995"
+    title_en: "National Insurance Law [Consolidated Version], 5755-1995"
+    source_url: "https://he.wikisource.org/wiki/%D7%97%D7%95%D7%A7_%D7%94%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99"
+    source_file: nii-law-wikisource.html
+    sha256: "7dbaaa757912c71b361381640d2578bf2c6ab52f2002817b85d677c2267f0715"
+    source_as_of: "2026-09-06"
+    expression_date: "2026-06-15"
+    expression_date_basis: "Knesset OData KNS_IsraelLaw.LatestPublicationDate for IsraelLawID 2000198, retrieved 2026-09-06"
+    # The same "לחוק המלא" check has NOT been completed for this act, so it claims
+    # only the weaker tier until it has been.
+    source_tier: consolidation-wikisource
+    language: he
+    expected_section_count: 561
+    expected_schedule_item_count: 30
+    expected_schedule_count: 26
+    expected_part_count: 0
+    expected_chapter_count: 22
+    expected_sign_count: 88
+    # OpenLaw renders §283 twice: the operative text and a version conditioned on
+    # publication of the 2026 budget law.  Declared so an *undeclared* duplicate
+    # anchor stays a hard error.
+    alternate_version_sections:
+      - "283"
+
+  # The amending act as OpenLaw keeps it: every amending section reads "הנוסח
+  # שולב ב…" because its text lives in the consolidated instruments, while the
+  # commencement and application sections stand on their own.  §6 is the
+  # commencement of amendment 288 to the Ordinance (פרק ג׳, ריווח מדרגות מס
+  # הכנסה) — 1 January 2026 for income produced or accrued from that day — and is
+  # the corpus provision a §121 encoding can cite for its version date.
+  - source_id: economic-efficiency-law-2026
+    jurisdiction: il
+    document_class: statute
+    instrument_slug: economic-efficiency-law-2026
+    israel_law_id: "2242332"
+    title: "חוק ההתייעלות הכלכלית (תיקוני חקיקה להשגת יעדי התקציב לשנת התקציב 2026), התשפ״ו–2026"
+    title_en: "Economic Efficiency Law (Legislative Amendments for Achieving the Budget Targets for the 2026 Budget Year), 5786-2026"
+    source_url: "https://he.wikisource.org/wiki/%D7%97%D7%95%D7%A7_%D7%94%D7%94%D7%AA%D7%99%D7%99%D7%A2%D7%9C%D7%95%D7%AA_%D7%94%D7%9B%D7%9C%D7%9B%D7%9C%D7%99%D7%AA_%28%D7%AA%D7%99%D7%A7%D7%95%D7%A0%D7%99_%D7%97%D7%A7%D7%99%D7%A7%D7%94_%D7%9C%D7%94%D7%A9%D7%92%D7%AA_%D7%99%D7%A2%D7%93%D7%99_%D7%94%D7%AA%D7%A7%D7%A6%D7%99%D7%91_%D7%9C%D7%A9%D7%A0%D7%AA_%D7%94%D7%AA%D7%A7%D7%A6%D7%99%D7%91_2026%29"
+    source_file: economic-efficiency-law-2026-wikisource.html
+    sha256: "c4632b9f2d50e63cdd4bd0ab517ec5aa1a0f1488448e6151d0eb6a7aedbb6c4c"
+    source_as_of: "2026-09-06"
+    # The act's own publication: ספר החוקים 3511, י״ג בניסן התשפ״ו (31.3.2026),
+    # captured as ops/il-lane/sources/amend-2026-economic-efficiency-law-sefer-hachukim-3511.pdf
+    # (sha256 4196057aa7d796bf64935647f4f3e3d02511fa00eaa215dc5ad914601b4e6583).  The
+    # Knesset OData registry refused this session's queries (HTTP 474), so
+    # LatestPublicationDate was not read for this act.
+    expression_date: "2026-03-31"
+    expression_date_basis: "ספר החוקים 3511 (31.3.2026), the act's publication, from the captured gazette PDF sha256 4196057aa7d796bf64935647f4f3e3d02511fa00eaa215dc5ad914601b4e6583; Knesset OData not consulted (HTTP 474 on 2026-09-06)"
+    source_tier: consolidation-wikisource
+    language: he
+    expected_section_count: 12
+    expected_schedule_item_count: 0
+    expected_schedule_count: 0
+    expected_part_count: 0
+    expected_chapter_count: 6
+    expected_sign_count: 2
