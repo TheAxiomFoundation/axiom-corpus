@@ -1,0 +1,42 @@
+documents:
+  - source_id: nsf-pesose-26-506
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/pesose/nsf-26-506
+    title: "NSF 26-506: Pathways to Enable Secure Open-Source Ecosystems (PESOSE)"
+    source_url: https://www.nsf.gov/funding/opportunities/pesose-pathways-enable-secure-open-source-ecosystems/nsf26-506/solicitation
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2026-02-19"
+    extraction:
+      html_content_selector: ".solicitation__content"
+      html_drop_selectors:
+        - ".solicitations--toc"
+        - ".document-info"
+        - ".print"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: program_solicitation
+      document_number: NSF 26-506
+      program: PESOSE
+  - source_id: nsf-pappg-24-1-chapter-ii
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/pappg/24-1/chapter-ii
+    title: "PAPPG 24-1 Chapter II: Proposal Preparation Instructions"
+    source_url: https://www.nsf.gov/policies/pappg/24-1/ch-2-proposal-preparation
+    source_format: html
+    source_as_of: "2026-08-30"
+    expression_date: "2024-05-20"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".layout__region--main > .block-inline-blockcomponent-accordion"
+        - ".region-sidebar-first"
+        - ".print"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: proposal_policy
+      document_number: NSF 24-1 Chapter II
