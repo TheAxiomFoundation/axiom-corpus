@@ -1,0 +1,70 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ok-oac-340-10-tanf-rules
+  jurisdiction: us-ok
+  document_class: regulation
+  title: Oklahoma Administrative Code Title 340 Chapter 10 Temporary Assistance for Needy Families (TANF)
+  source_url: https://rules.ok.gov/home
+  source_format: json
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ok/regulation/oac/340/10
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: records
+    json_record_text_field: text
+    json_record_text_is_html: true
+    json_record_label_field: sectionNum
+    json_record_heading_field: description
+    json_record_kind_field: name
+    json_record_status_field: statusName
+    json_record_exclude_statuses:
+    - Revoked
+    - Reserved
+    json_record_metadata_fields:
+    - id
+    - parentId
+    - name
+    - titleNum
+    - chapterNum
+    - subChapterNum
+    - partNum
+    - sectionNum
+    - appendixNum
+    - description
+    - statusName
+    - segmentStatusId
+    - segmentTypeId
+    - recordStatus
+    - effectiveDate
+    - filingId
+    - hasEmergency
+    - segmentNotes
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Department of Human Services
+    document_subtype: administrative_code_chapter
+    program: TANF
+    state_program: Oklahoma TANF
+    federal_program: TANF
+    manual_landing_page: https://rules.ok.gov/home
+    source_discovery_group: us-ok/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.ok.gov/home
+    official_publisher: Oklahoma Secretary of State Office of Administrative Rules
+    rules_api_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=10
+    legacy_okdhs_chapter_url: https://oklahoma.gov/okdhs/library/policy/current/oac-340/chapter-10.html
+    title_number: '340'
+    chapter_number: '10'
+    segment_counts:
+      Chapter:Undefined: 1
+      Subchapter:Undefined: 17
+      Section:Undefined: 62
+      Section:Revoked: 64
+      Part:Undefined: 4
+      Subchapter:Revoked: 3
+      Appendix:Revoked: 39
+    access_note: rules.ok.gov and the tecuity rules API answer plain clients with Cloudflare 403; fetched with browser impersonation
+      (same API as us-ok-snap-rules)
+  download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=10

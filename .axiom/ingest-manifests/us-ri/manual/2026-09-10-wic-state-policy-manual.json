@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "adfc76db47e3765dbf9bf87c73abc0397cbc84aaeed56526a307acfab206e999"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "c084520827dff45552051f3d76dd4654f9a748ceb791d8f1c007f62f360a7f18"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "94e32f95a8846ea82768f1b8f549d8f84829e948cd66270837e159d5f1cfa776"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ri-wic-manual-procedures-manual.pdf",
+      "sha256": "5b76963b18f145a92baa95beb3a4e29e0f503f062d983df59a40937b9ef2dd6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ri-wic-manual-vendor-policies.pdf",
+      "sha256": "3dc9a411a0b6370e5ea23b66b56bd1175711a774f454b76a17bc2e9c9f991dfd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-ri-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:44:05.076603+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BKLuwfxg2SfsK0oJ6nCea0wp4++9iKUVOeLhq5WpaoajH2QXYKoU8vrnOMOfIX4Wofo0aEyYAM46abolfLlYBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

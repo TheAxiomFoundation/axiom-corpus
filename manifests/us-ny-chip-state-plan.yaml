@@ -1,0 +1,1159 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ny-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 34
+    index_records_total: 34
+- source_id: us-ny-cms-chip-state-plan-spa-ny-25-0042-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-25-0042-CHIP: Approval Package (approved June 17, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-25-0042-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-25-0042-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-25-0042-CHIP
+    cms_node_id: '181316'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=181316
+    approval_date: '2025-06-17'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, the state expands coverage under its existing Home and Community Based Services (HCBS) coverage
+      category specifically for services related to children and youth with a physical health, developmental disability, and/or
+      mental health diagnosis that are at risk of institutionalization.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-24-0038-chip-and-ny-24-0040-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-24-0038-CHIP and NY-24-0040-CHIP: Approval Package (approved August 15, 2024, effective January
+    1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-24-0038-NY-24-0040-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-24-0038-chip-and-ny-24-0040-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-24-0038-CHIP and NY-24-0040-CHIP
+    cms_node_id: '170781'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170781
+    approval_date: '2024-08-15'
+    effective_date: '2024-01-01'
+    summary: Through SPA, the state makes technical updates to remove outdated references and clarify current practices in
+      their CHIP state plan. Additionally, through this SPA the state provides 12 months of continuous eligibility (CE) coverage
+      to individuals enrolled in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023
+      (CAA, 2023). Furthermore, the state confirms they no longer disenroll children from coverage due to late premium payments
+      during or at the end of the CE period.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-24-0037-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-24-0037-CHIP: Approval Package (approved June 10, 2024, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-24-0037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-24-0037-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-24-0037-CHIP
+    cms_node_id: '167196'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=167196
+    approval_date: '2024-06-10'
+    effective_date: '2023-04-01'
+    summary: Through this SPA, the state adds residential treatment services to the state’s behavioral health benefits.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-24-0039-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-24-0039-CHIP: Approval Package (approved April 11, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-24-0039-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-24-0039-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-24-0039-CHIP
+    cms_node_id: '164801'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=164801
+    approval_date: '2024-04-11'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-23-0034-chip-and-ny-23-0034a-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-23-0034-CHIP and NY-23-0034A-CHIP: Approval Package (approved January 11, 2024, effective April
+    1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-23-0034-CHIP and NY-23-0034A-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-23-0034-chip-and-ny-23-0034a-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-23-0034-CHIP and NY-23-0034A-CHIP
+    cms_node_id: '158071'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=158071
+    approval_date: '2024-01-11'
+    effective_date: '2022-04-01'
+    summary: Through these SPAs, New York extends CHIP eligibility for children from-conception-to-end-of-pregnancy (FCEP)
+      with family incomes up to and including 218 percent of the federal poverty level (FPL) whose birth parents are not otherwise
+      eligible for Medicaid or CHIP. Coverage for the FCEP population is identical to the benefit package provided to pregnant
+      women in Medicaid.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-23-0036-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-23-0036: Approval Package (approved June 13, 2023, effective March 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-23-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-03-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-23-0036/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-23-0036
+    cms_node_id: '148876'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148876
+    approval_date: '2023-06-13'
+    effective_date: '2023-03-01'
+    summary: This SPA provides New York with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-23-0001-dral-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-23-0001-DRAL: Approval Package (approved May 10, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-23-0001-DRAL
+    cms_node_id: '148006'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148006
+    approval_date: '2023-05-10'
+    effective_date: '2023-05-12'
+    summary: This letter reactivates New York's Child Health Plus Evergreen Disaster Relief State Plan Amendment, and is scheduled
+      to end on May 31, 2024.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-22-0033-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-22-0033-CHIP: Approval Package (approved October 3, 2022, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-22-0033-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-22-0033-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-22-0033-CHIP
+    cms_node_id: '140411'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=140411
+    approval_date: '2022-10-03'
+    effective_date: '2022-10-01'
+    summary: This SPA eliminates the nine-dollar family premium contribution for children in households with income under
+      222 percent of the federal poverty level (FPL).
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-22-0031-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-22-0031-CHIP: Approval Package (approved April 22, 2022, effective July 15, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-22-0031-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-15'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-22-0031-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-22-0031-CHIP
+    cms_node_id: '135796'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135796
+    approval_date: '2022-04-22'
+    effective_date: '2021-07-15'
+    summary: Through this SPA, New York updates the state’s process for ensuring children enrolled in Child Health Plus are
+      not subject to a waiting period.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-22-0032-chip-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-22-0032-CHIP: Approval Package (approved April 15, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY-22-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-22-0032-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-22-0032-CHIP
+    cms_node_id: '134981'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=134981
+    approval_date: '2022-04-15'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-19-0024-factsheet
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-19-0024: Factsheet (approved May 9, 2019, effective April 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-19-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-19-0024/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: NY-19-0024
+    cms_node_id: '58606'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=58606
+    approval_date: '2019-05-09'
+    effective_date: '2018-04-01'
+    summary: Clarifies that New York State of Health, the state’s Health Insurance Exchange, now conducts the state’s CHIP
+      renewals, rather than the health plans.
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-ny-cms-chip-state-plan-spa-ny-17-0023-ca-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-17-0023-CA: Approval Package (approved November 17, 2017, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-17-0023-CA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-17-0023-ca/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-17-0023-CA
+    cms_node_id: '3791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3791
+    approval_date: '2017-11-17'
+    effective_date: '2017-01-01'
+    summary: 'This SPA describes NY\u2019s policy to provide retroactive coverage for newborns if the application is received
+      within 60 days after birth, and implements two CHIP Health Services Initiatives (HSI) by providing funding to: 1) support
+      the training of school officials and staff to administer naloxone rescue kits to reverse opioid overdoses, and2) support
+      the provision of emergency meals and nutrition education to low-income children and their families.'
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-16-0022-ca-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-16-0022-CA: Approval Package (approved February 14, 2017, effective April 1, 2015)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-16-0022-CA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-16-0022-ca/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-16-0022-CA
+    cms_node_id: '3431'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3431
+    approval_date: '2017-02-14'
+    effective_date: '2015-04-01'
+    summary: Adds ostomy supplies as a state plan benefit and implements a CHIP Health Services Initiative (HSI) to support
+      the activities of two regional poison control centers and an HSI to support sickle cell screening and transition services
+      to prepare young adults to transition them from parental care to self-care for their sickle cell or other hemoglobinopathy
+      conditions, as well as prepare children for the transition from pediatric to adult medicine in four contracted New York
+      City hospitals.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-20-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-20: Approval Package (approved December 17, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-20.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-20/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-20
+    cms_node_id: '3436'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3436
+    approval_date: '2015-12-17'
+    effective_date: '2014-01-01'
+    summary: This SPA adds benefits for the screening, diagnosis, and treatment of children with autism spectrum disorder
+      (ASD), such as applied behavioral analysis (ABA) and assistive communication devices. This SPA also includes updates
+      related to eligibility and enrollment procedures that have changed as a result of the Affordable Care Act.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-15-0021-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-15-0021: Approval Package (approved June 1, 2015, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-15-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-15-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-15-0021
+    cms_node_id: '3426'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3426
+    approval_date: '2015-06-01'
+    effective_date: '2014-04-01'
+    summary: This SPA implements the addition of benefits for the coverage of blood clotting factor, supplies, and other services
+      necessary for infusions to treat blood clotting protein deficiencies. New York's CHIP SPA allows infusions to be provided
+      in an outpatient or home setting by individuals with the appropriate training.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-14-0005-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-14-0005: Approval Package (approved February 3, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-14-0005-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-14-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-14-0005
+    cms_node_id: '2896'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2896
+    approval_date: '2015-02-03'
+    effective_date: '2014-01-01'
+    summary: Clarifies the State's Non-Financial Eligibility Policies on Residency, Citizenship, Social Security Numbers,
+      Substitution of Coverage, Non-Payment of Premiums, Continuous Eligibility, and Presumptive Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-14-0002-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-14-0002: Approval Package (approved December 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-14-0002-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-14-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-14-0002
+    cms_node_id: '2906'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2906
+    approval_date: '2014-12-22'
+    effective_date: '2014-01-01'
+    summary: Converts State's Existing Income Eligibility Standards to MAGI-Equivalent Standards, By Age Group, for Children
+      Covered in Its Title XXI-Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-13-0004-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-13-0004: Approval Package (approved June 17, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-13-0004-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-13-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-13-0004
+    cms_node_id: '2751'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2751
+    approval_date: '2014-06-17'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements in accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-14-0001-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-14-0001: Approval Package (approved May 5, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-14-0001-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-14-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-14-0001
+    cms_node_id: '2911'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2911
+    approval_date: '2014-05-05'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that the State will Apply Methodologies Based on MAGI for All Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-14-0003-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-14-0003: Approval Package (approved March 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-14-0003-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-14-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-14-0003
+    cms_node_id: '2901'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2901
+    approval_date: '2014-03-26'
+    effective_date: '2014-01-01'
+    summary: Describes State's Plan to Provide Coverage in Its Separate CHIP, for Children Subject to Section 2101(f) of the
+      Affordable Care Act, As Specified In the State's Submission of CS:14 Children Ineligible for Medicaid as a Result of
+      the Elimination of Income Disregards.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-19-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-19: Approval Package (approved April 30, 2012, effective November 11, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-19-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-11-11'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-19/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-19
+    cms_node_id: '1816'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1816
+    approval_date: '2012-04-30'
+    effective_date: '2011-11-11'
+    summary: Creates a Medicaid Expansion program.
+    topics: &id002
+    - Expansion
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-19-final-approved-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-19: Final Approved State Plan (approved April 30, 2012, effective November 11, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-19-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-11-11'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-19/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY-CSPA-19
+    cms_node_id: '1816'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1816
+    approval_date: '2012-04-30'
+    effective_date: '2011-11-11'
+    summary: Creates a Medicaid Expansion program.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-16-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-16: Approval Package (approved May 5, 2011, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-16-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-16/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-16
+    cms_node_id: '2041'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2041
+    approval_date: '2011-05-05'
+    effective_date: '2010-04-01'
+    summary: Implements an electronic data match with the Social Security Administration (Section 211 CHIPRA).
+    topics: &id003
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-16-final-approved-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-16: Final Approved State Plan (approved May 5, 2011, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-16-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-16/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY-CSPA-16
+    cms_node_id: '2041'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2041
+    approval_date: '2011-05-05'
+    effective_date: '2010-04-01'
+    summary: Implements an electronic data match with the Social Security Administration (Section 211 CHIPRA).
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-ny-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP compiled state plan: Factsheet (approved July 16, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NYCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: NY
+    cms_node_id: '1606'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1606
+    approval_date: '2010-07-16'
+    effective_date: '2009-10-01'
+    summary: Current CHIP State Plan as amended by SPA 15 and Factsheet as of 07-16-2010.
+    topics: &id004
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ny-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP compiled state plan: Current State Plan (approved July 16, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NYCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY
+    cms_node_id: '1606'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1606
+    approval_date: '2010-07-16'
+    effective_date: '2009-10-01'
+    summary: Current CHIP State Plan as amended by SPA 15 and Factsheet as of 07-16-2010.
+    topics: *id004
+    link_label: Current State Plan
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-15-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-15: Approval Package (approved July 16, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-15-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-15/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-15
+    cms_node_id: '1836'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1836
+    approval_date: '2010-07-16'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 502 - Mental Health Parity CHIPRA Section 503 Prospective Payment System for FQHCs & RHCs and
+      Increase Premiums & Cost Sharing.
+    topics: &id005
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-15-final-approved-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-15: Final Approved State Plan (approved July 16, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-15-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-15/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY-CSPA-15
+    cms_node_id: '1836'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1836
+    approval_date: '2010-07-16'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 502 - Mental Health Parity CHIPRA Section 503 Prospective Payment System for FQHCs & RHCs and
+      Increase Premiums & Cost Sharing.
+    topics: *id005
+    link_label: Final Approved State Plan
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-13-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-13: Approval Package (approved June 30, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-13-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-13/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-13
+    cms_node_id: '1336'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1336
+    approval_date: '2010-06-30'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: &id006
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-13-final-approved-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-13: Final Approved State Plan (approved June 30, 2010, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-13-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-13/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY-CSPA-13
+    cms_node_id: '1336'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1336
+    approval_date: '2010-06-30'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: *id006
+    link_label: Final Approved State Plan
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-14-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-14: Approval Package (approved September 30, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-14-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-14/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-14
+    cms_node_id: '1546'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1546
+    approval_date: '2009-09-30'
+    effective_date: '2009-07-01'
+    summary: Increase premiums.
+    topics: &id007
+    - Premiums
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-14-final-approved-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-14: Final Approved State Plan (approved September 30, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-14-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-14/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY-CSPA-14
+    cms_node_id: '1546'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1546
+    approval_date: '2009-09-30'
+    effective_date: '2009-07-01'
+    summary: Increase premiums.
+    topics: *id007
+    link_label: Final Approved State Plan
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-12-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-12: Approval Package (approved June 11, 2009, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-12-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-12/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-12
+    cms_node_id: '1326'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1326
+    approval_date: '2009-06-11'
+    effective_date: '2003-06-01'
+    summary: Expansion from 250% to 400% FPL implements a 6-month waiting period and implements cost sharing.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-11-approval-package
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-11: Approval Package (approved May 21, 2009, effective September 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-11-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-09-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-11/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: NY-CSPA-11
+    cms_node_id: '1976'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1976
+    approval_date: '2009-05-21'
+    effective_date: '2007-09-01'
+    summary: Eliminates temporary enrollment in CHIP for certain populations.
+    topics: &id008
+    - Outreach & Enrollment
+    link_label: Approval Package
+- source_id: us-ny-cms-chip-state-plan-spa-ny-cspa-11-final-approved-state-plan
+  jurisdiction: us-ny
+  document_class: policy
+  title: 'New York CHIP SPA NY-CSPA-11: Final Approved State Plan (approved May 21, 2009, effective September 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/NY/NY-CSPA-11-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-09-01'
+  citation_path: us-ny/policy/cms/chip-state-plan/spa/ny-cspa-11/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: New York
+    source_discovery_group: us-ny/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: NY-CSPA-11
+    cms_node_id: '1976'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1976
+    approval_date: '2009-05-21'
+    effective_date: '2007-09-01'
+    summary: Eliminates temporary enrollment in CHIP for certain populations.
+    topics: *id008
+    link_label: Final Approved State Plan

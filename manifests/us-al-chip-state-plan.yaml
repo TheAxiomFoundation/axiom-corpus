@@ -1,0 +1,914 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-al-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=871&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-al/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 33
+    index_records_total: 33
+- source_id: us-al-cms-chip-state-plan-spa-al-25-0034-jiy-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-25-0034-JIY: Approval Package (approved August 11, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-25-0034-JIY.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-25-0034-jiy/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-25-0034-JIY
+    cms_node_id: '195001'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=195001
+    approval_date: '2026-08-11'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, Alabama demonstrates compliance with section 5121 of the Consolidated Appropriations Act, 2023
+      (CAA, 2023) by transitioning eligible children who are enrolled in CHIP to Medicaid when they become incarcerated. The
+      state will provide pre-release services to eligible juveniles under the Medicaid state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-25-0035-ror2-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-25-0035-ROR2: Approval Package (approved September 18, 2025, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-25-0035-ROR2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-25-0035-ror2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-25-0035-ROR2
+    cms_node_id: '185106'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=185106
+    approval_date: '2025-09-18'
+    effective_date: '2025-10-01'
+    summary: Through this SPA, Alabama reactivates its Reach Out and Read Health Services Initiative (HSI) for an additional
+      three years and modifies it to operate statewide. The state also removes its time-limited Infant and Early Childhood
+      Mental Health Services HSI from the state plan as it expired on September 30, 2023.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-25-0033-npp-nppr-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-25-0033-NPP-NPPR: Approval Package (approved August 6, 2025, effective June 3, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-25-0033-NPP-NPPR.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-06-03'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-25-0033-npp-nppr/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-25-0033-NPP-NPPR
+    cms_node_id: '183971'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=183971
+    approval_date: '2025-08-06'
+    effective_date: '2025-06-03'
+    summary: Through these SPAs, the state removes the state’s premium lock out period and makes corresponding technical edits
+      to its CHIP state plan to demonstrate that the state no longer disenrolls children from coverage due to non-payment
+      of premiums during the continuous eligibility period and no longer implements a premium lock out period.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-24-0032-ceec-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-24-0032-CEEC: Approval Package (approved July 23, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-24-0032-CEEC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-24-0032-ceec/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-24-0032-CEEC
+    cms_node_id: '169201'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169201
+    approval_date: '2024-07-23'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-24-0031-fcep-and-al-24-0031-absc-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-24-0031-FCEP and AL-24-0031-ABSC: Approval Package (approved April 1, 2024, effective October
+    1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-24-0031-FCEP and AL-24-0031-ABSC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-24-0031-fcep-and-al-24-0031-absc/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-24-0031-FCEP and AL-24-0031-ABSC
+    cms_node_id: '164786'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=164786
+    approval_date: '2024-04-01'
+    effective_date: '2024-10-01'
+    summary: Through these SPAs, the state expands CHIP eligibility from 36 counties to statewide for the from-conception-to-the-end-of-pregnancy
+      (FCEP) coverage group and they expand its ALL Babies Postpartum Initiative Health Services Initiative (HSI) from 36
+      counties to statewide.
+    topics:
+    - Benefits
+    - Eligibility
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-23-0030-vcte-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-23-0030-VCTE: Approval Package (approved March 25, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-23-0030-VCTE.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-23-0030-vcte/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-23-0030-VCTE
+    cms_node_id: '164791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=164791
+    approval_date: '2024-03-25'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+      Additionally, the state makes non-substantive technical updates through this SPA.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-23-0026-rim2-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-23-0026-RIM2: Approval Package (approved April 20, 2023, effective May 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-23-0026-RIM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-23-0026-rim2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-23-0026-RIM2
+    cms_node_id: '147101'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147101
+    approval_date: '2023-04-20'
+    effective_date: '2023-05-01'
+    summary: Through this SPA, Alabama expands its ALL Babies coverage to an additional 33 counties (for a total of 36 counties).
+      ALL Babies provides CHIP eligibility for children from conception to the end of pregnancy (also known as the “unborn”
+      option) with family incomes up to and including 312 percent of the federal poverty level (FPL) whose pregnant parents
+      are not otherwise eligible for Medicaid or CHIP.
+    topics:
+    - Eligibility
+    - Maternal Health
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-23-0027-cc-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-23-0027-CC: Approval Package (approved March 31, 2023, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-23-0027-CC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-23-0027-cc/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-23-0027-CC
+    cms_node_id: '146656'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146656
+    approval_date: '2023-03-31'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, Alabama phases out its Care Coordination health services initiative (HSI). The state will provide
+      written notice of discontinuation of services to current Care Coordination HSI participants in compliance with 42 CFR
+      457.65(b).
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-23-0028-ror-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-23-0028-ROR: Approval Package (approved March 31, 2023, effective June 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-23-0028-ROR.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-06-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-23-0028-ror/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-23-0028-ROR
+    cms_node_id: '146661'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146661
+    approval_date: '2023-03-31'
+    effective_date: '2023-06-01'
+    summary: Through this SPA, Alabama seeks to implement the Reach Out and Read health services initiative (HSI) program,
+      which promotes social and emotional development through promoting early literacy, early learning, and school readiness
+      as a part of routine pediatric primary care.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-22-0025-ce-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-22-0025-CE: Approval Package (approved January 13, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-22-0025-CE.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-22-0025-ce/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-22-0025-CE
+    cms_node_id: '143676'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143676
+    approval_date: '2023-01-13'
+    effective_date: '2022-10-01'
+    summary: This SPA provides Alabama with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-22-0023-obj-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-22-0023-OBJ: Approval Package (approved April 22, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-22-0023-OBJ.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-22-0023-obj/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-22-0023-OBJ
+    cms_node_id: '135381'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135381
+    approval_date: '2022-04-22'
+    effective_date: '2021-10-01'
+    summary: This SPA updates performance goals and strategic objectives to align with CHIP annual report.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-22-0024-arp-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-22-0024-ARP: Approval Package (approved April 21, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-22-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-22-0024-arp/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-22-0024-ARP
+    cms_node_id: '135881'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135881
+    approval_date: '2022-04-21'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-20-0021-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-20-0021: Approval Package (approved November 10, 2021, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-20-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-20-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-20-0021
+    cms_node_id: '127991'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=127991
+    approval_date: '2021-11-10'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-20-0019-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-20-0019: Approval Package (approved June 28, 2021, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-20-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-20-0019/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-20-0019
+    cms_node_id: '109821'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=109821
+    approval_date: '2021-06-28'
+    effective_date: '2020-07-01'
+    summary: This SPA provides assurance on page CS15 that the state accounts for reasonably predictable increases and decreases
+      in income, using the approved methodology.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-19-0018-rim-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-19-0018-RIM: Approval Package (approved September 17, 2019, effective June 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL-19-0018-RIM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-06-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-19-0018-rim/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-19-0018-RIM
+    cms_node_id: '146786'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146786
+    approval_date: '2019-09-17'
+    effective_date: '2019-06-01'
+    summary: Through this SPA, Alabama is permitted to implement a health services initiative (HSI) to provide prenatal monitoring,
+      case management and care coordination services to low-income, high-risk pregnant women and their infants in Montgomery,
+      Macon, and Russell counties in order to improve pregnancy outcomes and infant health. Patients will receive services
+      during pregnancy and for up to one year post delivery.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-19-0017-rim-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-19-0017-RIM: Approval Package (approved September 17, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-19-0017-RIM-and-0018-RIM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-19-0017-rim/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-19-0017-RIM
+    cms_node_id: '4036'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4036
+    approval_date: '2019-09-17'
+    effective_date: '2019-07-01'
+    summary: Implements a health services initiative (HSI) to provide prenatal monitoring, case management and care coordination
+      services to pregnant women and their infants in Montgomery, Macon, and Russell counties. AL-19-AL-19-0018-RIM expands
+      coverage for unborn children residing in Montgomery, Macon, and Russell counties.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-14-0016-mc1-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-14-0016-MC1: Approval Package (approved April 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-14-0016-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-14-0016-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-14-0016-MC1
+    cms_node_id: '2986'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2986
+    approval_date: '2014-04-21'
+    effective_date: '2014-01-01'
+    summary: Provides assurance that the state will apply methodologies based on MAGI for all separate CHIP covered groups.
+      Indicates that, using the approved MAGI conversion plan income thresholds, the state will cover targeted low-income
+      children. Allows the state to cover children who have access to public employee coverage and updates the supporting
+      documentation.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-14-0014-mc2-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-14-0014-MC2: Approval Package (approved March 14, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-14-0014-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-14-0014-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-14-0014-MC2
+    cms_node_id: '2976'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2976
+    approval_date: '2014-03-14'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to MAGI-equivalent standards, by age group, for children
+      covered in its Title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-cspa-12-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CSPA-12: Approval Package (approved May 4, 2012, effective May 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-12-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-05-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cspa-12/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-CSPA-12
+    cms_node_id: '2131'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2131
+    approval_date: '2012-05-04'
+    effective_date: '2012-05-01'
+    summary: This SPA increases premiums based on inflation and increases copayments.
+    topics: &id002
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-cspa-12-final-approved-state-plan
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CSPA-12: Final Approved State Plan (approved May 4, 2012, effective May 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-12-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-05-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cspa-12/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: AL-CSPA-12
+    cms_node_id: '2131'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2131
+    approval_date: '2012-05-04'
+    effective_date: '2012-05-01'
+    summary: This SPA increases premiums based on inflation and increases copayments.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-al-cms-chip-state-plan-spa-al-cpsa-10-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CPSA-10: Approval Package (approved January 20, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cpsa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-CPSA-10
+    cms_node_id: '2161'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2161
+    approval_date: '2011-01-20'
+    effective_date: '2011-01-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics: &id003
+    - Expansion
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-cpsa-10-final-approved-state-plan
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CPSA-10: Final Approved State Plan (approved January 20, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-10-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cpsa-10/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: AL-CPSA-10
+    cms_node_id: '2161'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2161
+    approval_date: '2011-01-20'
+    effective_date: '2011-01-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-al-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP compiled state plan: Factsheet (approved November 19, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/ALCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: AL
+    cms_node_id: '1621'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1621
+    approval_date: '2010-11-19'
+    effective_date: '2009-10-01'
+    summary: Current CHIP State Plan as amended by SPA 9 and Factsheet as of 06-16-2011.
+    topics: &id004
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-al-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP compiled state plan: Current State Plan (approved November 19, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/ALCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: AL
+    cms_node_id: '1621'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1621
+    approval_date: '2010-11-19'
+    effective_date: '2009-10-01'
+    summary: Current CHIP State Plan as amended by SPA 9 and Factsheet as of 06-16-2011.
+    topics: *id004
+    link_label: Current State Plan
+- source_id: us-al-cms-chip-state-plan-spa-al-cspa-9-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CSPA-9: Approval Package (approved November 19, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-9-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cspa-9/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-CSPA-9
+    cms_node_id: '1921'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1921
+    approval_date: '2010-11-19'
+    effective_date: '2009-10-01'
+    summary: CHIPRA Section 501 - Oral Health and CHIPRA Section 503 - Prospective Payment System for FQHCs & RHCs.
+    topics: &id005
+    - Dental
+    link_label: Approval Package
+- source_id: us-al-cms-chip-state-plan-spa-al-cspa-9-final-approved-state-plan
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CSPA-9: Final Approved State Plan (approved November 19, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-8-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cspa-9/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: AL-CSPA-9
+    cms_node_id: '1921'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1921
+    approval_date: '2010-11-19'
+    effective_date: '2009-10-01'
+    summary: CHIPRA Section 501 - Oral Health and CHIPRA Section 503 - Prospective Payment System for FQHCs & RHCs.
+    topics: *id005
+    link_label: Final Approved State Plan
+- source_id: us-al-cms-chip-state-plan-spa-al-cspa-7-approval-package
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama CHIP SPA AL-CSPA-7: Approval Package (approved October 21, 2009, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AL/AL-CSPA-7-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-al/policy/cms/chip-state-plan/spa/al-cspa-7/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-CSPA-7
+    cms_node_id: '1456'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1456
+    approval_date: '2009-10-21'
+    effective_date: '2003-06-01'
+    summary: Expand the income eligibility level for children up to 300 FPL.
+    topics:
+    - Expansion
+    link_label: Approval Package

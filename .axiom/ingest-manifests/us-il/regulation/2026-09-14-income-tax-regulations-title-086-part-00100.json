@@ -1,0 +1,841 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100.json",
+      "sha256": "47ce98f66935b56cac405c9228c0b52276169ec60ffb24dfb57de2a77018db9d"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100.json",
+      "sha256": "e5fc91c39c0cb2f33e305228812103901117337b5967bfe9763115826ab08fc0"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100.jsonl",
+      "sha256": "9b05378bda65130a29dff1c7fc1497fad9637360a1595521c9017cae51d6d07a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000A20000R.html",
+      "sha256": "8bdd6229f594b8419f6256d675a258f31dd5695a1adf620c9071fab3f72be1f1"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000A20500R.html",
+      "sha256": "6acc32ac289fcda8f82e5fa69a91862811dd6ea21db5c21e014fc29dd2339109"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000A20550R.html",
+      "sha256": "273e63166107ea93c7d3b5291efdd2e1feb623ee468ba7672352751dbd773155"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000A20600R.html",
+      "sha256": "8ae43ce22c85cde7561e2f520415ebc440558031c76915efcac7b63af9c1eccd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21000R.html",
+      "sha256": "3190fe7a9a931c212f7dc32baf175dae740e28088ab2599c575cf60fddbf6e76"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21010R.html",
+      "sha256": "e4837a3126c3f1ee1f028e9f89b58057e7466150565f48bbd56d3eb6fa980f0a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21100R.html",
+      "sha256": "c28842a787ebf51fea7c888865d7a2bee556ce9629b0ccc31bebf29af53e866c"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21110R.html",
+      "sha256": "543cf955ab4d535c286a78dec0145307824027ddb5f995010bba155a15b10400"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21120R.html",
+      "sha256": "03ee3b5ca48e1b0ff78ad278debccc161ed92842635913ca82b22824757031e4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21200R.html",
+      "sha256": "5667379e369d294b70b4711e98543db4a29760402f3e5468c91662282c591d19"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21300R.html",
+      "sha256": "121dba15676b1d8c71f77a66541a0b13f3807152cf3c23a867d96c1b5cca2410"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21310R.html",
+      "sha256": "73112cc047ffc9ea397c1e61cdede531146d098858a8b1b79bc05386c335987d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21350R.html",
+      "sha256": "5e268c5fd1a4916266e07b8bfa0baa84f5914b19b205d70f86cd8b8c5c119fdc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21360R.html",
+      "sha256": "70c04a0c4d536b2f1befdce873bb423283c96d7140cecf7f59575805d6cad7b0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21400R.html",
+      "sha256": "d1caabd9db73d44637b70d522aa401912c54b3dd74747401bcd5aed85fe4ea6a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21500R.html",
+      "sha256": "0a2c5638d48426b217785d6fed0237d44ff34fd84e684cd0a770696b6633f714"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21600R.html",
+      "sha256": "491df5624a9f22fe3c442805919935f57a6675670f5ece96ccd41125c35eb0cc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21610R.html",
+      "sha256": "5b2d42828e3742a3487a427a5f597836a6a7ff054b6fb9c6dae5b880b6d55282"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21630R.html",
+      "sha256": "acccadda8e015e82556ed71641103a07925a49306d0a2558069da196c24d0869"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21640R.html",
+      "sha256": "ce650e371839fc6c1c16fe167c1f3fbf450dccc64bf4b7fb455d48b0bada2bb4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21650R.html",
+      "sha256": "20ebb4b48ba28773285e3669c3bc1d28aef78554e8742002f846e1ecd99c59ef"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21700R.html",
+      "sha256": "94f2baacddf07e322c8e1ef0b7b372aacab4ebbc2b29298d4a67b73011276bdc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21710R.html",
+      "sha256": "380f3d7851a4872a8820fa274c6a18146d690532d59179fc168059f208441a95"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21750R.html",
+      "sha256": "f167b915655c1154b55dc9ee6add9df8076e5bc284ec3a61fb33f5d3d613b876"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21790R.html",
+      "sha256": "d4bc27cd45f9bd9cd8663c373f9474ba46062c79eacc7126539993b66db89e12"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21800R.html",
+      "sha256": "34c0b7f8e39ec308f49ce68f51095f8ebde9eae5d9b1c3ddcbaea7ac5c901343"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21810R.html",
+      "sha256": "1ca80de535e1b3746f0bf87ad6a376eb944e6eea106b6d40c76d0c8a708ea70d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21850R.html",
+      "sha256": "77d7d969616ffa408628c769fd7f75b5aa4eda6223e3855bb5fbd4835ba58d5b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21900R.html",
+      "sha256": "c3c3eda23a441dcbd394e187c95234fe4cd31e35407095af1c695dc33f42f2a7"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21930R.html",
+      "sha256": "ee2e800a76f5824aa399cda0246ba175a11c1d437fb97d244d80022e5872ac22"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21950R.html",
+      "sha256": "9bf28ddc89a8a445ef24cf2043920355e128c984dbab3ee450e9a37beb382f17"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21960R.html",
+      "sha256": "9a8c39880e1220cbff0fdee1da76690900fc07ee80af3f9af2a250ed3ec0b785"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21970R.html",
+      "sha256": "6c9270e950b3b57d67d24a703b430a5ee50b4d8705ef018bcf836c35cf1c4f89"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21980R.html",
+      "sha256": "c5a1016b7aa7465a52a8e64ab599e850a4a85e1d162b1e2ea4f97893e86d4009"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000B21990R.html",
+      "sha256": "eb6b787eaf6016e5ae7af835e84eba2858119ce7219533b4e4cc564ba4be34db"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000C22000R.html",
+      "sha256": "fce4b834d66e0c5ce3d8e4d988b258c75dfa283ee8676d12e98f148008b55d77"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000C22100R.html",
+      "sha256": "b6e5fc6032421b8ca84a4bf0bde5fe9e74d9b139936f6fa4d7d066d9398202a1"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000C22200R.html",
+      "sha256": "1e83fb8440a5fc78fa6e723e96fa5069f8880a918cf9d420ca5ae8e6c4eb8ccd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000C22300R.html",
+      "sha256": "87ce6b14e00a725b266753ef30a7e0db1cf2d18dd92d7c29aed73814f05a51a6"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000C22400R.html",
+      "sha256": "2d480b981b26ae8206c0d7be5e23ed2c945dfc8c5d59818652f80ce0295f90fe"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000C22500R.html",
+      "sha256": "e349a11a0ceac14efd7b3196a1ff0ad1a6cd78a4d9216cf12e60f5a2c8e808a3"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23000R.html",
+      "sha256": "78b8cdefeba47f170ceeb4ec23b7d0be7733077cfba047baadfafc1b1e20bcec"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23100R.html",
+      "sha256": "71a3da92aac598ae7b15be08d6327967175b3b134df0444589b938b65da44698"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23200R.html",
+      "sha256": "63a2919d9346b5449d6ab1bb0d42eef26c03b9023c3808abfdac101db4314308"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23300R.html",
+      "sha256": "d0c4bfc59007a081554661b4effb66b61eb278e459cfad1d3e63ffa3d46b8c5a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23400R.html",
+      "sha256": "e00c5f9ea1774841005e8068ce8ae8dfc8cee6a762da513982784c6d247cc018"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23500R.html",
+      "sha256": "69760fc45d50ae00207b154be834771fd5b9883efd0c5e04733836f95193d33e"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000D23600R.html",
+      "sha256": "2d013775b2622f9e37d246aa1e3147df52f6ce5022e4165e0104315f83daf960"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24050R.html",
+      "sha256": "912bd14765cf1ce3e7c8c633998a015f885298353171b9cf2789c683102a1216"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24100R.html",
+      "sha256": "5a9af785eedc505813d90d361589cdedc5dfbfa86571ffa61e6ee9077a4a8f17"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24300R.html",
+      "sha256": "a72cd3a5a9debe4742d156b83bef5dc108f746630588e957d565553df5c52ca3"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24350R.html",
+      "sha256": "895253f4c5f16aa3dca5c715b5422d0756e8bbb86a5d37bf3cb6f90e05f3e8f1"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24500R.html",
+      "sha256": "ba66a673f76fc561f0a168d131fcd4e79a5ef456d645277b7e9a7e04d527ea80"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24550R.html",
+      "sha256": "bdb72bca54ee62f0afdff33471cd113fa56d4fb6c7aaf9bdaecda1303fc26c07"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24650R.html",
+      "sha256": "e7ad8dd0a785c974a6442fbc377bb621a6ca6a23d728109450b6f2dc9b76b7ec"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24700R.html",
+      "sha256": "eeaf8f736d1ac17add0b6eeb0c1e0991516446b96daa421e6fdc32dd39989cf1"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24800R.html",
+      "sha256": "38f0256c2eea71bf161b640763e9b7fa63eded132563b33ef698e128ab0762c3"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000E24900R.html",
+      "sha256": "d89b200f9b62fb4812393f34f55afcfbfb37d3fd3e2d4e03bc50d7409fe77d41"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000F25100R.html",
+      "sha256": "fbdc09e7d80708a7ca97982742f503efc4511951709da3f95b6c2c90af6e54e8"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000F25650R.html",
+      "sha256": "b7597c77940e54931f60d39bb3b4102e29db32d86b9b916eb466628d94e68985"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000F25800R.html",
+      "sha256": "855c569953cacd0136a75a00d562b8c2f47d749fa00e9d47f166012fe0f8c4c7"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000F25900R.html",
+      "sha256": "154bf274ad2234c4b9e385c34a32979d8d7101870799ef2a0daa971d073b9c95"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000G26550R.html",
+      "sha256": "5272dfc05234a8caeaa261c2569591c80955d58864999f140033d7e73152f53f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000G26570R.html",
+      "sha256": "f23f455488d164125db3130d443eb03b22d40789a129719577def0c341a6a470"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000G26650R.html",
+      "sha256": "89b4cf1a683509314dd99209bbed6174204d88a04084c53ff0b52a0758b63621"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000G26680R.html",
+      "sha256": "4b2a0065feb2bcbac15097c66f0d1a7aee755006cc3a765637a34ab139e6931b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000H27700R.html",
+      "sha256": "0bed698250d5ee698175a61a188e571b62f398ec747a8fa42dd09be948168fcf"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000H27750R.html",
+      "sha256": "8f612dd8279f80fa1b26f6e528c6a0d4f970b98072e724a86e862139cdf88aa8"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000I28500R.html",
+      "sha256": "88085e90a5a29ccfeedf8d82db7a884b0af9710c4245ab208a44d5a3596e6f4b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000J30000R.html",
+      "sha256": "12db4ae7eda4d08aff6cf354ab3171b123ab5979a05505ebbb150cfd1f6118bb"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000J30100R.html",
+      "sha256": "cf7960c32f1152c61f1de05b676427b3d643fedef59a90a16fd01251b7283528"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000J30150R.html",
+      "sha256": "97ff740fbabff9861a065e82bf016694a4ad1cd97c58e1a7339eeb4b647e3bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000J30200R.html",
+      "sha256": "1900583051c8812392d72306685b5deff5bbd9ca3d8a0531134bf2fd5ad9f58b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000K31000R.html",
+      "sha256": "aee0a94d2d17a1ed2729bdb321f67943a0a432eae44c94a1311adb531a5dbea9"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000K31100R.html",
+      "sha256": "01b8b2dffb2fae5e400a9cf26046ebb21ddce53010eebee3087aa0f04e6dc078"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000K31200R.html",
+      "sha256": "68a90ff3c93a31a22fc53c98335ed8f531299954409e5f82cfae803336d6f9dc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000L32000R.html",
+      "sha256": "1290c132c72931b0a19880cde3859f7bc9b75680eb93c5dc8fe304d8a58dab03"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000L32100R.html",
+      "sha256": "32539d9915f7c6444f44c05fc01d734ef2dbbc194625ae8cdc0d0ab06ea6f9c0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000L32200R.html",
+      "sha256": "d313b3215c7359b2552a3290b01537fa11a9009ed6168716160260847e71d89d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33000R.html",
+      "sha256": "735fcc455cfe12fd5cfc61f7024bf67e5c5c4fe1175c78474acf3fb5050d9383"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33100R.html",
+      "sha256": "73bab1a18fa243cbfb71f2423dbe90048787ce75a5c9b1a5a3c1bb8a709f2abf"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33200R.html",
+      "sha256": "251defec775b3f8ae2f77c3f2d1e4d11838be802eecb788d5301457460492a54"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33300R.html",
+      "sha256": "e3add6feeb04dbffd9975c63c6c10ec21b81fda7c99d74be4a29f3d30d6360ed"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33400R.html",
+      "sha256": "3c08b7cb0bdccaf0dde619388362ed5888b215cb2b5aae56d54191c5f2f89c20"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33500R.html",
+      "sha256": "115e5debe212cf5e2b5065c0018053102ceb149c2159cee23e48d51309c11ddd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33600R.html",
+      "sha256": "2c313f5aecafeba671de5c39567eb509251db7d188018d4d68ece26dca8ffba6"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33700R.html",
+      "sha256": "c9ef3d78e8058497e7e6f63505e6601e38ee8b1f7300c0edcbd6d48cf0734aad"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33710R.html",
+      "sha256": "c1728c8f4692480305a6ff1240b83bebb5ee9b2c842072c0835c469a5f1a62d0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33730R.html",
+      "sha256": "df500634a41d6de10866b29036d38834f11b53e09a1ea34a8f378931b235a7ff"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33750R.html",
+      "sha256": "1246e3cb50c1dec8fe669bebbf7118118aff8ec7090baaa51d7ac3aaaf7576f0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33800R.html",
+      "sha256": "4d30d160fa818dfcd2c5fca2de3102613db18d9148be54d5ced59596d9cd0424"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M33900R.html",
+      "sha256": "b1a219dadf9ad716a1926572a01847965ece5fc4ac15e656ca065c656c9bc4d2"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M34000R.html",
+      "sha256": "9ccca0e783db97ba1d2f7ddd8a41169e3c09ff8b40f494702dadf850f1be36c1"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M34050R.html",
+      "sha256": "4b8406b46e2313f73544acf5d5ed27e00eed175658553918e9d18ae6ea376c53"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M34200R.html",
+      "sha256": "55040d5000a4fa4ebdb5bca811ef62c92a98b8666f8744ec35b791ceeefda6cb"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M34500R.html",
+      "sha256": "a2a94b6c2fa8d510527d501e25a01a34adc08c287e7f8b4ce2b5bd9a0512e5fd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M35000R.html",
+      "sha256": "fdc64c55d050c411fc0d4fd190e5236bd82d1efd00b1123ea14cefd503a2c7f2"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000M36000R.html",
+      "sha256": "f11d5777a04333ad72cf697d1ee4fcbbde95af55900a595e355231fff7228876"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000N41000R.html",
+      "sha256": "c7770f003eb6598cb0a3fbffbd320a59b5477f71e6737aa52805f86eeb44e3ec"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000N45000R.html",
+      "sha256": "cd3fdfe75b31a0043b4977cd9910431a0713363a1ed233db0a2d79c6f5ce669b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50000R.html",
+      "sha256": "a5d06d724e3180c07ae49ac875aebba25f6d4ef4eb4cba547507ec1901ec9463"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50100R.html",
+      "sha256": "3845a367b201b4989eabdba14dced94cc127417413e19ad616d3584c30151f06"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50200R.html",
+      "sha256": "2818d8c3c68f94e6f77198f325dd2d31a48883d9cebc103924f4657ea9834dd5"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50300R.html",
+      "sha256": "4f5189775eae0aed3a6c66f486c1cc8edbe697bae299b0ec4ba5efec7cca08dd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50400R.html",
+      "sha256": "32e90b529552257daeb80873e9b957e41fb5fa28866ebfac4f25033157915cdc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50500R.html",
+      "sha256": "609e9716983dacfcfa01810ce29208a653200cfd7cd6ec9fce574a1ad8bdf737"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50600R.html",
+      "sha256": "5b9a32eae58090859a51ce4b8e4fed206498ac76d3d633e4e83db5f9a12b930d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50700R.html",
+      "sha256": "c96cf147a7c612d096d9293d7cb54e0aee75da0c82fc9b1894102568e50a6d22"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000O50800R.html",
+      "sha256": "75a26f3ee42b4952bfd8abc1a74902d864a596971f1665a171e5b7799835f55f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51000R.html",
+      "sha256": "f200efe152caec2d00b7fbe1789347af1c076e897c2708cb22542073163969bc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51100R.html",
+      "sha256": "9eeb573ed45b2d3eb1392d7b9d1288a3e9babe7edfc9cbadfbede12fb11e616f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51200R.html",
+      "sha256": "52de63fcf4a8f6ed61736c0d3724d07b3fda09088a35602a3aa2cf1a9da0f508"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51300R.html",
+      "sha256": "9482fb63c3e2e487faa4a4e9bb22bfda2b5a8b0f5dd82282f19b2617a578863d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51400R.html",
+      "sha256": "06e6d480d5c6c155cfaa91c65c24f23bf2e542b2f78f53aec212fdd816cc8771"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51500R.html",
+      "sha256": "0df2fce412d4bd5b3c7f3f945ac365255efe19e91ac27b96ce1d8b649ce30a8a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51600R.html",
+      "sha256": "025f4c93af3b9f4c5427101c889f4b64d5a5ae068106c912942b73131d60c75d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51700R.html",
+      "sha256": "20a2cab24a72cd000efada552f3e3a66e1763aa6a69b63b6d41c4459b34cb8d4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000P51800R.html",
+      "sha256": "a21270f210d2f5d71c94556f5b88e6c18f0b77f09825b225a195b63bdbe5742d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52000R.html",
+      "sha256": "d1e956b7ff39337d7f797323058dc6dc70b759b603729990d39e8da09355a30d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52010R.html",
+      "sha256": "4ae125f2f156faaf091c95c0a4e4d4e67c4061a48ee48675e8ef5fc77e9f16d0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52050R.html",
+      "sha256": "bf63a9742da62869a1809bc6e7982692b74dee03d8cae1fd3d3370b32162c86d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52100R.html",
+      "sha256": "0216b01a18923b509009147ef41090aaed519541f7bc4b169a9521a5bf1f913a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52150R.html",
+      "sha256": "55efcdd96b60fdfdc01eb30a9826e19203d806d4595750c3a44164043d7e16bd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52200R.html",
+      "sha256": "960d4007820abaddab4288aae5f25afeabac3d798ed8ae6fe91405f9340bbcbc"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52300R.html",
+      "sha256": "b26fbe05ea79e84e6228065351b2b169495d343e22d4e6bc387a0ef09b601617"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52400R.html",
+      "sha256": "ef0b2008952c18bba846e354214b8bdcdd2cfdae41f7bb1ab9152bc4884ddd42"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52500R.html",
+      "sha256": "8e9ad03aeda0a0a9955181dd754379e9f2cf54521b92fd9c126a5f9d4d4e7151"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52600R.html",
+      "sha256": "b1c3a462bdeff34e222ce1f7ef2ccc48e3574de84d43a3e920ce3e966108f58f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52650R.html",
+      "sha256": "cb03da3a36f511ed23a75af9538a4d3b9f2d3b4716e642e3d800780d19373745"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52700R.html",
+      "sha256": "b461dd92690794ad872cc91ee1c5a1304b9cca4d29dafc8a7c482b8bce1e704a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Q52800R.html",
+      "sha256": "ee886ae424db993ccf7a6f2fb1e3e5d8da16e1291acf201346f4b4706972b864"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000R60000R.html",
+      "sha256": "361407af43683ea111a0245fc2ed33a39584be5d2e968c3bfd2d598ee62147e7"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70000R.html",
+      "sha256": "0e0b7e8fde23444f71348d48d0bcc9d78ac62877debe5aa68b615ceab774cb38"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70100R.html",
+      "sha256": "28ae0871a4ccfd1ffd54b70b055703d5bbe43e4b9219e8728a7483b715ab701f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70200R.html",
+      "sha256": "6e77b226ec3b4217adcaeb91582bf1c2f19859ff970f6be84fffc3362a6f3e7e"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70300R.html",
+      "sha256": "9f0481d092e9bc4f04321a32b5b53daa80ea9622a3e972a0dbab64e96177fe72"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70340R.html",
+      "sha256": "dbe1b6fad8011d781eb72634b9587fc6a0484d3ac17aeeb82291228630626e67"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70350R.html",
+      "sha256": "98792136acbfa9abb06301d9b4a154b6979cbe44ba6cb6fb8a83cea473fd57b0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70360R.html",
+      "sha256": "75993f4d7773aa2e56b5747bcdb3238aa0c065b99ac34ef42b33f97810a2deb4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70400R.html",
+      "sha256": "e7f1f9b1f453ae2d80b7c0511bc0ff8ca9e5f5bf26fa43a06170db19ec4a08dd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70500R.html",
+      "sha256": "ed8db1b1f9645550eb827a9c5fd09c2cbcbfcc05478d5fd97da0945ef3a849a3"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70600R.html",
+      "sha256": "7b69a6bcc8fd8680f259189d0bd3980452a54582ffad21bae65c500b0c601fd9"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70700R.html",
+      "sha256": "acef7cff8ceeb6a6476aa841da617282a19474c91304c34027a8268df418b62b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70800R.html",
+      "sha256": "8278f9390186d3a1fac0ea0dd708170b3d897911fe0cad0e9d46072f83dddd48"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70900R.html",
+      "sha256": "b45448a21f31cd7b3c88c6f221aea4cab470f91930211d31e84ecb6e78b9f27a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000S70950R.html",
+      "sha256": "4b004ad9786f30f2fc793cb20f8e0c3192274d5a7b6b8cde7e285bceb68da932"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000T71000R.html",
+      "sha256": "72ff8428a00b2c492646a51ef47dea064dcd884d49ced78f4c493e49c86c2d3a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000T71100R.html",
+      "sha256": "776d34b52dc8314945ebd98bde678ffd7d1a43c1f27cbecea6916bf2fa5bea2e"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000T71200R.html",
+      "sha256": "ef511f26efd3d0f311d78020fdd20e57ecdc2fc0c1c4459cf799bdc9088442d6"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000U72000R.html",
+      "sha256": "08d60959d87c1a01f827fcb85073f6d6219e9a1bf4ae03449fb90c29d699f043"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73000R.html",
+      "sha256": "dfcdba3dc172572fc0bbdda28d3f2d4beae2cd993a01b19a06d41829ab34fdde"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73100R.html",
+      "sha256": "5ffb8ee6516c8efd7cb4ce58c76b2fd84bb61d63bbedd29f4cf80d604593a94b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73200R.html",
+      "sha256": "eb12c1b3326691b636513fba7866de53d443ddb3dfda4491dac46a65106881f6"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73250R.html",
+      "sha256": "e91cb80fbd8078526ad17a8c86fc11d7985fcc44f3b20bc71e3eb98e0bf58200"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73300R.html",
+      "sha256": "8ca143dfa111485e7c4d35b487fa750179828c5d67cf6c4f3dbc07d0178f89c7"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73400R.html",
+      "sha256": "a4d2d5526e949a24415dcf5bfea6d5252818b410101aa97779b5e46fecb50a37"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73500R.html",
+      "sha256": "0dfb8e783ee2bced2127ac46dc4411a460fbee1a0daf9ce719f5a78f44f5539a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73600R.html",
+      "sha256": "d68de5369e2f32264e05308653d8e55d0d5709a3822858d1b532b680db3d991f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73700R.html",
+      "sha256": "8e554a8e33e8f632329df8f93a6a604a6f84bfae454b1f0c3dc55ab30c9e24c4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73800R.html",
+      "sha256": "f99ad9536cb94a4fc4fe097802ba6978f373858beb90556689d16e9bb60474c7"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73810R.html",
+      "sha256": "6ab6615f38e16de779b58d7f709ea6db06c1333288ede3e28f0ed63e3c160a11"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73820R.html",
+      "sha256": "791fca111ae6a2da36b9a09de41eb598fdb35f0ad465dff9c32c9526bd260500"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73850R.html",
+      "sha256": "f893d1e8b19be1845e08434e8f005b12cae3c4e54816af3423f3975d4243761d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73860R.html",
+      "sha256": "fffdb06a4fdf1a6a15f2e1a544bb81f77c270066420a956fd6b3be17818d65ce"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000V73900R.html",
+      "sha256": "64bf850178a16ba7688ace3c526b127db967b2eea555835e5fe001ed95ea2c17"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000W80000R.html",
+      "sha256": "82c9cc67fda70459f274e640e3bcd9f461491b4afafc244cc7f355d65b001829"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000W80100R.html",
+      "sha256": "1430a8e21b6c7b45ab296b7eb2b1cbc58db35fafa33c5b6f9c79d1389b8ab0b9"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000X90000R.html",
+      "sha256": "704b003391cf7f64f8eb15d88d734221aae0ed19e8ad5315d14e58ca6fb5e176"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000X90100R.html",
+      "sha256": "100bb5880680aacfe5cae3c1753c66aa65639c9f268afe56e2bf977be1bcf813"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000X90200R.html",
+      "sha256": "fb6304a33c17fd87bb0d6bbd9f13a282b7d9d6b4cbe3f47f6225a385683c4594"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Y91000R.html",
+      "sha256": "679a9d6d2423c88aa324f724765933d85a0156f0a0753ff264ede474c4a0f8dd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Z92000R.html",
+      "sha256": "4eadbb3828e853f9aca861b544e4bf9481166aab2446080303d1012c260fc575"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/086001000Z92100R.html",
+      "sha256": "de51d23c5b549aaa59917c937491b26ba50c86846ead2e4950517189847364be"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100AA93000R.html",
+      "sha256": "da5004ab43c0da1f90914c8390df5db172d43c30859b1e99b007bef238d8e0c7"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100AA93100R.html",
+      "sha256": "6f4c37cedeb0b5bb5c0771d966dd58a68a14905699e08fd53258dd87a0cfacf5"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100AA93200R.html",
+      "sha256": "5dcd8383d59c73fc8efa4d77fcb03db62d369e066604fcad5456833650323aa4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100AA93300R.html",
+      "sha256": "695236861bd5475d8f8d7cabf6bb627e3027e3885454ef50c9166de8c36bdece"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100BB94000R.html",
+      "sha256": "ac0c6807ee8936e3156fe0f35fca3a5e8a35525c037f3bd496d26da7606f3726"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100BB94100R.html",
+      "sha256": "03a5161d8a223a014c8191209c04ca95c5c2e29e3e2db0cc7ecd7f78fcb46909"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100BB94200R.html",
+      "sha256": "b96a0052883e660ee1892464d105c72ff28baed0149b46d559534ecf64b45117"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100CC95000R.html",
+      "sha256": "a78b42cadab9c1d9e26714d69fd0ffae237e408b643c53b1471b853d8ef90c75"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100CC95050R.html",
+      "sha256": "a17c52e97e6ae92836238ebf33a34740e9872622db650b5a0626473ccc5ce8f6"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100CC95100R.html",
+      "sha256": "6b242627608f154f0824b92ee302f609dcb6f00571230efec3cdc3ea76d686ab"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100CC95200R.html",
+      "sha256": "673324b097f25bc6f33ce0cbc57946ad39eb95676fa38aef2bd017370a4906ea"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100CC95300R.html",
+      "sha256": "7c0c60bd9f82648e41245e76333dda78e28c02be0f44bdf24ff934f6a78872eb"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100DD96000R.html",
+      "sha256": "37ffe09aa46fb4c117c58b3300b284526f985c5c17c7f3e78c5bda8fa3af1ef9"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100EE97000R.html",
+      "sha256": "239fb0f87bccf1be123340e53f0b855828985007727150ab149183f8b4bf76a9"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100EE97100R.html",
+      "sha256": "e3e9101fc0baef8b2480ead847761f44a3b04e2f4484fccaa1660f2f7fdcab96"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100EE97150R.html",
+      "sha256": "af3811f9a17960785207bfa53204f9ac5393ef3ba4a84d43207699047b6497a2"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100EE97200R.html",
+      "sha256": "88954b43f881dc19a3b600e827a55d2c83b7a3a6cc015d7d61ff41359e8638e5"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100EE97300R.html",
+      "sha256": "7a1f8dfacf4772cede03dfaa936d7f90ed8b79330feb52314192d74c8f9307ec"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100EE97500R.html",
+      "sha256": "2baa6949ac8f5a6ba65c766abefe3960ec30ab062ac49b7312699d389d1951ce"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100FF98000R.html",
+      "sha256": "c50613a05b61fb800ebaad25850f49438346126a168ab425fe9093d004c044d0"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100GG99000R.html",
+      "sha256": "331ad915973bed24a60e69947c57cd9339eb9df852931b09eb7752936885d49f"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100GG99100R.html",
+      "sha256": "48d39a56cbc204326eb630faaf042bf0c24f1d25744c9e314e17f429bd5b858d"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100GG9996aR.html",
+      "sha256": "f372f288c36bc791dd9ccf7191b5053130d1dc6a28c7cf14e3821ad57172d9f3"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/08600100GG9996bR.html",
+      "sha256": "fb0d1b6b02ced393f7f163b6e551ff9a38631632a17b22e887355a707430814e"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/086/index.html",
+      "sha256": "702c0027a164e292b7d71d2b700672b97815a4dce6f13d25bcaea08137eb3553"
+    },
+    {
+      "path": "data/corpus/sources/us-il/regulation/2026-09-14-income-tax-regulations-title-086-part-00100/illinois-admin-code-html/titles.html",
+      "sha256": "001b98c06c95ba150f4751a61c7b4ea18820008786e3990f6406f08b6c91a624"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations-title-086-part-00100 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 200,
+    "missing_count": 0,
+    "provision_count": 200,
+    "source_count": 200
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:32:01.215250+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pwBZrRHzyIUdatl0McwZxix7N0GB57nhKKyeVdf+vOh/+z7k9baEFju4QM6PmRlnawr3GNu5iXohPjZ8gcQJBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations-title-086-part-00100"
+}

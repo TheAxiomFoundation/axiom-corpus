@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "196f76a5ef73d304080d182cbe41ff14931eeeee71c69ef7c27a0a00b2e00d27"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "8978e2ae09422dd077faf274710f3fbf837df273bf90b3e0c29347cd18cca49f"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/regulation/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "b8b4005e0313547a208078e28a1e7265f7fb4851c6cbdbcad76a1bd529f5e3d5"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-vt-dcf-esd-rule-2000.pdf",
+      "sha256": "967b05a9c1d89eed3cc5028acae1d6f04a546ef6944b14d9510ea3c59f46fe4c"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-vt-dcf-esd-rule-2100.pdf",
+      "sha256": "5b1df76f9dc538478574653313c6efd7ceb489ded48809fa4d65ca92c0e7a94f"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-vt-dcf-esd-rule-2200.pdf",
+      "sha256": "2a418b0faea3a1ac9adef3b27b20422e0bc356e8dbc05055af79bfb75e6f9b36"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-vt-dcf-esd-rule-2300.pdf",
+      "sha256": "e8701b8fe09ab2660022c1e5973b8bbb32c6f571b7445243b6b60159bb5d6687"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-vt-dcf-esd-rule-2400.pdf",
+      "sha256": "d0483b98c0ee07d9693c181ed908c9a7fe0fc1a9844ee6b0e2d357bd9f92e857"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-vt-dcf-esd-rule-2500.pdf",
+      "sha256": "2c73296ccc83ad09c8c3ead66579a09881602eb355b79e48967900b60ce2adf2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 197,
+    "missing_count": 0,
+    "provision_count": 197,
+    "source_count": 197
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-12T13:04:38.393985+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3e0s82aoR3/aoLC8tAzapm8uodJyI7PyGKbbBOLcDp2lxdbcnp7HzvsNn+AvRAA9XL3aSoRKPDmNQdXdnvryDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "f6da225fb6c166d15aaae89e5f4267b63b942202be951f317311d1337820ccce"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/policy/2026-09-13-chip-state-plan.json",
+      "sha256": "c1656a6e4f0daa2926c1e71f2114df5eb8c40f5d06aa151b5f223743097d2481"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/policy/2026-09-13-chip-state-plan.jsonl",
+      "sha256": "eb9a37752eb281c1a0cf7b3584b9bad009efebee87f2c874312e38dced1fbc93"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "1a9fb708841b658e2409f9654cf50a676e44f41f6505fe864957927ec184d6b4"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "1924070d7541e9b4fd37577360bd522d354c7b7d5ee6ad1aabf1904b5847d466"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "afb96fcdc9df0ebaa46cead14f245bc15723b7f5da1a209ee37d21c2d8f2293f"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-13-0012-mc3-approval-package.pdf",
+      "sha256": "16679e6cbd9df8f9de29c600b69b72b28b13e9b608ec12694fc05e132bb0e98f"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-18-0013-approval-package.pdf",
+      "sha256": "1662eb4241779c839d31194eaf041291113de5f40abdb5b3d6e288b2925c81ce"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-21-0017-approval-package.pdf",
+      "sha256": "a86a7a686c5ffa18cf5c7f33cefaaf5104182e8e78be5784942e5f555119d162"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-21-0018-approval-package.pdf",
+      "sha256": "9cd9900519ff304a7852d668360761d334367856514244d350d5cb78c9d82755"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-cspa-6-approval-package.pdf",
+      "sha256": "452ecf5867cdd283212bbb27e23a03cb5324ccaec5b9b689fa49af3b34ee6ccd"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-cspa-7-approval-package.pdf",
+      "sha256": "3d8c11e8cb0ecf368a2d786d03dde849f87fc807cd6f353529d4b74d040b718b"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-09-13-chip-state-plan/official-documents/us-wy-cms-chip-state-plan-spa-wy-cspa-7-final-approved-state-plan.pdf",
+      "sha256": "1a9fb708841b658e2409f9654cf50a676e44f41f6505fe864957927ec184d6b4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 173,
+    "missing_count": 0,
+    "provision_count": 173,
+    "source_count": 173
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:34:50.551005+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6uOWVAtvOH3GYLEPoKcSscSGL8QbBxyBKGJHVvMDT1EK07+o+hJp69K6hrY0B/uOI/EKnM3w8GXxW6Ixtq+aDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan"
+}

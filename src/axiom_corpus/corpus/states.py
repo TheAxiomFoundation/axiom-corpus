@@ -26,6 +26,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
+from axiom_corpus.corpus.citation_segment import citation_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -368,7 +369,7 @@ class _NebraskaSectionTarget:
 
     @property
     def citation_path(self) -> str:
-        return f"us-ne/statute/{self.chapter.num}/{self.section}"
+        return _nebraska_section_citation_path(self.chapter.num, self.section)
 
 
 @dataclass(frozen=True)
@@ -1477,8 +1478,15 @@ def extract_minnesota_statutes(
     """Snapshot official Minnesota Statutes HTML and extract provisions."""
     jurisdiction = "us-mn"
     only_chapter = _minnesota_chapter_filter(only_title)
+    # Lettered chapters (142G, 256P) keep their uppercase token for matching; the run id,
+    # which becomes the scope version, must be lowercase for release selectors.
     run_id = (
-        state_run_id(version, jurisdiction=jurisdiction, only_title=only_chapter, limit=limit)
+        state_run_id(
+            version,
+            jurisdiction=jurisdiction,
+            only_title=only_chapter.lower() if only_chapter else None,
+            limit=limit,
+        )
         if only_chapter or limit is not None
         else version
     )
@@ -4158,7 +4166,18 @@ def _nebraska_href_to_citation_path(href: str) -> str | None:
     if section is None:
         return None
     chapter = section.split("-", 1)[0]
-    return f"us-ne/statute/{chapter}/{section}"
+    return _nebraska_section_citation_path(chapter, section)
+
+
+def _nebraska_section_citation_path(chapter: str, section: str) -> str:
+    """Return the citation path of a Nebraska section number.
+
+    The Legislature numbers the later sections of a chapter article with a
+    comma (``77-3,100``); the citation-path grammar has no comma, so the
+    segment is ``77-3-100`` and the publisher number is kept in
+    ``metadata.section`` / ``metadata.publisher_section_id``.
+    """
+    return f"us-ne/statute/{chapter}/{citation_segment(section)}"
 
 
 def _nebraska_chapter_filter(value: str | None) -> str | None:
@@ -4234,6 +4253,11 @@ def _nebraska_section_provision(
         metadata={
             "chapter": section.target.chapter.num,
             "section": section.section,
+            **(
+                {"publisher_section_id": section.section}
+                if citation_segment(section.section) != section.section
+                else {}
+            ),
             "status": section.status,
             "source_history": list(section.source_history),
             "references_to": list(section.references_to),

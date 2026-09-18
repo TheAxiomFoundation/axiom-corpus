@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rotherham/manual/2026-09-05-rotherham-council-tax-reduction-2026-2027.json",
+      "sha256": "7fdb1da2cfeb77f88cc3e5ddc00941a7a41dbbf9855a9c56e0e2260f8a61972e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rotherham/manual/2026-09-05-rotherham-council-tax-reduction-2026-2027.json",
+      "sha256": "06e7c9294a82c25fb2982d1bce33b0950da36753f3a38698a3a486087a24064f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rotherham/manual/2026-09-05-rotherham-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "20184c6812d2e8c043b1d4ad91fea6873268dee4c7c3c6704471e6227f6c0c23"
+    },
+    {
+      "path": "data/corpus/sources/uk-rotherham/manual/2026-09-05-rotherham-council-tax-reduction-2026-2027/official-documents/rotherham-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "9c515d8c389946908524abdd20947ec095432907e938499790555897d4e715f2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-rotherham-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rotherham-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 157,
+    "missing_count": 0,
+    "provision_count": 157,
+    "source_count": 157
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:57.247269+00:00",
+  "jurisdiction": "uk-rotherham",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wASyF8zJYtZJr9YnGPQXHfQaEgHHjSOOjEVVqPFPYxJdNmVu0pyv/QE+uI7UjVl8MxiV42IvkzZ8URag1AsMAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-rotherham-council-tax-reduction-2026-2027"
+}

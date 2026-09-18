@@ -1,0 +1,1421 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "f51665185667ddaca3e783df9463885162af9ba44a8aeb1c697ebb001aa031f9"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "4877c736f2e88afb3e159fdc853b17880360b2da04e53ee5d87fa7b704aff2e2"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "bbbb79ade59b8de9d1aa37718e89d2de3c1b0274cc40d9ff4ce194e0a10a3e90"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-1.html",
+      "sha256": "673cb9f46535e314a8ba7a3c99e5bd9e00107331ed77bccf2469af61689184cd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2-1.html",
+      "sha256": "9fd5b82e6b102149bcc52ce602dc926a756eb75c167b2b72c6f1466e13aefd43"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2-2.html",
+      "sha256": "9e57895a69455c121842523b02870f82f56d62398d8fd7499d244d020a013d25"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2-3.html",
+      "sha256": "9b250c67c9730fede04d6b32097110d0e4415b565df28102be437b97e0a58506"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2-4.html",
+      "sha256": "ca5497377788d92010681c622d7ef4b3103fbf764c944ffbae17cb4497539d3e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2-5.html",
+      "sha256": "b41dabb0788f9fb8e1e49be502abf57e62705bc5686127ec4471bd14ca53088e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2-6.html",
+      "sha256": "6dca8d63682d824ae4b379ad04d18720208e2a8e6b08a7fe3540280d03afd2e3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-2.html",
+      "sha256": "7f012871c6a56f2f660852920bbbdd139b294545d9c62f5ea37b1d9da3e29570"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-1-1.html",
+      "sha256": "ae4fd0a62ea4d69fce60ca4dbed459f341ca789e30cb60434fe13d7b56009e49"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-1-2.html",
+      "sha256": "b1413867b0d2321dd901ba05722ddda0516bff5d4a92e18ad6889d0bf8ee9b51"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-1-3.html",
+      "sha256": "f7c3164d9981f235e1a5e0ea46f2038c8fb0ca0742bda22e0ebbc6c8425deca1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-1-4.html",
+      "sha256": "07851a1c19b733d3b4306b9ec31bd5f7832f9eb2c2a37f73ca113a18eb2a6d1c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-1-5.html",
+      "sha256": "b65b517f1f64803b04fb4eac8389a507272367dd8e4d5b4d4f277aac605c15a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-1.html",
+      "sha256": "d23f5acebced8bbb57bd1b630d7c6f53e714d2a74ab64f89b7bdd6dd39e62a65"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2-1-1.html",
+      "sha256": "e37d12e07e35cfb2988c7fa8cde2fbbf62e52b8ed08a847408035c03c4b41c06"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2-1.html",
+      "sha256": "35597da9b8c2be64e8d0dd0cabbd06fb1ecffe7c7fc65f16b6fcb1baaf57166d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2-2.html",
+      "sha256": "06a115f27b02ffbec7a9004c2af34d04c9d7551eb794fefb7454123208b79679"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2-3.html",
+      "sha256": "b265361bf0e741d42a159c9a627907d19ab084a5f09d3b3b1bbd5be5e196ce5c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2-4.html",
+      "sha256": "12213ce2e13f1e2dea4086bf887b3af6fb160df8f1aacb059b1f810aaf24c268"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2-5.html",
+      "sha256": "3422e07fe7276c760acd18fcb07623c66f19de2e99860067a26cf22334971c98"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3-2.html",
+      "sha256": "869921649ecd6b34a23e9f65f45c9a9f749b6120849a1a3ddf2da5b92576045c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-3.html",
+      "sha256": "6632ab088be3131b5840d7a620f7938e4f727ad99d81bc164b88e22b010cc7f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-4-1.html",
+      "sha256": "6db83fb36d4cdc344da6c74f81ed3c4b83cf85f28101fc94b61eb43e9e18c988"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-4-2.html",
+      "sha256": "667fefd88bfc7d43a55bb5de6580d8100d5937b3cb60c5b6bc90c17d26896c44"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-4-3.html",
+      "sha256": "d2da1f031e20f193787c0f629cbd8a70535f0bb07f73a024fb436b3431ebbc0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-4-4.html",
+      "sha256": "5dfd6644dec1a78d11424c590ce348747447cbd0be8f7daedef7d8a33a70e694"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-4.html",
+      "sha256": "af00d178518e8e50b79883c5a3b5e403338ba88e966b4f0575b745efcaa01e9c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-5.html",
+      "sha256": "6bbc28286bfeae847fefc620f10d37a246d62a14d703b2d330e490c22d61a983"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-6.html",
+      "sha256": "350fe6c345c8a1864608d1e9bd31e5ebe8f145691a513600e95815ad1b9c2bff"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-7-1.html",
+      "sha256": "430d4852be7baedf8a0ae2115655511dccef87d96a3e2702e1edf96463d92e19"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-7-2.html",
+      "sha256": "e6a656ef0f820609ad6cfb8f53936184b909f5a35e5edc144a1adf985f783cb9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1-7.html",
+      "sha256": "178017fff031c2a94c9fc5b55151750581d90324c16655a6d3f316f4fbaaa0bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-1.html",
+      "sha256": "0405c2745fb0aa911634efdeb00c97899e9d782e280588e8830ca3a520699303"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-1.html",
+      "sha256": "e4d1a717a42b8d2808c37a877dcf5039cbd1d08a87abe73f3b41208db88ffb71"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-1-2.html",
+      "sha256": "63a4e6754cda11fedbaa994fcbbd8bf16d7b3e749d4382f43578d33a3242a0f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-1-3-1.html",
+      "sha256": "92c35ba9bb11862ffed9278b1b2a0531ea3d04e59b7a26847a207cba87b629fc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-1-3-2.html",
+      "sha256": "c54154bf4bf00e742e1fe6f538fa158f5f0d9f955f36385b5e8a38a605c22533"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-1-3-3.html",
+      "sha256": "769523be681be57d038d3cd62ee8f472ed809c1f047e0c738a7d29d53eebfd7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-1-3.html",
+      "sha256": "37906f1cc94882cfca3d9706f8e1ede4d972ead0201f36a6994a842022f6d529"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-1.html",
+      "sha256": "6f17c215933792f923604d003ea3e55882b38bba61ca94b8b01aba8ac4c901a2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-2.html",
+      "sha256": "12bf56eb12d1bdfd96a6fe57b6a9cf08335b0ac263051e4324999b902cc13e52"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-3.html",
+      "sha256": "1cb1f525717dcc238fb23c700d37bf218d418acc6a98f2ebd11cdbd0588afe05"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-4.html",
+      "sha256": "629f4d0928f85f93b32e9359d120cdd494af2fd99477642ad27a92b883915829"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2-5.html",
+      "sha256": "f0e5abb28cd7fd599f155873b85722632046df0f37be7a0fb4224752df2db801"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1-2.html",
+      "sha256": "b31877b080ab879f22fb427c7376c9787eff754e49a574a35d889a9c70dfffea"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-1.html",
+      "sha256": "f232f9b171d53cea9c5e32b4c5f071d404eaa7408b8567ac9b36b4fac0349f25"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-1.html",
+      "sha256": "d7d8d2a72675ba6a8fba629759be4f7d1df73f20fc3ae0665bff972daf13781b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-2-1.html",
+      "sha256": "d16a78771add6a90ef2e5029cfcef70285fabe550237d087492386bf75f61c0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-2-2.html",
+      "sha256": "74672c2183567715c190ea7d7c28077b72799c267d6828ef81b8540d12636fae"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-2.html",
+      "sha256": "94d3dc14c4037f85771d8155d5a8ce53719370684d086c4748b42bb8e07f0a31"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-3.html",
+      "sha256": "e6a530063543689bb325f73d12093d360a3535dfd0a7b20fd27c51f55661a435"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-4.html",
+      "sha256": "d2591a23c71b470281167a36d7823466337d26f3801e7a35ea3cbcb6a894107e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2-5.html",
+      "sha256": "93025476aa85217b30c7f6abbe2e5dd6ea4342e301c4659d54bde9de0afa54d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-2.html",
+      "sha256": "d72f24837380ccc5d1f777f8ddda085b6125658d220e0b6c874cdf6c787874d6"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-3-1.html",
+      "sha256": "0ed1adcf5525cd32933f20cc5d39b6fc039ba060f9db652bfe1ed312a22ad09d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-3-2.html",
+      "sha256": "6f8cfd374fec9ab5f2b7fb20bd48bec010028b45e9434b3bf87cb464100cca2e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-3.html",
+      "sha256": "147f5f051f6f6fcae0b75d1e80ac4d760662d8a7029316fcfe64873e16770a87"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-4-1.html",
+      "sha256": "442b32c9d87d44810358e93b22f88da65039ee0e1608eb400aea49bd33113b83"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-4-2.html",
+      "sha256": "8e1884865144838117c84991e32c017805afb5deda88d7f32b0c1c3a60b60a91"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-4-3.html",
+      "sha256": "6cdaaee853c748fb312e3fe4bbc81a6c6b6d7cae8126957b5328c9cd7e9a4388"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1-4.html",
+      "sha256": "70a3a456e4cc1fe311c069096edceb6cd25df3b043a4efef391b75acfb5e6d17"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-1.html",
+      "sha256": "683554bb8266610bc79971591b7e7208fbb07ed6bf5a9ae58e4ffc437c131ad0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-1-1.html",
+      "sha256": "37c9089a718fcf1cd32d977aefcb89a6aae87f49ddc32fae693605cf6d912b82"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-1-2.html",
+      "sha256": "7864d8589e97fcbb3c2226f42b0b9271ec50edcb7cbd845cb16ad9337f8ff750"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-1.html",
+      "sha256": "9983fbd3ec75bada1efd00cbb9d80fa0a3f5b5d72fa92636697678cccb68f8d0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-2-1-1.html",
+      "sha256": "07d5b6f48f61c9810125bbed6f788df8f2a37d927e90e07641355653b1dcd134"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-2-1-2.html",
+      "sha256": "8d478ce8aa4e96adbb78cce5e7f63cbaee250dfb7117b34884daf30c3ccfc148"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-2-1-3.html",
+      "sha256": "cfa218beeb98e2ea0d7251d65981e835ffd37b25b8d95673b8a7f7f27bb9d1f4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-2-1.html",
+      "sha256": "55655394c0573e2091042bb717ea499cce5a5e0a63bf9b1ae4bd661763a53ec1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-2.html",
+      "sha256": "33b3465cc3c92a9b9440df5dae725dc5876658129e48695b41763fed6fbbe49a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-1.html",
+      "sha256": "faa935312dc77d0580751baaea3f951aa66ec41af179c8c60646f62e3ce6e41d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-2-1.html",
+      "sha256": "2bd9c9b27ec5ed17b00c426443fb0671560ccf89e6f0c93652b3b3f75d1cb478"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-2.html",
+      "sha256": "e849eb02f702b7afdd104ce7fe0463ab507eb805724394c3901846d4e281981a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-3.html",
+      "sha256": "81c80cab3025d35f85c5d05a5daa1e86162784a843816045aaddead21b008495"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-4.html",
+      "sha256": "e3c3d48406566bc3b5ccc045b8c07387f9cef00ce6457859e247302768033486"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-5.html",
+      "sha256": "b0d3eb8af1df97802dd13ed3086e156c5db889ebf5a9a8b2c5855f6cf48278fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3-6.html",
+      "sha256": "8337faf1d5e5ed8872c4a466c62e0fc1abf0e50d1af0a047071dc6438f4ce48d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-3.html",
+      "sha256": "8ed4c629f7957c57b203c443bb4faca36f17e25816bbd8cf88d2b6d70c159c15"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-4-1.html",
+      "sha256": "7cb7a370995cca9479dcc11aaf933a1506aaa13cefef399429299aa199a35f79"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-4-2.html",
+      "sha256": "a05cb1787e7ffc4e26de6aab1030126cb4b1bbebab7e39195e4705ff36d3ef50"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-4-3.html",
+      "sha256": "9566e4a90b30f37068d0cd466a85ad8ee5343504068e79576bcc724be26f8154"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2-4.html",
+      "sha256": "c46b7cc50195d66991802ba11e03fc9527c0ef37bfd18674664af3ceddf6dd1b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-2.html",
+      "sha256": "c8742b74e8c9b48e91ed0d7094a707ae6af6dad6d009b4a2a95c06b8635b318a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-1-1.html",
+      "sha256": "57824a68c2436080455b66bccc8745b4e4c0c46f10ceebd70f9729fa8a8bf0d5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-1-2.html",
+      "sha256": "e538672b1191b1461354a854399ca56339768e833bad77dfa932424c97b5dd59"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-1-3.html",
+      "sha256": "6b672efa7eac550ad9183c6e3b01f62d5f99bfe4d24860546bd3a6d985a333e8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-1.html",
+      "sha256": "67212cf210ebe098cdd3e2acf0d1e9eceb879ac634b0e7d016efa5ec62ba1755"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-2-1.html",
+      "sha256": "09245008c31658a3aaf2c021ef94be1cf1c7c969271657e73cc460bd3df3cd4e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-2-2.html",
+      "sha256": "79eb48db9d2b5c1b3fdaf02f6730d15233d3e95fbee1fc93ab9ad87beab2ea8b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-2.html",
+      "sha256": "82c7e41ee630f0c7ed0e580e918ac350044bb2c1e26dd37745116cc89d54846d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-1.html",
+      "sha256": "1fb1fcf2cbd87e6941769112c5bd9de7d671d552d66ec84b9d0c655b95ccc92c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-1-1.html",
+      "sha256": "e1312ec05f94ca1b8cdb8b3fb363fe2a70ce59149b2933ef755a6320d6111a68"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-1.html",
+      "sha256": "baca43f2ac2b9169bb5f76dc8556080bdf4daa39a8641d8471aa8f43bf28515a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-2-1.html",
+      "sha256": "0104fabc15116c76a293ea62abdeb752d63a51bfdf8e466d288cf3b992476a99"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-2.html",
+      "sha256": "e98bb2022e252d2d567f92fa68f0efd8c6fea900168c208116131f7266ef05cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-3.html",
+      "sha256": "5339b31d66aec38cb562c4b2e36162b4949a95f5a495d21ae78995627d2543cf"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-4.html",
+      "sha256": "b89a30fb44144cf6d4d92dc3160f18499534bedd3e94125f6d2664385d93e13e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-5.html",
+      "sha256": "63f1c0e1326541ee4049a391f4537cbf4795f21ae8e098da0ab2a4c94c9b51ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-6.html",
+      "sha256": "0698d2ca24541b9fd9267248b1ec1aa3d97b97173c3e940cd4ed02717cad6eea"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-1.html",
+      "sha256": "5cc5dc8939722d0c2569bd60a3c769d56d5cdad11a8d76dffc3049246428a5a8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-10-1.html",
+      "sha256": "a1039617f72359460f766ce3caa31843167695cb54850302c50c2898df28b50f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-10.html",
+      "sha256": "d8546cb60b4814dec9b76c5a97bd99e7685c5b4a8bc9b9bbeee79024335ceed0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-11-1.html",
+      "sha256": "b4551ec6816266e945077b7093beba5d1b9170c192d014b87fcc5898ad657808"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-11-2.html",
+      "sha256": "161260860e187b0a71c5cb4d3fb41644ebdc0347bfe2daee9db3786dfe9e434e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-11-3.html",
+      "sha256": "967daa068c6eb3a39112588aa557dfb0e676345fbb66cfeb0a78f3ea51ffb9fa"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-11.html",
+      "sha256": "cc8a801bee5af108726e0f285e5526234738ca371230bb4bcce94e9be014582b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-12.html",
+      "sha256": "6cf5abd9e8aa94d384695c28d4ab387bc1e2729145d45ba13018afc704cf80f9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-13.html",
+      "sha256": "dc21cede8600443085e30344973c72f13a59474b1e1d268a7160d813d37c0d8c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-14.html",
+      "sha256": "dbe0ab737b58eb3aef029348f77e292a8d60d12a82a2a86ec12050a7bbc24fb4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-15.html",
+      "sha256": "668a3f264b05ae93923c9d4ef31c8327c96c65c95e9135b220c6ad75daa090dc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-2.html",
+      "sha256": "5019972ed5965e1ae59cf41f660ac92123724ab74f81d4b9e7c6d13edc676685"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-3-1.html",
+      "sha256": "ddc56eb7dcf1fd66f9ea4343bd8c2dcc0b6910ec554a041fecea02f4ab9c09eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-3-2.html",
+      "sha256": "7c2c2651627131ea0e76b250f355251f11ae67c394de554bd674f9cc70d9b9df"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-3.html",
+      "sha256": "9f4498bc1013c08bf65d152dadbe4813fe83b56e83c5b9638ef34091ceb8d677"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-4-1.html",
+      "sha256": "a5e695aebaa3449789843432e706713ef7a6fe94c6687d6b45344aa8789b12f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-4-2.html",
+      "sha256": "b13c993ebcdd5a1ccdc868892af33911b2f43946a264d94a1a83a5fc3a4456de"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-4-3.html",
+      "sha256": "f397ac3254d35f4d4ca80523bcc89a5aaa27529a73ddd0ae9d2d4751259eef3f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-4-4.html",
+      "sha256": "7f5982a17aa2dcfd001fc3e3f3887662d44cab5475b8d4cc4e588ead6e2503b1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-4.html",
+      "sha256": "21b57b9141ab5c5ed503a0a5704c5cc5fc7f1de6f67851612b188957a07244e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-5.html",
+      "sha256": "b75bf11a3885be86b83e250675902afe3eb86ee3a8c3ad57c347b1220b54e9d6"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-6.html",
+      "sha256": "46f312aa82da79f29a0efb1afd66fc027a670dc4cbfce94cd5de18363a2a271d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-7.html",
+      "sha256": "b38fa5a5c845912bc405cb3b0b151290e997c0d72560d18effb261d3edfa1578"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-8.html",
+      "sha256": "f4456b54aa4521b956c669b054573dac5b8acaea1ee24731bb46f98b01f1f86b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-1.html",
+      "sha256": "9c91bb4e526a7a1d6ba6da3a2d9b1dbed740df37d9fae496e4e1f7d7c31bf774"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-2.html",
+      "sha256": "5c40f333a7f095d3715b131758fe6e168854fde18b5daa5551102b76d89bae69"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-3.html",
+      "sha256": "5324674c93568429d832ad6eb33fd5b17727c7b46d6f8a1125f5f8ea62c6c8d5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-4.html",
+      "sha256": "bbce9ee84378de8b21a861701ecb4d0ea18b0b98ce2ed2549c72d13650170e77"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-5.html",
+      "sha256": "6b1fb60e5bcd768db9844aaaae433102de88e487569cbbe9116de51671120275"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-6.html",
+      "sha256": "9bc055ebe944d709d920d743e08f99f08617dfe09c4350fc3a58fc024612fca8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9-7.html",
+      "sha256": "9732e63271d2095c884230271550605e03fd344b0753f3f1e5eff8d92e8df585"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7-9.html",
+      "sha256": "eeee66c0ff199dc66092ec242a3a6c05a2d604090c10bfcfc180d6273d059b5c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-7.html",
+      "sha256": "d7406996a1035328e953a4880ce287d542d8ef87a29f1cbd31ffa1040a381c25"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2-8.html",
+      "sha256": "134284238de1ae3611e0b164fc298ea5ae24783bdc05d686e7a7ddd9dc710a64"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-2.html",
+      "sha256": "7c7fcce4bfe306dd3cea04a6d2505a7493249639b6249dcf93bb24f7a915ae5a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-1.html",
+      "sha256": "22144a8ed2a70323bdf5d70fba1c3d7015bea1cc7a5c9a04fbca3b075f44af8d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2-1-1.html",
+      "sha256": "17bef9313aba9fbe3f58932b9b590b729416fd54b5be308877b58c3cd6087b82"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2-1-2.html",
+      "sha256": "e2b0859a8589199c981525502a60cbaae0ce0cec35f027deceb51703480897da"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2-1.html",
+      "sha256": "9aa5f7583f452f04135988073c1308a5ce8e4b7449e3dbe19e94f0c2839a085b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2-2.html",
+      "sha256": "1f1be887ef74786fdfa077dca2443ad831cc0233454ca826272aeb5ac447e7cf"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2-3.html",
+      "sha256": "4e940c1ab88a7927cbdc3f2b79e80566b77caa5604c3d022b3ba13eb44942d6a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2-4.html",
+      "sha256": "1fce2bea67c9ed024ef939d85259d0b8321170157deb7e65fa51dd18a444a2fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3-2.html",
+      "sha256": "bc5617c598f6e240f2269c1bdaeaa88f99f326dbb326c847b0e0dd00783fdafb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-3.html",
+      "sha256": "57f3565c39614882ec1dd03c641234a599a10a478881c4e4b7bb5f35e741d381"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-4-1.html",
+      "sha256": "860a34d4a02a7e675d0feebb3382ffbc6984bdfeaeb867e8fce6b86d54892242"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-4-2.html",
+      "sha256": "bef2fe538489902b050b4d6ac8c0520b8566b1905ae6e65fc96c79800357bfc8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3-4.html",
+      "sha256": "74793e59225f3f74fee40ae83689dfc139ebc94ff979e5d3ca48966e441bbc37"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-3.html",
+      "sha256": "fad314f97cdb144e940524a15890d8a456d40f38792318a737e767028ae9d488"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-4-1.html",
+      "sha256": "0e2007de4b7b81a12a90ba2cecd6e035e80fb5043eef3096f316774f04be1d8f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-4-2-1.html",
+      "sha256": "6f785ebf2a11636c235c7444ab3364a15234c81793e485e5c78c14bb418d54c3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-4-2.html",
+      "sha256": "ce86c36de32ea088128c0935fcae22b36a368dd5c4e74d1ee578f3936be4b4d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-4.html",
+      "sha256": "af8a48f08e2ad4446a6b26a92eb33cf4162ef3a9f5b9a19d64e455f5b0b9e7b7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-1-1.html",
+      "sha256": "8d9593afa80c63b264216aa0c69a7bc83b2ec26ec709adfee3b4a5a911e97977"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-1-2-1.html",
+      "sha256": "70f42f9bf61c5ea29822c1ada00e090346e37d0c791f860509c01100ad1a7cd2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-1-2.html",
+      "sha256": "66185f17ba55aa2c6206a00776a71ed6429eefa5df0ff9f71dc6bf63af033358"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-1-3.html",
+      "sha256": "9665da7616b3d13a0c7255b1ba60d5cc117391a6c7d778f1d2973e571a1ad8d7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-1.html",
+      "sha256": "564a5979f5ec13758f7645f5165fd0d3237d3e4ede16939ed7a02b098489c2e2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-2-1.html",
+      "sha256": "7c59e4a6751c64d2da64193e3710b9c4e6a29fa33bf475ab41d18af090046f71"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-2-2.html",
+      "sha256": "63509f49b006850f4de641fa9f3431b8d27c30a632f2ab9ab11f3e1503899567"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-2.html",
+      "sha256": "7f180dcfbc4a62ca3492bf9da4dd2c5bea3928957338808f8d1deba403741f29"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-3-1.html",
+      "sha256": "8c4b4fe4dd31534c63a68d84ff149beb819c80f653473ebeed0404a26e298fc2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-3-2.html",
+      "sha256": "a086237d19daa9705c327ff30a07dfc339bc215dcf12e50fca134f029d507db2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-3.html",
+      "sha256": "619dbf21cfbb821f4c57581d089dd006854d92bae4f254f43cbc5af1a463d2e3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-4-1.html",
+      "sha256": "29241e53a4deb9e466ea2e9d3f8770866dbd67a7f313965f6f80d6233fc778eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5-4.html",
+      "sha256": "8cafc9a501de2b410277e3eb21b66ac4fe8ec7c882d166974a8642779addfe4f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-5.html",
+      "sha256": "8c12a65ffb0322fd2cda838e6475feb9042ae57cdafae5ee610fb2d69ad4c7d7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6-1-1.html",
+      "sha256": "ba39892e1ab645449d61740e9fb002ea2c4c83f610c53dc006061d84039b38c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6-1.html",
+      "sha256": "f04db74dc138cefda138fef6b415c449f3b9124c25bde42a0339d62091f20bb8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6-2-1.html",
+      "sha256": "1e47726f2277efb9d5d31cbfe2cef9c2aa3f178f388680a47c10ae6346fa7965"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6-2.html",
+      "sha256": "ac5287655f4ab12c34c177f0589ebeb8cd50e3eebf6d95dc20036e4152bffec5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6-3.html",
+      "sha256": "34fed4f1bc85e54e2fd3744bfce1aa4c6212b140d155eeaba092a28f437061f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6-4.html",
+      "sha256": "a82eaae644ff3f67d04fd14e40a0f0b3d9c4a9409e113c18b2a4867453d610dc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-6.html",
+      "sha256": "e099b8c29857604cf74523269e52ba6f2e55dddc94f1989df9668ae379ff4a53"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3-7.html",
+      "sha256": "f2f453324c74a2d21d61bc5f93313107641b81329dc0a4f724357cfb85e6f883"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-3.html",
+      "sha256": "5b0c47a752ef85170e56c7bfc871101a51671eebbaaed2ec50e479cb59fdf3f8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-1.html",
+      "sha256": "8b81fb9aa0c237ac8342949a996e43cf46f341ac615e5261638f1e9ac183aa88"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-2.html",
+      "sha256": "125d6c4b402bd0b95ae8d855a0ced77aa926d7d5acc743d6f37c8cc44e27c205"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-3-1.html",
+      "sha256": "ddc211a7cd99ce1361061ab41fb61a8195dfcc24e82b05c5767dc515ed029097"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-3-2.html",
+      "sha256": "d6aadf878eb179f0028378c936af67e37ab0822db80e44b15a2a6ae4ea946397"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-3-3.html",
+      "sha256": "f92e5fadef48a02e23a591e99b1d9de4c0faa59e298554635e8cd01d1615e187"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-3-4.html",
+      "sha256": "39a9218c205c3614b4f86c01779cce32831a487b9f5fc841bb26d2d82cb34af4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-3.html",
+      "sha256": "49964aef233d4781b9743cffe273d13b3cb8ea7a7a06e278081a1f26e09d565b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-4-1.html",
+      "sha256": "d37b394a53d36a8186472a9f7edf1da431b3071af2294913cbd128606a4690b7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-4-2.html",
+      "sha256": "d5df9be543703fb8a5ff1182e88bf0fefa7e0d6442164b049dddbd7fb55893a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1-4.html",
+      "sha256": "247cba1d652247b3b5788f15fc35face856999350a9e77f6b714f569d4d9547b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-1.html",
+      "sha256": "c3a94a79d71afc460abda36df0e50fccec301a3636327f7190c25c61546f1504"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-1-1.html",
+      "sha256": "dc176e6e3d19c7c386d1db9136c77018be4b6c91371d001bf8a6b5599478d76b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-1-2-1.html",
+      "sha256": "beab2bdcb224322084cb59eb6d29b8af8162012bdbce066dcdb13d28e8920125"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-1-2.html",
+      "sha256": "05cae3775fd8c87033f224c1829322cffb94ea88fcf40459bb6b2ce224434067"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-1.html",
+      "sha256": "3ad588504c25cee0807eba7e19f53267f982e5a99be701c6bfd1160fccf6e638"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-2.html",
+      "sha256": "ca580636e95fadd765d0e69ac5948f620a1faefc21eb27498f5a8fe910d87f60"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-3-1.html",
+      "sha256": "6ee1d6044e947b966af90b22f7772cc1a05df139baacc03763d550c46e2c34e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-3-2.html",
+      "sha256": "fc235938494fcc2cc2c17daaa75a0d8f263613a86bac52f866349a7123404f9b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-3.html",
+      "sha256": "93d7db7f054b034ff2b3aa690a9c797ae2105ef009d738b21c95b1a97073d636"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-4.html",
+      "sha256": "d830f764f789601338fcd852fb8f6cf5ff4141f73c8261499269c4f73daaf9de"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-5-1.html",
+      "sha256": "c710ff4cba299f4eb09a98f2d45bf5505ccb0f569e7a86a2ad98e510fcb90b80"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2-5.html",
+      "sha256": "8e92b28d45826f19baf9376a1a03011a18ab07408f108f1bf3ece6de9df1f701"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4-2.html",
+      "sha256": "fd42e3868cec948f207ead966de9cc7ce2423e83704596cd6181203ada987b58"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-4.html",
+      "sha256": "0da63db8e4098c83f66caa4e34d9a0abce1cf28d3bbdcb1d7a3c3e3cda26a3a9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-1-1.html",
+      "sha256": "cb9376474835b988358c1390d1d5fbac77bf11bba4ea3d9f6b8df4d6f44acd86"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-1-2.html",
+      "sha256": "8dc3a9041fcfc6885873856e10e51c0f04b1532bf120b0168286e7a278b86683"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-1.html",
+      "sha256": "f1352478a0fabcdbd3996a3883aaaa22ec1a5db9c9211aa35a3079754efecd3f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-2-1.html",
+      "sha256": "54f867b464b6ae790655d226a82c0c14048a4337b4cbb6a9a10b705de81b8096"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-2.html",
+      "sha256": "d89f6e6f321a89a017054e728676bc2db39af599b4702217bccb35877a303473"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-3.html",
+      "sha256": "abdd984b489b70e98ddd4816a7bb2f4d5ab71f7ab81e7d5012a8cb5a57bfdf64"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-4-1.html",
+      "sha256": "91291ca0a09316d3ca856d2efa157344a0c5b81bf8df0adc26de3ebb8f6041a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-4-2.html",
+      "sha256": "65dfc15e1592c580e159b140a81766e016336b0453c7dea1df9e8b62eaed979b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1-4.html",
+      "sha256": "d966d1d9d599fe26590cc814a9febae5548be92936db08ca30c0db9b2e4f7eb4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-1.html",
+      "sha256": "873700056d3f4f13bdbb343a6667f856c2dbdfd0b1c7780c5b96972cf9215694"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-1-1.html",
+      "sha256": "bad585a03208c051e2f02cadd769718f215aba26663b114c597ce677bc04b6b6"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-1.html",
+      "sha256": "ff16dfd57582f1a1d36de94c36a062df847acab21fa025b3d8eab7733cb1ccc9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-2-1.html",
+      "sha256": "c18e0a5ed92767721dab37109b19d0727faf03a9450015de39c98d1ad2a22beb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-2.html",
+      "sha256": "5282945ff6795937513e1887b88705c211bf1cb65e86167cecbfbcf48c6ae779"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-3.html",
+      "sha256": "998d5e4f6706bb5bf13d25f6d215e57550ebec39a069ab11f5e33134744ebe42"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-4-1.html",
+      "sha256": "a86aa4d4ae6fffbeff319615b88e1eab932723bda9880f013ed06125b684db68"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-4-2.html",
+      "sha256": "bb6490eb43e673c736ab27e4562890702f2fa2d0eb380ddab28cac8c2474dee9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2-4.html",
+      "sha256": "eedd73d1094143494a3fe6a0a7044eff794364654e218537d7d709bfa1756673"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-2.html",
+      "sha256": "a080d128db32169d5ed635aa53fcc2bdd1f8d133674f142413bfd18de4c9034e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3-1-1.html",
+      "sha256": "3c24c340a4e4d28cbd652c17ae5c69a688aa2f9920eda51ad89f793e6efbbe75"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3-1.html",
+      "sha256": "8e7f1203aaa4861309f8f4906d16a01a14f39355cdbcd90847a9da28a05e9e27"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3-2.html",
+      "sha256": "b067f80f8bb1b772f3b3814d130d036e36a61d67e41e9f5577ca772879acc73b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3-3.html",
+      "sha256": "6e92d163e239f83c4a7e73172960c8473a77c0b55c2ee081a512a7aaf6d21932"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3-4-1.html",
+      "sha256": "761830d9d41f1851fdb2113b265305f315c389ea9f1d1f8bb206c6ac09c4093e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3-4.html",
+      "sha256": "120ce66f0ac8d12385e8de4cb821861f3a178346dac911904f3361c1f8ce7033"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-3.html",
+      "sha256": "8a456b4e520ca11a6e56fb022944843d692de63fe504dbfb44137a4074538305"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-1.html",
+      "sha256": "03a394817d259ad0527f107990b5cc8024d7d2f595d2aa3b1e43ba415a7eee8a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-2.html",
+      "sha256": "c2a008b1d6cb2f17a5b34cc5b13303744ed91ced0931c3f010da85336f4c1966"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-3.html",
+      "sha256": "04dc0e3d731bd5a4aa63a42f4bed934d512327c698619a7b29ff6fd15575974c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-4-1.html",
+      "sha256": "b21ea37383e112390e3b7710df8037d2f0d1f7684c19eed761433314405676d8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-4-2.html",
+      "sha256": "5df3c1e35d86cb88bfce716ee5e6db3ff2962b8d7a7c053f738cc74a2d3bf161"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-4-3.html",
+      "sha256": "7260d43c9beb884d81d02cb0565bf5a334a20ae7b57ca760e409a16b2c98a210"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4-4.html",
+      "sha256": "6e4cb192157afa016f863be9edb25b28a1194061de99c4a82c74a753ed7d38cd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-4.html",
+      "sha256": "c054bf62a788637b8fb94c960a576242e688b6e1ff733a6d9138a0c7d62c83ab"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5-1-1.html",
+      "sha256": "5ff5df0db77c275c455ceec6954bd6843a005ba7e7e091ebb5c73f4f8561db21"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5-1.html",
+      "sha256": "9a0e4902d115ffa0652a79c981b83745ea1b046a820e0b3ac7497e1a95a39e4d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5-2.html",
+      "sha256": "16a748d1cf4e1933606d8c7ed834ac54b1ad7dd0791525b2f4823742a333e546"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5-3.html",
+      "sha256": "0a0058e7d559a5082acb876e704c9d7e5e0d75623dae9b51cfa6afca5cbcf6b1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5-4-1.html",
+      "sha256": "38628c0e75fc5d2ab12a4f7d3e539bdf679f036cdd660d23b9832e7820b2cc65"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5-4.html",
+      "sha256": "50bff6321ac9565189f13a4c5841d238176854d628d99bb158e8e20296ee36b5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-5.html",
+      "sha256": "06080ef2de66eeb7b0972771078cb8b3434e762aec0f633ed2930a6a54bbf667"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-1-1.html",
+      "sha256": "0f970cf1d9ce2974262a3c92c9aac55376f73eb65410f47143870f05c735ae3a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-1.html",
+      "sha256": "69a9694297964772aede10e7f5415ea5fef74ae9d7442e1da86e3d589ae01002"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-2-1.html",
+      "sha256": "27c3b2c30034a750f4ac385fde6ec7e3c36048e3dd77c1cd28707e31a7c294d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-2.html",
+      "sha256": "3008348261def75a1bb2cf7a6c0d159703e9d94753342d4c92bacd231d79362d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-3.html",
+      "sha256": "387e5469bd9e9ad504a0cdf84977bac69069211139aa4dc898195c418bfa6051"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-4-1.html",
+      "sha256": "791259a8636a51191a7942466eb2979198644fb77d4de3b827ce0a9c9dda8cd7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-4-2.html",
+      "sha256": "1803684ee9e0a8de56b1b8c1f7173bcdcb4514d52712dcf6bae9c6b04f663651"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-4-3.html",
+      "sha256": "4dfef671cc140ed54ed1495dcf8d62d203d5bf3e065b05b2700c411e5e2ecf69"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1-4.html",
+      "sha256": "2509d9109b7ea781d0441e8c0dfc3d502aedd01cc8acefe93a62ed39402c4b7c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-1.html",
+      "sha256": "96f307ec86e51ce5330f143b138f07d4921d70171d4294959a61064d1ccd86de"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-1-1.html",
+      "sha256": "b8a699982f0e1324cc74c1aa2c1d415fbb5da23e0ada33fbd142e313c14d87aa"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-1.html",
+      "sha256": "78a809a77598eef3f5bda6152836ab05c4146ce74d98d7a0d96315b8ebb0d3af"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-2-1.html",
+      "sha256": "51a57bd7634786f4d516eb5f8a947b9ea677ddd727252255a0f023a8fd628c45"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-2.html",
+      "sha256": "119d6521eafa070e28e2c50f4544a45ce494bd4cb12cfbeded303510ff895d3d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-3.html",
+      "sha256": "1f77a729fa8bfe316c7b5041653070e329232963dc98fcd569991c3396a439fe"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-4-1.html",
+      "sha256": "6a599407767c51b06380232fe5016b44b4a639baecd22e7b0d7b9bfa902a58f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-4-2.html",
+      "sha256": "f8c4558d7d19363cf8ad3f648fa56fe34fad61222d7972b6e9ef9168647df351"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2-4.html",
+      "sha256": "166079a2a99d08496e75be95f612827beae35ff7f36f554afc4dc73477e1bd40"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-2.html",
+      "sha256": "6f167b491a724352f35258549de37ae50a92f6e29e47116116ce8e5a3d06ac5b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-1-1.html",
+      "sha256": "f1571cb03968a28c1bbcfda37e6160526ebd97750b530f32abb065b9eba4d619"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-1.html",
+      "sha256": "015c529c41dffb2fe76a2fc4ffc3f4565506f70e1dde477d0d18a8b3cdb8743a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-2-1.html",
+      "sha256": "ea4bec7927b8962d0388986dd5b7823522b50819b4d4f72cb577344ea08b44e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-2.html",
+      "sha256": "a2cbb481be65bc7ce2569b74b6280dfa9c837ece4acde6cf9db190477de59dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-3.html",
+      "sha256": "e2bc8a263186c646d24335fb401c0c2622e92f72d2d6e6af6cdfc7b1dec8b95b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-4-1.html",
+      "sha256": "06ef3d83cd2b898dcc77a97ee55c5a41f287b9c713583bc4c7bdd9f0127691a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-4-2.html",
+      "sha256": "10abadbe9d6f7727c6cfb864a1ba3609e6178d6f3cd0bf9d27e8d724c3362fb7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3-4.html",
+      "sha256": "8058f75ad1994480873f6257cc962a02b798f3e036c267b1a60fe25b75ac7744"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6-3.html",
+      "sha256": "965f3f9c78d39962595ef2dd9f4328ddd771f713cf7ed6b56d9f68985407aaa0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-6.html",
+      "sha256": "c2b2da41fd2e484e15e73d66e65df4c75043ec49508ef3af66d0b4adfd1f6c47"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5-7.html",
+      "sha256": "e03584b668bb2690cec7bf1963f81e42679637ade73ae066d92ff62ca8039bad"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2-5.html",
+      "sha256": "0f8ea967fb0b9ed55c762325c2e07baf6ef4f8ed5ca12e0033790bc52821b22e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-2.html",
+      "sha256": "1d2c9836cf80937398bb01b2728ad86ca3f5d24d0795b8749482061384554b63"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-1-1.html",
+      "sha256": "f5f862c402fb3575d7f55cea5cb13ae0aac4db951cbb7dd380038876244ce589"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-1-2-1.html",
+      "sha256": "d7a1863f1ba69a5e32882ed78a790d8927d50276a2d80af769b3eaf984925522"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-1-2-2.html",
+      "sha256": "0ba51952f6672f8b0522fa92296b5e2d09a878c088fe166f475c9629a6eb295d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-1-2-3.html",
+      "sha256": "db8472c75436a8e04a892533e1278d33bb9bb6bfd4d1496890beeebff9ec0627"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-1-2.html",
+      "sha256": "656a5c8ea9893bcd5d9bc96fa461d76bdbc75d38497e058ef6029221b44546dc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-1.html",
+      "sha256": "b4df44e7f68d69e8e55f7b5fe0152bd2569dda1e70de6d6ea546e139017df43a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-1-1.html",
+      "sha256": "3785edd68205dd1d777d0533e3178426aceb77c814fb782b98e9c44316b6e6f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-1-2.html",
+      "sha256": "5a5756dec0c2c2d6b18c61bbeac417db85b0ef2615963de7cb68f1857cb4ad63"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-1.html",
+      "sha256": "d79bf8ac3efa4ff480679d74ae74bc1aba52d173129d1c1c413bc30da94a91e2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-2.html",
+      "sha256": "b18cdba7d55fa08754f78af7836bf97507702f0bab96be243837fa6099312bdd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-3-1.html",
+      "sha256": "9bc37dae6556ae7d92e903e0b20e212e142c1f8c10faa96bdeae8154987d48b3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-3-2.html",
+      "sha256": "75fe294d099b1947db165b2b99989f279713d41dc651b5762be3e6ce4263ff14"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-3.html",
+      "sha256": "61cc47314c6e46ce35ee62c7b3066bb18fa2dbee3fb0c5e042bf227f0c4d2fb4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-4.html",
+      "sha256": "d8c5a1986fab0548c5a816fc922dfdcb15d19cee0c8f56d066de084045b0739d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2-5.html",
+      "sha256": "e05869201247e8db2d65a491833694c4578fe3899678a397dc33632d7a2c5158"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-2.html",
+      "sha256": "4668838fe469753b0b7bce484646f5d2b9a7bfb7b839a8713a804c2826ba8fac"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-3-1.html",
+      "sha256": "6084107f8b5c9459127062662bd1a9aadd227d32c492a05af843fb7773219146"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-3-2.html",
+      "sha256": "a07e06dc6bc6e2dea7933127349497b7e96b8279d86ee0c3f5ffaac9c615889f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-3-3.html",
+      "sha256": "7de0e60a9a0f0a9a148470d6406a4ab475da49773852b03711ef25df169e650a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-3-4.html",
+      "sha256": "04d06b12f3a434510c59fdec20189cc4d9bae239909c5010bfe39c5239bba895"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-3.html",
+      "sha256": "0de02ea04f3ef71575f18579238f5214351632c4cd8cd61c7ed3f7dc61d40b60"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-4-1.html",
+      "sha256": "d4b05a2b23335313a4dc05e6cea22ebfee0fbcb359242a5c91c039b617644108"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-4-2.html",
+      "sha256": "de19e22543399914d76884b30039b8ec99ab004d935cd8d8e28c7cffd8b722ac"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-4-3.html",
+      "sha256": "0c652facc88225f27331db17ff34aaf12d192c216fb8ec058d5d0dea8fbf47db"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3-4.html",
+      "sha256": "d6e276fa819c80553f21d9bba5f78b6a23750c3b0030d2264c3bdbe495f54715"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-3.html",
+      "sha256": "1152be294d31e1e08111c82ee1fa4308511615e006b8e7f5bb736f5cfb23c1dc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-1.html",
+      "sha256": "797b0a95dbda677ab1783027132f22e99f90486a0a7b220563168dcd77128f74"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-2.html",
+      "sha256": "17083ff51800cd6dc156cfd9ba632eaf8e34cd9895ddd4ebb89f5f28c4c4e742"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-3.html",
+      "sha256": "8b7e247ab455b744dde985f1208bd4c60c0d12fbdded39d5fb38d085f3320c7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-4-1.html",
+      "sha256": "5652e039bed5f2093b476731cfd07722c86ad7bfa07397822dc958ea037b3c9b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-4-2.html",
+      "sha256": "3289baa93ec2a379809cd74580113aa07a8f613f4fafcee3410dbcbe20b57236"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-4-3.html",
+      "sha256": "8175f6d3851050f90f91fba79c38a381838240930a480ddb3c209e48d91595bd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-4-4.html",
+      "sha256": "0669211fb878bb234c906ff1bbbfc66edee0f942e32142952fb9a078ebb9fa27"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-4.html",
+      "sha256": "9a53d05a1942a9b30fc8dddfd6d10f53292f3b1f3f7a6e482659a0adb3f1be08"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-5-1.html",
+      "sha256": "3f971ccd01d8efbeca71911a3174c45c9b1b1bbf111455a7f90d4db41cd3a17c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1-5.html",
+      "sha256": "ce1d5920467d08d3195a05e1d9c058c6b3b549ac5e3e9544fb6ae634e31632b2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-1.html",
+      "sha256": "a86c4123079f8e644a0523692f88d2756de229620987074a10fa7a7c9e9f968d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-2-1.html",
+      "sha256": "d7481d84c66df65d72f1a2e42401ebd0818259687d05df60d2b6e6d6e3c101ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-2.html",
+      "sha256": "1871120cfcb587fdd4b2bb29c4f5ed6eda14cd194c0b657260f94ff7df9e40ba"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-3-1.html",
+      "sha256": "49d877001bcf25e390beccc57a68d401e2b153f5e234f95b25f43dbd874a63dc"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-3-2.html",
+      "sha256": "381d550b37970ade42308ec2d8e5694344ffa381d3b483f9c48af854a25c7570"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-3-3.html",
+      "sha256": "91b10ae2cb0df0df1460c0a0c3d44ed1ab8ef9933c27cf531851ee34493c3227"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-3.html",
+      "sha256": "5d4cef5bb09545cda117b11653670be3467f3f336d8371407ff5b0a8d310702d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-4-1.html",
+      "sha256": "dbb865a78f852aaca0dada4e53206592d70a9b6aa781659f57f4ca807dd8cd7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-4-2.html",
+      "sha256": "9feea89e78941bf20e66c6c51d9ca2e9841d3d0a13d61437a5fb987954cfd83b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1-4.html",
+      "sha256": "75afdf77a20f02b03b2f79be1c9895b8bfa85455c4f463430cc10712124b5db7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-1.html",
+      "sha256": "619c74c9bf9cb05e97598bf79514b5b68080c7120969adb82bef680f3d0c46a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-1.html",
+      "sha256": "51c346d9f05251d51788144e1813e4a61c3e33a595c32b03976d210351a71055"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-2.html",
+      "sha256": "67093c74af305c5b20630c5d9c5b63894fd4eb49aa088c6f189f1be76066cf3b"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-3.html",
+      "sha256": "36e4c2fbefdc3e18428c40bdf1731d943ff906e55cf61ae8aa3a09205465bc2d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-4.html",
+      "sha256": "3bcc68aba265256aac47eb8ed1767db81aa048dce339b64a80cb9e318beefaef"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-5.html",
+      "sha256": "39dfc4f7fcd98274df0fc5abfd299fd6b637434ece56c26f18795717042f0dc3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-6.html",
+      "sha256": "604c0da67a8d1c26be02867fa71ab9e9d597b9639f2ebfa4a093f1f9eb5be550"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1-7.html",
+      "sha256": "332f4fcfded64f567094e37b7e876437df601c9c8cc7e7e0fae56fb5a7219170"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-1.html",
+      "sha256": "cfc4c1a0ae21de6ff157b282c29d1042b9e4017293cbf3a7c48f4855f1f78998"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-2.html",
+      "sha256": "d16d97ee6d61629e9af10fd60a6d0cde09289e5aad8a4c51766de4073455cf73"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-3-1.html",
+      "sha256": "c84d4ac41364b8b7bc79924b6419e387a90c465556b7488d6c7538ea215cd273"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-3-2.html",
+      "sha256": "dd07927108d0231b7894961c6b6e741c1233b81cf89b6ffeb4f5e099f493eaa5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-3-3.html",
+      "sha256": "bda681b9b2d6d22210d4998aff28ef24c6b54f14bc8a15c80c6153de7ecfbefd"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-3.html",
+      "sha256": "8553136d6997a5a9cc12c944c6e2657498a67bcbacf859b8ee6af34a40a09b30"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2-4.html",
+      "sha256": "5a9ee849a1a3f2c1a49cf792580d9738a977f2b0dcb0ddbbdf9b7225862548f2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4-2.html",
+      "sha256": "e5abdb51c8a7b2dab30a0d7bca3e4c34d347c241e985a4204396b41dcb67ffc7"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-4.html",
+      "sha256": "992dcc540eff181c3013929bdf8fc6b9bfed3ddd444ff5ee48b348a7d2165331"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendices.html",
+      "sha256": "78a831ac1e2823f2218fe5d67f4b80f382261397050b3c72b34637edd27f7413"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-a.html",
+      "sha256": "eda245b81ba1966d3574dba430f7868b78f758fdf049092de23f3764046c7c5c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-b.html",
+      "sha256": "531f0e0300d1d6d59dca2ffafe3edbb0a16a1f570b97041fde79c8c8475cf3d1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-c.html",
+      "sha256": "eef4e336733134069e1b32afdb87b5d38476667704da18b7689f81f549b3fb9e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-d.html",
+      "sha256": "a0ec57a5f8568fe8715bed5ba6350512f8963515f7ef0a85f816a65ef9d3443d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-e.html",
+      "sha256": "a180ac3d1c047c79fc9213fbdfe23bab6b678a2f33fa7b9592e7cc2000740639"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-f.html",
+      "sha256": "d8e299163d5ac4c3fd330416f254c5b29a818bf004be07a8cbff653de27e0500"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-g.html",
+      "sha256": "417513b22d5b4879b922c40a747092af5efdbb4a4f9b635dcd0538119ccb9b1e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-h.html",
+      "sha256": "5d45118eb55c4450a8bd84f328545e4736de27f065dbdaafe0c0c467c5b822df"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mn-medicaid-appendix-i.html",
+      "sha256": "b7c5d1959b4cf6027b0891677883aed5608f0c5d10a2d5f6e2bdfeb9f84d9f39"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-mn-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2749,
+    "missing_count": 0,
+    "provision_count": 2749,
+    "source_count": 2749
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:01:09.366110+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IRtSOyrAqiNRB692arYGijc9TrmsoY4iEaUw2LM3A7Rkhyw+J3UELOT13iEmYjCiiSFFeWqgce6nA2Ne7og1Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

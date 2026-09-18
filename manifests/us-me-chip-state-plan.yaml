@@ -1,0 +1,656 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-me-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-me/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 20
+    index_records_total: 20
+- source_id: us-me-cms-chip-state-plan-spa-me-24-0025-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-24-0025: Approval Package (approved August 27, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-24-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-24-0025/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-24-0025
+    cms_node_id: '170511'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170511
+    approval_date: '2024-08-27'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-23-0025-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-23-0025: Approval Package (approved January 29, 2024, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-23-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-23-0025/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0025
+    cms_node_id: '158866'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=158866
+    approval_date: '2024-01-29'
+    effective_date: '2023-12-01'
+    summary: This SPA establishes a Health Services Initiative (HSI) to provide comprehensive coverage during the 12-month
+      postpartum period for individuals whose newborns had been eligible as targeted low-income children under the from-conception-to-end-of-pregnancy
+      (FCEP) option. The benefits provided during this postpartum period are identical to the benefits provided to pregnant
+      women enrolled in Medicaid.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-23-0027-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-23-0027: Approval Package (approved January 3, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-23-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-23-0027/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0027
+    cms_node_id: '157806'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=157806
+    approval_date: '2024-01-03'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-23-0006-me-23-0007-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-23-0006-ME-23-0007: Approval Package (approved May 5, 2023, effective March 28, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-23-0006-ME-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-03-28'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-23-0006-me-23-0007/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-23-0006-ME-23-0007
+    cms_node_id: '147821'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147821
+    approval_date: '2023-05-05'
+    effective_date: '2023-03-28'
+    summary: These SPAs allow Maine to transition its separate CHIP program, CubCare, to a Medicaid expansion program effective
+      March 1, 2023, with the exception of the from-conception-to-end of-pregnancy population (otherwise known as the “unborn
+      option”).
+    topics:
+    - Eligibility
+    - MCHIP Program
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-22-0020-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-22-0020: Approval Package (approved July 21, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-22-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-22-0020/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-22-0020
+    cms_node_id: '144716'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144716
+    approval_date: '2022-07-21'
+    effective_date: '2022-07-01'
+    summary: This SPA extends CHIP eligibility to children from conception to the end of pregnancy (otherwise known as “unborn”)
+      whose parent is not otherwise eligible for Medicaid or CHIP with incomes up to and including 208 percent of the federal
+      poverty level (FPL).
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-20-0021-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-20-0021: Approval Package (approved July 21, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-20-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-20-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0021
+    cms_node_id: '144721'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144721
+    approval_date: '2022-07-21'
+    effective_date: '2022-07-01'
+    summary: This SPA updates the CS9 template to extend CHIP eligibility to children from conception to the end of pregnancy
+      (otherwise known as “unborn”) whose parent is not otherwise eligible for Medicaid or CHIP with incomes up to and including
+      208 percent of the federal poverty level (FPL).
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-22-0022-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-22-0022: Approval Package (approved June 16, 2022, effective August 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-22-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-08-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-22-0022/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-22-0022
+    cms_node_id: '137021'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=137021
+    approval_date: '2022-06-16'
+    effective_date: '2022-08-01'
+    summary: This SPA provides Maine with approval to provide 12 months of continuous postpartum coverage to individuals enrolled
+      in its separate CHIP program.
+    topics:
+    - Benefits
+    - Disaster Relief Activation
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-22-0019-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-22-0019: Approval Package (approved April 28, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-22-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-22-0019/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-22-0019
+    cms_node_id: '135776'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=135776
+    approval_date: '2022-04-28'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-20-0007-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-20-0007: Approval Package (approved October 18, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-20-0007/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0007
+    cms_node_id: '127261'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=127261
+    approval_date: '2021-10-18'
+    effective_date: '2020-10-01'
+    summary: This amendment implements a health services initiative (HSI) to provide abatement services in the homes of low-income
+      children. In addition, this SPA restores the state’s current tobacco use prevention HSI, which is a statewide marketing
+      campaign to promote tobacco prevention among children and youth.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-20-0026-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-20-0026: Approval Package (approved April 6, 2021, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME-20-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-20-0026/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0026
+    cms_node_id: '110736'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110736
+    approval_date: '2021-04-06'
+    effective_date: '2019-07-01'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-17-0003-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-17-0003: Approval Package (approved January 25, 2018, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-17-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-17-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-17-0003
+    cms_node_id: '3816'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3816
+    approval_date: '2018-01-25'
+    effective_date: '2017-07-01'
+    summary: This SPA allows CHIP eligibility for all children with access to public employee coverage on the basis of a family
+      member's employment who are otherwise eligible targeted low-income children as defined at 42 CFP* 457 .310, provided
+      that the child's household income meets the same income standards as those applied to targeted low-income children under
+      the CHIP state plan.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-13-0024-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-13-0024: Approval Package (approved December 11, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-13-0024-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-13-0024/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-0024
+    cms_node_id: '2626'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2626
+    approval_date: '2013-12-11'
+    effective_date: '2014-01-01'
+    summary: Is approved to clarify the state's non-financial eligibility policies on residency; citizenship; social security
+      numbers; substitution of coverage; non-payment of premiums, and continuous eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-13-0021-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-13-0021,: Approval Package (approved October 16, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-13-0021-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-13-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-0021,
+    cms_node_id: '2616'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2616
+    approval_date: '2013-10-16'
+    effective_date: '2014-01-01'
+    summary: Provides assurance on page CS15 that the state will apply methodologies based on MAGI for all separate CHIP covered
+      groups; and using the approved MAGI conversion plan income thresholds, the state indicates on page CS7 that it will
+      cover targeted low-income children.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-13-0022-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-13-0022: Approval Package (approved October 16, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-13-0022-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-13-0022/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-0022
+    cms_node_id: '2621'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2621
+    approval_date: '2013-10-16'
+    effective_date: '2014-01-01'
+    summary: 'Provides coverage in a separate CHIP, as specified in the state''s submission of CS14: Children Ineligible for
+      Medicaid as a Result of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-13-033-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-13-033: Approval Package (approved October 16, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-13-0033-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-13-033/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-13-033
+    cms_node_id: '2631'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2631
+    approval_date: '2013-10-16'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to MAGI-equivalent standards, by age group, for children
+      covered in its Title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-cspa-07-approval-package
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-CSPA-07: Approval Package (approved July 2, 2012, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-CSPA-07-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-cspa-07/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-CSPA-07
+    cms_node_id: '2036'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2036
+    approval_date: '2012-07-02'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion technical corrections to the State plan allows Maine to claim
+      the eFMAP rate for translation services.
+    topics: &id002
+    - Dental
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-me-cms-chip-state-plan-spa-me-cspa-07-final-approved-state-plan
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP SPA ME-CSPA-07: Final Approved State Plan (approved July 2, 2012, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/ME-CSPA-07-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-me/policy/cms/chip-state-plan/spa/me-cspa-07/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: ME-CSPA-07
+    cms_node_id: '2036'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2036
+    approval_date: '2012-07-02'
+    effective_date: '2003-06-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion technical corrections to the State plan allows Maine to claim
+      the eFMAP rate for translation services.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-me-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP compiled state plan: Factsheet (approved September 22, 2005, effective January 1, 2005)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/MECurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: ME
+    cms_node_id: '2011'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2011
+    approval_date: '2005-09-22'
+    effective_date: '2005-01-01'
+    summary: Current CHIP State Plan as amended by SPA 6 and Factsheet as of 07-28-2009.
+    topics: &id003
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-me-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine CHIP compiled state plan: Current State Plan (approved September 22, 2005, effective January 1, 2005)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/ME/MECurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-01-01'
+  citation_path: us-me/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Maine
+    source_discovery_group: us-me/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: ME
+    cms_node_id: '2011'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2011
+    approval_date: '2005-09-22'
+    effective_date: '2005-01-01'
+    summary: Current CHIP State Plan as amended by SPA 6 and Factsheet as of 07-28-2009.
+    topics: *id003
+    link_label: Current State Plan

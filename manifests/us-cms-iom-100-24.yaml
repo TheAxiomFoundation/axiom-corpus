@@ -1,0 +1,212 @@
+version: 2026-09-10-medicare-cms-iom-100-24
+documents:
+- source_id: us-cms-iom-100-24-chapter-1
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-24 State Payment of Medicare Premiums, Chapter 1 - Program Overview and Policy
+  source_url: https://www.cms.gov/files/document/chapter-1-program-overview-and-policy.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-16'
+  citation_path: us/manual/cms/iom/100-24/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]{2,}:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Specified\ U\.S\.\ Territories$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-24
+    publication_title: State Payment of Medicare Premiums
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter: 1
+    chapter_title: Program Overview and Policy
+    latest_transmittal: Rev. 7, issued 2025-01-16
+    expression_date_source: 'TOC header transmittal line ''(Rev. 7; Issued: 01-16-2025)'''
+    pdf_page_count: 63
+    toc_section_count: 54
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-24
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    http_last_modified: Fri, 17 Jan 2025 17:56:19 GMT
+- source_id: us-cms-iom-100-24-chapter-2
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-24 State Payment of Medicare Premiums, Chapter 2 - Data Exchange Processes
+  source_url: https://www.cms.gov/files/document/chapter-2-data-exchange-processes.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-08-21'
+  citation_path: us/manual/cms/iom/100-24/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]{2,}:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^2\.11\.2\ Medicare\ Part\ A$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-24
+    publication_title: State Payment of Medicare Premiums
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter: 2
+    chapter_title: Data Exchange Processes
+    latest_transmittal: Rev. 4, issued 2020-08-21
+    expression_date_source: TOC header transmittal line '(Rev. 4, 08-21-20)'
+    pdf_page_count: 37
+    toc_section_count: 61
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-24
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    http_last_modified: Thu, 03 Sep 2020 14:42:10 GMT
+- source_id: us-cms-iom-100-24-chapter-3
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-24 State Payment of Medicare Premiums, Chapter 3 - Data Exchange
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/buyin_c03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-08-21'
+  citation_path: us/manual/cms/iom/100-24/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]{2,}:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^3\.5\.10\ CMS/TPS\ Buy\-in\ Exchange\ Trailer\ Record$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-24
+    publication_title: State Payment of Medicare Premiums
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter: 3
+    chapter_title: Data Exchange
+    latest_transmittal: Rev. 4, issued 2020-08-21
+    expression_date_source: TOC header transmittal line '(Rev. 4, 08-21-20)'
+    pdf_page_count: 56
+    toc_section_count: 20
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-24
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    http_last_modified: Thu, 03 Sep 2020 13:17:44 GMT
+- source_id: us-cms-iom-100-24-chapter-4
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-24 State Payment of Medicare Premiums, Chapter 4 - Code Descriptions
+  source_url: https://www.cms.gov/files/document/chapter-4-code-descriptions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-08-21'
+  citation_path: us/manual/cms/iom/100-24/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]{2,}:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^4\.8\.2\ SSI\ Status\ Codes\ \-\ Deletion$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-24
+    publication_title: State Payment of Medicare Premiums
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter: 4
+    chapter_title: Code Descriptions
+    latest_transmittal: Rev. 4, issued 2020-08-21
+    expression_date_source: TOC header transmittal line '(Rev. 4, 08-21-20)'
+    pdf_page_count: 41
+    toc_section_count: 17
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-24
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    http_last_modified: Thu, 03 Sep 2020 14:39:49 GMT
+- source_id: us-cms-iom-100-24-chapter-5
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-24 State Payment of Medicare Premiums, Chapter 5 - Premium Billing
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/buyin_c05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-08-21'
+  citation_path: us/manual/cms/iom/100-24/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]{2,}:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ 5\.D\ Listed\ Agency\ Billing\ \(LAB\)\ \-\ Summary\ Sheet$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-24
+    publication_title: State Payment of Medicare Premiums
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter: 5
+    chapter_title: Premium Billing
+    latest_transmittal: Rev. 4, issued 2020-08-21
+    expression_date_source: TOC header transmittal line '(Rev. 4, 08-21-20)'
+    pdf_page_count: 17
+    toc_section_count: 17
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-24
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    http_last_modified: Thu, 03 Sep 2020 13:23:17 GMT
+- source_id: us-cms-iom-100-24-chapter-6
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-24 State Payment of Medicare Premiums, Chapter 6 - Problem Cases and Resources
+  source_url: https://www.cms.gov/files/document/chapter-6-problem-cases-and-resources.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-08-21'
+  citation_path: us/manual/cms/iom/100-24/chapter-6
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?:Appendix\s+)?(?P<label>\d+\.(?:\d+(?:\.\d+)*|[A-Z]))(?:\s+|\s*[-–—]\s*)(?P<heading>[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\d+(?:\.\d+)*\s+[-–—])(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]{2,}:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ 6\.B\ RRB\ Report\ of\ State\ Buy\-in\ Problem\ \(Form\ RL\-380F\)$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-24
+    publication_title: State Payment of Medicare Premiums
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    chapter: 6
+    chapter_title: Problem Cases and Resources
+    latest_transmittal: Rev. 4, issued 2020-08-21
+    expression_date_source: TOC header transmittal line '(Rev.4, 08-21-20)'
+    pdf_page_count: 15
+    toc_section_count: 24
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-24
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019212
+    http_last_modified: Thu, 03 Sep 2020 14:47:50 GMT

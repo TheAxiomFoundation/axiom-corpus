@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter.json",
+      "sha256": "9d0211b2ff9748a456792b411dde69a589c51a3f7f749806dc1001ee5b36530a"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter.json",
+      "sha256": "f5937de472767d6a9a44757714c595c185aaab0d2519654191a22934d74d486d"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter.jsonl",
+      "sha256": "847da9da0164b56d23efb1afc15fd6dd79da674ab404711b8e2fdb93e48db050"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter/official-documents/de-bmf-2014-01-17-civil-partners.html",
+      "sha256": "32c35766674768558952d8a0582c82eae4e17311cc7fa019a4f7026197445df7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e818d5b5ce21f77c92bfaf6a1bab022a6b3719ce",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-civil-partner-letter --manifest manifests/de-kindergeld-civil-partner-letter.yaml --source-as-of 2026-09-09 --expression-date 2026-09-09 (local_path replay of retained official HTML; native anchor_range extraction)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-09T01:31:57.995945+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-09-de-kindergeld-civil-partner-letter.md",
+      "sha256": "3b9094c98a8ff8202fa43e76da904f61bc022e52da0ca4e714f72c1059bd0468"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/t3gi8Jr7Rjr5THyV7VjmTQaRMNFkMq0bXu2B+T0PgJzwGOQdGpEBK3pZlOfQv4sPLMyUzj+/rEJlc3cYWiOCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-civil-partner-letter"
+}

@@ -1,0 +1,402 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-md-medicaid-beginning-of-manual
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Beginning of Manual'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Beginning%20of%20Manual.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/beginning-of-manual
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-manual-table-of-contents
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Manual Table of Contents'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Manual%20Table%20of%20Contents.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/manual-table-of-contents
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-200
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 200 Definitions'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20200-Definitions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-300
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 300 Coverage Groups'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20300-%20Coverage%20Groups.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-400
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 400 Application Requirements'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20400-%20Application%20Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-500
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 500 Non-Financial Eligibility Requirements'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20500-Non-Financial%20Eligibility%20Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-600
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 600 The Assistance Unit'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20600-%20The%20Assistance%20Unit.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-600
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-700
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 700 Income'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20700-%20Income.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-700
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-800
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 800 Resources'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20800-%20Resources.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-800
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-800-resource-table-2024
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 800 Resource Table 2024'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section-800-Resource-Table-2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-800-resource-table-2024
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-900
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 900 Determining Finanicial Eligib. For Non-Institutionalized
+    Persons'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%20900-%20Determining%20Finanicial%20Eligib.%20For%20Non-Institutionalized%20Persons.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-900
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1000
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1000 Eligibility for Institutionalized Persons.Final 5-15-14'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201000-Eligibility%20for%20Institutionalized%20Persons.Final%205-15-14.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1100
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1100 Certification Periods'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201100-Certification%20Periods.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1200
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1200 Post Eligibility Requirements'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201200-%20Post%20Eligibility%20Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1300
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1300 Hearings'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201300-Hearings.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1400
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1400 Fraud and Abuse'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201400-Fraud%20and%20Abuse.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1500
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1500 Liens'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201500%20-Liens.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-section-1600
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Section 1600 COMAR 7-15-13'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Section%201600-COMAR%207-15-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/section-1600
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page
+- source_id: us-md-medicaid-appendix-schedules-2026
+  jurisdiction: us-md
+  document_class: manual
+  title: 'Maryland Medical Assistance Eligibility Manual: Appendix schedules 2026 (effective 1/1/2026)'
+  source_url: https://health.maryland.gov/mmcp/Medicaid%20Manual/Appendix%20schedules%202026%20Eff%201_1_2026%20updates.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-md/manual/mdh/medicaid/appendix-schedules-2026
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Health, Medicaid (Medical Care Programs) Administration
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Maryland Medical Assistance Eligibility Manual
+    manual_index_url: https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    source_discovery_group: us-md/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://health.maryland.gov/mmcp/Pages/MedicaidManual.aspx
+    extraction_granularity: pdf_page

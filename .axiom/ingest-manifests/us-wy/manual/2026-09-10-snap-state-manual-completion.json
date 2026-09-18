@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "33c430a1732ce06ba5f050be052573d887c85c0b6d9a8508003f98dc368efbdd"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "b39dbb58ee736c5de29b1e0a6576f2aa06acfb8fca3000f9596119cf47dc2526"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/manual/2026-09-10-snap-state-manual-completion.jsonl",
+      "sha256": "b01684f0789b074e1b13f1ae943bcf4ceff0e96a201586588f9a146f299b7f5b"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-09-10-snap-state-manual-completion/official-documents/wy-dfs-snap-power-glossary.html",
+      "sha256": "c965b602ed1ea458680b6a3442a2906371e9a2832e323c18e73a1e36295c9f7e"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-09-10-snap-state-manual-completion/official-documents/wy-dfs-snap-power-policy-clarifications.html",
+      "sha256": "15f92aa21f187c92c5a840430741893e85eeeffa570f3b1fe52e94d8950b8ab1"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-09-10-snap-state-manual-completion/official-documents/wy-dfs-snap-power-purchasing-and-preparing-food-separately-and-pass-through-rent.html",
+      "sha256": "466ec11c27d2cf8bda8d0cc084c19224cbbf6460de69d2ee7bddccefeffc5e99"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-09-10-snap-state-manual-completion/official-documents/wy-dfs-snap-power-table-i-snap-income-limits.html",
+      "sha256": "c221283c39ea413a6ac7074af11dde17b2da727ef1f0bb796514868c619ae56f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-snap-state-manual-completion --manifest manifests/us-wy-snap-manual-completion.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:12:13.275562+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GCbEn4aLWI4TQ8TvJhrCzgbMXxKzQVO3qbRhxMt3rVRO52DZg0r3u/xoWWC/puAWvVrf5YkQZadBjVXBIS95BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-snap-state-manual-completion"
+}

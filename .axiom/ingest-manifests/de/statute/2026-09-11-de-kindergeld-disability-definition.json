@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-11-de-kindergeld-disability-definition.json",
+      "sha256": "3cdc545fbb4ba4cb6632bda82a4c0721642006b20c491da3218612c227e6bc0c"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-11-de-kindergeld-disability-definition.json",
+      "sha256": "a9c486cb8e3ed0be52aa2eeff924dfb752b623eea4c92de006a95c13e529b088"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-11-de-kindergeld-disability-definition.jsonl",
+      "sha256": "d7c8040df1941272b50bf0c77060439116ff3797d0f301741d883b4e4a0b7d86"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-11-de-kindergeld-disability-definition/bthg/BJNR323400016.xml",
+      "sha256": "35cf92935aea2c5fe11111e438006603858d705d3c1de062215a10dafb2a0699"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-11-de-kindergeld-disability-definition/sgb_9_2018/BJNR323410016.xml",
+      "sha256": "b5bf63f00ed8d1865377c70672924259b553cd88024c91267634f102ae83a427"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d869121832409169e27862e347e94b1fad4ff795",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native source replay documented in docs/ingest-runs/2026-09-11-de-kindergeld-disability-definition.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 307,
+    "missing_count": 0,
+    "provision_count": 307,
+    "source_count": 307
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-11T19:57:30.731888+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-11-de-kindergeld-disability-definition-audit.json",
+      "sha256": "8fd87f7e7cc6a88a2a4812587fba1c0ccdbf55f201347790d37459741a1f925f"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Z6JNokAw5H67F/4AFulgHirdnCHJW+IcdviYVPJiqKxEBuEs5wSOnaqc1eFtMmpfT/ygmXovOkwSFerz+dwwBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-disability-definition"
+}

@@ -1,0 +1,436 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: wi-dhs-ssi-admin-1-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Administration Handbook: 1.1 Introduction'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/policyfiles/1.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-admin/1-1
+  extraction:
+    html_drop_selectors: &id001
+    - .topic-header
+    - .topic-header-shadow
+    - .breadcrumbs
+    - .minitoc
+    - .expanding-content
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-23129
+    handbook: SSI Administration Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: State SSI Supplement (Wis. Stat. 49.77)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-admin/ssi-admin.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/whxdata/toc.new.js
+    toc_label: 1.1 Introduction
+    toc_order: 1
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-admin
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-admin-2-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Administration Handbook: 2.1 Federal and State SSI Recipients'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/policyfiles/2.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-admin/2-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-23129
+    handbook: SSI Administration Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: State SSI Supplement (Wis. Stat. 49.77)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-admin/ssi-admin.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/whxdata/toc.new.js
+    toc_label: 2.1 Federal and State SSI Recipients
+    toc_order: 2
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-admin
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-admin-3-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Administration Handbook: 3.1 State-Only SSI Recipients'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/policyfiles/3.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-admin/3-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-23129
+    handbook: SSI Administration Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: State SSI Supplement (Wis. Stat. 49.77)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-admin/ssi-admin.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/whxdata/toc.new.js
+    toc_label: 3.1 State-Only SSI Recipients
+    toc_order: 3
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-admin
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-admin-4-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Administration Handbook: 4.1 SSI Payment Levels'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/policyfiles/4.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-admin/4-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-23129
+    handbook: SSI Administration Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: State SSI Supplement (Wis. Stat. 49.77)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-admin/ssi-admin.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/whxdata/toc.new.js
+    toc_label: 4.1 SSI Payment Levels
+    toc_order: 4
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-admin
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-admin-4-2
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Administration Handbook: 4.2 Forms and Pubs'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/policyfiles/4.2.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-admin/4-2
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-23129
+    handbook: SSI Administration Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: State SSI Supplement (Wis. Stat. 49.77)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-admin/ssi-admin.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/whxdata/toc.new.js
+    toc_label: 4.2 Forms and Pubs
+    toc_order: 5
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-admin
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-1-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 1.1 Introduction'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/1.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/1-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 1.1 Introduction
+    toc_order: 1
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-2-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 2.1 SSI-E for People in Substitute Care'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/2.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/2-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 2.1 SSI-E for People in Substitute Care
+    toc_order: 2
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-3-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 3.1 SSI-E for People in Natural Residential Settings'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/3.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/3-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 3.1 SSI-E for People in Natural Residential Settings
+    toc_order: 3
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-4-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 4.1 SSI-E and Other Benefits'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/4.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/4-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 4.1 SSI-E and Other Benefits
+    toc_order: 4
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-5-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 5.1 Appeals and Complaints'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/5.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/5-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 5.1 Appeals and Complaints
+    toc_order: 5
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-6-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 6.1 SSI-E Payment Rates'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/6.1.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/6-1
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 6.1 SSI-E Payment Rates
+    toc_order: 6
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-6-2
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 6.2 Grandfathered Facilities'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/6.2.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/6-2
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 6.2 Grandfathered Facilities
+    toc_order: 7
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped
+- source_id: wi-dhs-ssi-e-6
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin SSI Exceptional Expense (SSI-E) Handbook: 6.3 SSI Forms'
+  source_url: https://www.emhandbooks.wisconsin.gov/ssi-e/policyfiles/6.htm
+  source_format: html
+  source_as_of: '2026-09-11'
+  expression_date: '2026-05-01'
+  citation_path: us-wi/manual/dhs/ssi/ssi-e/6
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    hosting_authority: emhandbooks.wisconsin.gov (the DHS eligibility-handbook host)
+    document_subtype: policy_handbook_topic
+    publication_number: P-20679
+    handbook: SSI Exceptional Expense (SSI-E) Handbook
+    handbook_release: 26-01
+    program: ssi_state_supplement
+    state_program: SSI Exceptional Expense Supplement (SSI-E)
+    federal_program: SSI
+    state: WI
+    manual_landing_page: https://www.emhandbooks.wisconsin.gov/ssi-e/ssi-e.htm
+    manual_toc_url: https://www.emhandbooks.wisconsin.gov/ssi-e/whxdata/toc.new.js
+    toc_label: 6.3 SSI Forms
+    toc_order: 8
+    index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+    program_index_url: https://www.dhs.wisconsin.gov/ssi/index.htm
+    source_discovery_group: us-wi/manual/dhs/ssi/ssi-e
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://www.dhs.wisconsin.gov/ssi/publications.htm
+    extraction_note: RoboHelp 2022 topic page; the topic header, breadcrumbs, mini table of contents and glossary pop-up text
+      (.expanding-content) are dropped

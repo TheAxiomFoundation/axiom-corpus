@@ -1,0 +1,1660 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-la-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 561
+- source_id: us-la-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 561
+- source_id: us-la-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 561
+- source_id: us-la-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 561
+- source_id: us-la-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 561
+- source_id: us-la-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 6
+    index_records_on_page: 61
+    index_records_total: 561
+- source_id: us-la-cms-medicaid-state-plan-spa-la-25-0013-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-25-0013: Approval Document (approved November 3, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-25-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0013
+    cms_node_id: '185931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185931
+    approval_date: '2025-11-03'
+    effective_date: '2025-07-01'
+    summary: This Amendment amends provisions governing personal needs allowance (PNA) by increasing the monthly limit amount
+      for personal care needs to better support long-term care (LTC) members with personal expenses not covered by facility
+      fees.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-25-0004-a-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-25-0004-A: Approval Document (approved August 28, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-25-0004-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-25-0004-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0004-A
+    cms_node_id: '184071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=184071
+    approval_date: '2025-08-28'
+    effective_date: '2025-04-01'
+    summary: The SPA makes provisions governing the Medicaid Purchase Plan to increase the income limit and countable resources
+      and to adjust the premium structure accordingly.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-25-0004-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-25-0004: Approval Document (approved May 16, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-25-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-25-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-25-0004
+    cms_node_id: '180061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=180061
+    approval_date: '2025-05-16'
+    effective_date: '2025-04-01'
+    summary: This Amendment increases the income and resources standards for its TWWIIA Basic eligibility group.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-24-0021-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-24-0021: Approval Document (approved March 5, 2025, effective December 20, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-24-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-12-20'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-24-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-24-0021
+    cms_node_id: '177226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=177226
+    approval_date: '2025-03-05'
+    effective_date: '2024-12-20'
+    summary: This amendment allows provisions governing the Pharmacy Benefits Management Program to update the copay tier
+      payment schedule to align with the U.S. Department of Health and Human Service, CMS, recommended guidelines.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-24-0001-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-24-0001: Approval Document (approved September 17, 2024, effective January 20, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-20'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-24-0001
+    cms_node_id: '169411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169411
+    approval_date: '2024-09-17'
+    effective_date: '2024-01-20'
+    summary: This amendment adopts provisions governing incurred medical and remedial care expenses in the determination of
+      financial eligibility for the Medical Assistance Program in order to deduct expenses incurred for necessary medical
+      and remedial care, subject to the reasonable limits, from the individual's income when calculating patient liability
+      to an institution and to limit the time institutions have to report these expenses.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-24-0014-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-24-0014: Approval Document (approved August 12, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-24-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-24-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-24-0014
+    cms_node_id: '168201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168201
+    approval_date: '2024-08-12'
+    effective_date: '2024-07-01'
+    summary: The purpose of this SPA is to amend the provisions governing third party liability.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-24-0004-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-24-0004: Approval Document (approved May 14, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-24-0004
+    cms_node_id: '164816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=164816
+    approval_date: '2024-05-14'
+    effective_date: '2024-01-01'
+    summary: This amendment is to comply with Section 5112 of the Consolidated Appropriations Act (CAA) 2023, which requires
+      states to provide continuous eligibility to children under the age of 19 in Medicaid.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-23-0028-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-23-0028: Approval Document (approved December 13, 2023, effective July 20, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-23-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-20'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-23-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-23-0028
+    cms_node_id: '157536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157536
+    approval_date: '2023-12-13'
+    effective_date: '2023-07-20'
+    summary: This amendment is to include new resource disregards in its state plan for purposes of determining financial
+      eligibility for certain Medicaid eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-23-0002-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-23-0002: Approval Document (approved June 27, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-23-0002
+    cms_node_id: '149881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=149881
+    approval_date: '2023-06-27'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt additional resource disregards under the authority of section 1902(r)(2) of the Social Security
+      Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-23-0004-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-23-0004: Approval Document (approved June 9, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-23-0004
+    cms_node_id: '148821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148821
+    approval_date: '2023-06-09'
+    effective_date: '2023-07-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORD Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-21-0010-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-21-0010: Approval Document (approved August 26, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/LA-21-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-21-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-21-0010
+    cms_node_id: '125561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=125561
+    approval_date: '2021-08-26'
+    effective_date: '2021-04-01'
+    summary: This state plan amendment is to to amend the provisions governing third party liability in order to clarify language.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-20-0013-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-20-0013: Approval Document (approved January 12, 2021, effective November 20, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/LA-20-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-11-20'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-20-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-20-0013
+    cms_node_id: '105431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105431
+    approval_date: '2021-01-12'
+    effective_date: '2020-11-20'
+    summary: This state plan amendment is to amend the provisions governing hospice services provided concurrently with life-prolonging
+      treatments to individuals under age 21 in order to update existing terminology and reflect current practices, and to
+      comply with federal requirements which allow for pediatric concurrent care
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-20-0006-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-20-0006: Approval Document (approved June 26, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-20-0006
+    cms_node_id: '99891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99891
+    approval_date: '2020-06-26'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing, and remove language that requires Pediatric Day Healthcare Center
+      (PDHC) closure in order for families to receive services in a residential setting.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-20-0003-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-20-0003: Approval Document (approved May 27, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-20-0003
+    cms_node_id: '98811'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98811
+    approval_date: '2020-05-27'
+    effective_date: '2020-01-01'
+    summary: Amends the provisions governing the definition of a public, non-rural community hospital, to include Thibodaux
+      Regional Medical Center, formerly owned by a parish, city or other local government or instrumentality, after January
+      1, 2019.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-22-0004-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-22-0004: Approval Document (approved April 20, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-22-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-22-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-22-0004
+    cms_node_id: '135021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135021
+    approval_date: '2020-04-20'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to cover the new optional group for COVID testing, suspend all cost sharing, extend all prior authorization
+      by automatic renewal without clinical review or time/quantity extensions, expand telehealth, adjust prior authorizations
+      for medications, and increase certain payment rates.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-20-0004-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-20-0004: Approval Document (approved April 20, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-20-0004
+    cms_node_id: '97586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97586
+    approval_date: '2020-04-20'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to cover the new optional group for COVID testing, suspend all cost sharing, extend all prior authorization
+      by automatic renewal without clinical review or time/quantity extensions, expand telehealth, adjust prior authorizations
+      for medications, and increase certain payment rates.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-19-0027-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-19-0027: Approval Document (approved February 10, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/LA-19-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-19-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-19-0027
+    cms_node_id: '183621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183621
+    approval_date: '2020-02-10'
+    effective_date: '2020-01-01'
+    summary: Proposes to establish qualifying criteria and a for disproportionate share hospital (DSH) payment methodology
+      for West Jefferson Hospital, a major medical center located in southeastern area of Louisiana
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-18-0027-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-18-0027: Approval Document (approved January 8, 2020, effective November 13, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA 18-0027_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-11-13'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-18-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-18-0027
+    cms_node_id: '57491'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=57491
+    approval_date: '2020-01-08'
+    effective_date: '2018-11-13'
+    summary: Update the electronic Medicaid application that was developed as part of the state’s new eligibility and enrollment
+      system
+    topics:
+    - Current State Plan
+    - Data & Systems
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-19-0023-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA -19-0023: Approval Document (approved December 20, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA -19-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-19-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA -19-0023
+    cms_node_id: '57431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=57431
+    approval_date: '2019-12-20'
+    effective_date: '2019-10-01'
+    summary: Amends the provisions governing financial eligibility in the Medical Assistance Program in order to disregard
+      all resources in eligibility determinations for all Medicare Savings Programs
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-19-0009-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-19-0009: Approval Document (approved March 22, 2019, effective February 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-19-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-02-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-19-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-19-0009
+    cms_node_id: '6846'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6846
+    approval_date: '2019-03-22'
+    effective_date: '2019-02-01'
+    summary: Adopts the CHIPRA option which will provide Medicaid coverage by eliminating the five-year waiting period and
+      provide coverage to lawfully residing children under the age of 19.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-19-0011-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-19-0011: Approval Document (approved March 21, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-19-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-19-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-19-0011
+    cms_node_id: '6911'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=6911
+    approval_date: '2019-03-21'
+    effective_date: '2019-01-01'
+    summary: Updates the Code of Federal Regulations (CFR) citation on the state plan page.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-17-0025-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-17-0025: Approval Document (approved February 27, 2018, effective December 20, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-17-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-12-20'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-17-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-17-0025
+    cms_node_id: '11546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11546
+    approval_date: '2018-02-27'
+    effective_date: '2017-12-20'
+    summary: Amends the provisions governing Express Lane Eligibility (ELE) by removing certain agencies from the eligibility
+      determinations process, in compliance with the requirements of the U.S. Department of Health and Human Services, Centers
+      for Medicare & Medicaid Services.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-16-0010-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-16-0010: Approval Document (approved June 28, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-16-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-16-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-16-0010
+    cms_node_id: '18856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=18856
+    approval_date: '2016-06-28'
+    effective_date: '2016-07-01'
+    summary: Amends the provisions governing Medicaid eligibility in order to return to a determination state and accept Medicaid
+      eligibility determinations made by the Federally Facilitated Marketplace.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-16-0012-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-16-0012: Approval Document (approved May 27, 2016, effective July 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-16-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-16-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-16-0012
+    cms_node_id: '19396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19396
+    approval_date: '2016-05-27'
+    effective_date: '2016-07-01'
+    summary: Establishes provisions to use the Supplemental Nutritional Assistance Program (SNAP) option for the streamlined
+      enrollment of SNAP recipients who meet the eligibility requirements for the new adult group under Medicaid expansion
+      as authorized under the provisions of the Affordable Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-15-0016-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-15-0016: Approval Document (approved October 8, 2015, effective November 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-15-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-11-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-15-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-15-0016
+    cms_node_id: '22026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22026
+    approval_date: '2015-10-08'
+    effective_date: '2015-11-01'
+    summary: To amend the provisions in the LA Medicaid State Plan governing Federally Facilitated Marketplace eligibility
+      determinations to become an "assessment" state and only accept eligibility assessment from the FFM rather than accepting
+      Medicaid eligibility determinations made by the FFM.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-15-0010-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-15-0010: Approval Document (approved June 12, 2015, effective February 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-15-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-02-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-15-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-15-0010
+    cms_node_id: '26741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26741
+    approval_date: '2015-06-12'
+    effective_date: '2015-02-01'
+    summary: Provisions for governing coordinated care network and Medicaid managed care in order to change the name and to
+      incorporate programmatic changes resulting from the inclusion of basic behavioral health services in the program and
+      the voluntary enrollment of Medicaid eligible children identified in the Melanie Chisholm.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-14-15-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-14-15: Approval Document (approved January 22, 2015, effective July 20, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-14-15.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-20'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-14-15/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-15
+    cms_node_id: '29301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29301
+    approval_date: '2015-01-22'
+    effective_date: '2014-07-20'
+    summary: The state plan makes individuals receiving hospice services mandatory participants in BAYOU HEALTH and individuals
+      receiving home and community based waiver services voluntary participants.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-14-13-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-14-13: Approval Document (approved July 16, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-14-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-14-13/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-13
+    cms_node_id: '34676'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34676
+    approval_date: '2014-07-16'
+    effective_date: '2014-07-01'
+    summary: The SPA proposes to adopt provisions to establish a new optional eligibility group under the Medicaid State Plan
+      to provide coverage for family planning services and supplies to eligible men and non-pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-14-0028-mm1-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-14-0028-MM1: Approval Document (approved July 15, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-14-0028-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-14-0028-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-0028-MM1
+    cms_node_id: '34901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34901
+    approval_date: '2014-07-15'
+    effective_date: '2014-07-01'
+    summary: Establishes a New Optional Eligibility Group Under the Medicaid State Plan to Provide Coverage for Family Planning
+      Services and Supplies to Eligible Men and Non-Pregnant Women.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-14-22-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-14-22: Approval Document (approved July 9, 2014, effective June 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-14-22.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-06-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-14-22/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-22
+    cms_node_id: '34671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34671
+    approval_date: '2014-07-09'
+    effective_date: '2014-06-01'
+    summary: The SPA proposes to amend the provisions governing outpatient hospital services to remove the visit limits on
+      emergency room services.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-14-10-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-14-10: Approval Document (approved June 30, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-14-10.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-14-10/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-14-10
+    cms_node_id: '34681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34681
+    approval_date: '2014-06-30'
+    effective_date: '2014-04-01'
+    summary: This amendment increases the allowable cost of the provider tax that can be recognized for reimbursement purposes
+      from $14.30 to $16.15 per day, for Intermediate Care Facilities for Individuals with Intellectual Disabilities (ICF/IID).
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-0051-mm-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-0051-MM: Approval Document (approved March 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-51-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-0051-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-0051-MM
+    cms_node_id: '37906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37906
+    approval_date: '2014-03-26'
+    effective_date: '2014-01-01'
+    summary: Designates the Income Options Louisiana is Electing for 2014.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-0055-mm7-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-0055-MM7: Approval Document (approved March 13, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-55-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-0055-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-0055-MM7
+    cms_node_id: '37911'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37911
+    approval_date: '2014-03-13'
+    effective_date: '2014-01-01'
+    summary: Specifies Options for Presumptive Eligibility Conducted by Hospitals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-0050mm2-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-0050MM2: Approval Document (approved March 13, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-0050MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-0050mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-0050MM2
+    cms_node_id: '38176'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38176
+    approval_date: '2014-03-13'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements, including the single streamlined application
+      into Louisiana Medicaid State Plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-53-mm5-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-53-MM5: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-53-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-53-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-53-MM5
+    cms_node_id: '38316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38316
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: Affirms Residency Regulations and Addresses Interstate Agreements and Temporary Absence in accordance with PPACA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-54-mm6-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-54-MM6: Approval Document (approved March 6, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-54-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-54-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-54-MM6
+    cms_node_id: '38321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38321
+    approval_date: '2014-03-06'
+    effective_date: '2013-12-31'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-0054-mm6-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-0054-MM6: Approval Document (approved March 6, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-0054-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-0054-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-0054-MM6
+    cms_node_id: '38356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38356
+    approval_date: '2014-03-06'
+    effective_date: '2013-12-31'
+    summary: This SPA affirms citizenship regulations, specifies reasonable opportunity options and specifies policy options
+      related to immigrant eligibility in accordance with the Patient Protection and Affordable Care Act.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-49mm1-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-49MM1: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-49MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-49mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-49MM1
+    cms_node_id: '38181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38181
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: This SPA converts Louisiana State Plan eligibility groups to the new MAGI-Based eligibility groups in accordance
+      with the Patient Protection and Affordability Act.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-13-56-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-13-56: Approval Document (approved February 12, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-13-56.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-13-56/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-13-56
+    cms_node_id: '38611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38611
+    approval_date: '2014-02-12'
+    effective_date: '2013-12-31'
+    summary: This SPA excludes all income when determining eligibility for pregnant minors.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-12-57-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-12-57: Approval Document (approved December 21, 2012, effective August 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-12-57.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-08-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-12-57/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-12-57
+    cms_node_id: '25171'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25171
+    approval_date: '2012-12-21'
+    effective_date: '2012-08-01'
+    summary: Allows the State to implement immediate auto-assignment of pregnant women whose Medicaid eligibility is limited
+      to prenatal, delivery, and post-partum services to the Bayou Health Program.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-12-09-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-12-09: Approval Document (approved June 12, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-12-09-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-12-09/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-12-09
+    cms_node_id: '33136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33136
+    approval_date: '2012-06-12'
+    effective_date: '2012-04-01'
+    summary: The plan amendment makes the state be able to comply with federal requirements of section 1902 of the Affordable
+      Care Act regarding Freestanding Birth Center Services. The plan amendment does not have a direct Impact on Indians,
+      Indian Health programs, or Urban Indian organizations.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-12-09-attachment
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-12-09: Attachment (approved June 12, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-12-09-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-12-09/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: LA-12-09
+    cms_node_id: '33136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33136
+    approval_date: '2012-06-12'
+    effective_date: '2012-04-01'
+    summary: The plan amendment makes the state be able to comply with federal requirements of section 1902 of the Affordable
+      Care Act regarding Freestanding Birth Center Services. The plan amendment does not have a direct Impact on Indians,
+      Indian Health programs, or Urban Indian organizations.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-la-cms-medicaid-state-plan-spa-la-12-09-form-cms-179
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-12-09: Form CMS-179 (approved June 12, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-12-09-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-12-09/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: LA-12-09
+    cms_node_id: '33136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33136
+    approval_date: '2012-06-12'
+    effective_date: '2012-04-01'
+    summary: The plan amendment makes the state be able to comply with federal requirements of section 1902 of the Affordable
+      Care Act regarding Freestanding Birth Center Services. The plan amendment does not have a direct Impact on Indians,
+      Indian Health programs, or Urban Indian organizations.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-la-cms-medicaid-state-plan-spa-la-10-01-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-10-01: Approval Document (approved April 27, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-10-01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-10-01/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-10-01
+    cms_node_id: '23401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23401
+    approval_date: '2010-04-27'
+    effective_date: '2010-01-01'
+    summary: Revises the Medicare Savings Program in response to the Medicare Improvements of Patients and Providers Act of
+      2008 in order to incorporate provisions regarding the submittal of low income subsidy data and to disregard certain
+      assets in the eligibility determination process.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-la-cms-medicaid-state-plan-spa-la-09-41-approval-document
+  jurisdiction: us-la
+  document_class: policy
+  title: 'Louisiana Medicaid SPA LA-09-41: Approval Document (approved November 3, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-09-41.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-la/policy/cms/medicaid-state-plan/spa/la-09-41/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Louisiana
+    source_discovery_group: us-la/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: LA-09-41
+    cms_node_id: '28816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28816
+    approval_date: '2009-11-03'
+    effective_date: '2009-07-01'
+    summary: The purpose of this amendment is to revise the method of evaluating the cost effectiveness of the Louisiana Health
+      Insurance Premium Payment Program (LaHIPP).
+    topics:
+    - Cost Sharing
+    link_label: Approval Document

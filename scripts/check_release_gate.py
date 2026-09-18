@@ -18,8 +18,10 @@ from typing import Any, cast
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
+    DEFAULT_DATABASE_URL_ENV,
     _management_api_post_json_with_curl,
     preview_corpus_release_activation,
+    preview_corpus_release_activation_direct,
 )
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
@@ -43,9 +45,9 @@ class CheckResult:
 
 
 def _canonical_content_sha(content: object) -> str:
-    encoded = json.dumps(
-        content, sort_keys=True, separators=(",", ":"), ensure_ascii=True
-    ).encode("ascii")
+    encoded = json.dumps(content, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode(
+        "ascii"
+    )
     return hashlib.sha256(encoded).hexdigest()
 
 
@@ -133,9 +135,7 @@ def _identity_check(
 ) -> CheckResult:
     failures: list[str] = []
     if release_object.get("release") != release:
-        failures.append(
-            f"release field is {release_object.get('release')!r}, expected {release!r}"
-        )
+        failures.append(f"release field is {release_object.get('release')!r}, expected {release!r}")
     actual_sha = _canonical_content_sha(release_object.get("content"))
     object_sha = release_object.get("content_sha256")
     if actual_sha != object_sha:
@@ -149,7 +149,9 @@ def _identity_check(
     return CheckResult(
         "object_identity",
         not failures,
-        "; ".join(failures) if failures else f"release and signed content sha {actual_sha} verified",
+        "; ".join(failures)
+        if failures
+        else f"release and signed content sha {actual_sha} verified",
     )
 
 
@@ -277,6 +279,34 @@ def _monotonicity_check(
                 f"{pair}: active release {current_release!r} has no version evidence"
             )
             continue
+        if set(incoming[pair]) == {str(value) for value in current_versions}:
+            # Identical version evidence on both sides is monotone by
+            # identity — no version-key ordering proof is needed (some
+            # grandfathered versions, e.g. us-ky form 2026-740-es, do
+            # not parse as YYYY-MM-DD-…). Ordering reduces to the same
+            # publication-recency requirement the frontier-tie branch
+            # enforces below.
+            try:
+                incoming_published = _timestamp(
+                    row.get("incoming_published_at"),
+                    label="incoming database publication timestamp",
+                )
+                current_published = _timestamp(
+                    row.get("current_published_at"),
+                    label=f"{pair} active publication timestamp",
+                )
+            except ValueError as exc:
+                evidence_schema_failures.append(str(exc))
+                ordering_evidence_failed = True
+                continue
+            if incoming_published < current_published:
+                ordering_regressions.append(
+                    f"{pair}: identical version evidence, but incoming "
+                    f"{incoming_release!r} was published "
+                    f"{incoming_published.isoformat()} before active "
+                    f"{current_release!r} at {current_published.isoformat()}"
+                )
+            continue
         try:
             incoming_frontier = max(_version_key(value) for value in incoming[pair])
             active_frontier = max(_version_key(str(value)) for value in current_versions)
@@ -318,11 +348,7 @@ def _monotonicity_check(
         )
 
     failures = evidence_schema_failures + ordering_regressions
-    warning = bool(
-        ordering_regressions
-        and allow_regression
-        and not evidence_schema_failures
-    )
+    warning = bool(ordering_regressions and allow_regression and not evidence_schema_failures)
     timestamp_source = (
         "publication evidence: corpus.release_objects.created_at; "
         "scope_activation_history records activation time, not publication time"
@@ -358,14 +384,18 @@ def _no_orphan_check(active_rows: list[dict[str, Any]], *, repo_root: Path) -> C
             try:
                 cache[release] = _manifest_scopes_on_main(repo_root, release)
             except (json.JSONDecodeError, ValueError) as exc:
-                failures.append(f"{pair}: active release {release!r} has no valid main manifest ({exc})")
+                failures.append(
+                    f"{pair}: active release {release!r} has no valid main manifest ({exc})"
+                )
                 cache[release] = set()
         if not any(scope[:2] == pair for scope in cache[release]):
             failures.append(f"{pair}: manifest for displaced {release!r} does not cover the pair")
     return CheckResult(
         "no_orphan",
         not failures,
-        "; ".join(failures) if failures else f"{checked} displaced pair attribution(s) remain on main",
+        "; ".join(failures)
+        if failures
+        else f"{checked} displaced pair attribution(s) remain on main",
     )
 
 
@@ -392,7 +422,9 @@ def _mirror_check(
     return CheckResult(
         "mirror_artifact_path",
         not failures,
-        "; ".join(failures) if failures else f"publish artifact is byte-identical; destination {expected}",
+        "; ".join(failures)
+        if failures
+        else f"publish artifact is byte-identical; destination {expected}",
     )
 
 
@@ -403,7 +435,9 @@ def _active_state_from_file(path: Path) -> ActiveStateProvider:
     return lambda _release_object: rows
 
 
-def _supabase_active_state_provider(args: argparse.Namespace, public_key: str) -> ActiveStateProvider:
+def _supabase_active_state_provider(
+    args: argparse.Namespace, public_key: str
+) -> ActiveStateProvider:
     match = _PROJECT_URL_RE.fullmatch(args.supabase_url)
     if match is None:
         raise ValueError("--supabase-url must be a bare https://<ref>.supabase.co URL")
@@ -411,17 +445,28 @@ def _supabase_active_state_provider(args: argparse.Namespace, public_key: str) -
     if args.expected_project_ref and args.expected_project_ref != project_ref:
         raise ValueError("--expected-project-ref does not match --supabase-url")
     access_token = os.environ.get(DEFAULT_ACCESS_TOKEN_ENV)
+    database_url = os.environ.get(DEFAULT_DATABASE_URL_ENV) or None
     if not access_token:
         raise ValueError(f"{DEFAULT_ACCESS_TOKEN_ENV} is required without --active-state-file")
 
     def provide(release_object: Mapping[str, Any]) -> list[dict[str, Any]]:
-        rows = preview_corpus_release_activation(
-            release_object,
-            access_token=access_token,
-            public_key=public_key,
-            supabase_url=args.supabase_url,
-            expected_project_ref=args.expected_project_ref or project_ref,
-        )
+        if database_url:
+            # The preview recomputes per-scope evidence; over the Management
+            # API's 120 s HTTP proxy that stops fitting around 800 scopes.
+            rows = preview_corpus_release_activation_direct(
+                release_object,
+                database_url=database_url,
+                public_key=public_key,
+                expected_project_ref=args.expected_project_ref or project_ref,
+            )
+        else:
+            rows = preview_corpus_release_activation(
+                release_object,
+                access_token=access_token,
+                public_key=public_key,
+                supabase_url=args.supabase_url,
+                expected_project_ref=args.expected_project_ref or project_ref,
+            )
         for row in rows:
             if row.get("changes") is True:
                 row.setdefault("current_versions", [])
@@ -476,7 +521,10 @@ def _supabase_active_state_provider(args: argparse.Namespace, public_key: str) -
             )
             if incoming_detail is not None:
                 row["incoming_published_at"] = incoming_detail["published_at"]
-            identity = (str(row.get("current_release_name")), str(row.get("current_content_sha256")))
+            identity = (
+                str(row.get("current_release_name")),
+                str(row.get("current_content_sha256")),
+            )
             active_detail = by_identity.get(identity)
             if active_detail is None:
                 continue
@@ -533,7 +581,9 @@ def run_gate(
             except (KeyError, TypeError, ValueError, RuntimeError) as exc:
                 results.extend(
                     [
-                        CheckResult("scope_monotonicity", False, f"active-state lookup failed: {exc}"),
+                        CheckResult(
+                            "scope_monotonicity", False, f"active-state lookup failed: {exc}"
+                        ),
                         CheckResult("no_orphan", False, "active-state evidence unavailable"),
                     ]
                 )
@@ -582,9 +632,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "RELEASE_TRUST_ROOT"
     )
     if not public_key:
-        raise SystemExit(
-            f"{RELEASE_OBJECT_PUBLIC_KEY_ENV} (or RELEASE_TRUST_ROOT) is required"
-        )
+        raise SystemExit(f"{RELEASE_OBJECT_PUBLIC_KEY_ENV} (or RELEASE_TRUST_ROOT) is required")
     provider: ActiveStateProvider | None = None
     if args.mode == "activate":
         provider = (

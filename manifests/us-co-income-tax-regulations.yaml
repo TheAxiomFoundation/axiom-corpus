@@ -1,0 +1,34 @@
+version: '2026-09-14'
+documents:
+- source_id: co-sos-1-ccr-201-2-income-tax
+  jurisdiction: us-co
+  document_class: regulation
+  citation_path: us-co/regulation/1-ccr-201-2
+  title: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
+  source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleVersionId=12424
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-08-13'
+  download_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12424&fileName=1%20CCR%20201-2
+  extraction:
+    segmentation: labeled_sections
+    # Rule numbers carry parenthesised statute subsections and an en-dash rule
+    # counter ("Rule 39-22-104(2)–1"); the citation segment folds both to hyphens
+    # (39-22-104-2-1) and keeps the publisher label in section_label /
+    # publisher_section_id.
+    normalize_citation_segment_dashes: true
+    section_heading_pattern: ^Rule (?P<label>39-22-[0-9]+(?:\.[0-9]+)?(?:\([0-9a-zA-Z.]+\))*(?:[–-]\d+)?)\.\s*(?P<heading>[^,]*)$
+    section_heading_requires_bold: true
+    drop_line_patterns:
+    - ^CODE OF COLORADO REGULATIONS$
+    - ^1 CCR 201-2$
+    - ^Taxation Division$
+    - ^\d{1,3}$
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Revenue, Taxation Division
+    official_publisher: Colorado Secretary of State
+    document_subtype: administrative_code_rule
+    program: individual_income_tax
+    source_discovery_group: us-co/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=19&agencyID=122

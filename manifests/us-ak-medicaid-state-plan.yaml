@@ -1,0 +1,1197 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ak-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 164
+- source_id: us-ak-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 64
+    index_records_total: 164
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-26-0001-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-26-0001: Approval Document (approved April 17, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-26-0001
+    cms_node_id: '192066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192066
+    approval_date: '2026-04-17'
+    effective_date: '2026-01-01'
+    summary: Alaska updated income standards for their optional state supplement program for individuals eligible but not
+      receiving cash assistance and other optional eligibility groups in the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-24-0006-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-24-0006: Approval Document (approved July 16, 2024, effective May 13, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-05-13'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-24-0006
+    cms_node_id: '167411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=167411
+    approval_date: '2024-07-16'
+    effective_date: '2024-05-13'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to extend the
+      waiver of premiums for the Buy-In program for Working Adults with Disabilities and the Buy-In program for Children with
+      Disabilities.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-24-0001-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-24-0001: Approval Document (approved February 23, 2024, effective February 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-24-0001
+    cms_node_id: '159731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159731
+    approval_date: '2024-02-23'
+    effective_date: '2024-02-01'
+    summary: This SPA provides Alaska with approval to provide 12 months of continuous postpartum coverage to women enrolled
+      in its Medicaid program and increases the income eligibility for pregnant women up to 225 percent of the FPL.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-23-0011-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-23-0011: Approval Document (approved January 5, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-23-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-23-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-23-0011
+    cms_node_id: '157926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157926
+    approval_date: '2024-01-05'
+    effective_date: '2024-01-01'
+    summary: This SPA is to memorialize the new income standards for its optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid under Alaska's state plan, and make related changes to other eligibility groups covered
+      under its state plan.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-23-0002-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-23-0002: Approval Document (approved June 27, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-23-0002
+    cms_node_id: '149886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=149886
+    approval_date: '2023-06-27'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORD Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-22-0013-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-22-0013: Approval Document (approved December 6, 2022, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-22-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-22-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-22-0013
+    cms_node_id: '142561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=142561
+    approval_date: '2022-12-06'
+    effective_date: '2023-01-01'
+    summary: This amendment is to update the income standards for Alaska’s optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-22-0005-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-22-0005: Approval Document (approved August 19, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AK-22-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-22-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-22-0005
+    cms_node_id: '139006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139006
+    approval_date: '2022-08-19'
+    effective_date: '2022-07-01'
+    summary: This amendment updates third-party liability and payment of claims in accordance with requirements in the Bipartisan
+      Budget Act (BBA) of 2018 and the Medicaid Services Investment and Accountability Act (MSIAA) of 2019.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-20-0006-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-20-0006: Approval Document (approved November 19, 2020, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AK-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-20-0006
+    cms_node_id: '104246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104246
+    approval_date: '2020-11-19'
+    effective_date: '2021-01-01'
+    summary: Proposes to add chore services to the 1915(k) Community First Choice (CFC) state plan benefit
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-20-0003-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-20-0003: Approval Document (approved May 7, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-20-0003
+    cms_node_id: '98266'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98266
+    approval_date: '2020-05-07'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to waive residency requirement for individuals in state temporarily, extend reasonable opportunity period for non-citizens
+      declaring satisfactory immigration status, suspend all cost-sharing for testing services, suspend premiums for certain
+      populations, add temporary provisions allowing Community 1st Choice in Acute Hospital setting, allow students with completed
+      coursework to practice as unlicensed mental health professionals, amend provider qualifications to remove First Aid
+      & CPR requirements, expand Pharmacist scope of practice definition, increases allowable day-supply limits for prescription
+      drugs, waive requirement for the return of unused unit dose medications dispensed in LTC based on infection control,
+      increase reimbursement of professional dispensing fees due to incurred cost of delivery, allow the pricing methodology
+      for covered outpatient drugs dispensed by a retail-based pharmacy to be bypassed when a medication’s acquisition cost
+      exceeds the standard “lesser of” payment methodology logic through petitioning at the point of sale, provide exceptions
+      to state's Preferred Drug List if a shortage occurs, and modify reimbursement to reflect a per-episode rate equal to
+      current monthly rate for Infant Learning Program (ILP) & Long Term Services & Support (LTSS).
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-19-0002-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-19-0002: Approval Document (approved November 1, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-19-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-19-0002
+    cms_node_id: '4406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4406
+    approval_date: '2019-11-01'
+    effective_date: '2020-01-01'
+    summary: Update the income standards for recipients of its optional state supplement program Adult Public Assistance (APA)
+      in accordance with the 2019 cost of living adjustments for the supplemental security income (SSI) federal benefit rate
+      (FBR).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-17-0010-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-17-0010: Approval Document (approved February 12, 2018, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-17-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-17-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-17-0010
+    cms_node_id: '11626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11626
+    approval_date: '2018-02-12'
+    effective_date: '2017-10-01'
+    summary: This SPA provides for the verification of assets for the purposes of determining and re-determining Medicaid
+      eligibility for aged, blind and disabled Medicaid applicants and recipients using an Asset.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-15-0009-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-15-0009: Approval Document (approved December 17, 2015, effective November 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-15-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-11-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-15-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-15-0009
+    cms_node_id: '20746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20746
+    approval_date: '2015-12-17'
+    effective_date: '2015-11-01'
+    summary: This SPA changes the state from accepting eligibility assessment to accepting eligibility determination for Medicaid
+      made by the Federally Facilitated Marketplace.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-15-0006-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-15-0006: Approval Document (approved September 24, 2015, effective September 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-15-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-09-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-15-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-15-0006
+    cms_node_id: '22271'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22271
+    approval_date: '2015-09-24'
+    effective_date: '2015-09-01'
+    summary: Covers the adult eligibility group under the Medicaid State Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0031-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK 13-0031: Approval Document (approved January 27, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK 13-0031
+    cms_node_id: '29061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29061
+    approval_date: '2015-01-27'
+    effective_date: '2014-01-01'
+    summary: This transmittal incorporates the citizen and non-citizen eligibility requirements into the Medicaid State Plan
+      in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0031-mm6-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0031-MM6: Approval Document (approved January 27, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0031-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0031-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0031-MM6
+    cms_node_id: '28921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28921
+    approval_date: '2015-01-27'
+    effective_date: '2014-01-01'
+    summary: This transmittal incorporates the citizen and non-citizen eligibility requirements into the Medicaid State Plan
+      in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-14-005-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-14-005: Approval Document (approved December 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-14-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-14-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-14-005
+    cms_node_id: '30041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30041
+    approval_date: '2014-12-11'
+    effective_date: '2014-01-01'
+    summary: This amendment provides Medicaid coverage for individuals determined presumptively eligible under 42 CFR 435.1110
+      and in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-14-003-mm4-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-14-003-MM4: Approval Document (approved June 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-14-003-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-14-003-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-14-003-MM4
+    cms_node_id: '36381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36381
+    approval_date: '2014-06-03'
+    effective_date: '2014-01-01'
+    summary: Describes the Single State Agency's Delegation of Appeals and Determinations and Updates the State's Organizational
+      Structure.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0036-mm1-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0036-MM1: Approval Document (approved May 27, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0036-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0036-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0036-MM1
+    cms_node_id: '36616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36616
+    approval_date: '2014-05-27'
+    effective_date: '2014-04-01'
+    summary: Updates Income Level for Inflation in PDF S52 for Optional Reasonable Classifications Under the Age of 21.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-14-004-mm1-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-14-004-MM1: Approval Document (approved April 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-14-004-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-14-004-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-14-004-MM1
+    cms_node_id: '37921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37921
+    approval_date: '2014-04-02'
+    effective_date: '2014-01-01'
+    summary: Updates Income Level for Inflation in PDF S25 for the Mandatory Eligible Group for Parents and other Caretaker
+      Relatives.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0030-mm-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0030-MM: Approval Document (approved March 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0030-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0030-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0030-MM
+    cms_node_id: '37426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37426
+    approval_date: '2014-03-21'
+    effective_date: '2014-01-01'
+    summary: Incorporates Residency Requirements into Medicaid State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0001-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0001: Approval Document (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0001
+    cms_node_id: '37716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37716
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: MAGI CHIP.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0002-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0002: Approval Document (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0002
+    cms_node_id: '37721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37721
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: MAGI CHIP.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0028-mm-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0028-MM: Approval Document (approved February 5, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0028-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0028-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0028-MM
+    cms_node_id: '38901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38901
+    approval_date: '2014-02-05'
+    effective_date: '2013-10-01'
+    summary: Incorporates the Modified Adjusted Gross Income (MAGI)-Based Eligibility Requirements Including the Single Streamlined
+      Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0027-mm1-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0027-MM1: Approval Document (approved January 31, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0027-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0027-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0027-MM1
+    cms_node_id: '38896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38896
+    approval_date: '2014-01-31'
+    effective_date: '2014-01-01'
+    summary: Incorporates Mandatory and Optional Modified Adjusted Gross Income (MAGI) Based Eligibility Group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-0029-mm3-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-0029-MM3: Approval Document (approved January 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-0029-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-0029-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-0029-MM3
+    cms_node_id: '39351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39351
+    approval_date: '2014-01-10'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI Based Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-001-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-001: Approval Document (approved April 29, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-001-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-13-001
+    cms_node_id: '47546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47546
+    approval_date: '2013-04-29'
+    effective_date: '2013-01-01'
+    summary: Updates the optional state supplement standards for special income level groups consistent with the published
+      2013 federal poverty levels.
+    topics: &id002
+    - Benefits
+    - Cost Sharing
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-001-attachment
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-001: Attachment (approved April 29, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-001-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-001/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AK-13-001
+    cms_node_id: '47546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47546
+    approval_date: '2013-04-29'
+    effective_date: '2013-01-01'
+    summary: Updates the optional state supplement standards for special income level groups consistent with the published
+      2013 federal poverty levels.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-13-001-form-cms-179
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-13-001: Form CMS-179 (approved April 29, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-13-001-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-13-001/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AK-13-001
+    cms_node_id: '47546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=47546
+    approval_date: '2013-04-29'
+    effective_date: '2013-01-01'
+    summary: Updates the optional state supplement standards for special income level groups consistent with the published
+      2013 federal poverty levels.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-006-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-006: Approval Document (approved March 18, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-09-006
+    cms_node_id: '29481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29481
+    approval_date: '2010-03-18'
+    effective_date: '2009-07-01'
+    summary: This amendment implements more liberal disregards of Americorps payments for purpose of determining eligibility
+      for individuals in the AFDC-related eligibility groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-05-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-05: Approval Document (approved November 5, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-05-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-05/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-09-05
+    cms_node_id: '45041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45041
+    approval_date: '2009-11-05'
+    effective_date: '2009-10-01'
+    summary: Implements changes in deemed eligibility of children born to mothers covered by Medicaid.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-05-attachment
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-05: Attachment (approved November 5, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-05-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-05/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AK-09-05
+    cms_node_id: '45041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45041
+    approval_date: '2009-11-05'
+    effective_date: '2009-10-01'
+    summary: Implements changes in deemed eligibility of children born to mothers covered by Medicaid.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-05-form-cms-179
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-05: Form CMS-179 (approved November 5, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-05-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-05/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AK-09-05
+    cms_node_id: '45041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45041
+    approval_date: '2009-11-05'
+    effective_date: '2009-10-01'
+    summary: Implements changes in deemed eligibility of children born to mothers covered by Medicaid.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-003-approval-document
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-003: Approval Document (approved April 20, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-003-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AK-09-003
+    cms_node_id: '45046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45046
+    approval_date: '2009-04-20'
+    effective_date: '2009-04-01'
+    summary: Lengthens the continuous eligibility period for children under age 19 from 6 months to 12.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-003-attachment
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-003: Attachment (approved April 20, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AK-09-003
+    cms_node_id: '45046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45046
+    approval_date: '2009-04-20'
+    effective_date: '2009-04-01'
+    summary: Lengthens the continuous eligibility period for children under age 19 from 6 months to 12.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-ak-cms-medicaid-state-plan-spa-ak-09-003-form-cms-179
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska Medicaid SPA AK-09-003: Form CMS-179 (approved April 20, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AK/AK-09-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ak/policy/cms/medicaid-state-plan/spa/ak-09-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    source_discovery_group: us-ak/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AK-09-003
+    cms_node_id: '45046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45046
+    approval_date: '2009-04-20'
+    effective_date: '2009-04-01'
+    summary: Lengthens the continuous eligibility period for children under age 19 from 6 months to 12.
+    topics: *id004
+    link_label: Form CMS-179

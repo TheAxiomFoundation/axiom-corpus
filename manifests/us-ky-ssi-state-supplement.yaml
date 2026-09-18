@@ -1,0 +1,33 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: ky-lrc-921-kar-2-015
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 921 KAR 2:015. Supplemental programs for persons who are aged, blind, or have a disability.
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/921/002/015/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-30'
+  citation_path: us-ky/regulation/kar/921/002/015
+  extraction:
+    html_content_selector: '#regular-content div.regulation-content'
+    html_drop_selectors:
+    - '#alternate-content'
+    - '#alternate-card'
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, Department for Community Based Services (921 KAR),
+      published by the Legislative Research Commission
+    document_subtype: administrative_regulation
+    legal_identifier: 921 KAR 2:015
+    program: ssi_state_supplement
+    state_program: State Supplementation
+    federal_program: SSI
+    state: KY
+    history_last_effective: '2024-07-30'
+    index_url: https://apps.legislature.ky.gov/law/kar/titles/921/002/
+    source_discovery_group: us-ky/regulation/kar/921/002
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://apps.legislature.ky.gov/law/kar/titles/921/002/
+    extraction_note: 'the page carries two div.regulation-content copies: #regular-content (the engrossed, current text, 16
+      sections; taken as one block, as the CHIP 907 KAR scope) and the hidden #alternate-content pre-engrossment copy (17
+      sections; dropped); the history block is not part of the body'

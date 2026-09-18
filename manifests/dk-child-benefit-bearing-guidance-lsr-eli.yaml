@@ -1,0 +1,28 @@
+# Denmark child/youth benefit — Landsskatteret setoff decision (dk/guidance scope, addendum).
+#
+# Held back from 2026-08-22-dk-child-benefit-bearing-guidance (#614) because its
+# TekstGruppe elements carry Rubrica headings; ingestable once the ELI adapter's
+# prose shape routes Rubrica (#616). Frontier row: excluded-with-reason
+# (collections_enforcement, § 11, stk. 2 setoff — a declared non-claim), so it
+# bears on no computed output; it enters corpus for citation completeness of the
+# dispositioned frontier. In force per the ELI graph.
+#
+#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#     axiom-corpus-ingest extract-eli-documents --base data/corpus \
+#     --version 2026-08-22-dk-child-benefit-bearing-guidance-lsr \
+#     --manifest manifests/dk-child-benefit-bearing-guidance-lsr-eli.yaml \
+#     --source-as-of 2026-08-22
+documents:
+  - source_id: dk-lsr-9323-2011-afgoerelse
+    eli_uri: https://retsinformation.dk/eli/retsinfo/2011/9323
+    jurisdiction: dk
+    document_class: guidance
+    citation_path: dk/guidance/lsr-9323-2011/modregning-daginstitutionsrestance
+    title: "Landsskatteretsafgørelse vedr. modregning - børnefamilieydelse for daginstitutionsrestance"
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      document_type: afgoerelse
+      document_date: "2011-03-23"
+      source_family: child-benefit

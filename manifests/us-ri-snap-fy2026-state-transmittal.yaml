@@ -1,0 +1,42 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-ri-dhs-snap-cola-fy2026
+  jurisdiction: us-ri
+  document_class: guidance
+  title: SNAP Annual Cost of Living Adjustment Effective October 1, 2025 (Fall 2025 SNAP eligibility and benefit changes)
+  source_url: https://dhs.ri.gov/media/9561/download?language=en
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-ri/guidance/dhs/snap-cola/fy2026
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Human Services
+    program: SNAP
+    source_discovery_group: us-ri/guidance
+    index_url: https://dhs.ri.gov/programs-and-services/supplemental-nutrition-assistance-program-snap/supplemental-nutrition-0
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: cola_notice
+    fiscal_year: '2026'
+- source_id: us-ri-dhs-snap-monthly-income-guidelines-fy2026
+  jurisdiction: us-ri
+  document_class: guidance
+  title: SNAP Monthly Income Guidelines, October 1, 2025 through September 30, 2026
+  source_url: https://dhs.ri.gov/media/9551/download?language=en
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-ri/guidance/dhs/snap-monthly-income-guidelines/fy2026
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Human Services
+    program: SNAP
+    source_discovery_group: us-ri/guidance
+    index_url: https://dhs.ri.gov/programs-and-services/supplemental-nutrition-assistance-program-snap/supplemental-nutrition-0
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: income_guidelines_chart
+    fiscal_year: '2026'

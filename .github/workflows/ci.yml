@@ -33,6 +33,34 @@ jobs:
         python-version: ["3.14"]
 
     steps:
+      - name: Diagnose a missing ingest trust variable
+        # Fork-head pull_request runs do not receive this repository's Actions
+        # variable AXIOM_CORPUS_INGEST_PUBLIC_KEY, so the authentication-gate
+        # tests in tests/test_state_snap_manual_queue.py (and guard-ingested,
+        # when the change touches protected corpus artifacts, manifest-attested
+        # reasoning logs, or the ingest manifests attesting them) fail by design
+        # and fail the job. Name the cause up front. Diagnosis only: this step
+        # never fails on its own; the gates below still run, and still fail,
+        # exactly as before.
+        if: env.AXIOM_CORPUS_INGEST_PUBLIC_KEY == ''
+        env:
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          CONTRIBUTING_URL: ${{ github.server_url }}/${{ github.repository }}/blob/main/CONTRIBUTING.md
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ] && [ "$HEAD_REPO" != "$GITHUB_REPOSITORY" ]; then
+            title="Fork-head pull request run without AXIOM_CORPUS_INGEST_PUBLIC_KEY"
+            body="This pull_request run comes from a fork (${HEAD_REPO:-unknown}), and fork-head runs do not receive this repository's Actions variable AXIOM_CORPUS_INGEST_PUBLIC_KEY. The authentication-gate tests in tests/test_state_snap_manual_queue.py will fail by design ('AXIOM_CORPUS_INGEST_PUBLIC_KEY is required in CI') and fail this job; guard-ingested also fails if the change touches protected corpus artifacts, manifest-attested reasoning logs, or the ingest manifests attesting them. The 'FAIL Required test coverage' line in the same log is informational, not the failure (a real coverage failure prints 'ERROR: Coverage failure'). Fix: org members have write access here, so push this branch to ${GITHUB_REPOSITORY} and open the pull request from it (see ${CONTRIBUTING_URL}). Do not weaken those tests or embed key material."
+          else
+            title="Same-repository run with an empty AXIOM_CORPUS_INGEST_PUBLIC_KEY"
+            body="This is not a fork-head run, yet this repository's Actions variable AXIOM_CORPUS_INGEST_PUBLIC_KEY is empty, so the authentication-gate tests in tests/test_state_snap_manual_queue.py will fail by design ('AXIOM_CORPUS_INGEST_PUBLIC_KEY is required in CI') and fail this job; guard-ingested also fails if the change touches protected corpus artifacts, manifest-attested reasoning logs, or the ingest manifests attesting them. Fix: a maintainer restores the variable in this repository's Actions settings (it is a public verification key, not a secret); nothing in the branch needs to change. Do not weaken those tests or embed key material."
+          fi
+          echo "::error title=${title}::${body}"
+          {
+            echo "### ${title}"
+            echo
+            echo "${body}"
+          } >> "${GITHUB_STEP_SUMMARY:-/dev/null}"
+
       - uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
@@ -170,6 +198,12 @@ jobs:
           DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
         run: |
           pytest -v tests/test_atomic_release_postgres.py
+
+      - name: Test work queue claims in PostgreSQL
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+        run: |
+          pytest -v tests/test_ops_work_queue_postgres.py
 
   verify-release-coverage:
     name: Verify release coverage

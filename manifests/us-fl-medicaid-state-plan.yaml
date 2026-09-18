@@ -1,0 +1,902 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-fl-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 226
+- source_id: us-fl-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 226
+- source_id: us-fl-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 26
+    index_records_total: 226
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-25-0011-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-25-0011: Approval Document (approved February 9, 2026, effective February 9, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/FL-25-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-02-09'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-25-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-25-0011
+    cms_node_id: '189656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189656
+    approval_date: '2026-02-09'
+    effective_date: '2026-02-09'
+    summary: This amendment proposed to disregard income from the Aides to the Medically Fragile Children's Program in eligibility
+      determinations.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-24-0001-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-24-0001: Approval Document (approved June 5, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/FL-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-24-0001
+    cms_node_id: '165691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165691
+    approval_date: '2024-06-05'
+    effective_date: '2024-01-01'
+    summary: This amendment provides 12-months of continuous eligibility for children under the age of 19 enrolled in Medicaid,
+      in accordance with the federal Consolidated Appropriations Act, 2023.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-23-0001-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-23-0001: Approval Document (approved June 16, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/FL-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-23-0001
+    cms_node_id: '151136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151136
+    approval_date: '2023-06-16'
+    effective_date: '2023-01-01'
+    summary: The state proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-19-0003-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-19-0003: Approval Document (approved April 20, 2021, effective December 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/FL-19-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-12-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-19-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-19-0003
+    cms_node_id: '107831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107831
+    approval_date: '2021-04-20'
+    effective_date: '2019-12-01'
+    summary: Effective December 1, 2019, this amendment includes the Practitioner reimbursement methodology for services outlined
+      within the State Plan.
+    topics:
+    - Current State Plan
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-20-0004-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-20-0004: Approval Document (approved November 24, 2020, effective March 9, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/FL-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-09'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-20-0004
+    cms_node_id: '104011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=104011
+    approval_date: '2020-11-24'
+    effective_date: '2020-03-09'
+    summary: 'CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to update the State Plan to include emergency provisions including: suspension of co-payments,
+      adjust current benefits, expand telemedicine services, increase payment rates, eliminate sanctions for cost reports,
+      and modify occupancy limits.'
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Prescription Drugs
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-20-0001-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-20-0001: Approval Document (approved April 2, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-20-0001
+    cms_node_id: '99341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99341
+    approval_date: '2020-04-02'
+    effective_date: '2020-01-01'
+    summary: Applies an income disregard for the eligibility determination process for individuals with disabilities with
+      earned income through paid employment.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-19-0006-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-19-0006: Approval Document (approved September 19, 2019, effective July 28, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-28'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-19-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-19-0006
+    cms_node_id: '4956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4956
+    approval_date: '2019-09-19'
+    effective_date: '2019-07-28'
+    summary: Continue UPL supplemental payments for eligible Cancer hospitals.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-15-0002-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-15-0002: Approval Document (approved May 7, 2015, effective January 6, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-15-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-06'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-15-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-15-0002
+    cms_node_id: '27321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27321
+    approval_date: '2015-05-07'
+    effective_date: '2015-01-06'
+    summary: Approves State Recognition of Same-Sex Couples as Spouses if They Are Legally Married Under the Laws of the State,
+      Territory, or Foreign Jurisdiction in which the Marriage was performed.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-14-006-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-14-006: Approval Document (approved September 26, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-14-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-14-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-14-006
+    cms_node_id: '32681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32681
+    approval_date: '2014-09-26'
+    effective_date: '2014-04-01'
+    summary: This SPA amends Consumer Directed Care Option (CDC+) for individuals enrolled in the Traumatic Brain and Spinal
+      Cord Injury (TBI/SCI) and the Aging and Disabled Adult (ADA) waivers.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-14-0005-mm5-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-14-0005-MM5: Approval Document (approved May 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-14-0005-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-14-0005-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-14-0005-MM5
+    cms_node_id: '36771'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36771
+    approval_date: '2014-05-23'
+    effective_date: '2014-01-01'
+    summary: Establishes Single State Agency and Entities Responsible for Determinations of Eligibility and Appeals/fair Hearings.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-13-0020-mm6-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-13-0020-MM6: Approval Document (approved February 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-13-0020-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0020-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0020-MM6
+    cms_node_id: '38551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38551
+    approval_date: '2014-02-24'
+    effective_date: '2014-01-01'
+    summary: Incorporates Citizenship Regulations, Specifies Reasonable Opportunity Period Options, and Specifies Policy Options
+      related to Eligible Non-Citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-13-0016-mm2-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-13-0016-MM2: Approval Document (approved December 9, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-13-0016-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0016-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0016-MM2
+    cms_node_id: '39531'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39531
+    approval_date: '2013-12-09'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-13-0015-mm1-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-13-0015-MM1: Approval Document (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-13-0015-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0015-MM1
+    cms_node_id: '40136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40136
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-13-0017-mm3-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-13-0017-MM3: Approval Document (approved October 28, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-13-0017-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0017-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0017-MM3
+    cms_node_id: '39896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39896
+    approval_date: '2013-10-28'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-13-007-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-13-007: Approval Document (approved September 10, 2013, effective August 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-13-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-08-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-007
+    cms_node_id: '35391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35391
+    approval_date: '2013-09-10'
+    effective_date: '2013-08-01'
+    summary: Updates the Supplemental Rebate Agreement to include rebate payments generated by Managed Care Organization generated
+      prescriptions.
+    topics:
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-10-014-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-10-014: Approval Document (approved January 25, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-10-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-10-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-10-014
+    cms_node_id: '44546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44546
+    approval_date: '2011-01-25'
+    effective_date: '2010-10-01'
+    summary: This State Plan Amendment addresses the new requirements regarding Estate Recovery under section 1917(b)(1) of
+      the Social Security Act by encouraging dual eligible beneficiaries to fully utilize Medicare cost-sharing benefits available
+      through the Medicare Savings Program.
+    topics: &id002
+    - Benefits
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-10-014-attachment
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-10-014: Attachment (approved January 25, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-10-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-10-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: FL-10-014
+    cms_node_id: '44546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44546
+    approval_date: '2011-01-25'
+    effective_date: '2010-10-01'
+    summary: This State Plan Amendment addresses the new requirements regarding Estate Recovery under section 1917(b)(1) of
+      the Social Security Act by encouraging dual eligible beneficiaries to fully utilize Medicare cost-sharing benefits available
+      through the Medicare Savings Program.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-10-014-form-cms-179
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-10-014: Form CMS-179 (approved January 25, 2011, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-10-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-10-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: FL-10-014
+    cms_node_id: '44546'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44546
+    approval_date: '2011-01-25'
+    effective_date: '2010-10-01'
+    summary: This State Plan Amendment addresses the new requirements regarding Estate Recovery under section 1917(b)(1) of
+      the Social Security Act by encouraging dual eligible beneficiaries to fully utilize Medicare cost-sharing benefits available
+      through the Medicare Savings Program.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-fl-cms-medicaid-state-plan-spa-ga-09-009-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA GA-09-009: Approval Document (approved February 23, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-09-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/ga-09-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-09-009
+    cms_node_id: '26161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26161
+    approval_date: '2010-02-23'
+    effective_date: '2010-01-01'
+    summary: This amendment define Georgia's managed care program by adding refugees as an eligible group; increasing the
+      time frame for recipients to choose a health plan from fifteen to thirty days; and by incorporating quality and cost
+      weighted scoring within the auto-assignment algorithm.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-09-024-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-09-024: Approval Document (approved January 22, 2010, effective November 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-09-024-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-09-024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-09-024
+    cms_node_id: '44571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44571
+    approval_date: '2010-01-22'
+    effective_date: '2009-11-01'
+    summary: The State requests approval of this amendment to implement a prior authorization for health services visits,
+      based on medical necessity.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-09-024-attachment
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-09-024: Attachment (approved January 22, 2010, effective November 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-09-024-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-09-024/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: FL-09-024
+    cms_node_id: '44571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44571
+    approval_date: '2010-01-22'
+    effective_date: '2009-11-01'
+    summary: The State requests approval of this amendment to implement a prior authorization for health services visits,
+      based on medical necessity.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-09-024-form-cms-179
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-09-024: Form CMS-179 (approved January 22, 2010, effective November 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-09-024-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-09-024/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: FL-09-024
+    cms_node_id: '44571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44571
+    approval_date: '2010-01-22'
+    effective_date: '2009-11-01'
+    summary: The State requests approval of this amendment to implement a prior authorization for health services visits,
+      based on medical necessity.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-09-023-approval-document
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-09-023: Approval Document (approved December 22, 2009, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-09-023-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-09-023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-09-023
+    cms_node_id: '44576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44576
+    approval_date: '2009-12-22'
+    effective_date: '2009-12-01'
+    summary: This amendment requests approval to extend the initial Transitional Medical Assistance period from 6 to 12 months,
+      in accordance with Section 5004 of the American Recovery and Reinvestment Act.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-09-023-attachment
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-09-023: Attachment (approved December 22, 2009, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-09-023-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-09-023/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: FL-09-023
+    cms_node_id: '44576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44576
+    approval_date: '2009-12-22'
+    effective_date: '2009-12-01'
+    summary: This amendment requests approval to extend the initial Transitional Medical Assistance period from 6 to 12 months,
+      in accordance with Section 5004 of the American Recovery and Reinvestment Act.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-fl-cms-medicaid-state-plan-spa-fl-09-023-form-cms-179
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida Medicaid SPA FL-09-023: Form CMS-179 (approved December 22, 2009, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/FL/FL-09-023-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-09-023/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: FL-09-023
+    cms_node_id: '44576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44576
+    approval_date: '2009-12-22'
+    effective_date: '2009-12-01'
+    summary: This amendment requests approval to extend the initial Transitional Medical Assistance period from 6 to 12 months,
+      in accordance with Section 5004 of the American Recovery and Reinvestment Act.
+    topics: *id004
+    link_label: Form CMS-179

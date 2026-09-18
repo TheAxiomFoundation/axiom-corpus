@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "2fcc43018ca423fc1b0ff46c90143e3449cd0f2e584b640bd55acd70135f9a19"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "c219728baa5dc81ba21e102baabc63ddba943dfce4c2fa55386d5477ac8454c2"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "3a0fb4462bed74e8a0ed4de2c44d0e2d0c2d27e0ce78d516164279e51c83e45e"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-ma-guidance-dta-ssp-payment-levels-cy2026.pdf",
+      "sha256": "19d7b14666fdf2e7d68b43b7bf77595162fea8fb393f8e78e37ee7536f92b01f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-ma-ssi-state-supplement-standards-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:41:13.595651+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BSTQF5IeWmJQaYFTOnJKt84dbmWPQkHW0JRfrfqe9WzHJ2xL7ltPNgspCN6/81Aygd7d0G9A8EH58l4sekUrAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

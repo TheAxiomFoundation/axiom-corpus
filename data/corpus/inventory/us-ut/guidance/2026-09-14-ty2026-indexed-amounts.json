@@ -1,0 +1,61 @@
+{
+  "items": [
+    {
+      "citation_path": "us-ut/guidance/ustc/ty2025/tax-rates",
+      "metadata": {
+        "amounts_carried": [
+          "flat rate by date range (4.5% from 2025-01-01)"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "text/html; charset=UTF-8",
+        "discovered_via": "manual-review:tax-agent-queue; index https://incometax.utah.gov/file-pay/tax-rates/ (read 2026-09-13)",
+        "document_subtype": "department_web_page",
+        "download_url": "https://incometax.utah.gov/file-pay/tax-rates/",
+        "index_url": "https://incometax.utah.gov/file-pay/tax-rates/",
+        "kind": "document",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": null,
+        "source_authority": "Utah State Tax Commission",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "Latest published statement: the indexed taxpayer tax credit phase-out for 2026 is published only in the TC-40 instructions, whose current edition is the 2025 booklet.",
+        "tax_year": "2025",
+        "title": "Tax Rates (Utah single rate by date range; 4.5% from January 1, 2025)"
+      },
+      "sha256": "bd938958afcd2fa4f0fa74eacc590e940c9806d2147efa5a67cd13c254336e3e",
+      "source_format": "html",
+      "source_path": "sources/us-ut/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-ut-ustc-tax-rates-ty2025.html",
+      "source_url": "https://incometax.utah.gov/file-pay/tax-rates/"
+    },
+    {
+      "citation_path": "us-ut/guidance/ustc/ty2025/tax-rates/block-1",
+      "metadata": {
+        "amounts_carried": [
+          "flat rate by date range (4.5% from 2025-01-01)"
+        ],
+        "block_count": 1,
+        "closure_element": "F06",
+        "content_type": "text/html; charset=UTF-8",
+        "discovered_via": "manual-review:tax-agent-queue; index https://incometax.utah.gov/file-pay/tax-rates/ (read 2026-09-13)",
+        "document_subtype": "department_web_page",
+        "download_url": "https://incometax.utah.gov/file-pay/tax-rates/",
+        "index_url": "https://incometax.utah.gov/file-pay/tax-rates/",
+        "kind": "block",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "publication_or_revision_date": null,
+        "source_authority": "Utah State Tax Commission",
+        "source_family": "state-ty2026-indexed-amounts",
+        "source_note": "Latest published statement: the indexed taxpayer tax credit phase-out for 2026 is published only in the TC-40 instructions, whose current edition is the 2025 booklet.",
+        "source_url": "https://incometax.utah.gov/file-pay/tax-rates/",
+        "tax_year": "2025",
+        "title": "Tax Rates (Utah single rate by date range; 4.5% from January 1, 2025)"
+      },
+      "sha256": "bd938958afcd2fa4f0fa74eacc590e940c9806d2147efa5a67cd13c254336e3e",
+      "source_format": "html",
+      "source_path": "sources/us-ut/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-ut-ustc-tax-rates-ty2025.html",
+      "source_url": "https://incometax.utah.gov/file-pay/tax-rates/"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+version: 2026-09-10-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-ms-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-ms
+  document_class: policy
+  title: Mississippi CCDF Plan, FFY 2025-2027
+  source_url: https://www.mdhs.ms.gov/wp-content/uploads/2025/01/ACF-118-CCDF-FFY-2025-2027-For-Mississippi.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-ms/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,2}\.[1-9])\s+(?P<heading>[A-Z]\S.*)$
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Initial Plan
+    plan_status: 'Approved as of 2024-11-09 (located on retry 2026-09-10: the State Plans page still lists only 2022-2024;
+      the plan is ''2025 - 2027 CCDF Triennial State Plan'' on the ECCD ''Child Care Reports & Archives'' page, whose /document/2025-2027-ccdf-triennial-state-plan/
+      landing URL 302s to this PDF; the Appendix is posted separately, not taken)'
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.mdhs.ms.gov/eccd/reports-archives/
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/MS-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-ms/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027

@@ -16,7 +16,7 @@ Before downloading the structured text, the currency gate refuses an act when
 `--allow-superseded` only for an intentional historical ingest.
 
 For Denmark, the adapter routes LexDania `Dokument/DokumentIndhold` XML from
-the shape of the direct `DokumentIndhold` children. It supports two shapes:
+the shape of the direct `DokumentIndhold` children. It supports three shapes:
 
 - Consolidations contain the ordinary paragraph structure. In the current
   pack their direct wrappers are `Indledning`, `Bog`, and `Ikraft`; direct
@@ -29,6 +29,53 @@ the shape of the direct `DokumentIndhold` children. It supports two shapes:
   the literal element name and `localId`, for example
   `aendringcentreretparagraf-1` or `ikraftcentreretparagraf-8`, and its body is
   the complete normalized `itertext` of that unit.
+- Prose documents have direct children drawn only from `Resume` and
+  `TekstGruppe`, with at least one `TekstGruppe` and at most one `Resume`.
+  `Resume` becomes a level-2 `resume` provision when present, and
+  the `TekstGruppe` paragraphs in document order always become one level-2
+  `tekst` provision. Their citation paths append `/resume` and `/tekst` to the
+  level-1 document root.
+
+Prose wrapper bodies preserve each supported direct child (`Exitus` or
+`Rubrica`) as a paragraph. Non-table paragraphs use normalized `itertext`; this
+also preserves the `Index` lists observed in the principle-notice fixture.
+Paragraphs are joined with `\n\n`. An empty `Exitus` is a paragraph break, and
+consecutive empty elements collapse so bodies have no repeated, leading, or
+trailing empty breaks. A `Rubrica` with empty or whitespace-only text fails
+closed. For a `Table`, the normalized text of the actual cells in each `Tr` is
+joined with ` | `, and rendered rows are joined with `\n`; `colspan` does not
+synthesize extra cells.
+
+The adapter may additionally recognize these exact, case-insensitive whole-
+paragraph `TekstGruppe` headings, which are the closed vocabulary observed in
+the principle-decision prose fixtures:
+
+- `1. Baggrund for at behandle sagen`
+- `2. Reglerne`
+- `3. Andre Principafgørelser`
+- `4. Den konkrete afgørelse`
+- `Baggrund for at behandle sagerne principielt`
+- `Reglerne`
+- `Love og bekendtgørelser`
+- `Praksis`
+- `De konkrete afgørelser`
+
+Every direct `Rubrica` in a `TekstGruppe` is an explicit heading, independent of
+that closed vocabulary. Its normalized text is converted with the existing
+citation-safe LexDania slug rule, including Danish-letter transliteration; for
+example, `Landsskatterettens afgørelse` becomes
+`tekst/landsskatterettens-afgoerelse`. A heading that cannot produce a slug
+fails closed.
+
+Each explicit `Rubrica` or matched `Exitus` heading emits a level-3 child of
+`tekst`. Its citation path is `<root>/tekst/<heading-slug>`, such as
+`<root>/tekst/reglerne`; numbered heading slugs retain their number, such as
+`tekst/2-reglerne`. Its body starts with the heading paragraph and continues up
+to, but not including, the next heading of either kind. Text before the first
+heading remains only in the complete `tekst` provision. The complete `tekst`
+provision is always emitted, so citation coverage never depends on heading
+recognition. Repeating a matched heading, or producing the same final heading
+slug from any two headings, fails closed instead of adding an ordinal suffix.
 
 A `Paragraf` nested inside a centered unit is replacement text destined for
 the act being amended. It is therefore retained inside the centered unit's
@@ -36,11 +83,14 @@ body and is not emitted as a standalone provision of the amending act. This
 keeps the operative instruction and its replacement text together.
 
 Before routing, the adapter requires whitespace-only `DokumentIndhold.text`
-and direct-child tails. It fails closed on mixed direct standard and centered
-elements, any unknown direct element, or a shape without an operative unit.
-`Hymne` is accepted only as the centered-act preamble. Errors name the XML
-title and root ID; manifest extraction adds the source ID, ELI, and manifest
-title.
+and direct-child tails. It fails closed on any mixture of standard, centered,
+and prose direct elements, any unknown direct element, duplicate `Resume`
+wrappers, or a shape without an operative unit. Within `Resume` and
+`TekstGruppe`, any direct element other than `Exitus` or `Rubrica` also fails
+closed. `Hymne` is accepted only as the centered-act preamble. Errors name the
+XML title and root ID; manifest extraction adds the source ID, ELI, and manifest
+title. Wrapper attributes such as the `id` values found in newer LexDania prose
+documents do not participate in routing.
 
 On the consolidation path, `Paragraf@localId` supplies the paragraph number,
 including letter suffixes such as `1a`; `Explicatus` supplies the displayed

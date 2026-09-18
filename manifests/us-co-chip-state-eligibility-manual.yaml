@@ -1,0 +1,35 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: co-hcpf-10-ccr-2505-3
+  jurisdiction: us-co
+  document_class: regulation
+  title: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
+  source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12479&fileName=10%20CCR%202505-3
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-14'
+  citation_path: us-co/regulation/10-ccr-2505-3
+  extraction:
+    segmentation: labeled_sections
+    section_label_pattern: ^(?P<label>50|[1-6][0-9]0)\s*$
+    label_only_heading_pattern: ^\S.*$
+    heading_continuation_pattern: (?!)
+    drop_lines:
+    - CODE OF COLORADO REGULATIONS
+    - 10 CCR 2505-3
+    - Medical Services Board
+    - DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
+    drop_line_patterns:
+    - ^(?:[1-9]|[1-4][0-9])\s*$
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Health Care Policy and Financing, Medical Services Board
+    document_subtype: code_of_colorado_regulations_rule
+    program: CHIP
+    source_discovery_group: us-co/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 2; publisher index confirmed by agent 2026-09-10
+    state_program: Child Health Plan Plus (CHP+)
+    ccr_series: 10 CCR 2505-3
+    rule_version_id: '12479'
+    effective_date: '2026-04-14'
+    rule_info_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2816&deptID=7&agencyID=69

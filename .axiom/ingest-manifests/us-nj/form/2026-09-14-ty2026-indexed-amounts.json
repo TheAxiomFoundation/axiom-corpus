@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "fc75866abfeb07392da3712fd399afe408e88eb7857a063aa801f86a2c0ca349"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "ff091eb3ccdd1167dc7957526b89fa7a14f4b36c4288e1f2c1d28f60613b475f"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "ab11b79adb7073bb9ddbd65b72f0a69abaa1ef1f3c5ece21cfee806241f33204"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-nj-taxation-nj-1040-es-instructions-ty2026.pdf",
+      "sha256": "1244bf4fdc04530fe9eae6702012fa7f3d1fc0397d7493e2d719bece508ab7fc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-nj-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T17:26:20.808441+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ujE37SkFv/FpXQxJfmyTFrQT3iVcLGiw2+AMQg4ChmsQAt10NtCE2rxa3mTujiGdWMA2GFtXtwUknD8I5phBAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

@@ -1,0 +1,64 @@
+version: 2026-09-13-ccdf-rate-schedules
+documents:
+- source_id: us-me-ccdf-rate-schedule-child-care-market-rates-2025-05-19
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine: Maine Child Care Market Rates (maximum rates by county and setting), May 19, 2025'
+  source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/5.19.25%20Child%20Care%20Market%20Rates.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-05-19'
+  citation_path: us-me/policy/ccdf/rate-schedules/child-care-market-rates-2025-05-19
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine DHHS Office of Child and Family Services, Child Care Affordability Program (CCAP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    source_discovery_group: us-me/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    closure_elements:
+    - ccdf-s30
+- source_id: us-me-ccdf-rate-schedule-ccap-parent-fee-guide-fy26
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine: CCAP Parent Fee Guide (FY26), effective April 18, 2026'
+  source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/CCAP%20Parent%20Fee%20Guide%20%28FY26%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-18'
+  citation_path: us-me/policy/ccdf/rate-schedules/ccap-parent-fee-guide-fy26
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine DHHS Office of Child and Family Services, Child Care Affordability Program (CCAP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    source_discovery_group: us-me/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    closure_elements:
+    - ccdf-s30
+- source_id: us-me-ccdf-rate-schedule-ccap-income-guidelines-2026-04-18
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine: CCAP Current Income Guidelines (125% SMI), April 18, 2026'
+  source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/4.18.26%20125%20CCAP%20income%20guidelines.docx
+  source_format: docx
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-18'
+  citation_path: us-me/policy/ccdf/rate-schedules/ccap-income-guidelines-2026-04-18
+  metadata:
+    primary_source: true
+    source_authority: Maine DHHS Office of Child and Family Services, Child Care Affordability Program (CCAP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    source_discovery_group: us-me/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers
+    closure_elements:
+    - ccdf-s30
+    source_note: posted as a Word document; the page labels the link (PDF)

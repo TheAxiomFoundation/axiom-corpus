@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "d8718f19dedcdc104d7c6cad54660e161e03528053e98481eb8ae3cf2430e230"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "8f271ea24effc596adf631d92eb34005037f6a492c5de380266f4ada31c3f8c6"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "eab7aba6b10098bc1d5bfedaf948f763e4bfcbf738774872aa750d3e6aaf7c7e"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-09-13-snap-et-state-plan/official-documents/ks-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "825a71ccf1393b966604a13b85803d476aa5f6b7762afdd1a0ae723f0bda0f5b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 72,
+    "missing_count": 0,
+    "provision_count": 72,
+    "source_count": 72
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:32:55.077338+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ly8IXv05b5jGxI+QXxXr6btC7NpO6bmFYtH9uT7ZSj9Mzoc3eHoHIXiml9V3lpHyGtTv7KP8ICkWSpTUa/ZtBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

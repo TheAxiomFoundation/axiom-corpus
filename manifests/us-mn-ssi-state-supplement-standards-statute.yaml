@@ -1,0 +1,29 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-mn-statute-256d-44
+  jurisdiction: us-mn
+  document_class: statute
+  title: 'Minnesota Statutes 256D.44: Minnesota Supplemental Aid, standard of assistance (2025 Minnesota Statutes)'
+  source_url: https://www.revisor.mn.gov/statutes/cite/256D.44
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-08-01'
+  citation_path: us-mn/statute/256d/44
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services (Combined Manual); Office of the Revisor of Statutes (Minnesota
+      Statutes)
+    document_subtype: statute_section_html
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: MN
+    closure_elements:
+    - SSI-ST-2
+    index_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=CM_MANUAL
+    source_discovery_group: us-mn/statute/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=CM_MANUAL
+    extraction_granularity: html_blocks
+    expression_date_note: 2025 Minnesota Statutes edition as served by the Revisor on 2026-09-14
+    access_note: dhs.state.mn.us answers HTTP 200 with a 15 KB Radware challenge page to plain and Chrome-UA clients and the
+      manual page to a chrome120 TLS fingerprint on 2026-09-14 (fetched with browser_impersonation_direct, TLS verification
+      on); revisor.mn.gov HTTP 200 to the plain client

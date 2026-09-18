@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-east-cambridgeshire/manual/2026-09-05-east-cambridgeshire-council-tax-reduction-2026-2027.json",
+      "sha256": "e34e8a02a3d03052618b3adfc9cdc9a3ae6fe87645d56f80c9490b882250f020"
+    },
+    {
+      "path": "data/corpus/inventory/uk-east-cambridgeshire/manual/2026-09-05-east-cambridgeshire-council-tax-reduction-2026-2027.json",
+      "sha256": "54787d59b2c1fcf5b4462503d6846f023b8d7d2846ffbda9a988b80dfd3abdd8"
+    },
+    {
+      "path": "data/corpus/provisions/uk-east-cambridgeshire/manual/2026-09-05-east-cambridgeshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6b61c3956c742930cd9eda0f3dc4c97e21c6e68a75b7ec605189332f521b3269"
+    },
+    {
+      "path": "data/corpus/sources/uk-east-cambridgeshire/manual/2026-09-05-east-cambridgeshire-council-tax-reduction-2026-2027/official-documents/east-cambridgeshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2e4240e37c05909ca27a96506942281d7899a9e460282f24b93c117ac2e498db"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-east-cambridgeshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-east-cambridgeshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 211,
+    "missing_count": 0,
+    "provision_count": 211,
+    "source_count": 211
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:49.852584+00:00",
+  "jurisdiction": "uk-east-cambridgeshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TDdBxA3tpcC29A9U59pe0yAGpXqjQLMYMMx+F73LZOS1CqKRnmNDwvOO6j56n+CsY3uNi/GB5oaq8B2xuE5vDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-east-cambridgeshire-council-tax-reduction-2026-2027"
+}

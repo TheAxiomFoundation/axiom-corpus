@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart.json",
+      "sha256": "02586369d7a6e4b135880b2c82b20073f440b6b6875ff2dc933142b90718b0bc"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart.json",
+      "sha256": "3df1d54070aa79c3e137e34d1e324da0a00ebc6cff69ad75dbf436c8325d46b3"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart.jsonl",
+      "sha256": "8ff8b66b0ba5311f30e37884881f3db2ad8c9994715d31a4a660fa09a5568b06"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart/official-documents/bgh-xii-zr-129-16-2018-03-07.pdf",
+      "sha256": "58238829ae53bd36f736a94254898025b31cd1eabd2b3df83f7c4bb17ba7744e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "85428bcffac80fd99905b2900f166e060ba03512",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native extract-official-documents with unchanged official PDF local_path replay; see docs/ingest-runs/2026-09-11-de-kindergeld-bgh-counterpart.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-11T20:11:23.752156+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-11-de-kindergeld-bgh-counterpart-audit.json",
+      "sha256": "0f0442ae87149fdf6343ca15aa1992543e1697daa4607b552410ad8a5b82bc9b"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zKYNjwGYC+9HvhxembDdfltp92gR1yzmVbYc/rWOozU5rUCpPRQH/6/0hc1ngJ9hXt/dPXW3bXA7BH1IDlQAAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-bgh-counterpart"
+}

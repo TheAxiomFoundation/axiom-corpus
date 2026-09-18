@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-18-canada-338-suspension.json",
+      "sha256": "d994f61ce9dc54da1d6627522cccdc1c6e16a9978aae9f10bf01fc267b1791ca"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-18-canada-338-suspension.json",
+      "sha256": "fce8219a8bdc46cbeb0a74d486b6cbc4a104150c382d663079a19decc029fc84"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-18-canada-338-suspension.jsonl",
+      "sha256": "ea27a56ab605ff1dbda1a9b4a9e9bfbb38c8064b3510202d98625b19f461abb5"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-18-canada-338-suspension/official-documents/wh-2026-08-18-canada-338-suspension.html",
+      "sha256": "252d6873bd938e3e8e571d5f2d10df3f09eef482d0911080eb432a77a192d1ac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "732c66f816d1210acd19ceaf223f6d321b9422b6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_s338_canada_suspension.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-20T12:34:24.786943+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QAjwxj3SCPAEyw/myBA9Vqkp3qDpxwTvMXJ2/TwdS81WOehP8PEiBDPI42XScBlMA9PyjyDm2ypECNQQ3++PBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-18-canada-338-suspension"
+}

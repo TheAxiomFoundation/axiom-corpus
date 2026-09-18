@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-bgb-amendment.json",
+      "sha256": "ccce78708c83a5478f5c725e293a228f27d5b692fee9f16ce5dd41f4086085f8"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-bgb-amendment.json",
+      "sha256": "7bee851dff8c8141f9554960f3148b1229a412acb4565b0ee720554923bd0eb9"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-bgb-amendment.jsonl",
+      "sha256": "738a96e0bc4fdb44806f60bf0a1a5fc74420c2b9714205555b70ef7664398dc6"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-bgb-amendment/official-documents/de-kindergeld-bgbl-2026-i-198.pdf",
+      "sha256": "566f873ec04357c83d73ca87012b77a7a698f6ce146c38fe6c1ae7b7676583dc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "311e1f573f372b2fbd2c9a4068b60c43c73588fa",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-bgb-amendment --manifest manifests/de-kindergeld-bgb-amendment-198.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-09T05:37:16.224843+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z3ar7oVbet5+YuCAZpZYSydFd90i2VVNY6KZ9eK7U4XR5ZOIjxFDJgGjmXRe8hbzXvZEp5Yw0woscuAQgF+GCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-bgb-amendment"
+}

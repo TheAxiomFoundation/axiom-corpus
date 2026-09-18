@@ -1,0 +1,30 @@
+version: 2026-09-13-ccdf-state-plan-amendments
+documents:
+- source_id: us-vt-acf-ccdf-plan-fy2025-2027-amendment-1-approval-letter
+  jurisdiction: us-vt
+  document_class: policy
+  title: Vermont CCDF Plan FFY 2025-2027, Amendment 1 approval letter
+  source_url: https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Amendment-1-Approval-Letter.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-07'
+  citation_path: us-vt/policy/acf/ccdf-plan/fy2025-2027-amendment-1-approval-letter
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: amendment_approval_letter_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://dcf.vermont.gov/CDD/CCDF
+    source_discovery_group: us-vt/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://dcf.vermont.gov/CDD/CCDF
+    plan_version: Amendment 1 approval letter
+    plan_status: ACF approval letter effective 2024-10-07
+    closure_elements:
+    - ccdf-s28

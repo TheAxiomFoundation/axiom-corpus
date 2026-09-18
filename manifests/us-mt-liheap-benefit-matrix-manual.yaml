@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-mt-liheap-dphhs-liheap-policy-manual
+  jurisdiction: us-mt
+  document_class: manual
+  title: Montana LIHEAP Policy Manual, 2025-2026
+  source_url: https://dphhs.mt.gov/assets/hcsd/liheap/LIHEAPmanual.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-mt/manual/dphhs/liheap-policy-manual
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services, Human and Community Services Division
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: MT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dphhs.mt.gov/hcsd/energyassistance/
+    on_clearinghouse_index: true
+    source_discovery_group: us-mt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dphhs.mt.gov/hcsd/energyassistance/
+    extraction_granularity: pdf_page
+    expression_date_note: 2025-2026 heating season manual; PDF dated 2026-05-04
+    access_note: dphhs.mt.gov HTTP 200 to the plain client (1,409,971 bytes)
+    page_count: 135
+    benefit_matrix_pdf_pages: 122-125
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

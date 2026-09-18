@@ -1,0 +1,574 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-fl-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 18
+    index_records_total: 18
+- source_id: us-fl-cms-chip-state-plan-spa-fl-22-0034-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-22-0034: Approval Package (approved June 30, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL-22-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-22-0034/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-22-0034
+    cms_node_id: '137546'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=137546
+    approval_date: '2022-06-30'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-21-0033-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-21-0033: Approval Package (approved November 15, 2021, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL-21-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-21-0033/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-21-0033
+    cms_node_id: '127996'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=127996
+    approval_date: '2021-11-15'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-18-0029-chip-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-18-0029-CHIP: Approval Package (approved March 19, 2021, effective October 2, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL-18-0029-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-02'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-18-0029-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-18-0029-CHIP
+    cms_node_id: '106826'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=106826
+    approval_date: '2021-03-19'
+    effective_date: '2017-10-02'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-20-0032-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-20-0032: Approval Package (approved August 7, 2020, effective March 9, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL-20-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-09'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-20-0032/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-20-0032
+    cms_node_id: '146791'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146791
+    approval_date: '2020-08-07'
+    effective_date: '2020-03-09'
+    summary: The state provides temporary cost sharing policy adjustments in response to the COVID-19 public health emergency.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-19-0030-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-19-0030: Approval Package (approved August 16, 2019, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-19-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-19-0030/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-19-0030
+    cms_node_id: '4086'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4086
+    approval_date: '2019-08-16'
+    effective_date: '2018-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-13-0004-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-13-0004: Approval Package (approved January 7, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-13-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-13-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0004
+    cms_node_id: '2361'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2361
+    approval_date: '2014-01-07'
+    effective_date: '2014-01-01'
+    summary: Clarifies the State's Non-Financial Eligibility Policies on Residency, Citizenship, Social Security Numbers,
+      Substitution of Coverage, Non-Payment of Premiums, and Continuous Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-13-0001-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-13-0001: Approval Package (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-13-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-13-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0001
+    cms_node_id: '2356'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2356
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: Provides Assurance that the State will Apply Methodologies Based on MAGI for all Separate CHIP Covered Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-13-0002-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-13-0002: Approval Package (approved November 18, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-13-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-13-0002/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-13-0002
+    cms_node_id: '2371'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2371
+    approval_date: '2013-11-18'
+    effective_date: '2014-01-01'
+    summary: Converts the State's Existing Income Eligibility Standards to Modified Adjusted Gross Income MAGI Equivalent
+      Standards, by Age Group, for Children Covered in Its Title XXI Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-23-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-23: Approval Package (approved April 1, 2013, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-23-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-23/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-CSPA-23
+    cms_node_id: '2276'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2276
+    approval_date: '2013-04-01'
+    effective_date: '2012-10-01'
+    summary: Current and Final-Adopts the policy of provisional CHIP eligibility.
+    topics: &id002
+    - Current State Plan
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-23-final-approved-state-plan
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-23: Final Approved State Plan (approved April 1, 2013, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-23-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-23/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: FL-CSPA-23
+    cms_node_id: '2276'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2276
+    approval_date: '2013-04-01'
+    effective_date: '2012-10-01'
+    summary: Current and Final-Adopts the policy of provisional CHIP eligibility.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-fl-cms-chip-state-plan-spa-fl-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL: Approval Package (approved December 18, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-22-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL
+    cms_node_id: '2146'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2146
+    approval_date: '2012-12-18'
+    effective_date: '2012-07-01'
+    summary: CSPA 22 expands its CHIP to include dependents of public agency employees who are otherwise eligible under the
+      state plan.
+    topics: &id003
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-final-approved-state-plan
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL: Final Approved State Plan (approved December 18, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-22-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: FL
+    cms_node_id: '2146'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2146
+    approval_date: '2012-12-18'
+    effective_date: '2012-07-01'
+    summary: CSPA 22 expands its CHIP to include dependents of public agency employees who are otherwise eligible under the
+      state plan.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-21-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-21: Approval Package (approved April 5, 2012, effective September 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-21-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-21/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-CSPA-21
+    cms_node_id: '2256'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2256
+    approval_date: '2012-04-05'
+    effective_date: '2011-09-01'
+    summary: CHIPRA Section 211 - Citizenship Documentation CHIPRA Section 403 - Expands managed care choice selection establishes
+      a tribal consultation process and allows beneficiaries additional time to renew eligibility during State or Federal
+      declared disasters.
+    topics: &id004
+    - Delivery System
+    - Disaster Relief
+    - Eligibility
+    - Health Services Initiatives
+    - Tribal Issues
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-21-final-approved-state-plan
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-21: Final Approved State Plan (approved April 5, 2012, effective September 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-21-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-21/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: FL-CSPA-21
+    cms_node_id: '2256'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2256
+    approval_date: '2012-04-05'
+    effective_date: '2011-09-01'
+    summary: CHIPRA Section 211 - Citizenship Documentation CHIPRA Section 403 - Expands managed care choice selection establishes
+      a tribal consultation process and allows beneficiaries additional time to renew eligibility during State or Federal
+      declared disasters.
+    topics: *id004
+    link_label: Final Approved State Plan
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-19-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-19: Approval Package (approved May 5, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-19-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-19/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-CSPA-19
+    cms_node_id: '1991'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1991
+    approval_date: '2011-05-05'
+    effective_date: '2010-07-01'
+    summary: CHIPRA Section 501 - Oral Health.
+    topics: &id005
+    - Dental
+    link_label: Approval Package
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-19-final-approved-state-plan
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-19: Final Approved State Plan (approved May 5, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-19-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-19/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: FL-CSPA-19
+    cms_node_id: '1991'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1991
+    approval_date: '2011-05-05'
+    effective_date: '2010-07-01'
+    summary: CHIPRA Section 501 - Oral Health.
+    topics: *id005
+    link_label: Final Approved State Plan
+- source_id: us-fl-cms-chip-state-plan-spa-fl-cspa-18-approval-package
+  jurisdiction: us-fl
+  document_class: policy
+  title: 'Florida CHIP SPA FL-CSPA-18: Approval Package (approved April 1, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/FL/FL-CSPA-18-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-fl/policy/cms/chip-state-plan/spa/fl-cspa-18/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Florida
+    source_discovery_group: us-fl/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: FL-CSPA-18
+    cms_node_id: '1306'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1306
+    approval_date: '2010-04-01'
+    effective_date: '2009-07-01'
+    summary: Reduces uninsurance period, increases dental benefit limit removes mental health limits, etc.
+    topics:
+    - Benefits
+    link_label: Approval Package

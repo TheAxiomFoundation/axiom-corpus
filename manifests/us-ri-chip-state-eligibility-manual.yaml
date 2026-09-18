@@ -1,0 +1,47 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ri-eohhs-210-ricr-30-00-1
+  jurisdiction: us-ri
+  document_class: regulation
+  title: 210-RICR-30-00-1 Medicaid Affordable Care Coverage Groups Overview and Eligibility Pathways
+  source_url: https://rules.sos.ri.gov/regulations/Part/210-30-00-1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-08-17'
+  citation_path: us-ri/regulation/210-ricr/30/00/1
+  extraction: &id001
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Executive Office of Health and Human Services
+    document_subtype: administrative_regulation
+    program: CHIP
+    source_discovery_group: us-ri/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    official_publisher: Rhode Island Department of State
+    legal_identifier: 210-RICR-30-00-1
+    regulation_effective_date: '2025-08-17'
+    download_url_note: Download Regulation PDF REG_13314_20250728104245127.pdf
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/EOHHS/REG_13314_20250728104245127.pdf
+- source_id: ri-eohhs-210-ricr-30-00-5
+  jurisdiction: us-ri
+  document_class: regulation
+  title: 210-RICR-30-00-5 Medicaid MAGI Financial Eligibility Determinations and Verification
+  source_url: https://rules.sos.ri.gov/regulations/Part/210-30-00-5
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-08-28'
+  citation_path: us-ri/regulation/210-ricr/30/00/5
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Executive Office of Health and Human Services
+    document_subtype: administrative_regulation
+    program: CHIP
+    source_discovery_group: us-ri/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    official_publisher: Rhode Island Department of State
+    legal_identifier: 210-RICR-30-00-5
+    regulation_effective_date: '2025-08-28'
+    download_url_note: Download Regulation PDF REG_13331_20250808145837454.pdf
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/EOHHS/REG_13331_20250808145837454.pdf

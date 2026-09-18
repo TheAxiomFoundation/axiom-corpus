@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "fc1f78f07434cd7282ec3137f0d1ac86a744286d5b0079e5235abf64464d4dc2"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "d50bedb84f37363a2e69b9dbdf5f1379ddedb9ab5b06b42f1933c204c7986c0a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "194a5403220ddc324c9bc9d3b86ebb996359d16e368541d41154267832eef79d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-09-13-tanf-state-plan/official-documents/us-ga-tanf-state-plan-fy2026.pdf",
+      "sha256": "dcfb013bf6331e5e92d788a46d86c29bdf083f295d3c541c89c3c00441dfef66"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 56,
+    "missing_count": 0,
+    "provision_count": 56,
+    "source_count": 56
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:23:51.318124+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zk+r036uCw3qxoY/NYxZ7ekPB1AOYXshTKg8Yn4Ogaan2F1p66+gZJ1ZzsUxCq/TQjjLf/5WZKXWhaz65lCgCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

@@ -1,0 +1,857 @@
+{
+ "name": "uk-rulespec-2026-09-06",
+ "description": "UK RuleSpec corpus release: 2026-09-05 set plus wave-11 batches 4c–4g (33 council scopes; Hyndburn withheld pending source clarification).",
+ "quality_profile": "complete-expression-dates-v1",
+ "scopes": [
+  {
+   "document_class": "guidance",
+   "jurisdiction": "uk",
+   "version": "2026-07-10-uk-rulespec-source-promotion"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-06-03-uk-universal-credit"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-06-05-uk-pension-credit-reg6"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-06-06-uk-national-insurance-final"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-06-06-uk-uksi-2026-148-article14"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-10-uk-rulespec-source-promotion"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-enp-disregards-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-enp-regs-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-enp-sch1-award-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-enp-sch1-income-capital-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-enp-sch6-capital-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-sc-amount-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-sc-entitlement-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-sc-income-capital-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-wa-classes-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-wa-workingage-applicable-amounts-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-end-award-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-end-income-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-end-sch3-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-enp-applicable-amounts-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-enp-nondep-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "regulation",
+   "jurisdiction": "uk",
+   "version": "2026-07-14-uk-ctr-wa-reg25-r2026-07-20-datefix"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "uk",
+   "version": "2026-06-03-uk-universal-credit"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "uk",
+   "version": "2026-06-05-uk-child-benefit-sscba"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "uk",
+   "version": "2026-06-06-uk-national-insurance-final"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "uk",
+   "version": "2026-06-06-uk-state-pension-credit-section1"
+  },
+  {
+   "document_class": "statute",
+   "jurisdiction": "uk",
+   "version": "2026-07-10-uk-rulespec-source-promotion"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-arun",
+   "version": "2026-09-05-arun-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-ashford",
+   "version": "2026-08-02-ashford-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-babergh",
+   "version": "2026-08-03-babergh-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-barnsley",
+   "version": "2026-08-03-barnsley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bassetlaw",
+   "version": "2026-08-03-bassetlaw-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bath-and-north-east-somerset",
+   "version": "2026-07-25-bath-and-north-east-somerset-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-blackpool",
+   "version": "2026-07-25-blackpool-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bournemouth-christchurch-and-poole",
+   "version": "2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bracknell-forest",
+   "version": "2026-09-05-bracknell-forest-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-braintree",
+   "version": "2026-08-05-braintree-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-breckland",
+   "version": "2026-09-05-breckland-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-brentwood",
+   "version": "2026-08-02-brentwood-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bristol-city-of",
+   "version": "2026-07-19-bristol-city-of-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-broadland",
+   "version": "2026-08-02-broadland-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bromsgrove",
+   "version": "2026-08-03-bromsgrove-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-broxbourne",
+   "version": "2026-08-02-broxbourne-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-burnley",
+   "version": "2026-09-05-burnley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-bury",
+   "version": "2026-08-08-bury-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-cambridge",
+   "version": "2026-08-05-cambridge-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-castle-point",
+   "version": "2026-08-02-castle-point-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-charnwood",
+   "version": "2026-09-05-charnwood-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-cherwell",
+   "version": "2026-09-05-cherwell-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-cheshire-east",
+   "version": "2026-07-25-cheshire-east-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-cheshire-west-and-chester",
+   "version": "2026-07-25-cheshire-west-and-chester-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-chorley",
+   "version": "2026-08-02-chorley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-cotswold",
+   "version": "2026-08-02-cotswold-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-county-durham",
+   "version": "2026-08-10-county-durham-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-coventry",
+   "version": "2026-07-21-coventry-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-crawley",
+   "version": "2026-09-05-crawley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-cumberland",
+   "version": "2026-09-05-cumberland-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-darlington",
+   "version": "2026-08-06-darlington-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-dartford",
+   "version": "2026-08-02-dartford-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-derby",
+   "version": "2026-07-21-derby-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-dover",
+   "version": "2026-08-02-dover-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-dudley",
+   "version": "2026-08-06-dudley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-ealing",
+   "version": "2026-08-03-ealing-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-east-hampshire",
+   "version": "2026-08-02-east-hampshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-east-hertfordshire",
+   "version": "2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-east-riding-of-yorkshire",
+   "version": "2026-09-05-east-riding-of-yorkshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-east-suffolk",
+   "version": "2026-09-05-east-suffolk-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-eastleigh",
+   "version": "2026-09-05-eastleigh-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-elmbridge",
+   "version": "2026-08-03-elmbridge-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-epsom-and-ewell",
+   "version": "2026-09-05-epsom-and-ewell-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-fareham",
+   "version": "2026-09-05-fareham-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-fenland",
+   "version": "2026-09-05-fenland-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-folkestone-and-hythe",
+   "version": "2026-08-02-folkestone-and-hythe-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-forest-of-dean",
+   "version": "2026-08-02-forest-of-dean-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-fylde",
+   "version": "2026-09-05-fylde-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-gloucester",
+   "version": "2026-08-02-gloucester-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-gravesham",
+   "version": "2026-09-05-gravesham-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-guildford",
+   "version": "2026-08-03-guildford-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-harlow",
+   "version": "2026-08-02-harlow-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-harrow",
+   "version": "2026-08-03-harrow-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-hart",
+   "version": "2026-09-05-hart-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-hartlepool",
+   "version": "2026-08-05-hartlepool-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-hastings",
+   "version": "2026-08-02-hastings-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-havant",
+   "version": "2026-08-02-havant-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-herefordshire",
+   "version": "2026-08-10-herefordshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-hertsmere",
+   "version": "2026-08-02-hertsmere-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-hillingdon",
+   "version": "2026-08-03-hillingdon-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-ipswich",
+   "version": "2026-08-03-ipswich-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-isle-of-wight",
+   "version": "2026-08-14-isle-of-wight-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-isles-of-scilly",
+   "version": "2026-09-05-isles-of-scilly-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-kensington-and-chelsea",
+   "version": "2026-08-03-kensington-and-chelsea-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-kingston-upon-thames",
+   "version": "2026-06-07-kingston-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-knowsley",
+   "version": "2026-08-03-knowsley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-lancaster",
+   "version": "2026-08-02-lancaster-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-leeds",
+   "version": "2026-08-08-leeds-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-maldon",
+   "version": "2026-08-02-maldon-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-malvern-hills",
+   "version": "2026-09-05-malvern-hills-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-mansfield",
+   "version": "2026-08-03-mansfield-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-medway",
+   "version": "2026-07-25-medway-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-merton",
+   "version": "2026-07-19-merton-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-mid-suffolk",
+   "version": "2026-09-05-mid-suffolk-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-middlesbrough",
+   "version": "2026-08-14-middlesbrough-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-milton-keynes",
+   "version": "2026-07-25-milton-keynes-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-newcastle-upon-tyne",
+   "version": "2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-newham",
+   "version": "2026-07-19-newham-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-east-lincolnshire",
+   "version": "2026-07-25-north-east-lincolnshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-hertfordshire",
+   "version": "2026-08-02-north-hertfordshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-kesteven",
+   "version": "2026-08-02-north-kesteven-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-lincolnshire",
+   "version": "2026-07-25-north-lincolnshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-somerset",
+   "version": "2026-09-05-north-somerset-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-warwickshire",
+   "version": "2026-08-03-north-warwickshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-west-leicestershire",
+   "version": "2026-09-05-north-west-leicestershire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-north-yorkshire",
+   "version": "2026-07-25-north-yorkshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-northumberland",
+   "version": "2026-07-25-northumberland-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-nuneaton-and-bedworth",
+   "version": "2026-08-03-nuneaton-and-bedworth-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-oldham",
+   "version": "2026-08-08-oldham-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-peterborough",
+   "version": "2026-07-25-peterborough-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-plymouth",
+   "version": "2026-07-25-plymouth-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-reading",
+   "version": "2026-09-05-reading-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-redbridge",
+   "version": "2026-08-03-redbridge-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-redcar-and-cleveland",
+   "version": "2026-08-06-redcar-and-cleveland-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-redditch",
+   "version": "2026-09-05-redditch-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-ribble-valley",
+   "version": "2026-08-02-ribble-valley-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-rochford",
+   "version": "2026-08-08-rochford-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-rossendale",
+   "version": "2026-09-05-rossendale-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-rother",
+   "version": "2026-09-05-rother-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-rugby",
+   "version": "2026-08-03-rugby-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-runnymede",
+   "version": "2026-08-03-runnymede-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-rushcliffe",
+   "version": "2026-08-03-rushcliffe-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-rushmoor",
+   "version": "2026-09-05-rushmoor-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-salford",
+   "version": "2026-08-03-salford-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-sandwell",
+   "version": "2026-08-06-sandwell-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-sefton",
+   "version": "2026-08-03-sefton-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-slough",
+   "version": "2026-07-25-slough-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-solihull",
+   "version": "2026-08-03-solihull-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-south-derbyshire",
+   "version": "2026-08-02-south-derbyshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-south-kesteven",
+   "version": "2026-08-02-south-kesteven-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-south-norfolk",
+   "version": "2026-08-03-south-norfolk-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-south-oxfordshire",
+   "version": "2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-southampton",
+   "version": "2026-07-21-southampton-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-southend-on-sea",
+   "version": "2026-07-25-southend-on-sea-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-spelthorne",
+   "version": "2026-08-03-spelthorne-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-st-helens",
+   "version": "2026-08-03-st-helens-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-stevenage",
+   "version": "2026-08-03-stevenage-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-stratford-on-avon",
+   "version": "2026-08-03-stratford-on-avon-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-tameside",
+   "version": "2026-08-08-tameside-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-tamworth",
+   "version": "2026-08-03-tamworth-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-telford-and-wrekin",
+   "version": "2026-07-25-telford-and-wrekin-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-thanet",
+   "version": "2026-09-05-thanet-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-torbay",
+   "version": "2026-07-25-torbay-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-wakefield",
+   "version": "2026-08-08-wakefield-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-warrington",
+   "version": "2026-07-25-warrington-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-warwick",
+   "version": "2026-08-03-warwick-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-wealden",
+   "version": "2026-09-05-wealden-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-west-northamptonshire",
+   "version": "2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-westminster",
+   "version": "2026-07-19-westminster-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-westmorland-and-furness",
+   "version": "2026-09-05-westmorland-and-furness-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-wigan",
+   "version": "2026-08-03-wigan-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-winchester",
+   "version": "2026-08-02-winchester-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-wirral",
+   "version": "2026-08-03-wirral-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-wolverhampton",
+   "version": "2026-08-03-wolverhampton-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-worcester",
+   "version": "2026-09-05-worcester-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-worthing",
+   "version": "2026-08-03-worthing-council-tax-reduction-2026-2027"
+  },
+  {
+   "document_class": "manual",
+   "jurisdiction": "uk-wyre",
+   "version": "2026-08-02-wyre-council-tax-reduction-2026-2027"
+  }
+ ]
+}

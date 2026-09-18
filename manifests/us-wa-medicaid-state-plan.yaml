@@ -1,0 +1,1567 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-wa-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 494
+- source_id: us-wa-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 494
+- source_id: us-wa-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 494
+- source_id: us-wa-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 494
+- source_id: us-wa-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 5
+    index_records_on_page: 94
+    index_records_total: 494
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-26-0001-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-26-0001: Approval Document (approved June 23, 2026, effective July 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-26-0001
+    cms_node_id: '193581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193581
+    approval_date: '2026-06-23'
+    effective_date: '2026-07-01'
+    summary: This amendment updates to Third Party Liability protocol to align how the agency administers other third-party
+      liability requirements for Medicaid as the payer of last resort with respect to the WA Cares program and carceral reentry.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-24-0016-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-24-0016: Approval Document (approved June 12, 2024, effective February 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-24-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-24-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-24-0016
+    cms_node_id: '166531'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=166531
+    approval_date: '2024-06-12'
+    effective_date: '2024-02-01'
+    summary: This SPA amendment is to update the organization and administration of the State Medicaid Agency and reflects
+      internal organizational change.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-24-0018-2-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-24-0018-2: Approval Document (approved May 3, 2024, effective April 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-24-0018-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-24-0018-2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-24-0018-2
+    cms_node_id: '163756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163756
+    approval_date: '2024-05-03'
+    effective_date: '2024-04-01'
+    summary: This SPA amends new income disregards for the Qualified Medicare Beneficiaries (QMB) and Qualifying Individuals
+      eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-24-0003-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-24-0003: Approval Document (approved April 3, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-24-0003
+    cms_node_id: '162651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162651
+    approval_date: '2024-04-03'
+    effective_date: '2024-07-01'
+    summary: This amendment changes to the income eligibility methodologies for Community Behavioral Health Support Services
+      (CBHS) in Washington’s section 1915(i) authorized Supportive Supervision and Oversight benefit.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-24-0006-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-24-0006: Approval Document (approved March 1, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-24-0006
+    cms_node_id: '160316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160316
+    approval_date: '2024-03-01'
+    effective_date: '2024-01-01'
+    summary: This amendment is to increase the total compensated amount on all claim types to $250.00 in accordance with Title
+      42, Chapter IV, Subchapter C, Part 433 of the Code of Federal Regulations.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-23-0048-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-23-0048: Approval Document (approved December 20, 2023, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-23-0048.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-23-0048/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-23-0048
+    cms_node_id: '157501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157501
+    approval_date: '2023-12-20'
+    effective_date: '2023-10-01'
+    summary: This amendment is to comply with Section 1940 (42CFR 1396w) of the Social Security Act by contracting with vendors
+      who specialize in automated financial institution verification for Medicaid agencies and check the financial resources
+      of Medicaid applicants/recipients.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-23-0045-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-23-0045: Approval Document (approved October 30, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-23-0045.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-23-0045/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-23-0045
+    cms_node_id: '155001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155001
+    approval_date: '2023-10-30'
+    effective_date: '2023-07-01'
+    summary: This amendment is to increase the Personal Needs Allowance (PNA) from to $100 and to $200 for couples.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-23-0008-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-23-0008: Approval Document (approved May 23, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-23-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-23-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-23-0008
+    cms_node_id: '148306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148306
+    approval_date: '2023-05-23'
+    effective_date: '2023-01-01'
+    summary: This amendment is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-22-0034-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-22-0034: Approval Document (approved February 2, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-22-0034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-22-0034/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-22-0034
+    cms_node_id: '144361'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=144361
+    approval_date: '2023-02-02'
+    effective_date: '2023-01-01'
+    summary: This SPA amendment is to disregard all countable resources in determining eligibility for the QMB, SLMB, and
+      QI eligibility groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-22-0016-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-22-0016: Approval Document (approved December 16, 2022, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-22-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-22-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-22-0016
+    cms_node_id: '143116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143116
+    approval_date: '2022-12-16'
+    effective_date: '2022-10-01'
+    summary: This amendment updates the agency administration information for Washington State's single state agency, the
+      Health Care Authority.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-22-0020-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-22-0020: Approval Document (approved October 24, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-22-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-22-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-22-0020
+    cms_node_id: '141031'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=141031
+    approval_date: '2022-10-24'
+    effective_date: '2022-07-01'
+    summary: The purpose of this SPA is to increase the Personal Needs Allowance (PNA) for all Medicaid in-home clients, including
+      PACE enrollees, from 100 percent of the Federal Poverty Level to 300 percent of the Federal Benefit Rate.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-22-0022-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-22-0022: Approval Document (approved October 5, 2022, effective July 9, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-22-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-09'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-22-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-22-0022
+    cms_node_id: '140356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140356
+    approval_date: '2022-10-05'
+    effective_date: '2022-07-09'
+    summary: This amendment is to increase the excess home equity limit to the federal maximum allowed amount when determining
+      a person’s eligibility for SSI-related long-term care (LTC) services as described in WAC 182-513-1350.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-21-0022-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-21-0022: Approval Document (approved October 29, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WA-21-0022
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-21-0022/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-21-0022
+    cms_node_id: '127606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=127606
+    approval_date: '2021-10-29'
+    effective_date: '2021-07-01'
+    summary: To remove information related to a "Reasonable Eligibility Period" eligibility pilot that the state implemented
+      from July 1, 2018, through June 30, 2019. SPA 21-0022 will remove the pilot information from the Medicaid State Plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-21-0018-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-21-0018: Approval Document (approved October 12, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-21-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-21-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-21-0018
+    cms_node_id: '126916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=126916
+    approval_date: '2021-10-12'
+    effective_date: '2021-07-01'
+    summary: Managed Care Enrollment Process Update
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-21-0002-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-21-0002: Approval Document (approved June 14, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-21-0002
+    cms_node_id: '109291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109291
+    approval_date: '2021-06-14'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment adopts a new resource disregard under the authority of section 1902(r)(2)
+      of the Social Security Act. The agency chooses to provide a reasonable timeframe for reducing excess resources accumulated
+      during the COVID-19 public health emergency (PHE) by certain individuals subject to the post-eligibility treatment of
+      income (PETI) rules for long-term services and supports (LTSS). Under FFCRA, these individuals accumulated extra resources,
+      due to no changes being made to their PETI. Income they would have otherwise paid toward the cost of their care resulted
+      in an increase in their resources that began to exceed program standards. This methodology also will prevent an institutionalized
+      beneficiary from having to spend down any such excess resources during the PHE. This methodology will remain in effect
+      through the twelve months following the end of the COVID-19 PHE.
+    topics:
+    - Allocation Methodologies
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-21-0021-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-21-0021: Approval Document (approved May 28, 2021, effective November 2, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-21-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-11-02'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-21-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-21-0021
+    cms_node_id: '108791'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108791
+    approval_date: '2021-05-28'
+    effective_date: '2020-11-02'
+    summary: CMS is approving this time-limited state plan amendment (SPA) to respond to the COVID-19 national emergency.
+      The purpose of this amendment is to provide a disregard of certain resources when determining eligibility for individuals
+      that are receiving long-term services and supports under a special income level.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0030-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0030: Approval Document (approved February 10, 2021, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WA-20-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0030
+    cms_node_id: '106046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106046
+    approval_date: '2021-02-10'
+    effective_date: '2020-04-01'
+    summary: Implements a resource disregard of earnings accumulated in a separate account during an individual's enrollment
+      in a working disability eligibility group when determining the individual's subsequent eligibility for other eligibility
+      groups covered under Washington’s state plan
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0036-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0036: Approval Document (approved December 23, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WA-20-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0036/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0036
+    cms_node_id: '105071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105071
+    approval_date: '2020-12-23'
+    effective_date: '2020-10-01'
+    summary: This SPA removes language regarding client copayments. The copayment policy was not implemented, therefore the
+      co-pay information is outdated and does not reflect current state agency policy
+    topics:
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0028-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0028: Approval Document (approved October 23, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/WA-20-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0028
+    cms_node_id: '103076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103076
+    approval_date: '2020-10-23'
+    effective_date: '2020-03-18'
+    summary: 'CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to rescind the following parts of Section 7.4 of the existing state plan: 1) Election A.1 to furnish
+      medical assistance to uninsured group under 1902(a)(10)(A)(ii)(XXIII) and 1902(ss) of the Act; and 2) Election of B.1.
+      to allow hospitals to make presumptive eligibility determinations for uninsured individuals described at section 1902(a)(10)(A)(ii)(XXIII)
+      of the Social Security Act.'
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0015-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0015: Approval Document (approved August 31, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0015
+    cms_node_id: '101746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101746
+    approval_date: '2020-08-31'
+    effective_date: '2020-07-01'
+    summary: extends the provisions for rate enhancement for low volume, small rural hospitals
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0006-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0006: Approval Document (approved June 3, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0006
+    cms_node_id: '100946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100946
+    approval_date: '2020-06-03'
+    effective_date: '2020-01-01'
+    summary: Adopts the eligibility group described in section 1902(a)(10)(A)(ii)(XIII) of the Social Security Act (the “Work
+      Incentives” eligibility group).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0009-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0009: Approval Document (approved June 1, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/WA-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0009
+    cms_node_id: '100941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100941
+    approval_date: '2020-06-01'
+    effective_date: '2020-01-01'
+    summary: Establishes a new premium for a new eligibility group
+    topics:
+    - Eligibility
+    - Premiums
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0014-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0014: Approval Document (approved April 24, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-20-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0014
+    cms_node_id: '97976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=97976
+    approval_date: '2020-04-24'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to allow cover the new optional group for COVID testing; apply less strict resource and income methods when determining
+      eligibility for certain individuals; consider individuals evacuated from the state due to the emergency to continue
+      to be residents; provide medical coverage to non-residents who are quarantined in the state due to COVID-19; allow hospitals
+      to make presumptive eligibility decisions for certain individuals; suspend enrollment fees and premiums for all individuals;
+      expand telehealth; add certain benefits and increase some payment rates related to the COVID-19 national emergency.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0011-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0011: Approval Document (approved April 13, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0011
+    cms_node_id: '94196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=94196
+    approval_date: '2020-04-13'
+    effective_date: '2020-03-01'
+    summary: Makes changes to the 1915(k) Community First Choice state plan option to include changes related to Washington's
+      response to the COVID-19 outbreak.
+    topics:
+    - Current State Plan
+    - Disaster Relief
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0012-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0012: Approval Document (approved April 7, 2020, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0012
+    cms_node_id: '93356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=93356
+    approval_date: '2020-04-07'
+    effective_date: '2019-04-01'
+    summary: This SPA amends the Specialized Services section in the State Plan to note that specialized services delivered
+      at the facility or those that take the resident into the community may be suspended due to a state or federal national
+      emergency.
+    topics:
+    - Current State Plan
+    - Disaster Relief
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0010-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0010: Approval Document (approved March 25, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0010
+    cms_node_id: '87616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=87616
+    approval_date: '2020-03-25'
+    effective_date: '2020-01-01'
+    summary: Updates the payment for professional services in case of a governor-declared state emergency (such as the current
+      COVID-19 outbreak), when the Medicaid agency determines it is appropriate. This SPA also ensures payment for professional
+      services provided via telephone services and /or online digital evaluation and management services at the same rates
+      as for professional services provided face-to-face or via telemedicine, to support the delivery of health care services
+      during a state of emergency.
+    topics:
+    - Benefits
+    - Current State Plan
+    - Disaster Relief
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-20-0004-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-20-0004: Approval Document (approved February 11, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-20-0004_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-20-0004
+    cms_node_id: '58826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58826
+    approval_date: '2020-02-11'
+    effective_date: '2020-01-01'
+    summary: Updates language clarifying the approved place of service for School-Based Health Care Services and adds Advanced
+      Registered Nurse Practitioners as a new provider type.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-19-0012-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-19-0012: Approval Document (approved June 24, 2019, effective April 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-19-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-04-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-19-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-19-0012
+    cms_node_id: '5681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5681
+    approval_date: '2019-06-24'
+    effective_date: '2019-04-01'
+    summary: Updates the fee schedule effective dates for several Medicaid programs and services.
+    topics:
+    - Cost Sharing
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-18-0001-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-18-0001: Approval Document (approved January 23, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-18-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-18-0001
+    cms_node_id: '11936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11936
+    approval_date: '2018-01-23'
+    effective_date: '2018-01-01'
+    summary: Maintains the optional state supplement standards for special income level groups based on 2018 cost of living
+      adjustment.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-14-0003-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-14-0003: Approval Document (approved September 28, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-14-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-14-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-14-0003
+    cms_node_id: '22251'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22251
+    approval_date: '2015-09-28'
+    effective_date: '2014-01-01'
+    summary: This SPA amends the state's Primary Care Case Management program to allow enrollment of the expansion and other
+      voluntary populations.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-14-0022-mm7-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-14-0022-MM7: Approval Document (approved September 24, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-14-0022-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-14-0022-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-14-0022-MM7
+    cms_node_id: '32756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32756
+    approval_date: '2014-09-24'
+    effective_date: '2014-01-01'
+    summary: This SPA specifies options for presumptive eligibility conducted by hospitals into the Medicaid State Plan in
+      accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-14-0014-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-14-0014: Approval Document (approved June 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-14-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-14-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-14-0014
+    cms_node_id: '35571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35571
+    approval_date: '2014-06-06'
+    effective_date: '2014-01-01'
+    summary: Removes Asset/Resource Test for Pregnant Women Under the Medically Needy Program in the Medicaid State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-14-0004-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-14-0004: Approval Document (approved June 4, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-14-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-14-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-14-0004
+    cms_node_id: '36471'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36471
+    approval_date: '2014-06-04'
+    effective_date: '2014-01-01'
+    summary: It accomplishes several substantive revisions including changing the program name to "Apple Health;" adding a
+      "low birth weight baby case payment;" making enrollment mandatory; expanding the eligibility groups to include pregnant
+      women (mandatory), the new adult expansion group (mandatory), and SSI/foster kids (voluntary); and adding a new description
+      of the MCO assignment process.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-14-0024-mm-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-14-0024-MM: Approval Document (approved May 9, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-14-0024-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-14-0024-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-14-0024-MM
+    cms_node_id: '37411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37411
+    approval_date: '2014-05-09'
+    effective_date: '2014-04-01'
+    summary: Lowers Income Limit in PDF S25 for Mandatory Eligibility Group for Parents and other Caretaker Relatives in Medicaid
+      State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-0033-mm5-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-0033-MM5: Approval Document (approved March 28, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-0033-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-0033-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-0033-MM5
+    cms_node_id: '37876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37876
+    approval_date: '2014-03-28'
+    effective_date: '2014-01-01'
+    summary: Incorporates Residency Requirements into Medicaid State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-0024-mm-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-0024-MM: Approval Document (approved March 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-0024-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-0024-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-0024-MM
+    cms_node_id: '37656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37656
+    approval_date: '2014-03-21'
+    effective_date: '2014-01-01'
+    summary: Describes Single State Agency Delegation of Appeals and Determinations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-0031-mm-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-0031-MM: Approval Document (approved March 6, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-0031-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-0031-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-0031-MM
+    cms_node_id: '38211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38211
+    approval_date: '2014-03-06'
+    effective_date: '2013-10-01'
+    summary: Incorporates the Modified Adjusted Gross Income MAGI Based Eligibility Process Requirements, Including the Single
+      Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-0032-mm3-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-0032-MM3: Approval Document (approved March 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-0032-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-0032-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-0032-MM3
+    cms_node_id: '38296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38296
+    approval_date: '2014-03-06'
+    effective_date: '2014-01-01'
+    summary: Incorporates Modified Adjusted Gross Income MAGI Based Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-0034-mm-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-0034-MM: Approval Document (approved February 28, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-0034-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-0034-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-0034-MM
+    cms_node_id: '24136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24136
+    approval_date: '2014-02-28'
+    effective_date: '2014-01-01'
+    summary: Incorporates the Citizen and Non-Citizen Eligibility Requirements into the Medicaid State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-41-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-41: Approval Document (approved February 21, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-41.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-41/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-41
+    cms_node_id: '38581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38581
+    approval_date: '2014-02-21'
+    effective_date: '2013-10-01'
+    summary: Terminates the Port Gamble S Klallam Tribes delegated authority to conduct limited Medicaid eligibility determinations
+      under the state plan.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-0030-mm-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-0030-MM: Approval Document (approved December 19, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-0030-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-0030-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-0030-MM
+    cms_node_id: '39536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39536
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: Incorporates Mandatory and Optional MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-13-29-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-13-29: Approval Document (approved November 1, 2013, effective November 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-13-29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-11-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-13-29/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-13-29
+    cms_node_id: '35566'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35566
+    approval_date: '2013-11-01'
+    effective_date: '2013-11-01'
+    summary: Adds pregnant teens as an optional reasonable classification of individuals to the Medicaid state plan and disregards
+      all income for this group.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-wa-cms-medicaid-state-plan-spa-wa-09-029-approval-document
+  jurisdiction: us-wa
+  document_class: policy
+  title: 'Washington Medicaid SPA WA-09-029: Approval Document (approved January 7, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WA/WA-09-029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-wa/policy/cms/medicaid-state-plan/spa/wa-09-029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Washington
+    source_discovery_group: us-wa/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: WA-09-029
+    cms_node_id: '23036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23036
+    approval_date: '2010-01-07'
+    effective_date: '2009-10-01'
+    summary: Implements changes in deemed eligibility of children born to mothers covered by Medicaid for the date of the
+      child's birth for a period of one year from birth.
+    topics:
+    - Eligibility
+    link_label: Approval Document

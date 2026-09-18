@@ -92,6 +92,13 @@ The release name `current`, per-scope `publish`/`unpublish`, publish-on-load,
 scope auto-registration, and missing-parent synthesis do not exist. See
 `docs/named-release-publication.md`.
 
+## Branches, not forks
+
+Push branches to `TheAxiomFoundation/axiom-corpus` itself, never to a fork: a
+fork-head pull request run does not receive this repository's Actions variable
+`AXIOM_CORPUS_INGEST_PUBLIC_KEY`, so the authentication-gate tests in
+`tests/test_state_snap_manual_queue.py` fail by design. See CONTRIBUTING.md.
+
 ## Repo Boundaries
 
 - Source text and provenance: this repo.

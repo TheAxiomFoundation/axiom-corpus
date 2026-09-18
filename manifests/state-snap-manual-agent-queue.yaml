@@ -64,6 +64,27 @@ states:
       document_class: manual
       version: 2026-07-16-ar-snap-manual
     notes: Current scope retains the April 2026 base manual, May 2026 appendices and basis-of-issuance charts, July 2026 final filing, FY2026 eligibility chart, nutrition-waiver pages, and current work/time-limit page from official DHS sources.
+    superseding_scope:
+      jurisdiction: us-ar
+      document_class: manual
+      version: 2026-09-11-ar-snap-manual-supersede
+      supersedes: 2026-07-16-ar-snap-manual
+      manifest: manifests/us-ar-snap-manual.yaml
+      taken_at: '2026-09-11'
+      provision_count: 813
+      revised_documents:
+      - ar-dhs-snap-policy-manual
+      - ar-dhs-snap-manual-appendices
+      - ar-dhs-snap-nutrition-waiver
+      - ar-dhs-snap-time-limit-rules
+      run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
+      notes: 'Superseding scope taken 2026-09-11 (whole policy set re-extraction, same eight citation paths): SNAP Certification
+        Manual 07.01.2026 (589 pages, text changed) and Appendices 07.30.2026 (88 pages, was 85) replace the April/May editions;
+        the nutrition-waiver and time-limit pages changed only in their sub-navigation line (site menu), the FAQ, final filing,
+        quick reference and NBI chart are text-identical. humanservices.arkansas.gov (Cloudflare) answers HTTP 403 (146-548 bytes)
+        to the plain client, the browser user agent and the chrome120 fingerprint, and HTTP 200 to the safari17_0 fingerprint
+        with its own user agent, so the manifest uses browser_impersonation: safari17_0 (direct), TLS verified. Extraction 6 s;
+        validate-release on the swapped selector ok, 0 errors.'
   - jurisdiction: us-ca
     name: California
     queue_status: published_current
@@ -145,6 +166,13 @@ states:
       jurisdiction: us-ga
       document_class: manual
       version: 2026-05-27-ga-snap-manual-r2026-07-15-self-contained
+    superseding_manifest: manifests/us-ga-snap-manual.yaml
+    superseding_scope:
+      jurisdiction: us-ga
+      document_class: manual
+      version: 2026-09-11-ga-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (MT 87 (June 1, 2026) revised 18 items and 3025 became Civil Rights Policy 3601 (June 15, 2026)); the next release selector swaps the released version for this one and the released us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup scope for its 12-row successor 2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup, which drops the orphan 3614/block-12 fragment that collided with this scope. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
   - jurisdiction: us-hi
     name: Hawaii
     queue_status: published_current
@@ -216,6 +244,13 @@ states:
       jurisdiction: us-ky
       document_class: manual
       version: 2026-07-17-ky-snap-manual
+    superseding_manifest: manifests/us-ky-snap-manual.yaml
+    superseding_scope:
+      jurisdiction: us-ky
+      document_class: manual
+      version: 2026-09-11-ky-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (Volumes II (OMTL-708, R. 9/1/26) and IIA (OMTL-707, R. 9/1/26) revised); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
     notes: Current scope retains every page of the official DFS Volume II SNAP manual and Volume IIA SNAP work-requirements manual. Volume IX is all-program transmittal history and Volume X contains no SNAP material, so neither is misclassified as current SNAP policy.
   - jurisdiction: us-la
     name: Louisiana
@@ -242,6 +277,21 @@ states:
       rules index, Chapter 301 SNAP eligibility and benefit rules and Chapter 609 SNAP
       Employment and Training rules. Chapter 302 SUN Bucks is a separate Summer EBT
       program and is outside this SNAP scope.
+    superseding_scope:
+      jurisdiction: us-me
+      document_class: regulation
+      version: 2026-09-11-me-snap-manual-supersede
+      supersedes: 2026-07-17-me-snap-rules
+      manifest: manifests/us-me-snap-rules.yaml
+      taken_at: '2026-09-11'
+      provision_count: 223
+      revised_documents:
+      - me-ofi-snap-et-rules-chapter-609
+      run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
+      notes: 'Superseding scope taken 2026-09-11 (both rulebooks re-extracted, same two citation paths): Ch. 609 SNAP E&T is the
+        edition amended August 30, 2026 (filing 2026-191, file 144c609-2026-191-AMD.docx, Last-Modified 2026-08-28), body changed;
+        Ch. 301 is the same 144c301-2026-133-NSC.docx and text-identical. Extraction 1 s; validate-release on the swapped selector
+        ok, 0 errors.'
   - jurisdiction: us-md
     name: Maryland
     queue_status: published_current
@@ -279,6 +329,13 @@ states:
       jurisdiction: us-mi
       document_class: manual
       version: 2026-07-17-mi-bridges-manual
+    superseding_manifest: manifests/us-mi-bridges-manual.yaml
+    superseding_scope:
+      jurisdiction: us-mi
+      document_class: manual
+      version: 2026-09-11-mi-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (20 BEM/BAM documents, both TOCs and the bulletin log revised by BPB 2026-006/007 re-service and BPB 2026-019 to -024); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
     notes: Current scope retains all 183 chapters listed in the official current-effective
       BAM and BEM PDF tables of contents, both tables of contents, the Bridges bulletin log
       and glossary, and the FAP reference tables and 2026 issuance schedule. The MDHHS HTML
@@ -349,6 +406,24 @@ states:
       segments all 737 unique labeled provisions across general provisions, household
       processing, eligibility, benefits, and EBT issuance and accountability. The
       source-backed scope has complete 742-of-742 coverage and pinned source hashes.
+    superseding_scope:
+      jurisdiction: us-ne
+      document_class: regulation
+      version: 2026-09-11-ne-snap-manual-supersede
+      supersedes: 2026-07-17-ne-snap-rules
+      manifest: manifests/us-ne-snap-rules.yaml
+      taken_at: '2026-09-11'
+      provision_count: 694
+      revised_documents:
+      - ne-dhhs-title-475-chapter-2
+      - ne-dhhs-title-475-chapter-3
+      run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
+      notes: 'Superseding scope taken 2026-09-11 (whole Title 475 re-extraction of the same manifest, same five citation paths):
+        chapters 2 and 3 are the 07-28-2026 editions (bodies changed; chapters 1, 4, 5 byte-identical text). The publisher no
+        longer serves any _Official blob the API names (HTTP 400 ''blob doesn''t exist'' for chapters 1-3), so every chapter is
+        taken from the API''s pdfBlobName copy; chapter 1 is the same 12-24-2025 edition as a 33-page file. TLS verified with
+        the DigiCert intermediate under data/certs/ (REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE); verify_tls: false removed from the
+        manifest. Extraction 5 s; validate-release on the swapped selector ok, 0 errors.'
   - jurisdiction: us-nv
     name: Nevada
     queue_status: published_current
@@ -359,6 +434,27 @@ states:
       jurisdiction: us-nv
       document_class: manual
       version: 2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained
+    superseding_scope:
+      jurisdiction: us-nv
+      document_class: manual
+      version: 2026-09-11-nv-snap-manual-supersede
+      supersedes: 2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained
+      manifest: manifests/us-nv-eligibility-payments-manual.yaml
+      taken_at: '2026-09-11'
+      provision_count: 824
+      revised_documents:
+      - nv-dwss-ep-a-100
+      - nv-dwss-ep-a-200
+      - nv-dwss-ep-a-400
+      - nv-dwss-ep-a-700
+      - nv-dwss-ep-a-1800
+      - nv-dwss-ep-b-400
+      - nv-dwss-ep-b-900
+      run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
+      notes: 'Superseding scope taken 2026-09-11 (whole manual re-extraction, same 51 citation paths): the six chapters re-issued
+        under new file names (A-100, A-200, A-700, A-1800, B-400, B-900; MTL 08-26 to 13-26, June-July 2026) plus A-400 Citizenship,
+        revised in place under its released URL (Last-Modified 2026-07-06, MTL 06-26), have changed bodies; the other 44 files
+        are text-identical. Extraction 18 s; validate-release on the swapped selector ok, 0 errors.'
   - jurisdiction: us-nh
     name: New Hampshire
     queue_status: published_current
@@ -427,6 +523,13 @@ states:
       jurisdiction: us-nc
       document_class: manual
       version: 2026-05-27-nc-fns-manuals-r2026-07-15-self-contained
+    superseding_manifest: manifests/us-nc-fns-manuals.yaml
+    superseding_scope:
+      jurisdiction: us-nc
+      document_class: manual
+      version: 2026-09-11-nc-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (FNS 212, 215, 340 and 515 revised in August 2026); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
   - jurisdiction: us-nd
     name: North Dakota
     queue_status: published_current
@@ -438,6 +541,26 @@ states:
       document_class: manual
       version: 2026-07-21-nd-snap-manual
     notes: Complete Release 26.5 scope retains the official landing page, TOC, release update PDF, and all 64 live manual topics.
+    superseding_scope:
+      jurisdiction: us-nd
+      document_class: manual
+      version: 2026-09-11-nd-snap-manual-supersede
+      supersedes: 2026-07-21-nd-snap-manual
+      manifest: manifests/us-nd-snap-manual.yaml
+      taken_at: '2026-09-11'
+      provision_count: 202
+      revised_documents:
+      - nd-hhs-snap-manual-landing
+      - nd-hhs-snap-manual-toc
+      - 62 of the 64 topics
+      run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
+      notes: 'Superseding scope taken 2026-09-11 (whole Release 26.5 document set re-extraction, same 67 citation paths) at the
+        publisher''s Release 26.7 edition (''Last published Sep 02, 2026''; every file Last-Modified 2026-09-02): landing page
+        (now carries the Release 26.7 summary), TOC (66 topics) and 62 topics changed; the ABAWD topics 401/402, 601, Appendix
+        B standards, 107, 302, 502 and the release log carry policy text changes, the rest differ by the republished MadCap template
+        (the ''Overview'' paragraph became an h2 heading); topics Appendix A glossary and Introduction and the Release 26.5 PDF
+        are text-identical. Extraction 9 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion scope
+        (two new topics, Release 26.6 and 26.7 PDFs) is untouched.'
   - jurisdiction: us-oh
     name: Ohio
     queue_status: published_current
@@ -464,6 +587,13 @@ states:
       jurisdiction: us-ok
       document_class: policy
       version: 2026-07-21-ok-snap-policy
+    supporting_superseding_manifest: manifests/us-ok-snap-policy.yaml
+    supporting_superseding_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-09-11-ok-snap-manual-supersede
+    supporting_superseding_queue_status: agent_ready
+    supporting_superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (Appendix D-4-C re-served 2026-08-28 (text unchanged)); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
     supporting_queue_status: published_current
     notes: The regulation target retains the complete public rules.ok.gov production API response for OAC 340 Chapter 50. The separately published support scope retains the current OKDHS appendices, full Appendix C-3 allotment CSV, and complete OAC Chapter 2, 10, and 65 API responses while extracting only cited active dependency sections. Appendix B is not currently published by OKDHS; its referenced formula is retained in OAC 340:50-9-1 in the regulation scope.
   - jurisdiction: us-or
@@ -534,6 +664,13 @@ states:
       jurisdiction: us-tn
       document_class: manual
       version: 2026-05-27-tn-snap-policies-r2026-07-15-self-contained
+    superseding_manifest: manifests/us-tn-snap-policies.yaml
+    superseding_scope:
+      jurisdiction: us-tn
+      document_class: manual
+      version: 2026-09-11-tn-snap-manual-supersede
+    superseding_queue_status: agent_ready
+    superseding_note: 'Whole-manual re-extraction 2026-09-11 after the publisher revised the released edition (24.31 revised effective June 1, 2026); the next release selector swaps the released version for this one. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
   - jurisdiction: us-tx
     name: Texas
     queue_status: published_current
@@ -644,3 +781,22 @@ states:
       jurisdiction: us-wy
       document_class: manual
       version: 2026-05-27-wy-manuals-r2026-07-15-self-contained
+    superseding_scope:
+      jurisdiction: us-wy
+      document_class: manual
+      version: 2026-09-11-wy-snap-manual-supersede
+      supersedes: 2026-05-27-wy-manuals-r2026-07-15-self-contained
+      manifest: manifests/us-wy-manuals.yaml
+      taken_at: '2026-09-11'
+      provision_count: 9
+      revised_documents:
+      - wy-dfs-snap-power-table-ii-income-limits
+      - wy-dfs-snap-power-900
+      run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
+      notes: 'Superseding scope taken 2026-09-11 (whole released document set re-extraction, same four citation paths): Table
+        II now carries the July 1, 2025-June 30, 2026 POWER income guidelines (page modified 2026-07-28) and the 900 extended
+        menu was revised 2026-07-15 (income coding table); the 1100 menu is text-identical. The main manual page (modified 2025-05-19
+        on the publisher) now extracts to its full text (Sections 100-1400, 497,813 characters) where the released self-contained
+        scope held an 83,792-character block ending in Section 5xx; every substantive released sentence is present in the new
+        body. Extraction 6 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion scope (Glossary,
+        Policy Clarifications, Table I, purchasing page) is untouched.'

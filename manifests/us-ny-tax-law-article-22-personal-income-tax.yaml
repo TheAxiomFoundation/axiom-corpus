@@ -1,0 +1,2795 @@
+version: 2026-09-14-income-tax-chapter
+documents:
+- source_id: us-ny-tax-601
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 601. Imposition of tax
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/601
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/601
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '1'
+    part_heading: General
+    section: '601'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P1
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-601-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 601-A. Cost of living adjustment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/601-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/601-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '1'
+    part_heading: General
+    section: 601-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P1
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-603
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 603. Separate tax on the ordinary income portion of lump sum distributions
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/603
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/603
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '1'
+    part_heading: General
+    section: '603'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P1
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-605
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 605. General provisions and definitions
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/605
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/605
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '1'
+    part_heading: General
+    section: '605'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P1
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-606
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 606. Credits against tax
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/606
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/606
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '1'
+    part_heading: General
+    section: '606'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P1
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-607
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 607. Meaning of terms
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/607
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/607
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '1'
+    part_heading: General
+    section: '607'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P1
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-611
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 611. New York taxable income of a resident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/611
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/611
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '611'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-612
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 612. New York adjusted gross income of a resident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/612
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/612
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '612'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-613
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 613. New York deduction of a resident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/613
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/613
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '613'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-614
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 614. New York standard deduction of a resident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/614
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/614
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '614'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-615
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 615. New York itemized deduction of a resident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/615
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/615
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '615'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-616
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 616. New York exemptions of a resident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/616
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/616
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '616'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-617
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 617. Resident partners and shareholders of S corporations
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/617
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/617
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '617'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-617-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 617-A. Residents; special provisions
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/617-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/617-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 617-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-618
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 618. New York taxable income of a resident estate or trust
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/618
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/618
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '618'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-619
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 619. Share of a resident estate, trust or beneficiary in New York fiduciary adjustment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/619
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/619
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '619'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-620
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 620. Credit for income tax of another state
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/620
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/620
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '620'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-620-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 620-A. Credit against separate tax
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/620-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/620-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 620-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-621
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 621. Credits to trust beneficiary receiving accumulation distribution
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/621
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/621
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '621'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-624
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 624. Computation of separate tax on the ordinary income portion of lump sum distributions received
+    by resident individuals, estates and trusts
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/624
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/624
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '624'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-625
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 625. Gift for fish and wildlife management
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/625
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/625
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '625'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-625-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 625-A. Gifts to food banks
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/625-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/625-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 625-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-626
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 626. The United States Olympic Committee/Lake Placid Olympic Training Center Fund
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/626
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/626
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '626'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-626-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 626-A. Gift for home delivered meals for seniors
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/626-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/626-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 626-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-627
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 627. Gift for breast cancer research and education
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/627
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/627
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '627'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-627-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 627-A. Gift for honor and remembrance of veterans
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/627-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/627-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 627-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-627-b
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 627-B. Gift for assisting homeless veterans
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/627-B
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/627-B
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 627-B
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-627-c
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 627-C. Gift for New York state veterans&#039; homes
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/627-C
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/627-C
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 627-C
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-628
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 628. Gift for missing and exploited children clearinghouse fund
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/628
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/628
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '628'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-629
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 629. Gift for Alzheimer&#039;s disease support services
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/629
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/629
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '629'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-629-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 629-A. Gift for eliminating the stigma relating to mental illness
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/629-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/629-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 629-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-629-b
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 629-B. Gift for substance use disorder education and recovery
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/629-B
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/629-B
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 629-B
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630. Gift for prostate and testicular cancer research and education
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: '630'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-A. Gift for World Trade Center memorial foundation
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-b
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-B. Gift for volunteer firefighting and volunteer emergency services fund
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-B
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-B
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-B
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-c
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-C. Gift for New York state teen health education fund
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-C
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-C
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-C
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-d
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-D. Gift for women&#039;s cancers education and prevention
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-D
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-D
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-D
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-e
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-E. Gift to the love your library fund
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-E
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-E
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-E
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-f
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-F. Gift for organ and tissue donation outreach and research
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-F
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-F
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-F
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-g
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-G. Gift for leukemia, lymphoma and myeloma research, education and treatment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-G
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-G
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-G
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-h
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-H. New York state campaign finance fund check-off
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-H
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-H
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-H
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-i
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-I. Gifts for the state library system
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-I
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-I
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-I
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-j
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-J. Gifts for standardbred aftercare
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-J
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-J
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-J
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-k
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-K. Gift for Lyme and tick-borne diseases education, research and prevention
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-K
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-K
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-K
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-630-l
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 630-L. Gift for diabetes research and education
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/630-L
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/630-L
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '2'
+    part_heading: Residents
+    section: 630-L
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P2
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-631
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 631. New York source income of a nonresident individual
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/631
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/631
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '631'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-632
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 632. Nonresident partners and electing shareholders of S corporations
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/632
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/632
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '632'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-632-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 632-A. Personal service corporations and S corporations formed or availed of to avoid or evade New
+    York State income tax
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/632-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/632-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: 632-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-633
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 633. New York source income of a nonresident estate or trust
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/633
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/633
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '633'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-634
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 634. Share of a nonresident beneficiary in income from New York sources
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/634
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/634
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '634'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-635
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 635. Credit to trust beneficiary receiving accumulation distribution
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/635
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/635
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '635'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-637
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 637. Computation of separate tax on the ordinary income portion of lump sum distributions received
+    by nonresident or part-year resident indivi...
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/637
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/637
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '637'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-638
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 638. New York source income of a part-year resident
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/638
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/638
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '638'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-639
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 639. Accruals upon change of residence
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/639
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/639
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '3'
+    part_heading: Nonresidents and Part-year Residents
+    section: '639'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P3
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-651
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 651. Returns and liabilities
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/651
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/651
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '651'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-652
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 652. Time and place for filing returns and paying tax
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/652
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/652
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '652'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-653
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 653. Signing of returns and other documents
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/653
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/653
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '653'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-654
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 654. Relief from joint and several liability on joint return
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/654
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/654
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '654'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-657
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 657. Extensions of time
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/657
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/657
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '657'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-658
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 658. Requirements concerning returns, notices, records and statements
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/658
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/658
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '658'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-659
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 659. Report of federal changes, corrections or disallowances
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/659
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/659
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '659'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-659-a
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 659-A. Reporting of federal partnership adjustments
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/659-A
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/659-A
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: 659-A
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-660
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 660. Election by shareholders of S corporations
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/660
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/660
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '660'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-661
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 661. Change of election
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/661
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/661
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '661'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-662
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 662. Computation of tax where taxpayer restores substantial amount held under claim of right
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/662
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/662
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '662'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-663
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 663. Estimated tax on sale or transfer of real property by nonresident
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/663
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/663
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '4'
+    part_heading: Returns and Payment of Tax
+    section: '663'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P4
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-671
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 671. Requirement of withholding tax from wages
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/671
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/671
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '671'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-672
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 672. Information statement for employee
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/672
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/672
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '672'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-673
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 673. Credit for tax withheld
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/673
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/673
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '673'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-674
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 674. Employer&#039;s return and payment of withheld taxes
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/674
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/674
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '674'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-675
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 675. Employer&#039;s liability for withheld taxes
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/675
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/675
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '675'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-676
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 676. Employer&#039;s failure to withhold
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/676
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/676
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '676'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-677
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 677. Designation of third parties to perform acts required of employers
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/677
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/677
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '677'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-678
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 678. Liability of third parties paying or providing for wages
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/678
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/678
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '5'
+    part_heading: Withholding of Tax
+    section: '678'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P5
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-681
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 681. Notice of deficiency
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/681
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/681
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '681'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-682
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 682. Assessment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/682
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/682
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '682'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-683
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 683. Limitations on assessment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/683
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/683
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '683'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-684
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 684. Interest on underpayment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/684
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/684
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '684'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-685
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 685. Additions to tax and civil penalties
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/685
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/685
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '685'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-686
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 686. Overpayment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/686
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/686
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '686'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-687
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 687. Limitations on credit or refund
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/687
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/687
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '687'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-688
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 688. Interest on overpayment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/688
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/688
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '688'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-689
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 689. Petition to tax commission
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/689
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/689
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '689'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-690
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 690. Review of tax commission decision
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/690
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/690
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '690'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-691
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 691. Mailing rules; holidays; miscellaneous
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/691
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/691
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '691'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-692
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 692. Collection, levy and liens
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/692
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/692
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '692'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-693
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 693. Transferees
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/693
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/693
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '693'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-694
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 694. Jeopardy assessment
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/694
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/694
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '694'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-695
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 695. Criminal penalties; cross-reference
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/695
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/695
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '695'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-696
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 696. Income taxes of members of armed forces, astronauts, and victims of certain terrorist attacks
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/696
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/696
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '696'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-697
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 697. General powers of tax commission
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/697
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/697
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '697'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-698
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 698. Deposit and disposition of revenue
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/698
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/698
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '698'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true
+- source_id: us-ny-tax-699
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Tax Law § 699. Transition provisions
+  source_url: https://www.nysenate.gov/legislation/laws/TAX/699
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-ny/statute/TAX/699
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: individual_income_tax
+    source_status: current_official_codified_text_as_of_2026-09-14
+    source_family: state-income-tax-chapter-2026-09-14
+    index_url: https://www.nysenate.gov/legislation/laws/TAX/A22
+    discovered_via: manual-review:tax-agent-queue; index https://www.nysenate.gov/legislation/laws/TAX/A22
+    law_id: TAX
+    article: '22'
+    part: '6'
+    part_heading: Procedure and Administration
+    section: '699'
+    part_index_url: https://www.nysenate.gov/legislation/laws/TAX/A22P6
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+    browser_impersonation_direct: true

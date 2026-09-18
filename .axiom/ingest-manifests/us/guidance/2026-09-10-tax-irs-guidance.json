@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-10-tax-irs-guidance.json",
+      "sha256": "f2face9266b2e39e95dc915c4e72483f536939876ba79b5e63e715ac8831925c"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-10-tax-irs-guidance.json",
+      "sha256": "1d99bad983851891e0d8f25b38d867ccb46ef9b531879df9a59f5fecbab0c77a"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-10-tax-irs-guidance.jsonl",
+      "sha256": "918c35600a8f1ec8dc67689e222ed64e5323b9188d6e437f34a3fc91554d8db3"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-tax-irs-guidance/official-documents/irs-notice-2026-10.pdf",
+      "sha256": "8fdda8f02245c38134e08fca50238732c74b0ae693c408252dedf96623d4977a"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-tax-irs-guidance/official-documents/irs-rev-proc-2026-24.pdf",
+      "sha256": "bcb6b41a835b84d4315f738a7250801831021829e39d70225424e2f45afcb715"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-tax-irs-guidance/official-documents/irs-rev-proc-2026-26.pdf",
+      "sha256": "b3ce6c8c10450371df5c07921de4c32c8e8ceff79fa57a42e6362c09e727ed60"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-irs-guidance (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-11T21:31:53.892205+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SONvo6wFQ5p3FAh4HuIHW1t2fle4+PyVY9nuMjsKRGLbhiKs50GGFfBjNWXsvEBHnCY6180JL+hvLGhd9G3RDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-irs-guidance"
+}

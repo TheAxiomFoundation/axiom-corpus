@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "a43034a9d167c6a83b44b108585b067887af4fa424c684012a252a257477b519"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "5f758276b8c562fb2b76febdb66b7f8344ce4eee0ef60b0a4ba79fd6294a9e91"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "aae519457d2191a5a4673418812e72fa8860de2181870b4a3573c3474b6bdd6e"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-vt-vdt-in-111-instructions-ty2025.pdf",
+      "sha256": "e56ef973b1831973e9448df80feb9ee8540f427794ecdc22352a77f8f4264639"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-vt-vdt-in-111-ty2025.pdf",
+      "sha256": "728c6d2a4f14d9a6c6fd5939e72a954c8c727db42daef4fd74568de6306827fc"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-vt-vdt-tax-rate-schedules-ty2025.pdf",
+      "sha256": "58265bed9b063b749dc007ad5100362728e0dd797fe9e46ea4a02bd8b545cd08"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-12T13:02:09.456738+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "R3Cdz2I/F4wV/rYvb64atCjazblBSY4iHHFnSmM2IsbGZ4J0KOiErTDgyZmZmCnxjVgqM/OfuG+5Cb5C6qE4DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

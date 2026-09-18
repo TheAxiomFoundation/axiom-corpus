@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "db8babb7482587de10c5a5e7afca710d8356b46e75a82464150efa7b1176f0b0"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "b18c59c1973f883a4a50c5437a8a3cd6321947fb63da13ff0c62dded3498f5e0"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "a8cfea79d51f179c4db11362916e5090bbe91136bba4332ed9108a4cd1c6d413"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-09-10-ssi-state-supplement/official-documents/ma-dta-106-cmr-327.pdf",
+      "sha256": "64ee1e0cb6b6efe2f0a954800f3638aa441a8fd991c5cf0c4aca12d109006dc8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-ma-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:56:20.746579+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ygIFpV9+poiIoXm9NwHHZewtTcJSLs574XsffRGomX5oeVNWFHqVrvuw4ZvCgx4W2kcTbma3fMGvazeO2H9ZDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

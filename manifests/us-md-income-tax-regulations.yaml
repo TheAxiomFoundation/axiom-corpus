@@ -1,0 +1,23 @@
+version: '2026-09-14'
+extractor: extract-maryland-comar --only-title 03 --only-subtitle 04
+documents:
+- source_id: md-dsd-comar-03-04-income-tax
+  jurisdiction: us-md
+  document_class: regulation
+  citation_path: us-md/regulation/title-03/subtitle-04
+  title: COMAR Title 03 Comptroller of the Treasury, Subtitle 04 Income Tax
+  source_url: https://regs.maryland.gov
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Maryland Comptroller of the Treasury
+    official_publisher: Maryland Division of State Documents (COMAR XML publication)
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-md/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://github.com/maryland-dsd/law-xml-codified
+      (us/md/exec/comar/03/04)
+    extractor: uv run axiom-corpus-ingest extract-maryland-comar --only-title 03 --only-subtitle 04
+    pointer_manifest: true

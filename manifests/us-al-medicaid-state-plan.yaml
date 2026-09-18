@@ -1,0 +1,1119 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-al-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=871&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 187
+- source_id: us-al-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=871&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 87
+    index_records_total: 187
+- source_id: us-al-cms-medicaid-state-plan-spa-al-25-0008-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-25-0008: Approval Document (approved November 19, 2025, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-25-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-25-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-25-0008
+    cms_node_id: '187141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187141
+    approval_date: '2025-11-19'
+    effective_date: '2025-10-01'
+    summary: This amendment is to provide coverage of ambulatory prenatal care for pregnant women without limitations during
+      a presumptive eligibility period.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-25-0009-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-25-0009: Approval Document (approved October 31, 2025, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-25-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-25-0009
+    cms_node_id: '186211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=186211
+    approval_date: '2025-10-31'
+    effective_date: '2025-10-01'
+    summary: This amendment decreases the minimum threshold dollar amount in relation to seeking recovery from a health insurance
+      carrier.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-25-0001-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-25-0001: Approval Document (approved March 31, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-25-0001
+    cms_node_id: '178686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178686
+    approval_date: '2025-03-31'
+    effective_date: '2025-01-01'
+    summary: This amendment waives the requirement of issuing trauma code mailers for all ICD-9 and ICD-10 trauma codes to
+      recipients when used on claims submitted with the agency that signify an accident may have occurred.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-24-0002-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-24-0002: Approval Document (approved February 16, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-24-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-24-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-24-0002
+    cms_node_id: '159946'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159946
+    approval_date: '2024-02-16'
+    effective_date: '2024-01-01'
+    summary: The purpose of this amendment is to assure that the State is in compliance with Section 202 of the Consolidated
+      Appropriations Act 2022, as requested by the Centers for Medicare & Medicaid Services.
+    topics:
+    - Program Administration
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-23-0002-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-23-0002: Approval Document (approved June 2, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-23-0002
+    cms_node_id: '148616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148616
+    approval_date: '2023-06-02'
+    effective_date: '2023-01-01'
+    summary: This SPA is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-21-0009-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-21-0009: Approval Document (approved February 11, 2022, effective December 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AL-21-0009
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-12-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-21-0009/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-21-0009
+    cms_node_id: '132911'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=132911
+    approval_date: '2022-02-11'
+    effective_date: '2021-12-01'
+    summary: This amendment amends the language in the requirements for Third Party Liability - Payment of claims with changes
+      required in the Bipartisan Budget Act and the Medicaid Services Investment and Accountability Act.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-21-0005-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-21-0005: Approval Document (approved June 14, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-21-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-21-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-21-0005
+    cms_node_id: '109256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109256
+    approval_date: '2021-06-14'
+    effective_date: '2021-04-01'
+    summary: Effective April 1, 2021, this amendment adds the optional eligibility group described at section 1902(a)(19)(A)(ii)(XXII)
+      of the Social Security Act to the Alabama state Medicaid plan (the "Individuals Receiving State Plan Home and Community-Based
+      Services group," or "219(a) group").
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-21-0004-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-21-0004: Approval Document (approved June 1, 2021, effective May 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AL-21-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-05-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-21-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-21-0004
+    cms_node_id: '108961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108961
+    approval_date: '2021-06-01'
+    effective_date: '2021-05-01'
+    summary: This amendment will allow for Case Management Services to be billed for High Intensity Care Coordination for
+      each eligible recipient in the family, each month, according to each recipient’s unique needs.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-21-0002-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-21-0002: Approval Document (approved June 1, 2021, effective March 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AL-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-21-0002
+    cms_node_id: '108981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108981
+    approval_date: '2021-06-01'
+    effective_date: '2021-03-01'
+    summary: Updates the Alabama Coordinated Health Network (ACHN) Quality Bonus Payment date from July 2021 to October 2021,
+      effective March 1, 2021. The reason for the change is to allow enough run time for historical claims data.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-20-0012-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-20-0012: Approval Document (approved May 28, 2021, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/AL-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-20-0012
+    cms_node_id: '108831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108831
+    approval_date: '2021-05-28'
+    effective_date: '2020-07-01'
+    summary: Effective July 1, 2020, this amendment allows the disregard of Census-based income for certain Non-Modified Adjusted
+      Gross Income (non-MAGI) eligibility groups.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-20-0018-a-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-20-0018-A: Approval Document (approved October 30, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/AL-20-0018-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-20-0018-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-20-0018-A
+    cms_node_id: '103426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103426
+    approval_date: '2020-10-30'
+    effective_date: '2020-03-18'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to rescind coverage of the optional COVID-19 testing for uninsured individuals which was approved
+      by CMS on May 11, 2020 under AL DR SPA 20-0007.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-20-0007-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-20-0007: Approval Document (approved May 11, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-20-0007
+    cms_node_id: '98366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98366
+    approval_date: '2020-05-11'
+    effective_date: '2020-03-18'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-20-0004-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-20-0004: Approval Document (approved April 6, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-20-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-20-0004
+    cms_node_id: '90941'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=90941
+    approval_date: '2020-04-06'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. In this
+      amendment Alabama elects to suspend Medicaid copayments for all services for all Medicaid beneficiaries during the time
+      of the Public Health emergency and to utilize telehealth for some Medicaid services.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-19-0017-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-19-0017: Approval Document (approved January 23, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-19-0017_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-19-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-19-0017
+    cms_node_id: '58101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58101
+    approval_date: '2020-01-23'
+    effective_date: '2020-01-01'
+    summary: Allows Targeted Case Management (TCM) providers in targeted groups 2, 3, and 10 who are Regional Boards to provide
+      services directly or through a contract
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-14-0006-mm3-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-14-0006-MM3: Approval Document (approved August 25, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-14-0006-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-14-0006-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-14-0006-MM3
+    cms_node_id: '33571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33571
+    approval_date: '2014-08-25'
+    effective_date: '2014-07-01'
+    summary: SPA 14-006-MM3 supersedes AL-13-0022-MM3 and changes the age used for children in Alabama's MAGI-based income
+      methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-0017-mm2-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-0017-MM2: Approval Document (approved July 1, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0017-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0017-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-0017-MM2
+    cms_node_id: '36036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36036
+    approval_date: '2014-07-01'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-0023-mm4-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-0023-MM4: Approval Document (approved March 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-023-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0023-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-0023-MM4
+    cms_node_id: '37686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37686
+    approval_date: '2014-03-21'
+    effective_date: '2014-01-01'
+    summary: Establishes Single State Agency and Entities Responsible for Determinations of Eligibility and Appeals/Fair Hearings.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-015-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-015: Approval Document (approved February 28, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-015
+    cms_node_id: '37781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37781
+    approval_date: '2014-02-28'
+    effective_date: '2014-01-01'
+    summary: The purpose of the amendment is to authorize tobacco cessation counseling services for pregnant women to comply
+      with Section 4107 of the Affordable Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-0025-mm6-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-0025-MM6: Approval Document (approved February 7, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0025-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0025-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-0025-MM6
+    cms_node_id: '38771'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38771
+    approval_date: '2014-02-07'
+    effective_date: '2013-10-01'
+    summary: Incorporates Citizenship Regulations, Specifies Reasonable Opportunity Period Options, and Specifies Policy Options
+      Related to Eligible Non-Citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-0021-mm1-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-0021-MM1: Approval Document (approved January 4, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0021-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0021-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-0021-MM1
+    cms_node_id: '39401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39401
+    approval_date: '2014-01-04'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-0022-mm3-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-0022-MM3: Approval Document (approved January 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0022-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-0022-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-0022-MM3
+    cms_node_id: '39391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39391
+    approval_date: '2014-01-03'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-003-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-003: Approval Document (approved June 24, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-003-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-003
+    cms_node_id: '46556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46556
+    approval_date: '2013-06-24'
+    effective_date: '2013-04-01'
+    summary: Grants the authority to determine Medicaid eligibility for mandatory and optional coverage groups.
+    topics: &id002
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-003-attachment
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-003: Attachment (approved June 24, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AL-13-003
+    cms_node_id: '46556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46556
+    approval_date: '2013-06-24'
+    effective_date: '2013-04-01'
+    summary: Grants the authority to determine Medicaid eligibility for mandatory and optional coverage groups.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-003-form-cms-179
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-003: Form CMS-179 (approved June 24, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AL-13-003
+    cms_node_id: '46556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46556
+    approval_date: '2013-06-24'
+    effective_date: '2013-04-01'
+    summary: Grants the authority to determine Medicaid eligibility for mandatory and optional coverage groups.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-004-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-004: Approval Document (approved May 28, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-13-004
+    cms_node_id: '46571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46571
+    approval_date: '2013-05-28'
+    effective_date: '2013-04-01'
+    summary: Establishes an Asset Verification System.
+    topics: &id003
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-004-attachment
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-004: Attachment (approved May 28, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AL-13-004
+    cms_node_id: '46571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46571
+    approval_date: '2013-05-28'
+    effective_date: '2013-04-01'
+    summary: Establishes an Asset Verification System.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-al-cms-medicaid-state-plan-spa-al-13-004-form-cms-179
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-13-004: Form CMS-179 (approved May 28, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-13-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AL-13-004
+    cms_node_id: '46571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46571
+    approval_date: '2013-05-28'
+    effective_date: '2013-04-01'
+    summary: Establishes an Asset Verification System.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-al-cms-medicaid-state-plan-spa-al-10-007-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-10-007: Approval Document (approved May 12, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-10-007-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-10-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-10-007
+    cms_node_id: '45006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45006
+    approval_date: '2010-05-12'
+    effective_date: '2010-01-01'
+    summary: Aligns the resource limit for Qualified Medicare Beneficiaries Specified Low Income Medicare Beneficiaries and
+      Qualifying Individuals with the resource limit for individuals who qualify for the full subsidy under the Medicare Part
+      D Low Income Subsidy program.
+    topics: &id004
+    - Eligibility
+    - Financing & Reimbursement
+    - Premiums
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-10-007-attachment
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-10-007: Attachment (approved May 12, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-10-007-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-10-007/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AL-10-007
+    cms_node_id: '45006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45006
+    approval_date: '2010-05-12'
+    effective_date: '2010-01-01'
+    summary: Aligns the resource limit for Qualified Medicare Beneficiaries Specified Low Income Medicare Beneficiaries and
+      Qualifying Individuals with the resource limit for individuals who qualify for the full subsidy under the Medicare Part
+      D Low Income Subsidy program.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-al-cms-medicaid-state-plan-spa-al-10-007-form-cms-179
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-10-007: Form CMS-179 (approved May 12, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-10-007-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-10-007/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AL-10-007
+    cms_node_id: '45006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45006
+    approval_date: '2010-05-12'
+    effective_date: '2010-01-01'
+    summary: Aligns the resource limit for Qualified Medicare Beneficiaries Specified Low Income Medicare Beneficiaries and
+      Qualifying Individuals with the resource limit for individuals who qualify for the full subsidy under the Medicare Part
+      D Low Income Subsidy program.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-al-cms-medicaid-state-plan-spa-al-09-004-approval-document
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-09-004: Approval Document (approved November 2, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-09-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-09-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AL-09-004
+    cms_node_id: '45036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45036
+    approval_date: '2009-11-02'
+    effective_date: '2009-10-01'
+    summary: Designates the Express Lane Eligibility for redetermination of Medicaid recipients younger than age 19.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-al-cms-medicaid-state-plan-spa-al-09-004-attachment
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-09-004: Attachment (approved November 2, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-09-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-09-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: AL-09-004
+    cms_node_id: '45036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45036
+    approval_date: '2009-11-02'
+    effective_date: '2009-10-01'
+    summary: Designates the Express Lane Eligibility for redetermination of Medicaid recipients younger than age 19.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-al-cms-medicaid-state-plan-spa-al-09-004-form-cms-179
+  jurisdiction: us-al
+  document_class: policy
+  title: 'Alabama Medicaid SPA AL-09-004: Form CMS-179 (approved November 2, 2009, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-09-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-al/policy/cms/medicaid-state-plan/spa/al-09-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alabama
+    source_discovery_group: us-al/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: AL-09-004
+    cms_node_id: '45036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45036
+    approval_date: '2009-11-02'
+    effective_date: '2009-10-01'
+    summary: Designates the Express Lane Eligibility for redetermination of Medicaid recipients younger than age 19.
+    topics: *id005
+    link_label: Form CMS-179

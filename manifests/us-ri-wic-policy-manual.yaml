@@ -1,0 +1,46 @@
+version: 2026-09-10-wic-state-policy-manual
+documents:
+- source_id: us-ri-wic-manual-procedures-manual
+  jurisdiction: us-ri
+  document_class: manual
+  title: Rhode Island WIC Procedures Manual
+  source_url: https://health.ri.gov/sites/g/files/xkgbur1006/files/publications/procedures/WICManual.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-ri/manual/ridoh/wic/procedures-manual
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Health, WIC Program
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Rhode Island WIC Procedures Manual
+    section_label: procedures-manual
+    index_url: https://health.ri.gov/programs/wic/
+    source_discovery_group: us-ri/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    index_link_text: WIC Procedures Manual
+    compiled_manual: true
+- source_id: us-ri-wic-manual-vendor-policies
+  jurisdiction: us-ri
+  document_class: manual
+  title: Rhode Island WIC Vendor Policies
+  source_url: https://health.ri.gov/sites/g/files/xkgbur1006/files/publications/policies/WICVendorPolicies.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-ri/manual/ridoh/wic/vendor-policies
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Health, WIC Program
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Rhode Island WIC Procedures Manual
+    section_label: vendor-policies
+    index_url: https://health.ri.gov/programs/wic/
+    source_discovery_group: us-ri/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    index_link_text: WIC Vendor Policies
+    compiled_manual: true

@@ -1,0 +1,80 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ny-doh-gis-26-ma-05
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 'GIS 26 MA/05: 2026 Federal Poverty Levels'
+  source_url: https://www.health.ny.gov/health_care/medicaid/publications/docs/gis/26ma05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ny/guidance/doh/gis/26-ma-05
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health, Office of Health Insurance Programs
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ny/guidance
+    index_url: https://www.health.ny.gov/health_care/medicaid/publications/pub2026gis.htm
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: general_information_system_message
+    document_number: GIS 26 MA/05
+    issue_date: '2026-02-13'
+    closure_elements_extra:
+    - MED-ST-2
+- source_id: us-ny-doh-gis-26-ma-05-attachment-1
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 'GIS 26 MA/05 Attachment 1: New York State Income and Resource Standards for Non-MAGI Population, Effective January
+    1, 2026'
+  source_url: https://www.health.ny.gov/health_care/medicaid/publications/docs/gis/26ma05_att1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ny/guidance/doh/gis/26-ma-05/attachment-1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health, Office of Health Insurance Programs
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ny/guidance
+    index_url: https://www.health.ny.gov/health_care/medicaid/publications/pub2026gis.htm
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: standards_chart
+    document_number: GIS 26 MA/05 Att. 1
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+- source_id: us-ny-doh-medicare-savings-programs-2026
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Medicare Savings Programs 2026 (NYSDOH page, revised May 2026)
+  source_url: https://www.health.ny.gov/health_care/medicaid/program/update/savingsprogram/medicaresavingsprogram.htm
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-05-01'
+  citation_path: us-ny/guidance/doh/medicare-savings-programs/2026
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health, Office of Health Insurance Programs
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ny/guidance
+    index_url: https://www.health.ny.gov/health_care/medicaid/publications/pub2026gis.htm
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-4

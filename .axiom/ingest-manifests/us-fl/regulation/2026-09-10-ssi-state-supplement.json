@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "6a179e928288575707e968e68875080fb4465fd5e542e53c25f814ec817cf652"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "066297fbaeb0a31d3fbb6141bfb043a3e431d59744cd7b60d834e2f4e07c4659"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "8a6195ae99d0fc0f87eeb91267efc62c2f6489dc4e1ca2e2069952a1e0f8312f"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-022.doc",
+      "sha256": "79bd67bf5a5e2f242e6786f6538887a919f0f969ae62f8a838a0f2b929bd109f"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-023.doc",
+      "sha256": "ae82c3826b4705135d0f1fc6feb951161e07eaedb4c174f27c08d00dff54d338"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-024.doc",
+      "sha256": "7a8baf030446ca4e261d8905456cba14d40ce558b6828cc83500833d4566388d"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-031.doc",
+      "sha256": "168c2d4dee1bc0643a5cb6373f66cfcb1fcf23e35eb70de92b569ac5147c5728"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-032.doc",
+      "sha256": "8af72099879991ac72f72e13e8d153b9d3cf19527006c5e1a239ad602597a6f8"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-033.doc",
+      "sha256": "4a9d28c1c90775b464f507a389dff632d6a6bc4a1c8c4ddcd51f49f22d731dc5"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-035.doc",
+      "sha256": "53d1269bc80f47061bf9db53f137d1846cbd553bcaeb3e4e39f99ba3042b2aa4"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/regulation/2026-09-10-ssi-state-supplement/official-documents/fl-fac-65a-2-036.doc",
+      "sha256": "d8336a81d6691ed7b9ace3bd42a6ae30a2dbf055e3b9c18399fbb327b33cd68e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-fl-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:43:06.164548+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zyy67w6CjKcRp8OZyK9UnxATfFf78yBlzlUq/qKjq3ouyrtFUo6tAQi+N/wfvqVk+VFPV8RKQVs2cyi0S32EAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

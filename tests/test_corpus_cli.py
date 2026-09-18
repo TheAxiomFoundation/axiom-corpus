@@ -94,6 +94,18 @@ def test_validate_manifest_cli(capsys):
     assert '"ok": true' in output
 
 
+def test_extract_am_arlis_help_names_statutes_and_regulations(capsys):
+    try:
+        main(["extract-am-arlis", "--help"])
+    except SystemExit as exc:
+        assert exc.code == 0
+    else:  # pragma: no cover - argparse help always exits
+        raise AssertionError("expected argparse help to exit")
+
+    output = capsys.readouterr().out
+    assert "statutes or regulations" in output
+
+
 def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"

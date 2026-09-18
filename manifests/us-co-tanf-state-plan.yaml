@@ -1,0 +1,29 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-co-tanf-state-plan-2018
+  jurisdiction: us-co
+  document_class: policy
+  title: Colorado TANF State Plan, effective July 1, 2018
+  source_url: https://drive.google.com/open?id=1eP8saG82zJe141J7s5wpAPAvtyNwzJbc
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-co/policy/acf/tanf-plan/2018
+  download_url: https://drive.google.com/uc?export=download&id=1eP8saG82zJe141J7s5wpAPAvtyNwzJbc
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Human Services (Colorado Works)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: 'Colorado State Plan TANF effective July 1, 2018: the newest TANF State Plan the Colorado Works page links
+      (2018, 2015, 2012, 2009, all on Google Drive); later renewals are not posted'
+    publisher_index_url: https://cdhs.colorado.gov/colorado-works
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-co/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://cdhs.colorado.gov/colorado-works
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

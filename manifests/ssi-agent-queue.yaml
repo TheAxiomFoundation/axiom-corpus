@@ -1,0 +1,2148 @@
+version: '2026-09-10'
+document_family: ssi_policy_sources
+program: SSI
+queue_status: in_progress
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+  - sources
+  - inventory
+  - provisions
+  - coverage
+  forbidden_sources:
+  - secondary summaries
+  - State Options Reports
+  - benefitswiki
+  - policy manuals reposted by non-government sites
+  notes:
+  - Drafted 2026-09-10 for the ten board Year 1 programs (ballmer-proposal-2026 encoding-program-list.md).
+  - 'Lead list only: PolicyEngine-US citations extracted offline with the citing path preserved, classified by axiom_corpus.corpus.source_discovery.
+    Not corpus sources; every selected document must be re-fetched from the official publisher.'
+  - The lead list under-names agency manuals and state plans. Reviewers must add them from the official publisher before the
+    queue is agent_ready.
+  - 'policyengine-us 84253b6afafb (2026-08-17); lead file: policyengine-us-committed-program-references.jsonl'
+  - '2026-09-10 SSI run: POMS SI family manifest built by scripts/build_ssi_poms_si_manifests.py; state rows categorised from
+    POMS SI 01415.010 / SI 01415.058 (AZ, AR, MS, ND, TN, WV have no optional program and get no row).'
+  - '2026-09-10 SSI run: POMS SI family manifest built by scripts/build_ssi_poms_si_manifests.py; state rows categorised from
+    POMS SI 01415.010 / SI 01415.058 (AZ, AR, MS, ND, TN, WV have no optional program and get no row).'
+  - '2026-09-10 SSI state-supplement batch 1: scripts/build_ssi_state_supplement_manifests.py; ten largest needs_review states
+    by population attempted (TX, FL, NY, IL, OH, NC, VA, WA, MA, CO) with replacements MN, SC, AL; docs/ingest-runs/2026-09-10-ssi-state-supplements-batch-1.md.'
+  - '2026-09-10 SSI state-supplement batch 2: scripts/build_ssi_state_supplement_manifests.py --batch 2; NY, OH, SC retried
+    from a US network (OH, SC extracted; NY still blocked); next ten needs_review states by population attempted (LA, KY,
+    OR, OK, UT, NE, NM, ID, NH, ME) with replacement MD after OK blocked; docs/ingest-runs/2026-09-10-ssi-state-supplements-batch-2.md.'
+  - '2026-09-11 SSI state-supplement batch 3: scripts/build_ssi_state_supplement_manifests.py --batch 3; the six states with
+    no optional supplement (AR, AZ, MS, ND, TN, WV) added as done rows pointing at POMS SI 01415.010; MO, WI, SD, AK extracted;
+    WY blocked (script-rendered Drive embed); OK re-probed and extracted from the rules.ok.gov segments API; docs/ingest-runs/2026-09-10-ssi-state-supplements-batch-3.md.'
+  - '2026-09-11 SSI territories pass: scripts/build_ssi_state_supplement_manifests.py --batch 4; MP done (SSI applies, no
+    supplement; POMS SI 00501.410 pointer); PR, GU, VI, AS not applicable under 42 U.S.C. 1382c(e), recorded as blocked_primary_source;
+    docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
+  - '2026-09-13 SSI re-probe of the blocked rows: scripts/build_ssi_state_supplement_manifests.py --batch 5; NY still reset
+    by otda.ny.gov (durable block), WY still a script-rendered Drive embed, PR/GU/VI/AS still outside title XVI; nothing fetched
+    beyond one plain GET each; docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md.'
+lead_list:
+  source: policyengine-us
+  commit: 84253b6afafbb1875c65f12e654c6535744728b7
+  committed_at: '2026-08-17T17:54:20-04:00'
+  reference_file: policyengine-us-committed-program-references.jsonl
+  classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
+status_counts:
+  agent_ready: 30
+  done: 23
+  blocked_primary_source: 6
+states:
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  source_kind: official_html_agency_manual
+  primary_source_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: &id001
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-ssi-poms-si
+  lead_counts:
+    ready_for_manifest: 4
+    needs_review: 31
+    excluded_secondary: 16
+  candidate_sources:
+  - url: https://federalregister.gov/documents/2024/03/27/2024-06464/omitting-food-from-in-kind-support-and-maintenance-calculations
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: rulemaking
+    host: federalregister.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/ism/food_counts.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_receives_food_from_others.py
+  - url: https://hhs.texas.gov/handbooks/medicaid-elderly-people-disabilities-handbook/h-6000-co-payment-ssi-cases
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: manual
+    host: hhs.texas.gov
+    jurisdiction_inferred: us-tx
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/amount/institutional/couple.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/amount/institutional/individual.yaml
+  - url: https://ssa.gov/oact/cola/SSIamts.html
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: guidance
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/amount/couple.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/amount/individual.yaml
+  - url: https://ssa.gov/oact/cola/studentEIE.html
+    source_status: primary_official
+    disposition: ready_for_manifest
+    document_class: guidance
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://github.com/PolicyEngine/policyengine-us/issues/2494
+    source_status: unknown
+    disposition: needs_review
+    document_class: manual
+    host: github.com
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_parent/ssi_unearned_income_deemed_from_ineligible_parent.py
+  - url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500520001
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_medical_treatment_facility.py
+  - url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500520011
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_medicaid_pays_majority_of_care.py
+  - url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500835200
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_another_persons_household.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_others_pay_all_meals.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_receives_shelter_from_others_in_household.py
+  - url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500835300
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/ism/pmv_fbr_fraction.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_receives_outside_shelter_support.py
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0500501154
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/ssi_couple_computation_applies.py
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0500502100
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/status/qualified_noncitizen_status.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/is_ssi_qualified_noncitizen.py
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0500502135
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/sources/qualifying_quarters_threshold.yaml
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0500835300
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_amount.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_shelter_support_value.py
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501110000
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/resources/meets_ssi_resource_test.py
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501140000
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/resources/ssi_countable_resources.py
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501140200
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/resources/countable.yaml
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501140220
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/resources/countable.yaml
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501140240
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/resources/countable.yaml
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501140250
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/resources/countable.yaml
+  - url: https://secure.ssa.gov/poms.nsf/lnx/0501320150
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: secure.ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_amount.py
+  - url: https://ssa.gov/OACT/ssir/SSI12/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/OACT/ssir/SSI24/V_E_WorkIncentives.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/OP_Home/cfr20/416/416-0971.htm
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ssi_engaged_in_sga.py
+  - url: https://ssa.gov/oact/ssir/SSI11/Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI13/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI14/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI15/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI16/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI17/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI18/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI19/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI20/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI21/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI22/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://ssa.gov/oact/ssir/SSI23/V_B_Exclusions.html
+    source_status: primary_official
+    disposition: needs_review
+    document_class: other
+    host: ssa.gov
+    jurisdiction_inferred: us
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.1110
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/sources/earned.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.1112
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.1121
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/sources/unearned.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.1130
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/ism/food_counts.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_in_kind_support_and_maintenance.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_receives_food_from_others.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1131
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/amount/one_third_reduction_rate.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_others_pay_all_meals.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1132
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_another_persons_household.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1140
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/income/ism/pmv_fbr_fraction.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_in_kind_support_and_maintenance.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_amount.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1141
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_applies.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1163
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/is_ssi_spousal_deeming_applies.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/ssi_earned_income_deemed_from_ineligible_spouse.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/ssi_income_deemed_from_ineligible_spouse.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1165
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_parent/ssi_unearned_income_deemed_from_ineligible_parent.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_parent/ssi_unearned_income_deemed_from_ineligible_parent.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py
+  - url: https://law.cornell.edu/cfr/text/20/416.1205
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/resources/limit/couple.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/resources/limit/individual.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.202
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/eligibility/aged_threshold.yaml
+  - url: https://law.cornell.edu/cfr/text/20/416.414
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: regulation
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/amount/medical_facility.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_medical_treatment_facility.py
+  - url: https://law.cornell.edu/uscode/text/42/1382
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/amount/institutional/couple.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/amount/institutional/individual.yaml
+    - policyengine-us#parameters/gov/ssa/ssi/amount/medical_facility.yaml
+  - url: https://law.cornell.edu/uscode/text/42/1382a
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#parameters/gov/ssa/ssi/amount/one_third_reduction_rate.yaml
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/income/ssi_countable_income.py
+  - url: https://law.cornell.edu/uscode/text/42/1382c
+    source_status: secondary_mirror
+    disposition: excluded_secondary
+    document_class: statute
+    host: law.cornell.edu
+    jurisdiction_inferred: null
+    already_registered: null
+    discovered_via:
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/is_ssi_aged_blind_disabled.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/is_ssi_disabled.py
+    - policyengine-us#variables/gov/ssa/ssi/eligibility/status/is_ssi_eligible_spouse.py
+  notes: 'SSA POMS part SI, one document per section, citation path us/manual/ssa/poms/si/<section>. Taken subchapters: SI
+    00501, SI 00502, SI 00520, SI 00810, SI 00815, SI 00820, SI 00830, SI 00835, SI 01110, SI 01120, SI 01130, SI 01140, SI
+    01310, SI 01320, SI 01330, SI 01400, SI 01401, SI 01403, SI 01405, SI 01410, SI 01415, SI 02001, SI 02005 (every section
+    the subchapter list enumerates, national and regional). Primary source confirmed from the publisher''s own chapter/subchapter
+    lists. 42 USC 1381-1382j (2026-06-20 run) and the 20 CFR 416 deeming slice (2026-07-23 run, 14 rows) already exist and
+    are not re-ingested; the rest of 20 CFR 416 remains a separate follow-up. Sibling POMS documents already under us/guidance
+    (SI 01415.058 2026, SI PHI01415.009 from the DC run) keep their guidance citation paths; the manual family re-takes them
+    under the section-number path. 2026-09-11: the rest of 20 CFR 416 is now the full-part scope us/regulation/2026-09-11-title-20-part-416
+    (see the eCFR row below).'
+  index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+  index_document_count: 1693
+  taken_count: 915
+- jurisdiction: us
+  name: Federal (20 CFR part 416, eCFR)
+  queue_status: agent_ready
+  source_kind: federal_regulation_ecfr
+  primary_source_url: https://www.ecfr.gov/current/title-20/chapter-III/part-416
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-11-title-20-part-416
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): the full 20 CFR part 416 extracted
+    with extract-ecfr --only-title 20 --only-part 416 from the eCFR Versioner API at as-of 2026-09-09. 622 rows = 1 part +
+    22 subparts + 599 live sections (8 reserved sections skipped; the Appendix to Subpart K is not a supported adapter shape
+    and is not taken); coverage complete; citation paths us/regulation/20/416/<section>. The 14-row 2026-07-23-title-20-part-416
+    deeming slice is signed but selected by no release, so no released scope carries a us/regulation/20/416 path; the two
+    scopes are mutually exclusive in a selector and the full part is the one to select. 2026-09-13 closure run (needs-closure-2026-09-11
+    SSI-F-POMS): the remaining 56 part SI subchapters (778 sections) taken as scope us/manual/2026-09-13-ssi-poms-si-remainder
+    through the same generator (--family si-remainder); together with the 2026-09-10 scope every section of part SI is held.'
+  index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
+  index_document_count: 622
+  taken_count: 622
+  remainder_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-13-ssi-poms-si-remainder
+    target_manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+    index_document_count: 1693
+    taken_count: 778
+    subchapters_taken:
+    - SI 00500
+    - SI 00510
+    - SI 00515
+    - SI 00529
+    - SI 00530
+    - SI 00600
+    - SI 00601
+    - SI 00602
+    - SI 00603
+    - SI 00604
+    - SI 00605
+    - SI 00800
+    - SI 00832
+    - SI 00870
+    - SI 01100
+    - SI 01150
+    - SI 01200
+    - SI 01210
+    - SI 01220
+    - SI 01300
+    - SI 01700
+    - SI 01715
+    - SI 01730
+    - SI 01800
+    - SI 01801
+    - SI 02000
+    - SI 02002
+    - SI 02003
+    - SI 02004
+    - SI 02006
+    - SI 02007
+    - SI 02009
+    - SI 02100
+    - SI 02101
+    - SI 02200
+    - SI 02201
+    - SI 02205
+    - SI 02220
+    - SI 02300
+    - SI 02301
+    - SI 02302
+    - SI 02305
+    - SI 02306
+    - SI 02309
+    - SI 02310
+    - SI 02900
+    - SI 02901
+    - SI 04000
+    - SI 04005
+    - SI 04010
+    - SI 04020
+    - SI 04030
+    - SI 04040
+    - SI 04050
+    - SI 04060
+    - SI 04070
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+- jurisdiction: us
+  name: Federal statute (42 U.S.C., uscode.house.gov USLM)
+  queue_status: agent_ready
+  source_kind: federal_statute_uscode_uslm
+  primary_source_url: https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip
+  target_manifest: null
+  target_scope:
+    jurisdiction: us
+    document_class: statute
+    version: 2026-09-13-ssi-statute-1381a-1383f-title-42
+  lead_counts: {}
+  candidate_sources: []
+  notes: '2026-09-13 federal statute layer (docs/ingest-runs/2026-09-13-federal-statute-layer.md): 42 U.S.C. 1381a, 1383,
+    1383a, 1383b, 1383c, 1383d, 1383e, 1383f (the Title XVI sections the released 2026-06-20 scope stops short of; 1381 and
+    1382-1382j stay in the released scope). Extracted with extract-usc from the official OLRC USLM release point Public Law
+    119-103 (09/02/2026), USLM XML created 2026-09-09 (https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc42@119-103.zip,
+    retained byte-for-byte as the inventoried source at sources/us/statute/2026-09-13-ssi-statute-1381a-1383f-title-42/olrc/
+    via extract-usc --source-zip; the usc42.xml member is parsed in memory and named in metadata.source_archive_member). 8
+    section rows, 475 provision rows, coverage complete; citation paths us/statute/42/<section>[/<subsection>...]. Section
+    rows are self-contained (the title row us/statute/42 stays in its released consolidated scope; detached parents are recorded
+    in metadata.detached_parent_citation_path). No selected scope carries any of these paths. Closes needs-closure elements
+    SSI-F-USC-1381a, SSI-F-USC-1383, SSI-F-USC-1383a through SSI-F-USC-1383f (8).'
+  index_url: https://uscode.house.gov/download/download.shtml
+  index_document_count: 8
+  taken_count: 475
+- jurisdiction: us-ak
+  name: Alaska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: http://dpaweb.hss.state.ak.us/manuals/apa/transmittals/title_page.htm
+  target_manifest: manifests/us-ak-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: http://dpaweb.hss.state.ak.us/manuals/apa/whxdata/toc.new.js
+  index_document_count: 330
+  taken_count: 330
+  administration: S
+  notes: 'Adult Public Assistance (APA), Alaska''s SSI supplement: the Division of Public Assistance''s Adult Public Assistance
+    Manual, every topic page from the RoboHelp table of contents at dpaweb.hss.state.ak.us/manuals/apa/ (sections 400 General
+    Information to 482 Claims, addendum, transmittals and manual-change memos) plus a snapshot of each TOC file, the 2026-07-16
+    SNAP manual scope''s structure. document_class manual, citation us-ak/manual/dpa/apa/<topic> and us-ak/manual/dpa/apa/navigation/toc-<key>.
+    dpaweb.hss.state.ak.us HTTP 200 to a plain client over http (the https port does not answer). The corpus''s us-ak/guidance
+    APA standards PDF (2026-06-30) is the payment-standard table; the manual is the governing text.'
+  index_families: 'Adult Public Assistance Manual policy topic pages (sections 400-482, addendum): 147 found / 147 taken;
+    Adult Public Assistance Manual transmittal and manual-change memo pages: 78 found / 78 taken; RoboHelp table-of-contents
+    files (whxdata/*.new.js), snapshotted as navigation rows: 105 found / 105 taken'
+- jurisdiction: us-al
+  name: Alabama
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-al-admin-code-660-2-4.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: regulation
+    version: 2026-06-30-al-admin-code-660-2-4
+  index_url: https://dhr.alabama.gov/
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: Done by pointer (replacement 3, after SC blocked). Alabama's optional supplementation rule, Alabama Administrative
+    Code Chapter 660-2-4 'Optional Supplementation' (DHR), is already in the corpus (62 rows, page granularity) as us-al/regulation/...
+    from the 2026-06-30 run. dhr.alabama.gov answered HTTP 200 to a plain client on 2026-09-10; medicaid.alabama.gov did not
+    answer TCP. (2026-09-10 state-supplement batch 1.)
+  index_families: 'pointer to Alabama Administrative Code chapter 660-2-4 Optional Supplementation (62 rows, in the corpus):
+    1 chapter found / 0 new documents taken'
+- jurisdiction: us-ar
+  name: Arkansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415010
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; no state document family exists'
+  administration: N
+  notes: 'No optional state supplement (POMS SI 01415.010 state table, Arkansas row: Mandatory = F, Optional = N; federally
+    administered mandatory supplement only). Done with that finding: the governing text is the federal POMS row, already in
+    the corpus as us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory
+    and nothing was fetched. (2026-09-11 state-supplement batch 3.)'
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-as
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in American Samoa. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
+    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    American Samoa operates no adult assistance program under titles I, X, XIV or XVI. No territory SSI document exists to
+    inventory and nothing was fetched. (2026-09-11 territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the
+    plain extractor client: POMS SI 00501 subchapter list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov
+    HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion is unchanged. Not applicable on two dates; nothing to take.'
+- jurisdiction: us-az
+  name: Arizona
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415010
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; no state document family exists'
+  administration: N
+  notes: 'No optional state supplement (POMS SI 01415.010 state table, Arizona row: Mandatory = S, Optional = N; state-administered
+    mandatory supplement only). Done with that finding: the governing text is the federal POMS row, already in the corpus
+    as us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory and
+    nothing was fetched. (2026-09-11 state-supplement batch 3.)'
+- jurisdiction: us-ca
+  name: California
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-ca-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: guidance
+    version: 2026-06-27-ca-dor-ssi-ssp-newsletter
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: F
+  notes: '2026-06 run: California DOR January 2026 Spotlight on Social Security newsletter (SSI/SSP levels); SSA-administered
+    levels also in POMS SI 01415.058B (federal family). Federal-family POMS paths for this state: us/manual/ssa/poms/si/01415.058
+    (subsection B), us/manual/ssa/poms/si/sf01415.100, us/manual/ssa/poms/si/sf01415.110, us/manual/ssa/poms/si/sf01415.120,
+    us/manual/ssa/poms/si/sf01415.130, us/manual/ssa/poms/si/sf01415.140, us/manual/ssa/poms/si/sf01415.150, us/manual/ssa/poms/si/sf01415.160,
+    us/manual/ssa/poms/si/sf01415.170, us/manual/ssa/poms/si/sf01415.180, us/manual/ssa/poms/si/sf01415.190.'
+- jurisdiction: us-co
+  name: Colorado
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-co
+    document_class: regulation
+    version: 2026-06-19-co-oap-9-ccr-2503-5
+  index_url: https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=9&agencyID=31
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: 'Done by pointer. Colorado''s supplements to SSI are the Old Age Pension (OAP) and Aid to the Needy Disabled - State
+    Only (AND-SO) programs under the Adult Financial rule 9 CCR 2503-5, already in the corpus in full (92 rows: 3.500-3.587
+    incl. 3.530 OAP and 3.540 AND-SO) as us-co/regulation/9-ccr-2503-5/... from the Secretary of State CCR PDF (adapter scope,
+    no manifest). (2026-09-10 state-supplement batch 1.)'
+  index_families: 'pointer to 9 CCR 2503-5 Adult Financial (92 rows incl. 3.530 OAP and 3.540 AND-SO, all in the corpus):
+    1 rule found / 0 new documents taken'
+- jurisdiction: us-ct
+  name: Connecticut
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-ct-ssp-official-documents.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: policy
+    version: 2026-07-02-ct-ssp-upm-and-standards
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: S
+  notes: '2026-07-02 runs: CT DSS UPM 4005/4520/5000/5030/5045/5050/5520/6000/6005 and the 2026-01-01 program standards chart
+    (docs/ingest-runs/2026-07-02-ct-ssp-*.md).'
+- jurisdiction: us-dc
+  name: District of Columbia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-dc-ossp-ssa-poms.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-07-03-dc-ossp-ssa-poms
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: F/S
+  notes: '2026-07-03 run: POMS SI 01415.058 (2026) and SI PHI01415.009 under us/guidance/ssa/poms/...; the same two sections
+    are re-taken in the federal manual family under us/manual/ssa/poms/si/ (different citation paths, same documents). Federal-family
+    POMS paths for this state: us/manual/ssa/poms/si/01415.058 (subsection D), us/manual/ssa/poms/si/phi01415.009.'
+- jurisdiction: us-de
+  name: Delaware
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-de-ssi-state-supplement-poms.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: guidance
+    version: 2026-07-03-de-ssi-state-supplement-poms
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: F/S
+  notes: '2026-07-03 run: POMS SI 01415.058 Delaware subsection (us-de/guidance) plus DSSM 13000 (us-de/regulation); docs/ingest-runs/2026-07-03-de-ssi-state-supplement.md.
+    Federal-family POMS paths for this state: us/manual/ssa/poms/si/01415.058 (subsection C), us/manual/ssa/poms/si/phi01415.008.'
+- jurisdiction: us-fl
+  name: Florida
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://flrules.org/gateway/RuleNo.asp?title=OPTIONAL%20STATE%20SUPPLEMENTATION&ID=65A-2.022
+  target_manifest: manifests/us-fl-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://flrules.org/gateway/ChapterHome.asp?Chapter=65A-2
+  index_document_count: 8
+  taken_count: 8
+  administration: S
+  notes: 'Optional State Supplementation (OSS): FAC chapter 65A-2 (8 rules, each rule''s .doc text from flrules.org, the Department
+    of State''s FAC publisher; rule pages print the effective dates 2001-12-16 to 2025-06-24). DCF''s own site has no OSS
+    page (guessed paths 404) and the ESS Program Policy Manual scope carries no OSS text. document_class regulation, citation
+    us-fl/regulation/fac/65a-2/<section> (the FAC 65A-1 convention).'
+  index_families: 'FAC chapter 65A-2 Optional State Supplementation rules: 8 found / 8 taken'
+- jurisdiction: us-ga
+  name: Georgia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-ga-ssp-manual.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: manual
+    version: 2026-06-24-ga-ssp
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: S
+  notes: '2026-06 run: Georgia DFCS Medicaid Policy Manual 2578 and 2136 (us-ga/manual).'
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-gu
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in Guam. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District of Columbia
+    (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    Guam administers Old Age Assistance, Aid to the Blind and Aid to the Permanently and Totally Disabled through DPHSS (SSA
+    titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
+    territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter
+    list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory
+    exclusion is unchanged. Not applicable on two dates; nothing to take.'
+- jurisdiction: us-hi
+  name: Hawaii
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#e
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 4
+  taken_count: 4
+  administration: F
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection E), us/manual/ssa/poms/si/sf01415.200, us/manual/ssa/poms/si/sf01415.210, us/manual/ssa/poms/si/sf01415.220.
+    No separate state extraction.'
+- jurisdiction: us-ia
+  name: Iowa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#f
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  administration: F/S
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F/S; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection F). No separate state extraction. F/S: the state also administers part of its program itself; that state-administered
+    part is not covered here.'
+- jurisdiction: us-id
+  name: Idaho
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-id-aabd-rules.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: regulation
+    version: 2026-07-04-id-aabd-rules
+  index_url: https://adminrules.idaho.gov/rules/current/16/160305.pdf
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: Done by pointer. Idaho's supplement is AABD cash assistance under IDAPA 16.03.05 'Eligibility for Aid to the Aged,
+    Blind, and Disabled (AABD)' (Department of Health and Welfare), already in the corpus in full as us-id/regulation/idapa/16/03/05
+    (286 rows, version 2026-07-04-id-aabd-rules, metadata program ssi_state_supplement). (2026-09-10 state-supplement batch
+    2.)
+  index_families: 'pointer to IDAPA 16.03.05 Eligibility for Aid to the Aged, Blind, and Disabled (AABD) (1 PDF, 286 rows,
+    program ssi_state_supplement, in the corpus): 0 new documents taken'
+- jurisdiction: us-il
+  name: Illinois
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-il-snap-manual.yaml
+  target_scope:
+    jurisdiction: us-il
+    document_class: manual
+    version: 2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained
+  index_url: https://www.dhs.state.il.us/page.aspx?item=13108
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: Done by pointer. Illinois' supplement is AABD Cash (Aid to the Aged, Blind or Disabled), governed by the IDHS Cash,
+    SNAP and Medical Policy Manual / Workers' Action Guide, which is in the corpus in full (12,450 rows). AABD sections present
+    include PM I-02-02 (csmm/12262), PM I-03-03 Adult Programs (12286), PM/WAG 11-01-00 AABD Cash Assistance Standard (15910,
+    15911), PM/WAG 11-02-03 Using the AABD Cash Assistance Standard (15967, 15968), WAG 03-03-02 SSI and AABD Cash (13254),
+    WAG 25-03-03 AABD Fuel and Utility Allowances (12668) and PM 22-05-01 Excess Shelter Allowance (18641); 493 rows mention
+    AABD. (2026-09-10 state-supplement batch 1.)
+  index_families: 'pointer to the IDHS Cash, SNAP and Medical Policy Manual / WAG scope (12,450 rows; AABD Cash sections present):
+    0 new documents taken'
+- jurisdiction: us-in
+  name: Indiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-in-ssp-sapn-official-documents.yaml
+  target_scope:
+    jurisdiction: us-in
+    document_class: manual
+    version: 2026-07-04-in-ssp-sapn
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: S
+  notes: '2026-07-04 run: Indiana FSSA Medicaid Policy Manual Chapter 5000 (SAPN); docs/ingest-runs/2026-07-04-in-ssp-sapn.md.
+    SSA regional description SI CHI01401.001 is in the federal family. Federal-family POMS paths for this state: us/manual/ssa/poms/si/chi01401.001.'
+- jurisdiction: us-ks
+  name: Kansas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-ks-sspp-guidance-official-documents.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: guidance
+    version: 2026-07-04-ks-sspp-guidance
+  index_url: null
+  index_document_count: null
+  taken_count: null
+  administration: S
+  notes: '2026-07-04 runs: K.S.A. 39-972 (us-ks/statute) and KHPA Policy 2007-05-01 (us-ks/guidance); docs/ingest-runs/2026-07-04-ks-sspp.md.
+    2026-09-14: current payment standards (SSI-ST-4) absent (see standards_scope).'
+  standards_scope:
+    status: absent
+    scopes: []
+    index_url: https://khap.kdhe.ks.gov/kfmam/policydocs/state%20supplemental%20payment%20program%20policy%20memo.pdf
+    index_document_count: null
+    taken_count: 0
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent for the current year: the SSPP pays one flat $20 monthly amount to institutionalized
+      eligibles (KHPA policy memo of 2007-05-02, retroactive to 2006-07-01, already in us-ks/guidance/2026-07-04-ks-sspp-guidance)
+      and KDHE has published no later amount; the April 2026 Kansas Medical Assistance manual (khap.kdhe.ks.gov/KEESM/Apr_2026_Output,
+      121 topics) has no SSPP topic; K.S.A. 39-972 (floor ''not less than $30'') is on disk as us-ks/statute/2026-07-04-ks-sspp-statute
+      and unselected (controller: select it for SSI-ST-2). Nothing new to take. Access: khap.kdhe.ks.gov HTTP 200 to the plain
+      client for the 2007 memo; the policydocs directory answers 403.14; ksrevisor.gov HTTP 200.'
+- jurisdiction: us-ky
+  name: Kentucky
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://apps.legislature.ky.gov/law/kar/titles/921/002/015/
+  target_manifest: manifests/us-ky-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://apps.legislature.ky.gov/law/kar/titles/921/002/
+  index_document_count: 19
+  taken_count: 1
+  administration: S
+  notes: 'State Supplementation: 921 KAR 2:015 ''Supplemental programs for persons who are aged, blind, or have a disability''
+    (CHFS/DCBS), one HTML regulation from the LRC''s 921 KAR Chapter 2 index (19 regulations listed: 14 current, 5 inactive/repealed;
+    015 taken), history last effective 2024-07-30. document_class regulation, citation us-ky/regulation/kar/921/002/015 (the
+    CHIP 907 KAR convention). apps.legislature.ky.gov HTTP 200 to a plain client; chfs.ky.gov operations-manual path guessed
+    404.'
+  index_families: '921 KAR Chapter 2 (DCBS cash assistance) regulations, Current: 14 found / 1 taken; 921 KAR Chapter 2 regulations,
+    Inactive or Repealed: 5 found / 0 taken'
+- jurisdiction: us-la
+  name: Louisiana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/J-0000.pdf
+  target_manifest: manifests/us-la-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+  index_document_count: 99
+  taken_count: 1
+  administration: S
+  notes: 'Optional State Supplement (OSS): LDH Medicaid Eligibility Manual section J-0000 ''Medicaid Eligibility Cards and
+    Optional State Supplement Payments'' (Reissued July 21, 2025; J-300 to J-340 OSS payment rules), one PDF of the 99 sections
+    on the LDH manual index. ldh.la.gov HTTP 403 to a plain client, 200 to a chrome120 TLS fingerprint: fetched with the extractor''s
+    browser_impersonation option (as the POMS SI manifest), TLS verification on. document_class manual, citation us-la/manual/ldh/medicaid-eligibility/j-0000,
+    page granularity.'
+  index_families: 'J medical eligibility cards and OSS payments: 1 found / 1 taken; Z appendix tables and standards: 17 found
+    / 0 taken; manual sections A-X (eligibility policy): 80 found / 0 taken; preface: 1 found / 0 taken'
+- jurisdiction: us-ma
+  name: Massachusetts
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://www.mass.gov/regulations/106-CMR-32700-eligibility-requirements-for-state-supplement-program-ssp
+  target_manifest: manifests/us-ma-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://www.mass.gov/law-library/106-cmr
+  index_document_count: 18
+  taken_count: 1
+  administration: S
+  notes: 'State Supplement Program (SSP): 106 CMR 327.000 Eligibility Requirements for SSP (DTA), one regulation PDF from
+    the mass.gov law library 106 CMR index (18 chapters listed; 327 taken), 24 section rows 327.010-327.410 (the TOC misprints
+    327.160 as 322.160). document_class regulation, citation us-ma/regulation/106-cmr/327/<section>. mass.gov answered HTTP
+    200 to a paced plain client on 2026-09-10 (the guessed law-library/106-cmr-327 path is 404; the regulation page is /regulations/106-CMR-32700-...).
+    2026-09-14: current payment standards (SSI-ST-4) taken as us-ma/guidance/2026-09-14-ssi-state-supplement-standards (see
+    standards_scope).'
+  index_families: 'SSP (327): 1 found / 1 taken; Fair hearing rules (343): 1 found / 0 taken; SNAP (360-367): 8 found / 0
+    taken; TCAP / TAFDC / EAEDC (701-708): 8 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ma
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-ma-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    index_url: https://www.mass.gov/info-details/learn-about-massachusetts-state-supplement-program-eligibility-and-payments
+    index_document_count: 11
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Federal and State Payment Levels for Calendar Year 2026 (1 page: the SSP amounts by SSI
+      category and state living arrangement A, B, C, E, F, G) from the DTA SSP information page, which lists the CY 2016-2026
+      charts (11 documents; the 2026 chart taken). Closes SSI-ST-4; 106 CMR 327 (SSI-ST-2) is in the 2026-09-10 scope. Access:
+      mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched
+      with the extractor''s browser_impersonation option, TLS verification on.'
+- jurisdiction: us-md
+  name: Maryland
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://regs.maryland.gov
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-md
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapter-07
+  index_url: https://github.com/maryland-dsd/law-xml-codified (us/md/exec/comar/07/03, publication/2026-09-09.2026-09-09)
+  index_document_count: 25
+  taken_count: 2
+  administration: S
+  notes: 'Replacement 1 (after OK blocked). Maryland''s supplements: Public Assistance to Adults (PAA, optional supplement
+    for adults in assisted living and certain group homes) under COMAR 07.03.07 and the Mandatory State Supplement for SSI
+    recipients under COMAR 07.03.06 (DHS Family Investment Administration). Both chapters extracted with the existing adapter
+    `extract-maryland-comar --only-title 07 --only-subtitle 03 --only-chapter 06|07` from the Division of State Documents''
+    official COMAR XML publication (publication/2026-09-09.2026-09-09), two run ids (...-chapter-06: 14 rows; ...-chapter-07:
+    19 rows), coverage complete, citation us-md/regulation/title-07/subtitle-03/chapter-0N/regulation-NN (the TCA scope''s
+    convention). Container rows us-md/regulation, .../title-07 and .../title-07/subtitle-03 are shared with the TCA chapter-03
+    scope by adapter design; regulation rows are unique across us-md. regs.maryland.gov paths answered HTTP 404 to guessed
+    URLs; the adapter''s XML source is the DSD publication repository.'
+  index_families: 'COMAR Title 07 Subtitle 03 Family Investment Administration chapters: 25 found / 2 taken (07.03.06 Mandatory
+    State Supplement for Supplemental Security Income Recipients, 07.03.07 Public Assistance to Adults); 07.03.03 Family Investment
+    Program already in the corpus (TCA scope)'
+- jurisdiction: us-me
+  name: Maine
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  target_manifest: manifests/us-me-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
+  index_document_count: 150
+  taken_count: 1
+  administration: S
+  notes: 'State Supplement: 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 11 ''State Supplement'' (DHHS OFI),
+    cut from the chapter Word document on the Secretary of State''s agency-rules index (filing 2025-101; Part 5 CHIP is already
+    in the corpus from the same document). The SOS 10-144 index lists no separate state-supplement chapter. document_class
+    regulation, citation us-me/regulation/dhhs/ofi/chapter-332/part-11/section-N.'
+  index_families: '10-144 Ch. 332 MaineCare Eligibility Manual parts (one Word document, 18 parts): 18 found / 1 taken; 10-144
+    Ch. 332 appendices and charts: 1 found / 0 taken; other 10-144 chapters on the SOS DHHS rules index (incl. OFI Ch. 301,
+    323, 331, 333-336; Ch. 332 page also links 4 of them): 148 found / 0 taken'
+- jurisdiction: us-mi
+  name: Michigan
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#g
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 2
+  taken_count: 2
+  administration: F/S
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F/S; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection G), us/manual/ssa/poms/si/chi01415.001. No separate state extraction. F/S: the state also administers part
+    of its program itself; that state-administered part is not covered here.'
+- jurisdiction: us-mn
+  name: Minnesota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-mn-combined-manual.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: manual
+    version: 2026-05-27-mn-combined-manual-r2026-07-15-self-contained
+  index_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=CM_MANUAL
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: 'Done by pointer (replacement 1, after NY blocked). Minnesota Supplemental Aid (MSA) is governed by the DHS Combined
+    Manual, in the corpus as one PDF (dhs-327301.pdf, 1,354 rows; 523 pages mention MSA, incl. 0020.21 MSA Assistance Standards),
+    plus the MSA revised sections issued 01/2026 (us-mn/manual/2026-06-27-mn-dhs-msa-revised-sections-2026-01, mndhs-073585.pdf).
+    mn.gov/dhs answered a Radware challenge to a plain client on 2026-09-10 (federal run); the corpus copies came from dhs.state.mn.us.
+    (2026-09-10 state-supplement batch 1.) 2026-09-14: current payment standards (SSI-ST-4) taken as us-mn/manual/2026-09-14-ssi-state-supplement-standards,
+    us-mn/statute/2026-09-14-ssi-state-supplement-standards (see standards_scope).'
+  index_families: 'pointer to the DHS Combined Manual scope (1 PDF, 1,354 rows) and the MSA revised sections 01/2026 scope:
+    0 new documents taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-mn
+      document_class: manual
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-mn-ssi-state-supplement-standards-manual.yaml
+      document_count: 1
+    - jurisdiction: us-mn
+      document_class: statute
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-mn-ssi-state-supplement-standards-statute.yaml
+      document_count: 1
+    index_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=CM_MANUAL
+    index_document_count: null
+    taken_count: 2
+    closure_elements:
+    - SSI-ST-2
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Combined Manual 0020.21 MSA Assistance Standards, issue date 03/2026, with the 2026 MSA
+      monthly assistance standards by living arrangement (person living alone $1,055.00, living with others $755.33, couples
+      $1,582.00 / $1,058.00 and the pre-1994 couple standards), the current web page of the section whose 09/2020 print is
+      the stale page in the selected Combined Manual PDF scope; and Minn. Stat. 256D.44 (2025 Minnesota Statutes) for the
+      state authority (SSI-ST-2). The sibling Word file cm_002021~24.doc is a 2021 revision and was not taken. Access: dhs.state.mn.us
+      answers HTTP 200 with a 15 KB Radware challenge page to plain and Chrome-UA clients and the manual page to a chrome120
+      TLS fingerprint on 2026-09-14 (fetched with browser_impersonation_direct, TLS verification on); revisor.mn.gov HTTP
+      200 to the plain client.'
+- jurisdiction: us-mo
+  name: Missouri
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://dssmanuals.mo.gov/supplemental-nursing-care/0600-000-00/
+  target_manifest: manifests/us-mo-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://dssmanuals.mo.gov/
+  index_document_count: 139
+  taken_count: 89
+  administration: S
+  notes: 'Supplemental Nursing Care (SNC) and Supplemental Aid to the Blind (SAB), Missouri''s state-administered supplements:
+    the Family Support Division''s SNC Manual (0600-0635) and SAB Manual (0400-0440), every section page from the dssmanuals.mo.gov
+    WordPress sitemap (the 2026-09-10 MHABD Medicaid scope''s method). document_class manual, citation us-mo/manual/dss/snc/<section>
+    and us-mo/manual/dss/sab/<section>, .entry-content selector. The Blind Pension Manual (state-only pension for blind persons
+    not eligible for SAB; 0505.000.00 password-protected) is a separate family, not taken. The MHABD scope mentions SNC on
+    22 rows but carries no SNC or SAB eligibility text. 13 CSR 40-2 (Secretary of State) has no SNC/SAB-specific rule; the
+    manuals are the governing text.'
+  index_families: 'Supplemental Nursing Care (SNC) Manual section pages (dssmanuals.mo.gov sitemap): 35 found / 35 taken;
+    Supplemental Aid to the Blind (SAB) Manual section pages (dssmanuals.mo.gov sitemap): 54 found / 54 taken; Blind Pension
+    Manual section pages (dssmanuals.mo.gov sitemap): 42 found / 0 taken; other DSS manuals on the site index (childrens-services-policy-manual,
+    family-mo-healthnet-magi, food-stamps, forms-manual, independent-living-rehabilitation-policy-manual, mo-healthnet-for-the-aged-blind-and-disabled,
+    prevention-of-blindness-policy-manual, temporary-assistance-case-management): 8 found / 0 taken'
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500501410
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 00501.410 Residency / United States definition (SSI applies in the NMI): 1 found / 1 taken in the
+    federal family; POMS SI 01415.010 state table: no Northern Mariana Islands row; no territory document family exists'
+  administration: N
+  notes: 'SSI applies in the Northern Mariana Islands (Covenant to Establish a Commonwealth, section 502(a)(1), 48 U.S.C.
+    1801 note); POMS SI 00501.410 (3. United States) and SI 00501.415 state that for SSI purposes the United States includes
+    only the 50 States, the District of Columbia and the Northern Mariana Islands, and both sections are already in the corpus
+    (us/manual/ssa/poms/si/00501.410, 00501.415; version 2026-09-10-ssi-poms-si). No optional state supplement: POMS SI 01415.010''s
+    state table carries no Northern Mariana Islands row and the CNMI government sites reviewed 2026-09-11 (cnmimedicaid.org,
+    finance.gov.mp, dcca.gov.mp) list no supplement program. Done with that finding; nothing was fetched. (2026-09-11 territories
+    pass.)'
+- jurisdiction: us-ms
+  name: Mississippi
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415010
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; no state document family exists'
+  administration: N
+  notes: 'No optional state supplement (POMS SI 01415.010 state table, Mississippi row: Mandatory = F, Optional = N; federally
+    administered mandatory supplement only). Done with that finding: the governing text is the federal POMS row, already in
+    the corpus as us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory
+    and nothing was fetched. (2026-09-11 state-supplement batch 3.)'
+- jurisdiction: us-mt
+  name: Montana
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#h
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 2
+  taken_count: 2
+  administration: F
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection H), us/manual/ssa/poms/si/den01415.010. No separate state extraction.'
+- jurisdiction: us-nc
+  name: North Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://policies.ncdhhs.gov/document/special-assistance-manual/
+  target_manifest: manifests/us-nc-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://policies.ncdhhs.gov/divisional-n-z/social-services/special-assistance/special-assistance/
+  index_document_count: 111
+  taken_count: 2
+  administration: S
+  notes: 'State/County Special Assistance (SA, adult care home) and SA In-Home: the two DSS program manuals (PDF, revised
+    2026-06-01; 368 and 48 pages) from the NCDHHS Policies and Manuals Special Assistance index, which also lists change notices,
+    administrative letters, forms and EIS documents (not taken). document_class manual, citation us-nc/manual/dss/special-assistance/{manual,in-home-manual},
+    page granularity.'
+  index_families: 'EIS system documents: 3 found / 0 taken; administrative letters: 33 found / 0 taken; change notices: 50
+    found / 0 taken; forms and notices: 23 found / 0 taken; program manuals: 2 found / 2 taken'
+- jurisdiction: us-nd
+  name: North Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415010
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; no state document family exists'
+  administration: N
+  notes: 'No optional state supplement (POMS SI 01415.010 state table, North Dakota row: Mandatory = NR, Optional = N; no
+    mandatory supplement (NR)). Done with that finding: the governing text is the federal POMS row, already in the corpus
+    as us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory and
+    nothing was fetched. (2026-09-11 state-supplement batch 3.)'
+- jurisdiction: us-ne
+  name: Nebraska
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/469%20NAC%201%20%2806-06-2022%29.pdf
+  target_manifest: manifests/us-ne-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+  index_document_count: 4
+  taken_count: 4
+  administration: S
+  notes: 'Assistance to the Aged, Blind, or Disabled (AABD) payment program: Title 469 NAC chapters 1-4 (DHHS; effective 2022-06-06)
+    from the Secretary of State''s rules.nebraska.gov chapter API, the 475 NAC SNAP scope''s publisher. rules.nebraska.gov
+    omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; the publisher''s public intermediate is in data/certs
+    and REQUESTS_CA_BUNDLE=data/certs/rules-nebraska-gov-ca-bundle.pem is used (verification on; the SNAP manifest''s verify_tls:
+    false is not used). document_class regulation, citation us-ne/regulation/title-469/chapter-N/<section>, labeled sections.
+    2026-09-14: current payment standards (SSI-ST-4) taken as us-ne/manual/2026-09-14-ssi-state-supplement-standards (see
+    standards_scope).'
+  index_families: '469 NAC Assistance To The Aged, Blind, Or Disabled Program chapters (API GetByTitleId/224): 4 found / 4
+    taken; other DHHS (agency 37) NAC titles on the agency listing (separate titles, not inventoried): 44 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ne
+      document_class: manual
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-ne-ssi-state-supplement-standards-manual.yaml
+      document_count: 2
+    index_url: https://dhhs.ne.gov/Pages/Title-469-Appendix.aspx
+    index_document_count: null
+    taken_count: 2
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Title 469 appendix 469-000-211 AABD or SDP Standard of Need (rev. 2021-01-01, the latest
+      posted: unit standards, board and room, adult family home, assisted living, shelter allowance) and the Medicaid Title
+      477 appendix 477-000-044 ABD Standard of Need (rev. 2025-12-17, the 2026 figures effective 2026-01-01 in the same living-arrangement
+      structure); 469 NAC chapter 3 (SSI-ST-2) is in the 2026-09-10 scope. Access: dhhs.ne.gov HTTP 200 to the plain client.'
+- jurisdiction: us-nh
+  name: New Hampshire
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://www.dhhs.nh.gov/aam_htm/html/introduction_aam.htm
+  target_manifest: manifests/us-nh-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://www.dhhs.nh.gov/aam_htm/whgdata/whlstt0.htm
+  index_document_count: 515
+  taken_count: 515
+  administration: S
+  notes: 'Old Age Assistance, Aid to the Needy Blind and Aid to the Permanently and Totally Disabled (the state supplement
+    categories): DHHS Adult Assistance Manual, every topic page from the RoboHelp table of contents (the Family Assistance
+    Manual scope''s structure). dhhs.nh.gov HTTP 403 to a plain client, 200 to a chrome120 TLS fingerprint: fetched with the
+    extractor''s browser_impersonation option, TLS verification on. document_class manual, citation us-nh/manual/dhhs/aam/<topic>-aam.
+    2026-09-14: current payment standards (SSI-ST-4) taken as us-nh/guidance/2026-09-14-ssi-state-supplement-standards (see
+    standards_scope).'
+  index_families: 'Adult Assistance Manual topic pages (87 RoboHelp TOC files walked): 515 found / 515 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-nh
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-nh-ssi-state-supplement-standards-guidance.yaml
+      document_count: 2
+    index_url: https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm
+    index_document_count: null
+    taken_count: 2
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Re-graded: AAM 601 Table A in the selected 2026-09-10 scope carries the 2026 standards
+      of need in its block-2 row (independent living $1,008 / $1,492 / $1,976, residential care $1,188, community residence
+      $1,070 / $1,130 / $1,188), so SSI-ST-4 was already PRESENT (the closure check read the 60-character block-1 stub). Taken
+      in addition: Supervisory Release SR 26-01 dated 01/26 (the transmittal announcing the 2026 COLA-driven standards) and
+      the Bureau of Developmental Services memo ''2026 Standard of Need and Income Changes'' of 2026-01-01. Access: dhhs.nh.gov
+      HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the
+      extractor''s browser_impersonation option, TLS verification on.'
+- jurisdiction: us-nj
+  name: New Jersey
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#j
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 2
+  taken_count: 2
+  administration: F
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection J), us/manual/ssa/poms/si/ny01415.025. No separate state extraction.'
+- jurisdiction: us-nm
+  name: New Mexico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://www.srca.nm.gov/parts/title08/08.106.0100.html
+  target_manifest: manifests/us-nm-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+  index_document_count: 85
+  taken_count: 17
+  administration: S
+  notes: 'Supplement for SSI recipients in adult residential shelter care homes (ARSCH) and General Assistance: 8.106 NMAC
+    ''State Funded Assistance Programs'' (HCA Income Support Division), all 17 parts linked from the HCA ISD regulations index
+    and served by the State Records Center and Archives (effective dates 2004-07-01 to 2025-03-01). GA and the ARSCH supplement
+    share the chapter''s general, eligibility and benefit parts, so the whole chapter is taken. document_class regulation,
+    citation us-nm/regulation/nmac/8/106/<part>/8.106.<part>.<section> (the 8.100/8.139 SNAP convention).'
+  index_families: '8.100 NMAC parts linked on the HCA ISD index: 10 found / 0 taken; 8.102 NMAC parts linked on the HCA ISD
+    index: 17 found / 0 taken; 8.106 NMAC parts linked on the HCA ISD index: 17 found / 17 taken; 8.119 NMAC parts linked
+    on the HCA ISD index: 7 found / 0 taken; 8.139 NMAC parts linked on the HCA ISD index: 17 found / 0 taken; 8.150 NMAC
+    parts linked on the HCA ISD index: 17 found / 0 taken'
+- jurisdiction: us-nv
+  name: Nevada
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#i
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 2
+  taken_count: 2
+  administration: F
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection I), us/manual/ssa/poms/si/sf01415.300. No separate state extraction.'
+- jurisdiction: us-ny
+  name: New York
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: state_agency_document
+  primary_source_url: https://otda.ny.gov/programs/ssp/
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-ny
+    document_class: null
+    version: null
+  index_url: https://otda.ny.gov/programs/ssp/
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: 'Blocked 2026-09-10 (state-supplement batch 1): otda.ny.gov (OTDA State Supplement Program page): plain client TCP
+    connection reset by peer (site root too); curl-cffi chrome120 impersonation HTTP 200 but a 5,615-byte JavaScript challenge
+    (''Please enable JavaScript to view the page content. Your support ID is ...'') with no page content. No index inventory
+    possible. SSA regional description remains in the federal family: us/manual/ssa/poms/si/ny01415.026. Retried 2026-09-10T21:36Z
+    from a US network, same failure: plain client ''Remote end closed connection without response'' on https://otda.ny.gov/programs/ssp/;
+    chrome120 impersonation HTTP 200 with a 7,559-byte JavaScript challenge (''Please enable JavaScript to view the page content.
+    Your support ID is ...''), no page content. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client,
+    same failure: connection reset by peer after 0.1 s, no response. Durable block: the same failure from two networks (the
+    2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available
+    rather than pending.'
+  index_families: no index inventory possible (publisher blocked; see notes)
+- jurisdiction: us-oh
+  name: Ohio
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://codes.ohio.gov/ohio-administrative-code/chapter-5122-36
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-oh
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement-agency-5122-chapter-5122-36
+  index_url: https://codes.ohio.gov/ohio-administrative-code/chapter-5122-36
+  index_document_count: 5
+  taken_count: 5
+  administration: S
+  notes: 'Retry 2026-09-10T21:36Z from a US network: codes.ohio.gov HTTP 200 (48,015 bytes) to a plain client (batch 1: connect
+    timeout). Residential State Supplement (RSS), OAC chapter 5122-36 (Department of Behavioral Health, agency 5122), extracted
+    with the existing adapter `extract-ohio-administrative-code --only-chapter 5122-36` (no manifest; run id 2026-09-10-ssi-state-supplement-agency-5122-chapter-5122-36):
+    8 rows (collection, agency, chapter, 5 rules; rules effective 2022-09-03 and 2023-07-01), coverage complete. Citation
+    us-oh/regulation/agency-5122/chapter-5122-36/rule-5122-36-0N, the adapter convention of the 5101-4 SNAP scope. The container
+    row us-oh/regulation is shared with the 2026-07-16-agency-5101-4 scope by adapter design (collection root); rule rows
+    are unique across us-oh. 2026-09-14: current payment standards (SSI-ST-4) taken as us-oh/guidance/2026-09-14-ssi-state-supplement-standards
+    (see standards_scope).'
+  index_families: 'OAC chapter 5122-36 Residential State Supplement Program rules (5122-36-01 Purpose and definitions, -02
+    RSS non-financial eligibility, -03 Application process, -04 Responsibilities of the living arrangement, -05 Determination
+    of RSS payment): 5 found / 5 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-oh
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-oh-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    index_url: https://dbh.ohio.gov/get-help/recovery-supports/residential-state-supplement
+    index_document_count: null
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Re-graded: OAC 5122-36-05(B)-(C) in the selected scopes prints the RSS payment level (''one
+      thousand six hundred dollars per month'' plus a personal needs allowance of at least two hundred dollars, effective
+      2023-07-01), so SSI-ST-4 was already PRESENT; no later rate notice exists on the DBH domains. Taken in addition: the
+      DBH Residential State Supplement brochure (2 pages, ''$1,600 per month effective July 1, 2023''). Access: dam.assets.ohio.gov
+      HTTP 200 to the plain client; dbh.ohio.gov HTTP 404 to the plain client and 200 to a Chrome UA; codes.ohio.gov HTTP
+      200.'
+- jurisdiction: us-ok
+  name: Oklahoma
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://rules.ok.gov/home
+  target_manifest: manifests/us-ok-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-ok
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByTitleNum?titleNum=340
+  index_document_count: 30
+  taken_count: 1
+  administration: S
+  notes: 'State Supplemental Payment (SSP): OAC Title 340 Chapter 15 (Department of Human Services; Subchapter 1 State Supplemental
+    Payment, 7 sections of which 2 revoked, and Subchapter 3 Children and Youth with Special Health Care Needs) from the Secretary
+    of State''s Office of Administrative Rules (rules.ok.gov) segments API, the 2026-07-21 SNAP rules scope''s source and
+    convention (records segmentation; revoked sections excluded). Title 340 lists 30 chapters (17 current, 13 revoked); chapter
+    15 taken. document_class regulation, citation us-ok/regulation/oac/340/15/<section>. Re-probe 2026-09-11 (batch 3, US
+    network): oklahoma.gov/okdhs policy library now 301 -> rules.ok.gov/home; rules.ok.gov/home Cloudflare HTTP 403 (5,316
+    bytes) plain, HTTP 200 (1,551-byte application shell) then 403 (5,906 bytes) to chrome120 impersonation; the publication''s
+    own API (prod-ok-rules-api.tecuity.com) HTTP 200 plain. Batch 2 (2026-09-10): both hosts 403. 2026-09-14: current payment
+    standards (SSI-ST-4) taken as us-ok/manual/2026-09-14-ssi-state-supplement-standards (see standards_scope).'
+  index_families: 'OAC Title 340 (Department of Human Services) chapters, current: 17 found / 1 taken; OAC Title 340 chapters,
+    revoked: 13 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ok
+      document_class: manual
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-ok-ssi-state-supplement-standards-manual.yaml
+      document_count: 1
+    index_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-1.pdf
+    index_document_count: null
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: OKDHS Appendix C-1 Maximum Income, Resource, and Payment Standards, 7/1/2026 (8 pages;
+      Schedule VIII.A on page 3: SSP categorically needy standard, eligible individual $1,034, individual with spouse $1,532,
+      eligible couple $1,571, SSP amount capped at $40), the appendix OAC 340:15-1-5 cites; reached through the OKDHS forms
+      search center. Access: oklahoma.gov HTTP 200 to the plain client (the former policy-library appendix page redirects
+      to rules.ok.gov/home, Cloudflare HTTP 403 to plain clients).'
+- jurisdiction: us-or
+  name: Oregon
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-or-snap-manual.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: manual
+    version: 2026-07-16-or-programs-eligibility-notebook
+  index_url: https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de2818.pdf
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: Done by pointer. Oregon Supplemental Income Program (OSIP) cash supplements and special needs payments are covered
+    by the ODHS Oregon Programs Eligibility Notebook (OPEN, DE 2818, 07/2026), in the corpus as us-or/manual/odhs/open (1,323
+    page rows; 47 pages name OSIP cash, e.g. 'OSIP Oregon Supplemental Income Program Cash supplements and special needs',
+    OSIP maintenance standard, OAR 461-140-0296/-0300 references). The adopted rules are OAR chapter 461 on the Secretary
+    of State's OARD (displayChapterRules.action?selectedChapter=99, HTTP 200 on 2026-09-10), a chapter shared with SNAP, TANF
+    and ERDC; not taken. oregon.gov/odhs guessed OSIP page 404. (2026-09-10 state-supplement batch 2.)
+  index_families: 'pointer to the ODHS Oregon Programs Eligibility Notebook scope (1 PDF, 1,323 page rows; 47 pages name OSIP
+    cash, 392 name OSIP or OSIPM): 0 new documents taken; OAR chapter 461 (secure.sos.state.or.us, HTTP 200) is the adopted-rule
+    family, not taken'
+- jurisdiction: us-pa
+  name: Pennsylvania
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#k
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 2
+  taken_count: 2
+  administration: F/S
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F/S; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection K), us/manual/ssa/poms/si/phi01415.010. No separate state extraction. F/S: the state also administers part
+    of its program itself; that state-administered part is not covered here.'
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-pr
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in Puerto Rico. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
+    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    Puerto Rico administers Aid to the Aged, Blind and Disabled under SSA titles I, X and XIV (42 U.S.C. 1308 ceiling), a
+    separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.)
+    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter list HTTP 200
+    (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion
+    is unchanged. Not applicable on two dates; nothing to take.'
+- jurisdiction: us-ri
+  name: Rhode Island
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#l
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 3
+  taken_count: 3
+  administration: F/S
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F/S; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection L), us/manual/ssa/poms/si/bos01415.012, us/manual/ssa/poms/si/bos01415.950. No separate state extraction.
+    F/S: the state also administers part of its program itself; that state-administered part is not covered here.'
+- jurisdiction: us-sc
+  name: South Carolina
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://img1.scdhhs.gov/mppm/SCMPPM/Chapter_403.docx
+  target_manifest: manifests/us-sc-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://www.scdhhs.gov/providers/manuals/sc-medicaid-policy-and-procedures-manual
+  index_document_count: 29
+  taken_count: 1
+  administration: S
+  notes: 'Optional State Supplementation (OSS): SCDHHS Medicaid Policy and Procedures Manual Chapter 403 (Word document, sections
+    403.01-403.12 with printed Eff./Rev. dates to 05/01/25) from the MPPM index at img1.scdhhs.gov/mppm/ (19 MPPM documents
+    listed; 403 taken). Retry of the batch-1 blocked row: scdhhs.gov answered from a US network on 2026-09-10; img1.scdhhs.gov
+    omits the Go Daddy G2 intermediate, added under data/certs (REQUESTS_CA_BUNDLE=data/certs/img1-scdhhs-gov-ca-bundle.pem,
+    verification on). document_class manual, citation us-sc/manual/scdhhs/mppm/chapter-403/<section>. The OSS Services provider
+    manual is a separate family, not taken. 2026-09-14: current payment standards (SSI-ST-4) taken as us-sc/guidance/2026-09-14-ssi-state-supplement-standards
+    (see standards_scope).'
+  index_families: 'MPPM Word documents (sections 100-800, chapters 401-703, MIAP manual): 19 found / 1 taken; internal SharePoint
+    training and job-aid links (not public): 8 found / 0 taken; forms and manual notices listing (medsweb.scdhhs.gov): 1 found
+    / 0 taken; OSS Services provider manual (https://www.scdhhs.gov/providers/manuals/optional-state-supplementation-services-manual):
+    1 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-sc
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-sc-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    index_document_count: null
+    taken_count: 1
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: SCDHHS ''Program Eligibility and Income Limits'' page (Optional State Supplementation
+      section: monthly net income limit $1,804, resources $2,000, dated January 1, 2026), the publisher''s current statement
+      of the OSS net income limit; the current MPPM 103 file is not published on the img1.scdhhs.gov index (the only fetchable
+      Chapter 103 is a 2014 Word 97 file on www1.scdhhs.gov, not taken). S.C. Code Title 43 chapter 5 carries no OSS rate
+      (set by appropriations proviso). Access: www.scdhhs.gov HTTP 200 to the plain client; img1.scdhhs.gov (the MPPM index)
+      omits its Go Daddy G2 intermediate (data/certs) and lists Chapter 103 with no link (Chapter_103.docx answers 404).'
+- jurisdiction: us-sd
+  name: South Dakota
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://sdlegislature.gov/api/Rules/67:12:14
+  target_manifest: manifests/us-sd-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: regulation
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://sdlegislature.gov/api/Rules/67:12
+  index_document_count: 21
+  taken_count: 1
+  administration: S
+  notes: 'Optional State Supplemental Program: ARSD chapter 67:12:14 (Department of Social Services; 11 sections, sources
+    5 SDR 6 1978 to 20 SDR 92 effective 1993-12-31) from the Legislative Research Council''s rules API (sdlegislature.gov/api/Rules),
+    the publisher and JSON/labeled-section convention of the 2026-09-10 CHIP (67:46) and TANF (67:10) scopes. The Article
+    67:12 Assistance Payments index lists 21 chapters (11 repealed or transferred); 67:12:14 taken. document_class regulation,
+    citation us-sd/regulation/arsd/67/12/14/<section>. sdlegislature.gov HTTP 200 to a plain client (the HTML site is a JavaScript
+    application; the API is its data source). 2026-09-14: current payment standards (SSI-ST-4) absent (see standards_scope).'
+  index_families: 'ARSD Article 67:12 Assistance Payments chapters in force: 8 found / 1 taken; ARSD Article 67:12 chapters
+    repealed or transferred: 13 found / 0 taken'
+  standards_scope:
+    status: absent
+    scopes: []
+    index_url: https://dss.sd.gov/economicassistance/
+    index_document_count: null
+    taken_count: 0
+    closure_elements:
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: Absent: ARSD 67:12:14:04 (in the 2026-09-10 scope) pays ''at a rate approved by the department
+      based on the annual appropriation'' and DSS publishes no rate (the DSS home, economic assistance, medical programs and
+      forms pages and the DSS Handbook carry no state supplement content; guessed programme URLs answer a redirect stub);
+      SSA''s State Assistance Programs for SSI Recipients series ends with the January 2011 edition. Publisher posts no figure.
+      Access: dss.sd.gov HTTP 200 to the plain client; sdlegislature.gov HTTP 200.'
+- jurisdiction: us-tn
+  name: Tennessee
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415010
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; no state document family exists'
+  administration: N
+  notes: 'No optional state supplement (POMS SI 01415.010 state table, Tennessee row: Mandatory = F, Optional = N; federally
+    administered mandatory supplement only). Done with that finding: the governing text is the federal POMS row, already in
+    the corpus as us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory
+    and nothing was fetched. (2026-09-11 state-supplement batch 3.)'
+- jurisdiction: us-tx
+  name: Texas
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-tx-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  index_url: https://fhb.hhs.texas.gov/handbooks/medicaid-elderly-people-disabilities-handbook
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: 'Done by pointer. Texas supplements only institutionalized SSI recipients: HHSC MEPD Handbook H-6000 ''Co-Payment
+    for SSI Cases'' (Revision 26-1, effective 2026-03-01) states that HHSC supplements the $30 reduced SSI payment standard
+    by $45 so recipients keep a $75 personal needs allowance. H-6000, Appendix VIII (effects of institutionalization on SSI)
+    and Appendix XXXI (budget reference chart) are already in the 2026-09-10 Medicaid eligibility-manual scope as us-tx/manual/hhsc/medicaid/mepd-h-6000,
+    mepd-appendix-viii and mepd-appendix-xxxi (manifest on branch discovery/ingest-medicaid). The MEPD handbook index (fhb.hhs.texas.gov,
+    HTTP 200 to a plain client on 2026-09-10; the hhs.texas.gov alias redirects there) lists chapters A-R plus appendices,
+    glossary, forms, revisions and bulletins; Chapter H lists H-1000 to H-8000. (2026-09-10 state-supplement batch 1.)'
+  index_families: 'pointer to the 2026-09-10 Medicaid MEPD handbook scope (H-6000, Appendix VIII, Appendix XXXI already taken
+    there): 0 new documents taken; MEPD index chapters A-R, appendices, glossary, forms, revisions, bulletins not re-inventoried'
+- jurisdiction: us-ut
+  name: Utah
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: manifests/us-ut-manuals.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: manual
+    version: 2026-05-27-ut-manuals-r2026-07-15-self-contained
+  index_url: https://jobs.utah.gov/infosource/eligibilitymanual/Welcome/Welcome.htm
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: 'Done by pointer. Utah''s State Supplemental Payment to SSI recipients is administered by the Department of Workforce
+    Services under Eligibility Manual section 205-10 ''State Supplemental Payments to SSI Recipients - General Information''
+    (rates as of 2026-01-01: $3.91/month single, $12.19 couples in the household of another, $5.75 couples living alone or
+    with others; institutionalized SSI recipients are handled under Medicaid, Utah Admin. Code R414-306-6), in the corpus
+    as us-ut/manual/dws/eligibility-manual/200-program-eligibility-requirements-205-10-... (2 blocks). R414-306-6 (adminrules.utah.gov)
+    is not in the corpus and not taken. (2026-09-10 state-supplement batch 2.)'
+  index_families: 'pointer to the DWS Eligibility Manual scope (2,398 rows; section 205-10 State Supplemental Payments to
+    SSI Recipients present with the 2026-01-01 rates): 0 new documents taken'
+- jurisdiction: us-va
+  name: Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://www.dsa.virginia.gov/apps/DocumentRepositoryViewer/fileviewer/1245
+  target_manifest: manifests/us-va-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://dars.virginia.gov/benefits/auxiliary-grant/for-providers/
+  index_document_count: 21
+  taken_count: 12
+  administration: S
+  notes: 'Auxiliary Grant (AG): DARS Auxiliary Grant Program Manual chapters A-L (12 PDFs) listed on the DARS AG ''for providers''
+    page and served by the agency repository www.dsa.virginia.gov (linked as www.vadsa.org). Manual transmittal DARS-APSD-18
+    and provider documents not taken; the adopted rule 22VAC30-80 (Virginia LIS, 12 sections) is the alternative family, not
+    taken. document_class manual, citation us-va/manual/dars/auxiliary-grant/chapter-<x>, page granularity. 2026-09-14: current
+    payment standards (SSI-ST-4) taken as us-va/guidance/2026-09-14-ssi-state-supplement-standards, us-va/regulation/2026-09-14-ssi-state-supplement-standards
+    (see standards_scope).'
+  index_families: 'Auxiliary Grant Program Manual chapters: 12 found / 12 taken; manual transmittals: 1 found / 0 taken; provider
+    manuals, agreements, certification and forms: 8 found / 0 taken; 22VAC30-80 Auxiliary Grants Program sections on Virginia
+    LIS (https://law.lis.virginia.gov/admincode/title22/agency30/chapter80/; separate index): 12 found / 0 taken'
+  standards_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-va
+      document_class: guidance
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-va-ssi-state-supplement-standards-guidance.yaml
+      document_count: 1
+    - jurisdiction: us-va
+      document_class: regulation
+      version: 2026-09-14-ssi-state-supplement-standards
+      manifest: manifests/us-va-ssi-state-supplement-standards-regulation.yaml
+      document_count: 12
+    index_url: https://www.dss.virginia.gov/licensed-care/assisted-living-facilities-alf/
+    index_document_count: null
+    taken_count: 13
+    closure_elements:
+    - SSI-ST-2
+    - SSI-ST-4
+    run_note: docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md
+    notes: '2026-09-14 closure run: DARS Auxiliary Grant rate letter of 2025-11-10 (rate $2,130 statewide and $2,450 in Planning
+      District 8 effective 2026-01-01, personal needs allowance $87), linked from the VDSS assisted-living-facilities page;
+      and 22VAC30-80 Auxiliary Grants Program, all 12 sections from Virginia LIS (SSI-ST-2), the alternative family the 2026-09-10
+      row inventoried and did not take. Access: dss.virginia.gov and law.lis.virginia.gov HTTP 200 to the plain client.'
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  program_applicability: not_applicable
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-vi
+    document_class: null
+    version: null
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+  index_document_count: 0
+  taken_count: 0
+  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
+  administration: null
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
+    not operate in Virgin Islands. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
+    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
+    the Virgin Islands Department of Human Services administers Old Age Assistance, Aid to the Blind and Aid to the Disabled
+    (SSA titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
+    territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter
+    list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory
+    exclusion is unchanged. Not applicable on two dates; nothing to take.'
+- jurisdiction: us-vt
+  name: Vermont
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#m
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 3
+  taken_count: 3
+  administration: F
+  notes: 'SSA administers the optional supplement (POMS SI 01415.010 column Optional = F; listed in SI 01415.058A for January
+    2026). Primary source is the per-state SSA POMS text, extracted as part of the federal family: us/manual/ssa/poms/si/01415.058
+    (subsection M), us/manual/ssa/poms/si/bos01415.013, us/manual/ssa/poms/si/bos01415.970. No separate state extraction.'
+- jurisdiction: us-wa
+  name: Washington
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: official_state_or_ssa_document
+  primary_source_url: null
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-wa
+    document_class: regulation
+    version: 2026-07-01-388-474
+  index_url: https://app.leg.wa.gov/WAC/default.aspx?cite=388-474
+  index_document_count: null
+  taken_count: 0
+  administration: S
+  notes: Done by pointer. Washington's SSI State Supplemental Payment is governed by WAC chapter 388-474, which is in the
+    corpus in full (388-474-0001, -0010, -0012 'What is a state supplemental payment and who can get it?', -0020) as us-wa/regulation/388/388-474/...
+    from the Legislature's WAC site (adapter scope, no manifest; selected in manifests/releases/us-rulespec-2026-07-17.json).
+    The DSHS EA-Z manual scope (2026-07-21) carries no SSP page. (2026-09-10 state-supplement batch 1.)
+  index_families: 'pointer to WAC chapter 388-474 (4 sections, all in the corpus): 4 found / 0 new documents taken'
+- jurisdiction: us-wi
+  name: Wisconsin
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: agent_ready
+  source_kind: official_state_agency_manual
+  primary_source_url: https://www.emhandbooks.wisconsin.gov/ssi-admin/policyfiles/1.1.htm
+  target_manifest: manifests/us-wi-ssi-state-supplement.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: manual
+    version: 2026-09-10-ssi-state-supplement
+  index_url: https://www.dhs.wisconsin.gov/ssi/publications.htm
+  index_document_count: 66
+  taken_count: 13
+  administration: S
+  notes: 'State SSI Supplement (Wis. Stat. 49.77, administered by DHS): the SSI Administration Handbook (P-23129) and the
+    SSI Exceptional Expense (SSI-E) Handbook (P-20679), every topic page from each RoboHelp TOC on emhandbooks.wisconsin.gov
+    (the DHS handbook host), both listed on the DHS SSI program''s Forms and Publications page. document_class manual, citation
+    us-wi/manual/dhs/ssi/ssi-admin/<topic> and us-wi/manual/dhs/ssi/ssi-e/<topic>; expression_date the handbooks'' printed
+    Release 26-01 date (2026-05-01). The SSI Caretaker Supplement handbook (P-23131; TANF-funded benefit to SSI parents, Wis.
+    Stat. 49.775), the DHS SSI program web pages, forms and fact sheets are separate families, not taken. Wisconsin has no
+    administrative-rule chapter for the state SSI payment (the batch-2 lead ''DHS 2 Wis. Adm. Code'' is Recoupment of Benefit
+    Overpayments).'
+  index_families: 'SSI Administration Handbook (P-23129) topic pages, RoboHelp TOC on emhandbooks.wisconsin.gov: 5 found /
+    5 taken; SSI Exceptional Expense (SSI-E) Handbook (P-20679) topic pages, RoboHelp TOC on emhandbooks.wisconsin.gov: 8
+    found / 8 taken; SSI Caretaker Supplement (CTS) Policy Handbook (P-23131) topic pages, RoboHelp TOC on emhandbooks.wisconsin.gov:
+    27 found / 0 taken; DHS SSI program web pages (index, apply, benefits, caretaker, eligibility, forms & publications, glossary,
+    SSI-E, contacts): 9 found / 0 taken; Forms (F-numbers) on the Forms and Publications page: 10 found / 0 taken; Interim-assistance
+    letter templates (Word): 3 found / 0 taken; Fact sheets and publications (P-numbers other than the handbooks): 4 found
+    / 0 taken'
+- jurisdiction: us-wv
+  name: West Virginia
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: ssa_poms_section
+  primary_source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415010
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
+  target_scope: *id001
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; no state document family exists'
+  administration: N
+  notes: 'No optional state supplement (POMS SI 01415.010 state table, West Virginia row: Mandatory = N, Optional = N; no
+    mandatory supplement). Done with that finding: the governing text is the federal POMS row, already in the corpus as us/manual/ssa/poms/si/01415.010
+    (version 2026-09-10-ssi-poms-si); no state agency document exists to inventory and nothing was fetched. (2026-09-11 state-supplement
+    batch 3.)'
+- jurisdiction: us-wy
+  name: Wyoming
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: blocked_primary_source
+  source_kind: state_agency_document
+  primary_source_url: https://ecom.wyo.gov/m1800-other-programs/m1804-state-supplemental-payments
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-wy
+    document_class: null
+    version: null
+  index_url: https://ecom.wyo.gov/
+  index_document_count: 107
+  taken_count: 0
+  administration: S
+  notes: 'Blocked 2026-09-11 (state-supplement batch 3): Wyoming''s State Supplemental Payments are administered by the Department
+    of Health (Division of Healthcare Financing); the agency''s governing text is Eligibility Operations Manual (EOM) section
+    M1804 State Supplemental Payments on ecom.wyo.gov (Google Sites; the EOM navigation lists 107 sections, M1804 the one
+    SSP section). The page answers HTTP 200 (248,711 bytes) to a plain client, but its content is a Google Drive viewer embed
+    rendered by script (embeds.googleusercontent.com inner frame); the HTML carries only the title and navigation and no document
+    URL or file id, so the document is not addressable from the publisher''s page. DFS (dfs.wyo.gov) lists no SSI supplement
+    family (Cash Assistance = POWER; policy manuals: APS, Child Support, SNAP/POWER, Foster Care). rules.wyo.gov (Secretary
+    of State, ASP.NET search application) was not searched for a Department of Health SSP rule chapter. No index document
+    taken. The SSA regional description is in the federal family: us/manual/ssa/poms/si/01415.010 (Wyoming row S/S). Re-probed
+    2026-09-13T19:57Z from a US network with the plain extractor client: ecom.wyo.gov answers HTTP 200 (218,582 bytes, 0.3
+    s) with the same Google Sites navigation and script-rendered Drive embed; M1804 is still not addressable from the publisher''s
+    page. Not a network block: the document is not fetchable on two dates (2026-09-11 and 2026-09-13); treat the cell as not
+    available rather than pending.'
+  index_families: 'Department of Health EOM sections (Google Sites navigation): 107 found / 0 taken (M1804 content is a script-rendered
+    Drive embed; see notes); DFS index: no SSI supplement family'
