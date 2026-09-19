@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/ca/rulemaking/2026-09-04-us-surtax-orders.json",
-      "sha256": "cc0a97405eda17bfe58ce1dbce7279e1efb75e8a67f887d67f5849487d1e844e"
+      "sha256": "283e204dfdd1baf35692ff18e1fbca5b1834aee79d42535a8847d8117b76adb7"
     },
     {
       "path": "data/corpus/provisions/ca/rulemaking/2026-09-04-us-surtax-orders.jsonl",
-      "sha256": "fc25052140c773bed482721d1ca0044dbdfa8bbe7a4cafb8ddb3e73cd6da50ec"
+      "sha256": "185d3a734f74c0c4166df9cab71289ba2324e2cc48989ee278d2a02c95f1ca92"
     },
     {
       "path": "data/corpus/sources/ca/rulemaking/2026-09-04-us-surtax-orders/official-documents/2026-09-04-pc-2026-0785-us-surtax-order-2026.html",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "87928f0d1a0ce0cf6c0419a91b531ab6a5d1e20b",
+    "commit": "5043b1b5db1432a8c18f3328704c99b539eef874",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,14 +39,14 @@
     "source_count": 743
   },
   "document_class": "rulemaking",
-  "generated_at": "2026-09-17T21:27:23.445320+00:00",
+  "generated_at": "2026-09-19T19:11:20.919601+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "igojKALxn/uu7tzLNY2IfY6BwjCNCuEB8MfCEk5etRP3VSa7n554XnSOgtfS0yr9XI4D3XMBZLH9dhpaUqNfBA=="
+    "value": "Ru6YUH00T9Lsbp5xei7TN1W/TBHKz3NFwEKO7SOqFoCqzG7AHShrUWDoD34AqqdpQd2Fl7JRrKUsnWqKEnKlBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-04-us-surtax-orders"
