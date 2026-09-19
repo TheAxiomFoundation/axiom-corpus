@@ -111,23 +111,44 @@ tariff-item rows, 629 rate-bearing items in the expected tiers, 14 Chapter
 98/99 items, amending-Order items restricted to HS 72/73/76, and complete
 coverage.
 
-## ⚠ Registration status — unresolved at ingest time
+## Registration status — CONFIRMED 2026-09-19
 
-Neither Order had appeared in the Canada Gazette Part II as of 2026-09-17.
-Part II Vol. 160 No. 18 (2026-09-09) carries only SOR/2026-182, -183 and -185,
-and 2026 has had no Extra edition since 2026-06-08 — unlike the March 2025
-precedent, where surtax orders were published in Extra editions.
+**SOR/2026-186** = P.C. 2026-0785, *United States Surtax Order (2026)*.
+**SOR/2026-187** = P.C. 2026-0786, *Order Amending the United States Surtax
+Order (Steel and Aluminum 2025)*. Both stamped for Canada Gazette Part II
+publication **2026-09-23**.
 
-The registration numbers are **inferred** as **SOR/2026-186** (P.C. 2026-0785)
-and **SOR/2026-187** (P.C. 2026-0786), from CBSA surtax codes `26186A/B/C` and
-`26187A/B/C/D` (Customs Notices 26-23 and 25-11, both dated 2026-09-07), on a
-`YY + zero-padded SOR number + tier letter` convention verified against four
-prior orders: 25066A→SOR/2025-66, 25095A→SOR/2025-95, 25118A→SOR/2025-118,
-25267A→SOR/2025-267. The tier letters also line up with each Order's schedules.
+Confirmed from the **Privy Council Office Orders in Council registration
+field**, which renders `Registration: SOR/2026-0186` against P.C. 2026-0785 and
+`Registration: SOR/2026-0187` against P.C. 2026-0786. That is a government
+registry field naming each instrument's registration number — independent of
+the CBSA surtax codes the original inference rested on. Reproduced by three
+searches (per-`pcNumber`, and an `act="Customs Tariff"` date-range query
+returning both rows) and re-run independently from a fresh session. The serial
+reading is fixed by monotonicity rather than by assuming a 4-digit pad, since
+the registry pads inconsistently: 2026-06-19→135, 2026-07-31→0169,
+2026-08-06→0173, 2026-09-04→0186 and 0187 form one coherent 2026 run.
 
-These SOR numbers are recorded in source metadata as inferred and are **not**
-asserted as verified. Confirm against Canada Gazette Part II Vol. 160 No. 19,
-due **2026-09-23**.
+**SOR/2026-187** additionally appears in prose nine times in CBSA Customs
+Notice 25-11 (`DORS/2026-187` nine times in the French edition), parenthetically
+after the instrument's full short title. CN 26-23 — the notice for the 2026
+Order itself — carries no SOR, DORS or P.C. number at all.
+
+Two caveats carried forward: this is the PCO registration database, not the
+gazetted face of the instrument (neither Order's text prints its own
+registration number), so Gazette Part II Vol. 160 No. 19 of 2026-09-23 remains
+the documentary close-out; and the CN 25-11 citation is not new — that file is
+byte-identical to its 2026-09-17 pin, so the number was already in pinned bytes
+and simply had not been extracted.
+
+Two premises in the original note were also wrong and are corrected here: no US
+surtax order has ever been published in a Gazette **Extra** edition (all went in
+regular editions — SOR/2025-66, -95, -118/-119, -122, -267), so the absence of a
+2026 Extra was never a signal; and the surtax-code convention is now 6-for-6,
+since CN 25-11 carries both `26187A–D` and `SOR/2026-187` in the same document.
+
+Evidence pinned at
+`PolicyEngine/_tariff-p5/ca-countermeasures/pins/PINS.md` §5.
 
 Consequence for the ingest: none of the provision text depends on the SOR
 number. Coming into force is fixed by s. 10 of the Order itself, and CBSA
