@@ -1,0 +1,47 @@
+version: 2026-09-15-ccdf-rate-schedules
+documents:
+- source_id: us-vt-ccdf-rate-schedule-ccfap-state-rates-2025-07-13
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont: Child Care Financial Assistance State Rates, effective July 13, 2025'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CDD-Guidance-CCFAP-Capped-Rates.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-07-13'
+  citation_path: us-vt/policy/ccdf/rate-schedules/ccfap-state-rates-2025-07-13
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Child Development Division (CCFAP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://dcf.vermont.gov/cdd/providers/care/ccfap
+    source_discovery_group: us-vt/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://dcf.vermont.gov/cdd/providers/care/ccfap
+    closure_elements:
+    - ccdf-s30
+    source_note: linked as 'Revised State Rates' from the CCFAP For Providers page
+- source_id: us-vt-ccdf-rate-schedule-ccfap-income-guidelines-2025-03-23
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont: Child Care Financial Assistance Income Guidelines (family share by income and household size), effective
+    March 23, 2025'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CCFAP-Income-Guidelines.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-03-23'
+  citation_path: us-vt/policy/ccdf/rate-schedules/ccfap-income-guidelines-2025-03-23
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Child Development Division (CCFAP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://dcf.vermont.gov/cdd/providers/care/ccfap
+    source_discovery_group: us-vt/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://dcf.vermont.gov/cdd/providers/care/ccfap
+    closure_elements:
+    - ccdf-s30
+    source_note: linked from the CCFAP benefits page https://dcf.vermont.gov/benefits/ccfap

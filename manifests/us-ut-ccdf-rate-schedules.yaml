@@ -1,0 +1,66 @@
+version: 2026-09-15-ccdf-rate-schedules
+documents:
+- source_id: us-ut-ccdf-rate-schedule-income-eligibility-and-copayments-2025-10-01
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah: Child Care Income Eligibility and Co-Payment Table (Table 4), effective October 1, 2025'
+  source_url: https://jobs.utah.gov/occ/provider/table1025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-10-01'
+  citation_path: us-ut/policy/ccdf/rate-schedules/income-eligibility-and-copayments-2025-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services, Office of Child Care
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://jobs.utah.gov/occ/provider/subsidy.html
+    source_discovery_group: us-ut/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://jobs.utah.gov/occ/provider/subsidy.html
+    closure_elements:
+    - ccdf-s30
+- source_id: us-ut-ccdf-rate-schedule-income-eligibility-and-copayments-2026-10-01
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah: Child Care Income Eligibility and Co-Payment Table (Table 4), effective October 1, 2026'
+  source_url: https://jobs.utah.gov/occ/provider/table1026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-10-01'
+  citation_path: us-ut/policy/ccdf/rate-schedules/income-eligibility-and-copayments-2026-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services, Office of Child Care
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://jobs.utah.gov/occ/provider/subsidy.html
+    source_discovery_group: us-ut/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://jobs.utah.gov/occ/provider/subsidy.html
+    closure_elements:
+    - ccdf-s30
+    source_note: posted 2026-08-28 as the forthcoming table
+- source_id: us-ut-ccdf-rate-schedule-maximum-monthly-subsidy-payments-2024-10-01
+  jurisdiction: us-ut
+  document_class: policy
+  title: 'Utah: Maximum Monthly Child Care Payments Based on Monthly Local Market Rates (Table 3), effective October 1, 2024'
+  source_url: https://jobs.utah.gov/occ/provider/table30824.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2024-10-01'
+  citation_path: us-ut/policy/ccdf/rate-schedules/maximum-monthly-subsidy-payments-2024-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services, Office of Child Care
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://jobs.utah.gov/occ/provider/subsidy.html
+    source_discovery_group: us-ut/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://jobs.utah.gov/occ/provider/subsidy.html
+    closure_elements:
+    - ccdf-s30
