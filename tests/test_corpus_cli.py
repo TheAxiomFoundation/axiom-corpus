@@ -2986,6 +2986,8 @@ sources:
       timeout_seconds: 90
       request_attempts: 5
       workers: 8
+      include_subunits: false
+      include_publication_note: false
 """
     )
 
@@ -2998,6 +3000,8 @@ sources:
         assert kwargs["timeout_seconds"] == 90.0
         assert kwargs["request_attempts"] == 5
         assert kwargs["workers"] == 8
+        assert kwargs["include_subunits"] is False
+        assert kwargs["include_publication_note"] is False
         return StateStatuteExtractReport(
             jurisdiction="us-wi",
             title_count=1,
