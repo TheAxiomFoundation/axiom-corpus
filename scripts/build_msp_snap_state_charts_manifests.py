@@ -21,7 +21,13 @@ jurisdictions are recorded on the queue with their evidence and get no manifest.
 citation path is checked against every provisions JSONL of its jurisdiction under the
 corpus base (``--corpus-base``, default the main checkout) before the manifest is written.
 
-    uv run python scripts/build_msp_snap_state_charts_manifests.py [--family msp,snap] [--only us-co,...]
+* Family ``snap_charts`` (wave 5, 2026-09-15; snap.md snap_s17/s18/s15/s16/s04-s06/s21/s19/s02):
+  the state SNAP agency's standing per-standard eligibility charts (income standards,
+  maximum benefit levels, deductions, SUAs, asset limit), where the publisher posts them as
+  one indexed set of documents rather than a transmittal. One scope per state,
+  ``us-xx/guidance/2026-09-15-snap-eligibility-charts``; Massachusetts only in this pass.
+
+    uv run python scripts/build_msp_snap_state_charts_manifests.py [--family msp,snap,snap_charts] [--only us-co,...]
         [--corpus-base /path/to/data/corpus] [--skip-queue] [--print-plan]
 """
 from __future__ import annotations
@@ -38,8 +44,12 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CORPUS_BASE = Path("/Users/pavelmakarchuk/axiom-corpus/data/corpus")
 SOURCE_AS_OF = "2026-09-14"
 RUN_NOTE = "docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md"
+RUN_LABEL = "2026-09-14"
 MSP_VERSION = "2026-09-14-msp-income-standards"
 SNAP_VERSION = "2026-09-14-snap-fy2026-state-transmittal"
+SNAP_CHARTS_VERSION = "2026-09-15-snap-eligibility-charts"
+SNAP_CHARTS_RUN_NOTE = "docs/ingest-runs/2026-09-15-snap-wic.md"
+SNAP_CHARTS_SOURCE_AS_OF = "2026-09-15"
 IMPERSONATE = {"browser_impersonation": True, "browser_impersonation_direct": True}
 
 STATE_NAMES = {
@@ -157,6 +167,12 @@ def snap_states() -> list[State]:
     return SNAP_STATES
 
 
+def snap_charts_states() -> list[State]:
+    from msp_snap_state_chart_records import SNAP_CHARTS_STATES
+
+    return SNAP_CHARTS_STATES
+
+
 FAMILIES: dict[str, dict[str, Any]] = {
     "msp": {
         "version": MSP_VERSION,
@@ -175,6 +191,20 @@ FAMILIES: dict[str, dict[str, Any]] = {
         "manifest_suffix": "snap-fy2026-state-transmittal",
         "states": snap_states,
         "closure_elements": ["snap_s20"],
+    },
+    "snap_charts": {
+        "version": SNAP_CHARTS_VERSION,
+        "program": "SNAP",
+        "queue": "snap-completion-agent-queue.yaml",
+        "record_key": "eligibility_charts_scope",
+        "manifest_suffix": "snap-eligibility-charts",
+        "states": snap_charts_states,
+        "closure_elements": ["snap_s17", "snap_s18", "snap_s15", "snap_s16", "snap_s04", "snap_s05", "snap_s06",
+                             "snap_s21", "snap_s19", "snap_s02"],
+        # wave-5 run: its own run note and source date (the 2026-09-14 constants stay for msp/snap)
+        "run_note": SNAP_CHARTS_RUN_NOTE,
+        "source_as_of": SNAP_CHARTS_SOURCE_AS_OF,
+        "run_label": "2026-09-15",
     },
 }
 
@@ -224,7 +254,7 @@ def queue_row(state: State, family: dict[str, Any], manifest: Path | None) -> di
         row["pointer"] = f"{state.pointer_scope['jurisdiction']}/{state.pointer_scope['document_class']}/{state.pointer_scope['version']}"
     if state.blocked_evidence:
         row["blocked_evidence"] = state.blocked_evidence
-    row["notes"] = f"2026-09-14 closure run ({RUN_NOTE}): {state.note}"
+    row["notes"] = f"{RUN_LABEL} closure run ({RUN_NOTE}): {state.note}"
     return row
 
 
@@ -263,8 +293,14 @@ def main() -> int:
     parser.add_argument("--print-plan", action="store_true", help="print the per-state plan and exit")
     args = parser.parse_args()
     only = set(args.only.split(",")) if args.only else None
+    global SOURCE_AS_OF, RUN_NOTE, RUN_LABEL
     for family_name in args.family.split(","):
         family = FAMILIES[family_name]
+        # a family may carry its own run note / source date (wave-5 snap_charts); the module
+        # defaults are the 2026-09-14 run's
+        SOURCE_AS_OF = family.get("source_as_of", "2026-09-14")
+        RUN_NOTE = family.get("run_note", "docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md")
+        RUN_LABEL = family.get("run_label", "2026-09-14")
         states: list[State] = family["states"]()
         if only:
             states = [s for s in states if s.jurisdiction in only]
