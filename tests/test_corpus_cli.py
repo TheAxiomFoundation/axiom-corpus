@@ -1252,6 +1252,60 @@ def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
     assert '"provisions_written": 1' in output
 
 
+def test_extract_usc_cli_prior_release_point_passes_through(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "usc26.xml"
+    source_xml.write_text(SAMPLE_USLM_CLI)
+    download_url = "https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/x.zip"
+    coverage = ProvisionCoverageReport(
+        jurisdiction="us",
+        document_class="statute",
+        version="2026-09-23-vintage-title-26",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["prior_release_point"] is True
+        assert kwargs["source_download_url"] == download_url
+        return UscExtractReport(
+            title="26",
+            title_count=1,
+            section_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory/us/statute/2026-09-23-vintage-title-26.json",
+            provisions_path=base / "provisions/us/statute/2026-09-23-vintage-title-26.jsonl",
+            coverage_path=base / "coverage/us/statute/2026-09-23-vintage-title-26.json",
+            coverage=coverage,
+            source_paths=(base / "sources/us/statute/2026-09-23-vintage-title-26/uslm/usc26.xml",),
+        )
+
+    monkeypatch.setattr(cli, "extract_usc", fake_extract)
+    common = [
+        "extract-usc",
+        "--base",
+        str(base),
+        "--version",
+        "2026-09-23-vintage",
+        "--source-xml",
+        str(source_xml),
+        "--section",
+        "32",
+        "--prior-release-point",
+    ]
+
+    assert main(common) == 2
+    assert "--prior-release-point requires --source-url" in capsys.readouterr().out
+
+    assert main([*common, "--source-url", download_url]) == 0
+    assert '"provisions_written": 1' in capsys.readouterr().out
+
+
 def test_extract_uk_legislation_cli(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
