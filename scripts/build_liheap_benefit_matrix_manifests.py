@@ -12,6 +12,16 @@ notes) were verified by hand on 2026-09-13/14 and are the STATES table below; th
 docs/ingest-runs/2026-09-14-liheap-matrix-ssi-standards.md.
 
     uv run python scripts/build_liheap_benefit_matrix_manifests.py [--only us-al,us-ar] [--no-queue]
+
+Wave 5 (2026-09-15, needs-closure-2026-09-14 LIHEAP-ST-18) adds the ``policy-manual`` family
+(``--family policy-manual``, version ``2026-09-15-liheap-policy-manual``, ``MANUAL_STATES``): the state
+policy manuals the 2026-09-14 run did not take. Only Arkansas qualifies: the Clearinghouse manuals
+index links AR_Manual_2026.pdf (HTTP 404) while the publisher still serves its FFY 2025 predecessor
+under its own naming, and the Arkansas Energy Office page posts matrices, charts and forms but no
+manual. Every other LIHEAP-ST-18 state either has its manual or rule in the 2026-09-14 scopes or was
+recorded absent/blocked there.
+
+    uv run python scripts/build_liheap_benefit_matrix_manifests.py --family policy-manual [--only us-ar] [--no-queue]
 """
 from __future__ import annotations
 
@@ -56,6 +66,38 @@ class Doc:
     request: dict[str, Any] | None = None
     extraction: dict[str, Any] | None = None
     extra_metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class Family:
+    """One version of this generator's output: the 2026-09-14 benefit-matrix run (default) or the
+    2026-09-15 policy-manual follow-up; the strings below are the ones written into every document."""
+
+    name: str
+    version: str
+    source_as_of: str
+    run_note: str
+    manifest_infix: str  # "benefit-matrix" -> manifests/<jur>-liheap-benefit-matrix-<suffix>.yaml
+    queue_key: str
+    discovery_group_suffix: str
+    discovered_via_prefix: str
+    queue_sentence_date: str
+
+
+BENEFIT_MATRIX = Family(
+    name="benefit-matrix", version=VERSION, source_as_of=SOURCE_AS_OF, run_note=RUN_NOTE,
+    manifest_infix="benefit-matrix", queue_key="benefit_matrix_scope", discovery_group_suffix="liheap-benefit-matrix",
+    discovered_via_prefix="manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09)",
+    queue_sentence_date="2026-09-14",
+)
+POLICY_MANUAL = Family(
+    name="policy-manual", version="2026-09-15-liheap-policy-manual", source_as_of="2026-09-15",
+    run_note="docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md",
+    manifest_infix="policy-manual", queue_key="policy_manual_scope", discovery_group_suffix="liheap-policy-manual",
+    discovered_via_prefix="manual-review:liheap-agent-queue (needs-closure-2026-09-14 LIHEAP-ST-18)",
+    queue_sentence_date="2026-09-15",
+)
+FAMILIES = {f.name: f for f in (BENEFIT_MATRIX, POLICY_MANUAL)}
 
 
 @dataclass
@@ -885,6 +927,51 @@ STATES: dict[str, State] = {
 }
 
 
+# -------------------------------------------------------------- wave 5: state policy manuals (2026-09-15)
+MANUAL_STATES: dict[str, State] = {
+    "us-ar": State(
+        name="Arkansas",
+        publisher="Arkansas Department of Energy and Environment, Arkansas Energy Office",
+        publisher_index_url="https://adeq.state.ar.us/energy/assistance/liheap.aspx",
+        path_stem="aeo/liheap-policy-and-procedures-manual",
+        on_clearinghouse_index=True,
+        matrix_status="taken",
+        hosting=CLEARINGHOUSE_AUTHORITY,
+        access_note=(
+            "liheapch.acf.gov HTTP 200 with the Entrust intermediate in the CA bundle (9,871,526 bytes, Last-Modified "
+            "2024-12-04); the Clearinghouse manuals index links /sites/default/files/webfiles/docs/2026/manuals/AR_Manual_2026.pdf, "
+            "which answers HTTP 404 (re-read 2026-09-15), while /docs/2025/manuals/AR_Manual_2025.pdf is served under the "
+            "publisher's own naming and is not linked from any index page read; adeq.state.ar.us HTTP 200 to the plain client "
+            "(the LIHEAP page posts the FY 2026 matrices, eligibility chart, application form, brochure and the proposed "
+            "FY 2027 model plan, no policy manual)"
+        ),
+        queue_note=(
+            "Arkansas Energy Office LIHEAP Policy and Procedures Manual, FFY 2025 (190 pages, effective 2024-10-01 to "
+            "2025-09-30 as printed; the crisis benefit table is Appendix J on PDF page 178; the regular-assistance benefit "
+            "matrices are the separate FFY 2026 attachments taken on 2026-09-14), the Clearinghouse-hosted copy: the "
+            "index's FFY 2026 link is dead and the agency posts no manual of its own."
+        ),
+        docs=[d(slug="ffy2025",
+                title="Arkansas LIHEAP Policy and Procedures Manual, FFY 2025 (Arkansas Energy Office; effective October 1, 2024 - September 30, 2025)",
+                url="https://liheapch.acf.gov/docs/2025/manuals/AR_Manual_2025.pdf",
+                expression_date="2024-10-01",
+                expression_note="cover 'Effective October 1, 2024 – September 30, 2025'; PDF created 2024-11-18, Clearinghouse Last-Modified 2024-12-04",
+                pages=190, matrix_pages="178",
+                extra_metadata={
+                    "clearinghouse_manual_note": (
+                        "the Clearinghouse 'State LIHEAP Policy Manuals' index (read 2026-09-15) links the FFY 2026 file, "
+                        "which answers HTTP 404; this FFY 2025 file is served by the same publisher under its own naming "
+                        "(/docs/2025/manuals/) and was located by that naming, not from an index page"
+                    ),
+                    "benefit_matrix_note": (
+                        "PDF page 178 is Appendix J, the crisis benefit table; the regular-assistance benefit matrices are "
+                        "the FFY 2026 attachments in us-ar/policy/2026-09-14-liheap-benefit-matrix"
+                    ),
+                })],
+    ),
+}
+
+
 def citation_path(jur: str, state: State, doc: Doc) -> str:
     stem = state.path_stem
     if doc.fmt == "html" and state.robohelp:
@@ -895,7 +982,7 @@ def citation_path(jur: str, state: State, doc: Doc) -> str:
     return "/".join(parts)
 
 
-def build_document(jur: str, state: State, doc: Doc) -> dict[str, Any]:
+def build_document(jur: str, state: State, doc: Doc, family: Family = BENEFIT_MATRIX) -> dict[str, Any]:
     source_id = f"{jur}-liheap-" + re.sub(r"[^a-z0-9]+", "-", "/".join(citation_path(jur, state, doc).split("/")[2:])).strip("-")
     record: dict[str, Any] = {
         "source_id": source_id,
@@ -908,7 +995,7 @@ def build_document(jur: str, state: State, doc: Doc) -> dict[str, Any]:
         record["download_url"] = doc.download_url
     record.update({
         "source_format": doc.fmt,
-        "source_as_of": SOURCE_AS_OF,
+        "source_as_of": family.source_as_of,
         "expression_date": doc.expression_date,
         "citation_path": citation_path(jur, state, doc),
     })
@@ -930,9 +1017,9 @@ def build_document(jur: str, state: State, doc: Doc) -> dict[str, Any]:
         "index_url": CLEARINGHOUSE_INDEX,
         "publisher_index_url": state.publisher_index_url,
         "on_clearinghouse_index": state.on_clearinghouse_index,
-        "source_discovery_group": f"{jur}/{doc.document_class}/liheap-benefit-matrix",
+        "source_discovery_group": f"{jur}/{doc.document_class}/{family.discovery_group_suffix}",
         "discovered_via": (
-            "manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse "
+            f"{family.discovered_via_prefix}; ACF LIHEAP Clearinghouse "
             f"'State LIHEAP Policy Manuals' index {CLEARINGHOUSE_INDEX}, publisher page {state.publisher_index_url}"
         ),
         "extraction_granularity": "pdf_page" if doc.fmt == "pdf" and not (doc.extraction or {}).get("segmentation") else "html_blocks" if doc.fmt == "html" else (doc.extraction or {}).get("segmentation"),
@@ -954,14 +1041,15 @@ def build_document(jur: str, state: State, doc: Doc) -> dict[str, Any]:
     return record
 
 
-def manifest_stem(jur: str, document_class: str) -> str:
+def manifest_stem(jur: str, document_class: str, family: Family = BENEFIT_MATRIX) -> str:
     suffix = {"manual": "manual", "regulation": "rule", "policy": "attachments", "guidance": "guidance"}[document_class]
-    return f"{jur}-liheap-benefit-matrix-{suffix}"
+    return f"{jur}-liheap-{family.manifest_infix}-{suffix}"
 
 
-def write_manifests(only: set[str] | None) -> dict[str, list[dict[str, Any]]]:
+def write_manifests(only: set[str] | None, family: Family = BENEFIT_MATRIX) -> dict[str, list[dict[str, Any]]]:
+    states = STATES if family is BENEFIT_MATRIX else MANUAL_STATES
     written: dict[str, list[dict[str, Any]]] = {}
-    for jur, state in sorted(STATES.items()):
+    for jur, state in sorted(states.items()):
         if only and jur not in only:
             continue
         if not state.docs and not state.robohelp:
@@ -972,16 +1060,16 @@ def write_manifests(only: set[str] | None) -> dict[str, list[dict[str, Any]]]:
         if state.robohelp:
             docs = robohelp_docs(state) + docs
         for doc in docs:
-            by_class.setdefault(doc.document_class, []).append(build_document(jur, state, doc))
+            by_class.setdefault(doc.document_class, []).append(build_document(jur, state, doc, family))
         scopes = []
         for document_class, documents in by_class.items():
-            stem = manifest_stem(jur, document_class)
+            stem = manifest_stem(jur, document_class, family)
             path = ROOT / "manifests" / f"{stem}.yaml"
-            path.write_text(yaml.safe_dump({"version": VERSION, "documents": documents}, sort_keys=False, allow_unicode=True, width=120))
+            path.write_text(yaml.safe_dump({"version": family.version, "documents": documents}, sort_keys=False, allow_unicode=True, width=120))
             scopes.append({
                 "jurisdiction": jur,
                 "document_class": document_class,
-                "version": VERSION,
+                "version": family.version,
                 "manifest": f"manifests/{stem}.yaml",
                 "document_count": len(documents),
             })
@@ -989,14 +1077,15 @@ def write_manifests(only: set[str] | None) -> dict[str, list[dict[str, Any]]]:
     return written
 
 
-def update_queue(written: dict[str, list[dict[str, Any]]]) -> None:
+def update_queue(written: dict[str, list[dict[str, Any]]], family: Family = BENEFIT_MATRIX) -> None:
     queue_path = ROOT / "manifests" / "liheap-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
+    states = STATES if family is BENEFIT_MATRIX else MANUAL_STATES
     for row in queue["states"]:
         jur = row["jurisdiction"]
         if jur not in written or row.get("source_kind") != "official_pdf_state_plan":
             continue
-        state = STATES[jur]
+        state = states[jur]
         scopes = written[jur]
         record: dict[str, Any] = {
             "status": "taken" if scopes else state.matrix_status,
@@ -1007,19 +1096,20 @@ def update_queue(written: dict[str, list[dict[str, Any]]]) -> None:
             "on_clearinghouse_index": state.on_clearinghouse_index,
             "taken_count": sum(s["document_count"] for s in scopes),
             "matrix_status": state.matrix_status,
-            "closure_elements": ["LIHEAP-ST-09", "LIHEAP-ST-18"],
-            "run_note": RUN_NOTE,
-            "notes": f"2026-09-14 closure run: {state.queue_note} Publisher: {state.publisher}. Access: {state.access_note}.",
+            "closure_elements": ["LIHEAP-ST-09", "LIHEAP-ST-18"] if family is BENEFIT_MATRIX else ["LIHEAP-ST-18"],
+            "run_note": family.run_note,
+            "notes": f"{family.queue_sentence_date} closure run: {state.queue_note} Publisher: {state.publisher}. Access: {state.access_note}.",
         }
-        row["benefit_matrix_scope"] = record
+        row[family.queue_key] = record
+        family_label = "the benefit-matrix family (LIHEAP-ST-09/ST-18)" if family is BENEFIT_MATRIX else "the state policy-manual family (LIHEAP-ST-18)"
         if scopes:
             sentence = (
-                " 2026-09-14: the benefit-matrix family (LIHEAP-ST-09/ST-18) was taken as "
+                f" {family.queue_sentence_date}: {family_label} was taken as "
                 + ", ".join(f"{s['jurisdiction']}/{s['document_class']}/{s['version']}" for s in scopes)
-                + " (see benefit_matrix_scope)."
+                + f" (see {family.queue_key})."
             )
         else:
-            sentence = f" 2026-09-14: the benefit-matrix family (LIHEAP-ST-09/ST-18) is {state.matrix_status} (see benefit_matrix_scope)."
+            sentence = f" {family.queue_sentence_date}: {family_label} is {state.matrix_status} (see {family.queue_key})."
         if sentence.strip() not in row["notes"]:
             row["notes"] = row["notes"].rstrip() + sentence
     queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
@@ -1029,17 +1119,21 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--only", help="comma-separated jurisdictions (default: every state in STATES)")
     parser.add_argument("--no-queue", action="store_true", help="write manifests only")
+    parser.add_argument("--family", choices=sorted(FAMILIES), default=BENEFIT_MATRIX.name,
+                        help="benefit-matrix (2026-09-14, STATES) or policy-manual (2026-09-15, MANUAL_STATES)")
     args = parser.parse_args()
     only = set(args.only.split(",")) if args.only else None
-    written = write_manifests(only)
+    family = FAMILIES[args.family]
+    written = write_manifests(only, family)
     for jur, scopes in written.items():
         for scope in scopes:
             print(f"{jur} {scope['document_class']} {scope['manifest']} documents={scope['document_count']}")
+    states = STATES if family is BENEFIT_MATRIX else MANUAL_STATES
     for jur, scopes in written.items():
         if not scopes:
-            print(f"{jur} {STATES[jur].matrix_status}: no manifest")
+            print(f"{jur} {states[jur].matrix_status}: no manifest")
     if not args.no_queue:
-        update_queue(written)
+        update_queue(written, family)
     return 0
 
 
