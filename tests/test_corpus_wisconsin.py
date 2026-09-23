@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 import pytest
+import yaml
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
@@ -24,6 +25,8 @@ RECOVERY_VERSION = "2026-07-16-pit-west-chapter-71"
 RECOVERY_INGEST_MANIFEST_PATH = (
     ROOT / ".axiom/ingest-manifests/us-wi/statute" / f"{RECOVERY_VERSION}.json"
 )
+SUBUNITS_MANIFEST_PATH = ROOT / "manifests/us-wi-statutes-chapter-71-subunits.yaml"
+SUBUNITS_VERSION = "2026-09-23-income-tax-subunits-chapter-71"
 
 TOC_HTML = """
 <html><body>
@@ -455,3 +458,108 @@ def test_pit_west_recovery_manifest_replays_the_signed_wisconsin_scope(
         if path.is_file()
     }
     assert written == applied
+
+
+def test_chapter_71_subunit_scope_replays_and_resolves_policybench_targets(
+    tmp_path, capsys, monkeypatch
+):
+    # The committed us-wi/statute/2026-09-23-income-tax-subunits-chapter-71 scope
+    # must be exactly what this adapter produces from the scope's own retained,
+    # git-tracked official bytes, and it must resolve the subdivision paths the
+    # PolicyBench oracle encodings cite (Wis. Stat. 71.05(6)(b)9. and 54m.).
+    def no_network(source_url, *, fetcher):
+        raise AssertionError(f"unexpected download: {source_url}")
+
+    monkeypatch.setattr(wisconsin, "_download_wisconsin_source", no_network)
+    committed = ROOT / "data/corpus"
+    retained = committed / "sources/us-wi/statute" / SUBUNITS_VERSION
+    manifest = yaml.safe_load(SUBUNITS_MANIFEST_PATH.read_text(encoding="utf-8"))
+    (source,) = manifest["sources"]
+    source["options"].pop("download_dir")
+    source["options"]["source_dir"] = str(retained)
+    manifest_path = tmp_path / "replay.yaml"
+    manifest_path.write_text(yaml.safe_dump(manifest), encoding="utf-8")
+    base = tmp_path / "corpus"
+
+    exit_code = main(
+        ["extract-state-statutes", "--base", str(base), "--manifest", str(manifest_path)]
+    )
+    payload = json.loads(capsys.readouterr().out)
+
+    assert exit_code == 0, payload
+    assert payload["completed_count"] == 1
+    assert payload["provisions_written"] == 5034
+    written = {
+        path.relative_to(base).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted(base.rglob("*"))
+        if path.is_file()
+    }
+    assert sorted(written) == [
+        f"coverage/us-wi/statute/{SUBUNITS_VERSION}.json",
+        f"inventory/us-wi/statute/{SUBUNITS_VERSION}.json",
+        f"provisions/us-wi/statute/{SUBUNITS_VERSION}.jsonl",
+        f"sources/us-wi/statute/{SUBUNITS_VERSION}/wisconsin-statutes-html/statutes/prefaces/toc.html",
+        f"sources/us-wi/statute/{SUBUNITS_VERSION}/wisconsin-statutes-html/statutes/statutes/71.html",
+    ]
+    for relative, digest in written.items():
+        assert hashlib.sha256((committed / relative).read_bytes()).hexdigest() == digest, relative
+
+    by_path = {
+        record.citation_path: record
+        for record in load_provisions(
+            committed / "provisions/us-wi/statute" / f"{SUBUNITS_VERSION}.jsonl"
+        )
+    }
+    section = by_path["us-wi/statute/71.05"]
+    expected = {
+        "us-wi/statute/71.05/6": (
+            "subsection",
+            "Wis. Stat. 71.05(6)",
+            "us-wi/statute/71.05",
+            "Some of the modifications referred to in s. 71.01 (13) and (14) are:\n",
+        ),
+        "us-wi/statute/71.05/6/b": (
+            "paragraph",
+            "Wis. Stat. 71.05(6)(b)",
+            "us-wi/statute/71.05/6",
+            "From federal adjusted gross income subtract ",
+        ),
+        "us-wi/statute/71.05/6/b/9": (
+            "subdivision",
+            "Wis. Stat. 71.05(6)(b)9.",
+            "us-wi/statute/71.05/6/b",
+            "On assets held more than one year and on all assets acquired from a "
+            "decedent, 30 percent of the capital gain ",
+        ),
+        "us-wi/statute/71.05/6/b/54m": (
+            "subdivision",
+            "Wis. Stat. 71.05(6)(b)54m.",
+            "us-wi/statute/71.05/6/b",
+            "a. Except for a payment that is exempt under sub. (1) (a), (am), or (an)",
+        ),
+    }
+    for citation_path, (kind, label, parent, body_start) in expected.items():
+        record = by_path[citation_path]
+        assert record.kind == kind
+        assert record.citation_label == label
+        assert record.parent_citation_path == parent
+        assert record.body is not None and record.body.startswith(body_start), citation_path
+        assert record.body in (section.body or ""), citation_path
+
+    modifications = by_path["us-wi/statute/71.05/6"].body or ""
+    assert "\n(b) Subtractions. From federal adjusted gross income subtract " in modifications
+    subtractions = by_path["us-wi/statute/71.05/6/b"].body or ""
+    assert subtractions.endswith("veterinary loan repayment grant program under s. 39.389.")
+    # Paragraph (b) is the last unit of subsection (6), so (6) closes with its text.
+    assert modifications.endswith(subtractions)
+    capital_gain = by_path["us-wi/statute/71.05/6/b/9"].body or ""
+    assert "\n" not in capital_gain
+    assert capital_gain.endswith("netted before application of the percentage.")
+    retirement = by_path["us-wi/statute/71.05/6/b/54m"].body or ""
+    assert [line[:2] for line in retirement.split("\n")] == ["a.", "b.", "c.", "d.", "e."]
+    assert "not to exceed $24,000" in retirement
+    assert "may not exceed $48,000" in retirement
+    assert retirement.endswith(
+        "A nonresident of this state is not eligible to claim the subtraction under "
+        "this subdivision."
+    )

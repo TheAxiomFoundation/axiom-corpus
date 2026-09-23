@@ -163,8 +163,12 @@ part-year-resident proration and nonresident bar), each also a child row
   `data/corpus/sources/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71`)
   and rerunning the manifest from the download cache both reproduce the
   provisions, inventory and coverage files byte for byte. The two official pages
-  fetched again on 2026-09-23 at 12:17 EDT hash to the same SHA-256 values as the
-  retained copies.
+  fetched again on 2026-09-23 at 12:17 EDT and at 14:02 EDT hash to the same
+  SHA-256 values as the retained copies.
+  `tests/test_corpus_wisconsin.py::test_chapter_71_subunit_scope_replays_and_resolves_policybench_targets`
+  runs that replay offline against the git-tracked bytes, fails if any of the five
+  committed files would change, and pins the four target provisions (kind, label,
+  parent, opening and closing text, and containment in the 71.05 section body).
 - Coverage command (`axiom-corpus-ingest coverage ... --write`): complete, 5,034
   matched.
 - `scripts/validate_citation_paths.py --provisions <tree with only the new file>`:
@@ -202,7 +206,7 @@ uv run axiom-corpus-ingest extract-official-documents \
   `sources/us-wi/form/2026-09-23-wi-schedule-sb-2025/official-documents/us-wi-dor-2025-schedule-sb-instructions.pdf`.
   The `-inst.pdf` spelling serves the same bytes, and the host without `www.`
   redirects to `www.` and the same bytes. Fetched again on 2026-09-23 at
-  12:17 EDT: same SHA-256; `pdfinfo` reports 17 pages, title "2025 I-0104 2025
+  12:17 and 14:02 EDT: same SHA-256; `pdfinfo` reports 17 pages, title "2025 I-0104 2025
   Schedule SB Instructions - Subtractions from Income".
 - Rows: the document root and `.../schedule-sb-instructions/document-1`, whose
   74,474-character body holds all 17 pages, including "Line 5 – Capital
@@ -218,6 +222,40 @@ uv run axiom-corpus-ingest extract-official-documents \
   ch. 71, Wis. Stats., and sec. Tax 3.01, Wis. Adm. Code, enacted as of
   October 6, 2025. The intake does not certify final-return liability, RuleSpec
   semantics or PolicyEngine parity.
+
+## Known text limitations (follow-ups, not fixed here)
+
+These come from existing normalization code. Changing that code in place would
+break the byte-for-byte replay of the released 2026-07-16-pit-west-chapter-71
+scope, so each fix belongs behind an option and in a new version.
+
+- Spaces before decimals. The Wisconsin cleaner `_clean_text`
+  (`re.sub(r"\s+([,.;:])", r"\1", text)` in `wisconsin.py`) also removes the
+  space before a decimal. The chapter page has three such passages: the
+  official "Multiply .01" reads `Multiply.01` in `us-wi/statute/71.04/7/g/1/b`
+  and `71.25/9/g/1/b`, and "by .05." reads `by.05.` in `71.07/5/c`. The same
+  text sits in those rows' ancestors (10 child rows in all) and in the 71.04,
+  71.07 and 71.25 section rows, which already had it in the released scope.
+  `71.05/6/b/9` and `71.05/6/b/54m` are not affected. A fix would be an adapter
+  option that skips the collapse before a digit (`\s+([,.;:])(?!\d)`). (The
+  `P.L.117-2` in `71.26/2/b/15/e` is as published: that one passage has no space
+  in the official HTML.)
+- Percentages read as statute references. The plain-text reference scan in
+  `_collect_references` (`_SECTION_TEXT_RE` matches any `digits.digits`)
+  records "22.515 percent" and "19.778 percent" as `us-wi/statute/22.515` and
+  `us-wi/statute/19.778` in `metadata.references_to` of `71.05/22`,
+  `71.05/22/dp`, `71.05/22/dp/1` and `71.05/22/dp/2` (and of the 71.05 section
+  row, as in the released scope). A fix would skip numbers followed by
+  "percent" or "%", or take subunit references only from the publisher's
+  anchors.
+- Soft hyphens in the Schedule SB body. The PDF text keeps three U+00AD soft
+  hyphens followed by a space (`Wis­ consin`, `de­ partment’s`, `farm­ ing`).
+  A fix belongs in the official-documents PDF text path; the Schedule SB scope
+  is unsigned, so it could be re-extracted before signing once that lands.
+- A plain rerun of `manifests/us-wi-statutes-chapter-71-subunits.yaml` fetches
+  the live pages. The manifest comment gives the `source_dir` for replaying the
+  retained bytes, which is what the replay test does. After signing, any new
+  content goes under a new version.
 
 ## Release selection
 
@@ -240,7 +278,7 @@ Run on the final tree before committing:
 |---|---|
 | `uv run --extra dev ruff check .` | all checks passed |
 | `uv run --extra dev mypy src/axiom_corpus/corpus --ignore-missing-imports` | no issues in 93 source files |
-| `pytest tests/test_corpus_wisconsin.py tests/test_corpus_cli.py` | 83 passed |
+| `pytest tests/test_corpus_wisconsin.py tests/test_corpus_cli.py` | 84 passed (with the subunit-scope replay test) |
 | `pytest tests/test_ingest_manifest_provenance.py tests/test_citation_path_grammar.py` | 57 passed |
 | recovery replay test with `include_publication_note: true` (sensitivity check) | fails on provisions `2e9c4b45…`, as intended |
 | new statute scope re-extracted from its retained bytes, scratch base | 5,034 rows; all five files byte-identical |
