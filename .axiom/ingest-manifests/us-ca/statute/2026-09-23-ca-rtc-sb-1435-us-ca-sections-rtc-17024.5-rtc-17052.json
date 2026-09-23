@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052.json",
+      "sha256": "cb69ed009123a714805b43697ad47eab2e88ea90dfc0f0d797be05ebd8dd1f99"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052.json",
+      "sha256": "102e7bbd2ee71f08ac22516d7c79dd7fe08edf1c6de72d47a7fc773521493fa4"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052.jsonl",
+      "sha256": "6b71df1f3f430ac1e3a354fa85e5c16e5767d25a1c6de6b6aba9a6e9c47dea88"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052/california-leginfo-sections/RTC-17024.5.html",
+      "sha256": "c7c61944854f10e33c951fe18654cc0d3a524ce4ece6ea5c69fd6d3670511312"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052/california-leginfo-sections/RTC-17052.html",
+      "sha256": "c9411e94bb932f484037ec947aeff257c2ca7b57305a700c7fca3cde97ac5b10"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c643c9ec6592f4e84d74e3093b16f296eeea19c4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-california-code-sections --base data/corpus --version 2026-09-23-ca-rtc-sb-1435 --source-as-of 2026-09-23 --expression-date 2026-09-23 --section RTC:17024.5 --section RTC:17052 --delay-seconds 1 && uv run --extra dev python scripts/self_contain_usc_scope.py --base data/corpus --jurisdiction us-ca --document-class statute --version 2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-23T19:23:56.836564+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-ca-rtc-sb-1435.md",
+      "sha256": "9162b0617e535f4f544c9481d3471201940dfc42a6a9349802bf0f88d1116f27"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Nt0MsnWREoMpn6P67SOZXIjTvrdLbr5P51ODzsoWskho5RVhdarIr2iNMJ0cf0CYqaR7QAY+cEbhRKWtnedLAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052"
+}

@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/form/2026-09-23-ca-2025-ftb-3514.json",
+      "sha256": "ce8dba106220d4e056f6bba7874a01e44ce90cbaf5d391f5120f522738d59815"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/form/2026-09-23-ca-2025-ftb-3514.json",
+      "sha256": "b9ca183b03a9e888071d50e3e7b5db6c39345ea5126600624f39d6e2247dc999"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/form/2026-09-23-ca-2025-ftb-3514.jsonl",
+      "sha256": "04d0b442a9edfdfd07ff74dee39efbc6dbf1b7dcd793d634bc308f2a809ef283"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-09-23-ca-2025-ftb-3514/official-documents/us-ca-ftb-2025-3514-eitc-table.pdf",
+      "sha256": "9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-09-23-ca-2025-ftb-3514/official-documents/us-ca-ftb-2025-3514-eitc-worksheet.pdf",
+      "sha256": "9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-09-23-ca-2025-ftb-3514/official-documents/us-ca-ftb-2025-3514-form.pdf",
+      "sha256": "9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-09-23-ca-2025-ftb-3514/official-documents/us-ca-ftb-2025-3514-instructions.pdf",
+      "sha256": "9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c643c9ec6592f4e84d74e3093b16f296eeea19c4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-ca-2025-ftb-3514 --manifest manifests/us-ca-2025-ftb-3514-booklet.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-23T19:23:56.129916+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-ca-2025-ftb-3514.md",
+      "sha256": "702e33e118559a6cad2b774b4f50180e063718d29f607fe85b8cebb58f32f77f"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "R5BNf9TSzWEu5wZTb8xo4mzrAD/LdEWoXiFCpAybGJBHL7azcRVZNq4SINtUB7Kd29oWhayxlZWPmTwLF30CBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-ca-2025-ftb-3514"
+}
