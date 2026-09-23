@@ -4,6 +4,7 @@ from collections import Counter
 from pathlib import Path
 
 import pytest
+from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
@@ -12,6 +13,9 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
     MASSACHUSETTS_GENERAL_LAWS_SOURCE_FORMAT,
     MassachusettsChapter,
     MassachusettsTitle,
+    _massachusetts_run_id,
+    _section_filters,
+    _section_paragraphs,
     extract_massachusetts_general_laws,
     parse_massachusetts_chapter_page,
     parse_massachusetts_chapters,
@@ -415,13 +419,64 @@ def test_extract_massachusetts_general_laws_rejects_unlisted_section(tmp_path):
         )
 
 
+SAMPLE_SECTION_TEN_A_HTML = """
+<html>
+<body>
+<main>
+  <div class="col-xs-12">
+    <h2 id="skipTo" class="h3 genLawHeading hidden-print">
+      Section 10A: <small>Sample lettered section</small>
+    </h2>
+    <p>Section 10A. A lettered section number.</p>
+  </div>
+</main>
+</body>
+</html>
+"""
+
+
+@pytest.mark.parametrize(
+    ("only_sections_lines", "expected_sections", "expected_slug"),
+    [
+        (
+            ["      only_sections:", '        - "2"', '        - "10A"'],
+            ["us-ma/statute/62/2", "us-ma/statute/62/10a"],
+            "2-10a",
+        ),
+        # A scalar string is one section: "10A" must not be read as "1", "0", "A".
+        (['      only_sections: "10A"'], ["us-ma/statute/62/10a"], "10a"),
+        # YAML reads an unquoted section number as an integer.
+        (["      only_sections: 2"], ["us-ma/statute/62/2"], "2"),
+    ],
+    ids=["list", "scalar-string", "scalar-integer"],
+)
 def test_extract_state_statutes_manifest_passes_massachusetts_only_sections(
     tmp_path,
     capsys,
+    only_sections_lines,
+    expected_sections,
+    expected_slug,
 ):
     source_dir = _write_sample_source_dir(
         tmp_path,
-        section_pages={"Section2.html": SAMPLE_NESTED_SECTION_HTML},
+        section_pages={
+            "Section2.html": SAMPLE_NESTED_SECTION_HTML,
+            "Section10A.html": SAMPLE_SECTION_TEN_A_HTML,
+        },
+    )
+    chapter_page = (
+        source_dir / "pages" / "Laws" / "GeneralLaws" / "PartI" / "TitleIX" / "Chapter62.html"
+    )
+    chapter_page.write_text(
+        SAMPLE_CHAPTER_HTML.replace(
+            "</ul>",
+            '  <li><a href="/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section10A">\n'
+            '    <span class="section">Section 10A</span>\n'
+            '    <span class="sectionTitle">Sample lettered section</span>\n'
+            "  </a></li>\n"
+            "</ul>",
+        ),
+        encoding="utf-8",
     )
     manifest = tmp_path / "manifest.yaml"
     manifest.write_text(
@@ -429,18 +484,17 @@ def test_extract_state_statutes_manifest_passes_massachusetts_only_sections(
             [
                 'version: "2026-09-23-ma-mgl-chapter-62"',
                 "sources:",
-                "  - source_id: us-ma-mgl-chapter-62-section-2",
+                "  - source_id: us-ma-mgl-chapter-62-sections",
                 "    jurisdiction: us-ma",
                 "    document_class: statute",
                 "    adapter: massachusetts-general-laws",
-                "    source_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section2",
+                "    source_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62",
                 "    options:",
                 f"      source_dir: {source_dir}",
                 '      source_as_of: "2026-09-23"',
                 '      expression_date: "2026-09-23"',
                 '      only_chapter: "62"',
-                "      only_sections:",
-                '        - "2"',
+                *only_sections_lines,
                 "",
             ]
         ),
@@ -461,12 +515,79 @@ def test_extract_state_statutes_manifest_passes_massachusetts_only_sections(
     assert exit_code == 0
     row = payload["rows"][0]
     assert row["adapter"] == "massachusetts-general-laws"
-    assert row["section_count"] == 1
-    assert row["provisions_written"] == 4
+    assert row["section_count"] == len(expected_sections)
+    assert row["provisions_written"] == 3 + len(expected_sections)
     assert row["coverage_complete"] is True
     assert row["provisions_path"].endswith(
-        "us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-chapter-62-sections-2.jsonl"
+        "us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-chapter-62-sections-"
+        f"{expected_slug}.jsonl"
     )
+    records = load_provisions(Path(row["provisions_path"]))
+    assert [record.citation_path for record in records][3:] == expected_sections
+
+
+def test_section_paragraphs_skip_comments_and_scripts():
+    # Comments and script or style text never reach the body, whether they sit
+    # directly in a paragraph, inside inline markup, or inside a wrapped block.
+    soup = BeautifulSoup(
+        "<p>"
+        "<p>(a) Before<!-- editorial comment --> after.</p>"
+        "<p>(b) Inline <i>label<script>var nested = 1;</script>"
+        "<!-- nested comment --></i> end.<script>var direct = 2;</script></p>"
+        "<div>(c) Block<style>.hidden { display: none; }</style> text."
+        "<span> wrapped<script>var deep = 3;</script><br/>next line</span></div>"
+        "</p>",
+        "html.parser",
+    )
+    outer = soup.p
+    assert outer is not None
+
+    assert _section_paragraphs(outer) == [
+        "(a) Before after.",
+        "(b) Inline label end.",
+        "(c) Block text. wrapped",
+        "next line",
+    ]
+
+
+def test_section_filters_normalise_deduplicate_and_reject_empty_values():
+    assert _section_filters(None) == ()
+    assert _section_filters("2") == ("2",)
+    assert _section_filters(["2", " 2. ", "6L", "6l"]) == ("2", "6L")
+    with pytest.raises(ValueError, match="empty Massachusetts section filter: ''"):
+        _section_filters([""])
+    with pytest.raises(ValueError, match="empty Massachusetts section filter: ' . '"):
+        _section_filters(["2", " . "])
+
+
+def test_massachusetts_run_id_spells_out_short_section_lists_and_hashes_long_ones():
+    def run_id(sections: list[str]) -> str:
+        return _massachusetts_run_id(
+            "2026-09-23",
+            only_part=None,
+            only_title=None,
+            only_chapter="62",
+            only_sections=tuple(sections),
+            limit=None,
+        )
+
+    assert run_id(["2", "6L"]) == "2026-09-23-us-ma-chapter-62-sections-2-6l"
+
+    # 29 three-character sections plus one four-character section join to exactly
+    # 120 characters, the longest section list the run id still spells out.
+    at_limit = [str(number) for number in range(100, 129)] + ["200A"]
+    at_limit_scope = "-".join(section.lower() for section in at_limit)
+    assert len(at_limit_scope) == 120
+    assert run_id(at_limit) == f"2026-09-23-us-ma-chapter-62-sections-{at_limit_scope}"
+
+    # One more section pushes the list past 120 characters, so the run id carries
+    # the first 16 hex digits of the list's SHA-256 instead.
+    over_limit = [*at_limit, "201"]
+    digest = hashlib.sha256(
+        "-".join(section.lower() for section in over_limit).encode("utf-8")
+    ).hexdigest()[:16]
+    assert len(digest) == 16
+    assert run_id(over_limit) == f"2026-09-23-us-ma-chapter-62-sections-{digest}"
 
 
 def _sample_chapter() -> MassachusettsChapter:
