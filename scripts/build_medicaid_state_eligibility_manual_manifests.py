@@ -1966,6 +1966,7 @@ def build_wy() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     page = fetch(index)
     manual = "Wyoming Department of Health Eligibility Online Manual (EOM)"
     families = {"manual_policy_page_html": {"found": 0, "taken": 0}, "eligibility_table_html": {"found": 0, "taken": 0},
+                "eligibility_table_image_only": {"found": 0, "taken": 0}, "dead_index_link": {"found": 0, "taken": 0},
                 "site_page_html": {"found": 0, "taken": 0}}
     docs = []
     seen: set[str] = set()
@@ -1981,8 +1982,19 @@ def build_wy() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 families["site_page_html"]["found"] += 1
             continue
         seen.add(path)
+        # Wave-5 closure (2026-09-15): the EOM is a Google Sites site; its page content is the div.UtePc column
+        # (site title, page title, policy sections), not [role='main'] (the site title only). Every page is fetched
+        # once here: a link the site answers 404 is inventoried as dead, and a Table whose content column carries an
+        # image and no text (the image-only tables of the 09-14 outreach list) is inventoried and not taken.
+        content_len, has_image, status = _wy_probe(urljoin(index, path))
+        if status != 200:
+            families["dead_index_link"]["found"] += 1
+            continue
         if is_table:
             families["eligibility_table_html"]["found"] += 1
+            if content_len < 200 and has_image:
+                families["eligibility_table_image_only"]["found"] += 1
+                continue
             families["eligibility_table_html"]["taken"] += 1
             subtype = "eligibility_table_html"
         else:
@@ -1995,8 +2007,39 @@ def build_wy() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                           url=urljoin(index, path), fmt="html",
                           authority="Wyoming Department of Health, Medicaid Eligibility Unit", manual=manual,
                           index_url=index, subtype=subtype,
-                          extraction={"html_content_selector": "[role='main']"}))
+                          extraction={"html_content_selector": "div.UtePc",
+                                      "html_drop_selectors": ["nav", "header", "[role='banner']", "script", "style"]}))
     return docs, {"index_url": index, "families": families}
+
+
+def _wy_probe(url: str) -> tuple[int, bool, int]:
+    """Fetch one EOM page: (text length of the div.UtePc content column, whether it embeds an image, HTTP status)."""
+    from bs4 import BeautifulSoup
+
+    resp = requests.get(url, headers={"User-Agent": UA}, timeout=90)
+    if resp.status_code != 200:
+        return 0, False, resp.status_code
+    soup = BeautifulSoup(resp.text, "html.parser")
+    column = soup.select_one("div.UtePc")
+    if column is None:
+        return 0, False, 200
+    text = re.sub(r"\s+", " ", column.get_text(" ", strip=True))
+    return len(text), column.find("img") is not None, 200
+
+
+VERSION_BATCH8 = "2026-09-15-medicaid-eligibility-manual-closure"
+SOURCE_AS_OF_BATCH8 = "2026-09-15"
+DISCOVERED_VIA8 = "manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index {index}"
+
+
+def build_wy_closure() -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Batch 8 (wave-5 closure): the Wyoming EOM under the closure version and source date."""
+    docs, info = build_wy()
+    for doc in docs:
+        doc["source_as_of"] = SOURCE_AS_OF_BATCH8
+        doc["expression_date"] = SOURCE_AS_OF_BATCH8
+        doc["metadata"]["discovered_via"] = DISCOVERED_VIA8.format(index=info["index_url"])
+    return docs, info
 
 
 _DC_MEDICAID_ELIGIBILITY_CHAPTERS = ["29-95", "29-98"]
@@ -2311,8 +2354,9 @@ RESTORED_NOTE = (" Row restored 2026-09-11 by the batch-5 generator from the com
 
 
 def builder_row_note(batch: str, docs: int, found: int, taken: int, family_count: int) -> str:
-    date = {"5": "2026-09-11", "7": "2026-09-13"}.get(batch, "2026-09-10")
+    date = {"5": "2026-09-11", "7": "2026-09-13", "8": "2026-09-15"}.get(batch, "2026-09-10")
     run_note = ("docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md" if batch == "7"
+                else "docs/ingest-runs/2026-09-15-medicaid-chip.md" if batch == "8"
                 else f"docs/ingest-runs/2026-09-10-medicaid-state-eligibility-manuals-batch-{batch}.md")
     return (f"Batch {batch} ({date}): {docs} documents taken from the publisher's own index ({found} documents inventoried "
             f"across {family_count} families; {taken} taken). Extraction proven with the official-documents extractor; "
@@ -2690,7 +2734,20 @@ NAMES_BATCH7 = {"us-ne": "Nebraska"}
 SOURCE_KIND_BATCH7 = {"us-ne": "official_pdf_nac_chapters"}
 STATIC_ROWS_BATCH7: dict[str, dict[str, Any]] = {}
 DOC_CLASS_BATCH7 = {"us-ne": "regulation"}
-BATCH_VERSIONS = {"7": VERSION_BATCH7}
+BUILDERS_BATCH8 = {"us-wy": build_wy_closure}
+NAMES_BATCH8 = {"us-wy": "Wyoming"}
+SOURCE_KIND_BATCH8 = {"us-wy": "official_html_manual_pages"}
+STATIC_ROWS_BATCH8: dict[str, dict[str, Any]] = {}
+BATCH8_ROW_SUFFIX = {
+    "us-wy": (" Batch 8 (2026-09-15, wave-5 closure): the batch-5 needs_review row is resolved. The EOM pages are Google Sites; "
+              "the policy text is the div.UtePc content column (the batch-5 [role='main'] selector matched the site title only), "
+              "so the M-series pages and the text Tables are taken with that selector under "
+              f"{VERSION_BATCH8}; each page was fetched once by the generator, index links the site answers 404 are inventoried as "
+              "dead_index_link, and Tables whose content column is an image without text are inventoried as "
+              "eligibility_table_image_only and not taken (OUTREACH: a text or spreadsheet export from WDH). See "
+              "docs/ingest-runs/2026-09-15-medicaid-chip.md."),
+}
+BATCH_VERSIONS = {"7": VERSION_BATCH7, "8": VERSION_BATCH8}
 BATCH7_ROW_SUFFIX = {
     "us-ne": (f" Re-probed {REPROBE_STAMP} from a US network with the plain extractor client: the Secretary of State chapter API answers "
               "HTTP 200 (686,881-byte JSON, 0.6 s) and dhhs.ne.gov's Title 477 page HTTP 200 (194,402 bytes, 0.5 s) after the "
@@ -2759,6 +2816,11 @@ BATCHES = {
           "the plain extractor client from a US network. NE answers again and Title 477 NAC (28 chapters plus 40 appendices) is extracted "
           "under version 2026-09-13-medicaid-state-eligibility-manual; AL and CA still blocked (recorded as durable); the five territories "
           "still post nothing. Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 7; see " + RUN_NOTE_BATCH7 + "."),
+    "8": (BUILDERS_BATCH8, STATIC_ROWS_BATCH8, NAMES_BATCH8, SOURCE_KIND_BATCH8,
+          "Batch 8 (2026-09-15, wave-5 closure): the Wyoming EOM (Google Sites) taken with the div.UtePc content selector under "
+          "version 2026-09-15-medicaid-eligibility-manual-closure; image-only Tables and dead index links inventoried and not taken. "
+          "Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 8 --only us-wy; see "
+          "docs/ingest-runs/2026-09-15-medicaid-chip.md."),
 }
 BATCH1_RETRY_DETAILS = {
     "us-ca": "HTTP 403 Incapsula interstitial (incident id 648000110658208525-192905496909841125) for both requests.",
@@ -2771,12 +2833,12 @@ BATCH1_RETRY_DETAILS = {
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--batch", choices=["1", "2", "3", "4", "5", "6", "7", "all"], default="all",
+    parser.add_argument("--batch", choices=["1", "2", "3", "4", "5", "6", "7", "8", "all"], default="all",
                         help="which batch's builders and static rows to (re)build; rows of the other batch are left untouched")
     parser.add_argument("--only", action="append", default=[], metavar="JURISDICTION",
                         help="restrict live builders to these jurisdictions (static rows of the batch are still applied)")
     args = parser.parse_args()
-    batches = ["1", "2", "3", "4", "5", "6", "7"] if args.batch == "all" else [args.batch]
+    batches = ["1", "2", "3", "4", "5", "6", "7", "8"] if args.batch == "all" else [args.batch]
     queue = yaml.safe_load(QUEUE.read_text())
     # The first row of a jurisdiction is the one the batches address; later rows of the same jurisdiction (the
     # federal eCFR follow-on row of docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md) are carried through
@@ -2820,7 +2882,8 @@ def main() -> int:
                 "index_url": info["index_url"], "index_document_count": found, "taken_count": taken,
                 "index_families": info["families"],
                 "notes": builder_row_note(batch, len(docs), found, taken, len(info["families"]))
-                + BATCH5_ROW_SUFFIX.get(jur, "") + BATCH7_ROW_SUFFIX.get(jur, ""),
+                + BATCH5_ROW_SUFFIX.get(jur, "") + BATCH7_ROW_SUFFIX.get(jur, "")
+                + (BATCH8_ROW_SUFFIX.get(jur, "") if batch == "8" else ""),
             })
             rows[jur] = row
             print(f"{jur}: {len(docs)} documents; index families {info['families']}")
