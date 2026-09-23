@@ -3,7 +3,10 @@ import json
 from collections import Counter
 from pathlib import Path
 
+import pytest
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     MASSACHUSETTS_GENERAL_LAWS_SOURCE_FORMAT,
@@ -128,6 +131,39 @@ SAMPLE_SECTION_ONE_HTML = """
 </html>
 """
 
+# Mirrors the markup of the official malegislature.gov page for M.G.L. c. 62, s. 2:
+# one outer <p> nesting one <p> per subsection, paragraph and editorial note, an
+# italic subparagraph label, and two dated alternatives of one paragraph.
+SAMPLE_NESTED_SECTION_HTML = """
+<html>
+<body>
+<h2 id="skipTo" class="h3 genLawHeading hidden-print">
+  Section 2: <small>Gross income, adjusted gross income and taxable income defined;  classes</small>
+</h2>
+<p>
+<p><i>[ Text of section applicable as provided by 2021, 9, Secs. 8, 12 and 26.]</i></p><p>  Section 2. (a) Massachusetts gross
+income shall mean the federal gross income:--</p><p>  (<i>I</i>) Amounts contributed on behalf of the taxpayer.</p><p>  (c) Part A adjusted gross income shall be the Part A gross income less the following deductions in the following order:</p><p>  (2)(a) Losses from the sale or exchange of capital assets held for 1 year or less.</p><p><i>[ Paragraph (4) of subsection (d) effective until April 19, 2026.  For text effective April 19, 2026, see below.]</i></p><p>  (4) An amount paid by a medical marijuana treatment center.</p><p><i>[ Paragraph (4) of subsection (d) as amended by 2026, 65, Sec. 3 effective April 19, 2026.  For text effective until April 19, 2026, see above.]</i></p><p>  (4) An amount paid by a medical marijuana establishment.<br/>Second line of the paragraph.</p><p>  (i) Massachusetts adjusted gross income shall be the sum of the three Parts; see section 3 of this chapter.</p>
+</p>
+</body>
+</html>
+"""
+
+# Block elements other than <p> and <br> inside the section text: sibling <div>s,
+# a table, a list, a blockquote, and an inline wrapper around a block. None of the
+# retained chapter 62 pages use these, but the parser must not run them together.
+SAMPLE_BLOCK_SECTION_HTML = """
+<html>
+<body>
+<h2 id="skipTo" class="h3 genLawHeading hidden-print">
+  Section 2: <small>Gross income, adjusted gross income and taxable income defined;  classes</small>
+</h2>
+<p>
+<p>  Section 2. (a) Text before the blocks:</p><div>(1) A divided paragraph.</div><div>(2) Its sibling.</div><table><tr><th>Class</th><th>Rate</th></tr><tr><td>Part A</td><td>12 per cent</td></tr></table><ul><li>First item</li><li>Second item</li></ul><blockquote>Quoted text</blockquote><span>Lead-in <div>wrapped block</div> tail</span>
+</p>
+</body>
+</html>
+"""
+
 SAMPLE_REPEALED_SECTION_HTML = """
 <html>
 <body>
@@ -212,55 +248,38 @@ def test_parse_massachusetts_repealed_section_status():
     assert parsed.status == "repealed"
 
 
-def test_extract_massachusetts_general_laws_from_source_dir_writes_artifacts(tmp_path):
+def _write_sample_source_dir(
+    tmp_path: Path,
+    *,
+    section_pages: dict[str, str] | None = None,
+) -> Path:
     source_dir = tmp_path / "source"
-    (source_dir / "pages" / "Laws" / "GeneralLaws" / "PartI" / "TitleIX" / "Chapter62").mkdir(
-        parents=True
-    )
+    general_laws = source_dir / "pages" / "Laws" / "GeneralLaws"
+    chapter_dir = general_laws / "PartI" / "TitleIX" / "Chapter62"
+    chapter_dir.mkdir(parents=True)
     (source_dir / "ajax" / "GetChaptersForTitle").mkdir(parents=True)
-    (source_dir / "pages" / "Laws" / "GeneralLaws" / "index.html").write_text(
-        SAMPLE_INDEX_HTML,
-        encoding="utf-8",
-    )
-    (source_dir / "pages" / "Laws" / "GeneralLaws" / "PartI.html").write_text(
-        SAMPLE_PART_HTML,
-        encoding="utf-8",
-    )
-    (
-        source_dir / "ajax" / "GetChaptersForTitle" / "part-1-title-9-IX.html"
-    ).write_text(
+    (general_laws / "index.html").write_text(SAMPLE_INDEX_HTML, encoding="utf-8")
+    (general_laws / "PartI.html").write_text(SAMPLE_PART_HTML, encoding="utf-8")
+    (source_dir / "ajax" / "GetChaptersForTitle" / "part-1-title-9-IX.html").write_text(
         SAMPLE_CHAPTERS_FRAGMENT,
         encoding="utf-8",
     )
-    (
-        source_dir
-        / "pages"
-        / "Laws"
-        / "GeneralLaws"
-        / "PartI"
-        / "TitleIX"
-        / "Chapter62.html"
-    ).write_text(SAMPLE_CHAPTER_HTML, encoding="utf-8")
-    (
-        source_dir
-        / "pages"
-        / "Laws"
-        / "GeneralLaws"
-        / "PartI"
-        / "TitleIX"
-        / "Chapter62"
-        / "Section1.html"
-    ).write_text(SAMPLE_SECTION_ONE_HTML, encoding="utf-8")
-    (
-        source_dir
-        / "pages"
-        / "Laws"
-        / "GeneralLaws"
-        / "PartI"
-        / "TitleIX"
-        / "Chapter62"
-        / "Section2.html"
-    ).write_text(SAMPLE_SECTION_HTML, encoding="utf-8")
+    (general_laws / "PartI" / "TitleIX" / "Chapter62.html").write_text(
+        SAMPLE_CHAPTER_HTML,
+        encoding="utf-8",
+    )
+    pages = (
+        section_pages
+        if section_pages is not None
+        else {"Section1.html": SAMPLE_SECTION_ONE_HTML, "Section2.html": SAMPLE_SECTION_HTML}
+    )
+    for name, page in pages.items():
+        (chapter_dir / name).write_text(page, encoding="utf-8")
+    return source_dir
+
+
+def test_extract_massachusetts_general_laws_from_source_dir_writes_artifacts(tmp_path):
+    source_dir = _write_sample_source_dir(tmp_path)
     store = CorpusArtifactStore(tmp_path / "corpus")
 
     report = extract_massachusetts_general_laws(
@@ -290,6 +309,178 @@ def test_extract_massachusetts_general_laws_from_source_dir_writes_artifacts(tmp
     ]
     assert records[3].metadata is not None
     assert records[3].metadata["references_to"] == ["us-ma/statute/62/2"]
+
+
+def test_parse_massachusetts_section_keeps_nested_paragraphs_and_amendment_notes():
+    target = parse_massachusetts_chapter_page(SAMPLE_CHAPTER_HTML, chapter=_sample_chapter())[1]
+
+    parsed = parse_massachusetts_section(SAMPLE_NESTED_SECTION_HTML, target=target)
+
+    assert parsed.heading == (
+        "Gross income, adjusted gross income and taxable income defined; classes"
+    )
+    assert parsed.body is not None
+    assert parsed.body.split("\n") == [
+        "[ Text of section applicable as provided by 2021, 9, Secs. 8, 12 and 26.]",
+        "(a) Massachusetts gross income shall mean the federal gross income:--",
+        "(I) Amounts contributed on behalf of the taxpayer.",
+        "(c) Part A adjusted gross income shall be the Part A gross income less the "
+        "following deductions in the following order:",
+        "(2)(a) Losses from the sale or exchange of capital assets held for 1 year or less.",
+        "[ Paragraph (4) of subsection (d) effective until April 19, 2026. For text "
+        "effective April 19, 2026, see below.]",
+        "(4) An amount paid by a medical marijuana treatment center.",
+        "[ Paragraph (4) of subsection (d) as amended by 2026, 65, Sec. 3 effective "
+        "April 19, 2026. For text effective until April 19, 2026, see above.]",
+        "(4) An amount paid by a medical marijuana establishment.",
+        "Second line of the paragraph.",
+        "(i) Massachusetts adjusted gross income shall be the sum of the three Parts; "
+        "see section 3 of this chapter.",
+    ]
+    assert parsed.references_to == ("us-ma/statute/62/3",)
+    assert parsed.status is None
+
+
+def test_parse_massachusetts_section_separates_block_elements_and_table_cells():
+    target = parse_massachusetts_chapter_page(SAMPLE_CHAPTER_HTML, chapter=_sample_chapter())[1]
+
+    parsed = parse_massachusetts_section(SAMPLE_BLOCK_SECTION_HTML, target=target)
+
+    assert parsed.body is not None
+    assert parsed.body.split("\n") == [
+        "(a) Text before the blocks:",
+        "(1) A divided paragraph.",
+        "(2) Its sibling.",
+        "Class Rate",
+        "Part A 12 per cent",
+        "First item",
+        "Second item",
+        "Quoted text",
+        "Lead-in",
+        "wrapped block",
+        "tail",
+    ]
+
+
+def test_extract_massachusetts_general_laws_only_sections_keeps_parents(tmp_path):
+    # Section1.html is deliberately absent: a section filter must not fetch it.
+    source_dir = _write_sample_source_dir(
+        tmp_path,
+        section_pages={"Section2.html": SAMPLE_NESTED_SECTION_HTML},
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_massachusetts_general_laws(
+        store,
+        version="2026-09-23-ma-mgl-chapter-62",
+        source_dir=source_dir,
+        source_as_of="2026-09-23",
+        expression_date="2026-09-23",
+        only_chapter="62",
+        only_sections=["2"],
+    )
+
+    assert report.coverage.complete is True
+    assert report.section_count == 1
+    assert report.errors == ()
+    assert report.provisions_path.name == (
+        "2026-09-23-ma-mgl-chapter-62-us-ma-chapter-62-sections-2.jsonl"
+    )
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-ma/statute/part-i",
+        "us-ma/statute/part-i/title-ix",
+        "us-ma/statute/part-i/title-ix/chapter-62",
+        "us-ma/statute/62/2",
+    ]
+    section = records[3]
+    assert section.parent_citation_path == "us-ma/statute/part-i/title-ix/chapter-62"
+    assert section.legal_identifier == "M.G.L. c. 62, \u00a7 2"
+    assert section.body is not None
+    assert section.body.count("\n") == 10
+    assert "(2)(a) Losses from the sale or exchange of capital assets" in section.body
+
+
+def test_extract_massachusetts_general_laws_rejects_unlisted_section(tmp_path):
+    source_dir = _write_sample_source_dir(tmp_path)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    with pytest.raises(ValueError, match=r"not listed on the selected chapter pages: \['2A'\]"):
+        extract_massachusetts_general_laws(
+            store,
+            version="2026-09-23",
+            source_dir=source_dir,
+            only_chapter="62",
+            only_sections=["2", "2A"],
+        )
+
+
+def test_extract_state_statutes_manifest_passes_massachusetts_only_sections(
+    tmp_path,
+    capsys,
+):
+    source_dir = _write_sample_source_dir(
+        tmp_path,
+        section_pages={"Section2.html": SAMPLE_NESTED_SECTION_HTML},
+    )
+    manifest = tmp_path / "manifest.yaml"
+    manifest.write_text(
+        "\n".join(
+            [
+                'version: "2026-09-23-ma-mgl-chapter-62"',
+                "sources:",
+                "  - source_id: us-ma-mgl-chapter-62-section-2",
+                "    jurisdiction: us-ma",
+                "    document_class: statute",
+                "    adapter: massachusetts-general-laws",
+                "    source_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section2",
+                "    options:",
+                f"      source_dir: {source_dir}",
+                '      source_as_of: "2026-09-23"',
+                '      expression_date: "2026-09-23"',
+                '      only_chapter: "62"',
+                "      only_sections:",
+                '        - "2"',
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    exit_code = main(
+        [
+            "extract-state-statutes",
+            "--base",
+            str(tmp_path / "corpus"),
+            "--manifest",
+            str(manifest),
+        ]
+    )
+    payload = json.loads(capsys.readouterr().out)
+
+    assert exit_code == 0
+    row = payload["rows"][0]
+    assert row["adapter"] == "massachusetts-general-laws"
+    assert row["section_count"] == 1
+    assert row["provisions_written"] == 4
+    assert row["coverage_complete"] is True
+    assert row["provisions_path"].endswith(
+        "us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-chapter-62-sections-2.jsonl"
+    )
+
+
+def _sample_chapter() -> MassachusettsChapter:
+    return MassachusettsChapter(
+        part_code="I",
+        part_heading="ADMINISTRATION OF THE GOVERNMENT",
+        title_roman="IX",
+        title_heading="TAXATION",
+        title_citation_path="us-ma/statute/part-i/title-ix",
+        number="62",
+        heading="TAXATION OF INCOMES",
+        href="/Laws/GeneralLaws/PartI/TitleIX/Chapter62",
+        ordinal=1,
+    )
 
 
 def test_ma_snap_package_source_paths_are_available():

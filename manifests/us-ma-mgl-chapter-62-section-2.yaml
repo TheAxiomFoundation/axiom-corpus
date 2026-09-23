@@ -1,0 +1,53 @@
+version: "2026-09-23-ma-mgl-chapter-62"
+# M.G.L. c. 62, s. 2 (gross income, adjusted gross income and taxable income; the
+# Part A, B and C classes) as one section-scoped statute scope. The released
+# us-ma/statute/2026-07-13-recovery scope retains twelve chapter 62 sections but
+# not s. 2, and the 2026-07-06 chapter-62 run was never retained in data/corpus.
+# A section-scoped run adds us-ma/statute/62/2 without colliding with any path of
+# the released recovery scope, so a release can select both. Selecting both splits
+# chapter 62 navigation: this scope's chapter-62 container holds only s. 2, while
+# the recovery scope's parentless sections stay separate roots (see
+# docs/ingest-runs/2026-09-23-ma-mgl-62-2-tir-02-21.md). The adapter appends
+# its scope suffix (part, title, chapter and section filters), so the on-disk
+# scope version is
+# 2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2.
+sources:
+  - source_id: us-ma-mgl-chapter-62-section-2
+    jurisdiction: us-ma
+    document_class: statute
+    adapter: massachusetts-general-laws
+    source_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section2
+    version: "2026-09-23-ma-mgl-chapter-62"
+    options:
+      source_as_of: "2026-09-23"
+      expression_date: "2026-09-23"
+      only_part: "I"
+      only_title: "IX"
+      only_chapter: "62"
+      only_sections:
+        - "2"
+      download_dir: ../data/corpus/downloads/us-ma-mgl/2026-09-23-chapter-62-section-2
+      base_url: https://malegislature.gov
+      request_delay_seconds: 0.5
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 1
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts General Court
+      source_scope_note: >-
+        Current Massachusetts General Laws Part I, Title IX, Chapter 62 (taxation
+        of incomes), Section 2 from the official malegislature.gov publication,
+        with the part, title and chapter container rows the section row's parent
+        chain needs. The section is kept at the publisher's assertion frontier
+        (one section row); its subsections (a) through (i), the bracketed
+        editorial notes, and both dated alternatives of subsection (d)(4) are
+        preserved as separate lines of the section body. On the retrieval date
+        the General Laws index page stated that the site includes all amendments
+        passed before May 31, 2026, and labelled the site an unofficial version of
+        the official edition.
+      source_discovery_group: us-ma/statute/income-tax
+      discovered_via: >-
+        manual-review 2026-09-23: PolicyBench root cause r22 (Part A dividends
+        taxed without the short-term capital loss offset of s. 2(c)(2)) needs the
+        governing statute as an independent oracle source

@@ -3086,6 +3086,12 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
     if adapter == "massachusetts-general-laws":
+        raw_ma_sections = options.get("only_sections", ())
+        ma_sections = (
+            (str(raw_ma_sections),)
+            if isinstance(raw_ma_sections, str | int | float)
+            else tuple(str(item) for item in raw_ma_sections or ())
+        )
         return extract_massachusetts_general_laws(
             store,
             version=version,
@@ -3095,6 +3101,7 @@ def _extract_state_statute_source(
             only_part=_optional_text(options.get("only_part")),
             only_title=only_title,
             only_chapter=_optional_text(options.get("only_chapter")),
+            only_sections=ma_sections,
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
