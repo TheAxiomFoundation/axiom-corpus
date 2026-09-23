@@ -198,20 +198,22 @@ Coverage: 4 / 4, complete.
   expected.
 - `scripts/repro/us_ny_tax_article_22_line_structure.py --base <scratch>` reproduces the successor
   inventory, provisions, coverage and all 93 source files byte for byte.
-- `towncrier check` passes only vacuously before the commit (no diff against `origin/main`); both
-  fragments render in `towncrier build --draft --version 0.0.0` (the CI command).
-- Not run: the whole-repository pytest suite (machine load), `publish_corpus.py --dry-run` (it only
-  accepts a tracked selector under `manifests/releases/`, and this change adds none), and
-  `sign-ingest-manifest` (it signs a clean committed `HEAD`). The new scope artifacts sit under the
-  ignored `data/` tree and are added with `git add -f`; after the content commit, sign both scopes
-  and commit the manifests separately:
+- `towncrier check --compare-with origin/main` after the content commit: both fragments found; both
+  render in `towncrier build --draft --version 0.0.0` (the CI command).
+- Not run: the whole-repository pytest suite (machine load) and `publish_corpus.py --dry-run` (it only
+  accepts a tracked selector under `manifests/releases/`, and this change adds none).
+- Signing: the new scope artifacts sit under the ignored `data/` tree and were added with
+  `git add -f`. After the content commit (`c0c44ea6`), both scopes were signed over that clean
+  commit with the commands below and the two manifests under `.axiom/ingest-manifests/us-ny/` were
+  committed separately (96 applied files for the statute scope, 5 for the form scope);
+  `axiom-corpus-ingest guard-ingested --base-ref origin/main` then verifies them.
 
 ```bash
-AXIOM_CORPUS_INGEST_PRIVATE_KEY=... uv run axiom-corpus-ingest sign-ingest-manifest \
-  --jurisdiction us-ny --document-class statute \
+AXIOM_CORPUS_INGEST_PRIVATE_KEY=... uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
+  --repo . --base data/corpus --jurisdiction us-ny --document-class statute \
   --version 2026-09-14-income-tax-chapter-r2026-09-23-line-structure \
   --command "uv run --extra dev python scripts/repro/us_ny_tax_article_22_line_structure.py --base data/corpus --source-base data/corpus (run note: docs/ingest-runs/2026-09-23-ny-tax-606-line-structure-it214.md)"
-AXIOM_CORPUS_INGEST_PRIVATE_KEY=... uv run axiom-corpus-ingest sign-ingest-manifest \
-  --jurisdiction us-ny --document-class form --version 2026-09-23-ny-it-214-ty2025 \
+AXIOM_CORPUS_INGEST_PRIVATE_KEY=... uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
+  --repo . --base data/corpus --jurisdiction us-ny --document-class form --version 2026-09-23-ny-it-214-ty2025 \
   --command "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-ny-it-214-ty2025 --manifest manifests/us-ny-it-214-real-property-tax-credit-ty2025.yaml (run note: docs/ingest-runs/2026-09-23-ny-tax-606-line-structure-it214.md)"
 ```
