@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/form/2026-09-23-wi-schedule-sb-2025.json",
+      "sha256": "6c50a6472bdd098c04058c5aef4d181a24a09e6ef328f459680544e26897b6c3"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/form/2026-09-23-wi-schedule-sb-2025.json",
+      "sha256": "3d5db7263e45335579f56b1c35730afa424880dff86f62838d62a9dfb589929b"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/form/2026-09-23-wi-schedule-sb-2025.jsonl",
+      "sha256": "93391383695ef6668f16cd0436885d5a7f257b69494cca272a8f36cb56679686"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/form/2026-09-23-wi-schedule-sb-2025/official-documents/us-wi-dor-2025-schedule-sb-instructions.pdf",
+      "sha256": "4ebf3e36a2740ed7c1146c3e2b43b3d3762d3d5601ea6be5b70d2262b7a18494"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6d8518e4003fb0e03fede99ab441b836c467383a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-wi-schedule-sb-2025 --manifest manifests/us-wi-2025-schedule-sb-instructions.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-23T19:24:07.590172+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-wi-chapter-71-subunits.md",
+      "sha256": "0c9ab3d38218a878ef87403cd1cc3874acaef2ecdc8cf7c4df5aaf6551d11596"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9E77DZXQGrEV0z8nAEb9zNUBRMpoEZ+4qK7zMi+HIor8Hr/KZqN3j+sfn+cpcQst0TR+Spqs4KPs6IUa1/d+CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-wi-schedule-sb-2025"
+}
