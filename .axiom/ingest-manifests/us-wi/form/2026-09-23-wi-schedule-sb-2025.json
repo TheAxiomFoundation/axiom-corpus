@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8518e4003fb0e03fede99ab441b836c467383a",
+    "commit": "78c17c931c9521d65520668f9d86f8f5156001df",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 2
   },
   "document_class": "form",
-  "generated_at": "2026-09-23T19:24:07.590172+00:00",
+  "generated_at": "2026-09-24T15:26:29.150762+00:00",
   "jurisdiction": "us-wi",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-wi-chapter-71-subunits.md",
-      "sha256": "0c9ab3d38218a878ef87403cd1cc3874acaef2ecdc8cf7c4df5aaf6551d11596"
+      "sha256": "24e27b5121751ad398fc1e63317ed4fd5d823856d08940519e914f0b17df93a4"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "9E77DZXQGrEV0z8nAEb9zNUBRMpoEZ+4qK7zMi+HIor8Hr/KZqN3j+sfn+cpcQst0TR+Spqs4KPs6IUa1/d+CA=="
+    "value": "UXme0eXxEG9gaKNMX8/bfjLF45lcD4P5NzoVR8fpd+pcGn5Z/hx2vWvBWdqFhbpFQ47ECJtmOb40PTGHXDGzDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-wi-schedule-sb-2025"
