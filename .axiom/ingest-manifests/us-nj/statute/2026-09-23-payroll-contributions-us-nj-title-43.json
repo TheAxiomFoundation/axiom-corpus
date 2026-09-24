@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/statute/2026-09-23-payroll-contributions-us-nj-title-43.json",
+      "sha256": "4ee98964612cec744175804f273d5c3cdd17cbe74686f6afec9b164927ec8934"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/statute/2026-09-23-payroll-contributions-us-nj-title-43.json",
+      "sha256": "50ac23d40f23b5f6975eb8a56a3a49f30c0158b79181e5781e0c5a2b9660b6bd"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/statute/2026-09-23-payroll-contributions-us-nj-title-43.jsonl",
+      "sha256": "3ba2bcdbc045ecc986ae46161df78fe733e48160b766f6d594b66de6d731788a"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-09-23-payroll-contributions-us-nj-title-43/new-jersey-statutes-text/STATUTES.TXT",
+      "sha256": "00187b070cd63669c58ecc1d2e1088cbbe2ab121b367c6acf3876558b29ff466"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-09-23-payroll-contributions-us-nj-title-43/new-jersey-statutes-text-zip/STATUTES-TEXT.zip",
+      "sha256": "a92d4282780751f57570ebab87090886e0a39101800f5df200202f77736d3f2b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "11f5852e8e0785f7ce228f922a699938bd104b70",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/us-nj-titles-34-43-payroll-contributions.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1441,
+    "missing_count": 0,
+    "provision_count": 1441,
+    "source_count": 1441
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-23T19:23:42.121918+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-us-nj-payroll-contributions.md",
+      "sha256": "dafeda7ebf9a62269421f12e9f4c10867a9cf317ba0309cccdc6d9de355c0df8"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DslSx3atSdvexwmrF8kQO5mvJzoOqbBH+PtTRuBsoM4f3KgIENc1AaGtRYYe9NN/XJwtOBnYU/KD15fZq2AnBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-payroll-contributions-us-nj-title-43"
+}

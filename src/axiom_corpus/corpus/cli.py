@@ -1291,6 +1291,9 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
 def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    if args.prior_release_point and not args.source_url:
+        print("--prior-release-point requires --source-url (the release point download URL)")
+        return 2
     try:
         if args.title:
             title = args.title
@@ -1318,6 +1321,7 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         source_download_url=args.source_url,
         limit=args.limit,
         allowed_citation_paths=allowed_citation_paths,
+        prior_release_point=args.prior_release_point,
     )
     print(
         json.dumps(
@@ -5882,6 +5886,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--include-title",
         action="store_true",
         help="Include the title-level provision when section filters are used.",
+    )
+    extract_usc_cmd.add_argument(
+        "--prior-release-point",
+        action="store_true",
+        help=(
+            "The source is a historical OLRC release point: set every row's source_url to "
+            "--source-url (the release point download) instead of the current prelim "
+            "reader page, which displays different text."
+        ),
     )
     extract_usc_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_cmd.set_defaults(func=_cmd_extract_usc)
