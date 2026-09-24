@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5851a050342e04d675e7f8ace0de6a14f02ec7a7",
+    "commit": "9e6df0483a16ad7703841eeaff59488d46a3d1e2",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 7
   },
   "document_class": "guidance",
-  "generated_at": "2026-09-24T18:36:55.384474+00:00",
+  "generated_at": "2026-09-24T18:41:22.789327+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
-      "sha256": "4b4bfe954c8e61f2dbe8dd5a2bb82d46f5cf0d03273871078d7ee16b432d6448"
+      "sha256": "c8c3131e1d8f243a028ab887f2016b3634e9074d32c384413867e09d2be31431"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "DCE5sJ1TVZY7/qEmqojUm/mtJUisBS2lYo6REZALGKUpb4Ue7nLamZmN8Gwr/bbgAXonFl8vJek8PcOa96uwCQ=="
+    "value": "4IaE5bFjOSziWJs/bKwZjQKwjUvPArXfcte7IO4ndS62gQcaggOHQghbWGR9y38vBqTzSuukRaNlSo4ooyvnBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-ma-dta-policy-online-snap-child-support"
