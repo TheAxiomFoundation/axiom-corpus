@@ -1,0 +1,1 @@
+`extract-california-code-sections --preserve-tables` renders each LegInfo table row as one `cell | cell` line and keeps repeated cells and row labels, which the default block dedup drops (R&TC 17052(b)). Off by default so existing scopes rerun unchanged.

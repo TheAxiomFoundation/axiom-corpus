@@ -1626,6 +1626,104 @@ def test_extract_california_codes_cli_local_source(tmp_path, capsys):
     assert '"provisions_written": 3' in output
 
 
+_CALIFORNIA_TABLE_SECTION_HTML = """
+<html><body>
+  <div id="single_law_section">
+    <div><font>
+      <h6><b>17052.  </b></h6>
+      <p>(b) (1) The credit percentage and the phaseout percentage are:</p>
+      <table>
+        <tr><td><p>In the case of an eligible individual with:</p></td>
+            <td><p>The credit percentage is:</p></td>
+            <td><p>The phaseout percentage is:</p></td></tr>
+        <tr><td><p>No qualifying children</p></td><td><p>7.65%</p></td><td><p>7.65%</p></td></tr>
+        <tr><td><p>1 qualifying child</p></td><td><p>34%</p></td><td><p>34%</p></td></tr>
+      </table>
+      <p>(2) The earned income amount and the phaseout amount are:</p>
+      <table>
+        <tr><td><p>In the case of an eligible individual with:</p></td>
+            <td><p>The earned income amount is:</p></td>
+            <td><p>The phaseout amount is:</p></td></tr>
+        <tr><td><p>No qualifying children</p></td><td><p>$3,290</p></td><td><p>$3,290</p></td></tr>
+        <tr><td><p>1 qualifying child</p></td><td><p>$4,940</p></td><td><p>$4,940</p></td></tr>
+      </table>
+      <p><i>(Amended by Stats. 2026, Ch. 236, Sec. 2. (SB 1435).)</i></p>
+    </font></div>
+  </div>
+</body></html>
+"""
+
+
+def _california_table_section_body(*, preserve_tables: bool) -> str | None:
+    from bs4 import BeautifulSoup
+
+    from axiom_corpus.corpus.states import _california_html_section_body
+
+    soup = BeautifulSoup(_CALIFORNIA_TABLE_SECTION_HTML, "html.parser")
+    return _california_html_section_body(
+        soup.find(id="single_law_section"), preserve_tables=preserve_tables
+    )
+
+
+def test_california_section_body_preserve_tables_keeps_every_cell_and_row_label():
+    body = _california_table_section_body(preserve_tables=True)
+
+    assert body is not None
+    assert body.splitlines() == [
+        "(b) (1) The credit percentage and the phaseout percentage are:",
+        "In the case of an eligible individual with: | The credit percentage is: | "
+        "The phaseout percentage is:",
+        "No qualifying children | 7.65% | 7.65%",
+        "1 qualifying child | 34% | 34%",
+        "(2) The earned income amount and the phaseout amount are:",
+        "In the case of an eligible individual with: | The earned income amount is: | "
+        "The phaseout amount is:",
+        "No qualifying children | $3,290 | $3,290",
+        "1 qualifying child | $4,940 | $4,940",
+        "(Amended by Stats. 2026, Ch. 236, Sec. 2. (SB 1435).)",
+    ]
+
+
+def test_california_section_body_default_keeps_legacy_block_dedup():
+    """The default reproduces existing scopes: one block per cell, repeats dropped."""
+    body = _california_table_section_body(preserve_tables=False)
+
+    assert body is not None
+    lines = body.splitlines()
+    assert lines.count("No qualifying children") == 1
+    assert lines.count("$3,290") == 1
+    assert "No qualifying children | $3,290 | $3,290" not in lines
+
+
+def test_extract_california_code_sections_cli_preserve_tables(tmp_path, capsys):
+    download_dir = tmp_path / "downloads"
+    html_path = download_dir / "california-leginfo-sections" / "RTC-17052.html"
+    html_path.parent.mkdir(parents=True)
+    html_path.write_text(_CALIFORNIA_TABLE_SECTION_HTML, encoding="utf-8")
+    base = tmp_path / "corpus"
+
+    exit_code = main(
+        [
+            "extract-california-code-sections",
+            "--base",
+            str(base),
+            "--version",
+            "2026-09-23",
+            "--section",
+            "RTC:17052",
+            "--download-dir",
+            str(download_dir),
+            "--preserve-tables",
+        ]
+    )
+    capsys.readouterr()
+
+    assert exit_code == 0
+    [path] = sorted((base / "provisions/us-ca/statute").glob("*.jsonl"))
+    records = load_provisions(path)
+    assert "No qualifying children | $3,290 | $3,290" in (records[0].body or "")
+
+
 def test_extract_california_code_sections_cli_local_cache(tmp_path, capsys):
     download_dir = tmp_path / "downloads"
     html_path = download_dir / "california-leginfo-sections" / "WIC-11450.12.html"

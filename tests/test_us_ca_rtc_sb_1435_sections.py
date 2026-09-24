@@ -40,6 +40,43 @@ def _body(version: str, section: str) -> str:
     return body
 
 
+def _table_body(version: str, section: str) -> str:
+    """Re-extract a retained LegInfo page with every table cell and row label kept."""
+    from bs4 import BeautifulSoup
+
+    from axiom_corpus.corpus.states import _california_html_section_body
+
+    html = (
+        CORPUS_ROOT
+        / f"sources/us-ca/statute/{version}/california-leginfo-sections/RTC-{section}.html"
+    ).read_bytes()
+    soup = BeautifulSoup(html, "html.parser")
+    body = _california_html_section_body(
+        soup.find(id="single_law_section") or soup, preserve_tables=True
+    )
+    assert body is not None
+    return body
+
+
+def test_sb_1435_sections_keep_every_table_cell() -> None:
+    """The scope is extracted with --preserve-tables: bodies equal a table-preserving
+    re-extraction of the retained bytes, and R&TC 17052(b) keeps both columns and
+    every row label of both tables."""
+    for section in SECTIONS:
+        assert _body(VERSION, section) == _table_body(VERSION, section)
+    lines = _body(VERSION, "17052").splitlines()
+    for row in (
+        "No qualifying children | 7.65% | 7.65%",
+        "1 qualifying child | 34% | 34%",
+        "2 qualifying children | 40% | 40%",
+        "3 or more qualifying children | 45% | 45%",
+        "No qualifying children | $3,290 | $3,290",
+        "1 qualifying child | $4,940 | $4,940",
+        "2 or more qualifying children | $6,935 | $6,935",
+    ):
+        assert row in lines
+
+
 def test_sb_1435_sections_retain_official_leginfo_bytes() -> None:
     inventory = json.loads((CORPUS_ROOT / f"inventory/us-ca/statute/{VERSION}.json").read_text())
     items = {item["citation_path"]: item for item in inventory["items"]}
@@ -104,7 +141,9 @@ def _paragraph_number(line: str) -> int:
 
 def test_sb_1435_sections_differ_from_the_chapter_scope_only_as_amended() -> None:
     for sec, section in enumerate(SECTIONS, start=1):
-        old = _body(CHAPTER_VERSION, section).splitlines()
+        # The chapter scope was extracted before --preserve-tables existed, so
+        # compare table-preserving re-extractions of both scopes' retained bytes.
+        old = _table_body(CHAPTER_VERSION, section).splitlines()
         new = _body(VERSION, section).splitlines()
         assert "Stats. 2026, Ch. 236" not in old[-1]
         assert new[-1] == SB_1435_HISTORY.format(sec=sec)

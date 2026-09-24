@@ -2368,8 +2368,14 @@ def extract_california_code_sections(
     request_delay_seconds: float = 0.25,
     timeout_seconds: float = 60.0,
     request_attempts: int = 3,
+    preserve_tables: bool = False,
 ) -> StateStatuteExtractReport:
-    """Snapshot selected official California Legislative Counsel code sections."""
+    """Snapshot selected official California Legislative Counsel code sections.
+
+    ``preserve_tables`` keeps every table cell and row label (see
+    ``_california_html_section_body``); it defaults to False so rerunning an
+    existing scope reproduces its output under the same version.
+    """
     jurisdiction = "us-ca"
     selected = tuple(dict.fromkeys(_california_section_spec(section) for section in sections))
     if not selected:
@@ -2413,6 +2419,7 @@ def extract_california_code_sections(
             section=section_num,
             html_bytes=html_bytes,
             content_sha256=html_sha,
+            preserve_tables=preserve_tables,
         )
         if section.citation_path in seen_citation_paths:
             continue
@@ -5229,10 +5236,11 @@ def _california_section_from_html(
     section: str,
     html_bytes: bytes,
     content_sha256: str,
+    preserve_tables: bool = False,
 ) -> _CaliforniaSection:
     soup = BeautifulSoup(html_bytes, "html.parser")
     section_node = soup.find(id="single_law_section")
-    body = _california_html_section_body(section_node or soup)
+    body = _california_html_section_body(section_node or soup, preserve_tables=preserve_tables)
     heading = _california_html_section_heading(section_node or soup, section=section)
     source_id = _california_html_source_id(html_bytes)
     html_text = html_bytes.decode("utf-8", errors="replace")
@@ -5403,9 +5411,21 @@ def _resolve_california_multiple_section_html(
     return selected or html_bytes
 
 
-def _california_html_section_body(root: Tag | BeautifulSoup) -> str | None:
+def _california_html_section_body(
+    root: Tag | BeautifulSoup, *, preserve_tables: bool = False
+) -> str | None:
+    """Return a LegInfo section's text, one block per line.
+
+    By default, paragraph and italic blocks are collected and repeated block text
+    is dropped, which is how existing scopes were extracted. With
+    ``preserve_tables`` every table row becomes one ``cell | cell`` line in reading
+    order and no block is dropped for repeating earlier text, so tables whose cells
+    or row labels repeat (R&TC 17052(b)) keep every value.
+    """
     section_div = _california_html_current_section_div(root)
     search_root: Tag | BeautifulSoup = section_div or root
+    if preserve_tables:
+        return _california_html_section_body_with_tables(search_root)
     blocks: list[str] = []
     for elem in search_root.find_all(["p", "i"]):
         text = _clean_text(elem.get_text(" ", strip=True))
@@ -5415,6 +5435,34 @@ def _california_html_section_body(root: Tag | BeautifulSoup) -> str | None:
         return "\n".join(dict.fromkeys(blocks)).strip() or None
     text = _clean_multiline_text(search_root.get_text("\n", strip=True))
     return text or None
+
+
+def _california_html_section_body_with_tables(search_root: Tag | BeautifulSoup) -> str | None:
+    blocks: list[str] = []
+    for elem in search_root.find_all(["p", "i", "table"]):
+        if elem.name == "table":
+            if elem.find_parent("table") is not None:
+                continue
+            for row in elem.find_all("tr"):
+                if row.find_parent("table") is not elem:
+                    continue
+                cells = [
+                    _clean_text(cell.get_text(" ", strip=True))
+                    for cell in row.find_all(["td", "th"])
+                    if cell.find_parent("tr") is row
+                ]
+                line = " | ".join(cell for cell in cells if cell)
+                if line:
+                    blocks.append(line)
+            continue
+        if elem.find_parent("table") is not None:
+            continue
+        if elem.name == "i" and elem.find_parent("p") is not None:
+            continue
+        text = _clean_text(elem.get_text(" ", strip=True))
+        if text:
+            blocks.append(text)
+    return "\n".join(blocks).strip() or None
 
 
 def _california_html_section_heading(
