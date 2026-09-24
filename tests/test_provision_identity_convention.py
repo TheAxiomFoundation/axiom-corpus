@@ -31,6 +31,7 @@ from pathlib import Path
 from uuid import NAMESPACE_URL, uuid5
 
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from tests.corpus_scan import corpus_scan
 
 PROVISIONS_ROOT = Path(__file__).resolve().parents[1] / "data" / "corpus" / "provisions"
 
@@ -40,6 +41,7 @@ def _prefixless_id(citation_path: str) -> str:
     return str(uuid5(NAMESPACE_URL, citation_path))
 
 
+@corpus_scan
 def test_committed_provision_ids_follow_the_identity_convention():
     offenders: dict[str, int] = {}
     for path in sorted(PROVISIONS_ROOT.rglob("*.jsonl")):

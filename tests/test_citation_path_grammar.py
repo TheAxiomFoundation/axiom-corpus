@@ -21,9 +21,17 @@ from uuid import NAMESPACE_URL, uuid5
 
 import pytest
 
+from tests.corpus_scan import corpus_scan
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "citation-path.v1.json"
 PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
+
+# The module-scoped `result` fixture parses the whole corpus, and pytest-timeout
+# charges that setup to whichever test first requests it; under CI's flat 60 s it
+# errored all eight corpus tests (axiom-corpus#736). The corpus-sized budget
+# therefore covers the whole module, including its fast tmp_path tests.
+pytestmark = corpus_scan
 
 _spec = importlib.util.spec_from_file_location(
     "validate_citation_paths", REPO_ROOT / "scripts" / "validate_citation_paths.py"

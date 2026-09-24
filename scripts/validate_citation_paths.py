@@ -45,14 +45,20 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "citation-path.v1.json"
 DEFAULT_PROVISIONS = REPO_ROOT / "data" / "corpus" / "provisions"
 
+_BLOCK_N = re.compile(r"/block-\d+")
+_PAGE_N = re.compile(r"/page-\d+")
+_TRUNCATED_SEGMENT_END = re.compile(r"[ \-–]$")
+
 # Irregular-family membership predicates, keyed to known_irregulars_ratchet.
+# They run over every unique path (426k at 2026-09-24), so the patterns are
+# precompiled and the per-character/per-segment scans go through map().
 IRREGULAR_PREDICATES: dict[str, Callable[[str], bool]] = {
-    "block_n": lambda p: bool(re.search(r"/block-\d+", p)),
-    "page_n": lambda p: bool(re.search(r"/page-\d+", p)),
+    "block_n": lambda p: bool(_BLOCK_N.search(p)),
+    "page_n": lambda p: bool(_PAGE_N.search(p)),
     "space_segments": lambda p: " " in p,
     "endash_segments": lambda p: "–" in p,
-    "uppercase_segments": lambda p: any(c.isupper() for c in p),
-    "truncated_segments": lambda p: any(bool(re.search(r"[ \-–]$", s)) for s in p.split("/")),
+    "uppercase_segments": lambda p: any(map(str.isupper, p)),
+    "truncated_segments": lambda p: any(map(_TRUNCATED_SEGMENT_END.search, p.split("/"))),
     "collection_roots": lambda p: len(p.split("/")) == 2,
 }
 
@@ -71,6 +77,13 @@ def versioned_id(version: str | None, citation_path: str) -> str | None:
     return str(uuid5(NAMESPACE_URL, identity))
 
 
+# The only record fields validate() reads. Every line is still fully parsed, but
+# only these are retained. Keeping whole rows (provision bodies included) made the
+# scan peak at ~6 GB RSS on the 2.3 GB corpus (macOS, 2026-09-24); with slim
+# records the whole scan peaks at ~0.45 GB.
+RECORD_FIELDS = ("citation_path", "jurisdiction", "document_class", "id", "version")
+
+
 def load_records(provisions_dir: Path) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     pattern = str(provisions_dir / "**" / "*.jsonl")
@@ -87,8 +100,7 @@ def load_records(provisions_dir: Path) -> list[dict[str, Any]]:
                     continue
                 if "citation_path" not in obj:
                     continue
-                obj["_file"] = filename
-                records.append(obj)
+                records.append({field: obj[field] for field in RECORD_FIELDS if field in obj})
     return records
 
 

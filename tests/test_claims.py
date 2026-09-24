@@ -8,6 +8,8 @@ from typing import Any
 
 import pytest
 
+from tests.corpus_scan import corpus_scan
+
 ROOT = Path(__file__).resolve().parents[1]
 CLAIMS_ROOT = ROOT / "claims"
 PROVISIONS_ROOT = ROOT / "data" / "corpus" / "provisions"
@@ -95,6 +97,7 @@ def test_claim_subjects_use_legal_or_rulespec_pointers() -> None:
     assert invalid == []
 
 
+@corpus_scan
 def test_every_evidence_span_reextracts_to_its_selector() -> None:
     """Every claim evidence item carries a span anchor that re-extracts exactly.
 
