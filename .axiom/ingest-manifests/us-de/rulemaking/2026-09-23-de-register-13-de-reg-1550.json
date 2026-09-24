@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550.json",
-      "sha256": "d64efbba6195721dbed5539ddc2379e41474622e4deca4af1a27db1765ef2cff"
+      "sha256": "e79b7ebda583354e768fbeb7c0e43df5ec19d3d6b612c24f014f221717b3fa4f"
     },
     {
       "path": "data/corpus/provisions/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550.jsonl",
-      "sha256": "5e40f3b6f7a58679350b6eeb1906e1c2833f2a1353dd26f61140dbc1b9fa15cf"
+      "sha256": "902d98faac6c5a4e577f963b3abf7859909eecf24d73f8465bad410b9d634612"
     },
     {
       "path": "data/corpus/sources/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550/official-documents/de-register-13-de-reg-1550.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "202ff015237e56ca2ee32f45f2324b99b803b547",
+    "commit": "4e4bae5263825923a1cbd97327f6b5fcb908bc54",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 24
   },
   "document_class": "rulemaking",
-  "generated_at": "2026-09-24T03:50:25.758518+00:00",
+  "generated_at": "2026-09-24T18:36:48.291944+00:00",
   "jurisdiction": "us-de",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
-      "sha256": "0ed92372853cd002ba33cf92214f94c771ee1a911b1602099aa79e8304f9bd58"
+      "sha256": "4b4bfe954c8e61f2dbe8dd5a2bb82d46f5cf0d03273871078d7ee16b432d6448"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "U+E3TIPSOSbvITq9AFHB/Y3FOwn745n4bDDfzZy2GxmHt03yLhkjePXM9Kfayo6uj1aCjcC+0PujRUTbx6NgAQ=="
+    "value": "pDo4iUz/g79WaOS9dOGTwART/sdnoaIvc7ZMZUc3l/g1AsiIaH7JO/q+ny80lY3ofOD275WM9EdbrsthCzfqDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-de-register-13-de-reg-1550"
