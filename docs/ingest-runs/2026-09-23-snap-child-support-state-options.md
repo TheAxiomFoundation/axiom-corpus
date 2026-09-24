@@ -3,9 +3,9 @@
 Date: 2026-09-23 (America/New_York; the fetches ran 2026-09-24 02:58-02:59 UTC).
 Branch `ingest-snap-state-options`, cut from `origin/main` 942e138e7. On
 2026-09-24 an adversarial review found three extraction defects in the
-California and Delaware PDFs; the fixes, a merge of `origin/main` 376cd894d and
-the regenerated CA and DE artifacts are described under "Review fixes
-(2026-09-24)".
+California and Delaware PDFs; the fixes, merges of `origin/main` 376cd894d and
+233dcac58 and the regenerated CA and DE artifacts are described under "Review
+fixes (2026-09-24)".
 
 Purpose: an Axiom encoding of SNAP's child support option needs the governing
 text in the corpus. 7 CFR 273.9(c)(17) excludes legally obligated child support
@@ -311,8 +311,9 @@ unsectioned HTML and PDF bodies. The review fixes changed no citation path.
 After the merge of `origin/main` 376cd894d (which had raised `block_n` to
 75,770 for PR #734), `schema/citation-path.v1.json` sets `block_n` to 75,793
 and `page_n` to 150,647, recounted on the merged tree; no other family moves.
-With these baselines `scripts/validate_citation_paths.py` passes over 581,349
-records (430,056 unique paths). Other open ingest branches may move these
+The later merge of 233dcac58 (PR #733) needed no change. With these baselines
+`scripts/validate_citation_paths.py` passes over 581,359 records (430,064
+unique paths) on the tree merged with 233dcac58. Other open ingest branches may move these
 baselines too, so whichever merges later must recompute the counts on the
 merged tree rather than take either side of the conflict.
 
@@ -355,8 +356,8 @@ this note does not record the `guard-ingested` result; the pull request does.
 
 - Coverage is complete for all five scopes (counts above).
 - Each new citation path was checked against every provisions file of its
-  jurisdiction on the merged tree (28 for us-ca, 15 us-il, 21 us-va, 22 us-de,
-  31 us-ma): no collisions.
+  jurisdiction on the tree merged with 233dcac58 (30 for us-ca, 15 us-il, 21
+  us-va, 22 us-de, 31 us-ma): no collisions.
 - A local draft selector (the 101 `us-ca`, `us-il`, `us-va`, `us-de` and `us-ma`
   scopes of `us-rulespec-2026-09-14-wave4-r2-union` plus the five new scopes)
   passes `validate-release` with 0 errors, rerun after the review fixes. Its 541
