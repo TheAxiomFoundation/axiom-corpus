@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8518e4003fb0e03fede99ab441b836c467383a",
+    "commit": "2a82118796d980dc0d11147545b2c7fc3ac4507d",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,19 +39,19 @@
     "source_count": 5034
   },
   "document_class": "statute",
-  "generated_at": "2026-09-23T19:24:06.648528+00:00",
+  "generated_at": "2026-09-24T15:26:15.936480+00:00",
   "jurisdiction": "us-wi",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-wi-chapter-71-subunits.md",
-      "sha256": "0c9ab3d38218a878ef87403cd1cc3874acaef2ecdc8cf7c4df5aaf6551d11596"
+      "sha256": "24e27b5121751ad398fc1e63317ed4fd5d823856d08940519e914f0b17df93a4"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "w4QC+vAmC0ngsaPgjFfKpPYq3bAr/ZAvfw3LD5vK6Z9fkR4tyJXql+uoZw9t9vzRG6K/LODVZf850+rFSC5AAQ=="
+    "value": "2svTusqT6wRB163w8T0aOawsfEs3FlIajNewsw41p5ShUjT11zJqA5fftAk7KtlEAeuHJJkeDwgbqKQ9gUhwAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-income-tax-subunits-chapter-71"
