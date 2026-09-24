@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import csv
 import hashlib
 import importlib
@@ -5439,30 +5440,67 @@ def _california_html_section_body(
 
 def _california_html_section_body_with_tables(search_root: Tag | BeautifulSoup) -> str | None:
     blocks: list[str] = []
+    emitted_tables: set[int] = set()
     for elem in search_root.find_all(["p", "i", "table"]):
         if elem.name == "table":
-            if elem.find_parent("table") is not None:
+            if elem.find_parent("table") is not None or id(elem) in emitted_tables:
                 continue
-            for row in elem.find_all("tr"):
-                if row.find_parent("table") is not elem:
-                    continue
-                cells = [
-                    _clean_text(cell.get_text(" ", strip=True))
-                    for cell in row.find_all(["td", "th"])
-                    if cell.find_parent("tr") is row
-                ]
-                line = " | ".join(cell for cell in cells if cell)
-                if line:
-                    blocks.append(line)
+            blocks.extend(_california_html_table_rows(elem))
             continue
         if elem.find_parent("table") is not None:
             continue
         if elem.name == "i" and elem.find_parent("p") is not None:
             continue
+        tables = [table for table in elem.find_all("table") if table.find_parent("table") is None]
+        if tables:
+            # LegInfo wraps some tables in a paragraph (R&TC 17052(m)-(o)). Emit
+            # the paragraph's own text around the table rows, in reading order,
+            # and the table once.
+            blocks.extend(_california_html_block_with_tables(elem, tables))
+            emitted_tables.update(id(table) for table in tables)
+            continue
         text = _clean_text(elem.get_text(" ", strip=True))
         if text:
             blocks.append(text)
     return "\n".join(blocks).strip() or None
+
+
+def _california_html_table_rows(table: Tag) -> list[str]:
+    lines: list[str] = []
+    for row in table.find_all("tr"):
+        if row.find_parent("table") is not table:
+            continue
+        cells = [
+            _clean_text(cell.get_text(" ", strip=True))
+            for cell in row.find_all(["td", "th"])
+            if cell.find_parent("tr") is row
+        ]
+        line = " | ".join(cell for cell in cells if cell)
+        if line:
+            lines.append(line)
+    return lines
+
+
+_CALIFORNIA_TABLE_MARKER = "\x00axiom-corpus-table\x00"
+
+
+def _california_html_block_with_tables(elem: Tag, tables: list[Tag]) -> list[str]:
+    """Split a block that contains tables into its own text and each table's rows."""
+    wrapper = copy.copy(elem)
+    copied_tables = [
+        table for table in wrapper.find_all("table") if table.find_parent("table") is None
+    ]
+    for table in copied_tables:
+        table.replace_with(_CALIFORNIA_TABLE_MARKER)
+    segments = wrapper.get_text(" ", strip=True).split(_CALIFORNIA_TABLE_MARKER)
+    lines: list[str] = []
+    for index, segment in enumerate(segments):
+        text = _clean_text(segment)
+        if text:
+            lines.append(text)
+        if index < len(tables):
+            lines.extend(_california_html_table_rows(tables[index]))
+    return lines
 
 
 def _california_html_section_heading(

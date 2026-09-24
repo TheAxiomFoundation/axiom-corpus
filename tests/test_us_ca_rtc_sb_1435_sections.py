@@ -77,6 +77,29 @@ def test_sb_1435_sections_keep_every_table_cell() -> None:
         assert row in lines
 
 
+def test_sb_1435_sections_match_the_official_page_text() -> None:
+    """Source fidelity: each body's words, with the ` | ` cell separators removed,
+    are the section's visible LegInfo text minus its section-number heading, in
+    order. Nothing is dropped and nothing repeated (17052(m)-(o) wrap tables in
+    paragraphs)."""
+    from bs4 import BeautifulSoup
+
+    from axiom_corpus.corpus.states import _california_html_current_section_div
+
+    for section in SECTIONS:
+        html = (
+            CORPUS_ROOT
+            / f"sources/us-ca/statute/{VERSION}/california-leginfo-sections/RTC-{section}.html"
+        ).read_bytes()
+        section_div = _california_html_current_section_div(BeautifulSoup(html, "html.parser"))
+        assert section_div is not None
+        heading = section_div.find("h6")
+        assert heading is not None
+        heading.decompose()
+        expected = section_div.get_text(" ", strip=True).split()
+        assert _body(VERSION, section).replace(" | ", " ").split() == expected
+
+
 def test_sb_1435_sections_retain_official_leginfo_bytes() -> None:
     inventory = json.loads((CORPUS_ROOT / f"inventory/us-ca/statute/{VERSION}.json").read_text())
     items = {item["citation_path"]: item for item in inventory["items"]}

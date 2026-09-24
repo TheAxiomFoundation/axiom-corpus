@@ -1695,6 +1695,40 @@ def test_california_section_body_default_keeps_legacy_block_dedup():
     assert "No qualifying children | $3,290 | $3,290" not in lines
 
 
+def test_california_section_body_preserve_tables_emits_wrapped_table_once():
+    """LegInfo wraps some tables in a paragraph (R&TC 17052(m)-(o)); the table's rows
+    appear once, between the paragraph's own text before and after it."""
+    from bs4 import BeautifulSoup
+
+    from axiom_corpus.corpus.states import _california_html_section_body
+
+    soup = BeautifulSoup(
+        """
+        <div id="single_law_section"><div>
+          <h6><b>17052.  </b></h6>
+          <p>(m) (1) The amounts are:
+            <table frame="void">
+              <tr><td><p>Credit</p></td><td><p>$255</p></td></tr>
+              <tr><td><p>Credit</p></td><td><p>$255</p></td></tr>
+            </table>
+          as adjusted.</p>
+          <p>(2) Next paragraph.</p>
+        </div></div>
+        """,
+        "html.parser",
+    )
+    body = _california_html_section_body(soup.find(id="single_law_section"), preserve_tables=True)
+
+    assert body is not None
+    assert body.splitlines() == [
+        "(m) (1) The amounts are:",
+        "Credit | $255",
+        "Credit | $255",
+        "as adjusted.",
+        "(2) Next paragraph.",
+    ]
+
+
 def test_extract_california_code_sections_cli_preserve_tables(tmp_path, capsys):
     download_dir = tmp_path / "downloads"
     html_path = download_dir / "california-leginfo-sections" / "RTC-17052.html"
