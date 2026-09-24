@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-23-tax-statute-policybench-title-26.json",
+      "sha256": "ab6d043d92d607f9ef915f9c055d7a09f7e56b643720ba7b33a4ac537ee1841b"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-23-tax-statute-policybench-title-26.json",
+      "sha256": "5b8e604c486d06bb988dbbc76657a68e205b82251fecaf121921174720cccc39"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-23-tax-statute-policybench-title-26.jsonl",
+      "sha256": "dacc73532cdce0b891ea02dd56ec91f9d6d2bfa965d250ba51ea0d565a704833"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-23-tax-statute-policybench-title-26/olrc/xml_usc26@119-103.zip",
+      "sha256": "285b9862808f26055c3eed16c2aca1d8de1fae96b581f44a55cfedb907a46eff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "548e1c680621121fdb214e7afbefb2ba31451263",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-09-23-tax-statute-policybench --source-zip data/corpus/sources/us/statute/2026-09-13-tax-statute-closure-31-title-26/olrc/xml_usc26@119-103.zip --title 26 --source-as-of 2026-09-02 --expression-date 2026-09-02 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc26@119-103.zip --section 662 --section 852 --section 402A && python scripts/self_contain_usc_scope.py --base data/corpus --version 2026-09-23-tax-statute-policybench-title-26 (run note: docs/ingest-runs/2026-09-23-tax-statute-policybench.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 298,
+    "missing_count": 0,
+    "provision_count": 298,
+    "source_count": 298
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-23T19:23:31.064688+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nnLk/vxQJ0pW4fi6LEETFeGR0CoilGW+yaDk4xHXsH5D59fa24ufsxKfowk/ZoMAMJdUAdrKx661CzYqU3NaBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-tax-statute-policybench-title-26"
+}
