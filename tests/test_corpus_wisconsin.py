@@ -303,8 +303,12 @@ def test_parse_wisconsin_chapter_page_can_skip_subunits():
         SUBUNIT_CHAPTER_HTML, include_subunits=False, **kwargs
     )
 
+    _subchapters, default = parse_wisconsin_chapter_page(SUBUNIT_CHAPTER_HTML, **kwargs)
+
     assert all(section.subunits for section in full)
     assert all(not section.subunits for section in bare)
+    # Subunits are opt-in: without the flag the parser stays at section grain.
+    assert default == bare
     assert [(section.label, section.lines, section.references_to) for section in bare] == [
         (section.label, section.lines, section.references_to) for section in full
     ]
@@ -379,6 +383,28 @@ def test_extract_wisconsin_statutes_can_stay_at_section_grain(tmp_path):
         source_dir=source_dir,
         only_title="71",
         include_subunits=False,
+    )
+
+    assert report.coverage.complete is True
+    assert [record.citation_path for record in load_provisions(report.provisions_path)] == [
+        "us-wi/statute/chapter-71",
+        "us-wi/statute/chapter-71/subchapter-i",
+        "us-wi/statute/71.01",
+        "us-wi/statute/71.05",
+    ]
+
+
+def test_extract_wisconsin_statutes_defaults_to_section_grain(tmp_path):
+    """Subunit emission is opt-in, so existing scopes rerun unchanged."""
+    source_dir = tmp_path / "source"
+    _write_chapter_sources(source_dir, SUBUNIT_CHAPTER_HTML)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_wisconsin_statutes(
+        store,
+        version="2026-09-23",
+        source_dir=source_dir,
+        only_title="71",
     )
 
     assert report.coverage.complete is True
