@@ -122,6 +122,10 @@ addopts = "-m 'not integration'"
 markers = [
     "integration: marks tests as requiring external API access (deselect with '-m \"not integration\"')",
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    # Registered so runs without pytest-timeout (not in the `dev` extra) do not
+    # warn. CI installs the plugin and passes --timeout=60; a `timeout` marker on a
+    # test overrides that value (see tests/corpus_scan.py).
+    "timeout(seconds): per-test pytest-timeout limit overriding --timeout",
 ]
 
 [tool.towncrier]
