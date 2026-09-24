@@ -40,11 +40,39 @@ Scope:
   and matches it word for word.
 
 Re-extraction check:
-- NSF 26-506 and Chapter II were first extracted on 2026-08-30. Today's text
-  was compared sentence by sentence with that extraction. The only differences
-  are navigation, table-of-contents, and "Document History" strings that the
-  narrowed selectors in this manifest deliberately drop; no source sentence
-  changed.
+- NSF 26-506 and Chapter II were first extracted on 2026-08-30 into a local,
+  untracked scratch corpus (`provisions/us/guidance/2026-08-30.jsonl`,
+  sha256 `cfce731cb1060a887b2e928290480035c7e6c8ca16ca9953f1ea4a6a5f7bfa63`),
+  before this manifest's selectors were narrowed. That file is not in the
+  repository, so this check is recorded evidence, not something a reviewer can
+  re-run from the tree.
+- Method: for each document, concatenate every row's heading and body in
+  ordinal order, normalize whitespace, and diff the two strings
+  (`difflib.SequenceMatcher`, no autojunk).
+- Result: each document differs by exactly one deleted span and nothing else.
+  Chapter II loses its table-of-contents text (the accordion the drop selector
+  removes); 26-506 loses the "Document History / Posted: February 19, 2026 /
+  Replaces: NSF 24-606 / Create a PDF" box (`.document-info` and `.print`).
+  No source sentence was added, removed, or changed.
+
+Known extractor limitation (pre-existing, not introduced here):
+- The generic official-document extractor keeps a heading only when body text
+  follows it before the next heading. A heading followed directly by a
+  sub-heading is dropped from the provisions and inventory; its descendants'
+  paragraphs are kept but attach to the chapter, so that section identity
+  survives only in the source snapshot.
+- In this scope that drops 10 headings: Chapter II "A. Conformance with
+  Instructions for Proposal Preparation", "B. NSF Disclosure Requirements",
+  "D. Proposal Contents", "d. Project Description (including Results from
+  Prior NSF Support)", "h. Senior/Key Personnel Documents", and "E. Special
+  Processing Instructions"; Chapter III "2. Process to Appeal NSF's Decision to
+  Decline a Proposal for Financial or Administrative Reasons" (III.F.2); and
+  26-506 "Summary Of Program Requirements", "V. Proposal Preparation And
+  Submission Instructions", and "VII. Award Administration Information".
+- III.C (`chapter-iii/block-4`) has its own heading and body and is
+  unaffected. Fixing the extractor would change block numbering or parentage
+  for every official-document scope, so it belongs in a separate extractor
+  change, not a source addition.
 
 Generated artifact:
 - Command:
