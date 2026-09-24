@@ -6,7 +6,7 @@ documents:
     title: "NSF 26-506: Pathways to Enable Secure Open-Source Ecosystems (PESOSE)"
     source_url: https://www.nsf.gov/funding/opportunities/pesose-pathways-enable-secure-open-source-ecosystems/nsf26-506/solicitation
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-24"
     expression_date: "2026-02-19"
     extraction:
       html_content_selector: ".solicitation__content"
@@ -27,7 +27,7 @@ documents:
     title: "PAPPG 24-1 Chapter II: Proposal Preparation Instructions"
     source_url: https://www.nsf.gov/policies/pappg/24-1/ch-2-proposal-preparation
     source_format: html
-    source_as_of: "2026-08-30"
+    source_as_of: "2026-09-24"
     expression_date: "2024-05-20"
     extraction:
       html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
@@ -40,3 +40,23 @@ documents:
       source_authority: U.S. National Science Foundation
       document_subtype: proposal_policy
       document_number: NSF 24-1 Chapter II
+  - source_id: nsf-pappg-24-1-chapter-iii
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/nsf/pappg/24-1/chapter-iii
+    title: "PAPPG 24-1 Chapter III: NSF Proposal Processing and Review"
+    source_url: https://www.nsf.gov/policies/pappg/24-1/ch-3-proposal-processing-review
+    source_format: html
+    source_as_of: "2026-09-24"
+    expression_date: "2024-05-20"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".layout__region--main > .block-inline-blockcomponent-accordion"
+        - ".region-sidebar-first"
+        - ".print"
+    metadata:
+      primary_source: true
+      source_authority: U.S. National Science Foundation
+      document_subtype: proposal_policy
+      document_number: NSF 24-1 Chapter III

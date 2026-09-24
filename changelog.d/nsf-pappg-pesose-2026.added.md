@@ -1,1 +1,1 @@
-Add official NSF PESOSE and PAPPG Chapter II source manifests for proposal-compliance encoding.
+Add official NSF PESOSE (NSF 26-506) and PAPPG 24-1 Chapter II and Chapter III source manifests and the extracted `2026-09-24-nsf-pappg-pesose` guidance scope for proposal-compliance encoding, including Chapter III.C Proposal File Updates.
