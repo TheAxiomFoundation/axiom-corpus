@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31.json",
-      "sha256": "56fcf3cf1511934eb1b5c26e00d1a3548a86820e090a5bb7aca99e51c2a117a6"
+      "sha256": "0478b3be9e49eee764df6d85d6e891e21f457a5693c75163a41326cc7ec5f2c3"
     },
     {
       "path": "data/corpus/provisions/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31.jsonl",
-      "sha256": "24a84a05a9c6cf6b8e3fb275663ad23dc8191ede6a51f23d4c6e092ab755d36e"
+      "sha256": "a688f9935575eb87f3428d68fdd50b7857d6427ff96449a99aeebe616220ea4c"
     },
     {
       "path": "data/corpus/sources/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31/official-documents/ca-cdss-acl-2006-06-31.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "202ff015237e56ca2ee32f45f2324b99b803b547",
+    "commit": "68597d59840b5e4c563536113b45dc7d852211f3",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 32
   },
   "document_class": "guidance",
-  "generated_at": "2026-09-24T03:50:23.226862+00:00",
+  "generated_at": "2026-09-24T18:36:45.043663+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
-      "sha256": "0ed92372853cd002ba33cf92214f94c771ee1a911b1602099aa79e8304f9bd58"
+      "sha256": "4b4bfe954c8e61f2dbe8dd5a2bb82d46f5cf0d03273871078d7ee16b432d6448"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "wLEXVWihXdVQAM4Folfsxt1IcXdEujTgVey33nSJKnN5ch14aUaQcbZrYqcQPyUxw2ucAmmxYFA5XKccwapnBA=="
+    "value": "n4sS8TOwkMPZcoarIxxf89bNOKlKIUuK+eSON/Ny2WatRx0oBovE4sZySyZNqY+BEJNu6Oy+C7rASR7N9MqpCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-ca-cdss-acl-06-31"
