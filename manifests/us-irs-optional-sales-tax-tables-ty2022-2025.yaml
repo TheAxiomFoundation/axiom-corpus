@@ -1,0 +1,802 @@
+# IRS Optional State and Local Sales Tax Tables, tax years 2022-2025, from the
+# official Instructions for Schedule A (Form 1040) PDFs (irs.gov/pub/irs-prior).
+# These are the tables prescribed by the Secretary under 26 U.S.C.
+# 164(b)(5)(H). Each year's PDF is captured as four single_block slices with
+# page_windows: the line 5a instructions (with the State and Local General
+# Sales Tax Deduction Worksheet), the state table, the local-table selector,
+# and the local tables. Every slice of a year fetches the same URL.
+#
+# Text order: the table slices use `sort_text: true`, which keeps each printed
+# table row on one line. The line 5a instructions and the local-table selector
+# use the PDF content-stream order: on the two-column instruction pages a
+# position sort interleaves the columns, and on the TY2022 selector page it
+# runs the South Carolina county lists together.
+#
+# Text layer: bodies were extracted with PyMuPDF 1.26.7 (the uv.lock pin).
+# See docs/ingest-runs/2026-09-24-irs-optional-sales-tax-tables.md.
+documents:
+- source_id: irs-i1040sca-ty2022-line-5a-general-sales-taxes
+  jurisdiction: us
+  document_class: form
+  title: '2022 Instructions for Schedule A (Form 1040), line 5a: state and local income or
+    general sales taxes, including the State and Local General Sales Tax Deduction Worksheet
+    and its instructions'
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i1040sca-line-5a-general-sales-taxes
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 3
+      end_page: 7
+      start_at_pattern: ^Line 5a$
+      stop_at_pattern: ^Line 5b$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 7fab0861b94e075f9e60f8b8c9e23b234e5b0dccae37b7025847e9806e3e8f08
+    source_bytes: '688971'
+    pdf_last_modified: '2023-01-04'
+    pdf_modification_date: '2023-01-03'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2022'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 3-7
+    document_subtype: instructions
+- source_id: irs-i1040sca-ty2022-optional-state-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2022 Optional State Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i1040sca-optional-state-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 13
+      end_page: 16
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 7fab0861b94e075f9e60f8b8c9e23b234e5b0dccae37b7025847e9806e3e8f08
+    source_bytes: '688971'
+    pdf_last_modified: '2023-01-04'
+    pdf_modification_date: '2023-01-03'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2022'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 13-16
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2022 Optional State Sales Tax Tables
+    table_lookup_input: Income (adjusted gross income plus nontaxable items, as the instructions
+      define it) and family size (1, 2, 3, 4, 5, Over 5).
+    table_columns: At least; But less than; then the state general sales tax amount for family
+      size 1, 2, 3, 4, 5 and Over 5.
+    table_row_layout: States are printed three to a block (Wyoming alone in the last block).
+      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
+      states; each of the block's 19 income rows prints the two income bounds followed by
+      6 values per state, in the header's state order.
+    table_jurisdiction_count: '46'
+    table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
+      MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
+    table_rows_per_jurisdiction: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
+    table_footnotes_used: 1 2 3 4 5 6
+    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
+      2. Follow the instructions on the next page to determine your local sales tax deduction.
+      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
+      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
+      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax.
+- source_id: irs-i1040sca-ty2022-optional-local-sales-tax-table-selector
+  jurisdiction: us
+  document_class: form
+  title: 2022 Which Optional Local Sales Tax Table Should I Use? (Instructions for Schedule
+    A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i1040sca-optional-local-sales-tax-table-selector
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 17
+      end_page: 17
+      start_at_pattern: ^Which Optional Local Sales Tax Table Should I Use\?
+      stop_at_pattern: ^2022 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 7fab0861b94e075f9e60f8b8c9e23b234e5b0dccae37b7025847e9806e3e8f08
+    source_bytes: '688971'
+    pdf_last_modified: '2023-01-04'
+    pdf_modification_date: '2023-01-03'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2022'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '17'
+    document_subtype: instructions_table
+- source_id: irs-i1040sca-ty2022-optional-local-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2022 Optional Local Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i1040sca-optional-local-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 17
+      end_page: 17
+      start_at_pattern: ^2022 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 7fab0861b94e075f9e60f8b8c9e23b234e5b0dccae37b7025847e9806e3e8f08
+    source_bytes: '688971'
+    pdf_last_modified: '2023-01-04'
+    pdf_modification_date: '2023-01-03'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2022'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '17'
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2022 Optional Local Sales Tax Tables
+    table_base_local_rate: 1%
+    table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
+      base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
+    table_rows: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_note: Local Table D is just 25% of the NY State table.
+- source_id: irs-i1040sca-ty2023-line-5a-general-sales-taxes
+  jurisdiction: us
+  document_class: form
+  title: '2023 Instructions for Schedule A (Form 1040), line 5a: state and local income or
+    general sales taxes, including the State and Local General Sales Tax Deduction Worksheet
+    and its instructions'
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2023-01-01'
+  citation_path: us/form/irs/ty2023/i1040sca-line-5a-general-sales-taxes
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 3
+      end_page: 7
+      start_at_pattern: ^Line 5a$
+      stop_at_pattern: ^Line 5b$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 63a8e9171defdfc6aa7380d9c4e4f168984f8a50cb4352fe7d62994fb455428e
+    source_bytes: '690626'
+    pdf_last_modified: '2024-01-06'
+    pdf_modification_date: '2024-01-04'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2023'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 3-7
+    document_subtype: instructions
+- source_id: irs-i1040sca-ty2023-optional-state-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2023 Optional State Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2023-01-01'
+  citation_path: us/form/irs/ty2023/i1040sca-optional-state-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 13
+      end_page: 16
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 63a8e9171defdfc6aa7380d9c4e4f168984f8a50cb4352fe7d62994fb455428e
+    source_bytes: '690626'
+    pdf_last_modified: '2024-01-06'
+    pdf_modification_date: '2024-01-04'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2023'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 13-16
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2023 Optional State Sales Tax Tables
+    table_lookup_input: Income (adjusted gross income plus nontaxable items, as the instructions
+      define it) and family size (1, 2, 3, 4, 5, Over 5).
+    table_columns: At least; But less than; then the state general sales tax amount for family
+      size 1, 2, 3, 4, 5 and Over 5.
+    table_row_layout: States are printed three to a block (Wyoming alone in the last block).
+      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
+      states; each of the block's 19 income rows prints the two income bounds followed by
+      6 values per state, in the header's state order.
+    table_jurisdiction_count: '46'
+    table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
+      MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
+    table_rows_per_jurisdiction: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
+    table_footnotes_used: 1 2 3 4 5 6 7
+    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
+      2. Follow the instructions on the next page to determine your local sales tax deduction.
+      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
+      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
+      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax. 7. The
+      rate decreased during 2023 so the given rate is an average for the year.
+- source_id: irs-i1040sca-ty2023-optional-local-sales-tax-table-selector
+  jurisdiction: us
+  document_class: form
+  title: 2023 Which Optional Local Sales Tax Table Should I Use? (Instructions for Schedule
+    A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2023-01-01'
+  citation_path: us/form/irs/ty2023/i1040sca-optional-local-sales-tax-table-selector
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 17
+      end_page: 17
+      start_at_pattern: ^Which Optional Local Sales Tax Table Should I Use\?
+      stop_at_pattern: ^2023 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 63a8e9171defdfc6aa7380d9c4e4f168984f8a50cb4352fe7d62994fb455428e
+    source_bytes: '690626'
+    pdf_last_modified: '2024-01-06'
+    pdf_modification_date: '2024-01-04'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2023'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '17'
+    document_subtype: instructions_table
+- source_id: irs-i1040sca-ty2023-optional-local-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2023 Optional Local Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2023-01-01'
+  citation_path: us/form/irs/ty2023/i1040sca-optional-local-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 17
+      end_page: 17
+      start_at_pattern: ^2023 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: 63a8e9171defdfc6aa7380d9c4e4f168984f8a50cb4352fe7d62994fb455428e
+    source_bytes: '690626'
+    pdf_last_modified: '2024-01-06'
+    pdf_modification_date: '2024-01-04'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2023'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '17'
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2023 Optional Local Sales Tax Tables
+    table_base_local_rate: 1%
+    table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
+      base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
+    table_rows: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_note: Local Table D is just 25% of the NY State table.
+- source_id: irs-i1040sca-ty2024-line-5a-general-sales-taxes
+  jurisdiction: us
+  document_class: form
+  title: '2024 Instructions for Schedule A (Form 1040), line 5a: state and local income or
+    general sales taxes, including the State and Local General Sales Tax Deduction Worksheet
+    and its instructions'
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/i1040sca-line-5a-general-sales-taxes
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 3
+      end_page: 6
+      start_at_pattern: ^Line 5a$
+      stop_at_pattern: ^Line 5b$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: a8d762028c317629e841e4b600a1f6d55b41a9b778bce7e07726205187d3a599
+    source_bytes: '565727'
+    pdf_last_modified: '2024-12-21'
+    pdf_modification_date: '2024-12-20'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2024'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 3-6
+    document_subtype: instructions
+- source_id: irs-i1040sca-ty2024-optional-state-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2024 Optional State Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/i1040sca-optional-state-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 12
+      end_page: 15
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: a8d762028c317629e841e4b600a1f6d55b41a9b778bce7e07726205187d3a599
+    source_bytes: '565727'
+    pdf_last_modified: '2024-12-21'
+    pdf_modification_date: '2024-12-20'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2024'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 12-15
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2024 Optional State Sales Tax Tables
+    table_lookup_input: Income (adjusted gross income plus nontaxable items, as the instructions
+      define it) and family size (1, 2, 3, 4, 5, Over 5).
+    table_columns: At least; But less than; then the state general sales tax amount for family
+      size 1, 2, 3, 4, 5 and Over 5.
+    table_row_layout: States are printed three to a block (Wyoming alone in the last block).
+      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
+      states; each of the block's 19 income rows prints the two income bounds followed by
+      6 values per state, in the header's state order.
+    table_jurisdiction_count: '46'
+    table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
+      MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
+    table_rows_per_jurisdiction: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
+    table_footnotes_used: 1 2 3 4 5 6
+    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
+      2. Follow the instructions on the next page to determine your local sales tax deduction.
+      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
+      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
+      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax.
+- source_id: irs-i1040sca-ty2024-optional-local-sales-tax-table-selector
+  jurisdiction: us
+  document_class: form
+  title: 2024 Which Optional Local Sales Tax Table Should I Use? (Instructions for Schedule
+    A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/i1040sca-optional-local-sales-tax-table-selector
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 16
+      end_page: 16
+      start_at_pattern: ^Which Optional Local Sales Tax Table Should I Use\?
+      stop_at_pattern: ^2024 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: a8d762028c317629e841e4b600a1f6d55b41a9b778bce7e07726205187d3a599
+    source_bytes: '565727'
+    pdf_last_modified: '2024-12-21'
+    pdf_modification_date: '2024-12-20'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2024'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '16'
+    document_subtype: instructions_table
+- source_id: irs-i1040sca-ty2024-optional-local-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2024 Optional Local Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/i1040sca-optional-local-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 17
+      end_page: 17
+      start_at_pattern: ^2024 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: a8d762028c317629e841e4b600a1f6d55b41a9b778bce7e07726205187d3a599
+    source_bytes: '565727'
+    pdf_last_modified: '2024-12-21'
+    pdf_modification_date: '2024-12-20'
+    pdf_page_count: '17'
+    irs_product_id: i1040sca
+    tax_year: '2024'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '17'
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2024 Optional Local Sales Tax Tables
+    table_base_local_rate: 1%
+    table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
+      base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
+    table_rows: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_note: Local Table D is just 25% of the NY State table.
+- source_id: irs-i1040sca-ty2025-line-5a-general-sales-taxes
+  jurisdiction: us
+  document_class: form
+  title: '2025 Instructions for Schedule A (Form 1040), line 5a: state and local income or
+    general sales taxes, including the State and Local General Sales Tax Deduction Worksheet
+    and its instructions'
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sca-line-5a-general-sales-taxes
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 3
+      end_page: 6
+      start_at_pattern: ^Line 5a$
+      stop_at_pattern: ^Line 5b$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: b0999b12d9dc4b13868501a9c1879011c00d2fc035f13a1391251d355a6242c8
+    source_bytes: '594250'
+    pdf_last_modified: '2025-12-18'
+    pdf_modification_date: '2025-12-18'
+    pdf_page_count: '18'
+    irs_product_id: i1040sca
+    tax_year: '2025'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 3-6
+    document_subtype: instructions
+- source_id: irs-i1040sca-ty2025-optional-state-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2025 Optional State Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sca-optional-state-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 13
+      end_page: 17
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: b0999b12d9dc4b13868501a9c1879011c00d2fc035f13a1391251d355a6242c8
+    source_bytes: '594250'
+    pdf_last_modified: '2025-12-18'
+    pdf_modification_date: '2025-12-18'
+    pdf_page_count: '18'
+    irs_product_id: i1040sca
+    tax_year: '2025'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: 13-17
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2025 Optional State Sales Tax Tables
+    table_lookup_input: Income (adjusted gross income plus nontaxable items, as the instructions
+      define it) and family size (1, 2, 3, 4, 5, Over 5).
+    table_columns: At least; But less than; then the state general sales tax amount for family
+      size 1, 2, 3, 4, 5 and Over 5.
+    table_row_layout: States are printed three to a block (Wyoming alone in the last block).
+      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
+      states; each of the block's 19 income rows prints the two income bounds followed by
+      6 values per state, in the header's state order.
+    table_jurisdiction_count: '46'
+    table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
+      MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
+    table_rows_per_jurisdiction: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_no_state_sales_tax: AK DE MT NH OR (no column; Alaska appears only in a note)
+    table_footnotes_used: 1 2 3 4 5 6
+    table_footnote_legend: 1. Use the Ratio Method to determine your local sales tax deduction.
+      2. Follow the instructions on the next page to determine your local sales tax deduction.
+      3. The California table includes the 1.25% uniform local sales tax rate. 4. This state
+      does not have a local general sales tax. 5. The Nevada table includes the 2.25% uniform
+      local sales tax rate. 6. The 4.0% rate for Hawaii is actually an excise tax.
+- source_id: irs-i1040sca-ty2025-optional-local-sales-tax-table-selector
+  jurisdiction: us
+  document_class: form
+  title: 2025 Which Optional Local Sales Tax Table Should I Use? (Instructions for Schedule
+    A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sca-optional-local-sales-tax-table-selector
+  extraction:
+    segmentation: single_block
+    page_windows:
+    - start_page: 18
+      end_page: 18
+      start_at_pattern: ^Which Optional Local Sales Tax Table Should I Use\?
+      stop_at_pattern: ^2025 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: b0999b12d9dc4b13868501a9c1879011c00d2fc035f13a1391251d355a6242c8
+    source_bytes: '594250'
+    pdf_last_modified: '2025-12-18'
+    pdf_modification_date: '2025-12-18'
+    pdf_page_count: '18'
+    irs_product_id: i1040sca
+    tax_year: '2025'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '18'
+    document_subtype: instructions_table
+- source_id: irs-i1040sca-ty2025-optional-local-sales-tax-tables
+  jurisdiction: us
+  document_class: form
+  title: 2025 Optional Local Sales Tax Tables (Instructions for Schedule A (Form 1040))
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sca-optional-local-sales-tax-tables
+  extraction:
+    segmentation: single_block
+    sort_text: true
+    page_windows:
+    - start_page: 18
+      end_page: 18
+      start_at_pattern: ^2025 Optional Local Sales Tax Tables$
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    source_sha256: b0999b12d9dc4b13868501a9c1879011c00d2fc035f13a1391251d355a6242c8
+    source_bytes: '594250'
+    pdf_last_modified: '2025-12-18'
+    pdf_modification_date: '2025-12-18'
+    pdf_page_count: '18'
+    irs_product_id: i1040sca
+    tax_year: '2025'
+    form: Schedule A (Form 1040)
+    program: individual_income_tax
+    source_status: official_prior_year_instructions
+    text_extractor: PyMuPDF 1.26.7
+    rulespec_semantics: not_asserted
+    policyengine_parity: not_asserted
+    statutory_corpus_citation: us/statute/26/164
+    statutory_corpus_version: 2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup
+    statutory_note: 26 U.S.C. 164(b)(5)(H)(i)(II) lets the taxpayer elect to determine the
+      general sales tax deduction under tables prescribed by the Secretary for items other
+      than motor vehicles, boats, and other items specified by the Secretary; these are the
+      tables the Secretary prescribed for the tax year.
+    pdf_pages: '18'
+    document_subtype: individual_income_tax_deduction_table
+    table_title: 2025 Optional Local Sales Tax Tables
+    table_base_local_rate: 1%
+    table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
+      base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
+    table_rows: '19'
+    table_brackets: 0-20000; 20000-30000; 30000-40000; 40000-50000; 50000-60000; 60000-70000;
+      70000-80000; 80000-90000; 90000-100000; 100000-120000; 120000-140000; 140000-160000;
+      160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
+      300000 or more
+    table_note: Local Table D is just 25% of the NY State table.

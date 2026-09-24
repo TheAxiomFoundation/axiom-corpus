@@ -1,0 +1,1 @@
+Preserve the IRS Optional State and Local Sales Tax Tables for tax years 2022-2025 (the tables prescribed under 26 U.S.C. 164(b)(5)(H)) from the official Schedule A instructions: every row and column of each year's state table, Local Tables A-D and their locality selector, plus the line 5a instructions with the State and Local General Sales Tax Deduction Worksheet.
