@@ -1,6 +1,7 @@
 import json
 import subprocess
 from base64 import b64encode
+from pathlib import Path
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
@@ -3094,6 +3095,62 @@ sources:
     assert exit_code == 0
     assert payload["completed_count"] == 1
     assert payload["provisions_written"] == 1
+
+
+def test_current_wisconsin_manifest_keeps_section_grain(tmp_path, capsys, monkeypatch):
+    """The whole-state 2026-05-10 Wisconsin entry sets no include_subunits option.
+
+    Rerunning it must keep the section grain it was released with, so the
+    option defaults to False rather than emitting child rows under the same
+    version.
+    """
+    import axiom_corpus.corpus.cli as cli
+
+    manifest = Path(__file__).resolve().parents[1] / "manifests/state-statutes.current.yaml"
+    base = tmp_path / "corpus"
+    seen: dict[str, object] = {}
+
+    def fake_wisconsin(*args, **kwargs):
+        seen.update(kwargs)
+        return StateStatuteExtractReport(
+            jurisdiction="us-wi",
+            title_count=1,
+            container_count=0,
+            section_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory/us-wi/statute/2026-05-10.json",
+            provisions_path=base / "provisions/us-wi/statute/2026-05-10.jsonl",
+            coverage_path=base / "coverage/us-wi/statute/2026-05-10.json",
+            coverage=ProvisionCoverageReport(
+                jurisdiction="us-wi",
+                document_class="statute",
+                version="2026-05-10",
+                source_count=1,
+                provision_count=1,
+                matched_count=1,
+                missing_from_provisions=(),
+                extra_provisions=(),
+            ),
+            source_paths=(base / "sources/us-wi/statute/2026-05-10/chapter.html",),
+        )
+
+    monkeypatch.setattr(cli, "extract_wisconsin_statutes", fake_wisconsin)
+
+    exit_code = main(
+        [
+            "extract-state-statutes",
+            "--base",
+            str(base),
+            "--manifest",
+            str(manifest),
+            "--only-source-id",
+            "us-wi-statutes",
+        ]
+    )
+    capsys.readouterr()
+
+    assert exit_code == 0
+    assert seen["include_subunits"] is False
 
 
 def test_extract_state_statutes_batch_dry_run_checks_california_source_zip(tmp_path, capsys):

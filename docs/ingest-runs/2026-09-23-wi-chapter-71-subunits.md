@@ -66,14 +66,17 @@ heuristic split.
   `metadata.official_citation`, `metadata.section`, `metadata.section_heading`,
   subchapter fields, `references_to`, `publication_note`.
 - `extract_wisconsin_statutes(..., include_subunits=True)` emits each section's
-  children right after the section. `include_subunits=False` keeps the section
-  grain (and `parse_wisconsin_chapter_page` then skips building child units);
-  `extract-state-statutes` reads it from the manifest option
-  `include_subunits`. `manifests/state-statutes.pit-west-recovery.yaml` pins
-  `include_subunits: false` for the released section-grain scope. The
+  children right after the section. The default, `include_subunits=False`,
+  keeps the section grain (and `parse_wisconsin_chapter_page` then skips
+  building child units); `extract-state-statutes` reads it from the manifest
+  option `include_subunits`, defaulting to false. This scope's manifest,
+  `manifests/us-wi-statutes-chapter-71-subunits.yaml`, sets
+  `include_subunits: true`. `manifests/state-statutes.pit-west-recovery.yaml`
+  pins `include_subunits: false` for the released section-grain scope, and the
   whole-state entry in `manifests/state-statutes.current.yaml` (version
-  `2026-05-10`, in no release selector) takes the default, so a future rerun of
-  it emits child rows for every chapter.
+  `2026-05-10`, in no release selector) sets no option, so a rerun of it
+  reproduces its section-grain output under the same version
+  (`test_current_wisconsin_manifest_keeps_section_grain`).
 - `extract_wisconsin_publication_note` matched only the April 3, 2026
   publication. It now matches any `YYYY-YY Wisconsin Statutes updated through ...
   (Published M-D-YY)` note, falling back to `Updated through YYYY Wisconsin Act N

@@ -176,6 +176,7 @@ def test_extract_wisconsin_statutes_from_source_dir(tmp_path):
         source_as_of="2026-04-03",
         expression_date="2026-04-03",
         only_title="71",
+        include_subunits=True,
     )
 
     assert report.coverage.complete is True
@@ -232,6 +233,7 @@ def test_parse_wisconsin_chapter_page_builds_subunits_from_official_data_paths()
         SUBUNIT_CHAPTER_HTML,
         chapter=_chapter_71(),
         source=_chapter_71_source(),
+        include_subunits=True,
     )
 
     income = next(section for section in sections if section.label == "71.05")
@@ -294,7 +296,9 @@ def test_parse_wisconsin_chapter_page_builds_subunits_from_official_data_paths()
 
 def test_parse_wisconsin_chapter_page_can_skip_subunits():
     kwargs = {"chapter": _chapter_71(), "source": _chapter_71_source()}
-    _subchapters, full = parse_wisconsin_chapter_page(SUBUNIT_CHAPTER_HTML, **kwargs)
+    _subchapters, full = parse_wisconsin_chapter_page(
+        SUBUNIT_CHAPTER_HTML, include_subunits=True, **kwargs
+    )
     _subchapters, bare = parse_wisconsin_chapter_page(
         SUBUNIT_CHAPTER_HTML, include_subunits=False, **kwargs
     )
@@ -318,6 +322,7 @@ def test_extract_wisconsin_statutes_emits_subunit_records(tmp_path):
         source_as_of="2026-09-04",
         expression_date="2026-09-04",
         only_title="71",
+        include_subunits=True,
     )
 
     assert report.coverage.complete is True

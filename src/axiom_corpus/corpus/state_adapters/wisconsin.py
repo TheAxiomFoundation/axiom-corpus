@@ -328,17 +328,18 @@ def extract_wisconsin_statutes(
     timeout_seconds: float = 90.0,
     request_attempts: int = 3,
     workers: int = 8,
-    include_subunits: bool = True,
+    include_subunits: bool = False,
     include_publication_note: bool = True,
 ) -> StateStatuteExtractReport:
     """Snapshot official Wisconsin Statutes HTML and extract normalized provisions.
 
-    With ``include_subunits`` (the default) every officially numbered unit below a
-    section that the Legislature's HTML identifies (subsection, paragraph,
-    subdivision, subdivision paragraph) is also emitted as its own child provision,
-    e.g. ``us-wi/statute/71.05/6/b/54m`` for Wis. Stat. 71.05(6)(b)54m. Section
-    records are unchanged either way; ``include_subunits=False`` keeps the section
-    grain of scopes extracted before child records existed.
+    With ``include_subunits=True`` every officially numbered unit below a section
+    that the Legislature's HTML identifies (subsection, paragraph, subdivision,
+    subdivision paragraph) is also emitted as its own child provision, e.g.
+    ``us-wi/statute/71.05/6/b/54m`` for Wis. Stat. 71.05(6)(b)54m. Section records
+    are unchanged either way. The default, ``include_subunits=False``, keeps the
+    section grain, so rerunning a scope extracted before child records existed
+    reproduces its output under the same version.
 
     ``include_publication_note`` (the default) copies the TOC's official
     publication note into every row's ``metadata.publication_note``.
@@ -538,12 +539,13 @@ def parse_wisconsin_chapter_page(
     *,
     chapter: WisconsinChapterLink,
     source: WisconsinSource,
-    include_subunits: bool = True,
+    include_subunits: bool = False,
 ) -> tuple[tuple[WisconsinSubchapter, ...], tuple[_WisconsinSectionBuilder, ...]]:
     """Parse subchapters and section bodies from one official chapter HTML page.
 
-    ``include_subunits=False`` skips building the sections' numbered child units,
-    leaving each section's ``subunits`` empty; section bodies are the same either way.
+    ``include_subunits=False`` (the default) skips building the sections' numbered
+    child units, leaving each section's ``subunits`` empty; section bodies are the
+    same either way.
     """
     soup = BeautifulSoup(_html_text(html_data), "lxml")
     document = soup.find("div", id="document")
