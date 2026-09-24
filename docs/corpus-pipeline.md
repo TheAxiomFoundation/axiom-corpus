@@ -238,6 +238,26 @@ axiom-corpus-ingest extract-usc \
   --section 1786
 ```
 
+For a historical vintage, pass the prior release point's zip with
+`--prior-release-point`. Every inventory item and provision row then takes
+`--source-url` (the release point download, required with the flag) as its
+`source_url`; without the flag, rows link to the per-section reader page for
+the current preliminary edition, which displays the current text rather than
+the snapshot's. Give the vintage its own version and set `--source-as-of` and
+`--expression-date` to the release point's date, so it stays distinct from
+the current-text scope that carries the same citation paths:
+
+```bash
+axiom-corpus-ingest extract-usc \
+  --base data/corpus \
+  --version 2026-09-23-tax-statute-policybench-rp-118-209 \
+  --source-zip xml_usc26@118-209not159.zip --title 26 \
+  --source-as-of 2024-12-23 --expression-date 2024-12-23 \
+  --source-url https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/xml_usc26@118-209not159.zip \
+  --prior-release-point \
+  --section 67 --section 170
+```
+
 For a complete local US Code source directory:
 
 ```bash
