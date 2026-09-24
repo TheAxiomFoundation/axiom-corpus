@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-24-nsf-slice-title-2-part-200.json",
+      "sha256": "b2797612a139ea607b10adc034c771f0ac0a5c1c232a89abe535ec20e0f92e64"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-24-nsf-slice-title-2-part-200.json",
+      "sha256": "af5e35476bd3cd3ce8492bba4308b5630009b60525bfed00a879de54f2b1b331"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-24-nsf-slice-title-2-part-200.jsonl",
+      "sha256": "387bd96202f979f912982b7b0e7b0a55da7628a40c187b17094797263e064371"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-24-nsf-slice-title-2-part-200/ecfr/title-2-part-200.xml",
+      "sha256": "77c1392bd96c7b4b5d62d91ff120a051fc29264663e13680d0e43982eef122fe"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4b5896ee53cb274623d107dfd7b65e1ae965bf17",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-09-24-nsf-slice --as-of 2026-09-22 --expression-date 2026-09-22 --only-title 2 --only-part 200 --section 200.204 --section 200.205 --workers 1 (run note: docs/ingest-runs/2026-09-24-nsf-pappg-pesose.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-24T16:52:05.062047+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "49Ya0KBHB3RVZiyxXmd7pkGef8WkLD0PxoOG6kWdsXgOkv8+M3zXp73wmatTR+hB+IhIhUojS/5ef5iI94XqAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-24-nsf-slice-title-2-part-200"
+}
