@@ -44,11 +44,14 @@ rows. No Michigan re-take is needed.
 ## New scopes
 
 Every source was fetched by `extract-official-documents` with the corpus user
-agent, straight from the official publisher. Each retained file is the
-publisher's exact bytes: an independent `curl` download at 02:54 UTC had the
-same SHA-256 for the CA and DE PDFs, the IL and MA pages and
-22VAC40-601-70. A second run of all five manifests into a scratch base at
-02:59:36 UTC wrote byte-identical sources, inventory, provisions and coverage.
+agent, straight from the official publisher. An independent `curl` download
+(02:54-02:56 UTC) of the CA and DE PDFs, the IL and MA pages and
+22VAC40-601-70 had the same SHA-256 as the retained file in each case. A second
+run of all five manifests into a scratch base at 02:59:36 UTC wrote
+byte-identical sources, inventory, provisions and coverage. At 03:12 UTC the IL
+and MA scopes were extracted again after a wording fix to their manifests'
+`authority_role` metadata; their source bytes were unchanged and only that
+metadata field changed in their rows.
 
 | scope | citation path(s) | retained source | official URL | bytes | SHA-256 | rows |
 |---|---|---|---|---:|---|---:|
@@ -86,8 +89,9 @@ served the same bytes (same SHA-256) and is recorded as
 ### Illinois: IDHS Manual Release #23.22
 
 `manifests/us-il-dhs-mr-23-22.yaml`. Released 06/30/2023 (`expression_date`).
-It corrects PM 13-01-07, which had called the treatment a deduction, and says
-"Illinois implemented the income exclusion in June 2004" (block-2). The page
+It "corrects the policy reference to the Child Support Deduction in
+PM 13-01-07" and says "Illinois implemented the income exclusion in June 2004"
+(block-2). The page
 is part of the Cash, SNAP, and Medical Manual (breadcrumb: Manuals > Family &
 Community Services Manuals > Cash, SNAP, and Medical Manual > Manual Releases)
 and is listed on the Manual Releases index (item 12448). It therefore uses the
@@ -112,8 +116,9 @@ collection row (as in the selected
 `us-va/regulation/2026-09-14-income-tax-regulations-title-23-agency-10-chapter-110-140`
 scope, which already owns that path), and a profiled release rejects a citation
 path that two selected scopes both carry (`duplicate_release_citation` in
-`src/axiom_corpus/corpus/release_quality.py`). LIS prints the fetch date on every section page (9/23/2026), so
-a fetch on a later day will not reproduce these source hashes.
+`src/axiom_corpus/corpus/release_quality.py`). LIS prints the fetch date on
+every section page (9/23/2026), so a fetch on a later day will not reproduce
+these source hashes.
 
 ### Delaware: 13 DE Reg. 1550
 
@@ -138,10 +143,11 @@ already-selected `us-de/regulation/title-16/9000-food-stamp-program/9059`.
 
 `manifests/us-ma-dta-policy-online-snap-child-support.yaml`. The page's "Last
 Update" line reads January 5, 2023 (`expression_date`). It is DTA's
-operational policy for 106 CMR 363.230(O): legally obligated child support is
-subtracted from gross income for the gross income test, then added back and
+operational policy on child support expenses: legally obligated child support
+is subtracted from gross income for the gross income test, then added back and
 allowed as a deduction in the benefit calculation (block-2 and the worked
-example in block-3). Path follows the released
+example in block-3). The page cites 106 CMR 364.370 for the gross income test;
+the exclusion itself is codified at 106 CMR 363.230(O) (table above). Path follows the released
 `us-ma/guidance/dta/policy-online/...` DTA pages. The manifest's
 `html_content_selector` (`#rh-topic > div:has(> h1)`) keeps only the topic
 body; without it the first run produced a block for the mass.gov "official
