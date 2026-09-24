@@ -33,7 +33,7 @@ support text was found in its body. "Selected" means the scope is in
 | MI BEM 556 | `us-mi/manual/mdhhs/bridges/bem/556` | same (selected); also `2026-07-17-mi-bridges-manual` | 2025-11-01 (BPB 2025-028) | pages 4-5, line 20 "Enter monthly child support expenses" |
 | OR OAR 461-140-0266 | `us-or/regulation/chapter-461/division-140/rule-461-140-0266` | `us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461-r2026-09-14-150-316-consolidated` (selected); also `2026-09-10-tanf-state-policy-manual-chapter-461` | 2026-09-10 | "Effective January 19, 2023, in the SNAP program ..."; source is the Secretary of State OARD page, not the ODHS PDF PR #9586 links |
 | IA Employees' Manual 7-E and 7-F | `us-ia/manual/hhs/em/7-e`, `us-ia/manual/hhs/em/7-f` | `us-ia/manual/2026-07-17-ia-snap-manual` (selected) | 2026-02-13 | 7-F page 17, step 6 "Child support payment deduction" (net income) |
-| MO SNAP Manual 1115.035.20 | `us-mo/manual/dss/snap/1115-000-00/1115-035-00/1115-035-20` | `us-mo/manual/2026-05-27-mo-snap-manual-r2026-07-15-self-contained` (selected) | 2026-05-27 | "Child Support Exclusion"; the text is in its child rows `.../1115-035-20-NN/block-1` |
+| MO SNAP Manual 1115.035.20 | `us-mo/manual/dss/snap/1115-000-00/1115-035-00/1115-035-20` | `us-mo/manual/2026-05-27-mo-snap-manual-r2026-07-15-self-contained` (selected) | 2026-05-27 | "Child Support Exclusion"; the main text is in `.../1115-035-20/block-1`, and the special cases (ineligible or disqualified members, and payers whose own income is excluded) are in the child rows `.../1115-035-20-NN/block-1` |
 
 Michigan vintage check. On 2026-09-23 the live BEM 500, 554 and 556 PDFs at
 `https://mdhhs-pres-prod.michigan.gov/OLMWeb/ex/BP/Public/BEM/{500,554,556}.pdf`
@@ -46,7 +46,13 @@ rows. No Michigan re-take is needed.
 Every source was fetched by `extract-official-documents` with the corpus user
 agent, straight from the official publisher. An independent `curl` download
 (02:54-02:56 UTC) of the CA and DE PDFs, the IL and MA pages and
-22VAC40-601-70 had the same SHA-256 as the retained file in each case. A second
+22VAC40-601-70 had the same SHA-256 as the retained file in each case. The IL
+page's bytes depend on the User-Agent: the corpus user agent
+(`OFFICIAL_DOCUMENT_USER_AGENT` in `src/axiom_corpus/corpus/documents.py`) and
+curl's default both get the retained 18,059 bytes, but a browser User-Agent gets
+18,134 bytes, because the page then wraps its ASP.NET hidden fields in
+`<div class="aspNetHidden">`. A re-check on 2026-09-24 at 03:49 UTC with
+`OFFICIAL_DOCUMENT_USER_AGENT` matched the retained SHA-256. A second
 run of all five manifests into a scratch base at 02:59:36 UTC wrote
 byte-identical sources, inventory, provisions and coverage. At 03:12 UTC the IL
 and MA scopes were extracted again after a wording fix to their manifests'
@@ -147,11 +153,22 @@ operational policy on child support expenses: legally obligated child support
 is subtracted from gross income for the gross income test, then added back and
 allowed as a deduction in the benefit calculation (block-2 and the worked
 example in block-3). The page cites 106 CMR 364.370 for the gross income test;
-the exclusion itself is codified at 106 CMR 363.230(O) (table above). Path follows the released
+the exclusion itself is codified at 106 CMR 363.230(O) (table above), which
+excludes the payments "for the purpose of applying the appropriate gross income
+test". Massachusetts is therefore a hybrid: it excludes the payments for the
+gross income test only, and the benefit calculation deducts them. An encoding,
+and the follow-up to policyengine-us PR #9586 (which sets MA to the exclusion
+from 2017-01-13), should not treat MA like a state that excludes the payments
+throughout. Path follows the released
 `us-ma/guidance/dta/policy-online/...` DTA pages. The manifest's
 `html_content_selector` (`#rh-topic > div:has(> h1)`) keeps only the topic
 body; without it the first run produced a block for the mass.gov "official
-website" banner and one for the site-policy footer.
+website" banner and one for the site-policy footer. The "Last Update" line is
+inside that selector, but it is the page's final `<h3>` with no text after it,
+so the generic HTML block extractor (`_extract_html_blocks` in
+`src/axiom_corpus/corpus/documents.py`) takes it as a heading and emits no
+block for it. The date is carried by `expression_date`, `metadata.last_update`
+and `metadata.expression_date_note`, and by the retained HTML.
 
 ## Not ingested
 
@@ -177,10 +194,29 @@ website" banner and one for the site-policy footer.
 - **Wayback Machine captures** of the 106 CMR 363 PDF that PR #9586 uses to date
   363.230(O) to Mass Register Issue 1330 (2017-01-13): archived copies are a
   forbidden source. The corpus holds the current 106 CMR 363 (2024-05-01).
-- **Missouri income maintenance memos IM-54 (May 15, 2020) and IM-111
-  (October 22, 2004)**, which the selected 1115.035.20 rows cite in their
-  history lines: not fetched in this run. PR #9586 reports that the later
-  memos are no longer online.
+- **Missouri income maintenance memos** that the selected 1115.035.20 rows cite
+  in their history lines: IM-134 (December 21, 2021), IM-54 (May 15, 2020),
+  IM-34 (March 15, 2013), IM-111 (October 22, 2004) and IM-10 (February 16,
+  1999). None was fetched in this run.
+  - IM-54 and IM-134 are the May 2020 and December 2021 memos that PR #9586
+    reports are no longer online. The DSS memo index
+    (<https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/>)
+    lists income maintenance memo years 1992 to 2018 only.
+  - IM-111, IM-34 and IM-10 are online and linked from that index (HTTP 200
+    with the corpus user agent on 2026-09-24):
+    <https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/memos_04/im111_04.html>,
+    <https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/memos_13/im34_13.html>
+    and
+    <https://dssmanuals.mo.gov/wp-content/themes/mogovwp_dssmanuals/public/memos/memos_99/im10_99.html>.
+    IM-111 is the cover memo for Food Stamp Manual Revision #28; it lists
+    1115.035.20 among the revised sections, which it says discuss "child
+    support deductions". PR #9586 cites it as describing a deduction.
+  - IM-34 bears on dating Missouri's election. When an ineligible or
+    disqualified member's income is prorated, it says child support paid by
+    EU members "is excluded from the household's gross income", and it
+    refers to an earlier "child support exclusion". That suggests Missouri
+    applied the exclusion by March 2013, before the 2020 or 2021 switch that
+    PR #9586 infers. Whoever dates Missouri's election should read IM-34.
 - **Virginia Register Volume 35, Issue 3**, the 2018 final regulation that
   added 22VAC40-601-70: not needed for the rule text; the section's
   historical note records it.
