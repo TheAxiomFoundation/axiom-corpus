@@ -102,9 +102,9 @@ documents:
     table_columns: At least; But less than; then the state general sales tax amount for family
       size 1, 2, 3, 4, 5 and Over 5.
     table_row_layout: States are printed three to a block (Wyoming alone in the last block).
-      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
-      states; each of the block's 19 income rows prints the two income bounds followed by
-      6 values per state, in the header's state order.
+      Each block's header line gives '<State> <footnote(s)> <rate>%' for each of its states,
+      usually after 'Income'; each of the block's 19 income rows prints the two income bounds
+      followed by 6 values per state, in the header's state order.
     table_jurisdiction_count: '46'
     table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
       MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
@@ -202,7 +202,6 @@ documents:
     pdf_pages: '17'
     document_subtype: individual_income_tax_deduction_table
     table_title: 2022 Optional Local Sales Tax Tables
-    table_base_local_rate: 1%
     table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
       base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
     table_rows: '19'
@@ -211,6 +210,9 @@ documents:
       160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
       300000 or more
     table_note: Local Table D is just 25% of the NY State table.
+    table_base_local_rate_note: This edition prints no base-rate caption. Worksheet line 6
+      multiplies the local-table amount (line 2) by the local rate entered on line 3 without
+      the percent sign.
 - source_id: irs-i1040sca-ty2023-line-5a-general-sales-taxes
   jurisdiction: us
   document_class: form
@@ -298,9 +300,9 @@ documents:
     table_columns: At least; But less than; then the state general sales tax amount for family
       size 1, 2, 3, 4, 5 and Over 5.
     table_row_layout: States are printed three to a block (Wyoming alone in the last block).
-      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
-      states; each of the block's 19 income rows prints the two income bounds followed by
-      6 values per state, in the header's state order.
+      Each block's header line gives '<State> <footnote(s)> <rate>%' for each of its states,
+      usually after 'Income'; each of the block's 19 income rows prints the two income bounds
+      followed by 6 values per state, in the header's state order.
     table_jurisdiction_count: '46'
     table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
       MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
@@ -399,7 +401,6 @@ documents:
     pdf_pages: '17'
     document_subtype: individual_income_tax_deduction_table
     table_title: 2023 Optional Local Sales Tax Tables
-    table_base_local_rate: 1%
     table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
       base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
     table_rows: '19'
@@ -408,6 +409,9 @@ documents:
       160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
       300000 or more
     table_note: Local Table D is just 25% of the NY State table.
+    table_base_local_rate_note: This edition prints no base-rate caption. Worksheet line 6
+      multiplies the local-table amount (line 2) by the local rate entered on line 3 without
+      the percent sign.
 - source_id: irs-i1040sca-ty2024-line-5a-general-sales-taxes
   jurisdiction: us
   document_class: form
@@ -495,9 +499,9 @@ documents:
     table_columns: At least; But less than; then the state general sales tax amount for family
       size 1, 2, 3, 4, 5 and Over 5.
     table_row_layout: States are printed three to a block (Wyoming alone in the last block).
-      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
-      states; each of the block's 19 income rows prints the two income bounds followed by
-      6 values per state, in the header's state order.
+      Each block's header line gives '<State> <footnote(s)> <rate>%' for each of its states,
+      usually after 'Income'; each of the block's 19 income rows prints the two income bounds
+      followed by 6 values per state, in the header's state order.
     table_jurisdiction_count: '46'
     table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
       MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
@@ -529,7 +533,6 @@ documents:
     - start_page: 16
       end_page: 16
       start_at_pattern: ^Which Optional Local Sales Tax Table Should I Use\?
-      stop_at_pattern: ^2024 Optional Local Sales Tax Tables$
   metadata:
     primary_source: true
     source_authority: Internal Revenue Service
@@ -595,7 +598,6 @@ documents:
     pdf_pages: '17'
     document_subtype: individual_income_tax_deduction_table
     table_title: 2024 Optional Local Sales Tax Tables
-    table_base_local_rate: 1%
     table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
       base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
     table_rows: '19'
@@ -604,6 +606,7 @@ documents:
       160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
       300000 or more
     table_note: Local Table D is just 25% of the NY State table.
+    table_base_local_rate: 1%
 - source_id: irs-i1040sca-ty2025-line-5a-general-sales-taxes
   jurisdiction: us
   document_class: form
@@ -691,9 +694,9 @@ documents:
     table_columns: At least; But less than; then the state general sales tax amount for family
       size 1, 2, 3, 4, 5 and Over 5.
     table_row_layout: States are printed three to a block (Wyoming alone in the last block).
-      Each block header line reads 'Income <State> <footnote(s)> <rate>%' for each of its
-      states; each of the block's 19 income rows prints the two income bounds followed by
-      6 values per state, in the header's state order.
+      Each block's header line gives '<State> <footnote(s)> <rate>%' for each of its states,
+      usually after 'Income'; each of the block's 19 income rows prints the two income bounds
+      followed by 6 values per state, in the header's state order.
     table_jurisdiction_count: '46'
     table_jurisdictions: AL AZ AR CA CO CT DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN
       MS MO NE NV NJ NM NY NC ND OH OK PA RI SC SD TN TX UT VT VA WA WV WI WY
@@ -791,7 +794,6 @@ documents:
     pdf_pages: '18'
     document_subtype: individual_income_tax_deduction_table
     table_title: 2025 Optional Local Sales Tax Tables
-    table_base_local_rate: 1%
     table_columns: At least; But less than; then, for each of Local Table A, B, C and D, the
       base local general sales tax amount for family size 1, 2, 3, 4, 5 and Over 5.
     table_rows: '19'
@@ -800,3 +802,4 @@ documents:
       160000-180000; 180000-200000; 200000-225000; 225000-250000; 250000-275000; 275000-300000;
       300000 or more
     table_note: Local Table D is just 25% of the NY State table.
+    table_base_local_rate: 1%

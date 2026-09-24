@@ -54,7 +54,12 @@ Each root carries one body-bearing child, `<root>/document-1`; coverage is
 - The selector and the local tables share one page in TY2022, TY2023 and
   TY2025. The selector window stops before the line
   `<YYYY> Optional Local Sales Tax Tables`; the local-table window starts at it.
-  Neither body carries the other's text.
+  Neither body carries the other's rows. In TY2025 the page's methodology
+  paragraph ("The optional sales tax tables have historically been
+  constructed…") appears in both: stream order puts it before the tables
+  heading and the position sort puts it after the rows. In TY2024 the selector
+  and the tables are on separate pages, so the selector window needs no stop
+  anchor.
 
 ## Extraction choices
 
@@ -64,25 +69,34 @@ records as `text_extractor`.
 - **Table slices** use `sort_text: true`, so each printed table row stays on one
   line: the two income bounds, then six values per state (three states per
   block, Wyoming alone). In stream order the same pages come out one cell per
-  line (6,130 lines for the TY2023 state table instead of 346).
+  line (6,130 body lines for the TY2023 state table instead of 346, counting
+  the blank lines between pages).
 - **Instruction and selector slices** use stream order. On the two-column
   instruction pages a position sort interleaves the columns. On the TY2022
   selector page it also runs the South Carolina county lists together
   ("County,County, ColletonLaurens County, …").
 - **Wyoming block.** The footnote legend is printed to the right of the Wyoming
-  rows. The position sort therefore puts note text after the row values on the
-  same line. In TY2025 one row (`$90,000 $100,000 573 653 706 746 779 826`)
-  follows the note text on the line that begins with row `$80,000 $90,000`. All
-  six values of every Wyoming row are present and in order.
+  rows, so the position sort puts note text on the same lines as the row
+  values. Two placements move a whole row mid-line:
+  - In TY2024 and TY2025 the `$90,000 $100,000` row follows footnote 4's text
+    on the line that begins with row `$80,000 $90,000`.
+  - In TY2022 and TY2023 the `$100,000 $120,000` row follows the first line of
+    footnote 5. In TY2022 the rate and the row's lower bound fuse into one
+    whitespace token, `4.6000%$100,000`, so a parser that splits on whitespace
+    must separate them.
+
+  All six values of every Wyoming row are present and in order.
 
 The pipeline removes and replaces no words. For every slice, the body's tokens
 equal the tokens PyMuPDF 1.26.7 returns for its page window, in the slice's
-text order. `test_slice_bodies_keep_every_pdf_token` checks this and runs only
-under PyMuPDF 1.26.7. The bodies show no ActualText substitutions: no
-"Bullet" tokens and no repeated headings. The repeated lines they do contain
-(page column headings, "Any locality that imposes a local sales tax",
-worked-example sentences) are printed more than once in the PDFs; poppler's
-`pdftotext -raw` reads the same repeats.
+text order. `test_slice_bodies_keep_every_pdf_token` checks this. It runs only
+under PyMuPDF 1.26.7, so CI, which installs a newer PyMuPDF, skips it (the FTB
+3514 scope has the same limitation); the other tests read the committed bodies
+and run under any version. None of the four PDFs contains `/ActualText`, and
+the bodies have no "Bullet" tokens. The repeated lines they do contain (page
+column headings, "Any locality that imposes a local sales tax", worked-example
+sentences) are printed more than once in the PDFs, at distinct positions, and
+poppler's `pdftotext -raw` also reads each repeat.
 
 ## Fidelity checks
 
@@ -96,14 +110,16 @@ The table cells were parsed three independent ways before ingestion:
    - the irs.gov HTML edition retained in `2026-09-10-tax-irs-forms-ty2025`
      (`table[summary="2025 Optional State Sales Tax Tables"]` and the local
      table);
-   - an unrelated extraction of the published 2025 table (PolicyBench's
-     projection audit).
+   - an unrelated extraction of the published 2025 state table (PolicyBench's
+     projection audit; it does not cover the local tables).
 
-All methods agree on every cell:
+All methods agree on every cell they cover:
 
-- 5,244 state-table cells and 456 local-table cells per year;
-- 22,800 cells over four years;
-- every state's footnote markers and rate.
+- poppler and MuPDF: 5,244 state-table cells and 456 local-table cells per
+  year, 22,800 cells over four years, and every state's footnote markers and
+  rate;
+- the TY2025 HTML edition: all 5,700 TY2025 cells, rates and footnotes;
+- PolicyBench: all 5,244 TY2025 state-table cells.
 
 The corpus bodies were then re-parsed with a whitespace-insensitive token
 parser and compared with that ground truth: 0 differences. The tests pin
@@ -145,12 +161,14 @@ local grids, so any lost, reordered or misread cell fails CI.
   The TY2022 worksheet's line 2 list likewise omits them: 15 states, against
   17 from TY2023. In every year, the footnote-2 states equal the line 2 list
   minus Alaska.
-- **Rate changes:**
-  - New Mexico: 5.0620%, then 4.94%, then 4.88%.
-  - South Dakota: 4.5000%, then 4.35%, then 4.2%.
-  - Louisiana: 4.45% through TY2024, then 5.00% in TY2025.
-  - TY2022 prints four decimals (e.g. Minnesota 6.8750%), and later years print
-    two (6.88%).
+- **Rate changes**, as printed (TY2022 and TY2023 print four decimals, TY2024
+  and TY2025 two):
+  - New Mexico: 5.0620%, 4.9400%, 4.88%, 4.88%.
+  - South Dakota: 4.5000%, 4.3500%, 4.20%, 4.20%.
+  - Louisiana: 4.4500%, 4.4500%, 4.45%, 5.00%.
+  - Minnesota, Missouri and New Jersey print 6.8750%, 4.2250% and 6.6250% in
+    TY2022, 6.8800%, 4.2300% and 6.6300% in TY2023, and 6.88%, 4.23% and 6.63%
+    in TY2024 and TY2025.
 - **TY2025 construction.** The TY2025 pages state that the IRS built TY2025
   from the TY2024 tables. It adjusted every value by the 2024-to-2025 growth of
   total state general sales and gross receipts tax revenues (adjusted for
@@ -158,7 +176,7 @@ local grids, so any lost, reordered or misread cell fails CI.
   increase. The parsed cells show exactly that:
   - every non-Louisiana TY2025 cell is TY2024 × 1.01-1.02 (rounding);
   - Louisiana cells are × 1.140-1.143, which is 5.00/4.45 × about 1.015;
-  - Local Table cells are × 1.010-1.020.
+  - Local Table cells are × about 1.01-1.02 (1.0105-1.0204).
 
 **Local tables:**
 - TY2024 and TY2025 caption Local Tables A-D "(Based on a local sales tax rate
