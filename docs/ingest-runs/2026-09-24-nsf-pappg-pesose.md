@@ -54,5 +54,30 @@ Generated artifact:
 - Coverage result: complete; 126 source inventory rows matched 126 provision
   rows (3 documents, 123 blocks); no missing, extra, or duplicate citations.
 
+Higher-authority slice: 2 CFR 200.204 and 200.205
+- Why: the PAPPG is agency guidance. An encoding of a PAPPG provision records
+  which higher authority it checked before treating the guidance as the
+  operative source, and that check needs a statute or regulation in the
+  corpus. The tracked corpus had no 2 CFR part 200 text and no NSF Act
+  (42 U.S.C. 1861 et seq.) sections. 2 CFR 200.204 (notices of funding
+  opportunities) and 200.205 (Federal agency review of merit of proposals) are
+  the Uniform Guidance's pre-award provisions on how agencies announce
+  opportunities and review applications, the level directly above PAPPG
+  Chapters II and III. The August 30 References Cited encoding checked
+  2 CFR 200.204 against a page-sliced multi-section govinfo PDF; this slice is
+  section-level text from the eCFR publisher.
+- Publisher: eCFR Versioner API. `titles.json` on 2026-09-24 reported title 2
+  up to date as of 2026-09-22 (latest amended 2026-08-17), so the scope uses
+  `--as-of 2026-09-22 --expression-date 2026-09-22`.
+- Commands:
+  `axiom-corpus-ingest inventory-ecfr --base data/corpus --version 2026-09-24-nsf-slice --as-of 2026-09-22 --only-title 2 --only-part 200`
+  then
+  `axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-09-24-nsf-slice --as-of 2026-09-22 --expression-date 2026-09-22 --only-title 2 --only-part 200 --section 200.204 --section 200.205 --workers 1`
+- Scope `2026-09-24-nsf-slice-title-2-part-200` (the adapter appends
+  `title-2-part-200`; the `nsf-slice` qualifier marks it as a two-section
+  slice, which a selector must not combine with a future full part 200 scope).
+  Coverage complete: 4 provisions (part, subpart C, 200.204, 200.205), 0
+  missing, 0 extra.
+
 Not in this change:
 - No R2 upload, Supabase load, named release, publication, or activation.
