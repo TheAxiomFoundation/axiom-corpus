@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052.jsonl",
-      "sha256": "00c7ca2de8ed47f557ef6b60f0dec7d080c722d4c9bf2b212f0b9894193be406"
+      "sha256": "99a2f8eb25142dd0bddd15773a305a9e5f7e9928739ef4edb5920625e5f6d9ae"
     },
     {
       "path": "data/corpus/sources/us-ca/statute/2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052/california-leginfo-sections/RTC-17024.5.html",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5bf8450b34b312a2f5afeabf11d648d7be4a31a1",
+    "commit": "212eedce6f37a278ed402d54fc181707920d413f",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,19 +39,19 @@
     "source_count": 2
   },
   "document_class": "statute",
-  "generated_at": "2026-09-24T17:14:58.111042+00:00",
+  "generated_at": "2026-09-24T18:08:57.578359+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-ca-rtc-sb-1435.md",
-      "sha256": "fb1e53935fff6a7d76f7dedbb50c73b7286daa3d7814f499c6da29012ed7e185"
+      "sha256": "8e7213a2eb87c78363078673daf72b5d5eb77fc2b90a3974d790ccf7481e5fb7"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rhZ9uE+dzvyoKNk/9rgTkwLci1aCDlcmm7myAY6QtcfZ8IJaDRwIEmzE7oQVp+rSo/6iWLALc/IrMsr5P39SDg=="
+    "value": "lYuD6RPQQUrWLdOdzKp+UWNc8+BGJYOVeOYA0M2Bah/F2Vk7FHT33DFvS6M8j5U/EbvBlwlR6ruZ15B1+Ro8DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052"
