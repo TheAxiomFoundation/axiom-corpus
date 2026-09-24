@@ -1,0 +1,70 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2.json",
+      "sha256": "e368f48d10046b83a81baf5363fbf880a67058c44afd1d7abd9c11fbc4005d12"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2.json",
+      "sha256": "94184044f92d31db84c717fd5fb1acb8f49c9915345e3f19dae498474e4997cb"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2.jsonl",
+      "sha256": "0899d575d657216b309eb4357dc76617c889fdf5f29c9858907079464b5f628a"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2/massachusetts-general-laws-html/ajax/GetChaptersForTitle/part-1-title-9-IX.html",
+      "sha256": "97841d3fc35db5ccbe77603f1f3d21f0129266d4c2316ccde3e2e9efe1bba4c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2/massachusetts-general-laws-html/pages/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section2.html",
+      "sha256": "64e15e4f9489f33e93537d4c3b25691ffacc4718a8d5783af997b35672012755"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2/massachusetts-general-laws-html/pages/Laws/GeneralLaws/PartI/TitleIX/Chapter62.html",
+      "sha256": "8fb4145e289afb05c1cea077584c7df8c104a5b7b570a30a562ecc818113e9df"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2/massachusetts-general-laws-html/pages/Laws/GeneralLaws/PartI.html",
+      "sha256": "77344853fe2bdb384a3a617b6da4e7d622631ec410656647bbc07648d89e7265"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2/massachusetts-general-laws-html/pages/Laws/GeneralLaws/index.html",
+      "sha256": "136f887b6a8e13d4fcff321f0ca9aece8e619436f6d7f59bf75c17a4a99955f5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8ea8784e0b70d2a2dbe9cd535ee6bb5e1ebc62b0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/us-ma-mgl-chapter-62-section-2.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-23T19:23:44.026623+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-ma-mgl-62-2-tir-02-21.md",
+      "sha256": "51d80d4699cad8f81905bbab7abaed7d7f79c60d8d5255c55c560cf2e3bca610"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "itTvD7NxVgErZm8+t/F4CqPgmWNChWceO1qd61MXyXM6oBGNqzfY5WSjQUspzm+CbRKu9Ur2QWzoM40nPcyTBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2"
+}
