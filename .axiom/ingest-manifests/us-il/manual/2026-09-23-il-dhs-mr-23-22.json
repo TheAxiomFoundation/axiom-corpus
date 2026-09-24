@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-il/manual/2026-09-23-il-dhs-mr-23-22.json",
-      "sha256": "5d31392ae71ad59ae5f9fd48a5b167f35a2f17fb78951f3b8b860dd2cbcd5425"
+      "sha256": "ea32bce5d5c843961f46ed7b2bac31b4b3cad988e562003ca75e092996d716ce"
     },
     {
       "path": "data/corpus/provisions/us-il/manual/2026-09-23-il-dhs-mr-23-22.jsonl",
-      "sha256": "ae2ee06117d876e6e354db3c4a9e90731160377931c0b77ab8916c12d0d3d06e"
+      "sha256": "c0a69b09ff86460a7be93dc9d626ea0109ff298ee490c7fd453baba72e14aa13"
     },
     {
       "path": "data/corpus/sources/us-il/manual/2026-09-23-il-dhs-mr-23-22/official-documents/il-dhs-csmm-149614.html",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "bd279bfd8e93a4b7860c06ff3684b840ff745688",
+    "commit": "16e82e359053bad1b4f9f4e5a5c2f11cc2387d96",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 11
   },
   "document_class": "manual",
-  "generated_at": "2026-09-24T03:08:13.406107+00:00",
+  "generated_at": "2026-09-24T03:14:05.127133+00:00",
   "jurisdiction": "us-il",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
-      "sha256": "ba01d632e015c96cf674855011f3e0fae4263c9d09598f71afa1d5e89e909044"
+      "sha256": "05bd9df4c266597fd20cea93685395c53091afdda370b1a29e723a80b4d0cb58"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JhjJ8tkKysJgRBe1+HhwUlZfIvpfBRnLRYwI8nxHMvnsOrr/haatvZpDMN4SSW5InkF1vHZkOsJpEJAHbGovCg=="
+    "value": "88VV7xYu+xNe2TrjPgE7iHvpKrk2GOomHgvInMFIaWGuI8lAgrxezEYhYtH32tOBblX4vdkbS3NA4JEE3LzIDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-il-dhs-mr-23-22"

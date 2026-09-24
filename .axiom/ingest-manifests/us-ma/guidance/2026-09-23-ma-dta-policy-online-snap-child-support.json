@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support.json",
-      "sha256": "013c676836f2edcd0348348aed8d1895af6bd7e0629dc65375ec94d8a9209d3c"
+      "sha256": "e6beb877e56e9052e450ab4729debb75fb6cbbd7c8a5227c64f5ea0eac05244c"
     },
     {
       "path": "data/corpus/provisions/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support.jsonl",
-      "sha256": "130b986c5d77f809d8cff5c8d7c79b4dd681a3ba4042a410cb228237fae446be"
+      "sha256": "70056d741b5e88bdcb4e3728b5a2d47c41e5c6ad906ea265c2424cbbc7f099cd"
     },
     {
       "path": "data/corpus/sources/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support/official-documents/ma-dta-policy-online-snap-child-support-expenses-deduction.html",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "bd279bfd8e93a4b7860c06ff3684b840ff745688",
+    "commit": "16e82e359053bad1b4f9f4e5a5c2f11cc2387d96",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 7
   },
   "document_class": "guidance",
-  "generated_at": "2026-09-24T03:08:16.324785+00:00",
+  "generated_at": "2026-09-24T03:14:07.879754+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
-      "sha256": "ba01d632e015c96cf674855011f3e0fae4263c9d09598f71afa1d5e89e909044"
+      "sha256": "05bd9df4c266597fd20cea93685395c53091afdda370b1a29e723a80b4d0cb58"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "OY7qwwhrZhw2g4OUiKIhVYJr7BAm/am8nd/fnftiLD54NUG4QKDMb8uTCgd3pHl6P8B3+/NIYzJilYij4VeHAA=="
+    "value": "TaS4Yg1hTlv6Jhp/4PDtQ5h4DR98mEtjWr0hkkGiPXxqPB5XIKaoIFGAgUyLonj/2Dp6NFpqEO4yfPNBAR1nDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-ma-dta-policy-online-snap-child-support"
