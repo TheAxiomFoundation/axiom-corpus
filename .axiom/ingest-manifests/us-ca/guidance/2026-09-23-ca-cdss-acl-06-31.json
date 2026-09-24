@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31.json",
+      "sha256": "fa1686feb01d4bbad736d12c33a247a37e58d06e5d5c183b676d2934dca3fa5f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31.json",
+      "sha256": "56fcf3cf1511934eb1b5c26e00d1a3548a86820e090a5bb7aca99e51c2a117a6"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31.jsonl",
+      "sha256": "24a84a05a9c6cf6b8e3fb275663ad23dc8191ede6a51f23d4c6e092ab755d36e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-09-23-ca-cdss-acl-06-31/official-documents/ca-cdss-acl-2006-06-31.pdf",
+      "sha256": "4def0ef51b035bc87c1789e508a4a04a2046ab42e1f38c1775c8ec2e9146b8f2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bd279bfd8e93a4b7860c06ff3684b840ff745688",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-ca-cdss-acl-06-31 --manifest manifests/us-ca-cdss-acl-06-31.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 32,
+    "missing_count": 0,
+    "provision_count": 32,
+    "source_count": 32
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-24T03:08:12.135776+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
+      "sha256": "ba01d632e015c96cf674855011f3e0fae4263c9d09598f71afa1d5e89e909044"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Dx2ssQFphVXIY2iJGSuI1rZf0IkIP0zJUItXla60jkxyHfltO39cUOR2JRp3Uam9k9+QDDsvlVDRmtJCYp6qBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-ca-cdss-acl-06-31"
+}

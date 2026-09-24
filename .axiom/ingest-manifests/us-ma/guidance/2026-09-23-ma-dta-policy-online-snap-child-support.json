@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support.json",
+      "sha256": "34f973777a2d5503ed15ba3bb0a598e4e16db3e5fb7922768d6c15b4bd567f0e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support.json",
+      "sha256": "013c676836f2edcd0348348aed8d1895af6bd7e0629dc65375ec94d8a9209d3c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support.jsonl",
+      "sha256": "130b986c5d77f809d8cff5c8d7c79b4dd681a3ba4042a410cb228237fae446be"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-09-23-ma-dta-policy-online-snap-child-support/official-documents/ma-dta-policy-online-snap-child-support-expenses-deduction.html",
+      "sha256": "df44456eac9ce03fdd29a79007b37012af9db3c85cf7486ca291c8d5f455bef4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bd279bfd8e93a4b7860c06ff3684b840ff745688",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-ma-dta-policy-online-snap-child-support --manifest manifests/us-ma-dta-policy-online-snap-child-support.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-24T03:08:16.324785+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
+      "sha256": "ba01d632e015c96cf674855011f3e0fae4263c9d09598f71afa1d5e89e909044"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OY7qwwhrZhw2g4OUiKIhVYJr7BAm/am8nd/fnftiLD54NUG4QKDMb8uTCgd3pHl6P8B3+/NIYzJilYij4VeHAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-ma-dta-policy-online-snap-child-support"
+}

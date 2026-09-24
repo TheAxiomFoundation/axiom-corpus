@@ -1,0 +1,78 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/regulation/2026-09-23-va-22vac40-601-snap.json",
+      "sha256": "8de6ae389a3e1f4ad524332433f811afe33b25b242b9915d340300e6c5607727"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/regulation/2026-09-23-va-22vac40-601-snap.json",
+      "sha256": "230bb9206a0e3ec8f9bd6e1c81a4d1c83bdfb3a482504804710c57fbf090d74e"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/regulation/2026-09-23-va-22vac40-601-snap.jsonl",
+      "sha256": "1728987c0645c40e78071f44125ca128348801233d055211d7cf849590d93750"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-10.html",
+      "sha256": "2794f0d2a6558b59220c16bd3221f2b82dfb04c1fa0666d955f068ab04bf475a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-20.html",
+      "sha256": "b240edc33cb2d746d8042501ad263ac88d4fdbbffb56d5883448468660369b81"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-30.html",
+      "sha256": "216a023de639c6e88965f47ba53a05431eb5864ff2a6aefba96291d468707a94"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-40.html",
+      "sha256": "e9fd131d26cedbdb71f6a74e2468d9530d6673b0aeb6d047d5f3662d03a904f8"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-50.html",
+      "sha256": "efac59d77ada71b99d8d200be5488f6e65b9ca5655953e58dd3d69aa62bf4acc"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-60.html",
+      "sha256": "088b3095949e3daa71de85653a7bcfdaeeccbbadd0116f1fbd8386c85b25dcdb"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-23-va-22vac40-601-snap/official-documents/us-va-regulation-22vac40-601-70.html",
+      "sha256": "725fd2a4294d44331067d9306f5547200a44366f08c6f36f6582cc43dd5cf72f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bd279bfd8e93a4b7860c06ff3684b840ff745688",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-va-22vac40-601-snap --manifest manifests/us-va-22vac40-601-snap-regulation.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-24T03:08:14.418727+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
+      "sha256": "ba01d632e015c96cf674855011f3e0fae4263c9d09598f71afa1d5e89e909044"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1JGXEbE2dQqVCpJDzx9zn6vdZsywkuYbKfLrcn1OFA+9zfNa/a+ZnFPmRmE47iDJwM7F/B8UU31eeBsvfLjVDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-va-22vac40-601-snap"
+}

@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/manual/2026-09-23-il-dhs-mr-23-22.json",
+      "sha256": "bcb04c3e5800037f96a33f79376491012e55490d5db0bce1e0cf687a7042f1e1"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/manual/2026-09-23-il-dhs-mr-23-22.json",
+      "sha256": "5d31392ae71ad59ae5f9fd48a5b167f35a2f17fb78951f3b8b860dd2cbcd5425"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/manual/2026-09-23-il-dhs-mr-23-22.jsonl",
+      "sha256": "ae2ee06117d876e6e354db3c4a9e90731160377931c0b77ab8916c12d0d3d06e"
+    },
+    {
+      "path": "data/corpus/sources/us-il/manual/2026-09-23-il-dhs-mr-23-22/official-documents/il-dhs-csmm-149614.html",
+      "sha256": "a1711213ea9b163269e1f3ffb6eb02b00c8d5518b51d406e51646633ac2f9d40"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bd279bfd8e93a4b7860c06ff3684b840ff745688",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-il-dhs-mr-23-22 --manifest manifests/us-il-dhs-mr-23-22.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-24T03:08:13.406107+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
+      "sha256": "ba01d632e015c96cf674855011f3e0fae4263c9d09598f71afa1d5e89e909044"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JhjJ8tkKysJgRBe1+HhwUlZfIvpfBRnLRYwI8nxHMvnsOrr/haatvZpDMN4SSW5InkF1vHZkOsJpEJAHbGovCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-il-dhs-mr-23-22"
+}
