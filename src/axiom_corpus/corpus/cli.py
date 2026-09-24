@@ -2591,6 +2591,7 @@ def _cmd_extract_california_code_sections(args: argparse.Namespace) -> int:
         request_delay_seconds=args.delay_seconds,
         timeout_seconds=args.timeout_seconds,
         request_attempts=args.request_attempts,
+        preserve_tables=args.preserve_tables,
     )
     print(
         json.dumps(
@@ -6617,6 +6618,14 @@ def build_parser() -> argparse.ArgumentParser:
     extract_california_sections_cmd.add_argument("--delay-seconds", type=float, default=0.25)
     extract_california_sections_cmd.add_argument("--timeout-seconds", type=float, default=60.0)
     extract_california_sections_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_california_sections_cmd.add_argument(
+        "--preserve-tables",
+        action="store_true",
+        help=(
+            "Render each table row as one 'cell | cell' line and keep repeated cells and "
+            "row labels. Off by default so existing scopes rerun unchanged."
+        ),
+    )
     extract_california_sections_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_california_sections_cmd.set_defaults(func=_cmd_extract_california_code_sections)
 
