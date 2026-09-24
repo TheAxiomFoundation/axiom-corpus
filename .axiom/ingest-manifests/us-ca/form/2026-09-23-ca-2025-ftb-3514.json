@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c643c9ec6592f4e84d74e3093b16f296eeea19c4",
+    "commit": "918c892f44e23d4abaa01578fb6c428222a339b2",
     "dirty_tracked": false,
     "root": "."
   },
@@ -47,19 +47,19 @@
     "source_count": 8
   },
   "document_class": "form",
-  "generated_at": "2026-09-23T19:23:56.129916+00:00",
+  "generated_at": "2026-09-24T18:09:05.695166+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-23-ca-2025-ftb-3514.md",
-      "sha256": "702e33e118559a6cad2b774b4f50180e063718d29f607fe85b8cebb58f32f77f"
+      "sha256": "784abe0d0b2bc0ee3a63568d2e774d851bc74489516a2d595e26cdb142fe718b"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "R5BNf9TSzWEu5wZTb8xo4mzrAD/LdEWoXiFCpAybGJBHL7azcRVZNq4SINtUB7Kd29oWhayxlZWPmTwLF30CBQ=="
+    "value": "23N3LkSSol1K3hzxZpFCLOvVyErv8J3jhFQnM+RWE5kFv0YpIH8CZii51GUF9M3E24TBeQ/VD6rQ2/TGVGYHAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-23-ca-2025-ftb-3514"
