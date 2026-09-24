@@ -3001,6 +3001,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_chapter=only_title,
+            only_act=_optional_text(options.get("only_act")),
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
         )

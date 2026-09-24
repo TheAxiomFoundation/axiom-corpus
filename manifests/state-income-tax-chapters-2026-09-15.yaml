@@ -1,0 +1,60 @@
+version: "2026-09-15-income-tax-chapter"
+# Wave 5 (2026-09-15) whole income-tax chapter statute scopes for the partial-chapter
+# states the 2026-09-14 needs-closure recount still marks EXTRACTABLE and that have a
+# chapter-capable source-first adapter (docs/ingest-runs/2026-09-15-tax.md). Same
+# conventions as manifests/state-income-tax-chapters-2026-09-14.yaml: the adapters append
+# their own scope suffix to this version prefix. North Carolina runs through the
+# official-documents extractor (manifests/us-nc-gs-chapter-105-article-4-income-tax.yaml,
+# built by scripts/build_state_tax_statute_ty2026_manifests.py --family nc-statute).
+sources:
+  - source_id: us-ma-mgl-chapter-62
+    jurisdiction: us-ma
+    document_class: statute
+    adapter: massachusetts-general-laws
+    source_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62
+    version: "2026-09-15-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-15"
+      expression_date: "2026-09-15"
+      only_part: "I"
+      only_title: "IX"
+      only_chapter: "62"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ma-mgl/2026-09-15-income-tax-chapter
+      base_url: https://malegislature.gov
+      request_delay_seconds: 0.05
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts General Court
+      source_scope_note: >-
+        Massachusetts General Laws Part I, Title IX, Chapter 62 (Taxation of Incomes,
+        sections 1 et seq.) from the official malegislature.gov HTML, whole chapter,
+        superseding the released 2026-07-13-recovery fragments (sections 3, 4, 6 and nine
+        minor sections as block rows). Chapters 62B (withholding and estimated tax) and 62C
+        (administration) are not taken in the same run because every chapter-level scope
+        of this adapter also emits the us-ma/statute/part-i and part-i/title-ix container
+        rows, which a selector cannot carry twice.
+
+  - source_id: us-il-ilcs-35-5
+    jurisdiction: us-il
+    document_class: statute
+    adapter: illinois-ilcs
+    source_url: https://www.ilga.gov/ftp/ILCS/
+    version: "2026-09-15-income-tax-chapter"
+    options:
+      source_as_of: "2026-09-15"
+      expression_date: "2026-09-15"
+      only_title: "35"
+      only_act: "5"
+      workers: 4
+    metadata:
+      primary_source: true
+      source_authority: Illinois General Assembly
+      source_scope_note: >-
+        Illinois Compiled Statutes Chapter 35 (Revenue), Act 5 (Illinois Income Tax Act,
+        35 ILCS 5/101 et seq.) from the official ilga.gov ILCS release, whole act, one row
+        per section, alongside the released seven-section resident core
+        (2026-07-24-il-individual-income-tax-resident-core, paths .../<section>-current)
+        and the 2026-07-13-recovery fragments.

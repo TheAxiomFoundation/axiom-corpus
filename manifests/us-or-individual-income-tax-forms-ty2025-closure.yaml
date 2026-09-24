@@ -1,0 +1,50 @@
+version: '2026-09-15'
+documents:
+- source_id: us-or-dor-form-or-40-ty2025
+  jurisdiction: us-or
+  document_class: form
+  title: 2025 Form OR-40 Oregon Individual Income Tax Return for Full-year Residents
+  source_url: https://www.oregon.gov/dor/forms/FormsPubs/form-or-40_101-040_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-or/form/dor/ty2025/form-or-40
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Oregon Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.oregon.gov/dor/programs/individuals/Pages/default.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.oregon.gov/dor/programs/individuals/Pages/default.aspx
+      (read 2026-09-14)
+    page_count_at_research: 8
+    first_page_first_line: 2025 Form OR-40 Oregon Department of Revenue Oregon Individual Income Tax Return for Full-year
+      Residents
+- source_id: us-or-dor-form-or-40-instructions-ty2025
+  jurisdiction: us-or
+  document_class: form
+  title: 2025 Form OR-40 Instructions, Oregon Individual Income Tax Full-year Resident (updated January 29, 2026)
+  source_url: https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-or/form/dor/ty2025/form-or-40-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Oregon Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.oregon.gov/dor/programs/individuals/Pages/default.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.oregon.gov/dor/programs/individuals/Pages/default.aspx
+      (read 2026-09-14)
+    page_count_at_research: 32
+    first_page_first_line: These instructions were updated on January 29, 2026 to correct the Oregon Kids Credit instructions
+      and worksheet
+    source_note: The tax tables and rate charts are inside the instructions.

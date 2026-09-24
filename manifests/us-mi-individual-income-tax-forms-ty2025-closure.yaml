@@ -1,0 +1,56 @@
+version: '2026-09-15'
+documents:
+- source_id: us-mi-treasury-form-mi-1040-ty2025
+  jurisdiction: us-mi
+  document_class: form
+  title: 2025 MI-1040 Michigan Individual Income Tax Return
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2025/MI-1040.pdf?rev=c1d9fa606c614f799b4aa38843fa87f4&hash=CFBA1487FAEED3EF2D548B7E52D889BA
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-mi/form/treasury/ty2025/form-mi-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.michigan.gov/taxes/iit-forms/2025-individual-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.michigan.gov/taxes/iit-forms/2025-individual-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 3
+    first_page_first_line: 2025 MICHIGAN Individual Income Tax Return MI-1040
+    source_note: michigan.gov answers HTTP 403 to the corpus client on every page and PDF path and serves the chrome120 fingerprint
+      (browser fallback documented for this host in the 2026-09-10 WIC and 2026-09-14 LIHEAP run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-treasury-mi-1040-book-ty2025
+  jurisdiction: us-mi
+  document_class: form
+  title: 2025 Michigan Individual Income Tax Forms and Instructions (MI-1040 Book)
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2025/MI-1040-Book.pdf?rev=5c0c79baa2d54570bd4a1f82749c0ecd&hash=FB9893FCE181585B595C00563B0FE271
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-mi/form/treasury/ty2025/mi-1040-book
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.michigan.gov/taxes/iit-forms/2025-individual-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.michigan.gov/taxes/iit-forms/2025-individual-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 40
+    first_page_first_line: Individual Income Tax FORMS AND INSTRUCTIONS MICHIGAN 2025
+    source_note: Michigan has a flat 4.25% rate and publishes no tax table; the exemption amounts are printed in the book.
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120

@@ -1,0 +1,91 @@
+version: '2026-09-15'
+documents:
+- source_id: us-me-mrs-form-1040me-ty2025
+  jurisdiction: us-me
+  document_class: form
+  title: 2025 Form 1040ME Maine Individual Income Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040ME_fillable.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-me/form/mrs/ty2025/form-1040me
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+      (read 2026-09-14)
+    page_count_at_research: 3
+    first_page_first_line: 2025 MAINE INDIVIDUAL INCOME TAX
+- source_id: us-me-mrs-form-1040me-general-instructions-ty2025
+  jurisdiction: us-me
+  document_class: form
+  title: 2025 Form 1040ME General Instructions (with cover page)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_gen_instr_w_cover_pg.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-me/form/mrs/ty2025/form-1040me-general-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+      (read 2026-09-14)
+    page_count_at_research: 13
+    first_page_first_line: Maine Revenue Services
+- source_id: us-me-mrs-tax-tables-ty2025
+  jurisdiction: us-me
+  document_class: form
+  title: 2025 Maine Income Tax Table
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_tax_tables.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-me/form/mrs/ty2025/tax-tables
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+      (read 2026-09-14)
+    page_count_at_research: 5
+    first_page_first_line: 2025 MAINE INCOME TAX TABLE
+- source_id: us-me-mrs-tax-rate-schedules-ty2025
+  jurisdiction: us-me
+  document_class: form
+  title: 2025 Maine Individual Income Tax Rate Schedules
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/ind_tax_rate_sched_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-me/form/mrs/ty2025/tax-rate-schedules
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.maine.gov/revenue/tax-return-forms/individual-income-tax-2025
+      (read 2026-09-14)
+    page_count_at_research: 1
+    first_page_first_line: State of Maine - Individual Income Tax
