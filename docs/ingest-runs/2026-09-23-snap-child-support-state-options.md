@@ -1,7 +1,11 @@
 # SNAP child support exclusion/deduction state option: state sources
 
 Date: 2026-09-23 (America/New_York; the fetches ran 2026-09-24 02:58-02:59 UTC).
-Branch `ingest-snap-state-options`, cut from `origin/main` 942e138e7.
+Branch `ingest-snap-state-options`, cut from `origin/main` 942e138e7. On
+2026-09-24 an adversarial review found three extraction defects in the
+California and Delaware PDFs; the fixes, a merge of `origin/main` 376cd894d and
+the regenerated CA and DE artifacts are described under "Review fixes
+(2026-09-24)".
 
 Purpose: an Axiom encoding of SNAP's child support option needs the governing
 text in the corpus. 7 CFR 273.9(c)(17) excludes legally obligated child support
@@ -76,7 +80,10 @@ metadata field changed in their rows.
 Retained paths are under `data/corpus/sources/<scope>/official-documents/`.
 Coverage is complete for all five scopes: 32/32, 11/11, 14/14, 24/24 and 7/7,
 with no missing, extra or duplicate rows. Both PDFs have embedded text on every
-page (31 and 23 pages), so every page row has a body.
+page (31 and 23 pages), so every page row has a body. The CA and DE rows are
+extracted with the manifest `extraction` settings described in their sections
+below; the row counts, citation paths and retained PDFs did not change when
+they were added.
 
 ### California: CDSS ACL 06-31
 
@@ -91,6 +98,45 @@ the CDSS 2006 All County Letters index links; the legacy
 `https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf` path that PR #9586 cites
 served the same bytes (same SHA-256) and is recorded as
 `metadata.alternate_source_url`.
+
+Extraction settings (manifest `extraction`):
+
+- `ignore_actual_text: true`. The PDF is tagged, and two structure elements
+  carry an empty `/ActualText`: the one holding the page-1 "Changes include:"
+  paragraph (MCIDs 53 and 54) and one on page 15 holding the struck MPP
+  63-503.311(g) and the relettered "(hg) (Continued)" and "(ih) (Continued)"
+  after it (MCIDs 70-74). MuPDF substitutes the empty replacement text for the
+  visible glyphs, so the first extraction dropped both passages (883
+  characters on page 1). With the flag, extraction reads the glyphs. Only
+  pages 1 and 15 change; every other page's text is byte-identical.
+- `amendment_markup`, pages 7 to 23 (Attachment A, the proposed regulations).
+  The attachment prints deleted text struck through and inserted text
+  underlined, both as drawn rules. The rows now carry that status as
+  `[-deleted-]` and `{+inserted+}` (see `docs/corpus-pipeline.md`, "Amended
+  rule text in PDFs"), and each marked page's `metadata.amendment_markup`
+  records the notation and its run counts. For example, page 12 now reads
+  `.38 [-Child Support Deduction-]` with clauses (a) to (f) each struck, and
+  page 8 reads `{+(p) Child Support payments that a household member pays to
+  or for an individual living outside of the household.+}` followed by the
+  inserted (1) to (6). The letter (pages 1-6) and Attachments B to D (pages
+  24-31) are not marked: their underlines are emphasis ("For new
+  applications:") or form layout, not amendments.
+- `typographic_underlines: [Jones v. Yeutter, "Hamilton v. Lyng;"]`. In the
+  MPP 63-502 and 63-503 Reference notes (pages 13 and 16) only the party names
+  are underlined, not "v."; the orders date from 1988 and 1990, and the corpus's
+  current MPP text (`us-ca/regulation/cdss-mpp/division-63/fsman06/block-2` and
+  `fsman07/block-2`) carries both citations. They are citation typography, so
+  they are written without insertion delimiters.
+
+Checks on the marked attachment: removing the delimiters from each page gives
+exactly that page's text without markup. Every horizontal rule drawn on pages
+7 to 23 is accounted for by a struck or underlined character, except two
+short rules on page 16 that sit under spaces (the underlined blanks for the
+volume and page of "F. Supp."); spaces carry no status. No character is both
+struck and underlined. Pages 9, 10, 12, 15 and 20, and parts of pages 8, 11
+and 16, were compared by eye with renderings of the PDF, including
+the superscripts on page 8 (`[-18th-] {+19th+}`, where the struck "th" has its
+own rule) and page 11 (`October {+1st+}`).
 
 ### Illinois: IDHS Manual Release #23.22
 
@@ -136,6 +182,42 @@ instead of a deduction", and the regulation "is adopted and shall be final
 effective June 10, 2010". Page 22 carries the adopted item 26. The retained
 file is the PDF that the register's HTML page links as its "Authenticated PDF
 Version"; the HTML URL is in `metadata.html_version_url`.
+
+Extraction settings (manifest `extraction`):
+
+- `amendment_markup` from page 2. From "9059 Income Exclusions" on page 2 the
+  order prints the whole of DSSM 9059: the old text struck through (to "13 DE
+  Reg. 937 (01/01/10)" on page 16), then the new text underlined. The rows mark
+  them `[-...-]` and `{+...+}`, so the deleted example on page 3 in which "the
+  $800 is budgeted" despite $400 of court-ordered child support reads as
+  deleted, and page 16 separates the struck end of the old section (items R
+  and S and the "13 DE Reg. 937 (01/01/10)" history line) from the inserted
+  new text. The register's closing line on page 23 ("13 DE Reg. 1550
+  (06-01-10) (Final)") is not underlined and is not marked.
+- `sort_blocks: true`. Pages 17 and 22 draw a shaded box ("Exceptions:" under
+  item E, Educational Income; "Exception:" under item 26, Child Support
+  Payments) last in the content stream, so content-order extraction placed the
+  box text at the end of the page, after heading V on page 22 and in the middle
+  of item H's sentence on page 17. Block sort places each box where it is
+  printed. Only those two pages change order.
+
+The PDF stays the text source: the register labels it the authenticated
+version, the scope's citation paths are its pages, and the HTML page carries
+the same markup. The HTML was used as an independent check instead.
+`scripts/compare_pdf_amendment_markup_with_html.py` labels every word of the
+HTML by its `text-decoration` (`line-through` deleted, `underline` inserted)
+and every word of the marked PDF rows, and aligns the two from the first marked
+word to the last. On the HTML fetched 2026-09-24 18:24:36 UTC (292,728 bytes,
+SHA-256 `9f299bd1d75731a9139cd04917e2b54767bad24ffadda59dff79f2baf01011fd`, not
+retained): 8,072 deleted words on both sides, 4,070 inserted words in the HTML
+and 4,072 in the PDF, and no differing stretch with different labels. The 17
+differing stretches are spelling or spacing only: 11 non-breaking hyphens in
+the HTML ("non‑household"), and six spacing differences, four where the PDF
+text breaks a word after a line-end hyphen or slash ("non- household",
+"9/ 25/90,") and two where one rendering has a space the other lacks
+("(viii)Reimbursements", "16.P.").
+The alignment has no reordering, so the HTML also confirms where the two boxes
+belong.
 
 Class and path. A register publication is regulatory activity, not compiled
 law, so it is `rulemaking` (as `docs/corpus-pipeline.md` puts the Federal
@@ -225,14 +307,14 @@ and `metadata.expression_date_note`, and by the retained HTML.
 
 The new rows add 23 `block-N` paths (IL 10, VA 7, MA 6) and 54 `page-N` paths
 (CA 31, DE 23), all the default segments `extract-official-documents` gives
-unsectioned HTML and PDF bodies. `schema/citation-path.v1.json` raises
-`block_n` from 75,769 to 75,792 and `page_n` from 150,593 to 150,647; no other
-family moves. With the raised baselines `scripts/validate_citation_paths.py`
-passes over 576,829 records (425,755 unique paths); without them it reports
-both families as regressions. Open ingest PR #734 also raises `block_n` from
-75,769, and other open ingest branches may move these baselines too, so
-whichever merges later must recompute the counts on the merged tree rather than
-take either side of the conflict.
+unsectioned HTML and PDF bodies. The review fixes changed no citation path.
+After the merge of `origin/main` 376cd894d (which had raised `block_n` to
+75,770 for PR #734), `schema/citation-path.v1.json` sets `block_n` to 75,793
+and `page_n` to 150,647, recounted on the merged tree; no other family moves.
+With these baselines `scripts/validate_citation_paths.py` passes over 581,349
+records (430,056 unique paths). Other open ingest branches may move these
+baselines too, so whichever merges later must recompute the counts on the
+merged tree rather than take either side of the conflict.
 
 ## Commands
 
@@ -250,6 +332,14 @@ uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/co
   --manifest manifests/us-ma-dta-policy-online-snap-child-support.yaml
 ```
 
+The CA and DE manifests carry the extraction settings described above, so the
+same commands reproduce the fixed rows. They were rerun on 2026-09-24 at
+18:13:28-18:13:35 UTC: both PDFs downloaded again with the retained SHA-256,
+the coverage files were unchanged, and the provisions and inventory changed
+only as described under "Review fixes (2026-09-24)". A second run of both
+manifests into a scratch base (18:29-18:30 UTC) wrote byte-identical sources,
+inventory, provisions and coverage. The IL, VA and MA scopes were not rerun.
+
 The artifacts sit under the ignored `data/` tree, so the ingest commit
 force-adds the `sources/`, `inventory/`, `provisions/` and `coverage/` paths of
 the five scopes. `.gitattributes` marks the retained HTML of the IL, VA and MA
@@ -265,13 +355,53 @@ this note does not record the `guard-ingested` result; the pull request does.
 
 - Coverage is complete for all five scopes (counts above).
 - Each new citation path was checked against every provisions file of its
-  jurisdiction (28 for us-ca, 15 us-il, 21 us-va, 22 us-de, 29 us-ma): no
-  collisions.
+  jurisdiction on the merged tree (28 for us-ca, 15 us-il, 21 us-va, 22 us-de,
+  31 us-ma): no collisions.
 - A local draft selector (the 101 `us-ca`, `us-il`, `us-va`, `us-de` and `us-ma`
   scopes of `us-rulespec-2026-09-14-wave4-r2-union` plus the five new scopes)
-  passes `validate-release` with 0 errors. Its 541 warnings are all
-  `missing_parent_id` on `us-ca/regulation/2026-07-13-recovery`, the same 541
-  the selector gives without the new scopes; none is on a new scope.
+  passes `validate-release` with 0 errors, rerun after the review fixes. Its 541
+  warnings are all `missing_parent_id` on `us-ca/regulation/2026-07-13-recovery`,
+  the same 541 the selector gives without the new scopes; none is on a new
+  scope.
 - Re-fetch reproducibility and byte identity with an independent download:
   see "New scopes".
 - `scripts/validate_citation_paths.py`: see "Citation-path ratchet".
+- Tests: `tests/test_us_snap_child_support_state_sources.py` pins each review
+  finding against the committed rows and re-extracts both retained PDFs under
+  their manifests' settings; `tests/test_corpus_documents_pdf_amendment_markup.py`
+  covers the three extraction keys on generated PDFs;
+  `tests/test_compare_pdf_amendment_markup_with_html.py` covers the HTML check.
+
+## Review fixes (2026-09-24)
+
+An adversarial review of PR #736 at 96f2db85c found three major defects. Each
+was confirmed on the retained PDFs before it was fixed.
+
+1. California page 1 omitted the six-item "Changes include:" paragraph,
+   including the child support change and the pointer to Attachment A.
+   Confirmed: the paragraph is visible in the PDF and `pdftotext` reads it, but
+   PyMuPDF did not, because of the empty `/ActualText` described in the
+   California section. The same cause had also dropped the struck
+   63-503.311(g) ("Subtract allowable monthly child support payments ...") on
+   page 15, which the review did not list. Fixed with `ignore_actual_text`.
+2. Strike-through deletions read as ordinary text: California page 12 (the
+   struck `.38 Child Support Deduction` and its clauses (a) to (f)) and
+   Delaware page 3 (the deleted example that budgets all $800 of retirement
+   income), with Delaware page 16 joining deleted and replacement text.
+   Confirmed on renderings of both PDFs; the markup is drawn rules on every
+   page of CA Attachment A and DE pages 2 to 23. Fixed with `amendment_markup`.
+3. Delaware page 22 placed the child support exception after heading V instead
+   of after item 26. Confirmed: the box is drawn last in the content stream.
+   Page 17's "Exceptions:" box under item E had the same fault, which the
+   review did not list. Fixed with `sort_blocks`.
+
+The three keys are new, opt-in `extraction` settings for
+`extract-official-documents` PDFs (`src/axiom_corpus/corpus/documents.py`);
+without them, PDF extraction is unchanged. As a check, 116 retained PDFs from
+existing scopes (sampled across every combination of `segmentation`,
+`sort_text` and `text_replacements` the manifests use, OCR scopes excluded; 3,997
+blocks) were extracted with the `origin/main` and the branch versions of
+`documents.py`: every block was identical. For both fixed scopes, removing the
+delimiters from each page gives the text the first extraction produced, except
+California pages 1 and 15 (recovered text) and Delaware pages 17 and 22 (the
+same words, reordered).

@@ -8,6 +8,14 @@ documents:
     source_format: pdf
     source_as_of: "2026-09-23"
     expression_date: "2010-06-01"
+    extraction:
+      # Pages 17 and 22 draw a boxed note ("Exceptions:", "Exception:") last in
+      # the content stream; block sort puts it where it is printed.
+      sort_blocks: true
+      # From page 2 the order prints DSSM 9059: the old text struck through,
+      # the new text underlined.
+      amendment_markup:
+        start_page: 2
     metadata:
       primary_source: true
       source_authority: Delaware Department of Health and Social Services, Division of Social Services
