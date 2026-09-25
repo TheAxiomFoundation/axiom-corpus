@@ -205,6 +205,12 @@ jobs:
         run: |
           pytest -v tests/test_ops_work_queue_postgres.py
 
+      - name: Test navigation view scope index in PostgreSQL
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+        run: |
+          pytest -v tests/test_navigation_view_page_postgres.py
+
   verify-release-coverage:
     name: Verify release coverage
     # Skip on PRs:
