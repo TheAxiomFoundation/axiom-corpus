@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021.json",
+      "sha256": "17a980c1c8b9e27949b73d3e73eda86a570afbdb4c63553758db68f5547addea"
+    },
+    {
+      "path": "data/corpus/inventory/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021.json",
+      "sha256": "da279d3f1492c993292bd7a7b4e5216e27adec0d5780e16d1fdf226c54b6cfbe"
+    },
+    {
+      "path": "data/corpus/provisions/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021.jsonl",
+      "sha256": "3ebc44693e06c3e6bfc485cd866ff9313bc0b1b605c210b4a27b269c322c0fd4"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-line-5a-general-sales-taxes.pdf",
+      "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-optional-local-sales-tax-table-selector.pdf",
+      "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-optional-local-sales-tax-tables.pdf",
+      "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-optional-state-sales-tax-tables.pdf",
+      "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "071c6d7cda7c7fccd8c9c9b853f8818f2b7d6c47",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-24-irs-optional-sales-tax-tables-ty2021 --manifest manifests/us-irs-optional-sales-tax-tables-ty2021.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-25T19:16:36.503176+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lychTyWdA/zMK5zSg7DKFnUspuEgTv8poCOivvAutbkLP2ynArBGUCte3YinJCt/7/rs9eIWNCNf5m+D0OEdCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-24-irs-optional-sales-tax-tables-ty2021"
+}
