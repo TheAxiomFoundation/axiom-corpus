@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025.json",
-      "sha256": "ed5ee917b4cbd4ba7f2172e8409c3402d9b69713bfa6d223afae39a31d438bdb"
+      "sha256": "ec410944775791fb2e99ff9a8ad2f5ab40383c0cab72be830cf3900ddf3580f1"
     },
     {
       "path": "data/corpus/provisions/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025.jsonl",
-      "sha256": "a5c83fe5ca5712ac8cb6dc230390eef27377e2fc95c2bdc590d56b66d8ade28e"
+      "sha256": "7107e287f8d3a9e728654775d27b61ba6bf1a20e0d7d94b6ce8a9e1c643cecc2"
     },
     {
       "path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025/official-documents/irs-i1040sca-ty2022-line-5a-general-sales-taxes.pdf",
@@ -78,7 +78,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5830d21c000e65b808514270d875b74e1b7915b0",
+    "commit": "6f0e683f1a511899cfea1304dd084ec3b2192d31",
     "dirty_tracked": false,
     "root": "."
   },
@@ -95,19 +95,19 @@
     "source_count": 32
   },
   "document_class": "form",
-  "generated_at": "2026-09-24T19:51:55.721573+00:00",
+  "generated_at": "2026-09-25T02:27:06.346567+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-24-irs-optional-sales-tax-tables.md",
-      "sha256": "ebba82d6a1ac5b6ef3b61a5928b606b63a6d70c99b27085657748cb30fd14f96"
+      "sha256": "f98803a3e2346b337721dbbed7cf3af4176b867750ce800278d2274a58aee570"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "DF2PNoBbNiH1VVIF18wURqRuh7jL4hXFejSXFKxabFyl0Locc7ltapX1LdPL+WwQDmS52Zu+iCtSzPXA9cUNDw=="
+    "value": "biBe6JNToso7Eb2BfXz6YFEapkJnEIHkgWjEibqPWAdRD/CQLpm0t+mkZqesSmEMSFa1NUXi1N0lKfYR6uvwAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-24-irs-optional-sales-tax-tables-ty2022-2025"
