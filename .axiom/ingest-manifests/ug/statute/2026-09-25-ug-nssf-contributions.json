@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ug/statute/2026-09-25-ug-nssf-contributions.json",
+      "sha256": "0e11f84247bfa5ab3f8e07d66808c3d4f6fa5614ecac761074aafbdf09102e93"
+    },
+    {
+      "path": "data/corpus/inventory/ug/statute/2026-09-25-ug-nssf-contributions.json",
+      "sha256": "f9a2399cbe0d4b56cdbdfa5c47bb9aa316b8094f72ea4c934f0811740cfd232c"
+    },
+    {
+      "path": "data/corpus/provisions/ug/statute/2026-09-25-ug-nssf-contributions.jsonl",
+      "sha256": "ea7386e59cb4e2bf8d32cd3972342b5097fd2bcd43093022eec8c578d6d569c5"
+    },
+    {
+      "path": "data/corpus/sources/ug/statute/2026-09-25-ug-nssf-contributions/official-documents/ug-cap-230-nssf-act-contributions.pdf",
+      "sha256": "61adbe80fd7e79883eec43a966fd1c88dfd837a62d05842661a38652b0abefb4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bac949b7e8eb33f35926bcb19f865b17d501b444",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-25-ug-nssf-contributions --manifest manifests/ug-nssf-contributions-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-25T23:56:27.945651+00:00",
+  "jurisdiction": "ug",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LVy+4yUevm00QRW8IdwZH/WqSwQ6amBtnI+qR7ZAkdISdW9r/l5rqiQ359PSbkD3QlYBH04ZB38YsNR+N5/TDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-25-ug-nssf-contributions"
+}
