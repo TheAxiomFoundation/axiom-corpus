@@ -3293,6 +3293,10 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             workers=_optional_int(options.get("workers")) or 8,
+            include_subunits=_optional_bool(options.get("include_subunits"), default=False),
+            include_publication_note=_optional_bool(
+                options.get("include_publication_note"), default=True
+            ),
         )
     if adapter == "montana-code":
         return extract_montana_code(

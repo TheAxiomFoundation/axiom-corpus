@@ -42,11 +42,32 @@ sources:
     source_url: https://docs.legis.wisconsin.gov/statutes/prefaces/toc
     version: "2026-07-16-pit-west"
     options:
-      source_dir: ../data/corpus/sources/us-wi/statute/2026-07-16-pit-west-chapter-71/wisconsin-statutes-html
+      # The adapter's retained-source paths already start with
+      # wisconsin-statutes-html/, so source_dir is the scope directory. It used to
+      # end in /wisconsin-statutes-html, which matched no file and made every
+      # rerun silently re-download the live pages instead of reading these bytes.
+      source_dir: ../data/corpus/sources/us-wi/statute/2026-07-16-pit-west-chapter-71
+      # Known recovery-era mismatch, kept so reruns reproduce the released rows:
+      # the retained TOC and chapter pages are the July 1, 2026 publication
+      # ("in effect on July 1, 2026 ... (Published 7-1-26)"), but the released
+      # rows carry 2026-04-03 (and source_scope_note below says April 3, 2026).
+      # Do not re-date this released version in place;
+      # correct the dates, if needed, in a new version.
       source_as_of: "2026-04-03"
       expression_date: "2026-04-03"
       base_url: https://docs.legis.wisconsin.gov
       only_title: "71"
+      # This recovery scope was extracted at section grain, before the adapter
+      # emitted subsection-level child provisions, and before the publication-note
+      # parser recognised the July 1, 2026 note, so its rows have no
+      # metadata.publication_note. These two options keep both, so a rerun from the
+      # retained sources reproduces the signed provisions, inventory, coverage and
+      # source files byte for byte (tests/test_corpus_wisconsin.py checks this
+      # against .axiom/ingest-manifests/us-wi/statute/2026-07-16-pit-west-chapter-71.json).
+      # Any rerun that changes content must be written under a new version, never
+      # this released one.
+      include_subunits: false
+      include_publication_note: false
       workers: 8
     metadata:
       source_authority: Wisconsin Legislative Reference Bureau
