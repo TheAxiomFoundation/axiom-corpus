@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-08-23-canada-338-suspension-union. Carries every scope of that release unchanged and adds the IRS Optional State and Local Sales Tax Tables for tax years 2022-2025, the tables prescribed under 26 U.S.C. 164(b)(5)(H), with the Schedule A line 5a instructions and sales tax deduction worksheet (us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025, 32 provisions).",
+  "description": "Successor to us-rulespec-2026-08-23-canada-338-suspension-union. Carries every scope of that release unchanged and adds the IRS Optional State and Local Sales Tax Tables for tax years 2021-2025, the tables prescribed under 26 U.S.C. 164(b)(5)(H), with the Schedule A line 5a instructions and sales tax deduction worksheet (us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021, 8 provisions; us/form/2026-09-24-irs-optional-sales-tax-tables-ty2022-2025, 32 provisions).",
   "name": "us-rulespec-2026-09-24-irs-sales-tax-tables-union",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -12,6 +12,11 @@
       "document_class": "form",
       "jurisdiction": "us",
       "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "form",
+      "jurisdiction": "us",
+      "version": "2026-09-24-irs-optional-sales-tax-tables-ty2021"
     },
     {
       "document_class": "form",
