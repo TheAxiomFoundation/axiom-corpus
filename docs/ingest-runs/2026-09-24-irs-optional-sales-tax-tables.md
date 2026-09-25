@@ -54,12 +54,13 @@ Each root carries one body-bearing child, `<root>/document-1`; coverage is
 - The selector and the local tables share one page in TY2022, TY2023 and
   TY2025. The selector window stops before the line
   `<YYYY> Optional Local Sales Tax Tables`; the local-table window starts at it.
-  Neither body carries the other's rows. In TY2025 the page's methodology
-  paragraph ("The optional sales tax tables have historically been
-  constructed…") appears in both: stream order puts it before the tables
-  heading and the position sort puts it after the rows. In TY2024 the selector
-  and the tables are on separate pages, so the selector window needs no stop
-  anchor.
+  Neither body carries the other's text. TY2025's page 18 prints the IRS
+  methodology paragraph ("The optional sales tax tables have historically been
+  constructed…") twice, once below the selector and once below Local Table D,
+  with different line wraps; each body carries its own printing. TY2024 prints
+  its CES paragraph on each of pages 15, 16 and 17 in the same way. In TY2024
+  the selector and the tables are on separate pages, so the selector window
+  needs no stop anchor.
 
 ## Extraction choices
 
