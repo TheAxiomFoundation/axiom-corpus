@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-24-snap-fy2027-cola.json",
+      "sha256": "b746c3aa620618912f9e8fb4f005778c6aa0e0eb7c8df6ff03f3c8b9278b2a26"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-24-snap-fy2027-cola.json",
+      "sha256": "14335b34a588d1fd8e8133325fa911303b3ecc6c8845d1bb11bcbf3460278ef2"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-24-snap-fy2027-cola.jsonl",
+      "sha256": "bc3d608b9c074e1e4f498fe9c5199188eaba443a7a6bce2eb1e0f2b094f7b773"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-24-snap-fy2027-cola/official-documents/snap-fy2027-cola.pdf",
+      "sha256": "67039672203fb2b706fcb6bb560e5026a3ae4570b52c2e6687abcefbd0d2bc8f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7e6b66fb0997ab05695c906e92f6e89cddd38ba6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-24-snap-fy2027-cola --manifest manifests/us-snap-fy2027-cola.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-24T23:21:37.752283+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-24-snap-fy2027-cola.md",
+      "sha256": "73243c3c894117657c1d762ccf26a13ec12af60623064be5a6083b7da67c15bc"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ncHwi/XyPI0pU+Mx9WDEFiZwQCgRNaMpreLW4SyR6oIbq2etqjCCB1eAMUoOz4c9Qs8y3pxvNN3Tv+rqpv04DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-24-snap-fy2027-cola"
+}
