@@ -1,0 +1,54 @@
+documents:
+  - source_id: us-wi-dor-2025-schedule-sb-instructions
+    jurisdiction: us-wi
+    document_class: form
+    title: 2025 Schedule SB Instructions – Subtractions from Income
+    source_url: https://www.revenue.wi.gov/TaxForms2025/2025-ScheduleSB-Inst.pdf
+    source_format: pdf
+    source_as_of: "2026-09-23"
+    expression_date: "2025-01-01"
+    citation_path: us-wi/form/individual-income-tax/2025/schedule-sb-instructions
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Wisconsin Department of Revenue
+      document_subtype: individual_income_tax_schedule_instructions
+      form: Schedule SB
+      document_number: I-0104
+      revision: R. 10-25
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: official_tax_year_2025_instructions
+      certification_scope: schedule_sb_instructions_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      applicable_laws_note: >-
+        The instructions state that they provide statements or interpretations
+        of ch. 71, Wis. Stats., and sec. Tax 3.01, Wis. Adm. Code, enacted as of
+        October 6, 2025.
+      line_5_capital_gain_loss_subtraction: >-
+        Line 5 reports the capital gain/loss subtraction determined on
+        Schedule WD, for example the 30% long-term capital gain exclusion (60%
+        in the case of farm assets). If the only capital gain on line 7 of
+        federal Form 1040 or 1040-SR is a mutual fund or real estate
+        investment trust capital gain distribution and there is no Wisconsin
+        capital loss carryover, 30% of the distribution is entered on line 5
+        without completing Schedule WD.
+      line_16_retirement_income_subtraction: >-
+        Line 16 (Retirement Income Subtraction, Credits Restricted): an
+        individual at least 67 years old as of December 31, 2025 may subtract
+        up to $24,000 of federally taxable retirement income from a qualified
+        retirement plan or IRA not already removed on lines 12 through 15; a
+        married couple filing jointly who are both at least 67 may subtract up
+        to $48,000 regardless of how much each spouse received. Claiming it
+        bars any credit on Schedule CR and on lines 13 through 20 and 30
+        through 35 of Form 1, including carryforwards.
+      source_note: >-
+        Official 17-page tax-year-2025 Schedule SB instructions (I-0104,
+        R. 10-25), which explain each Wisconsin subtraction modification line
+        of Schedule SB, including line 5 (capital gain/loss subtraction) and
+        line 16 (retirement income subtraction). This intake preserves the
+        official instructions and does not certify final-return liability,
+        RuleSpec semantics, or PolicyEngine parity.

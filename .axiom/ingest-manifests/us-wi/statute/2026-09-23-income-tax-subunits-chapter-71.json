@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71.json",
+      "sha256": "36f2bfcd5dfa9c8718850a6c899cb686062b85c0ec5cdea1afe7093ce3cea0c6"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71.json",
+      "sha256": "61cd2e0f0b56fd41289c8a928283637d1807027941c15c160a0d62a05fc4d0af"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71.jsonl",
+      "sha256": "6cf9bcf1324d2bd7c1f6bc6c91601d8b4aa6576b9b33025e67ec0f06c1547d92"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71/wisconsin-statutes-html/statutes/prefaces/toc.html",
+      "sha256": "5d9d8d7626859b8f9abfd16804a463444e5eb9e103020d04e77a92519cb6494c"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71/wisconsin-statutes-html/statutes/statutes/71.html",
+      "sha256": "8c72a3c9f974d1e67f622427cd64b9f2512c0902eeef45b1471f3c925e05e90e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2a82118796d980dc0d11147545b2c7fc3ac4507d",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/us-wi-statutes-chapter-71-subunits.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5034,
+    "missing_count": 0,
+    "provision_count": 5034,
+    "source_count": 5034
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-24T15:26:15.936480+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-wi-chapter-71-subunits.md",
+      "sha256": "24e27b5121751ad398fc1e63317ed4fd5d823856d08940519e914f0b17df93a4"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2svTusqT6wRB163w8T0aOawsfEs3FlIajNewsw41p5ShUjT11zJqA5fftAk7KtlEAeuHJJkeDwgbqKQ9gUhwAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-income-tax-subunits-chapter-71"
+}
