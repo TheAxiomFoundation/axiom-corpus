@@ -321,6 +321,10 @@ def _extract_single(tmp_path, xml_text, filename):
         CorpusArtifactStore(base),
         version="ctr",
         source_xmls=(source_xml,),
+        # "ctr" is a bare test label, not a date-prefixed ingest version slug,
+        # so an explicit source_as_of is required (_date_text now fails
+        # closed rather than silently persisting "ctr" into a date field).
+        source_as_of="2026-07-01",
     )
     assert report.provisions_written == 1
     provisions_path = base / "provisions/uk/regulation/ctr.jsonl"
@@ -600,6 +604,9 @@ def test_distinct_paragraphs_do_not_collide(tmp_path):
         CorpusArtifactStore(base),
         version="ctr",
         source_xmls=(p16, p1),
+        # "ctr" is a bare test label, not a date-prefixed ingest version slug;
+        # see the comment in _extract_single above.
+        source_as_of="2026-07-01",
     )
     assert report.provisions_written == 2
     rows = [
