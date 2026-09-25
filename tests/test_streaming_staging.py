@@ -130,7 +130,15 @@ def _scenario(draw: st.DrawFn) -> tuple[list[ProvisionRecord], list[dict[str, ob
     for record in records:
         state = draw(
             st.sampled_from(
-                ["absent", "absent", "identical", "identical", "legacy-id", "stale-parent", "content"]
+                [
+                    "absent",
+                    "absent",
+                    "identical",
+                    "identical",
+                    "legacy-id",
+                    "stale-parent",
+                    "content",
+                ]
             )
         )
         if state == "absent":

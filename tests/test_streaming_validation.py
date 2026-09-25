@@ -116,7 +116,9 @@ def _scope_tree(draw: st.DrawFn, scope: tuple[str, str, str], *, valid: bool) ->
                 record["body"] = "   "
                 record["heading"] = draw(st.sampled_from([None, "", "  ", ["list"]]))
             elif fault == 4:
-                record["expression_date"] = draw(st.sampled_from([None, "", "2026-13-40", 20260501]))
+                record["expression_date"] = draw(
+                    st.sampled_from([None, "", "2026-13-40", 20260501])
+                )
             elif fault == 5:
                 record["source_as_of"] = draw(st.sampled_from([None, "yesterday"]))
             elif fault == 6:
@@ -152,7 +154,9 @@ def _scope_tree(draw: st.DrawFn, scope: tuple[str, str, str], *, valid: bool) ->
         "complete": True,
         "source_count": len(items),
         "provision_count": len(records),
-        "matched_count": len({r["citation_path"] for r in records} & {i["citation_path"] for i in items}),
+        "matched_count": len(
+            {r["citation_path"] for r in records} & {i["citation_path"] for i in items}
+        ),
         "missing_from_provisions": [],
         "extra_provisions": [],
     }

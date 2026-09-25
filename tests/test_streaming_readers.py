@@ -45,7 +45,19 @@ _SETTINGS = settings(
 _TRICKY_TEXT = st.text(
     alphabet=st.sampled_from(
         list("abc /\\\"'{}[],:0123456789")
-        + ["\u2028", "\u2029", "\x85", "\x0b", "\x0c", "\x1c", "\t", "\xe9", "\u4e2d", "\U0001f600", "\xa0"]
+        + [
+            "\u2028",
+            "\u2029",
+            "\x85",
+            "\x0b",
+            "\x0c",
+            "\x1c",
+            "\t",
+            "\xe9",
+            "\u4e2d",
+            "\U0001f600",
+            "\xa0",
+        ]
     ),
     max_size=12,
 )
@@ -157,7 +169,11 @@ def _provisions_bytes(draw: st.DrawFn) -> bytes:
     if not valid and data and draw(st.integers(min_value=0, max_value=4)) == 0:
         # Bytes that are not UTF-8, or a multi-byte sequence cut short.
         at = draw(st.integers(min_value=0, max_value=len(data)))
-        data = data[:at] + draw(st.sampled_from([b"\xff", b"\xc3", b"\xe4\xb8", b"\xed\xa0\x80"])) + data[at:]
+        data = (
+            data[:at]
+            + draw(st.sampled_from([b"\xff", b"\xc3", b"\xe4\xb8", b"\xed\xa0\x80"]))
+            + data[at:]
+        )
     return data
 
 
@@ -310,8 +326,10 @@ def _inventory_bytes(draw: st.DrawFn) -> bytes:
     )
     if shape == "duplicate-items":
         text = '{"items": [], "items": ' + json.dumps(items) + "}"
-    text = draw(st.sampled_from(["", " ", "\n", "\r\n"])) + text + draw(
-        st.sampled_from(["", "\n", " \r\n", "\n{}", ",", "]", "\ufeff"])
+    text = (
+        draw(st.sampled_from(["", " ", "\n", "\r\n"]))
+        + text
+        + draw(st.sampled_from(["", "\n", " \r\n", "\n{}", ",", "]", "\ufeff"]))
     )
     if draw(st.integers(min_value=0, max_value=8)) == 0:
         text = "\ufeff" + text

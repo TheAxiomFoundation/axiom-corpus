@@ -184,9 +184,8 @@ def test_release_content_projection_memory_does_not_grow_with_body_bytes() -> No
             )
             if body_bytes == _LARGE_BODY:
                 reference = _peak(
-                    lambda provisions=provisions, expected=expected: _reference_load_provision_snapshot(
-                        provisions, **expected
-                    )
+                    lambda provisions=provisions,
+                    expected=expected: _reference_load_provision_snapshot(provisions, **expected)
                 )
     # The snapshot keeps up to 8 MB in memory, copied once as it spills to
     # disk; parsing then holds a few bodies at a time.
@@ -316,10 +315,14 @@ def test_r2_artifact_verification_streams_and_is_bounded(tmp_path: Path) -> None
     client = _DiskR2(store)
 
     uploaded_peak = _peak(
-        lambda: _stage_one_artifact(client, bucket="axiom-corpus", entry=_entry(artifact, size, digest))
+        lambda: _stage_one_artifact(
+            client, bucket="axiom-corpus", entry=_entry(artifact, size, digest)
+        )
     )
     reused_peak = _peak(
-        lambda: _stage_one_artifact(client, bucket="axiom-corpus", entry=_entry(artifact, size, digest))
+        lambda: _stage_one_artifact(
+            client, bucket="axiom-corpus", entry=_entry(artifact, size, digest)
+        )
     )
 
     assert client.uploads == [content_addressed_r2_key(digest)]
@@ -365,7 +368,10 @@ class _ScriptedR2:
         if behaviour.startswith("race-"):
             self.objects[key] = self.expected if behaviour == "race-identical" else b"raced"
             raise ClientError(
-                {"Error": {"Code": "PreconditionFailed"}, "ResponseMetadata": {"HTTPStatusCode": 412}},
+                {
+                    "Error": {"Code": "PreconditionFailed"},
+                    "ResponseMetadata": {"HTTPStatusCode": 412},
+                },
                 "PutObject",
             )
         if behaviour == "always-conflict":
@@ -378,7 +384,14 @@ class _ScriptedR2:
     content=st.binary(max_size=64),
     existing=st.sampled_from(["absent", "identical", "longer", "same-size-corrupt", "empty"]),
     put_behaviour=st.sampled_from(
-        ["write", "discard", "conflict-then-write", "race-identical", "race-corrupt", "always-conflict"]
+        [
+            "write",
+            "discard",
+            "conflict-then-write",
+            "race-identical",
+            "race-corrupt",
+            "always-conflict",
+        ]
     ),
     local=st.sampled_from(["intact"] * 4 + ["tampered"]),
 )
@@ -390,7 +403,9 @@ def test_streamed_r2_staging_matches_whole_object_staging(
         "absent": None,
         "identical": content,
         "longer": content + b"!",
-        "same-size-corrupt": bytes(len(content)) if content != bytes(len(content)) else b"x" * len(content),
+        "same-size-corrupt": bytes(len(content))
+        if content != bytes(len(content))
+        else b"x" * len(content),
         "empty": b"",
     }[existing]
     with tempfile.TemporaryDirectory() as directory:
@@ -400,7 +415,10 @@ def test_streamed_r2_staging_matches_whole_object_staging(
         def run(stage: Callable[..., object]) -> tuple[object, dict[str, bytes], int]:
             client = _ScriptedR2(remote, put_behaviour, content)
             try:
-                outcome: object = ("ok", stage(client, bucket="axiom-corpus", entry=_entry(path, len(content), digest)))
+                outcome: object = (
+                    "ok",
+                    stage(client, bucket="axiom-corpus", entry=_entry(path, len(content), digest)),
+                )
             except (ReleaseManifestError, ClientError) as exc:
                 outcome = ("raised", type(exc), str(exc))
             return outcome, client.objects, client.puts
