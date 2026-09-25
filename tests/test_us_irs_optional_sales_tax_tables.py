@@ -1,11 +1,13 @@
-"""Committed-artifact checks for the IRS Optional Sales Tax Tables scope (TY2022-2025).
+"""Committed-artifact checks for the IRS Optional Sales Tax Tables scopes (TY2021-2025).
 
 The tables are the ones the Secretary prescribes under 26 U.S.C. 164(b)(5)(H),
-printed in each year's Instructions for Schedule A (Form 1040). The digests pinned
-below were computed from an independent parse of the same PDFs (poppler
-``pdftotext -layout`` and MuPDF word boxes agreed on every cell for all four years;
-for TY2025 the irs.gov HTML edition also agreed), so these tests fail if a body
-loses, reorders or misreads any table cell.
+printed in each year's Instructions for Schedule A (Form 1040). Two scopes carry
+them: TY2022-2025 and the TY2021 follow-on. The digests pinned below were computed
+from independent parses of the same PDFs (for TY2022-2025, poppler
+``pdftotext -layout`` and MuPDF word boxes agreed on every cell, and for TY2025 the
+irs.gov HTML edition also agreed; for TY2021, ``pdftotext -layout`` and pdfplumber
+word boxes agreed on every cell), so these tests fail if a body loses, reorders or
+misreads any table cell.
 """
 
 from __future__ import annotations
@@ -13,6 +15,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from functools import cache
 from pathlib import Path
 
 import fitz
@@ -23,9 +26,18 @@ from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-VERSION = "2026-09-24-irs-optional-sales-tax-tables-ty2022-2025"
-MANIFEST_PATH = REPO_ROOT / "manifests/us-irs-optional-sales-tax-tables-ty2022-2025.yaml"
-YEARS = (2022, 2023, 2024, 2025)
+# version -> (manifest, tax years in the scope)
+SCOPES = {
+    "2026-09-24-irs-optional-sales-tax-tables-ty2021": (
+        REPO_ROOT / "manifests/us-irs-optional-sales-tax-tables-ty2021.yaml",
+        (2021,),
+    ),
+    "2026-09-24-irs-optional-sales-tax-tables-ty2022-2025": (
+        REPO_ROOT / "manifests/us-irs-optional-sales-tax-tables-ty2022-2025.yaml",
+        (2022, 2023, 2024, 2025),
+    ),
+}
+YEARS = tuple(sorted(year for _, years in SCOPES.values() for year in years))
 SLICE_SLUGS = (
     "line-5a-general-sales-taxes",
     "optional-state-sales-tax-tables",
@@ -33,6 +45,7 @@ SLICE_SLUGS = (
     "optional-local-sales-tax-tables",
 )
 SOURCE_SHA256 = {
+    2021: "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d",
     2022: "7fab0861b94e075f9e60f8b8c9e23b234e5b0dccae37b7025847e9806e3e8f08",
     2023: "63a8e9171defdfc6aa7380d9c4e4f168984f8a50cb4352fe7d62994fb455428e",
     2024: "a8d762028c317629e841e4b600a1f6d55b41a9b778bce7e07726205187d3a599",
@@ -42,6 +55,11 @@ SOURCE_SHA256 = {
 # {state: [[six values] per bracket]} (state), {state: [footnotes, rate]} (headers)
 # or {"A".."D": [[six values] per bracket]} (local).
 DIGESTS = {
+    2021: {
+        "state": "6b41a2b6b08ea29fdcee4b8388059748d09a14ae9d6639804aa267cc6e0573a2",
+        "headers": "ff6716956fa43cad2e7b0b3753c37da317622bb0b669274b9390f779721b0bae",
+        "local": "e33aba8413b9e768da0d8c5e82050d138976b648d2e6c24433f4d75ee503f79f",
+    },
     2022: {
         "state": "7fa09926d74b4e5687e9c6781e986a24975f3839964be8495b45a60af46c381c",
         "headers": "c2c20e817c9416e870c0aeb1e5f39cb89a79aa8a6ae9007ebb39fea34a612cca",
@@ -133,20 +151,22 @@ BRACKETS = [
     (300000, None),
 ]
 # Worksheet line 2: states whose residents take the base local amount from the
-# Optional Local Sales Tax Tables. TY2022 lists neither Alabama nor Kansas; both
-# carry footnote 1 (ratio method) in the TY2022 state table and footnote 2 from
-# TY2023.
+# Optional Local Sales Tax Tables. TY2021 and TY2022 list neither Alabama nor
+# Kansas; both carry footnote 1 (ratio method) in those years' state tables and
+# footnote 2 from TY2023.
 _LINE_2_FROM_2023 = (
     "Alabama, Alaska, Arizona, Arkansas, Colorado, Georgia, Illinois, Kansas, "
     "Louisiana, Mississippi, Missouri, New York, North Carolina, South Carolina, "
     "Tennessee, Utah, or Virginia"
 )
+_LINE_2_BEFORE_2023 = (
+    "Alaska, Arizona, Arkansas, Colorado, Georgia, Illinois, Louisiana, "
+    "Mississippi, Missouri, New York, North Carolina, South Carolina, Tennessee, "
+    "Utah, or Virginia"
+)
 LINE_2_STATES = {
-    2022: (
-        "Alaska, Arizona, Arkansas, Colorado, Georgia, Illinois, Louisiana, "
-        "Mississippi, Missouri, New York, North Carolina, South Carolina, Tennessee, "
-        "Utah, or Virginia"
-    ),
+    2021: _LINE_2_BEFORE_2023,
+    2022: _LINE_2_BEFORE_2023,
     2023: _LINE_2_FROM_2023,
     2024: _LINE_2_FROM_2023,
     2025: _LINE_2_FROM_2023,
@@ -158,8 +178,13 @@ _HEADER_RE = re.compile(
 _BOUND = r"\$?(\d{1,3}(?:,\d{3})+|0)"
 
 
-def _provisions() -> dict[str, dict[str, object]]:
-    path = REPO_ROOT / f"data/corpus/provisions/us/form/{VERSION}.jsonl"
+def _version(year: int) -> str:
+    return next(version for version, (_, years) in SCOPES.items() if year in years)
+
+
+@cache
+def _provisions(version: str) -> dict[str, dict[str, object]]:
+    path = REPO_ROOT / f"data/corpus/provisions/us/form/{version}.jsonl"
     records = [json.loads(line) for line in path.read_text().splitlines()]
     return {str(record["citation_path"]): record for record in records}
 
@@ -169,7 +194,7 @@ def _root(year: int, slug: str) -> str:
 
 
 def _body(year: int, slug: str) -> str:
-    body = _provisions()[f"{_root(year, slug)}/document-1"]["body"]
+    body = _provisions(_version(year))[f"{_root(year, slug)}/document-1"]["body"]
     assert isinstance(body, str)
     return body
 
@@ -251,17 +276,19 @@ def _local_tables(year: int) -> dict[str, list[list[int]]]:
     }
 
 
-def test_sources_are_the_official_pdf_bytes() -> None:
-    source_dir = REPO_ROOT / f"data/corpus/sources/us/form/{VERSION}/official-documents"
-    for year in YEARS:
+@pytest.mark.parametrize("version", sorted(SCOPES))
+def test_sources_are_the_official_pdf_bytes(version: str) -> None:
+    _, years = SCOPES[version]
+    source_dir = REPO_ROOT / f"data/corpus/sources/us/form/{version}/official-documents"
+    for year in years:
         for slug in SLICE_SLUGS:
             source = source_dir / f"irs-i1040sca-ty{year}-{slug}.pdf"
             assert hashlib.sha256(source.read_bytes()).hexdigest() == SOURCE_SHA256[year]
     inventory = json.loads(
-        (REPO_ROOT / f"data/corpus/inventory/us/form/{VERSION}.json").read_text()
+        (REPO_ROOT / f"data/corpus/inventory/us/form/{version}.json").read_text()
     )
     items = inventory["items"]
-    assert len(items) == 32
+    assert len(items) == 8 * len(years)
     for item in items:
         year = int(re.search(r"/ty(\d{4})/", item["citation_path"]).group(1))
         assert item["source_url"] == f"https://www.irs.gov/pub/irs-prior/i1040sca--{year}.pdf"
@@ -270,8 +297,10 @@ def test_sources_are_the_official_pdf_bytes() -> None:
         assert item["metadata"]["primary_source"] is True
 
 
-def test_coverage_is_complete() -> None:
-    coverage = json.loads((REPO_ROOT / f"data/corpus/coverage/us/form/{VERSION}.json").read_text())
+@pytest.mark.parametrize("version", sorted(SCOPES))
+def test_coverage_is_complete(version: str) -> None:
+    _, years = SCOPES[version]
+    coverage = json.loads((REPO_ROOT / f"data/corpus/coverage/us/form/{version}.json").read_text())
     assert coverage == {
         "complete": True,
         "document_class": "form",
@@ -279,20 +308,20 @@ def test_coverage_is_complete() -> None:
         "duplicate_source_citations": [],
         "extra_provisions": [],
         "jurisdiction": "us",
-        "matched_count": 32,
+        "matched_count": 8 * len(years),
         "missing_from_provisions": [],
-        "provision_count": 32,
-        "source_count": 32,
-        "version": VERSION,
+        "provision_count": 8 * len(years),
+        "source_count": 8 * len(years),
+        "version": version,
     }
     expected = []
-    for year in YEARS:
+    for year in years:
         for slug in SLICE_SLUGS:
             expected.extend([_root(year, slug), f"{_root(year, slug)}/document-1"])
-    assert list(_provisions()) == expected
-    for year in YEARS:
+    assert list(_provisions(version)) == expected
+    for year in years:
         for slug in SLICE_SLUGS:
-            assert _provisions()[_root(year, slug)]["expression_date"] == f"{year}-01-01"
+            assert _provisions(version)[_root(year, slug)]["expression_date"] == f"{year}-01-01"
 
 
 def test_state_tables_match_the_independent_parse() -> None:
@@ -314,6 +343,7 @@ def test_state_tables_match_the_independent_parse() -> None:
 def test_state_table_spot_cells() -> None:
     """Cells read off the printed pages (Texas, $80,000-$90,000, family size 2)."""
     assert [_state_table(year)["TX"]["values"][7][1] for year in YEARS] == [
+        851,
         1001,
         1152,
         972,
@@ -418,12 +448,14 @@ def test_no_local_tax_footnote_matches_worksheet_skip_list() -> None:
         assert footnoted == skip, (year, footnoted ^ skip)
 
 
-def test_slices_record_the_text_extractor() -> None:
-    documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
-    assert len(documents) == 16
+@pytest.mark.parametrize("version", sorted(SCOPES))
+def test_slices_record_the_text_extractor(version: str) -> None:
+    manifest, years = SCOPES[version]
+    documents = yaml.safe_load(manifest.read_text())["documents"]
+    assert len(documents) == 4 * len(years)
     for document in documents:
         assert document["metadata"]["text_extractor"] == f"PyMuPDF {PYMUPDF_VERSION}"
-        metadata = _provisions()[document["citation_path"]]["metadata"]
+        metadata = _provisions(version)[document["citation_path"]]["metadata"]
         assert metadata["text_extractor"] == f"PyMuPDF {PYMUPDF_VERSION}"
 
 
@@ -449,10 +481,12 @@ def _window_tokens(pdf: fitz.Document, window: dict[str, object], sort: bool) ->
     fitz.VersionBind != PYMUPDF_VERSION,
     reason=f"the bodies were extracted with PyMuPDF {PYMUPDF_VERSION}",
 )
-def test_slice_bodies_keep_every_pdf_token() -> None:
-    documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
-    source_dir = REPO_ROOT / f"data/corpus/sources/us/form/{VERSION}/official-documents"
-    by_path = _provisions()
+@pytest.mark.parametrize("version", sorted(SCOPES))
+def test_slice_bodies_keep_every_pdf_token(version: str) -> None:
+    manifest, _ = SCOPES[version]
+    documents = yaml.safe_load(manifest.read_text())["documents"]
+    source_dir = REPO_ROOT / f"data/corpus/sources/us/form/{version}/official-documents"
+    by_path = _provisions(version)
     for document in documents:
         extraction = document["extraction"]
         with fitz.open(source_dir / f"{document['source_id']}.pdf") as pdf:
@@ -463,8 +497,10 @@ def test_slice_bodies_keep_every_pdf_token() -> None:
         assert str(body).split() == tokens, document["source_id"]
 
 
-def test_statutory_cross_reference_resolves() -> None:
-    documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
+@pytest.mark.parametrize("version", sorted(SCOPES))
+def test_statutory_cross_reference_resolves(version: str) -> None:
+    manifest, _ = SCOPES[version]
+    documents = yaml.safe_load(manifest.read_text())["documents"]
     versions = {document["metadata"]["statutory_corpus_version"] for document in documents}
     assert len(versions) == 1
     path = REPO_ROOT / f"data/corpus/provisions/us/statute/{versions.pop()}.jsonl"
@@ -479,11 +515,12 @@ def test_statutory_cross_reference_resolves() -> None:
         assert document["metadata"]["statutory_corpus_citation"] == "us/statute/26/164"
 
 
-def test_scope_passes_release_validation() -> None:
+@pytest.mark.parametrize("version", sorted(SCOPES))
+def test_scope_passes_release_validation(version: str) -> None:
     release = ReleaseManifest(
         name="us-2026-09-24-irs-optional-sales-tax-tables-validation",
         quality_profile="complete-expression-dates-v1",
-        scopes=(ReleaseScope("us", "form", VERSION),),
+        scopes=(ReleaseScope("us", "form", version),),
     )
     report = validate_release(REPO_ROOT / "data/corpus", release, strict_warnings=True)
     assert report.to_mapping()["ok"] is True
