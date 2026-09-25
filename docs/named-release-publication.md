@@ -154,6 +154,18 @@ rewritten. A release name with different content, or a successor release that
 tries to change a previously released scope, is rejected. A successor may
 reuse a scope only when the prior signed scope identity is byte-for-byte equal.
 
+Publication memory grows with a scope's row count, not its bytes. Every phase
+streams a provisions file one row at a time and keeps compact per-row metadata
+(identity, parent, source path, dates, row digests), never provision bodies:
+deep validation and the signed-source-reference check read rows as they
+parse; release content hashes the provisions artifact into a temporary
+snapshot, then parses and projects that verified copy in one pass; staging
+parks projected rows in a temporary file and reads each back only to compare
+it with a staged row or to insert it; and R2 objects are verified in 1 MB
+reads. The streaming readers raise exactly the errors the whole-file readers
+did, and `tests/test_streaming_*.py` hold them to the pre-streaming
+implementations on generated inputs.
+
 ## Downstream resolution
 
 The canonical locator is
