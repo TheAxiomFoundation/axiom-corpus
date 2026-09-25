@@ -28,7 +28,8 @@ the Secretary prescribes under 26 U.S.C. 164(b)(5)(H)(i)(II).
 | `i1040sca-optional-local-sales-tax-tables` | 18 | from `^2021 Optional Local Sales Tax Tables$`, `sort_text: true` |
 
 Each slice has a root and a `/document-1` child: 8 provisions, coverage 8/8.
-The TY2021 pages sit one page later than TY2022's (the TY2021 PDF has 18 pages).
+The TY2021 table and selector pages sit one page later than TY2022's (the TY2021
+PDF has 18 pages); the line 5a slice is pages 3-7 in both years.
 The manifest was derived from the TY2022 entries of the TY2022-2025 manifest by a
 script that changes only year-specific values and asserts that no other field
 still names 2022.
