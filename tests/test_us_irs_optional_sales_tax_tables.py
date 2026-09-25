@@ -350,8 +350,17 @@ def test_local_tables_match_the_independent_parse() -> None:
         assert _digest(_local_tables(year)) == DIGESTS[year]["local"], year
         body = " ".join(_body(year, "optional-local-sales-tax-tables").split())
         assert body.startswith(f"{year} Optional Local Sales Tax Tables")
-        # Local Table D is printed as 25% of the New York state table.
-        assert "Local Table D" in body
+
+
+def test_local_table_d_is_a_quarter_of_the_new_york_table() -> None:
+    """The selector's note says 'Local Table D is just 25% of the NY State table';
+    every printed Table D cell is within 1 of 0.25 x the New York cell (rounding)."""
+    for year in YEARS:
+        new_york = _state_table(year)["NY"]["values"]
+        table_d = _local_tables(year)["D"]
+        for ny_row, d_row in zip(new_york, table_d, strict=True):
+            for ny_value, d_value in zip(ny_row, d_row, strict=True):
+                assert abs(d_value - 0.25 * ny_value) <= 1, (year, ny_value, d_value)
 
 
 def test_local_table_selector_is_the_selector_only() -> None:
