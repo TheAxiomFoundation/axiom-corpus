@@ -354,3 +354,17 @@ def test_stops_before_cutting_when_guard_ingested_fails(repo: Path) -> None:
     assert _git(repo, "rev-parse", "HEAD") == head
     assert not (repo / TARGET).exists()
     assert not [call for call in _uv_calls() if call.startswith("validate-release ")]
+
+
+def test_refuses_to_run_on_main(repo: Path) -> None:
+    # On main itself, main...HEAD is empty, so the self-check would verify nothing.
+    _ingest_pr(repo, UNRELEASED)
+    head = _git(repo, "rev-parse", "HEAD")
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "on main; cut a release branch from main first" in result.stderr
+    assert _git(repo, "rev-parse", "HEAD") == head
+    assert not (repo / TARGET).exists()
+    assert _uv_calls() == []

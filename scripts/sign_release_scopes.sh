@@ -30,6 +30,8 @@ DRAFT="${1:?draft selector path}"
 PREDECESSOR="${2:?predecessor selector path}"
 : "${AXIOM_CORPUS_INGEST_PRIVATE_KEY:?export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell first}"
 [ -z "$(git status --porcelain --untracked-files=no)" ] || { echo "tracked tree is dirty; commit or stash first" >&2; exit 1; }
+# On main itself the guard-ingested self-check below would diff an empty main...HEAD range.
+[ "$(git symbolic-ref -q --short HEAD || true)" != main ] || { echo "on main; cut a release branch from main first" >&2; exit 1; }
 
 NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])' "$DRAFT")
 TARGET="manifests/releases/$NAME.json"
@@ -94,8 +96,9 @@ PY
 for line in "${SCOPES[@]}"; do
   read -r jur cls ver <<<"$line"
   if [ -f ".axiom/ingest-manifests/$jur/$cls/$ver.json" ]; then
-    # Already signed by an earlier run (its manifest may carry reasoning-log attestations
-    # this script cannot reproduce); guard-ingested, below or in CI, still verifies it.
+    # Already signed, by an earlier run or in the scope's ingest PR (its manifest may carry
+    # reasoning-log attestations this script cannot reproduce). guard-ingested checks it
+    # against the artifacts in whichever PR commits them: this branch's, or the ingest PR's.
     echo "already signed, keeping existing manifest: $jur/$cls/$ver"
     continue
   fi
