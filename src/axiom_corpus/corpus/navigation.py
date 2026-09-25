@@ -34,6 +34,7 @@ from dataclasses import dataclass
 from typing import Any, NamedTuple
 from uuid import NAMESPACE_URL, UUID, uuid5
 
+from axiom_corpus.corpus.deferred import DeferredError, replayed
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -114,30 +115,15 @@ def deterministic_navigation_id(path: str, version: str | None = None) -> str:
     return str(uuid5(NAMESPACE_URL, identity))
 
 
-class _Raised:
-    """An exception a derived navigation value raised, replayed where it is used."""
-
-    __slots__ = ("error",)
-
-    def __init__(self, error: Exception) -> None:
-        self.error = error
-
-
-def _replayed[T](value: T | _Raised) -> T:
-    if isinstance(value, _Raised):
-        raise value.error
-    return value
-
-
 class NavigationSource(NamedTuple):
     """What the navigation build reads from one provision record.
 
     The record's body and metadata are not kept, so a whole scope's sources
     hold compact per-row metadata only. Values derived from the record (label
-    text, provision id, status) are computed once here; one that raises is
-    kept as the exception and raised at the point of the build that used the
-    value before, so the build fails, or succeeds, exactly as it did with the
-    full records.
+    text, provision id, rulespec flag, status) are computed once here; one
+    that raises is kept as the exception and raised at the point of the build
+    that used the value before, so the build fails, or succeeds, exactly as it
+    did with the full records.
     """
 
     jurisdiction: str
@@ -146,10 +132,10 @@ class NavigationSource(NamedTuple):
     parent_citation_path: str | None
     version: str | None
     ordinal: int | None
-    has_rulespec: bool
-    label_text: str | None | _Raised
-    provision_id: str | _Raised
-    status: str | None | _Raised
+    has_rulespec: bool | DeferredError
+    label_text: str | None | DeferredError
+    provision_id: str | DeferredError
+    status: str | None | DeferredError
 
 
 def navigation_source(
@@ -169,7 +155,7 @@ def navigation_source(
         parent_citation_path=record.parent_citation_path,
         version=_shared(record.version, cache),
         ordinal=record.ordinal,
-        has_rulespec=bool(record.has_rulespec),
+        has_rulespec=_deferred(_has_rulespec, record),
         label_text=_deferred(_label_text, record),
         provision_id=_deferred(_provision_id_for_navigation, record),
         status=_deferred(_status_for, record),
@@ -185,11 +171,15 @@ def _shared[T](value: T, shared: dict[str, str]) -> T:
 def _deferred[T](
     derive: Callable[[ProvisionRecord], T],
     record: ProvisionRecord,
-) -> T | _Raised:
+) -> T | DeferredError:
     try:
         return derive(record)
     except Exception as exc:
-        return _Raised(exc)
+        return DeferredError(exc)
+
+
+def _has_rulespec(record: ProvisionRecord) -> bool:
+    return bool(record.has_rulespec)
 
 
 def build_navigation_nodes(
@@ -265,8 +255,10 @@ def build_navigation_nodes_from_sources(
 
     # Child and encoded-descendant counts depend only on the resolved tree, so
     # they are computed before the nodes and each node is built once, final.
+    # A rulespec flag that raised counts as False here; the node loop raises
+    # it before any count is returned.
     has_rulespec = {
-        source.citation_path: source.has_rulespec or source.citation_path in encoded_set
+        source.citation_path: source.has_rulespec is True or source.citation_path in encoded_set
         for source in filtered
     }
     child_counts: dict[str, int] = defaultdict(int)
@@ -286,26 +278,33 @@ def build_navigation_nodes_from_sources(
         path = source.citation_path
         parent_path = parent_paths[path]
         segment = _segment(path, parent_path)
-        label_text = _replayed(source.label_text)
+        # Each value is derived, or its held error raised, in the order the
+        # node fields were computed when this loop read full records.
+        node_id = deterministic_navigation_id(path, source.version)
+        label_text = replayed(source.label_text)
+        sort_key = _sort_key(source.ordinal, segment)
+        provision_id = replayed(source.provision_id)
+        replayed(source.has_rulespec)
+        status = replayed(source.status)
         nodes.append(
             NavigationNode(
-                id=deterministic_navigation_id(path, source.version),
+                id=node_id,
                 jurisdiction=source.jurisdiction,
                 doc_type=source.document_class,
                 path=path,
                 parent_path=parent_path,
                 segment=segment,
                 label=segment if label_text is None else label_text,
-                sort_key=_sort_key(source.ordinal, segment),
+                sort_key=sort_key,
                 depth=depths[path],
-                provision_id=_replayed(source.provision_id),
+                provision_id=provision_id,
                 citation_path=path,
                 version=source.version,
                 has_children=child_counts[path] > 0,
                 child_count=child_counts[path],
                 has_rulespec=has_rulespec[path],
                 encoded_descendant_count=encoded_descendants[path],
-                status=_replayed(source.status),
+                status=status,
             )
         )
     return tuple(

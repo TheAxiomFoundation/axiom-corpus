@@ -16,6 +16,8 @@ from __future__ import annotations
 import hashlib
 from collections.abc import Iterable, Mapping, Sequence
 
+from axiom_corpus.corpus.deferred import without_tracebacks
+
 PROVISION_PROJECTION_COLUMNS = (
     "id",
     "jurisdiction",
@@ -111,7 +113,8 @@ class ProjectionDigest:
     identity order, so a failing row surfaces here in the same precedence: the
     first field-set mismatch in input order, else the first invalid identity in
     input order, else the first encoding failure in identity order. Errors are
-    therefore held until ``hexdigest``; ``add`` raises nothing.
+    therefore held until ``hexdigest``; ``add`` raises nothing. A held error
+    drops its traceback, which would otherwise keep its row alive.
     """
 
     def __init__(
@@ -125,8 +128,8 @@ class ProjectionDigest:
         self._order_by = tuple(order_by)
         self._required = set(columns)
         self._mapping_fields = frozenset(mapping_columns or ())
-        self._field_error: ProjectionDigestError | None = None
-        self._identity_error: ProjectionDigestError | None = None
+        self._field_error: Exception | None = None
+        self._identity_error: Exception | None = None
         # (identity + input index, exception) of the encoding failure that
         # comes first in identity order.
         self._encode_error: tuple[tuple[str | int, ...], Exception] | None = None
@@ -138,9 +141,14 @@ class ProjectionDigest:
         self._count += 1
         if self._field_error is not None:
             return
-        if set(row) != self._required:
-            missing = sorted(self._required - set(row))
-            extra = sorted(set(row) - self._required)
+        try:
+            fields = set(row)
+        except Exception as exc:
+            self._field_error = without_tracebacks(exc)
+            return
+        if fields != self._required:
+            missing = sorted(self._required - fields)
+            extra = sorted(fields - self._required)
             self._field_error = ProjectionDigestError(
                 f"projection row fields differ; missing={missing!r}, extra={extra!r}"
             )
@@ -149,8 +157,14 @@ class ProjectionDigest:
             return
         try:
             identity = tuple(_required_identity(row.get(field), field) for field in self._order_by)
-        except ProjectionDigestError as exc:
-            self._identity_error = exc
+        except TypeError as exc:
+            # Sorting by identity turned any TypeError into this error.
+            error = ProjectionDigestError("projection identity fields are not comparable")
+            error.__cause__ = exc
+            self._identity_error = without_tracebacks(error)
+            return
+        except Exception as exc:
+            self._identity_error = without_tracebacks(exc)
             return
         order: tuple[str | int, ...] = (*identity, index)
         try:
@@ -163,7 +177,7 @@ class ProjectionDigest:
             row_digest = hashlib.sha256(payload.encode("utf-8")).digest()
         except Exception as exc:
             if self._encode_error is None or order < self._encode_error[0]:
-                self._encode_error = (order, exc)
+                self._encode_error = (order, without_tracebacks(exc))
             return
         self._entries.append((order, row_digest))
 

@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any, TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
+from axiom_corpus.corpus.deferred import DeferredError
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.projection_digest import (
     ProjectionDigestError,
@@ -2005,7 +2006,7 @@ def load_provisions_to_supabase(
             iter_supabase_rows(_require_release_versions(records), versioned_ids=True),
             spool=spool,
             service_key=service_key,
-            rest_url=_rest_url(supabase_url),
+            supabase_url=supabase_url,
             chunk_size=chunk_size,
             dry_run=dry_run,
             progress_stream=progress_stream,
@@ -2017,7 +2018,7 @@ def _stage_provision_rows(
     *,
     spool: _ProvisionRowSpool,
     service_key: str,
-    rest_url: str,
+    supabase_url: str,
     chunk_size: int,
     dry_run: bool,
     progress_stream: TextIO | None,
@@ -2056,6 +2057,7 @@ def _stage_provision_rows(
             dry_run=True,
         )
 
+    rest_url = _rest_url(supabase_url)
     plan = _plan_provision_staging(
         tuple(scope_keys),
         rows_by_key=rows_by_key,
@@ -2378,15 +2380,6 @@ def _provision_column_equal(column: str, mine: object, theirs: object) -> bool:
     return mine == theirs
 
 
-class _ComparisonFailure:
-    """An exception comparing a staged row raised, replayed where it is used."""
-
-    __slots__ = ("error",)
-
-    def __init__(self, error: Exception) -> None:
-        self.error = error
-
-
 def _staged_row_summary(
     staged: Mapping[str, object],
     incoming: Mapping[str, object] | None,
@@ -2398,7 +2391,7 @@ def _staged_row_summary(
     can be dropped; a comparison that raises is kept and raised where the
     plan first reads it.
     """
-    divergent_content: list[str] | _ComparisonFailure = []
+    divergent_content: list[str] | DeferredError = []
     if incoming is not None:
         try:
             divergent_content = sorted(
@@ -2407,7 +2400,7 @@ def _staged_row_summary(
                 if not _provision_column_equal(column, incoming.get(column), staged.get(column))
             )
         except Exception as exc:
-            divergent_content = _ComparisonFailure(exc)
+            divergent_content = DeferredError(exc)
     return {
         "id": staged.get("id"),
         "parent_id": staged.get("parent_id"),
@@ -2532,7 +2525,7 @@ def _plan_provision_staging(
         del leftover[key]
         matched_existing[key] = staged
         divergent_content = staged["divergent_content"]
-        if isinstance(divergent_content, _ComparisonFailure):
+        if isinstance(divergent_content, DeferredError):
             raise divergent_content.error
         if divergent_content:
             conflicts.append(

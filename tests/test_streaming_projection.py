@@ -147,7 +147,9 @@ def _projection_rows(draw: st.DrawFn, columns: tuple[str, ...], identity: tuple[
 
 @_SETTINGS
 @given(data=st.data(), navigation=st.booleans())
-def test_projection_digest_matches_materialized_digest(data: st.DataObject, navigation: bool) -> None:
+def test_projection_digest_matches_materialized_digest(
+    data: st.DataObject, navigation: bool
+) -> None:
     columns = NAVIGATION_PROJECTION_COLUMNS if navigation else PROVISION_PROJECTION_COLUMNS
     order_by = ("path", "id") if navigation else ("citation_path", "id")
     mapping = None if navigation else {"identifiers"}
@@ -161,7 +163,9 @@ def test_projection_digest_matches_materialized_digest(data: st.DataObject, navi
         )
     )
     actual = _outcome(
-        lambda: projection_sha256(iter(rows), columns=columns, order_by=order_by, mapping_columns=mapping)
+        lambda: projection_sha256(
+            iter(rows), columns=columns, order_by=order_by, mapping_columns=mapping
+        )
     )
     assert actual == expected
 
@@ -216,6 +220,7 @@ _UUIDS = st.sampled_from(
 def _record(draw: st.DrawFn, *, valid: bool = False) -> ProvisionRecord:
     """A provision record; ``valid`` limits every field to publishable values."""
     path = draw(_PATHS)
+    surrogate_path: str | None = None
     if valid:
         version: str | None = "2026-05-01"
         parent: object = draw(st.one_of(st.none(), st.just(path.rsplit("/", 1)[0]), _PATHS))
@@ -231,6 +236,9 @@ def _record(draw: st.DrawFn, *, valid: bool = False) -> ProvisionRecord:
         heading: object = draw(st.sampled_from([None, "", "  ", "Heading", " padded "]))
         metadata: object = draw(st.sampled_from([None, {}, {"status": "repealed"}, {"other": 1}]))
     else:
+        surrogate_path = draw(
+            st.sampled_from([None, None, "us/statute/a\ud800", "us/statute/a\ud800/1"])
+        )
         version = draw(st.sampled_from(["2026-05-01", None, "", " "]))
         parent = draw(
             st.one_of(
@@ -258,13 +266,15 @@ def _record(draw: st.DrawFn, *, valid: bool = False) -> ProvisionRecord:
     return ProvisionRecord(
         jurisdiction=draw(st.sampled_from(["us", "us", "ca"])),
         document_class=draw(st.sampled_from(["statute", "statute", "regulation"])),
-        citation_path=path,
+        citation_path=surrogate_path or path,
         version=version,
         body=draw(
             st.one_of(
                 st.none(),
                 st.just(""),
-                _PROJECTION_TEXT.filter(lambda text: "\ud800" not in text) if valid else _PROJECTION_TEXT,
+                _PROJECTION_TEXT.filter(lambda text: "\ud800" not in text)
+                if valid
+                else _PROJECTION_TEXT,
             )
         ),
         heading=heading,  # type: ignore[arg-type]
