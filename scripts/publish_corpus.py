@@ -32,7 +32,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, TextIO
 
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import iter_provisions
+from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.navigation import build_navigation_nodes
 from axiom_corpus.corpus.navigation_supabase import write_navigation_nodes_to_supabase
 from axiom_corpus.corpus.r2 import DEFAULT_R2_BUCKET, R2Config, load_r2_config
@@ -40,6 +41,7 @@ from axiom_corpus.corpus.release_quality import ReleaseValidationReport, validat
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     ReleaseManifest,
+    ReleaseScope,
     resolve_release_manifest_path,
 )
 from axiom_corpus.corpus.supabase import (
@@ -252,9 +254,11 @@ def publish_named_release(
             ),
         )
 
+    # Unreleased scopes are streamed from their provisions files by each phase
+    # that reads them, never held whole: a release can carry a 756 MB scope.
     staged_rows = 0
-    scopes_to_stage: list[tuple[Any, list[Any]]] = []
-    release_records: list[Any] = []
+    scopes_to_stage: list[tuple[ReleaseScope, Path]] = []
+    local_rows = 0
     with _phase(progress_stream, "local-provision-load") as done:
         for scope in release.scopes:
             expected = expected_evidence[scope.key]
@@ -268,17 +272,13 @@ def publish_named_release(
                 / scope.document_class
                 / f"{scope.version}.jsonl"
             )
-            records = load_provisions(provisions_path)
-            if len(records) != expected.provision_rows:
-                raise ReleaseManifestError(
-                    f"local row count changed after hashing for {'/'.join(scope.key)}: "
-                    f"expected {expected.provision_rows}, got {len(records)}"
-                )
-            scopes_to_stage.append((scope, records))
-            release_records.extend(records)
+            row_count = sum(1 for _ in iter_provisions(provisions_path))
+            _require_local_row_count(scope, expected.provision_rows, row_count)
+            scopes_to_stage.append((scope, provisions_path))
+            local_rows += row_count
         done.update(
             unreleased_scopes=len(scopes_to_stage),
-            rows=len(release_records),
+            rows=local_rows,
             reused_released_rows=staged_rows,
         )
 
@@ -297,7 +297,7 @@ def publish_named_release(
             chunk_size=chunk_size,
         ) as done:
             load_report = load_provisions_to_supabase(
-                release_records,
+                _release_records(scopes_to_stage, expected_evidence),
                 service_key=service_key,
                 supabase_url=supabase_url,
                 chunk_size=chunk_size,
@@ -322,12 +322,12 @@ def publish_named_release(
             progress_stream,
             "navigation-staging",
             scopes=len(scopes_to_stage),
-            rows=sum(len(records) for _, records in scopes_to_stage),
+            rows=local_rows,
         ) as done:
             navigation_rows_loaded = 0
-            for scope, records in scopes_to_stage:
+            for scope, provisions_path in scopes_to_stage:
                 expected = expected_evidence[scope.key]
-                navigation = build_navigation_nodes(records)
+                navigation = build_navigation_nodes(iter_provisions(provisions_path))
                 if len(navigation) != expected.navigation_rows:
                     raise ReleaseManifestError(
                         f"local navigation projection has {len(navigation)} rows for "
@@ -425,6 +425,31 @@ def publish_named_release(
         activation=activation,
         release_object=signed,
     )
+
+
+def _require_local_row_count(scope: ReleaseScope, expected: int, actual: int) -> None:
+    if actual != expected:
+        raise ReleaseManifestError(
+            f"local row count changed after hashing for {'/'.join(scope.key)}: "
+            f"expected {expected}, got {actual}"
+        )
+
+
+def _release_records(
+    scopes: Sequence[tuple[ReleaseScope, Path]],
+    expected_evidence: Mapping[tuple[str, str, str], StagedScopeEvidence],
+) -> Iterator[ProvisionRecord]:
+    """Stream every unreleased scope's records, rechecking each row count.
+
+    Staging reads the whole stream before its first write, so a file that
+    changed since it was counted fails here with no database write.
+    """
+    for scope, provisions_path in scopes:
+        row_count = 0
+        for record in iter_provisions(provisions_path):
+            row_count += 1
+            yield record
+        _require_local_row_count(scope, expected_evidence[scope.key].provision_rows, row_count)
 
 
 def plan_named_release(
