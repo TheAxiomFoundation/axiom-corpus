@@ -7,6 +7,7 @@ sections with full-text search using pg_trgm and GIN indexes.
 import json
 import os
 from datetime import date
+from typing import TYPE_CHECKING
 
 from axiom_corpus.models import Citation, SearchResult, Section, Subsection, TitleInfo
 from axiom_corpus.storage.base import StorageBackend
@@ -14,11 +15,15 @@ from axiom_corpus.storage.base import StorageBackend
 # Lazy import - only load if postgres extras installed
 try:
     from sqlalchemy import create_engine, text
+    from sqlalchemy.engine import make_url
     from sqlalchemy.orm import declarative_base, sessionmaker
 
     POSTGRES_AVAILABLE = True
 except ImportError:
     POSTGRES_AVAILABLE = False
+
+if TYPE_CHECKING:
+    from sqlalchemy.engine import URL
 
 
 Base = declarative_base() if POSTGRES_AVAILABLE else None
@@ -35,7 +40,20 @@ def get_engine(database_url: str | None = None):
             "No database URL. Set DATABASE_URL or SUPABASE_DB_URL environment variable."
         )
 
-    return create_engine(url)
+    return create_engine(_with_psycopg2_driver(url))
+
+
+def _with_psycopg2_driver(url: str) -> URL:
+    """Pin a driverless ``postgresql://`` URL to psycopg2, the declared driver.
+
+    SQLAlchemy 2.1 resolves a bare ``postgresql://`` URL to psycopg (v3) rather
+    than psycopg2, and the ``postgres`` extra installs only ``psycopg2-binary``.
+    URLs that already name a driver are left unchanged.
+    """
+    parsed = make_url(url)
+    if parsed.drivername == "postgresql":
+        return parsed.set(drivername="postgresql+psycopg2")
+    return parsed
 
 
 class PostgresStorage(StorageBackend):
