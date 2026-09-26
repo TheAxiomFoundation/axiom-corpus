@@ -62,8 +62,7 @@ two straight apostrophes in s.11(5).
 at the right margin. The PDF is a mixed raster: a JBIG2 text mask
 (1944 x 1121 on page 8) over a low-resolution background. The mask ends at
 the same edge as the visible page, so the missing letters are not in this
-print. Each cut word is completed with the only word that fits the visible
-letters and the grammar:
+print. The eleven completions are editorial restorations:
 
 | Volume page | Subsection | Print | Completed |
 | --- | --- | --- | --- |
@@ -79,14 +78,27 @@ letters and the grammar:
 | 8217 | 12(1) | in respec | in respect |
 | 8217 | 12(1) | this section t | this section by |
 
-Three completions go beyond the visible letters: the plural "wages", "that"
-rather than "the", and the comma after "month". Each follows the Laws of
-Uganda 2000 revised edition (Cap. 222) at the same point, read in the
-Laws.Africa consolidation served from `media.ulii.org` (orientation only;
-the cited source stays the Cap. 230 print). An uncropped print of the 2023
-revised edition would settle them. The Uganda Law Reform Commission's copy is
-subscription-only, ULII pages are bot-gated, and the Parliament library record
-returned "Access denied".
+Eight follow from the visible letters and the grammar. Three are not
+observable in this print: the plural "wages", "that" rather than "the", and
+the comma after "month". They are corroborated by the Laws of Uganda 2000
+revised edition (Cap. 222, where these sections are numbered one higher), as
+consolidated by Laws.Africa. That copy is orientation only; the cited source
+stays the Cap. 230 print.
+
+| Restoration | Cap. 222 pinpoint | Corroborating text |
+| --- | --- | --- |
+| "the total wages" | s.11(6) | "the total wages to such employees" |
+| "to that employee" | s.12(1) | "during that month to that employee, but if more" |
+| "any month," | s.12(1) | "during any month, the employer may provisionally deduct" |
+
+Corroborating copy:
+https://media.ulii.org/media/legislation/18538/source_file/e8d418f126b5c47a/1985-8.pdf,
+retrieved 2026-09-25, sha256
+`efeb3198e5fe7f4fb571a00facc8500190c1e49bb507f971eec3637cf1a42fa4`, PDF page 9
+(printed page 6). The same metadata is on every row as `transcription_note`.
+An uncropped print of the 2023 revised edition would settle these three. The
+Uganda Law Reform Commission's copy is subscription-only, ULII pages are
+bot-gated, and the Parliament library record returned "Access denied".
 
 ## Fidelity checks
 

@@ -46,10 +46,7 @@
 # 2. Margin restorations. On pp. 8215 and 8217 the scan itself is cut at
 #    the right margin: the high-resolution text layer of the PDF ends at
 #    the same edge, so the letters are absent from this print, not
-#    misread. Eleven line-final words are completed. Each completion is
-#    the only word that fits the visible letters and the grammar, and each
-#    matches the wording of the Laws of Uganda 2000 revised edition
-#    (Cap. 222) at the same point:
+#    misread. Eleven line-final words are editorial restorations:
 #      p. 8215  "on ar" -> "on an", "his or he" -> "his or her",
 #               "the total wage" -> "the total wages", "information a" ->
 #               "information as" (s.10(6)); "monthly wa" -> "monthly
@@ -57,10 +54,17 @@
 #               "any mor" -> "any month," (s.11(1))
 #      p. 8217  "tha" -> "that", "in respec" -> "in respect", "this
 #               section t" -> "this section by" (s.12(1))
-#    Three completions go beyond the visible letters: the plural in
-#    "wages", "that" (not "the") and the comma after "month". All three
-#    follow the 2000 edition; an uncropped print of the 2023 revised
-#    edition would settle them.
+#    Eight follow from the visible letters and the grammar. Three are not
+#    observable in this print and are corroborated by the Laws of Uganda
+#    2000 revised edition (Cap. 222, where these sections are numbered one
+#    higher), as consolidated by Laws.Africa: the plural "wages" (Cap. 222
+#    s.11(6)), "that" in "to that employee" and the comma in "any month,"
+#    (Cap. 222 s.12(1)). Corroborating copy, orientation only:
+#    https://media.ulii.org/media/legislation/18538/source_file/e8d418f126b5c47a/1985-8.pdf
+#    retrieved 2026-09-25, sha256
+#    efeb3198e5fe7f4fb571a00facc8500190c1e49bb507f971eec3637cf1a42fa4,
+#    PDF page 9 (printed page 6). An uncropped print of the 2023 revised
+#    edition would settle these three.
 # 3. Running heads ("8215", "[Cap. 230." and the Act title) are dropped as
 #    page furniture, so they no longer interrupt s.10(1), s.11(1) and
 #    s.12(1).
@@ -147,11 +151,16 @@ documents:
       transcription_note: >-
         OCR misreads are corrected to the printed text, checked on the
         page images. The scan is cut at the right margin of volume pages
-        8215 and 8217, so eleven line-final words are completed:
-        s.10(6) "an", "her", "wages", "as"; s.11(1) "wage",
-        "contribution", "that", "month,"; s.12(1) "that", "respect",
-        "by". Each completion is the only word that fits the visible
-        letters and matches the Laws of Uganda 2000 revised edition
-        (Cap. 222). The plural "wages", "that" and the comma after
-        "month" rest on the 2000 edition alone. Running heads are
-        dropped, and section 12 ends before section 13.
+        8215 and 8217, and eleven line-final words are editorial
+        restorations: s.10(6) "an", "her", "wages", "as"; s.11(1) "wage",
+        "contribution", "that", "month,"; s.12(1) "that", "respect", "by".
+        Eight follow from the visible letters and the grammar. Three are
+        not observable in this print and are corroborated by the Laws of
+        Uganda 2000 revised edition (Cap. 222) as consolidated by
+        Laws.Africa: the plural "wages" (Cap. 222 s.11(6)), "that" in "to
+        that employee" and the comma in "any month," (Cap. 222 s.12(1)),
+        at https://media.ulii.org/media/legislation/18538/source_file/e8d418f126b5c47a/1985-8.pdf
+        (retrieved 2026-09-25, sha256
+        efeb3198e5fe7f4fb571a00facc8500190c1e49bb507f971eec3637cf1a42fa4,
+        PDF page 9). Running heads are dropped, and section 12 ends before
+        section 13.

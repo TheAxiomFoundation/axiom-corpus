@@ -78,14 +78,20 @@ RULESPEC_EXCERPTS = {
         "a special contribution of ten percent",
         "within fifteen days following the last day of the month",
         "an employee of or above the age of fifty-five years",
-        "an employee of or above the age of fifty-five years in respect of whom",
         "to the nearest multiple of a shilling",
         "non-resident employee who is not an eligible employee",
+        "an employee of or above the age of fifty-five years in respect of whom the "
+        "Minister has specifically applied this section",
         "an eligible employee",
-        "total wages payable to such persons calculated from fifty cents",
-        "every contributing employer shall, for each month during which",
-        "pay into the reserve account in such manner as may be prescribed",
-        "which contribution shall not be payable on the same wages as standard",
+        "total wages payable to such persons calculated from fifty cents or more to the "
+        "nearest multiple of a shilling",
+        "every contributing employer shall, for each month during which he or she employs a "
+        "person of the following class or description, whether that person is a member of "
+        "the Fund or not",
+        "pay into the reserve account in such manner as may be prescribed by the Minister, "
+        "within fifteen days following the last day of the month for which wages are paid, "
+        "a special contribution of ten percent of the total wages payable to such persons",
+        "which contribution shall not be payable on the same wages as standard contribution",
     ),
 }
 
@@ -236,3 +242,20 @@ def test_superseded_capture_stays_for_its_published_releases() -> None:
         ("coverage", ".json"),
     ):
         assert (ROOT / f"data/corpus/{kind}/ug/statute/{SUPERSEDED_VERSION}{suffix}").is_file()
+
+
+def test_edition_dependent_restorations_carry_pinned_provenance() -> None:
+    rows = [
+        json.loads(line)
+        for line in PROVISIONS.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    for row in rows:
+        note = row["metadata"]["transcription_note"]
+        assert "editorial restorations" in note
+        assert (
+            "https://media.ulii.org/media/legislation/18538/source_file/"
+            "e8d418f126b5c47a/1985-8.pdf" in note
+        )
+        assert "efeb3198e5fe7f4fb571a00facc8500190c1e49bb507f971eec3637cf1a42fa4" in note
+        assert "Cap. 222 s.11(6)" in note and "Cap. 222 s.12(1)" in note
