@@ -1,0 +1,744 @@
+{
+  "scope": "us-ca/statute/2026-07-13-recovery",
+  "generated_by": "scripts/audit_us_ca_statute_recovery_rows.py",
+  "summary": {
+    "rows": 33,
+    "files": 11,
+    "verdicts": {
+      "empty_document_root": 11,
+      "leginfo_page_chrome": 11,
+      "picker_history_notes_only": 1,
+      "section_text_without_history": 10
+    },
+    "page_types": {
+      "select_from_multiples": 1,
+      "single_law_section": 10
+    },
+    "rows_without_section_text": 23
+  },
+  "files": [
+    {
+      "document_id": "us-ca-code-rtc",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17014.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "009253aa40cb5eb31cf245b30116569389649c5c7d8144b3f064411b630fcdad",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17014.",
+      "section_path": "us-ca/statute/rtc/17014",
+      "recovery_citation_path": "us-ca/statute/rtc/17014",
+      "history": "(Amended by Stats. 1994, Ch. 1243, Sec. 4. Effective September 30, 1994.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p10",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p10",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17062.1.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "0814cb8249d6ab6f440a1d583a6a616db83643a988e04d1bab5cee8ed253fc73",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17062.1.",
+      "section_path": "us-ca/statute/rtc/17062.1",
+      "recovery_citation_path": "us-ca/statute/rtc/17062.1",
+      "history": "(Added by Stats. 2025, Ch. 231, Sec. 6. (SB 711) Effective October 1, 2025.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p2",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p2",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17016.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "67eea53b8ced7a4b58160f5a3ba307556079ca0908dce520e1f3147b8d265465",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17016.",
+      "section_path": "us-ca/statute/rtc/17016",
+      "recovery_citation_path": "us-ca/statute/rtc/17016",
+      "history": "(Repealed and added by Stats. 1955, Ch. 939.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p3",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p3",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17017.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "8ebc7bc32bf1a26646b3b7fdbaa421858dffba7d6342980f0773cb23e20ed197",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17017.",
+      "section_path": "us-ca/statute/rtc/17017",
+      "recovery_citation_path": "us-ca/statute/rtc/17017",
+      "history": "(Amended by Stats. 1961, Ch. 537.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p4",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p4",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17029.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "e7a5e328587726e64905139ac5c843752c098e41590e3c900b3de83dfd2b0f76",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17029.",
+      "section_path": "us-ca/statute/rtc/17029",
+      "recovery_citation_path": "us-ca/statute/rtc/17029",
+      "history": "(Amended by Stats. 1991, Ch. 117, Sec. 9. Effective July 16, 1991.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p5",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p5",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17034.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "a9277b40f2f7ccd760a906b016a92c014c6f762d54dc41f02b8c1ec44ec51a67",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17034.",
+      "section_path": "us-ca/statute/rtc/17034",
+      "recovery_citation_path": "us-ca/statute/rtc/17034",
+      "history": "(Amended (as amended by Stats. 1993, Ch. 31) by Stats. 1993, Ch. 877, Sec. 7.1. Effective October 6, 1993. Operative January 1, 1994, by Sec. 102 of Ch. 877.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p6",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p6",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17038.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "de322a96fe4681744d3b5eb282c950b50b541e343dcf42ff961af87a7811d969",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17038.",
+      "section_path": "us-ca/statute/rtc/17038",
+      "recovery_citation_path": "us-ca/statute/rtc/17038",
+      "history": "(Amended by Stats. 1983, Ch. 323, Sec. 82.5. Effective July 1, 1983.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p7",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p7",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17053.6.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "8625fe986ac1dfbf3395d1116cf0c28c86bc4d1f8247af911a28fcf7cbf439ea",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17053.6.",
+      "section_path": "us-ca/statute/rtc/17053.6",
+      "recovery_citation_path": "us-ca/statute/rtc/17053.6",
+      "history": "(Amended by Stats. 1991, Ch. 472, Sec. 6. Effective October 2, 1991. Note: This section was added on Nov. 6, 1990, by initiative Prop. 139 (the Prison Inmate Labor Initiative of 1990).)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p8",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p8",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17054.7.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "b8e44e572b290a17223173fd2cd2332c4c66729ca74e34984c934bcdac3f700e",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17054.7.",
+      "section_path": "us-ca/statute/rtc/17054.7",
+      "recovery_citation_path": "us-ca/statute/rtc/17054.7",
+      "history": "(Amended by Stats. 1993, Ch. 877, Sec. 12. Effective October 6, 1993.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-rtc-p9",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-rtc-p9",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17061.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "291812b6eac4551e6426cbe322814095eac9d3fe5fea4b5c62f8b0d0c6705839",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "single_law_section",
+      "title": "California Code, RTC 17061.",
+      "section_path": "us-ca/statute/rtc/17061",
+      "recovery_citation_path": "us-ca/statute/rtc/17061",
+      "history": "(Amended by Stats. 1977, Ch. 1252.)",
+      "picker_versions": []
+    },
+    {
+      "document_id": "us-ca-code-wic",
+      "source_path": "sources/us-ca/statute/2026-07-13-recovery/official-documents/us-ca-code-wic",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=11450.",
+      "fetched_at": "2026-07-14T01:42:23Z",
+      "sha256": "898ca9ccf8be264103a2c22e18575c62ed8d5687ddcd719f606be19beb4ff0cd",
+      "sha256_matches_provenance": true,
+      "sha256_matches_signed_manifest": true,
+      "page_type": "select_from_multiples",
+      "title": "Law section",
+      "section_path": "us-ca/statute/wic/11450",
+      "recovery_citation_path": "us-ca/statute/wic/11450/a/1/A",
+      "history": null,
+      "picker_versions": [
+        {
+          "history": "(Amended (as amended by Stats. 2022, Ch. 715, Sec. 2) by Stats. 2024, Ch. 798, Sec. 1.)",
+          "op_statues": "2024",
+          "op_chapter": "798",
+          "op_section": "1"
+        },
+        {
+          "history": "(Amended (as added by Stats. 2022, Ch. 715, Sec. 3) by Stats. 2024, Ch. 798, Sec. 2.)",
+          "op_statues": "2024",
+          "op_chapter": "798",
+          "op_section": "2"
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "line": 1,
+      "citation_path": "us-ca/statute/rtc/17014",
+      "kind": "document",
+      "citation_label": "us ca code rtc",
+      "heading": "us ca code rtc",
+      "source_id": "us-ca-code-rtc",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 2,
+      "citation_path": "us-ca/statute/rtc/17014/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 3,
+      "citation_path": "us-ca/statute/rtc/17014/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc 2",
+      "heading": "17014.",
+      "source_id": "us-ca-code-rtc",
+      "body_chars": 2609,
+      "body_sha256": "3e36363233560775a9070752483f2b8fe15f496f5ec7cab99f80c20d8d4bd87a",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 4,
+      "citation_path": "us-ca/statute/rtc/17062.1",
+      "kind": "document",
+      "citation_label": "us ca code rtc p10",
+      "heading": "us ca code rtc p10",
+      "source_id": "us-ca-code-rtc-p10",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 5,
+      "citation_path": "us-ca/statute/rtc/17062.1/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p10 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p10",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 6,
+      "citation_path": "us-ca/statute/rtc/17062.1/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p10 2",
+      "heading": "17062.1.",
+      "source_id": "us-ca-code-rtc-p10",
+      "body_chars": 225,
+      "body_sha256": "3638059b53fe31d4170f3fb1a17db3f603c4dab40794478fc49e30123284a699",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 7,
+      "citation_path": "us-ca/statute/rtc/17016",
+      "kind": "document",
+      "citation_label": "us ca code rtc p2",
+      "heading": "us ca code rtc p2",
+      "source_id": "us-ca-code-rtc-p2",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 8,
+      "citation_path": "us-ca/statute/rtc/17016/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p2 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p2",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 9,
+      "citation_path": "us-ca/statute/rtc/17016/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p2 2",
+      "heading": "17016.",
+      "source_id": "us-ca-code-rtc-p2",
+      "body_chars": 272,
+      "body_sha256": "812360ad0658df9b83311cae6e08ae8fc1bdd9d838128ffa67dccae9ff2e04e7",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 10,
+      "citation_path": "us-ca/statute/rtc/17017",
+      "kind": "document",
+      "citation_label": "us ca code rtc p3",
+      "heading": "us ca code rtc p3",
+      "source_id": "us-ca-code-rtc-p3",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 11,
+      "citation_path": "us-ca/statute/rtc/17017/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p3 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p3",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 12,
+      "citation_path": "us-ca/statute/rtc/17017/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p3 2",
+      "heading": "17017.",
+      "source_id": "us-ca-code-rtc-p3",
+      "body_chars": 140,
+      "body_sha256": "13687d2e64aa51f32d324d277a93b5296461ae6a716dcd057e960f4a0396ced2",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 13,
+      "citation_path": "us-ca/statute/rtc/17029",
+      "kind": "document",
+      "citation_label": "us ca code rtc p4",
+      "heading": "us ca code rtc p4",
+      "source_id": "us-ca-code-rtc-p4",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 14,
+      "citation_path": "us-ca/statute/rtc/17029/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p4 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p4",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 15,
+      "citation_path": "us-ca/statute/rtc/17029/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p4 2",
+      "heading": "17029.",
+      "source_id": "us-ca-code-rtc-p4",
+      "body_chars": 344,
+      "body_sha256": "0bd1e5476ac7d5e66cacaf07e7cee81bd4e1299b6cdf0de5e40934e0a2b1f289",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 16,
+      "citation_path": "us-ca/statute/rtc/17034",
+      "kind": "document",
+      "citation_label": "us ca code rtc p5",
+      "heading": "us ca code rtc p5",
+      "source_id": "us-ca-code-rtc-p5",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 17,
+      "citation_path": "us-ca/statute/rtc/17034/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p5 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p5",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 18,
+      "citation_path": "us-ca/statute/rtc/17034/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p5 2",
+      "heading": "17034.",
+      "source_id": "us-ca-code-rtc-p5",
+      "body_chars": 430,
+      "body_sha256": "f429fd7c67cd4ece9317203dc5f4b764f95610f9f5747ecc2ec705e7f614c019",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 19,
+      "citation_path": "us-ca/statute/rtc/17038",
+      "kind": "document",
+      "citation_label": "us ca code rtc p6",
+      "heading": "us ca code rtc p6",
+      "source_id": "us-ca-code-rtc-p6",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 20,
+      "citation_path": "us-ca/statute/rtc/17038/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p6 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p6",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 21,
+      "citation_path": "us-ca/statute/rtc/17038/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p6 2",
+      "heading": "17038.",
+      "source_id": "us-ca-code-rtc-p6",
+      "body_chars": 500,
+      "body_sha256": "ec1c34cb8f22b67913317cf366f00a648e81a41212ee5dd189b166c9d9b8f4df",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 22,
+      "citation_path": "us-ca/statute/rtc/17053.6",
+      "kind": "document",
+      "citation_label": "us ca code rtc p7",
+      "heading": "us ca code rtc p7",
+      "source_id": "us-ca-code-rtc-p7",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 23,
+      "citation_path": "us-ca/statute/rtc/17053.6/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p7 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p7",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 24,
+      "citation_path": "us-ca/statute/rtc/17053.6/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p7 2",
+      "heading": "17053.6.",
+      "source_id": "us-ca-code-rtc-p7",
+      "body_chars": 788,
+      "body_sha256": "e8219b1447ff5d260dbec0b8113593474820b56c8d8ad7606a2cc3b0abda92a8",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 25,
+      "citation_path": "us-ca/statute/rtc/17054.7",
+      "kind": "document",
+      "citation_label": "us ca code rtc p8",
+      "heading": "us ca code rtc p8",
+      "source_id": "us-ca-code-rtc-p8",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 26,
+      "citation_path": "us-ca/statute/rtc/17054.7/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p8 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p8",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 27,
+      "citation_path": "us-ca/statute/rtc/17054.7/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p8 2",
+      "heading": "17054.7.",
+      "source_id": "us-ca-code-rtc-p8",
+      "body_chars": 1847,
+      "body_sha256": "5393e61ed0e3c8aece4081e70a08e9066d67516b35943c700a591e73fef2d2d1",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 28,
+      "citation_path": "us-ca/statute/rtc/17061",
+      "kind": "document",
+      "citation_label": "us ca code rtc p9",
+      "heading": "us ca code rtc p9",
+      "source_id": "us-ca-code-rtc-p9",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 29,
+      "citation_path": "us-ca/statute/rtc/17061/block-1",
+      "kind": "block",
+      "citation_label": "us ca code rtc p9 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-rtc-p9",
+      "body_chars": 210,
+      "body_sha256": "c7162d6484dc80d8c50877318da4ade3432e3c5e222b371324aa762c077b7dbe",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 30,
+      "citation_path": "us-ca/statute/rtc/17061/block-2",
+      "kind": "block",
+      "citation_label": "us ca code rtc p9 2",
+      "heading": "17061.",
+      "source_id": "us-ca-code-rtc-p9",
+      "body_chars": 815,
+      "body_sha256": "d97e9e1ab433cf5d1d79af5bfa5f5d341d91dd64918adc6e491fa913b0a14271",
+      "verdict": "section_text_without_history"
+    },
+    {
+      "line": 31,
+      "citation_path": "us-ca/statute/wic/11450/a/1/A",
+      "kind": "document",
+      "citation_label": "us ca code wic",
+      "heading": "us ca code wic",
+      "source_id": "us-ca-code-wic",
+      "body_chars": 0,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verdict": "empty_document_root"
+    },
+    {
+      "line": 32,
+      "citation_path": "us-ca/statute/wic/11450/a/1/A/block-1",
+      "kind": "block",
+      "citation_label": "us ca code wic 1",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-wic",
+      "body_chars": 233,
+      "body_sha256": "3df382f2e0f70698f531e585591caf46df4e31150708e7fe478e0b073d1c5a04",
+      "verdict": "leginfo_page_chrome"
+    },
+    {
+      "line": 33,
+      "citation_path": "us-ca/statute/wic/11450/a/1/A/block-2",
+      "kind": "block",
+      "citation_label": "us ca code wic 2",
+      "heading": "Code Section",
+      "source_id": "us-ca-code-wic",
+      "body_chars": 173,
+      "body_sha256": "394a24dbd87b8a889ee405a3d31475f46fca5f922ab52c12a6b09e18ee8634b2",
+      "verdict": "picker_history_notes_only"
+    }
+  ],
+  "carriage": [
+    {
+      "section_path": "us-ca/statute/rtc/17014",
+      "recovery_citation_path": "us-ca/statute/rtc/17014",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17014",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 2671,
+          "history": "(Amended by Stats. 1994, Ch. 1243, Sec. 4. Effective September 30, 1994.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17016",
+      "recovery_citation_path": "us-ca/statute/rtc/17016",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17016",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 318,
+          "history": "(Repealed and added by Stats. 1955, Ch. 939.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17017",
+      "recovery_citation_path": "us-ca/statute/rtc/17017",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17017",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 175,
+          "history": "(Amended by Stats. 1961, Ch. 537.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17029",
+      "recovery_citation_path": "us-ca/statute/rtc/17029",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17029",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 412,
+          "history": "(Amended by Stats. 1991, Ch. 117, Sec. 9. Effective July 16, 1991.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17034",
+      "recovery_citation_path": "us-ca/statute/rtc/17034",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17034",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 587,
+          "history": "(Amended (as amended by Stats. 1993, Ch. 31) by Stats. 1993, Ch. 877, Sec. 7.1. Effective October 6, 1993. Operative January 1, 1994, by Sec. 102 of Ch. 877.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17038",
+      "recovery_citation_path": "us-ca/statute/rtc/17038",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17038",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 569,
+          "history": "(Amended by Stats. 1983, Ch. 323, Sec. 82.5. Effective July 1, 1983.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17053.6",
+      "recovery_citation_path": "us-ca/statute/rtc/17053.6",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17053.6",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 973,
+          "history": "(Amended by Stats. 1991, Ch. 472, Sec. 6. Effective October 2, 1991. Note: This section was added on Nov. 6, 1990, by initiative Prop. 139 (the Prison Inmate Labor Initiative of 1990).)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17054.7",
+      "recovery_citation_path": "us-ca/statute/rtc/17054.7",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17054.7",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 1910,
+          "history": "(Amended by Stats. 1993, Ch. 877, Sec. 12. Effective October 6, 1993.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17061",
+      "recovery_citation_path": "us-ca/statute/rtc/17061",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17061",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 850,
+          "history": "(Amended by Stats. 1977, Ch. 1252.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/rtc/17062.1",
+      "recovery_citation_path": "us-ca/statute/rtc/17062.1",
+      "recovery_page_type": "single_law_section",
+      "carriers": [
+        {
+          "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+          "citation_path": "us-ca/statute/rtc/17062.1",
+          "kind": "section",
+          "source_as_of": "2026-09-14",
+          "body_chars": 302,
+          "history": "(Added by Stats. 2025, Ch. 231, Sec. 6. (SB 711) Effective October 1, 2025.)",
+          "body_equals_recovery_page_text": true
+        }
+      ]
+    },
+    {
+      "section_path": "us-ca/statute/wic/11450",
+      "recovery_citation_path": "us-ca/statute/wic/11450/a/1/A",
+      "recovery_page_type": "select_from_multiples",
+      "carriers": [
+        {
+          "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018",
+          "citation_path": "us-ca/statute/wic/11450",
+          "kind": "section",
+          "source_as_of": "2026-06-25",
+          "body_chars": 29125,
+          "history": "(Amended (as amended by Stats. 2022, Ch. 715, Sec. 2) by Stats. 2024, Ch. 798, Sec. 1. (SB 1415) Effective January 1, 2025. Section conditionally operative July 1, 2021, or later date, as prescribed by its own provisions. Conditionally inoperative on or after July 1, 2024, by its own provisions. Repealed conditionally by its own provisions. See later operative version, as amended by Sec. 2 of Stats. 2024, Ch. 798.)",
+          "picker_version_carried": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}
