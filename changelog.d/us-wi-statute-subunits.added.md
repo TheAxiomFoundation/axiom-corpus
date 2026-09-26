@@ -1,0 +1,1 @@
+Emit Wisconsin Statutes subsections, paragraphs, subdivisions, and subdivision paragraphs as child provisions keyed by the Legislature's own `data-path` (for example `us-wi/statute/71.05/6/b/54m`), and extract chapter 71 at that grain from the official September 4, 2026 publication.
