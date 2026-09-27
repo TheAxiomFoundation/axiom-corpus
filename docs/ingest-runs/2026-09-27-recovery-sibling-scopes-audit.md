@@ -90,10 +90,14 @@ Its docstring defines each verdict. In short:
   rows, the section of the same label made with the tracked manifest's
   `extraction` block).
 
-All 756 rows get a verdict other than `unclassified`.
-`test_classifier_refuses_altered_rows` checks strictness: dropping a block's
-first or last node, truncating, or changing one letter makes a row
-`unclassified`.
+All 756 rows get a verdict other than `unclassified`. Two tests check that the
+verdicts are strict:
+
+- `test_classifier_refuses_altered_rows`: dropping a block's first or last node,
+  truncating, or changing one letter makes a row `unclassified`.
+- `test_no_row_with_text_foreign_to_its_source_is_classified`, an invariant over
+  every row of every scope: splicing a character that occurs in no row into a
+  row's body, at its start, middle or end, makes it `unclassified`.
 
 Every retained file hashes to the signed ingest manifest's `applied_files`
 entry, and to its provenance sidecar where it has one. The only file without a
@@ -316,7 +320,7 @@ that has every audited scope's sources and the sources of the scopes each swap
 test validates:
 
 - `uv run --extra dev python -m pytest -q tests/test_recovery_sibling_scopes_audit.py`:
-  46 passed.
+  64 passed.
 - The audit command above rewrote the committed JSON byte-identically.
 - `uv run --extra dev ruff check` and `ruff format --check` on the new scripts and
   test: passed.

@@ -25,6 +25,7 @@ from scripts.audit_recovery_sibling_scopes import (
     SCOPES,
     audit_scope,
     classify_row,
+    load_sources,
     read_page,
 )
 from scripts.resolve_recovery_sibling_citations import (
@@ -363,6 +364,27 @@ def test_classifier_refuses_altered_rows(key: str, citation_path: str, mutate: A
     assert verdict() != "unclassified"
     row["body"] = mutate(row["body"])
     assert verdict() == "unclassified"
+
+
+FOREIGN = "\u2603"  # a character that occurs in no audited row
+
+
+@pytest.mark.parametrize("key", [scope.key for scope in SCOPES])
+def test_no_row_with_text_foreign_to_its_source_is_classified(key: str) -> None:
+    """Invariant over every row: a verdict means the body is text the source yields.
+
+    Splicing a character that occurs in no row into any row's body, at its start,
+    middle and end, makes that row ``unclassified``.
+    """
+    scope = BY_KEY[key]
+    sources = load_sources(CORPUS_ROOT, REPO_ROOT, scope)
+    for row in sources.rows:
+        body = row.get("body") or ""
+        assert FOREIGN not in body
+        for position in sorted({0, len(body) // 2, len(body)}):
+            mutated = dict(row, body=body[:position] + FOREIGN + body[position:])
+            result = sources.classify(mutated, scope)
+            assert result["verdict"] == "unclassified", (row["citation_path"], position)
 
 
 def test_no_text_verdicts_are_the_documented_ones() -> None:

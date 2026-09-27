@@ -682,7 +682,28 @@ def _carriage(
     return entries
 
 
-def audit_scope(base: Path, repo_root: Path, scope: ScopeAudit) -> dict[str, Any]:
+@dataclass
+class ScopeSources:
+    """One scope's rows and its retained sources, read once."""
+
+    rows: list[dict[str, Any]]
+    by_document: dict[str, list[dict[str, Any]]]
+    files: list[dict[str, Any]]
+    pages: dict[str, Page]
+    pdfs: dict[str, PdfText]
+
+    def classify(self, row: dict[str, Any], scope: ScopeAudit) -> dict[str, Any]:
+        document_id = row["source_id"]
+        return classify_row(
+            row,
+            scope=scope,
+            page=self.pages.get(document_id),
+            pdf=self.pdfs.get(document_id),
+            document_rows=self.by_document[document_id],
+        )
+
+
+def load_sources(base: Path, repo_root: Path, scope: ScopeAudit) -> ScopeSources:
     rows = _scope_rows(base, scope)
     manifest_path = (
         repo_root
@@ -748,17 +769,16 @@ def audit_scope(base: Path, repo_root: Path, scope: ScopeAudit) -> dict[str, Any
                 else "document_without_container"
             )
         files.append(record)
+    return ScopeSources(rows, by_document, files, pages, pdfs)
 
+
+def audit_scope(base: Path, repo_root: Path, scope: ScopeAudit) -> dict[str, Any]:
+    sources = load_sources(base, repo_root, scope)
+    rows, files, pages = sources.rows, sources.files, sources.pages
     audited_rows = []
     for line_number, row in enumerate(rows, start=1):
         document_id = row["source_id"]
-        result = classify_row(
-            row,
-            scope=scope,
-            page=pages.get(document_id),
-            pdf=pdfs.get(document_id),
-            document_rows=by_document[document_id],
-        )
+        result = sources.classify(row, scope)
         body = row.get("body") or ""
         audited_rows.append(
             {
