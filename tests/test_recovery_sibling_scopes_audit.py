@@ -27,6 +27,7 @@ from scripts.audit_recovery_sibling_scopes import (
     classify_row,
     load_sources,
     read_page,
+    selectors_selecting,
 )
 from scripts.resolve_recovery_sibling_citations import (
     DEFAULT_OUTPUT as DOWNSTREAM_OUTPUT,
@@ -88,7 +89,25 @@ def _validate(jurisdiction: str, document_class: str, *versions: str) -> dict[st
 
 @pytest.mark.parametrize("key", [scope.key for scope in SCOPES])
 def test_committed_audit_matches_a_fresh_audit(key: str) -> None:
-    assert audit_scope(CORPUS_ROOT, REPO_ROOT, BY_KEY[key]) == _scope_audit(key)
+    """Everything but selector membership, which later cuts may extend."""
+    fresh = audit_scope(CORPUS_ROOT, REPO_ROOT, BY_KEY[key])
+    committed = _scope_audit(key)
+    assert {k: v for k, v in fresh.items() if k != "selectors"} == {
+        k: v for k, v in committed.items() if k != "selectors"
+    }
+
+
+@pytest.mark.parametrize("key", [scope.key for scope in SCOPES])
+def test_recorded_selector_membership_still_holds(key: str) -> None:
+    """Tracked selectors are immutable: the recorded ones still select the scope.
+
+    A new selector that selects it is allowed; this is not a freeze guard.
+    """
+    recorded = _scope_audit(key)["selectors"]
+    current = set(selectors_selecting(REPO_ROOT, BY_KEY[key]))
+    assert set(recorded["names"]) <= current
+    assert recorded["count"] == len(recorded["names"])
+    assert recorded["key_lines"] == {name: name in current for name in recorded["key_lines"]}
 
 
 def test_every_row_is_classified_and_counted() -> None:
@@ -385,6 +404,23 @@ def test_no_row_with_text_foreign_to_its_source_is_classified(key: str) -> None:
             mutated = dict(row, body=body[:position] + FOREIGN + body[position:])
             result = sources.classify(mutated, scope)
             assert result["verdict"] == "unclassified", (row["citation_path"], position)
+
+
+def test_extractor_fallback_requires_a_page_without_body_blocks() -> None:
+    """A page's whole content root is a verdict only where the extractor falls back."""
+    scope = BY_KEY["us-tn/regulation/2026-07-13-recovery"]
+    sources = load_sources(CORPUS_ROOT, REPO_ROOT, scope)
+    [row] = [row for row in sources.rows if row.get("body")]
+    page = sources.pages[row["source_id"]]
+    assert page.runs() and page.root_text != row["body"]
+    assert sources.classify(dict(row, body=page.root_text), scope)["verdict"] == "unclassified"
+    guidance = BY_KEY["us/guidance/2026-07-13-recovery"]
+    fallback = load_sources(CORPUS_ROOT, REPO_ROOT, guidance)
+    for candidate in fallback.rows:
+        if candidate["source_id"] in guidance.landing and candidate.get("body"):
+            landing = fallback.pages[candidate["source_id"]]
+            assert not landing.runs()
+            assert candidate["body"] == landing.root_text
 
 
 def test_no_text_verdicts_are_the_documented_ones() -> None:

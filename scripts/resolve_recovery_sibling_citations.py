@@ -12,9 +12,10 @@ touches the scope or changes under the swap.
 
 axiom-encode is not a dependency of this repository, so this is run by hand and
 its output committed; CI only checks the committed file's consistency. The
-release object's signature is not checked: the release is built from the local
-provisions files (their real sha256 and byte counts), so lookup, composition and
-slicing are the resolver's own code.
+release is built in memory, so no release object is loaded or validated (layout,
+name, content digest, signature). Its artifacts are the local provisions files
+with their real sha256 and byte counts, and lookup, composition and slicing are
+the resolver's own code.
 
 Run it with a Python that has axiom-encode's dependencies (its own venv), from
 the repository root:

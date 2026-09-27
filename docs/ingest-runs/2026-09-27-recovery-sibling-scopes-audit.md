@@ -19,7 +19,7 @@ activated, and no tracked selector is added or edited.
 | `us-mn/statute/2026-07-13-recovery` | 125 | 35 | `us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290`: all 250 legal-text lines | no | drop it; add the three MN chapter scopes |
 | `us-ut/statute/2026-07-13-recovery` | 3 | 0 (all 3 wrap the text in page chrome) | `us-ut/statute/2026-09-14-income-tax-chapter-title-59`: same words | no | drop it; add the chapter scope |
 | `us-sc/statute/2026-07-13-recovery` | 3 | 3 | **nothing**: no scope carries §12-6-520 | **yes** | swap it for the successor |
-| `us-mi/statute/2026-07-13-recovery` | 15 | 2 | `us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206` | no | drop it; add the chapter scope |
+| `us-mi/statute/2026-07-13-recovery` | 15 | 2 | `us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206`: §206.272 as captured; §§206.30 and 206.51 in their later, amended text | no | drop it; add the chapter scope |
 | `us-mt/regulation/2026-07-13-recovery` | 1 | 0 (the rule wrapped in page chrome) | **nothing**: ARM 37.78.420 is only here | **yes** | swap it for the successor |
 | `us-co/regulation/2026-07-13-recovery` | 192 | 4 | its own successor `…-r2026-09-11-tanf-consolidated`, which also replaces the wrong §3.606.x rows | no | swap it for the consolidated successor |
 | `us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated` | 250 | 5 | (it is the carrier) | no | keep |
@@ -57,8 +57,12 @@ three functions:
   declared citation, or at `recovery/<document id>` when it was not given exactly
   one.
 - **`_materialize_planned_targets`** (`:802-866`) gives each planned citation the
-  extractor did not emit a row by copying the whole body of the first row that
-  prints the target's label (for `page-N` targets, the page of that number).
+  extractor did not emit a row by copying the whole body of another row. For a
+  `page-N` target that is page N. Otherwise it is the first row that prints the
+  target's label, preferring rows that print it within their first 500
+  characters (`:827-841`). That preference is what chose the Colorado copies: the
+  first page printing "3.606.1" is page 51, the first printing it that early is
+  page 110.
 
 Replaying the first two on the retained bytes reproduces 38 documents' rows
 exactly (`test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes`).
@@ -170,7 +174,12 @@ retain. The section it reads equals the removed row's heading and body.
 **Michigan.** §206.272's row is the whole MCL page. The §206.30 and §206.51 pages
 became an empty `recovery/us-mi-code-*` root and one block holding the whole
 section. The ten cited subsection paths (`206.30/2`, …, `206.51/10`) are
-`alias_copy` rows: each is the whole section (43,548 or 11,767 characters).
+`alias_copy` rows: each is the whole section (43,548 or 11,767 characters). The
+chapter scope (captured 2026-09-14) holds later text of both sections: §206.30 as
+amended by 2026 PA 39 (effective 2026-07-22), which adds an addback for wages paid
+for organ donation leave, and §206.51 as amended by 2026 PA 82 (effective
+2026-07-27). Both amendments postdate the July 14 capture, so for MI the swap
+brings current text, not only clean text.
 
 **Montana.** The row is the rules.mt.gov page: title, "Montana SOS Skip to main
 content Back View in PDF NEW", the rule twice-headed, the text, then history,
@@ -225,8 +234,10 @@ axiom-encode resolves a citation in `corpus_resolver.resolve_local_corpus_source
 
 It runs that resolver over every path rulespec-us cites under each scope's
 jurisdiction and class, for every key line that selects the scope, as selected
-and with the swap above. The only step it skips is the check of the release
-object's signature. Output:
+and with the swap above. It builds the release in memory, so no release object
+is loaded or validated (layout, name, content digest, signature); the artifacts
+are the local provisions files with their real hashes, and lookup, composition
+and slicing are the resolver's own code. Output:
 [`2026-09-27-recovery-sibling-scopes-downstream.json`](2026-09-27-recovery-sibling-scopes-downstream.json).
 Under the live pin (`us-rulespec-2026-08-08-obbb-alien-snap`):
 
@@ -248,7 +259,8 @@ Under the live pin (`us-rulespec-2026-08-08-obbb-alien-snap`):
 After the swap:
 
 - NY, UT, MN, ME and MI roots resolve to the chapter scopes, and the MI
-  subsection paths to ancestor slices of real subsection text.
+  subsection paths to ancestor slices of real subsection text (the amended text
+  above, which rulespec-us's MI modules should be checked against).
 - CO's §3.606.x paths get the Colorado Works sections.
 - IL `19812` resolves to the manual scope's block.
 - Four statute citations fail. `us-me/statute/36/5111/block-2` and
@@ -271,10 +283,13 @@ After the swap:
 | us-co regulation (consolidated) | 6 | no | no | no | yes | yes |
 | us-sc statute, us-mt regulation, and the eight landing, IL and guidance scopes | 34 each | yes | yes | yes | yes | yes |
 
-Every row of this table is in the audit JSON (`selectors`). rulespec-us pins the
+Every row of this table is in the audit JSON (`selectors`), as of `main`
+f1916d73b. Tracked selectors are immutable, so later cuts can only add names;
+`test_recorded_selector_membership_still_holds` checks that, and does not stop a
+new selector from selecting any of these scopes. rulespec-us pins the
 obbb line; #747 cut its successor, snap-fy2027; rulespec-us#1389 stages a re-pin
-to canada-338. For every statute scope and the CO recovery scope, the swap above
-is what the wave4 line already did
+to canada-338. For the NY, ME, MN, UT and MI statute scopes and the CO recovery
+scope, the swap above is what the wave4 line already did
 (`test_the_proposed_swap_validates_on_the_obbb_line` also checks that applying it
 to the obbb line's scopes of the pair passes `validate_release` with strict
 warnings and no issue).
@@ -320,7 +335,7 @@ that has every audited scope's sources and the sources of the scopes each swap
 test validates:
 
 - `uv run --extra dev python -m pytest -q tests/test_recovery_sibling_scopes_audit.py`:
-  64 passed.
+  83 passed.
 - The audit command above rewrote the committed JSON byte-identically.
 - `uv run --extra dev ruff check` and `ruff format --check` on the new scripts and
   test: passed.

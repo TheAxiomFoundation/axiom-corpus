@@ -23,7 +23,7 @@ Which verdict it gets depends on where that block's nodes sit:
   under a section other than the one the row's path names.
 * ``landing_page_text``: a block of a page that holds no legal text of its own (an
   index, table of contents or welcome page), or that page's whole content root
-  when the extractor found no text node in it.
+  when the extractor finds no non-empty body block in it (its fallback).
 * ``document_page_text`` (HTML): a block of an official document page that has no
   site container.
 
@@ -520,9 +520,9 @@ def classify_row(
         return {"verdict": "unclassified"}
     run = _matching_run(body, page) if body.strip() else None
     if run is None:
-        if source_id in scope.landing and normalized(body) == normalized(page.root_text):
-            # The extractor's fallback: its content root held no text node, so the
-            # block is the root's whole text.
+        if source_id in scope.landing and not page.runs() and body == page.root_text:
+            # The extractor's fallback: its content root yields no non-empty body
+            # block, so the one block is the root's whole normalized text.
             return {"verdict": "landing_page_text", "extractor_fallback": True}
         return {"verdict": "unclassified"}
     regions = [node.region for node in run]
