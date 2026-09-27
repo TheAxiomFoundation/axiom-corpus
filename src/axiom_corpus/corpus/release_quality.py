@@ -15,7 +15,12 @@ from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import (
+    LAYER_BASE,
+    LAYER_PRIMARY,
+    ReleaseManifest,
+    ReleaseScope,
+)
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.release.manifest import selector_sha256
 
@@ -210,9 +215,15 @@ def _release_citation_paths(
     A release may deliberately split a legal hierarchy across source snapshots.
     Parent integrity is therefore a release-wide invariant, not a scope-local one.
     Parsing errors remain owned by ``_validate_scope`` so they are reported once.
+
+    Citation uniqueness is per layer: a base scope may carry a path a primary
+    scope also carries (serving picks the primary row), but two scopes of the
+    same layer may not, and the overlap must stay inside one
+    (jurisdiction, document_class) pair because serving resolves precedence
+    per pair. The returned path set is the union of both layers.
     """
     paths: set[str] = set()
-    owners: dict[str, ReleaseScope] = {}
+    owners = _LayeredCitationOwners()
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             if require_unique:
@@ -232,22 +243,50 @@ def _release_citation_paths(
         except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             continue
         for record in provisions:
-            owner = owners.get(record.citation_path)
-            if require_unique and owner is not None and owner != scope:
-                collector.add(
-                    "error",
-                    "duplicate_release_citation",
-                    (
-                        f"citation_path {record.citation_path} is also present in "
-                        f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
-                    ),
-                    scope=scope,
-                    path=path,
-                )
-            else:
-                owners[record.citation_path] = scope
+            conflict = owners.claim(record.citation_path, scope)
+            if require_unique and conflict is not None:
+                code, message = conflict
+                collector.add("error", code, message, scope=scope, path=path)
             paths.add(record.citation_path)
     return paths
+
+
+class _LayeredCitationOwners:
+    """Track which release scope owns each citation path in each layer."""
+
+    def __init__(self) -> None:
+        self._owners: dict[tuple[str, str], ReleaseScope] = {}
+
+    def claim(self, citation_path: str, scope: ReleaseScope) -> tuple[str, str] | None:
+        """Record ``scope`` as an owner of ``citation_path``; return any conflict.
+
+        Duplicates inside one scope are reported by ``_validate_provisions``.
+        """
+        owner = self._owners.get((scope.layer, citation_path))
+        if owner is not None and owner != scope:
+            return (
+                "duplicate_release_citation",
+                (
+                    f"citation_path {citation_path} is also present in "
+                    f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
+                ),
+            )
+        self._owners.setdefault((scope.layer, citation_path), scope)
+        other_layer = LAYER_PRIMARY if scope.is_base else LAYER_BASE
+        other = self._owners.get((other_layer, citation_path))
+        if other is not None and other.pair != scope.pair:
+            return (
+                "layered_citation_outside_pair",
+                (
+                    f"citation_path {citation_path} is carried by {scope.layer} scope "
+                    f"{scope.jurisdiction}/{scope.document_class}/{scope.version} and "
+                    f"{other.layer} scope "
+                    f"{other.jurisdiction}/{other.document_class}/{other.version}; "
+                    "a base row can only be shadowed by a primary row of its own "
+                    "jurisdiction and document class"
+                ),
+            )
+        return None
 
 
 def _validate_artifact_report(
