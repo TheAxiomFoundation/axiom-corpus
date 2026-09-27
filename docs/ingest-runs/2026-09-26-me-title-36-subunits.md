@@ -441,7 +441,7 @@ release line that still carries `us-me/statute/2026-07-13-recovery` instead
 | `pytest tests/test_corpus_maine.py tests/test_corpus_cli.py tests/test_ingest_manifest_provenance.py tests/test_citation_path_grammar.py` | 149 passed |
 | `pytest tests/test_corpus_documents.py` (forms scope) | 104 passed |
 | `python scripts/validate_citation_paths.py` | OK (see Verification) |
-| `towncrier check --compare-with origin/main` | CHECK_TOWNCRIER |
+| `towncrier check --compare-with origin/main` | the three fragments found |
 
 The whole-repository `pytest -q` run is left to CI. `hypothesis` is added to the
 `dev` extra; CI installs `.[dev]` with pip, and `uv.lock`, which CI does not
