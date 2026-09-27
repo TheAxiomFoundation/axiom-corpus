@@ -72,6 +72,80 @@ def test_every_superseded_recovery_citation_names_a_carrier_row() -> None:
         )
 
 
+def _unmarked(text: str) -> str:
+    rows = list(csv.reader(io.StringIO(text)))
+    note = rows[0].index("evidence_note")
+    for row in rows[1:]:
+        if MARKER in row[note]:
+            row[note] = row[note][: row[note].index(MARKER)]
+    out = io.StringIO()
+    csv.writer(out).writerows(rows)
+    return out.getvalue()
+
+
+def test_marking_the_unmarked_matrix_appends_exactly_the_39_pointers() -> None:
+    committed = _matrix_text()
+    unmarked = _unmarked(committed)
+    assert MARKER not in unmarked
+    assert mark(unmarked, CORPUS_ROOT) == committed
+    before = list(csv.reader(io.StringIO(unmarked)))
+    after = list(csv.reader(io.StringIO(committed)))
+    note = before[0].index("evidence_note")
+    assert len(before) == len(after)
+    changed = [
+        index for index, (old, new) in enumerate(zip(before, after, strict=True)) if old != new
+    ]
+    assert len(changed) == 39
+    for index in changed:
+        old, new = before[index], after[index]
+        assert old[:note] + old[note + 1 :] == new[:note] + new[note + 1 :]
+        assert new[note].startswith(old[note]) and MARKER in new[note][len(old[note]) :]
+
+
+def _carrier_text(jurisdiction: str, path: str) -> str:
+    version = CARRIERS[jurisdiction][0]
+    rows = (
+        json.loads(line)
+        for line in (CORPUS_ROOT / "provisions" / jurisdiction / "statute" / f"{version}.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+        if line
+    )
+    bodies = [
+        row.get("body") or ""
+        for row in rows
+        if row["citation_path"] == path or row["citation_path"].startswith(path + "/")
+    ]
+    return " ".join(" ".join(bodies).split())
+
+
+def test_each_carrier_section_holds_the_quoted_evidence() -> None:
+    """A 40-character passage of each quoted snippet occurs in the carrier's section.
+
+    Exceptions: MI S19 quotes the MCL page's navigation and heading, not the law,
+    and the two eligibility rows quote nothing.
+    """
+    rows = list(csv.DictReader(io.StringIO(_matrix_text())))
+    checked, skipped = 0, []
+    for row in rows:
+        note = row["evidence_note"]
+        if MARKER not in note:
+            continue
+        jurisdiction = row["jurisdiction"]
+        path = note.split("carries this section as ", 1)[1].split(" in ", 1)[0]
+        quoted = note[: note.index(MARKER)]
+        start = quoted.find("chars): '")
+        snippet = " ".join(quoted[start + len("chars): '") : -1].split()) if start >= 0 else ""
+        text = _carrier_text(jurisdiction, path)
+        windows = [snippet[i : i + 40] for i in range(0, max(1, len(snippet) - 39))]
+        if len(snippet) >= 40 and any(window in text for window in windows):
+            checked += 1
+        else:
+            skipped.append((jurisdiction, row["element"]))
+    assert checked == 36
+    assert sorted(skipped) == [("us-mi", "S19"), ("us-mi", "S20"), ("us-mn", "S20")]
+
+
 def test_chapter_scopes_carry_every_recovery_section_but_the_ca_wic_rows() -> None:
     """Backs the queue's ``supersedes`` entries for the audited states."""
     for jurisdiction in CARRIERS:

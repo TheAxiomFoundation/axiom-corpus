@@ -5,7 +5,9 @@
 the row of the 2026-09-11 union that carried it. For six states that row is in a
 July 2026 recovery scope that the 2026-09-14 wave4 line swapped out for a
 whole-chapter scope: CA (axiom-corpus#748) and ME, MI, MN, NY, UT
-(axiom-corpus#757). Those audits show the chapter scopes carry the same text.
+(axiom-corpus#757). Those audits show the chapter scopes carry the cited
+sections: the same text, except MI, whose chapter scope holds later, amended
+text of 206.30 and 206.51.
 
 The matrix is a dated snapshot, and ``verify_matrices.py`` checks each PRESENT
 row against the 2026-09-11 selector, so ``scope_version`` and ``citation_path``

@@ -310,7 +310,9 @@ wrappers at all.
 39 PRESENT rows cite a July 2026 recovery scope that the 2026-09-14 wave4 line
 swapped out for a whole-chapter statute scope: CA (2), ME (1), MI (14), MN (17),
 NY (1) and UT (4). The recovery audits (axiom-corpus#748 for CA, #757 for the
-rest) show the chapter scopes carry the same text. Their rows, though, are often
+rest) show the chapter scopes carry the cited sections. The text is the same,
+except MI: its chapter scope holds §206.30 as amended by 2026 PA 39 and §206.51 as
+amended by 2026 PA 82, both later than this cut. Their rows, though, are often
 not the ones cited here:
 
 - CA and ME cite `block-2` rows under empty section roots.
