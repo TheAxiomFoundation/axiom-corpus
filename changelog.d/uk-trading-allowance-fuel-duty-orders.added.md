@@ -1,0 +1,1 @@
+Capture the UK trading allowance (ITTOIA 2005 Part 6A Chapter 1, ss. 783A-783AR) and the fuel duty reduction orders (Excise Duties (Surcharges or Rebates) Act 1979 ss. 1-2; SI 2022/365, 2023/329, 2024/300, 2025/228, 2026/164 and 2026/555 articles) from legislation.gov.uk CLML, as scopes `2026-09-27-uk-trading-allowance` and `2026-09-27-uk-fuel-duty-reduction-orders`.
