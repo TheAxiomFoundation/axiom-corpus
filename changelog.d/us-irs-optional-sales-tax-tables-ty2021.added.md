@@ -1,0 +1,1 @@
+Preserve the IRS Optional State and Local Sales Tax Tables for tax year 2021 (26 U.S.C. 164(b)(5)(H)) from the official Schedule A instructions, completing TY2021-2025 alongside the TY2022-2025 scope.
