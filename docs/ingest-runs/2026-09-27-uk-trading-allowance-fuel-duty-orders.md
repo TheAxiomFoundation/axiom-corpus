@@ -172,6 +172,15 @@ Table A ... by the deduction from the amount payable of the percentages
 specified in column (C)", with unleaded petrol at 0.5795 before and 0.5295
 after an 8.63 percentage deduction.
 
+## Citation-path ratchet
+
+The ITTOIA section numbers carry uppercase letters, so the new paths count
+toward the `uppercase_segments` family in `scripts/validate_citation_paths.py`.
+`uk/statute/ukpga/2005/5/783A` already exists (scope
+`2026-06-01-uk-frs-microsim`). The other 18 paths, 783AA to 783AR, are new
+unique paths, so the baseline in `schema/citation-path.v1.json` rises from
+16280 to 16298. The validator's live count on this branch is 16298.
+
 ## After merge
 
 - Merge with a merge commit, never squash. The signed ingest manifests record
