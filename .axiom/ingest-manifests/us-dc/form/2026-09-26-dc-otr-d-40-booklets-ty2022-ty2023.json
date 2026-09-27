@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/form/2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023.json",
+      "sha256": "e39b13c315a084d451741a308985914f81458eb6560a21a765b922d0fbd64d0c"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/form/2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023.json",
+      "sha256": "8c87ba3a66bdad23df44c4c84e0766b04d8ac2b1ed99f72b0b805075511a98c1"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/form/2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023.jsonl",
+      "sha256": "e334c82be88b48059e3e20f0782539eba58ffc9953ac173b240600117c111fb6"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/form/2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023/official-documents/us-dc-otr-d-40-booklet-ty2022.pdf",
+      "sha256": "166d3194fa31b293b4fe52ac021406d79b62a5e4fb5d9b6de57773ad980ade85"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/form/2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023/official-documents/us-dc-otr-d-40-booklet-ty2023.pdf",
+      "sha256": "ce1b73c36fd7f263128c72720f0c3c794d9d2d757357469ec29c3da50e386e6c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ae15f97cdb439c3731cb66332f32cebe18ddf057",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023 --manifest manifests/us-dc-individual-income-tax-forms-ty2022-ty2023.yaml (tesseract 5.5.3 for the TY2023 force_ocr pages; run note: docs/ingest-runs/2026-09-26-dc-title-47-codified-and-eitc-sources.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 182,
+    "missing_count": 0,
+    "provision_count": 182,
+    "source_count": 182
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-27T04:51:53.297755+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v8XIXprF2rxcYgt2sEZYJUVbZPpnZJd24+COFT/mX3V9YbI70iGdW8wSKHQBoJqtM+c1Z/dx6ZLuFPT0aMjFDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023"
+}

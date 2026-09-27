@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-26-irs-rev-procs-2021-45-2022-38.json",
+      "sha256": "a42008690f85cfd95459853e3a6ceab3b8345debeeee3df005f90d830ab134cc"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-26-irs-rev-procs-2021-45-2022-38.json",
+      "sha256": "1814ab060a42ebd9865472999533a8dfce2f833bdb1f7fda2db5178750f45927"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-26-irs-rev-procs-2021-45-2022-38.jsonl",
+      "sha256": "31f1508dd9cbfbb6c4888df4d2839e2b938faa610adc6639f4dc6334ca21d0b2"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-26-irs-rev-procs-2021-45-2022-38/official-documents/irs-rev-proc-2021-45.pdf",
+      "sha256": "405535647b6287103f5392258d4342cdb70535bf07ff05d89eebc71768083627"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-26-irs-rev-procs-2021-45-2022-38/official-documents/irs-rev-proc-2022-38.pdf",
+      "sha256": "6c20f8a6c9a3bdf4251fcf50dbf2e2382abc8cbeb1e5e2d3eecdc38b2cbf6bbf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ae15f97cdb439c3731cb66332f32cebe18ddf057",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-26-irs-rev-procs-2021-45-2022-38 --manifest manifests/us-irs-guidance-ty2022-ty2023-inflation-adjustments.yaml (run note: docs/ingest-runs/2026-09-26-dc-title-47-codified-and-eitc-sources.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 59,
+    "missing_count": 0,
+    "provision_count": 59,
+    "source_count": 59
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-27T04:51:53.893822+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gOWqdgb6uBoigY9cujjNhhHxN2ym/eMuT1pIqgFU6hFjhEMSe6mKlu0wWWEtwnghV77lKaTJvqhfedWFTfe6CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-26-irs-rev-procs-2021-45-2022-38"
+}
