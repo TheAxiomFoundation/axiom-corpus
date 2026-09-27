@@ -8,8 +8,9 @@ provisions file is 756 MB), so they use the streaming forms here instead:
 gates read. Both return or raise what the whole-file readers would, so
 switching a gate to them cannot change what it accepts or the error it reports.
 The one exception is JSON nested within a few levels of the parser's recursion
-limit (about 52,000 levels), where the streaming reader can raise
-``RecursionError`` instead of the whole-file reader's error; both reject it.
+limit (about 52,000 levels): there a streaming reader may raise
+``RecursionError`` on a file the whole-file reader accepted, or accept a file it
+rejected with ``RecursionError``. No artifact nests that deep.
 """
 
 from __future__ import annotations
