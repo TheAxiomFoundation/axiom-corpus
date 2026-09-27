@@ -713,7 +713,9 @@ def parse_maine_section(
     EFFECTIVE") keeps the plain citation path in ``subunits``.
     """
     soup = BeautifulSoup(html, "lxml")
-    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content")
+    section_node = _first_statute_element(soup, "MRSSection") or _first_statute_element(
+        soup, "section-content"
+    )
     if section_node is None:
         # Without the Revisor's section container only the statute-text elements
         # count; a page with none of them (an error page served with HTTP 200) is
@@ -721,12 +723,14 @@ def parse_maine_section(
         if soup.select_one(".mrs-text, .MRSSubSection, .headnote_blip") is None:
             raise ValueError("no Maine section content in page")
         section_node = soup
-    heading_node = section_node.select_one(".heading_section") if isinstance(section_node, Tag) else None
+    heading_node = (
+        _first_statute_element(section_node, "heading_section") if isinstance(section_node, Tag) else None
+    )
     display_section = target.display_section if target is not None else ""
     heading = target.heading if target is not None else ""
     if heading_node is not None:
         parsed_section, parsed_heading = _parse_section_heading(
-            _clean_text(heading_node.get_text(" ", strip=True))
+            _statute_text(heading_node)
         )
         display_section = parsed_section or display_section
         heading = parsed_heading or heading
@@ -738,7 +742,9 @@ def parse_maine_section(
     subunits: tuple[MaineSubunit, ...] = ()
     if isinstance(section_node, Tag):
         for blip in section_node.select(".headnote_blip"):
-            text = _clean_text(blip.get_text(" ", strip=True))
+            if _is_editorial(blip, section_node, own_class="headnote_blip"):
+                continue
+            text = _statute_text(blip)
             if text:
                 status_notes.append(text)
         lines = _section_body_lines(
@@ -747,7 +753,9 @@ def parse_maine_section(
         )
         body_lines = [line.text for line in lines]
         for item in section_node.select(".bhistory"):
-            text = _clean_text(item.get_text(" ", strip=True))
+            if _is_editorial(item, section_node, own_class="bhistory"):
+                continue
+            text = _statute_text(item)
             if text:
                 history.append(text)
         for note in section_node.select(".note"):
@@ -755,7 +763,9 @@ def parse_maine_section(
             if text:
                 notes.append(text)
         for hist in section_node.select(".qhistory"):
-            text = _clean_text(hist.get_text(" ", strip=True))
+            if _is_editorial(hist, section_node, own_class="qhistory"):
+                continue
+            text = _statute_text(hist)
             text = re.sub(r"^SECTION HISTORY\s*", "", text, flags=re.I).strip()
             if text:
                 history.append(text)
@@ -899,7 +909,7 @@ def _parse_subunits(
     by_tag: dict[int, _UnitNode] = {}
     for tag in section_node.find_all(True):
         kind = _unit_kind(tag)
-        if kind is None or _inside_non_body(tag, section_node):
+        if kind is None or _is_non_body(tag) or _inside_non_body(tag, section_node):
             continue
         parent_tag = _nearest_unit_ancestor(tag, section_node)
         parent = by_tag.get(id(parent_tag)) if parent_tag is not None else None
@@ -981,14 +991,14 @@ def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag)
     rest_of_label = ""
     if node.kind == "subsection":
         headnote = _own_descendant(tag, ".headnote", section_node)
-        label = _clean_text(headnote.get_text(" ", strip=True)) if headnote is not None else ""
+        label = _statute_text(headnote) if headnote is not None else ""
         match = _SUBSECTION_HEADNOTE_RE.match(label)
         if match is not None:
             node.number = match.group("number")
             rest_of_label = match.group("rest")
     elif node.kind == "paragraph":
         letpara = _own_descendant(tag, ".letpara_id", section_node)
-        label = _clean_text(letpara.get_text(" ", strip=True)) if letpara is not None else ""
+        label = _statute_text(letpara) if letpara is not None else ""
         match = _LETTERED_LABEL_RE.match(label)
         if match is not None:
             node.number = match.group("number")
@@ -998,7 +1008,7 @@ def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag)
             None,
         )
         if first is not None and first.name == "span":
-            label = _clean_text(first.get_text(" ", strip=True))
+            label = _statute_text(first)
             match = _PAREN_LABEL_RE.match(label)
             if match is not None:
                 node.number = match.group("number")
@@ -1019,8 +1029,8 @@ def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag)
         text
         for item in tag.select(".bhistory")
         if _nearest_unit_ancestor(item, section_node) is tag
-        and not _inside_non_body(item, tag)
-        and (text := _clean_text(item.get_text(" ", strip=True)))
+        and not _is_editorial(item, tag, own_class="bhistory")
+        and (text := _statute_text(item))
     )
     for marker in markers:
         match = _MARKER_DATE_RE.match(marker)
@@ -1142,9 +1152,9 @@ def _split_status_markers(text: str) -> tuple[str, list[str]]:
 
 def _unit_history(tag: Tag) -> tuple[str, ...]:
     history = [
-        _clean_text(item.get_text(" ", strip=True))
+        _statute_text(item)
         for item in tag.select(".bhistory")
-        if not _inside_non_body(item, tag)
+        if not _is_editorial(item, tag, own_class="bhistory")
     ]
     return tuple(dict.fromkeys(text for text in history if text))
 
@@ -1164,6 +1174,44 @@ def _nearest_unit_ancestor(tag: Tag, stop: Tag) -> Tag | None:
         if _unit_kind(parent) is not None:
             return parent
     return None
+
+
+def _first_statute_element(root: Tag, class_name: str) -> Tag | None:
+    """First element with ``class_name`` that is not itself, or inside, editorial apparatus."""
+    for tag in root.select(f".{class_name}"):
+        if not _is_editorial(tag, root, own_class=class_name):
+            return tag
+    return None
+
+
+def _is_editorial(tag: Tag, stop: Tag, *, own_class: str | None = None) -> bool:
+    """Whether ``tag`` is, or sits inside, editorial apparatus below ``stop``.
+
+    ``own_class`` is the apparatus class the caller is looking for (``bhistory``
+    when collecting history); any other apparatus class on the element, or on an
+    ancestor, makes it editorial.
+    """
+    classes = set(tag.get("class") or ()) - ({own_class} if own_class else set())
+    return bool(_NON_BODY_CLASSES.intersection(classes)) or _inside_non_body(tag, stop)
+
+
+def _statute_text(tag: Tag) -> str:
+    """``tag``'s text as ``get_text(" ", strip=True)`` joins it, without editorial descendants."""
+    parts: list[str] = []
+
+    def walk(node: Tag) -> None:
+        for child in node.children:
+            if isinstance(child, Tag):
+                if _is_non_body(child) or child.name in {"script", "style", "template"}:
+                    continue
+                walk(child)
+            elif type(child) in (NavigableString, CData):
+                text = child.strip()
+                if text:
+                    parts.append(text)
+
+    walk(tag)
+    return _clean_text(" ".join(parts))
 
 
 def _is_non_body(tag: Tag) -> bool:

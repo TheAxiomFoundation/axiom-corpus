@@ -204,7 +204,7 @@ unchanged (§5122 keeps `88f3606d-…`).
 
 ### Verification
 
-- `tests/test_corpus_maine.py` (32 tests):
+- `tests/test_corpus_maine.py` (38 tests):
   - §5122 from the retained bytes (SHA-256 pinned): 225 body lines,
     54,705 characters, the (M-2)(1)(a)(i) sentence, the (M-3) continuation
     and subparagraphs, no history bracket in the body, 205 units, the
@@ -292,7 +292,17 @@ unchanged (§5122 keeps `88f3606d-…`).
   hashes, and reproduced one more family: an element that is itself a note
   (`div.mrs-text.note` without a section container, `span.headnote.note`, a
   note before a subparagraph's number) could still become text or a label.
-  Those are ignored now too, with tests. Its lane had no network,
+  Those are ignored now too, with tests. A third pass (job
+  `20260927-012352-maine-754-final`) again regenerated all 1,926 artifacts with
+  their committed hashes and reproduced further synthetic placements of
+  apparatus: an apparatus class on a unit element itself, a note nested inside
+  a printed number or history span, a section container or heading inside a
+  note. Rather than patch each, one rule now applies throughout: an element is
+  editorial if it, or an ancestor, carries any of the apparatus classes
+  (`heading_section`, `headnote_blip`, `qhistory`, `bhistory`, `note`) other
+  than the one being collected, and numbers, headings, history and blips are
+  read without editorial descendants. Tests cover each apparatus class in each
+  placement. None of these placements occurs in the 1,923 retained files. Its lane had no network,
   so the other-title check below was run in this session.
 - Other titles (the section-body change applies to every title the adapter
   reads). 57 live pages fetched on 2026-09-27 at one request per second: the
@@ -487,7 +497,7 @@ release line that still carries `us-me/statute/2026-07-13-recovery` instead
 |---|---|
 | `uv run --extra dev ruff check .` | all checks passed |
 | `uv run --extra dev mypy src/axiom_corpus/corpus --ignore-missing-imports` | no issues in 93 source files |
-| `pytest tests/test_corpus_maine.py tests/test_corpus_cli.py tests/test_ingest_manifest_provenance.py tests/test_citation_path_grammar.py` | 164 passed (32 Maine) |
+| `pytest tests/test_corpus_maine.py tests/test_corpus_cli.py tests/test_ingest_manifest_provenance.py tests/test_citation_path_grammar.py` | 170 passed (38 Maine) |
 | `pytest tests/test_corpus_documents.py` (forms scope) | 104 passed |
 | `python scripts/validate_citation_paths.py` | OK (see Verification) |
 | `towncrier check --compare-with origin/main` | the three fragments found |

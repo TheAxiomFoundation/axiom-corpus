@@ -1039,3 +1039,57 @@ def test_an_element_that_is_itself_a_note_is_never_text_or_a_label(html, body, u
     parsed = parse_maine_section(html)
     assert parsed.body == body
     assert [(unit.segments, unit.heading, unit.body) for unit in parsed.subunits] == units
+
+
+_APPARATUS = ["note", "bhistory", "qhistory", "headnote_blip", "heading_section"]
+
+
+@pytest.mark.parametrize("apparatus", _APPARATUS)
+def test_editorial_apparatus_never_becomes_a_unit_label_heading_or_history(apparatus):
+    # A real ``.bhistory`` span inside a label is history, so labels nest a note then.
+    inner = apparatus if apparatus not in {"bhistory", "heading_section"} else "note"
+    section = (
+        '<div class="MRSSection"><h3 class="heading_section">\u00a71. Actual heading'
+        f'<span class="{inner}"> Editorial</span></h3>'
+        f'<div class="MRSSubSection {apparatus}"><span class="headnote">9. Editorial heading.</span>Editorial text.'
+        '<span class="bhistory">[PL 9 (RP).]</span></div>'
+        '<div class="MRSSubSection"><span class="headnote">'
+        f'<span class="{inner}">8. Editorial.</span>1. Actual.</span>Statute.'
+        f'<span class="bhistory {apparatus if apparatus != "bhistory" else "note"}">[EDITORIAL (RP).]</span>'
+        f'<span class="bhistory"><span class="{inner}">[EDITORIAL (RP).]</span></span>'
+        '<div class="mrs-text MRSLetteredPara"><span class="letpara_id">'
+        f'<span class="{inner}">Z.</span>A.</span>Paragraph.</div>'
+        '<div class="mrs-text MRSSubPara"><span>'
+        f'<span class="{inner}">(9)</span>(1)</span>Subparagraph.</div>'
+        "</div></div>"
+    )
+    parsed = parse_maine_section(section)
+
+    assert (parsed.display_section, parsed.heading) == ("1", "Actual heading")
+    assert parsed.body == "1. Actual. Statute.\nA. Paragraph.\n(1) Subparagraph."
+    assert [(unit.segments, unit.heading, unit.body, unit.source_history, unit.status) for unit in parsed.subunits] == [
+        (("1",), "Actual", "Statute.\nA. Paragraph.\n(1) Subparagraph.", (), None),
+        (("1", "A"), None, "Paragraph.", (), None),
+        (("1", "1"), None, "Subparagraph.", (), None),
+    ]
+    assert "[EDITORIAL (RP).]" not in parsed.source_history
+
+
+def test_a_section_container_inside_or_marked_as_a_note_is_skipped():
+    for wrapper in (
+        '<div class="MRSSection note"><div class="mrs-text">Editorial text.</div></div>',
+        '<div class="note"><div class="MRSSection"><div class="mrs-text">Editorial text.</div></div></div>',
+    ):
+        html = (
+            f"{wrapper}"
+            '<div class="MRSSection"><div class="note"><h3 class="heading_section">\u00a79. Editorial</h3>'
+            '<div class="headnote_blip">(REPEALED)</div></div>'
+            '<h3 class="heading_section">\u00a71. Actual heading</h3><div class="mrs-text">Statute.</div></div>'
+        )
+        parsed = parse_maine_section(html)
+        assert (parsed.display_section, parsed.heading, parsed.body, parsed.status) == (
+            "1",
+            "Actual heading",
+            "Statute.",
+            None,
+        )
