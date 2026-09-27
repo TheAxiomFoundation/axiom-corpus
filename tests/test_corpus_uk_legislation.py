@@ -640,7 +640,7 @@ def test_extract_uk_legislation_real_order_article_clml(tmp_path, monkeypatch):
             return citation.data_xml_url
 
         async def _fetch_xml(self, url):
-            return (UK_CLML_FIXTURES / fixtures[url]).read_text()
+            return (UK_CLML_FIXTURES / fixtures[url]).read_text(encoding="utf-8")
 
     monkeypatch.setattr(uk_legislation, "UKLegislationFetcher", FakeFetcher)
     base = tmp_path / "data" / "corpus"
@@ -662,7 +662,9 @@ def test_extract_uk_legislation_real_order_article_clml(tmp_path, monkeypatch):
         row["citation_path"]: row
         for row in map(
             json.loads,
-            (base / f"provisions/uk/regulation/{version}.jsonl").read_text().splitlines(),
+            (base / f"provisions/uk/regulation/{version}.jsonl")
+            .read_text(encoding="utf-8")
+            .splitlines(),
         )
     }
     assert sorted(rows) == [
@@ -677,13 +679,39 @@ def test_extract_uk_legislation_real_order_article_clml(tmp_path, monkeypatch):
     assert revised["source_url"] == "http://www.legislation.gov.uk/uksi/2026/164/article/8"
     assert revised["identifiers"]["legislation.gov.uk:provision"] == "article/8"
     assert revised["expression_date"] == "2026-09-27"
-    assert "| (a) | Unleaded petrol | 0.5795 | 3.45 | 0.5595 |" in revised["body"]
-    assert (
-        "| (b) | Road fuel gas other than natural road fuel gas | 0.3161 | 3.45 | 0.3052 |"
-        in revised["body"]
+    # Tables D and E follow the article's text, in source order, captions dropped.
+    text, _, tables = revised["body"].partition("\n|")
+    assert text.startswith("The following are adjusted in accordance with Table D—\n")
+    assert text.endswith("are only for ease of reference and comprehension of effect.")
+    assert "|" + tables == "\n".join(
+        [
+            "|  | (A) | (B) | (C) | (D) |",
+            "| --- | --- | --- | --- | --- |",
+            "|  | Product | Amount payable before adjustment (£ per litre) | Percentage deduction"
+            " | Amount payable after adjustment (£ per litre) |",
+            "| (a) | Unleaded petrol | 0.5795 | 3.45 | 0.5595 |",
+            "| (b) | Light oil other than unleaded petrol or aviation gasoline"
+            " | 0.6767 | 2.96 | 0.6567 |",
+            "| (c) | Heavy oil | 0.5795 | 3.45 | 0.5595 |",
+            "| (d) | Aviation gasoline | 0.3820 | 2.02 | 0.3743 |",
+            "| (e) | Biodiesel | 0.5795 | 3.45 | 0.5595 |",
+            "| (f) | Bioblend | 0.5795 | 3.45 | 0.5595 |",
+            "| (g) | Bioethanol | 0.5795 | 3.45 | 0.5595 |",
+            "| (h) | Bioethanol blend | 0.5795 | 3.45 | 0.5595 |",
+            "| (i) | Aqua methanol | 0.0790 | 3.45 | 0.0763 |",
+            "|  | (A) | (B) | (C) | (D) |",
+            "| --- | --- | --- | --- | --- |",
+            "|  | Product | Amount payable before adjustment | Percentage deduction"
+            " | Amount payable after adjustment (£ per kilogram) |",
+            "| (a) | Natural road fuel gas | 0.2470 | 3.45 | 0.2385 |",
+            "| (b) | Road fuel gas other than natural road fuel gas | 0.3161 | 3.45 | 0.3052 |",
+        ]
     )
 
     made = rows["uk/regulation/uksi/2026/555/article/3"]
+    assert made["kind"] == "article"
+    assert made["citation_label"] == "UKSI 2026/555 art. 3"
+    assert made["heading"] == "Article 3"
     assert made["source_url"] == "http://www.legislation.gov.uk/uksi/2026/555/article/3/made"
     assert made["source_path"] == f"sources/uk/regulation/{version}/uksi/2026/555/article-3.xml"
     assert "in column (C), for “2.05” substitute “9.96”;" in made["body"]
