@@ -1,0 +1,1 @@
+Re-ingest D.C. Code title 47 from DCCouncil/law-xml-codified (2026-09-16 publication) as `us-dc/statute/2026-09-26-codified-title-47`. The previous title 47 scope came from the legacy pre-2017 tree in DCCouncil/dc-law-xml under a 2025-12-23 date. The DC extractor now keeps `<aftertext>` paragraph text.

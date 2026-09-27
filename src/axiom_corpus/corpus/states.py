@@ -3032,10 +3032,13 @@ def _dc_section_body(root: ET.Element) -> str | None:
     lines: list[str] = []
     lines.extend(_dc_direct_text_blocks(root))
     for child in root:
-        if _local_name(child.tag) == "para":
+        name = _local_name(child.tag)
+        if name == "para":
             para = _dc_para_text(child, indent=0)
             if para:
                 lines.append(para)
+        elif name == "aftertext":
+            lines.extend(_dc_aftertext_lines(child, prefix=""))
     body = "\n".join(line for line in lines if line).strip()
     return body or None
 
@@ -3060,11 +3063,23 @@ def _dc_para_text(para: ET.Element, indent: int) -> str:
     else:
         lines = [prefix + " ".join(first_parts)] if first_parts else []
     for child in para:
-        if _local_name(child.tag) == "para":
+        name = _local_name(child.tag)
+        if name == "para":
             child_text = _dc_para_text(child, indent + 1)
             if child_text:
                 lines.append(child_text)
+        elif name == "aftertext":
+            # Text that closes a paragraph after its subparagraphs (a proviso, or a
+            # centered heading inside a compact). It sits at the paragraph's level.
+            lines.extend(_dc_aftertext_lines(child, prefix=prefix))
     return "\n".join(lines)
+
+
+def _dc_aftertext_lines(elem: ET.Element, prefix: str) -> list[str]:
+    block = _dc_text_block(elem)
+    if not block:
+        return []
+    return [prefix + line for line in block.splitlines() if line]
 
 
 def _dc_direct_text_blocks(elem: ET.Element) -> list[str]:

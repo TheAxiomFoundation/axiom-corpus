@@ -728,6 +728,46 @@ def test_extract_dc_code_writes_inventory_provisions_and_coverage(tmp_path):
     assert "1 | $100" in records[-1].body
 
 
+SAMPLE_DC_SECTION_WITH_AFTERTEXT = """<?xml version="1.0" encoding="utf-8"?>
+<section xmlns="https://code.dccouncil.us/schemas/dc-library">
+  <num>47-1002</num>
+  <heading>Exemptions.</heading>
+  <para>
+    <num>(20)</num>
+    <para>
+      <num>(A)</num>
+      <text>Property used for low-income housing.</text>
+    </para>
+    <aftertext>As the exemption applies to the Southern Court project, it shall be effective as of October 1, 1987.</aftertext>
+  </para>
+  <para>
+    <num>Article VI.</num>
+    <text>The Commission shall report annually.</text>
+    <aftertext>
+      <center>Committees.</center>
+    </aftertext>
+  </para>
+</section>
+"""
+
+
+def test_dc_section_body_keeps_aftertext_at_paragraph_level():
+    from axiom_corpus.corpus.states import _parse_dc_section_xml
+
+    document = _parse_dc_section_xml(SAMPLE_DC_SECTION_WITH_AFTERTEXT.encode())
+
+    assert document.body == "\n".join(
+        [
+            "(20)",
+            "  (A) Property used for low-income housing.",
+            "As the exemption applies to the Southern Court project, it shall be "
+            "effective as of October 1, 1987.",
+            "Article VI. The Commission shall report annually.",
+            "Committees.",
+        ]
+    )
+
+
 def test_extract_cic_html_release_writes_state_records(tmp_path):
     release_dir = tmp_path / "release76.2021.05.21"
     release_dir.mkdir()

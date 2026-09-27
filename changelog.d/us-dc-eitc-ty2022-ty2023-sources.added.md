@@ -1,0 +1,1 @@
+Add the OTR 2022 and 2023 D-40 booklets (`us-dc/form/2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023`) and IRS Rev. Procs. 2021-45 and 2022-38 (`us/guidance/2026-09-26-irs-rev-procs-2021-45-2022-38`) for the DC earned income tax credit.

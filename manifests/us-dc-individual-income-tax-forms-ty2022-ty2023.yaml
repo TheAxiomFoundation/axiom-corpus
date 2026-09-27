@@ -1,0 +1,61 @@
+# OTR D-40 booklets for tax years 2022 and 2023. Both node pages
+# (otr.cfo.dc.gov/node/1639856, /node/1702786) now link later revisions, so
+# source_url names the exact January-revision attachment ingested here; the node
+# page and the later revision are recorded in metadata.
+version: '2026-09-26-dc-otr-d-40-booklets-ty2022-ty2023'
+documents:
+- source_id: us-dc-otr-d-40-booklet-ty2022
+  jurisdiction: us-dc
+  document_class: form
+  title: 2022 D-40 Booklet, District of Columbia Individual Income Tax Forms and Instructions
+  source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
+  source_format: pdf
+  source_as_of: '2026-09-26'
+  expression_date: '2022-01-01'
+  citation_path: us-dc/form/otr/ty2022/d-40-booklet
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2022'
+    source_discovery_group: us-dc/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2022
+    index_url: https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
+    node_url: https://otr.cfo.dc.gov/node/1639856
+    publisher_last_modified: '2023-01-23'
+    later_revision_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_03022023a.pdf
+    discovered_via: manual-review:rulespec-us#1420 (DC EITC, D.C. Code 47-1806.04(f)); reference sha256
+      166d3194fa31b293b4fe52ac021406d79b62a5e4fb5d9b6de57773ad980ade85
+- source_id: us-dc-otr-d-40-booklet-ty2023
+  jurisdiction: us-dc
+  document_class: form
+  title: 2023 D-40 Booklet, District of Columbia Individual Income Tax Forms and Instructions
+  source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
+  source_format: pdf
+  source_as_of: '2026-09-26'
+  expression_date: '2023-01-01'
+  citation_path: us-dc/form/otr/ty2023/d-40-booklet
+  extraction:
+    page_citation_prefix: page
+    # The text layer uses Identity-H CID fonts with no ToUnicode map, so native
+    # extraction returns glyph ids. Every page is OCRed instead.
+    force_ocr: true
+    ocr_dpi: 300
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2023'
+    source_discovery_group: us-dc/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2023
+    index_url: https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
+    node_url: https://otr.cfo.dc.gov/node/1702786
+    publisher_last_modified: '2024-01-24'
+    later_revision_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_041124.pdf
+    text_extraction: tesseract 5.5.3 OCR at 300 dpi (eng.traineddata sha256 7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2)
+    discovered_via: manual-review:rulespec-us#1420 (DC EITC, D.C. Code 47-1806.04(f)); reference sha256
+      ce1b73c36fd7f263128c72720f0c3c794d9d2d757357469ec29c3da50e386e6c
