@@ -1,0 +1,1450 @@
+<html lang="en"><head><style data-emotion="mui" data-s=""></style><meta name="emotion-insertion-point" content=""><meta charset="UTF-8"><link rel="icon" type="image/svg+xml" href="/logo.svg"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><meta name="description" content="Esper is the first cloud-based platform to help governments proactively manage public policy with better data and transparency."><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"><title>TANF: ASSISTANCE STANDARDS; TABLES; METHODS OF COMPUTING AMOUNT OF MONTHLY BENEFIT PAYMENT | Montana SOS</title><link rel="icon" href="/favicon.png"><script defer="defer" src="/vendors.bundle.63aa369b8bf4c5071288.js"></script><script defer="defer" src="/index.bundle.0324714aea76fae8a520.js"></script><style>/* Copyright 2014 Mozilla Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+:root {
+  --react-pdf-text-layer: 1;
+  --highlight-bg-color: rgba(180, 0, 170, 1);
+  --highlight-selected-bg-color: rgba(0, 100, 0, 1);
+}
+
+@media screen and (forced-colors: active) {
+  :root {
+    --highlight-bg-color: Highlight;
+    --highlight-selected-bg-color: ButtonText;
+  }
+}
+
+[data-main-rotation='90'] {
+  transform: rotate(90deg) translateY(-100%);
+}
+[data-main-rotation='180'] {
+  transform: rotate(180deg) translate(-100%, -100%);
+}
+[data-main-rotation='270'] {
+  transform: rotate(270deg) translateX(-100%);
+}
+
+.textLayer {
+  position: absolute;
+  text-align: initial;
+  inset: 0;
+  overflow: hidden;
+  line-height: 1;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  z-index: 2;
+}
+
+.textLayer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  margin: 0;
+  transform-origin: 0 0;
+}
+
+/* Only necessary in Google Chrome, see issue 14205, and most unfortunately
+ * the problem doesn't show up in "text" reference tests. */
+.textLayer span.markedContent {
+  top: 0;
+  height: 0;
+}
+
+.textLayer .highlight {
+  margin: -1px;
+  padding: 1px;
+  background-color: var(--highlight-bg-color);
+  border-radius: 4px;
+}
+
+.textLayer .highlight.appended {
+  position: initial;
+}
+
+.textLayer .highlight.begin {
+  border-radius: 4px 0 0 4px;
+}
+
+.textLayer .highlight.end {
+  border-radius: 0 4px 4px 0;
+}
+
+.textLayer .highlight.middle {
+  border-radius: 0;
+}
+
+.textLayer .highlight.selected {
+  background-color: var(--highlight-selected-bg-color);
+}
+
+/* Avoids https://github.com/mozilla/pdf.js/issues/13840 in Chrome */
+.textLayer br::selection {
+  background: transparent;
+}
+
+.textLayer .endOfContent {
+  display: block;
+  position: absolute;
+  inset: 100% 0 0;
+  z-index: -1;
+  cursor: default;
+  user-select: none;
+}
+
+.textLayer.selecting .endOfContent {
+  top: 0;
+}
+
+.hiddenCanvasElement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uLy4uLy4uL25vZGVfbW9kdWxlcy9yZWFjdC1wZGYvZGlzdC9lc20vUGFnZS9UZXh0TGF5ZXIuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7O0VBYUU7O0FBRUY7RUFDRSx5QkFBeUI7RUFDekIsMENBQTBDO0VBQzFDLGlEQUFpRDtBQUNuRDs7QUFFQTtFQUNFO0lBQ0UsK0JBQStCO0lBQy9CLHlDQUF5QztFQUMzQztBQUNGOztBQUVBO0VBQ0UsMENBQTBDO0FBQzVDO0FBQ0E7RUFDRSxpREFBaUQ7QUFDbkQ7QUFDQTtFQUNFLDJDQUEyQztBQUM3Qzs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsUUFBUTtFQUNSLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2Qsc0JBQXNCO0VBQ3RCLHlCQUF5QjtFQUN6QixxQkFBcUI7RUFDckIsVUFBVTtBQUNaOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLFNBQVM7RUFDVCxxQkFBcUI7QUFDdkI7O0FBRUE7MkRBQzJEO0FBQzNEO0VBQ0UsTUFBTTtFQUNOLFNBQVM7QUFDWDs7QUFFQTtFQUNFLFlBQVk7RUFDWixZQUFZO0VBQ1osMkNBQTJDO0VBQzNDLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLG9EQUFvRDtBQUN0RDs7QUFFQSxvRUFBb0U7QUFDcEU7RUFDRSx1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSxjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLGVBQWU7RUFDZixXQUFXO0VBQ1gsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLE1BQU07QUFDUjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QsYUFBYTtBQUNmIiwic291cmNlc0NvbnRlbnQiOlsiLyogQ29weXJpZ2h0IDIwMTQgTW96aWxsYSBGb3VuZGF0aW9uXG4gKlxuICogTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbiAqIHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbiAqIFlvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuICpcbiAqICAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcbiAqXG4gKiBVbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG4gKiBkaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG4gKiBXSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cbiAqIFNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbiAqIGxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuICovXG5cbjpyb290IHtcbiAgLS1yZWFjdC1wZGYtdGV4dC1sYXllcjogMTtcbiAgLS1oaWdobGlnaHQtYmctY29sb3I6IHJnYmEoMTgwLCAwLCAxNzAsIDEpO1xuICAtLWhpZ2hsaWdodC1zZWxlY3RlZC1iZy1jb2xvcjogcmdiYSgwLCAxMDAsIDAsIDEpO1xufVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAoZm9yY2VkLWNvbG9yczogYWN0aXZlKSB7XG4gIDpyb290IHtcbiAgICAtLWhpZ2hsaWdodC1iZy1jb2xvcjogSGlnaGxpZ2h0O1xuICAgIC0taGlnaGxpZ2h0LXNlbGVjdGVkLWJnLWNvbG9yOiBCdXR0b25UZXh0O1xuICB9XG59XG5cbltkYXRhLW1haW4tcm90YXRpb249JzkwJ10ge1xuICB0cmFuc2Zvcm06IHJvdGF0ZSg5MGRlZykgdHJhbnNsYXRlWSgtMTAwJSk7XG59XG5bZGF0YS1tYWluLXJvdGF0aW9uPScxODAnXSB7XG4gIHRyYW5zZm9ybTogcm90YXRlKDE4MGRlZykgdHJhbnNsYXRlKC0xMDAlLCAtMTAwJSk7XG59XG5bZGF0YS1tYWluLXJvdGF0aW9uPScyNzAnXSB7XG4gIHRyYW5zZm9ybTogcm90YXRlKDI3MGRlZykgdHJhbnNsYXRlWCgtMTAwJSk7XG59XG5cbi50ZXh0TGF5ZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRleHQtYWxpZ246IGluaXRpYWw7XG4gIGluc2V0OiAwO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBsaW5lLWhlaWdodDogMTtcbiAgdGV4dC1zaXplLWFkanVzdDogbm9uZTtcbiAgZm9yY2VkLWNvbG9yLWFkanVzdDogbm9uZTtcbiAgdHJhbnNmb3JtLW9yaWdpbjogMCAwO1xuICB6LWluZGV4OiAyO1xufVxuXG4udGV4dExheWVyIDppcyhzcGFuLCBicikge1xuICBjb2xvcjogdHJhbnNwYXJlbnQ7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2hpdGUtc3BhY2U6IHByZTtcbiAgY3Vyc29yOiB0ZXh0O1xuICBtYXJnaW46IDA7XG4gIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbn1cblxuLyogT25seSBuZWNlc3NhcnkgaW4gR29vZ2xlIENocm9tZSwgc2VlIGlzc3VlIDE0MjA1LCBhbmQgbW9zdCB1bmZvcnR1bmF0ZWx5XG4gKiB0aGUgcHJvYmxlbSBkb2Vzbid0IHNob3cgdXAgaW4gXCJ0ZXh0XCIgcmVmZXJlbmNlIHRlc3RzLiAqL1xuLnRleHRMYXllciBzcGFuLm1hcmtlZENvbnRlbnQge1xuICB0b3A6IDA7XG4gIGhlaWdodDogMDtcbn1cblxuLnRleHRMYXllciAuaGlnaGxpZ2h0IHtcbiAgbWFyZ2luOiAtMXB4O1xuICBwYWRkaW5nOiAxcHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWhpZ2hsaWdodC1iZy1jb2xvcik7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbn1cblxuLnRleHRMYXllciAuaGlnaGxpZ2h0LmFwcGVuZGVkIHtcbiAgcG9zaXRpb246IGluaXRpYWw7XG59XG5cbi50ZXh0TGF5ZXIgLmhpZ2hsaWdodC5iZWdpbiB7XG4gIGJvcmRlci1yYWRpdXM6IDRweCAwIDAgNHB4O1xufVxuXG4udGV4dExheWVyIC5oaWdobGlnaHQuZW5kIHtcbiAgYm9yZGVyLXJhZGl1czogMCA0cHggNHB4IDA7XG59XG5cbi50ZXh0TGF5ZXIgLmhpZ2hsaWdodC5taWRkbGUge1xuICBib3JkZXItcmFkaXVzOiAwO1xufVxuXG4udGV4dExheWVyIC5oaWdobGlnaHQuc2VsZWN0ZWQge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1oaWdobGlnaHQtc2VsZWN0ZWQtYmctY29sb3IpO1xufVxuXG4vKiBBdm9pZHMgaHR0cHM6Ly9naXRodWIuY29tL21vemlsbGEvcGRmLmpzL2lzc3Vlcy8xMzg0MCBpbiBDaHJvbWUgKi9cbi50ZXh0TGF5ZXIgYnI6OnNlbGVjdGlvbiB7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xufVxuXG4udGV4dExheWVyIC5lbmRPZkNvbnRlbnQge1xuICBkaXNwbGF5OiBibG9jaztcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBpbnNldDogMTAwJSAwIDA7XG4gIHotaW5kZXg6IC0xO1xuICBjdXJzb3I6IGRlZmF1bHQ7XG4gIHVzZXItc2VsZWN0OiBub25lO1xufVxuXG4udGV4dExheWVyLnNlbGVjdGluZyAuZW5kT2ZDb250ZW50IHtcbiAgdG9wOiAwO1xufVxuXG4uaGlkZGVuQ2FudmFzRWxlbWVudCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICB3aWR0aDogMDtcbiAgaGVpZ2h0OiAwO1xuICBkaXNwbGF5OiBub25lO1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style>/* Copyright 2014 Mozilla Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+:root {
+  --react-pdf-annotation-layer: 1;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+  --input-focus-border-color: Highlight;
+  --input-focus-outline: 1px solid Canvas;
+  --input-unfocused-border-color: transparent;
+  --input-disabled-border-color: transparent;
+  --input-hover-border-color: black;
+  --link-outline: none;
+}
+
+@media screen and (forced-colors: active) {
+  :root {
+    --input-focus-border-color: CanvasText;
+    --input-unfocused-border-color: ActiveText;
+    --input-disabled-border-color: GrayText;
+    --input-hover-border-color: Highlight;
+    --link-outline: 1.5px solid LinkText;
+  }
+  .annotationLayer .textWidgetAnnotation :is(input, textarea):required,
+  .annotationLayer .choiceWidgetAnnotation select:required,
+  .annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) input:required {
+    outline: 1.5px solid selectedItem;
+  }
+
+  .annotationLayer .linkAnnotation:hover {
+    backdrop-filter: invert(100%);
+  }
+}
+
+.annotationLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  z-index: 3;
+}
+
+.annotationLayer[data-main-rotation='90'] .norotate {
+  transform: rotate(270deg) translateX(-100%);
+}
+.annotationLayer[data-main-rotation='180'] .norotate {
+  transform: rotate(180deg) translate(-100%, -100%);
+}
+.annotationLayer[data-main-rotation='270'] .norotate {
+  transform: rotate(90deg) translateY(-100%);
+}
+
+.annotationLayer canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.annotationLayer section {
+  position: absolute;
+  text-align: initial;
+  pointer-events: auto;
+  box-sizing: border-box;
+  margin: 0;
+  transform-origin: 0 0;
+}
+
+.annotationLayer .linkAnnotation {
+  outline: var(--link-outline);
+}
+
+.textLayer.selecting ~ .annotationLayer section {
+  pointer-events: none;
+}
+
+.annotationLayer :is(.linkAnnotation, .buttonWidgetAnnotation.pushButton) > a {
+  position: absolute;
+  font-size: 1em;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.annotationLayer :is(.linkAnnotation, .buttonWidgetAnnotation.pushButton) > a:hover {
+  opacity: 0.2;
+  background: rgba(255, 255, 0, 1);
+  box-shadow: 0 2px 10px rgba(255, 255, 0, 1);
+}
+
+.annotationLayer .textAnnotation img {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.annotationLayer .textWidgetAnnotation :is(input, textarea),
+.annotationLayer .choiceWidgetAnnotation select,
+.annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) input {
+  background-image: var(--annotation-unfocused-field-background);
+  border: 2px solid var(--input-unfocused-border-color);
+  box-sizing: border-box;
+  font: calc(9px * var(--scale-factor)) sans-serif;
+  height: 100%;
+  margin: 0;
+  vertical-align: top;
+  width: 100%;
+}
+
+.annotationLayer .textWidgetAnnotation :is(input, textarea):required,
+.annotationLayer .choiceWidgetAnnotation select:required,
+.annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) input:required {
+  outline: 1.5px solid red;
+}
+
+.annotationLayer .choiceWidgetAnnotation select option {
+  padding: 0;
+}
+
+.annotationLayer .buttonWidgetAnnotation.radioButton input {
+  border-radius: 50%;
+}
+
+.annotationLayer .textWidgetAnnotation textarea {
+  resize: none;
+}
+
+.annotationLayer .textWidgetAnnotation :is(input, textarea)[disabled],
+.annotationLayer .choiceWidgetAnnotation select[disabled],
+.annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) input[disabled] {
+  background: none;
+  border: 2px solid var(--input-disabled-border-color);
+  cursor: not-allowed;
+}
+
+.annotationLayer .textWidgetAnnotation :is(input, textarea):hover,
+.annotationLayer .choiceWidgetAnnotation select:hover,
+.annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) input:hover {
+  border: 2px solid var(--input-hover-border-color);
+}
+.annotationLayer .textWidgetAnnotation :is(input, textarea):hover,
+.annotationLayer .choiceWidgetAnnotation select:hover,
+.annotationLayer .buttonWidgetAnnotation.checkBox input:hover {
+  border-radius: 2px;
+}
+
+.annotationLayer .textWidgetAnnotation :is(input, textarea):focus,
+.annotationLayer .choiceWidgetAnnotation select:focus {
+  background: none;
+  border: 2px solid var(--input-focus-border-color);
+  border-radius: 2px;
+  outline: var(--input-focus-outline);
+}
+
+.annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) :focus {
+  background-image: none;
+  background-color: transparent;
+}
+
+.annotationLayer .buttonWidgetAnnotation.checkBox :focus {
+  border: 2px solid var(--input-focus-border-color);
+  border-radius: 2px;
+  outline: var(--input-focus-outline);
+}
+
+.annotationLayer .buttonWidgetAnnotation.radioButton :focus {
+  border: 2px solid var(--input-focus-border-color);
+  outline: var(--input-focus-outline);
+}
+
+.annotationLayer .buttonWidgetAnnotation.checkBox input:checked::before,
+.annotationLayer .buttonWidgetAnnotation.checkBox input:checked::after,
+.annotationLayer .buttonWidgetAnnotation.radioButton input:checked::before {
+  background-color: CanvasText;
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.annotationLayer .buttonWidgetAnnotation.checkBox input:checked::before,
+.annotationLayer .buttonWidgetAnnotation.checkBox input:checked::after {
+  height: 80%;
+  left: 45%;
+  width: 1px;
+}
+
+.annotationLayer .buttonWidgetAnnotation.checkBox input:checked::before {
+  transform: rotate(45deg);
+}
+
+.annotationLayer .buttonWidgetAnnotation.checkBox input:checked::after {
+  transform: rotate(-45deg);
+}
+
+.annotationLayer .buttonWidgetAnnotation.radioButton input:checked::before {
+  border-radius: 50%;
+  height: 50%;
+  left: 30%;
+  top: 20%;
+  width: 50%;
+}
+
+.annotationLayer .textWidgetAnnotation input.comb {
+  font-family: monospace;
+  padding-left: 2px;
+  padding-right: 0;
+}
+
+.annotationLayer .textWidgetAnnotation input.comb:focus {
+  /*
+   * Letter spacing is placed on the right side of each character. Hence, the
+   * letter spacing of the last character may be placed outside the visible
+   * area, causing horizontal scrolling. We avoid this by extending the width
+   * when the element has focus and revert this when it loses focus.
+   */
+  width: 103%;
+}
+
+.annotationLayer .buttonWidgetAnnotation:is(.checkBox, .radioButton) input {
+  appearance: none;
+}
+
+.annotationLayer .popupTriggerArea {
+  height: 100%;
+  width: 100%;
+}
+
+.annotationLayer .fileAttachmentAnnotation .popupTriggerArea {
+  position: absolute;
+}
+
+.annotationLayer .popupWrapper {
+  position: absolute;
+  font-size: calc(9px * var(--scale-factor));
+  width: 100%;
+  min-width: calc(180px * var(--scale-factor));
+  pointer-events: none;
+}
+
+.annotationLayer .popup {
+  position: absolute;
+  max-width: calc(180px * var(--scale-factor));
+  background-color: rgba(255, 255, 153, 1);
+  box-shadow: 0 calc(2px * var(--scale-factor)) calc(5px * var(--scale-factor))
+    rgba(136, 136, 136, 1);
+  border-radius: calc(2px * var(--scale-factor));
+  padding: calc(6px * var(--scale-factor));
+  margin-left: calc(5px * var(--scale-factor));
+  cursor: pointer;
+  font: message-box;
+  white-space: normal;
+  word-wrap: break-word;
+  pointer-events: auto;
+}
+
+.annotationLayer .popup > * {
+  font-size: calc(9px * var(--scale-factor));
+}
+
+.annotationLayer .popup h1 {
+  display: inline-block;
+}
+
+.annotationLayer .popupDate {
+  display: inline-block;
+  margin-left: calc(5px * var(--scale-factor));
+}
+
+.annotationLayer .popupContent {
+  border-top: 1px solid rgba(51, 51, 51, 1);
+  margin-top: calc(2px * var(--scale-factor));
+  padding-top: calc(2px * var(--scale-factor));
+}
+
+.annotationLayer .richText > * {
+  white-space: pre-wrap;
+  font-size: calc(9px * var(--scale-factor));
+}
+
+.annotationLayer .highlightAnnotation,
+.annotationLayer .underlineAnnotation,
+.annotationLayer .squigglyAnnotation,
+.annotationLayer .strikeoutAnnotation,
+.annotationLayer .freeTextAnnotation,
+.annotationLayer .lineAnnotation svg line,
+.annotationLayer .squareAnnotation svg rect,
+.annotationLayer .circleAnnotation svg ellipse,
+.annotationLayer .polylineAnnotation svg polyline,
+.annotationLayer .polygonAnnotation svg polygon,
+.annotationLayer .caretAnnotation,
+.annotationLayer .inkAnnotation svg polyline,
+.annotationLayer .stampAnnotation,
+.annotationLayer .fileAttachmentAnnotation {
+  cursor: pointer;
+}
+
+.annotationLayer section svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.annotationLayer .annotationTextContent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+.annotationLayer .annotationTextContent span {
+  width: 100%;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uLy4uLy4uL25vZGVfbW9kdWxlcy9yZWFjdC1wZGYvZGlzdC9lc20vUGFnZS9Bbm5vdGF0aW9uTGF5ZXIuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7O0VBYUU7O0FBRUY7RUFDRSwrQkFBK0I7RUFDL0IsK05BQStOO0VBQy9OLHFDQUFxQztFQUNyQyx1Q0FBdUM7RUFDdkMsMkNBQTJDO0VBQzNDLDBDQUEwQztFQUMxQyxpQ0FBaUM7RUFDakMsb0JBQW9CO0FBQ3RCOztBQUVBO0VBQ0U7SUFDRSxzQ0FBc0M7SUFDdEMsMENBQTBDO0lBQzFDLHVDQUF1QztJQUN2QyxxQ0FBcUM7SUFDckMsb0NBQW9DO0VBQ3RDO0VBQ0E7OztJQUdFLGlDQUFpQztFQUNuQzs7RUFFQTtJQUNFLDZCQUE2QjtFQUMvQjtBQUNGOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLE1BQU07RUFDTixPQUFPO0VBQ1Asb0JBQW9CO0VBQ3BCLHFCQUFxQjtFQUNyQixVQUFVO0FBQ1o7O0FBRUE7RUFDRSwyQ0FBMkM7QUFDN0M7QUFDQTtFQUNFLGlEQUFpRDtBQUNuRDtBQUNBO0VBQ0UsMENBQTBDO0FBQzVDOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLG9CQUFvQjtFQUNwQixzQkFBc0I7RUFDdEIsU0FBUztFQUNULHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsTUFBTTtFQUNOLE9BQU87RUFDUCxXQUFXO0VBQ1gsWUFBWTtBQUNkOztBQUVBO0VBQ0UsWUFBWTtFQUNaLGdDQUFnQztFQUNoQywyQ0FBMkM7QUFDN0M7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLFdBQVc7RUFDWCxZQUFZO0VBQ1osTUFBTTtFQUNOLE9BQU87QUFDVDs7QUFFQTs7O0VBR0UsOERBQThEO0VBQzlELHFEQUFxRDtFQUNyRCxzQkFBc0I7RUFDdEIsZ0RBQWdEO0VBQ2hELFlBQVk7RUFDWixTQUFTO0VBQ1QsbUJBQW1CO0VBQ25CLFdBQVc7QUFDYjs7QUFFQTs7O0VBR0Usd0JBQXdCO0FBQzFCOztBQUVBO0VBQ0UsVUFBVTtBQUNaOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBOzs7RUFHRSxnQkFBZ0I7RUFDaEIsb0RBQW9EO0VBQ3BELG1CQUFtQjtBQUNyQjs7QUFFQTs7O0VBR0UsaURBQWlEO0FBQ25EO0FBQ0E7OztFQUdFLGtCQUFrQjtBQUNwQjs7QUFFQTs7RUFFRSxnQkFBZ0I7RUFDaEIsaURBQWlEO0VBQ2pELGtCQUFrQjtFQUNsQixtQ0FBbUM7QUFDckM7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsNkJBQTZCO0FBQy9COztBQUVBO0VBQ0UsaURBQWlEO0VBQ2pELGtCQUFrQjtFQUNsQixtQ0FBbUM7QUFDckM7O0FBRUE7RUFDRSxpREFBaUQ7RUFDakQsbUNBQW1DO0FBQ3JDOztBQUVBOzs7RUFHRSw0QkFBNEI7RUFDNUIsV0FBVztFQUNYLGNBQWM7RUFDZCxrQkFBa0I7QUFDcEI7O0FBRUE7O0VBRUUsV0FBVztFQUNYLFNBQVM7RUFDVCxVQUFVO0FBQ1o7O0FBRUE7RUFDRSx3QkFBd0I7QUFDMUI7O0FBRUE7RUFDRSx5QkFBeUI7QUFDM0I7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVCxRQUFRO0VBQ1IsVUFBVTtBQUNaOztBQUVBO0VBQ0Usc0JBQXNCO0VBQ3RCLGlCQUFpQjtFQUNqQixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRTs7Ozs7SUFLRTtFQUNGLFdBQVc7QUFDYjs7QUFFQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsMENBQTBDO0VBQzFDLFdBQVc7RUFDWCw0Q0FBNEM7RUFDNUMsb0JBQW9CO0FBQ3RCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLDRDQUE0QztFQUM1Qyx3Q0FBd0M7RUFDeEM7MEJBQ3dCO0VBQ3hCLDhDQUE4QztFQUM5Qyx3Q0FBd0M7RUFDeEMsNENBQTRDO0VBQzVDLGVBQWU7RUFDZixpQkFBaUI7RUFDakIsbUJBQW1CO0VBQ25CLHFCQUFxQjtFQUNyQixvQkFBb0I7QUFDdEI7O0FBRUE7RUFDRSwwQ0FBMEM7QUFDNUM7O0FBRUE7RUFDRSxxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsNENBQTRDO0FBQzlDOztBQUVBO0VBQ0UseUNBQXlDO0VBQ3pDLDJDQUEyQztFQUMzQyw0Q0FBNEM7QUFDOUM7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsMENBQTBDO0FBQzVDOztBQUVBOzs7Ozs7Ozs7Ozs7OztFQWNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFlBQVk7RUFDWixNQUFNO0VBQ04sT0FBTztBQUNUOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osVUFBVTtFQUNWLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsb0JBQW9CO0FBQ3RCOztBQUVBO0VBQ0UsV0FBVztFQUNYLHFCQUFxQjtBQUN2QiIsInNvdXJjZXNDb250ZW50IjpbIi8qIENvcHlyaWdodCAyMDE0IE1vemlsbGEgRm91bmRhdGlvblxuICpcbiAqIExpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG4gKiB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG4gKiBZb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcbiAqXG4gKiAgICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG4gKlxuICogVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuICogZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuICogV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG4gKiBTZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG4gKiBsaW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiAqL1xuXG46cm9vdCB7XG4gIC0tcmVhY3QtcGRmLWFubm90YXRpb24tbGF5ZXI6IDE7XG4gIC0tYW5ub3RhdGlvbi11bmZvY3VzZWQtZmllbGQtYmFja2dyb3VuZDogdXJsKFwiZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9VVRGLTgsPHN2ZyB3aWR0aD0nMXB4JyBoZWlnaHQ9JzFweCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBzdHlsZT0nZmlsbDpyZ2JhKDAsIDU0LCAyNTUsIDAuMTMpOycvPjwvc3ZnPlwiKTtcbiAgLS1pbnB1dC1mb2N1cy1ib3JkZXItY29sb3I6IEhpZ2hsaWdodDtcbiAgLS1pbnB1dC1mb2N1cy1vdXRsaW5lOiAxcHggc29saWQgQ2FudmFzO1xuICAtLWlucHV0LXVuZm9jdXNlZC1ib3JkZXItY29sb3I6IHRyYW5zcGFyZW50O1xuICAtLWlucHV0LWRpc2FibGVkLWJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gIC0taW5wdXQtaG92ZXItYm9yZGVyLWNvbG9yOiBibGFjaztcbiAgLS1saW5rLW91dGxpbmU6IG5vbmU7XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChmb3JjZWQtY29sb3JzOiBhY3RpdmUpIHtcbiAgOnJvb3Qge1xuICAgIC0taW5wdXQtZm9jdXMtYm9yZGVyLWNvbG9yOiBDYW52YXNUZXh0O1xuICAgIC0taW5wdXQtdW5mb2N1c2VkLWJvcmRlci1jb2xvcjogQWN0aXZlVGV4dDtcbiAgICAtLWlucHV0LWRpc2FibGVkLWJvcmRlci1jb2xvcjogR3JheVRleHQ7XG4gICAgLS1pbnB1dC1ob3Zlci1ib3JkZXItY29sb3I6IEhpZ2hsaWdodDtcbiAgICAtLWxpbmstb3V0bGluZTogMS41cHggc29saWQgTGlua1RleHQ7XG4gIH1cbiAgLmFubm90YXRpb25MYXllciAudGV4dFdpZGdldEFubm90YXRpb24gOmlzKGlucHV0LCB0ZXh0YXJlYSk6cmVxdWlyZWQsXG4gIC5hbm5vdGF0aW9uTGF5ZXIgLmNob2ljZVdpZGdldEFubm90YXRpb24gc2VsZWN0OnJlcXVpcmVkLFxuICAuYW5ub3RhdGlvbkxheWVyIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uOmlzKC5jaGVja0JveCwgLnJhZGlvQnV0dG9uKSBpbnB1dDpyZXF1aXJlZCB7XG4gICAgb3V0bGluZTogMS41cHggc29saWQgc2VsZWN0ZWRJdGVtO1xuICB9XG5cbiAgLmFubm90YXRpb25MYXllciAubGlua0Fubm90YXRpb246aG92ZXIge1xuICAgIGJhY2tkcm9wLWZpbHRlcjogaW52ZXJ0KDEwMCUpO1xuICB9XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG4gIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgei1pbmRleDogMztcbn1cblxuLmFubm90YXRpb25MYXllcltkYXRhLW1haW4tcm90YXRpb249JzkwJ10gLm5vcm90YXRlIHtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMjcwZGVnKSB0cmFuc2xhdGVYKC0xMDAlKTtcbn1cbi5hbm5vdGF0aW9uTGF5ZXJbZGF0YS1tYWluLXJvdGF0aW9uPScxODAnXSAubm9yb3RhdGUge1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgxODBkZWcpIHRyYW5zbGF0ZSgtMTAwJSwgLTEwMCUpO1xufVxuLmFubm90YXRpb25MYXllcltkYXRhLW1haW4tcm90YXRpb249JzI3MCddIC5ub3JvdGF0ZSB7XG4gIHRyYW5zZm9ybTogcm90YXRlKDkwZGVnKSB0cmFuc2xhdGVZKC0xMDAlKTtcbn1cblxuLmFubm90YXRpb25MYXllciBjYW52YXMge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgc2VjdGlvbiB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdGV4dC1hbGlnbjogaW5pdGlhbDtcbiAgcG9pbnRlci1ldmVudHM6IGF1dG87XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIG1hcmdpbjogMDtcbiAgdHJhbnNmb3JtLW9yaWdpbjogMCAwO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5saW5rQW5ub3RhdGlvbiB7XG4gIG91dGxpbmU6IHZhcigtLWxpbmstb3V0bGluZSk7XG59XG5cbi50ZXh0TGF5ZXIuc2VsZWN0aW5nIH4gLmFubm90YXRpb25MYXllciBzZWN0aW9uIHtcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgOmlzKC5saW5rQW5ub3RhdGlvbiwgLmJ1dHRvbldpZGdldEFubm90YXRpb24ucHVzaEJ1dHRvbikgPiBhIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBmb250LXNpemU6IDFlbTtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIDppcygubGlua0Fubm90YXRpb24sIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uLnB1c2hCdXR0b24pID4gYTpob3ZlciB7XG4gIG9wYWNpdHk6IDAuMjtcbiAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMCwgMSk7XG4gIGJveC1zaGFkb3c6IDAgMnB4IDEwcHggcmdiYSgyNTUsIDI1NSwgMCwgMSk7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnRleHRBbm5vdGF0aW9uIGltZyB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnRleHRXaWRnZXRBbm5vdGF0aW9uIDppcyhpbnB1dCwgdGV4dGFyZWEpLFxuLmFubm90YXRpb25MYXllciAuY2hvaWNlV2lkZ2V0QW5ub3RhdGlvbiBzZWxlY3QsXG4uYW5ub3RhdGlvbkxheWVyIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uOmlzKC5jaGVja0JveCwgLnJhZGlvQnV0dG9uKSBpbnB1dCB7XG4gIGJhY2tncm91bmQtaW1hZ2U6IHZhcigtLWFubm90YXRpb24tdW5mb2N1c2VkLWZpZWxkLWJhY2tncm91bmQpO1xuICBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1pbnB1dC11bmZvY3VzZWQtYm9yZGVyLWNvbG9yKTtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgZm9udDogY2FsYyg5cHggKiB2YXIoLS1zY2FsZS1mYWN0b3IpKSBzYW5zLXNlcmlmO1xuICBoZWlnaHQ6IDEwMCU7XG4gIG1hcmdpbjogMDtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnRleHRXaWRnZXRBbm5vdGF0aW9uIDppcyhpbnB1dCwgdGV4dGFyZWEpOnJlcXVpcmVkLFxuLmFubm90YXRpb25MYXllciAuY2hvaWNlV2lkZ2V0QW5ub3RhdGlvbiBzZWxlY3Q6cmVxdWlyZWQsXG4uYW5ub3RhdGlvbkxheWVyIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uOmlzKC5jaGVja0JveCwgLnJhZGlvQnV0dG9uKSBpbnB1dDpyZXF1aXJlZCB7XG4gIG91dGxpbmU6IDEuNXB4IHNvbGlkIHJlZDtcbn1cblxuLmFubm90YXRpb25MYXllciAuY2hvaWNlV2lkZ2V0QW5ub3RhdGlvbiBzZWxlY3Qgb3B0aW9uIHtcbiAgcGFkZGluZzogMDtcbn1cblxuLmFubm90YXRpb25MYXllciAuYnV0dG9uV2lkZ2V0QW5ub3RhdGlvbi5yYWRpb0J1dHRvbiBpbnB1dCB7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbn1cblxuLmFubm90YXRpb25MYXllciAudGV4dFdpZGdldEFubm90YXRpb24gdGV4dGFyZWEge1xuICByZXNpemU6IG5vbmU7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnRleHRXaWRnZXRBbm5vdGF0aW9uIDppcyhpbnB1dCwgdGV4dGFyZWEpW2Rpc2FibGVkXSxcbi5hbm5vdGF0aW9uTGF5ZXIgLmNob2ljZVdpZGdldEFubm90YXRpb24gc2VsZWN0W2Rpc2FibGVkXSxcbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb246aXMoLmNoZWNrQm94LCAucmFkaW9CdXR0b24pIGlucHV0W2Rpc2FibGVkXSB7XG4gIGJhY2tncm91bmQ6IG5vbmU7XG4gIGJvcmRlcjogMnB4IHNvbGlkIHZhcigtLWlucHV0LWRpc2FibGVkLWJvcmRlci1jb2xvcik7XG4gIGN1cnNvcjogbm90LWFsbG93ZWQ7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnRleHRXaWRnZXRBbm5vdGF0aW9uIDppcyhpbnB1dCwgdGV4dGFyZWEpOmhvdmVyLFxuLmFubm90YXRpb25MYXllciAuY2hvaWNlV2lkZ2V0QW5ub3RhdGlvbiBzZWxlY3Q6aG92ZXIsXG4uYW5ub3RhdGlvbkxheWVyIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uOmlzKC5jaGVja0JveCwgLnJhZGlvQnV0dG9uKSBpbnB1dDpob3ZlciB7XG4gIGJvcmRlcjogMnB4IHNvbGlkIHZhcigtLWlucHV0LWhvdmVyLWJvcmRlci1jb2xvcik7XG59XG4uYW5ub3RhdGlvbkxheWVyIC50ZXh0V2lkZ2V0QW5ub3RhdGlvbiA6aXMoaW5wdXQsIHRleHRhcmVhKTpob3Zlcixcbi5hbm5vdGF0aW9uTGF5ZXIgLmNob2ljZVdpZGdldEFubm90YXRpb24gc2VsZWN0OmhvdmVyLFxuLmFubm90YXRpb25MYXllciAuYnV0dG9uV2lkZ2V0QW5ub3RhdGlvbi5jaGVja0JveCBpbnB1dDpob3ZlciB7XG4gIGJvcmRlci1yYWRpdXM6IDJweDtcbn1cblxuLmFubm90YXRpb25MYXllciAudGV4dFdpZGdldEFubm90YXRpb24gOmlzKGlucHV0LCB0ZXh0YXJlYSk6Zm9jdXMsXG4uYW5ub3RhdGlvbkxheWVyIC5jaG9pY2VXaWRnZXRBbm5vdGF0aW9uIHNlbGVjdDpmb2N1cyB7XG4gIGJhY2tncm91bmQ6IG5vbmU7XG4gIGJvcmRlcjogMnB4IHNvbGlkIHZhcigtLWlucHV0LWZvY3VzLWJvcmRlci1jb2xvcik7XG4gIGJvcmRlci1yYWRpdXM6IDJweDtcbiAgb3V0bGluZTogdmFyKC0taW5wdXQtZm9jdXMtb3V0bGluZSk7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb246aXMoLmNoZWNrQm94LCAucmFkaW9CdXR0b24pIDpmb2N1cyB7XG4gIGJhY2tncm91bmQtaW1hZ2U6IG5vbmU7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uLmNoZWNrQm94IDpmb2N1cyB7XG4gIGJvcmRlcjogMnB4IHNvbGlkIHZhcigtLWlucHV0LWZvY3VzLWJvcmRlci1jb2xvcik7XG4gIGJvcmRlci1yYWRpdXM6IDJweDtcbiAgb3V0bGluZTogdmFyKC0taW5wdXQtZm9jdXMtb3V0bGluZSk7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb24ucmFkaW9CdXR0b24gOmZvY3VzIHtcbiAgYm9yZGVyOiAycHggc29saWQgdmFyKC0taW5wdXQtZm9jdXMtYm9yZGVyLWNvbG9yKTtcbiAgb3V0bGluZTogdmFyKC0taW5wdXQtZm9jdXMtb3V0bGluZSk7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb24uY2hlY2tCb3ggaW5wdXQ6Y2hlY2tlZDo6YmVmb3JlLFxuLmFubm90YXRpb25MYXllciAuYnV0dG9uV2lkZ2V0QW5ub3RhdGlvbi5jaGVja0JveCBpbnB1dDpjaGVja2VkOjphZnRlcixcbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb24ucmFkaW9CdXR0b24gaW5wdXQ6Y2hlY2tlZDo6YmVmb3JlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogQ2FudmFzVGV4dDtcbiAgY29udGVudDogJyc7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb24uY2hlY2tCb3ggaW5wdXQ6Y2hlY2tlZDo6YmVmb3JlLFxuLmFubm90YXRpb25MYXllciAuYnV0dG9uV2lkZ2V0QW5ub3RhdGlvbi5jaGVja0JveCBpbnB1dDpjaGVja2VkOjphZnRlciB7XG4gIGhlaWdodDogODAlO1xuICBsZWZ0OiA0NSU7XG4gIHdpZHRoOiAxcHg7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLmJ1dHRvbldpZGdldEFubm90YXRpb24uY2hlY2tCb3ggaW5wdXQ6Y2hlY2tlZDo6YmVmb3JlIHtcbiAgdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5idXR0b25XaWRnZXRBbm5vdGF0aW9uLmNoZWNrQm94IGlucHV0OmNoZWNrZWQ6OmFmdGVyIHtcbiAgdHJhbnNmb3JtOiByb3RhdGUoLTQ1ZGVnKTtcbn1cblxuLmFubm90YXRpb25MYXllciAuYnV0dG9uV2lkZ2V0QW5ub3RhdGlvbi5yYWRpb0J1dHRvbiBpbnB1dDpjaGVja2VkOjpiZWZvcmUge1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIGhlaWdodDogNTAlO1xuICBsZWZ0OiAzMCU7XG4gIHRvcDogMjAlO1xuICB3aWR0aDogNTAlO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC50ZXh0V2lkZ2V0QW5ub3RhdGlvbiBpbnB1dC5jb21iIHtcbiAgZm9udC1mYW1pbHk6IG1vbm9zcGFjZTtcbiAgcGFkZGluZy1sZWZ0OiAycHg7XG4gIHBhZGRpbmctcmlnaHQ6IDA7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnRleHRXaWRnZXRBbm5vdGF0aW9uIGlucHV0LmNvbWI6Zm9jdXMge1xuICAvKlxuICAgKiBMZXR0ZXIgc3BhY2luZyBpcyBwbGFjZWQgb24gdGhlIHJpZ2h0IHNpZGUgb2YgZWFjaCBjaGFyYWN0ZXIuIEhlbmNlLCB0aGVcbiAgICogbGV0dGVyIHNwYWNpbmcgb2YgdGhlIGxhc3QgY2hhcmFjdGVyIG1heSBiZSBwbGFjZWQgb3V0c2lkZSB0aGUgdmlzaWJsZVxuICAgKiBhcmVhLCBjYXVzaW5nIGhvcml6b250YWwgc2Nyb2xsaW5nLiBXZSBhdm9pZCB0aGlzIGJ5IGV4dGVuZGluZyB0aGUgd2lkdGhcbiAgICogd2hlbiB0aGUgZWxlbWVudCBoYXMgZm9jdXMgYW5kIHJldmVydCB0aGlzIHdoZW4gaXQgbG9zZXMgZm9jdXMuXG4gICAqL1xuICB3aWR0aDogMTAzJTtcbn1cblxuLmFubm90YXRpb25MYXllciAuYnV0dG9uV2lkZ2V0QW5ub3RhdGlvbjppcyguY2hlY2tCb3gsIC5yYWRpb0J1dHRvbikgaW5wdXQge1xuICBhcHBlYXJhbmNlOiBub25lO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5wb3B1cFRyaWdnZXJBcmVhIHtcbiAgaGVpZ2h0OiAxMDAlO1xuICB3aWR0aDogMTAwJTtcbn1cblxuLmFubm90YXRpb25MYXllciAuZmlsZUF0dGFjaG1lbnRBbm5vdGF0aW9uIC5wb3B1cFRyaWdnZXJBcmVhIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5wb3B1cFdyYXBwZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGZvbnQtc2l6ZTogY2FsYyg5cHggKiB2YXIoLS1zY2FsZS1mYWN0b3IpKTtcbiAgd2lkdGg6IDEwMCU7XG4gIG1pbi13aWR0aDogY2FsYygxODBweCAqIHZhcigtLXNjYWxlLWZhY3RvcikpO1xuICBwb2ludGVyLWV2ZW50czogbm9uZTtcbn1cblxuLmFubm90YXRpb25MYXllciAucG9wdXAge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1heC13aWR0aDogY2FsYygxODBweCAqIHZhcigtLXNjYWxlLWZhY3RvcikpO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAxNTMsIDEpO1xuICBib3gtc2hhZG93OiAwIGNhbGMoMnB4ICogdmFyKC0tc2NhbGUtZmFjdG9yKSkgY2FsYyg1cHggKiB2YXIoLS1zY2FsZS1mYWN0b3IpKVxuICAgIHJnYmEoMTM2LCAxMzYsIDEzNiwgMSk7XG4gIGJvcmRlci1yYWRpdXM6IGNhbGMoMnB4ICogdmFyKC0tc2NhbGUtZmFjdG9yKSk7XG4gIHBhZGRpbmc6IGNhbGMoNnB4ICogdmFyKC0tc2NhbGUtZmFjdG9yKSk7XG4gIG1hcmdpbi1sZWZ0OiBjYWxjKDVweCAqIHZhcigtLXNjYWxlLWZhY3RvcikpO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGZvbnQ6IG1lc3NhZ2UtYm94O1xuICB3aGl0ZS1zcGFjZTogbm9ybWFsO1xuICB3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7XG4gIHBvaW50ZXItZXZlbnRzOiBhdXRvO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5wb3B1cCA+ICoge1xuICBmb250LXNpemU6IGNhbGMoOXB4ICogdmFyKC0tc2NhbGUtZmFjdG9yKSk7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnBvcHVwIGgxIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5wb3B1cERhdGUge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIG1hcmdpbi1sZWZ0OiBjYWxjKDVweCAqIHZhcigtLXNjYWxlLWZhY3RvcikpO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5wb3B1cENvbnRlbnQge1xuICBib3JkZXItdG9wOiAxcHggc29saWQgcmdiYSg1MSwgNTEsIDUxLCAxKTtcbiAgbWFyZ2luLXRvcDogY2FsYygycHggKiB2YXIoLS1zY2FsZS1mYWN0b3IpKTtcbiAgcGFkZGluZy10b3A6IGNhbGMoMnB4ICogdmFyKC0tc2NhbGUtZmFjdG9yKSk7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgLnJpY2hUZXh0ID4gKiB7XG4gIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDtcbiAgZm9udC1zaXplOiBjYWxjKDlweCAqIHZhcigtLXNjYWxlLWZhY3RvcikpO1xufVxuXG4uYW5ub3RhdGlvbkxheWVyIC5oaWdobGlnaHRBbm5vdGF0aW9uLFxuLmFubm90YXRpb25MYXllciAudW5kZXJsaW5lQW5ub3RhdGlvbixcbi5hbm5vdGF0aW9uTGF5ZXIgLnNxdWlnZ2x5QW5ub3RhdGlvbixcbi5hbm5vdGF0aW9uTGF5ZXIgLnN0cmlrZW91dEFubm90YXRpb24sXG4uYW5ub3RhdGlvbkxheWVyIC5mcmVlVGV4dEFubm90YXRpb24sXG4uYW5ub3RhdGlvbkxheWVyIC5saW5lQW5ub3RhdGlvbiBzdmcgbGluZSxcbi5hbm5vdGF0aW9uTGF5ZXIgLnNxdWFyZUFubm90YXRpb24gc3ZnIHJlY3QsXG4uYW5ub3RhdGlvbkxheWVyIC5jaXJjbGVBbm5vdGF0aW9uIHN2ZyBlbGxpcHNlLFxuLmFubm90YXRpb25MYXllciAucG9seWxpbmVBbm5vdGF0aW9uIHN2ZyBwb2x5bGluZSxcbi5hbm5vdGF0aW9uTGF5ZXIgLnBvbHlnb25Bbm5vdGF0aW9uIHN2ZyBwb2x5Z29uLFxuLmFubm90YXRpb25MYXllciAuY2FyZXRBbm5vdGF0aW9uLFxuLmFubm90YXRpb25MYXllciAuaW5rQW5ub3RhdGlvbiBzdmcgcG9seWxpbmUsXG4uYW5ub3RhdGlvbkxheWVyIC5zdGFtcEFubm90YXRpb24sXG4uYW5ub3RhdGlvbkxheWVyIC5maWxlQXR0YWNobWVudEFubm90YXRpb24ge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5hbm5vdGF0aW9uTGF5ZXIgc2VjdGlvbiBzdmcge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbn1cblxuLmFubm90YXRpb25MYXllciAuYW5ub3RhdGlvblRleHRDb250ZW50IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBvcGFjaXR5OiAwO1xuICBjb2xvcjogdHJhbnNwYXJlbnQ7XG4gIHVzZXItc2VsZWN0OiBub25lO1xuICBwb2ludGVyLWV2ZW50czogbm9uZTtcbn1cblxuLmFubm90YXRpb25MYXllciAuYW5ub3RhdGlvblRleHRDb250ZW50IHNwYW4ge1xuICB3aWR0aDogMTAwJTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style data-emotion="css" data-s=""></style><style data-jss="" data-meta="makeStyles">
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+:host {
+  font-size: 16px;
+}
+a {
+  text-decoration: none;
+}
+*:focus-visible {
+  outline: 2px auto #000000;
+}
+</style><style data-jss="" data-meta="makeStyles">
+@-webkit-keyframes jss1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.jss2 {
+  animation: jss1 300ms;
+}
+</style><style data-jss="" data-meta="makeStyles">
+@-webkit-keyframes plt-jss62 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.plt-jss63 {
+  animation: plt-jss62 300ms;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss84 {
+  display: block;
+  padding: 6px 8px;
+  max-width: 100px;
+}
+@container widgetContainer (max-width: 600px) {
+  .plt-jss84 {
+    max-width: none;
+  }
+}
+.plt-jss85 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@container widgetContainer (max-width: 600px) {
+  .plt-jss85 {
+    overflow: visible;
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+.plt-jss86:hover {
+  text-decoration: underline;
+}
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss87 {
+  max-height: 300px;
+  overflow-y: auto;
+}
+@media (min-width: 600px) {
+  .plt-jss87 {
+    max-width: 550px;
+  }
+}
+.plt-jss88 {
+  font-weight: 700;
+}
+.plt-jss89 {
+  display: grid;
+}
+.plt-jss89:hover {
+  text-decoration: none;
+}
+.plt-jss90 {
+  gap: 8px;
+  grid-template-columns: 1fr 0fr;
+}
+.plt-jss91 {
+  fill: #333333;
+}
+.plt-jss92 {
+  white-space: inherit;
+}
+.plt-jss93 {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 0fr;
+}
+.plt-jss94 {
+  font-size: 1em;
+  place-self: center;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss80 {
+  max-height: 300px;
+  overflow-y: auto;
+}
+@media (min-width: 600px) {
+  .plt-jss80 {
+    max-width: 550px;
+  }
+}
+.plt-jss81 {
+  fill: #333333;
+}
+.plt-jss82 {
+  white-space: inherit;
+}
+.plt-jss83 {
+  list-style: none;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss75 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.plt-jss76 {
+  fill: #333333;
+}
+.plt-jss77 {
+  gap: 4px;
+  display: flex;
+  align-items: center;
+}
+.plt-jss78 {
+  font-size: 1em;
+}
+.plt-jss79:hover {
+  text-decoration: underline;
+}
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss18 {
+  border-top-right-radius: 8px;
+}
+.plt-jss19 {
+  position: absolute;
+}
+.plt-jss20 {
+  top: 0;
+  height: 100%;
+  position: absolute;
+}
+.plt-jss21 {
+  bottom: 0;
+}
+.plt-jss22 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.plt-jss23 {
+  height: 100vh;
+}
+.plt-jss24 {
+  top: 12px;
+  right: 8px;
+  position: absolute;
+}
+.plt-jss25 {
+  font-size: 1.5em;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss130 {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  max-width: 920px;
+}
+.plt-jss131 {
+  overflow: hidden;
+  position: relative;
+}
+.plt-jss132 {
+  position: relative;
+}
+.plt-jss132 .react-pdf__Page__textContent {
+  top: 0;
+  left: 0;
+  color: transparent;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  position: absolute;
+  line-height: 1;
+  user-select: text;
+  touch-action: manipulation;
+  pointer-events: auto;
+  -ms-user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+}
+.plt-jss132 .react-pdf__Page__textContent span {
+  cursor: text;
+  position: absolute;
+  user-select: text;
+  white-space: pre;
+  touch-action: manipulation;
+  pointer-events: auto;
+  -ms-user-select: text;
+  -moz-user-select: text;
+  transform-origin: 0% 0%;
+  -webkit-user-select: text;
+}
+.plt-jss132 .react-pdf__Page__annotations {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  pointer-events: none;
+}
+.plt-jss132 .react-pdf__Page__canvas {
+  z-index: 0;
+  pointer-events: none;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss120 {
+  height: 500px;
+  padding-top: 90px;
+}
+.plt-jss121 {
+  border: 1px solid #207832;
+  padding-block: 32px;
+  background-color: #EAF1F1;
+}
+.plt-jss122 {
+  color: #207832;
+  font-size: 24px;
+}
+.plt-jss123 {
+  width: 100%;
+  height: calc(100% - 4px);
+  display: flex;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+}
+.plt-jss124 {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.plt-jss125 {
+  clip: rect(1px,1px,1px,1px);
+  width: 1px;
+  border: 0 !important;
+  height: 1px;
+  margin: 0 !important;
+  display: inline-block;
+  padding: 0 !important;
+  overflow: hidden;
+  position: absolute;
+  font-size: 0;
+}
+.plt-jss126 {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+.plt-jss127 {
+  gap: 8px;
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+}
+.plt-jss128 {
+  padding: 0 16px 16px 16px;
+  overflow: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+@container widgetContainer (max-width: 600px) {
+  .plt-jss128 {
+    padding: 0 8px 8px 8px;
+  }
+}
+.plt-jss128 img {
+  height: auto;
+  max-width: 100%;
+}
+.plt-jss128 table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.plt-jss128 p[level="1"] {
+  margin-left: 16px;
+}
+.plt-jss128 p[level="2"] {
+  margin-left: 32px;
+}
+.plt-jss128 p[level="3"] {
+  margin-left: 48px;
+}
+.plt-jss128 p[level="4"] {
+  margin-left: 64px;
+}
+.plt-jss128 p[level="5"] {
+  margin-left: 80px;
+}
+.plt-jss128 p[level="6"] {
+  margin-left: 96px;
+}
+.plt-jss128 p[level="7"] {
+  margin-left: 112px;
+}
+.plt-jss128 p[level="8"] {
+  margin-left: 128px;
+}
+.plt-jss128 p[level="9"] {
+  margin-left: 144px;
+}
+.plt-jss128 p[level="10"] {
+  margin-left: 160px;
+}
+.plt-jss129 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss139 {
+  display: inline;
+}
+.plt-jss139:hover {
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss174 {
+  font-weight: bold !important;
+}
+.plt-jss175 {
+  color: #1A1A1A !important;
+}
+.plt-jss176 {
+  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.plt-jss177 {
+  grid-template-columns: 0fr 1fr;
+}
+.plt-jss178 {
+  overflow: hidden;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss161 {
+  display: grid;
+}
+.plt-jss162 {
+  place-self: center;
+}
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss140 {
+  font-weight: bold !important;
+}
+.plt-jss141 {
+  gap: 8px;
+  display: flex;
+  padding-top: 16px;
+  flex-direction: column;
+}
+.plt-jss142 {
+  gap: 12px;
+  padding: 12px 14px;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss143 {
+  border: solid 1px #DEE8F2;
+  padding: 16px;
+  box-shadow: none;
+  border-radius: 8px;
+  background-color: white;
+}
+.plt-jss143:before {
+  display: none;
+}
+.plt-jss143.Mui-expanded {
+  margin: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss144 {
+  padding: 0;
+  min-height: 0;
+}
+.plt-jss144.plt-jss147 {
+  min-height: 0;
+}
+.plt-jss146 {
+  cursor: default;
+  margin: 0;
+  justify-content: space-between;
+}
+.plt-jss146.plt-jss147 {
+  margin: 0;
+  min-height: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss152 {
+  display: block;
+  padding: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss153 {
+  font-weight: bold;
+}
+.plt-jss154 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.plt-jss155 {
+  display: grid;
+}
+.plt-jss156 {
+  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss202 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.plt-jss203 {
+  display: grid;
+}
+.plt-jss204 {
+  color: #333333 !important;
+}
+.plt-jss205 {
+  width: 18px;
+  height: 18px;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss172 {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss134 {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  justify-content: flex-end;
+}
+.plt-jss135 {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  font-family: Montserrat;
+}
+.plt-jss136 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.plt-jss137 {
+  transition: transform 0.2s;
+}
+.plt-jss138 {
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss109 {
+  gap: 8px;
+  display: flex;
+  padding: 8px;
+  box-sizing: border-box;
+  padding-top: 42px;
+  flex-direction: column;
+}
+.plt-jss110 {
+  left: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss192 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.plt-jss193 {
+  width: 0px;
+  margin-inline: 8px;
+}
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss95 {
+  height: 2em;
+  margin-left: 16px;
+  margin-right: 28px;
+}
+.plt-jss96 {
+  top: -8px;
+  left: 20px;
+  color: #8206AA;
+  border: solid 1px #C5A4D6;
+  padding: 4px 8px 4px;
+  background-color: #F2E6FA;
+}
+.plt-jss97 {
+  top: 0px;
+  left: 16px;
+}
+.plt-jss98 {
+  gap: 8px;
+  margin-left: 16px;
+  margin-right: 28px;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss99 {
+  width: 28px;
+  height: 16px;
+  display: flex;
+  padding: 0;
+}
+.plt-jss100 {
+  padding: 2px;
+}
+.plt-jss100.plt-jss103 {
+  color: #fff;
+  transform: translateX(12px);
+}
+.plt-jss100.plt-jss104 .plt-jss101 {
+  box-shadow: 0 0 0 3px #000000;
+}
+.plt-jss100.plt-jss103 + .plt-jss102 {
+  border: 1px solid #DBB537;
+  opacity: 1;
+  background-color: #DBB537;
+}
+.plt-jss101 {
+  width: 12px;
+  height: 12px;
+  box-shadow: 0 0 0 1px #333333;
+  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 6px;
+}
+.plt-jss102 {
+  border: 1px solid #333333;
+  opacity: 1;
+  box-sizing: border-box;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 8px;
+  background-color: #333333;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss68 {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.plt-jss69 {
+  display: flex;
+  flex-direction: column;
+}
+.plt-jss70 {
+  display: flex;
+  align-items: center;
+}
+.plt-jss71 {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+.plt-jss71:hover {
+  text-decoration: underline;
+}
+.plt-jss72 {
+  gap: 8px;
+  display: flex;
+  border-top: 1px solid #DEE8F2;
+  margin-top: 8px;
+  align-items: center;
+  padding-top: 8px;
+  justify-content: space-between;
+}
+.plt-jss73 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.plt-jss74 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss133 {
+  gap: 8px;
+  display: flex;
+  padding: 16px 24px;
+  overflow-y: auto;
+  flex-direction: column;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss55 {
+  display: block;
+  overflow-y: auto;
+  grid-template-columns: 1fr !important;
+}
+.plt-jss57 {
+  min-width: 0;
+  grid-column: 1/2;
+}
+.plt-jss58 {
+  top: 70px;
+  height: 100vh;
+  position: sticky;
+}
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss33 {
+  height: 100%;
+}
+.plt-jss34 {
+  width: 36%;
+}
+.plt-jss35 {
+  display: flex;
+}
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss31 {
+  height: calc(100vh - 68px);
+  overflow: auto;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss39 {
+  gap: 24px;
+  display: flex;
+  padding: 48px 96px 24px 96px;
+  position: relative;
+  background: #000000;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: column;
+}
+.plt-jss40 {
+  gap: 144px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.plt-jss41 {
+  gap: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width:899.95px) {
+  .plt-jss41 {
+    flex: none;
+    text-align: center;
+    align-items: center;
+  }
+}
+.plt-jss42 {
+  color: #fff;
+  font-weight: 400;
+}
+.plt-jss43 {
+  width: 100%;
+  border: none;
+  height: 2px;
+  background-color: #DBB537;
+}
+.plt-jss44 {
+  gap: 8px;
+  margin: 0;
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
+@media (max-width:899.95px) {
+  .plt-jss44 {
+    gap: 24px;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.plt-jss45 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width:899.95px) {
+  .plt-jss45 {
+    justify-content: center;
+  }
+}
+.plt-jss46 {
+  color: #fff;
+}
+@media (max-width:899.95px) {
+  .plt-jss46 {
+    display: none;
+  }
+}
+.plt-jss47 {
+  color: #DBB537;
+  font-family: Montserrat;
+  text-decoration: none;
+}
+.plt-jss47:hover {
+  text-decoration: underline;
+}
+.plt-jss48 {
+  color: #fff;
+  font-size: 16px;
+}
+.plt-jss49 {
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  position: absolute;
+  font-size: 104px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+.plt-jss50 {
+  gap: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  transform: translateX(-16px);
+  box-sizing: border-box;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: center;
+}
+.plt-jss50:hover {
+  opacity: 0.8;
+}
+.plt-jss51 {
+  color: #fff;
+  white-space: nowrap;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss16 {
+  margin-top: 0;
+}
+.plt-jss17 {
+  border-radius: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss26 {
+  color: #fff;
+  width: 100%;
+  height: 36px;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: rgb(149, 27, 28);
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss52 {
+  padding: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss27 {
+  display: flex;
+  padding: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+.plt-jss28 {
+  fill: #fff;
+}
+.plt-jss29 {
+  height: 100vh;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+}
+.plt-jss30 {
+  padding: 0 24px;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss64 {
+  padding: 8px;
+}
+.plt-jss65 {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss6 {
+  height: 68px;
+  display: flex;
+  padding: 16px 16px;
+  box-sizing: border-box;
+  align-items: center;
+  border-bottom: solid 1px #0C0100;
+  justify-content: space-between;
+  background-color: #0C0100;
+}
+.plt-jss7 {
+  gap: 32px;
+  display: flex;
+  align-items: center;
+}
+.plt-jss8 {
+  color: #FFFFFF;
+}
+.plt-jss9 {
+  fill: #FFFFFF;
+  font-size: 1.25em;
+}
+.plt-jss10 {
+  background-color: #000;
+}
+.plt-jss11 {
+  fill: #FFFFFF;
+  font-size: 1.25em;
+}
+@media (min-width:900px) {
+  .plt-jss11 {
+    display: none;
+  }
+}
+.plt-jss12 {
+  width: 100%;
+}
+.plt-jss13 {
+  margin-top: 0;
+}
+.plt-jss14 {
+  width: 170px;
+  resize: none;
+  padding: 4px 8px !important;
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+@media (max-width:599.95px) {
+  .plt-jss14 {
+    width: 100%;
+  }
+}
+.plt-jss15 {
+  width: 354px;
+}
+@media (max-width:599.95px) {
+  .plt-jss15 {
+    width: 100%;
+  }
+}
+</style><style data-jss="" data-meta="makeStyles">
+body {
+  margin: 0;
+  padding: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.plt-jss1 {
+  display: grid;
+  min-height: 100vh;
+  background-color: #FEFEFE;
+  grid-template-rows: 68px auto;
+}
+.plt-jss2 {
+  border-bottom: solid 1px #66A5DA;
+  background-color: #E9ECEF;
+}
+.plt-jss3 {
+  height: 138px;
+  border-top: solid 1px #66A5DA;
+  background-color: #E9ECEF;
+}
+.plt-jss4 {
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  z-index: 10000;
+  overflow: hidden;
+  position: absolute;
+}
+.plt-jss4:focus {
+  top: 8px;
+  clip: auto;
+  left: 8px;
+  color: #19274A;
+  width: auto;
+  height: auto;
+  padding: 6px 8px;
+  overflow: visible;
+  position: fixed;
+  text-decoration: underline;
+  background-color: #fff;
+}
+.plt-jss5 {
+  outline: none;
+  min-height: 0;
+}
+.plt-jss5:focus-visible {
+  outline: 2px solid #DBB537;
+  outline-offset: 2px;
+}
+</style></head><body style="container: widgetContainer / inline-size;"><div id="root"><a class="plt-jss4" href="#main-content">Skip to main content</a><div class="plt-jss1"><header class="plt-jss6"><div class="plt-jss7"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways mui-9zq1ug" aria-label="home" href="/" data-discover="true"><img class="plt-jss12" alt="Home Page - Christi Jacobsen Montana Secretary of State" src="/a0774120f0abac7e5c8c.svg?url"></a></div><div class="plt-jss7"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss11 mui-10epq6n" tabindex="0" type="button" aria-label="open-site-navigation"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="MenuRoundedIcon"><path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1m0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1M3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1"></path></svg></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss9 mui-10epq6n" tabindex="0" type="button" aria-label="search"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SearchRoundedIcon"><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0s.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></button></div></header><div id="main-content" class="plt-jss5" tabindex="-1"><div class="plt-jss31"><div class="plt-jss32 plt-jss36 plt-jss33"><div class="plt-jss66 plt-jss67 plt-jss53 plt-jss59"><div class="plt-jss54 plt-jss60"><div class="plt-jss68"><div class="plt-jss75"><a class="plt-jss77" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/sections/26f74240-90a5-483b-944c-c482208e1cfb" data-discover="true"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss76 plt-jss78 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="KeyboardBackspaceIcon"><path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"></path></svg>&nbsp;<p class="MuiTypography-root MuiTypography-body1 plt-jss79 mui-1bbcpaq">Back</p></a><div><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium mui-10epq6n" tabindex="0" type="button" aria-label="open navigation menu for past sections" aria-controls="breadcrumb-nav" aria-haspopup="true" aria-expanded="false"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss81 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="MoreHorizIcon"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2"></path></svg></button></div><nav class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root mui-ryybzp" aria-label="breadcrumb-navigation"><ol class="MuiBreadcrumbs-ol mui-51eq8m"><li class="MuiBreadcrumbs-li"><a class="plt-jss84 plt-jss86" aria-label="Subchapter 37.78.4 TANF Cash Assistance: Resources" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/sections/26f74240-90a5-483b-944c-c482208e1cfb" data-discover="true"><p class="MuiTypography-root MuiTypography-body1 plt-jss85 mui-1bbcpaq">Subchapter 37.78.4 TANF Cash Assistance: Resources</p></a></li><li aria-hidden="true" class="MuiBreadcrumbs-separator mui-1nd5pgh"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss76 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ChevronRightIcon"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></li><li class="MuiBreadcrumbs-li"><div><button class="MuiButtonBase-root MuiButton-root MuiButton-text plt-jss90 MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-text plt-jss90 MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-disableElevation plt-jss89 mui-tp127o" tabindex="0" type="button" aria-controls="sibling-nav" aria-haspopup="true" aria-expanded="false" aria-current="page"><div class="plt-jss93"><p class="MuiTypography-root MuiTypography-body1 plt-jss94 plt-jss148 plt-jss190 mui-1bbcpaq">37.78.420 TANF: ASSISTANCE STANDARDS; TABLES; METHODS OF COMPUTING AMOUNT OF MONTHLY BENEFIT PAYMENT</p><div class="plt-jss158 plt-jss191"><p class="MuiTypography-root MuiTypography-body2 mui-1q2w0hg" style="font-weight: 700;">Effective</p></div></div><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss91 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon"><path d="m7 10 5 5 5-5z"></path></svg></button></div></li></ol></nav></div><div class="plt-jss74"><div class="plt-jss192"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium mui-28aaek" tabindex="0" type="button" aria-label="previous-document"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss194 plt-jss195 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="KeyboardArrowLeftIcon"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6z"></path></svg></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium mui-28aaek" tabindex="0" type="button" aria-label="next-document"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss196 plt-jss197 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="KeyboardArrowRightIcon"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"></path></svg></button><div class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem plt-jss193 mui-fy02gk" role="separator" aria-orientation="vertical"></div></div><span aria-label="Switch to web view" class="MuiBadge-root mui-chz7cr"><label class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd plt-jss98 mui-bv35fs" aria-controls="documentContent"><span class="MuiSwitch-root plt-jss99 MuiSwitch-sizeMedium mui-bnbzk8"><span class="MuiButtonBase-root MuiSwitch-switchBase plt-jss100 MuiSwitch-colorPrimary Mui-checked plt-jss103 PrivateSwitchBase-root MuiSwitch-switchBase plt-jss100 MuiSwitch-colorPrimary Mui-checked plt-jss103 Mui-checked plt-jss103 mui-1v9tzci" aria-label="View in PDF, currently on"><input aria-description="Switch to web view" class="PrivateSwitchBase-input MuiSwitch-input mui-j8yymo" type="checkbox" checked=""><span class="MuiSwitch-thumb plt-jss101 mui-pcrmjj"></span></span><span class="MuiSwitch-track plt-jss102 mui-1khxa25"></span></span><span class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label mui-1bbcpaq">View in PDF</span></label><span class="MuiBadge-badge plt-jss96 MuiBadge-standard MuiBadge-anchorOriginTopLeft MuiBadge-anchorOriginTopLeftRectangular MuiBadge-overlapRectangular mui-ilmwxa">NEW</span></span><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss105 plt-jss106 mui-10epq6n" tabindex="0" type="button" aria-label="Download PDF - 37.78.420 TANF: ASSISTANCE STANDARDS; TABLES; METHODS OF COMPUTING AMOUNT OF MONTHLY BENEFIT PAYMENT"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss107 plt-jss108 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="GetAppIcon"><path d="M19 9h-4V3H9v6H5l7 7zM5 18v2h14v-2z"></path></svg></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss111 plt-jss112 mui-10epq6n" tabindex="0" type="button" aria-label="information-pane"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss113 plt-jss114 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="InfoOutlinedIcon"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg></button></div></div></div><div class="plt-jss118 plt-jss119 plt-jss53 plt-jss115 plt-jss56 plt-jss117"><section class="plt-jss57"><div class="plt-jss58"><div class="plt-jss123"><h1 class="plt-jss125">37.78.420 TANF: ASSISTANCE STANDARDS; TABLES; METHODS OF COMPUTING AMOUNT OF MONTHLY BENEFIT PAYMENT</h1><div class="plt-jss124"></div><div class="plt-jss130"><div class="react-pdf__Document" style="--scale-factor: 1;"><div class="plt-jss131"><div class="react-pdf__Page plt-jss132" data-page-number="1" style="--scale-factor: 1; background-color: white; position: relative; min-width: min-content; min-height: min-content;"><canvas class="react-pdf__Page__canvas" dir="ltr" width="1224" height="1584" style="display: block; user-select: none; width: 612px; height: 792px; visibility: hidden;"></canvas><div class="react-pdf__Page__textContent textLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"><span role="presentation" dir="ltr" style="left: 5.88%; top: 20.84%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.85854);">37.78.420 TANF: ASSISTANCE STANDARDS; TABLES; METHODS OF COMPUTING AMOUNT OF MONTHLY</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 22.69%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.850015);">BENEFIT PAYMENT</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.59%; top: 27.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909859);">(1)</span><span role="presentation" dir="ltr" style="left: 12.77%; top: 27.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 15.29%; top: 27.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.924367);">Income standards as set forth in this rule are used to determine whether need exists with respect</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 29.75%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.895707);">to income for any person who applies for or receives TANF cash assistance or TANF cash assistance</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 31.6%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.929468);">Post-Employment Program benefits and to determine the benefit amount the assistance unit will</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 33.45%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.90451);">receive if eligible. Four sets of assistance standards are used which are as follows:</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 36.31%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.887767);">(a)</span><span role="presentation" dir="ltr" style="left: 17.42%; top: 36.31%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 36.31%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.915274);">The gross monthly income (GMI) standard sets the level of gross monthly income for each</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 38.16%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.906864);">size assistance unit which cannot be exceeded if the assistance unit is to be eligible for TANF</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 40.01%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.870616);">cash assistance.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 42.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925405);">(b)</span><span role="presentation" dir="ltr" style="left: 17.51%; top: 42.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 42.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.926358);">The net monthly income (NMI) standard is used to determine the GMI.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 45.73%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.882357);">(c)</span><span role="presentation" dir="ltr" style="left: 17.31%; top: 45.73%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 45.73%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.922432);">The benefit standard sets the level of net countable income which cannot be exceeded if the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 47.58%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.905442);">assistance unit is to be eligible for assistance.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 50.44%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925405);">(d)</span><span role="presentation" dir="ltr" style="left: 17.51%; top: 50.44%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 50.44%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.928214);">The payment standard is used to determine the amount of the monthly cash payment in the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 52.29%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.885977);">TANF cash assistance program and is based on the size of the or TANF cash assistance Post-</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 54.14%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.913723);">Employment Program benefits assistance unit, unless the household is receiving benefits</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 55.98%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.902761);">through the TANF Cash Assistance Post-Employment Program. Payment standards in the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 57.83%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909696);">Post-Employment Program are a set amount as defined in (4)(e). This amount is not based</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 59.68%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.920663);">on household size. The household's net countable income is subtracted from the payment</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 61.53%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.919417);">standard to determine the amount of the payment for the TANF case assistance unit. This</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 63.38%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.940018);">amount is prorated for the month of application if eligibility is for less than a full month.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.59%; top: 66.24%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909859);">(2)</span><span role="presentation" dir="ltr" style="left: 12.77%; top: 66.24%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 15.29%; top: 66.24%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.914451);">The income standards vary depending on the number of persons in the assistance unit.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.59%; top: 69.1%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909859);">(3)</span><span role="presentation" dir="ltr" style="left: 12.77%; top: 69.1%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 15.29%; top: 69.1%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.906912);">The assistance unit's GMI as defined in ARM 37.78.103 is compared to the applicable GMI</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 70.95%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.920436);">standard, and after specified disregards, to the benefit standard. If the assistance unit's GMI</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 72.8%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.918669);">exceeds the GMI standard or their countable monthly income as defined in ARM 37.78.103</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 74.65%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.916502);">exceeds the benefit standard, the assistance unit is ineligible for assistance. Monthly income is</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 76.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.939245);">compared to the full standard even if the eligibility is being determined for only part of the month.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 79.36%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.887767);">(a)</span><span role="presentation" dir="ltr" style="left: 17.42%; top: 79.36%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 79.36%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.920848);">Eligibility for assistance and the amount of the monthly benefit payment which a TANF cash</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 81.21%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.92539);">assistance unit will receive is determined prospectively, that is, based on the department's</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 83.06%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.931705);">best estimate of income and other circumstances which will exist in the benefit month.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 85.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925405);">(b)</span><span role="presentation" dir="ltr" style="left: 17.51%; top: 85.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 85.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925872);">When comparing income to the income standards, income anticipated to be received in the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 87.77%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.931306);">benefit month is used.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.59%; top: 90.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909859);">(4)</span><span role="presentation" dir="ltr" style="left: 12.77%; top: 90.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 15.29%; top: 90.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909273);">The GMI standards, NMI standards, and benefits standards are as follows:</span><div class="endOfContent"></div></div><div class="react-pdf__Page__annotations annotationLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"></div></div><div class="react-pdf__Page plt-jss132" data-page-number="2" style="--scale-factor: 1; background-color: white; position: relative; min-width: min-content; min-height: min-content;"><canvas class="react-pdf__Page__canvas" dir="ltr" style="display: block; user-select: none; width: 612px; height: 792px; visibility: hidden;" width="1224" height="1584"></canvas><div class="react-pdf__Page__textContent textLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"><span role="presentation" dir="ltr" style="left: 15.29%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.887767);">(a)</span><span role="presentation" dir="ltr" style="left: 17.42%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.917168);">Gross monthly income standards are compared with the assistance unit's gross monthly</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 6.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.907344);">income as defined in ARM 37.78.406.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 13.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.833449);">GROSS MONTHLY INCOME</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 15.49%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.845735);">STANDARDS (GMI)</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 7.26%; top: 17.91%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.938526);">Number</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.72%; top: 19.76%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.997621);">of</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.44%; top: 21.61%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.883709);">Persons in</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 23.46%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.913778);">Household</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.73%; top: 19.76%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.924866);">Gross Monthly</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 18.61%; top: 21.61%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.921476);">Income</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 19.28%; top: 23.46%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.917439);">(GMI)</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 25.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">1</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 25.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.17%; top: 25.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.899481);">$ 557</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 28.29%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">2</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 28.29%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 24.61%; top: 28.29%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">777</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 30.71%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">3</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 30.71%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 24.61%; top: 30.71%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">979</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 33.13%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">4</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 33.13%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 33.13%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,178</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 35.54%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">5</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 35.54%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 35.54%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,378</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 37.96%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">6</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 37.96%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 37.96%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,580</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 40.38%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">7</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 40.38%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 40.38%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,780</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 42.8%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">8</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 42.8%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 42.8%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,980</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.04%; top: 45.21%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">9</span><span role="presentation" dir="ltr" style="left: 11.03%; top: 45.21%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 45.21%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,179</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 47.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">10</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 47.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 47.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,381</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 50.05%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.974413);">11</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 50.05%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 50.05%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,581</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 52.47%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">12</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 52.47%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 52.47%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,781</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 54.89%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">13</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 54.89%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 54.89%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,980</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 57.3%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">14</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 57.3%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 57.3%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">3,182</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 59.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">15</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 59.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 59.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">3,382</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 62.14%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">16</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 62.14%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 62.14%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">3,582</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 64.56%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">17</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 64.56%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 64.56%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">3,783</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 66.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">18</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 66.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 66.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">3,983</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 69.39%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">19</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 69.39%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 69.39%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">4,183</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.54%; top: 71.81%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">20</span><span role="presentation" dir="ltr" style="left: 11.53%; top: 71.81%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 23.13%; top: 71.81%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">4,383</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 78.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925405);">(b)</span><span role="presentation" dir="ltr" style="left: 17.51%; top: 78.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 78.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.920407);">Net monthly income standards are used to compute gross monthly income standards (GMI).</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 85.55%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.81);">NET</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 87.4%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.867829);">MONTHLY</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 89.25%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.85873);">INCOME</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 91.1%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.81706);">STANDARDS</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 92.95%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.943537);">(NMI)</span><div class="endOfContent"></div></div><div class="react-pdf__Page__annotations annotationLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"></div></div><div class="react-pdf__Page plt-jss132" data-page-number="3" style="--scale-factor: 1; background-color: white; position: relative; min-width: min-content; min-height: min-content;"><canvas class="react-pdf__Page__canvas" dir="ltr" style="display: block; user-select: none; width: 612px; height: 792px; visibility: hidden;" width="1224" height="1584"></canvas><div class="react-pdf__Page__textContent textLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"><span role="presentation" dir="ltr" style="left: 6.89%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">1</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.06%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.899481);">$ 312</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 6.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">2</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 6.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.78%; top: 6.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">420</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 8.48%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">3</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 8.48%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.78%; top: 8.48%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">529</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 10.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">4</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 10.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.78%; top: 10.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">637</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 12.17%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">5</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 12.17%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.78%; top: 12.17%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">745</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 14.02%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">6</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 14.02%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.78%; top: 14.02%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">854</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 15.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">7</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 15.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.78%; top: 15.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">962</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 17.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">8</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 17.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 17.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,070</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.89%; top: 19.57%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">9</span><span role="presentation" dir="ltr" style="left: 7.88%; top: 19.57%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 19.57%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,178</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 21.42%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">10</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 21.42%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 21.42%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,287</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 23.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.974413);">11</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 23.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 23.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,395</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 25.12%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">12</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 25.12%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 25.12%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,503</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 26.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">13</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 26.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 26.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.935887);">1,611</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 28.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">14</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 28.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 28.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,720</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 30.67%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">15</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 30.67%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 30.67%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,828</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 32.52%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">16</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 32.52%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 32.52%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,936</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 34.37%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">17</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 34.37%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 34.37%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,045</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 36.22%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">18</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 36.22%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 36.22%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,153</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 38.07%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">19</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 38.07%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 38.07%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,261</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.39%; top: 39.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">20</span><span role="presentation" dir="ltr" style="left: 8.38%; top: 39.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 10.04%; top: 39.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,369</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 46.65%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.882357);">(c)</span><span role="presentation" dir="ltr" style="left: 17.31%; top: 46.65%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 46.65%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.919326);">Benefit standards are compared with the assistance unit's countable income as defined in</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 48.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.89946);">ARM 37.78.406.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 55.23%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.781628);">BENEFITS</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 57.08%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.81706);">STANDARDS</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 58.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">1</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 58.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.23%; top: 58.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.899481);">$ 245</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 60.77%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">2</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 60.77%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 60.77%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">330</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 62.62%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">3</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 62.62%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 62.62%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">415</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 64.47%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">4</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 64.47%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 64.47%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">500</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 66.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">5</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 66.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 66.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">585</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 68.17%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">6</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 68.17%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 68.17%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">670</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 70.02%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">7</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 70.02%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 70.02%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">755</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 71.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">8</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 71.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 71.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">840</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 73.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">9</span><span role="presentation" dir="ltr" style="left: 6.87%; top: 73.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.67%; top: 73.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">925</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 75.57%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">10</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 75.57%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 75.57%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,010</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 77.42%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.974413);">11</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 77.42%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 77.42%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,095</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 79.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">12</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 79.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 79.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,180</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 81.12%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">13</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 81.12%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 81.12%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,265</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 82.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">14</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 82.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 82.97%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,350</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 84.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">15</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 84.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 84.82%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,435</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 86.67%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">16</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 86.67%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 86.67%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,520</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 88.52%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">17</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 88.52%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 88.52%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,605</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 90.37%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">18</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 90.37%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 90.37%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,690</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 92.22%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">19</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 92.22%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 92.22%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,775</span><div class="endOfContent"></div></div><div class="react-pdf__Page__annotations annotationLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"></div></div><div class="react-pdf__Page plt-jss132" data-page-number="4" style="--scale-factor: 1; background-color: white; position: relative; min-width: min-content; min-height: min-content;"><canvas class="react-pdf__Page__canvas" dir="ltr" style="display: block; user-select: none; width: 612px; height: 792px; visibility: hidden;" width="1224" height="1584"></canvas><div class="react-pdf__Page__textContent textLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"><span role="presentation" dir="ltr" style="left: 5.88%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">20</span><span role="presentation" dir="ltr" style="left: 7.87%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 11.19%; top: 4.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,860</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 11.51%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925405);">(d)</span><span role="presentation" dir="ltr" style="left: 17.51%; top: 11.51%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 11.51%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.902946);">The payment standards for the TANF Cash Assistance Program are compared to the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 13.35%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.911506);">assistance unit’s net countable income as defined in ARM 37.78.406.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 46.8%; top: 20.08%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.837512);">PAYMENT STANDARDS</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 38.88%; top: 21.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.888312);">(33% of the FY 2007 Federal Poverty Level)</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 25.58%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">1</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 25.58%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.07%; top: 25.58%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.899481);">$ 298</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 27.81%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">2</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 27.81%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 29.5%; top: 27.81%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">401</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 30.04%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">3</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 30.04%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 29.5%; top: 30.04%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">504</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 32.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">4</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 32.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 29.5%; top: 32.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">606</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 34.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">5</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 34.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 29.5%; top: 34.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">709</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 36.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">6</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 36.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 29.5%; top: 36.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">812</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 38.95%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">7</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 38.95%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 29.5%; top: 38.95%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">915</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 41.18%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">8</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 41.18%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 41.18%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,018</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 43.41%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">9</span><span role="presentation" dir="ltr" style="left: 7.24%; top: 43.41%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 43.41%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,121</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 45.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">10</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 45.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 45.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,223</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 47.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.974413);">11</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 47.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 47.87%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,326</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 50.09%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">12</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 50.09%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 50.09%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,429</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 52.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">13</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 52.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 52.32%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,532</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 54.55%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">14</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 54.55%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 54.55%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,635</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 56.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">15</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 56.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 56.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,738</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 59.01%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">16</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 59.01%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 59.01%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,841</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 61.24%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">17</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 61.24%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 61.24%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">1,943</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 63.46%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">18</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 63.46%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 63.46%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,046</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 65.69%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">19</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 65.69%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 65.69%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,149</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.25%; top: 67.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">20</span><span role="presentation" dir="ltr" style="left: 8.23%; top: 67.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 28.02%; top: 67.92%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.908313);">2,252</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 74.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.902495);">(e)</span><span role="presentation" dir="ltr" style="left: 17.46%; top: 74.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 20%; top: 74.93%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.899127);">The payment standards for the TANF Cash Assistance Post-Employment Program are</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 76.78%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.915194);">compared to the assistance unit's net countable income as defined in ARM 37.78.406 and</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 20%; top: 78.63%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.937998);">are set at the following:</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 9.9%; top: 85.84%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.809736);">POST-</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.5%; top: 87.69%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.84316);">EMPLOYMENT</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 8.31%; top: 89.54%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.865455);">PAYMENT</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 7.4%; top: 91.39%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.81706);">STANDARDS</span><div class="endOfContent"></div></div><div class="react-pdf__Page__annotations annotationLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"></div></div><div class="react-pdf__Page plt-jss132" data-page-number="5" style="--scale-factor: 1; background-color: white; position: relative; min-width: min-content; min-height: min-content;"><canvas class="react-pdf__Page__canvas" dir="ltr" style="display: block; user-select: none; width: 612px; height: 792px; visibility: hidden;" width="1224" height="1584"></canvas><div class="react-pdf__Page__textContent textLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"><span role="presentation" dir="ltr" style="left: 6.5%; top: 5.25%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.922799);">1st</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.5%; top: 7.1%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.995549);">Month</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 14.65%; top: 5.25%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.896525);">$ 37</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 17.08%; top: 7.1%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;">5</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.5%; top: 9.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.932598);">2nd</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.5%; top: 11.75%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.995549);">Month</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.09%; top: 9.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">275</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.5%; top: 14.54%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.954119);">3rd</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 6.5%; top: 16.39%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.995549);">Month</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.09%; top: 14.54%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909823);">175</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 10.59%; top: 23.59%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909859);">(5)</span><span role="presentation" dir="ltr" style="left: 12.77%; top: 23.59%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 15.29%; top: 23.59%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.905943);">The adult's gross monthly earned income as defined in ARM 37.78.103 and ARM 37.78.406 is</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 25.44%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.923378);">compared to the applicable GMI limit. If the assistance unit's GMI exceeds the GMI limit, the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 27.29%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.925373);">assistance unit is ineligible for assistance. Monthly income is compared to the full limit even if the</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 29.14%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.936851);">eligibility is being determined for only part of the month. When comparing income to the income</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 15.29%; top: 30.99%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.931464);">limits, income anticipated to be received in the benefit month is used.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 37.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.956554);">Authorizing statute(s):</span><span role="presentation" dir="ltr" style="left: 24.13%; top: 37.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 24.59%; top: 37.72%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.898062);">53-4-212, MCA</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 40.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.960889);">Implementing statute(s):</span><span role="presentation" dir="ltr" style="left: 26.09%; top: 40.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 26.56%; top: 40.5%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.905996);">53-4-211, 53-4-241, 53-4-601, MCA</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 45.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.962118);">History:</span><span role="presentation" dir="ltr" style="left: 12.28%; top: 45.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif;"> </span><span role="presentation" dir="ltr" style="left: 12.73%; top: 45.64%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.909527);">NEW, 1996 MAR p. 2194, Eff. 8/9/96; AMD, 1998 MAR p. 3284, Eff. 12/18/98; AMD, 2000 MAR p. 746,</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 48.41%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.897654);">Eff. 3/17/00; TRANS, from SRS, 2000 MAR p. 3414; AMD, 2001 MAR p. 183, Eff. 1/26/01; AMD, 2002 MAR p.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 51.19%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.917332);">1771, Eff. 6/28/02; AMD, 2003 p. 1645, Eff. 8/1/03; AMD, 2006 MAR p. 2415, Eff. 10/6/06; AMD, 2007 MAR p.</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 53.96%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.921959);">1818, Eff. 11/9/07; AMD, 2008 MAR p. 1154, Eff. 6/13/08; AMD, 2009 MAR p. 2380, Eff. 1/1/10; AMD, 2011</span><br role="presentation"><span role="presentation" dir="ltr" style="left: 5.88%; top: 56.74%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.927485);">MAR p. 107, Eff. 1/28/11.</span><div class="endOfContent"></div></div><div class="react-pdf__Page__annotations annotationLayer" style="width: round(down, var(--scale-factor) * 612px, var(--scale-round-x, 1px)); height: round(down, var(--scale-factor) * 792px, var(--scale-round-y, 1px));" data-main-rotation="0"></div></div></div></div></div></div></div></section><div class="plt-jss133"><div class="plt-jss134"><button class="MuiTypography-root MuiTypography-body1 plt-jss139 plt-jss135 plt-jss136 mui-1bbcpaq" type="button" aria-expanded="true" aria-label="Collapse All, accordion sections">Collapse All<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss138 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></button></div><div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root plt-jss143 MuiAccordion-rounded Mui-expanded MuiAccordion-gutters mui-17yrr9r" data-testid="collapsible-card" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><h2 class="MuiAccordion-heading"><button class="MuiButtonBase-root MuiAccordionSummary-root plt-jss144 Mui-expanded plt-jss147 MuiAccordionSummary-gutters mui-1mzwule" tabindex="0" type="button" aria-expanded="true" id="collapsible-card-rule-version" aria-controls="collapsible-card-rule-version-panel"><span class="MuiAccordionSummary-content plt-jss146 Mui-expanded plt-jss147 MuiAccordionSummary-contentGutters mui-1b8uc0m"><p class="MuiTypography-root MuiTypography-body1 plt-jss140 mui-1bbcpaq">Rule Version</p></span><span class="MuiAccordionSummary-expandIconWrapper Mui-expanded plt-jss147 mui-f8wb7g"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss150 plt-jss151 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon" aria-label="expand"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></span></button></h2><div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered mui-1cbf1l2" style="min-height: 0px;"><div class="MuiCollapse-wrapper MuiCollapse-vertical mui-15830to"><div class="MuiCollapse-wrapperInner MuiCollapse-vertical mui-9vd5ud"><div aria-labelledby="collapsible-card-rule-version" id="collapsible-card-rule-version-panel" role="region" class="MuiAccordion-region"><div class="MuiAccordionDetails-root plt-jss152 mui-1qj55lg"><div class="plt-jss141"><div><div class="plt-jss154"><div class="plt-jss156"><div class="plt-jss155"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap plt-jss153 mui-116o2zu">33678</p></div><div class="plt-jss158 plt-jss159"><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-1ml3bch" style="font-weight: 700;">Active Version</p></div></div><div class="plt-jss162"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss164 plt-jss165 mui-10epq6n" tabindex="0" type="button" aria-label="version-select" aria-controls="version-select-menu" aria-haspopup="true"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="KeyboardArrowDownIcon"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"></path></svg></button></div></div></div><div><div><p class="MuiTypography-root MuiTypography-body2 plt-jss153 mui-xp3c8x">Effective</p><p class="MuiTypography-root MuiTypography-body1 mui-1bbcpaq">01/28/2011 - Present</p></div></div></div></div></div></div></div></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root plt-jss143 MuiAccordion-rounded Mui-expanded MuiAccordion-gutters mui-17yrr9r" data-testid="collapsible-card" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><h2 class="MuiAccordion-heading"><button class="MuiButtonBase-root MuiAccordionSummary-root plt-jss144 Mui-expanded plt-jss147 MuiAccordionSummary-gutters mui-1mzwule" tabindex="0" type="button" aria-expanded="true" id="collapsible-card-contact-information" aria-controls="collapsible-card-contact-information-panel"><span class="MuiAccordionSummary-content plt-jss146 Mui-expanded plt-jss147 MuiAccordionSummary-contentGutters mui-1b8uc0m"><p class="MuiTypography-root MuiTypography-body1 plt-jss140 mui-1bbcpaq">Contact Information</p></span><span class="MuiAccordionSummary-expandIconWrapper Mui-expanded plt-jss147 mui-f8wb7g"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss150 plt-jss169 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon" aria-label="expand"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></span></button></h2><div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered mui-1cbf1l2" style="min-height: 0px;"><div class="MuiCollapse-wrapper MuiCollapse-vertical mui-15830to"><div class="MuiCollapse-wrapperInner MuiCollapse-vertical mui-9vd5ud"><div aria-labelledby="collapsible-card-contact-information" id="collapsible-card-contact-information-panel" role="region" class="MuiAccordion-region"><div class="MuiAccordionDetails-root plt-jss152 mui-1qj55lg"><div class="plt-jss141"><p class="MuiTypography-root MuiTypography-body1 mui-1bbcpaq"><a href="mailto:hhsadminrules@mt.gov" target="_self" title="Send email to hhsadminrules@mt.gov">hhsadminrules@mt.gov</a></p></div></div></div></div></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root plt-jss143 MuiAccordion-rounded Mui-expanded MuiAccordion-gutters mui-17yrr9r" data-testid="collapsible-card" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><h2 class="MuiAccordion-heading"><button class="MuiButtonBase-root MuiAccordionSummary-root plt-jss144 Mui-expanded plt-jss147 MuiAccordionSummary-gutters mui-1mzwule" tabindex="0" type="button" aria-expanded="true" id="collapsible-card-rule-history" aria-controls="collapsible-card-rule-history-panel"><span class="MuiAccordionSummary-content plt-jss146 Mui-expanded plt-jss147 MuiAccordionSummary-contentGutters mui-1b8uc0m"><p class="MuiTypography-root MuiTypography-body1 plt-jss140 mui-1bbcpaq">Rule History</p></span><span class="MuiAccordionSummary-expandIconWrapper Mui-expanded plt-jss147 mui-f8wb7g"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss150 plt-jss171 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon" aria-label="expand"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></span></button></h2><div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered mui-1cbf1l2" style="min-height: 0px;"><div class="MuiCollapse-wrapper MuiCollapse-vertical mui-15830to"><div class="MuiCollapse-wrapperInner MuiCollapse-vertical mui-9vd5ud"><div aria-labelledby="collapsible-card-rule-history" id="collapsible-card-rule-history-panel" role="region" class="MuiAccordion-region"><div class="MuiAccordionDetails-root plt-jss152 mui-1qj55lg"><div class="plt-jss141"><p class="MuiTypography-root MuiTypography-body1 mui-1bbcpaq">NEW, 1996 MAR p. 2194, Eff. 8/9/96; AMD, 1998 MAR p. 3284, Eff. 12/18/98; AMD, 2000 MAR p. 746, Eff. 3/17/00; TRANS, from SRS, 2000 MAR p. 3414; AMD, 2001 MAR p. 183, Eff. 1/26/01; AMD, 2002 MAR p. 1771, Eff. 6/28/02; AMD, 2003 p. 1645, Eff. 8/1/03; AMD, 2006 MAR p. 2415, Eff. 10/6/06; AMD, 2007 MAR p. 1818, Eff. 11/9/07; AMD, 2008 MAR p. 1154, Eff. 6/13/08; AMD, 2009 MAR p. 2380, Eff. 1/1/10; AMD, 2011 MAR p. 107, Eff. 1/28/11.</p></div></div></div></div></div></div></div><div class="plt-jss172"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root plt-jss143 MuiAccordion-rounded Mui-expanded MuiAccordion-gutters mui-17yrr9r" data-testid="collapsible-card" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><h2 class="MuiAccordion-heading"><button class="MuiButtonBase-root MuiAccordionSummary-root plt-jss144 Mui-expanded plt-jss147 MuiAccordionSummary-gutters mui-1mzwule" tabindex="0" type="button" aria-expanded="true" id="collapsible-card-relevant-mar-notices" aria-controls="collapsible-card-relevant-mar-notices-panel"><span class="MuiAccordionSummary-content plt-jss146 Mui-expanded plt-jss147 MuiAccordionSummary-contentGutters mui-1b8uc0m"><p class="MuiTypography-root MuiTypography-body1 plt-jss140 mui-1bbcpaq">Relevant MAR Notices</p></span><span class="MuiAccordionSummary-expandIconWrapper Mui-expanded plt-jss147 mui-f8wb7g"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss150 plt-jss199 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon" aria-label="expand"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></span></button></h2><div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered mui-1cbf1l2" style="min-height: 0px;"><div class="MuiCollapse-wrapper MuiCollapse-vertical mui-15830to"><div class="MuiCollapse-wrapperInner MuiCollapse-vertical mui-9vd5ud"><div aria-labelledby="collapsible-card-relevant-mar-notices" id="collapsible-card-relevant-mar-notices-panel" role="region" class="MuiAccordion-region"><div class="MuiAccordionDetails-root plt-jss152 mui-1qj55lg"><div class="plt-jss141"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root plt-jss200 plt-jss201 plt-jss142 mui-16uvoq4" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><div><div class="plt-jss202"><div class="plt-jss203"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap mui-116o2zu">2010 Issue 20 Pages 2424-2626</p></div><a class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss204 mui-10epq6n" tabindex="0" rel="noopener noreferrer" aria-label="View reference: 2010 Issue 20 Pages 2424-2626 (opens in new tab)" href="/browse/collections/5e1173a6-33c7-4df8-b426-5e0077cfc430/policies/4ca416ac-d478-4f7e-a2d4-91225e641a6c" target="_blank" data-discover="true"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss205 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></a></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root plt-jss200 plt-jss207 plt-jss142 mui-16uvoq4" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><div><div class="plt-jss202"><div class="plt-jss203"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap mui-116o2zu">2011 Issue 02 Pages 83-131</p></div><a class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss204 mui-10epq6n" tabindex="0" rel="noopener noreferrer" aria-label="View reference: 2011 Issue 02 Pages 83-131 (opens in new tab)" href="/browse/collections/5e1173a6-33c7-4df8-b426-5e0077cfc430/policies/5d27a93f-38cc-403f-8f11-7ef78c4a9d87" target="_blank" data-discover="true"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss205 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></a></div></div></div></div></div></div></div></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root plt-jss143 MuiAccordion-rounded Mui-expanded MuiAccordion-gutters mui-17yrr9r" data-testid="collapsible-card" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><h2 class="MuiAccordion-heading"><button class="MuiButtonBase-root MuiAccordionSummary-root plt-jss144 Mui-expanded plt-jss147 MuiAccordionSummary-gutters mui-1mzwule" tabindex="0" type="button" aria-expanded="true" id="collapsible-card-references" aria-controls="collapsible-card-references-panel"><span class="MuiAccordionSummary-content plt-jss146 Mui-expanded plt-jss147 MuiAccordionSummary-contentGutters mui-1b8uc0m"><p class="MuiTypography-root MuiTypography-body1 plt-jss140 mui-1bbcpaq">References</p></span><span class="MuiAccordionSummary-expandIconWrapper Mui-expanded plt-jss147 mui-f8wb7g"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss150 plt-jss210 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon" aria-label="expand"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></span></button></h2><div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered mui-1cbf1l2" style="min-height: 0px;"><div class="MuiCollapse-wrapper MuiCollapse-vertical mui-15830to"><div class="MuiCollapse-wrapperInner MuiCollapse-vertical mui-9vd5ud"><div aria-labelledby="collapsible-card-references" id="collapsible-card-references-panel" role="region" class="MuiAccordion-region"><div class="MuiAccordionDetails-root plt-jss152 mui-1qj55lg"><div class="plt-jss141"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root plt-jss200 plt-jss211 plt-jss142 mui-16uvoq4" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><div><div class="plt-jss202"><div class="plt-jss203"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap mui-116o2zu">53-4-241, MCA Amount of Assistance Determined by Department Rules</p></div><a class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss204 mui-10epq6n" tabindex="0" target="_blank" rel="noopener noreferrer" aria-label="View reference: 53-4-241, MCA Amount of Assistance Determined by Department Rules (opens in new tab)" href="https://archive.legmt.gov/bills/mca/title_0530/chapter_0040/part_0020/section_0410/0530-0040-0020-0410.html" to="https://archive.legmt.gov/bills/mca/title_0530/chapter_0040/part_0020/section_0410/0530-0040-0020-0410.html"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss205 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></a></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root plt-jss200 plt-jss213 plt-jss142 mui-16uvoq4" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><div><div class="plt-jss202"><div class="plt-jss203"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap mui-116o2zu">53-4-211, MCA Administration of Programs Funded Under Temporary Assistance for Needy Families Block Grant</p></div><a class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss204 mui-10epq6n" tabindex="0" target="_blank" rel="noopener noreferrer" aria-label="View reference: 53-4-211, MCA Administration of Programs Funded Under Temporary Assistance for Needy Families Block Grant (opens in new tab)" href="https://archive.legmt.gov/bills/mca/title_0530/chapter_0040/part_0020/section_0110/0530-0040-0020-0110.html" to="https://archive.legmt.gov/bills/mca/title_0530/chapter_0040/part_0020/section_0110/0530-0040-0020-0110.html"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss205 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></a></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root plt-jss200 plt-jss215 plt-jss142 mui-16uvoq4" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><div><div class="plt-jss202"><div class="plt-jss203"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap mui-116o2zu">53-4-212, MCA Department to Adopt Rules</p></div><a class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss204 mui-10epq6n" tabindex="0" target="_blank" rel="noopener noreferrer" aria-label="View reference: 53-4-212, MCA Department to Adopt Rules (opens in new tab)" href="https://archive.legmt.gov/bills/mca/title_0530/chapter_0040/part_0020/section_0120/0530-0040-0020-0120.html" to="https://archive.legmt.gov/bills/mca/title_0530/chapter_0040/part_0020/section_0120/0530-0040-0020-0120.html"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss205 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></a></div></div></div></div><p class="MuiTypography-root MuiTypography-body1 plt-jss139 plt-jss217 plt-jss218 mui-1bbcpaq" aria-label="view more">View More</p></div></div></div></div></div></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root plt-jss143 MuiAccordion-rounded Mui-expanded MuiAccordion-gutters mui-17yrr9r" data-testid="collapsible-card" style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"><h2 class="MuiAccordion-heading"><button class="MuiButtonBase-root MuiAccordionSummary-root plt-jss144 Mui-expanded plt-jss147 MuiAccordionSummary-gutters mui-1mzwule" tabindex="0" type="button" aria-expanded="true" id="collapsible-card-referenced-by" aria-controls="collapsible-card-referenced-by-panel"><span class="MuiAccordionSummary-content plt-jss146 Mui-expanded plt-jss147 MuiAccordionSummary-contentGutters mui-1b8uc0m"><p class="MuiTypography-root MuiTypography-body1 plt-jss140 mui-1bbcpaq">Referenced by</p></span><span class="MuiAccordionSummary-expandIconWrapper Mui-expanded plt-jss147 mui-f8wb7g"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss150 plt-jss220 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ExpandMoreIcon" aria-label="expand"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></span></button></h2><div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered mui-1cbf1l2" style="min-height: 0px;"><div class="MuiCollapse-wrapper MuiCollapse-vertical mui-15830to"><div class="MuiCollapse-wrapperInner MuiCollapse-vertical mui-9vd5ud"><div aria-labelledby="collapsible-card-referenced-by" id="collapsible-card-referenced-by-panel" role="region" class="MuiAccordion-region"><div class="MuiAccordionDetails-root plt-jss152 mui-1qj55lg"><div class="plt-jss141"><div><div class="plt-jss202"><div class="plt-jss203"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap mui-116o2zu">2026-529.1 TANF Benefit and Payment Standards</p></div><a class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss204 mui-10epq6n" tabindex="0" rel="noopener noreferrer" aria-label="View reference: 2026-529.1 TANF Benefit and Payment Standards (opens in new tab)" href="/browse/collections/5e1173a6-33c7-4df8-b426-5e0077cfc430/policies/a53a35af-d5ed-4c46-956e-a16cf534ecc1" target="_blank" data-discover="true"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium plt-jss205 mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></a></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><footer class="plt-jss39"><div class="plt-jss40 MuiBox-root mui-0"><ul class="plt-jss44"><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="/" aria-label="Home">Home</a><span class="MuiTypography-root MuiTypography-body1 plt-jss46 mui-1bbcpaq">|</span></li><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="https://sosmt.gov/contact-feedback/" aria-label="Contact Us">Contact Us</a><span class="MuiTypography-root MuiTypography-body1 plt-jss46 mui-1bbcpaq">|</span></li><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="https://sosmt.gov/wp-content/uploads/ADA-Notice-5-2023.pdf/" aria-label="ADA Notice &amp; Accommodations">ADA Notice &amp; Accommodations</a><span class="MuiTypography-root MuiTypography-body1 plt-jss46 mui-1bbcpaq">|</span></li><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="https://mt.gov/discover/disclaimer" aria-label="Accessibility">Accessibility</a><span class="MuiTypography-root MuiTypography-body1 plt-jss46 mui-1bbcpaq">|</span></li><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="https://mt.gov/1240-X06.pdf" aria-label="Privacy &amp; Security">Privacy &amp; Security</a><span class="MuiTypography-root MuiTypography-body1 plt-jss46 mui-1bbcpaq">|</span></li><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="https://app.public.staging.esper.com/assets/DisclaimerForARM.pdf" aria-label="Disclaimer">Disclaimer</a><span class="MuiTypography-root MuiTypography-body1 plt-jss46 mui-1bbcpaq">|</span></li><li class="plt-jss45"><a class="MuiTypography-root MuiTypography-inherit MuiTypography-noWrap MuiLink-root MuiLink-underlineAlways plt-jss47 mui-h10eph" target="_blank" href="https://sosmt.gov/wp-admin/admin-ajax.php?juwpfisadmin=false&amp;action=wpfd&amp;task=file.download&amp;wpfd_category_id=20&amp;wpfd_file_id=64791&amp;token=9509926db36f8aefaed80a03e5763a5b&amp;preview=1" aria-label="Support">Support</a></li></ul></div><div class="plt-jss50 MuiBox-root mui-0" role="button" tabindex="0" aria-label="Powered by Esper"><span class="MuiTypography-root MuiTypography-h6 plt-jss51 mui-1rn0ea3">Powered by</span><svg width="101px" height="26px" viewBox="0 0 101 26" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"><title>Esper logo</title><desc>Created with Sketch.</desc><defs><polygon id="path-1" points="0 0.0144 25.9808 0.0144 25.9808 4.8854 0 4.8854"></polygon></defs><g id="imagery" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Page-1-Copy" transform="translate(0.000000, -1.000000)"><g id="Group-3" transform="translate(0.000000, 0.985500)"><mask id="mask-2" fill="white"><use xlink:href="#path-1"></use></mask><g id="Clip-2"></g><path d="M23.9458,4.8854 L2.0358,4.8854 C0.9118,4.8854 -0.0002,3.9744 -0.0002,2.8504 L-0.0002,2.0494 C-0.0002,0.9254 0.9118,0.0144 2.0358,0.0144 L23.9458,0.0144 C25.0698,0.0144 25.9808,0.9254 25.9808,2.0494 L25.9808,2.8504 C25.9808,3.9744 25.0698,4.8854 23.9458,4.8854" id="Fill-1" fill="white" mask="url(#mask-2)"></path></g><polygon id="Fill-4" fill="white" points="20.2955 9.5194 5.6855 9.5194 3.2475 7.0834 22.7335 7.0834"></polygon><path d="M6.3599,26.9852 L5.6919,26.9852 L5.6919,10.7472 L9.7519,10.7472 L9.7519,23.5932 C9.7519,25.4662 8.2329,26.9852 6.3599,26.9852" id="Fill-6" fill="white"></path><path d="M11.6304,20.4901 L10.9634,20.4901 L10.9634,10.7471 L15.0234,10.7471 L15.0234,17.0971 C15.0234,18.9711 13.5044,20.4901 11.6304,20.4901" id="Fill-8" fill="white"></path><path d="M16.9019,14.8065 L16.2349,14.8065 L16.2349,10.7465 L20.2939,10.7465 L20.2939,11.4145 C20.2939,13.2875 18.7749,14.8065 16.9019,14.8065" id="Fill-10" fill="white"></path><polygon id="Fill-12" fill="white" points="31.8082 8.1258 41.9922 8.1258 41.9922 10.2848 34.2212 10.2848 34.2212 13.8558 41.1092 13.8558 41.1092 16.0148 34.2212 16.0148 34.2212 19.7038 42.0902 19.7038 42.0902 21.8618 31.8082 21.8618"></polygon><path d="M45.4996,19.8602 L46.9516,18.1332 C48.2666,19.2722 49.6016,19.9202 51.2886,19.9202 C52.7796,19.9202 53.7226,19.2132 53.7226,18.1922 L53.7226,18.1532 C53.7226,17.1722 53.1726,16.6422 50.6216,16.0532 C47.6976,15.3472 46.0496,14.4842 46.0496,11.9532 L46.0496,11.9132 C46.0496,9.5582 48.0116,7.9292 50.7386,7.9292 C52.7406,7.9292 54.3296,8.5382 55.7236,9.6572 L54.4286,11.4812 C53.1916,10.5592 51.9556,10.0692 50.6996,10.0692 C49.2866,10.0692 48.4626,10.7952 48.4626,11.6972 L48.4626,11.7372 C48.4626,12.7972 49.0906,13.2672 51.7396,13.8952 C54.6446,14.6012 56.1356,15.6412 56.1356,17.9182 L56.1356,17.9572 C56.1356,20.5282 54.1136,22.0582 51.2296,22.0582 C49.1306,22.0582 47.1476,21.3322 45.4996,19.8602" id="Fill-14" fill="white"></path><path d="M65.6958,15.2694 C67.5208,15.2694 68.6598,14.2484 68.6598,12.8164 L68.6598,12.7774 C68.6598,11.1674 67.5018,10.3244 65.6958,10.3244 L62.8898,10.3244 L62.8898,15.2694 L65.6958,15.2694 Z M60.4758,8.1254 L65.8918,8.1254 C69.1108,8.1254 71.1118,9.9514 71.1118,12.7174 L71.1118,12.7574 C71.1118,15.8374 68.6388,17.4474 65.6178,17.4474 L62.8898,17.4474 L62.8898,21.8624 L60.4758,21.8624 L60.4758,8.1254 Z" id="Fill-16" fill="white"></path><polygon id="Fill-18" fill="white" points="74.774 8.1258 84.959 8.1258 84.959 10.2848 77.188 10.2848 77.188 13.8558 84.076 13.8558 84.076 16.0148 77.188 16.0148 77.188 19.7038 85.057 19.7038 85.057 21.8618 74.774 21.8618"></polygon><path d="M95.2222,14.9354 C96.9492,14.9354 98.0472,14.0334 98.0472,12.6394 L98.0472,12.6004 C98.0472,11.1284 96.9882,10.3244 95.2022,10.3244 L91.6902,10.3244 L91.6902,14.9354 L95.2222,14.9354 Z M89.2762,8.1254 L95.3992,8.1254 C97.1252,8.1254 98.4792,8.6364 99.3632,9.4994 C100.0882,10.2464 100.5002,11.2654 100.5002,12.4624 L100.5002,12.5014 C100.5002,14.7584 99.1472,16.1134 97.2432,16.6624 L100.9512,21.8624 L98.0872,21.8624 L94.7112,17.0744 L91.6902,17.0744 L91.6902,21.8624 L89.2762,21.8624 L89.2762,8.1254 Z" id="Fill-20" fill="white"></path></g></g></svg></div></footer></div><div role="presentation" class="MuiDrawer-root MuiDrawer-anchorLeft MuiDrawer-modal MuiModal-root MuiModal-hidden mui-1b0gc3n" aria-hidden="true"><div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop mui-14dl35y" style="opacity: 0; visibility: hidden;"></div><div tabindex="-1" data-testid="sentinelStart"></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper plt-jss10 MuiDrawer-paperAnchorLeft mui-za1kwu" tabindex="-1" style="--Paper-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12); visibility: hidden; transform: translateX(-77px);"><nav aria-label="global" class="plt-jss27"><a href="/" data-discover="true"><img alt="Montana Secretary of State Logo" src="/a0774120f0abac7e5c8c.svg?url"></a><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium plt-jss28 mui-10epq6n" tabindex="0" type="button" aria-label="close-site-navigation"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mui-rk21uc" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CloseRoundedIcon"><path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4"></path></svg></button></nav><nav class="plt-jss29"><div class="plt-jss30"><ul class="MuiList-root MuiList-padding plt-jss52 mui-1wduhak"><li class="plt-jss64"><a class="plt-jss65" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74" data-discover="true"><p class="MuiTypography-root MuiTypography-body1 mui-96jzim">Administrative Rules of Montana</p></a></li><li class="plt-jss64"><a class="plt-jss65" href="/browse/collections/e57ed8e7-95de-4cfa-a40b-75b592329f56" data-discover="true"><p class="MuiTypography-root MuiTypography-body1 mui-96jzim">Emergency Rules</p></a></li><li class="plt-jss64"><a class="plt-jss65" href="/browse/collections/5e1173a6-33c7-4df8-b426-5e0077cfc430" data-discover="true"><p class="MuiTypography-root MuiTypography-body1 mui-96jzim">Montana Administrative Register</p></a></li></ul></div></nav></div><div tabindex="-1" data-testid="sentinelEnd"></div></div><div role="presentation" id="version-select-menu" class="MuiPopover-root MuiMenu-root MuiModal-root MuiModal-hidden mui-ewxla7" aria-hidden="true"><div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop mui-1lbe2ow" style="opacity: 0; visibility: hidden;"></div><div tabindex="-1" data-testid="sentinelStart"></div><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper plt-jss160 plt-jss163 mui-1unfyuy" tabindex="-1" style="--Paper-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12); opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"><ul class="MuiList-root MuiList-padding MuiMenu-list mui-ubifyk" role="menu" tabindex="-1"><a class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider plt-jss161 mui-6t7uhu" tabindex="0" role="menuitem" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/81418fed-12b0-4ed9-a953-50b600e353d1?versionNumber=d13f3962-467e-4fbc-9c2a-f0fdba477711" data-discover="true"><div class="plt-jss178"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap plt-jss174 mui-116o2zu" aria-label="33678">33678</p><div class="plt-jss179 plt-jss180 plt-jss177"><p class="MuiTypography-root MuiTypography-body2 plt-jss174 mui-1vh3929">Effective</p><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-u7mlnc">01/28/2011 - Present</p></div><div class="plt-jss176"><div class="plt-jss158 plt-jss181"><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-1ml3bch" style="font-weight: 700;">Active Version</p></div></div></div></a><a class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider plt-jss161 mui-6t7uhu" tabindex="1" role="menuitem" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/81418fed-12b0-4ed9-a953-50b600e353d1?versionNumber=74cede35-a524-40db-b2ec-66851aa022ed" data-discover="true"><div class="plt-jss178"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap plt-jss174 mui-116o2zu" aria-label="29639">29639</p><div class="plt-jss179 plt-jss183 plt-jss177"><p class="MuiTypography-root MuiTypography-body2 plt-jss174 mui-1vh3929">Effective</p><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-u7mlnc">01/01/2010 - 01/28/2011</p></div><div class="plt-jss176"></div></div></a><a class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider plt-jss161 mui-6t7uhu" tabindex="2" role="menuitem" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/81418fed-12b0-4ed9-a953-50b600e353d1?versionNumber=f0e40559-be08-42f4-bc7b-e6d1337e83c7" data-discover="true"><div class="plt-jss178"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap plt-jss174 mui-116o2zu" aria-label="25047">25047</p><div class="plt-jss179 plt-jss185 plt-jss177"><p class="MuiTypography-root MuiTypography-body2 plt-jss174 mui-1vh3929">Effective</p><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-u7mlnc">06/13/2008 - 01/01/2010</p></div><div class="plt-jss176"></div></div></a><a class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider plt-jss161 mui-6t7uhu" tabindex="3" role="menuitem" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/81418fed-12b0-4ed9-a953-50b600e353d1?versionNumber=d4b10502-c5a0-4ce5-b1b0-adc2581e1865" data-discover="true"><div class="plt-jss178"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap plt-jss174 mui-116o2zu" aria-label="24313">24313</p><div class="plt-jss179 plt-jss187 plt-jss177"><p class="MuiTypography-root MuiTypography-body2 plt-jss174 mui-1vh3929">Effective</p><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-u7mlnc">11/09/2007 - 06/13/2008</p></div><div class="plt-jss176"></div></div></a><a class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-divider plt-jss161 mui-6t7uhu" tabindex="4" role="menuitem" href="/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/81418fed-12b0-4ed9-a953-50b600e353d1?versionNumber=c3431f19-f645-4ac2-a1ea-6505af7d3f69" data-discover="true"><div class="plt-jss178"><p class="MuiTypography-root MuiTypography-body1 MuiTypography-noWrap plt-jss174 mui-116o2zu" aria-label="8528">8528</p><div class="plt-jss179 plt-jss189 plt-jss177"><p class="MuiTypography-root MuiTypography-body2 plt-jss174 mui-1vh3929">Effective</p><p class="MuiTypography-root MuiTypography-body2 MuiTypography-noWrap mui-u7mlnc">10/06/2006 - 11/09/2007</p></div><div class="plt-jss176"></div></div></a></ul></div><div tabindex="-1" data-testid="sentinelEnd"></div></div><canvas class="hiddenCanvasElement" lang="" height="0" width="0"></canvas></body></html>
