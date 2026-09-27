@@ -34,8 +34,8 @@ statute text, including (M-2) and (M-3). No row below the section existed, so
 Measured line by line: each line the fixed parser produces from a retained page
 is looked up in that section's 2026-09-14 body.
 
-- 336 of the 1,776 section rows lack statute text their page prints: 847,384
-  characters in all. 996 bodies are unchanged; 440 change only because the
+- 336 of the 1,776 section rows lack statute text their page prints: 3,707
+  lines, 843,677 characters of text (847,384 with their line breaks). 996 bodies are unchanged; 440 change only because the
   amendment-history bracket no longer runs into the body of a section without
   subsections; 4 change only in layout (§§943 and 1075 print a form over
   several blocks, now several lines; §§1506 and 6661 had a Revisor's note
@@ -204,7 +204,7 @@ unchanged (§5122 keeps `88f3606d-…`).
 
 ### Verification
 
-- `tests/test_corpus_maine.py` (17 tests):
+- `tests/test_corpus_maine.py` (28 tests):
   - §5122 from the retained bytes (SHA-256 pinned): 225 body lines,
     54,705 characters, the (M-2)(1)(a)(i) sentence, the (M-3) continuation
     and subparagraphs, no history bracket in the body, 205 units, the
@@ -223,7 +223,15 @@ unchanged (§5122 keeps `88f3606d-…`).
     deterministic. 200 generated groups of same-number paragraphs: exactly one
     plain path, on the first unit with text; unique variant segments.
   - Every one of the 1,776 retained Title 36 pages: the same conservation and
-    structure invariants, and one subunit per unit element (5,812).
+    structure invariants, one subunit per unit element (5,812), and, per unit,
+    a body equal to its own element's statute words minus exactly its printed
+    number (a subsection's headnote) and leading status markers. Swapping two
+    siblings' bodies fails this check (tried on §5122(2)(A)).
+  - Review regressions (see Independent review): an impossible marker date
+    (with and without child rows), an error page served without the section
+    container, a headnote inside a Revisor's note, and parentheticals that
+    open with a capitalised word but are not status markers ("(WHOLE milk
+    only)", "(TEXT of the note)").
   - Replay: running the committed manifest against the retained bytes, with
     network access patched to fail, reproduces the provisions, inventory,
     coverage and all 1,923 source files byte for byte, and pins the target
@@ -255,6 +263,38 @@ unchanged (§5122 keeps `88f3606d-…`).
   its parser (keeping notes, treating tables as blocks, leaving markers in,
   ignoring the date when choosing the plain path, keeping status blips) each
   produced mismatches, so the clean result is not vacuous.
+- Independent review (Subfleet, GPT-6 Astra, `--task review --tier hard`,
+  job `20260927-005448-maine-754-review`) re-derived the counts, hashes and
+  manifests above and reproduced four parser defects with synthetic pages,
+  none present in the retained Title 36 pages; all four are fixed here and the
+  committed scope is unchanged (the replay test still reproduces it byte for
+  byte):
+  - an impossible date in a status marker ("2/29/25") raised and dropped the
+    whole section, even at the section grain; the marker is now kept in notes
+    and the unit treated as undated;
+  - a page with no `.MRSSection` or `.section-content` was read whole, so an
+    error page served with HTTP 200 became a section body; now only the
+    Revisor's statute-text elements count, and a page with none raises, so the
+    extractor records it as an error instead of a row;
+  - a `.headnote` inside a Revisor's note could number its subsection;
+    labels and history inside notes are now ignored;
+  - any parenthetical opening with `TEXT`, `WHOLE`, `CONFLICT` and similar was
+    taken for a status marker and moved out of the child body; markers are now
+    the Revisor's complete forms only (`TEXT EFFECTIVE …`, `TEXT REPEALED …`,
+    `TEXT WITH CONFLICT`, `REALLOCATED TO|FROM …`, `[FUTURE] CONFLICT: …`,
+    `[FUTURE] CONTINGENT REPEAL|TERMINATION|EFFECTIVE …`, `WHOLE SECTION TEXT …`,
+    `REPEALED`).
+  It also showed the retained-page invariant accepted two swapped sibling
+  bodies, which the per-unit check above now rejects. Its lane had no network,
+  so the other-title check below was run in this session.
+- Other titles (the section-body change applies to every title the adapter
+  reads). 57 live pages fetched on 2026-09-27 at one request per second: the
+  first two sections of three chapters in each of Titles 5, 12, 20-A, 22, 24-A,
+  29-A, 35-A and 38 (48 pages), and 9 long ones (22 §§3104, 3174-G, 3762; 29-A
+  §101; 38 §1303-C; 35-A §3201; 24-A §4320-D; 20-A §15671-A; 12 §10001). All
+  pass the conservation, structure and per-unit checks: 1,351 units, depth up
+  to 5, one same-number variant (22 §3174-G), and no `MRS*` class other than
+  the five unit classes, `MRSIndentedPara` and `MRSSection`.
 - rulespec-us (`origin/main` 54d90a725) cites six Title 36 sections (§§5111,
   5124-C, 5126-A, 5213-A, 5219-S, 5219-SS), all present under the same paths.
   Its 38 proof excerpts against them match the new bodies wherever they
@@ -425,9 +465,11 @@ release line that still carries `us-me/statute/2026-07-13-recovery` instead
   would change released section bodies and belongs in a separate change.
 - Text on either side of a link is joined with a space, as before
   ("paragraph M-2 , subparagraph (1)", "section 5164 .").
-- 212 child rows are placeholders the Revisor prints with a number and
-  amendment history but no text (209 repealed and 3 reallocated paragraphs),
-  so `validate-release` reports `empty_provision_text` warnings for them.
+- 480 child rows have no body: placeholders the Revisor prints with a number
+  and amendment history but no text. 268 are subsections whose headnote title
+  is their heading; the other 212 (209 repealed and 3 reallocated paragraphs)
+  have neither body nor heading, so `validate-release` reports
+  `empty_provision_text` warnings for them.
   They are kept because the source asserts them and their status and history
   tell a citing module the paragraph is repealed.
 - 36 M.R.S. §4831(1) prints only its headnote ("1. Brown good.").
@@ -438,7 +480,7 @@ release line that still carries `us-me/statute/2026-07-13-recovery` instead
 |---|---|
 | `uv run --extra dev ruff check .` | all checks passed |
 | `uv run --extra dev mypy src/axiom_corpus/corpus --ignore-missing-imports` | no issues in 93 source files |
-| `pytest tests/test_corpus_maine.py tests/test_corpus_cli.py tests/test_ingest_manifest_provenance.py tests/test_citation_path_grammar.py` | 149 passed |
+| `pytest tests/test_corpus_maine.py tests/test_corpus_cli.py tests/test_ingest_manifest_provenance.py tests/test_citation_path_grammar.py` | 160 passed (28 Maine) |
 | `pytest tests/test_corpus_documents.py` (forms scope) | 104 passed |
 | `python scripts/validate_citation_paths.py` | OK (see Verification) |
 | `towncrier check --compare-with origin/main` | the three fragments found |
@@ -456,4 +498,6 @@ not merged to `main` without an explicit publication instruction.
 
 ## Appendix A: the 336 section rows of the 2026-09-14 scope that lacked statute text
 
-36 M.R.S. §§ 111, 112, 113, 141, 144, 151, 151-A, 151-C, 151-D, 172, 173, 175-A, 176-A, 176-B, 182, 185-A, 187-B, 191, 193, 194-D, 199-A, 199-B, 199-C, 200, 208-A, 209, 271, 272, 272-A, 303, 305, 306, 310, 314, 327, 328, 329, 330, 383, 457, 472, 473, 474, 501, 505, 507, 508, 559, 573, 574-B, 574-C, 578, 581, 581-G, 603, 612, 651, 652, 653, 654-A, 655, 656, 661, 681, 682, 683, 685, 691, 692, 693, 694, 700-A, 706-A, 707, 841, 942-A, 943-C, 944, 945, 946, 946-C, 949, 996, 1102, 1106-A, 1109, 1112-C, 1132, 1135, 1137, 1138, 1481, 1482, 1483, 1484, 1486, 1487, 1495, 1502, 1503, 1504, 1602, 1603, 1604, 1608, 1611, 1752, 1754-B, 1760, 1760-D, 1765, 1811, 1815, 1819, 1951-C, 2012, 2013, 2014, 2015, 2016, 2020, 2021, 2022, 2513-C, 2521-E, 2523, 2524, 2525, 2525-A, 2529, 2532, 2621-A, 2625, 2724, 2726, 2852, 2853, 2854, 2855, 2856, 2857, 2857-A, 2859, 2862-A, 2871, 2872, 2873, 2881, 2891-A, 2893, 2902, 2903, 2903-D, 2906, 2906-A, 3202, 3203, 3204-A, 3204-B, 3209, 3219-A, 4043, 4062, 4063, 4063-A, 4064-A, 4068, 4069, 4071, 4102, 4103, 4107, 4108, 4111, 4302, 4305, 4307-2, 4311-A, 4312-C, 4314, 4315, 4361, 4362-A, 4365-F-1, 4365-G, 4366-A, 4366-B, 4366-C, 4372-A, 4373-A, 4401, 4402, 4403-1, 4403-2, 4403-A, 4404-A, 4404-B-2, 4404-C, 4602, 4603, 4604, 4605, 4606, 4641, 4641-A, 4641-B, 4641-C, 4641-D, 4641-K, 4711, 4831, 4901, 4902, 4921, 4922, 4923-1, 4923-2, 5102, 5111, 5122, 5124-B, 5124-C, 5125, 5126, 5126-A, 5132, 5142, 5176, 5192, 5195, 5196, 5197, 5200, 5200-A, 5200-B, 5202-D, 5202-E, 5203-C, 5206, 5206-D, 5206-E, 5210, 5211, 5213-A, 5215, 5216-B, 5217, 5217-C, 5217-D, 5217-E, 5218-A, 5219-AAA, 5219-BB, 5219-BBB, 5219-DD, 5219-FF, 5219-GG, 5219-H, 5219-HH, 5219-II, 5219-JJ, 5219-KK, 5219-LL, 5219-MM, 5219-NN, 5219-O, 5219-OO, 5219-PP, 5219-Q, 5219-QQ, 5219-R, 5219-RR, 5219-SS, 5219-VV, 5219-W, 5219-WW, 5219-XX, 5219-YY-2, 5219-ZZ, 5220, 5221, 5227-A, 5228, 5250, 5250-A, 5250-B, 5253, 5265, 5278, 5279, 5283-A, 5287, 5295, 5332, 5402, 5403, 6201, 6206, 6207, 6232, 6234, 6235, 6250, 6251, 6252, 6252-A, 6253, 6254, 6258, 6259, 6260, 6261, 6262, 6263-2, 6264, 6271, 6281, 6572, 6582, 6583, 6592, 6602, 6612, 6613, 6651, 6652, 6656, 6753, 6754, 6755, 6756, 6760, 6764, 6901, 7122, 7126.
+By citation-path segment under `us-me/statute/36/` (a `-1`/`-2` suffix is the
+Revisor's second page for one section, e.g. `4307-2` is a version of §4307):
+111, 112, 113, 141, 144, 151, 151-A, 151-C, 151-D, 172, 173, 175-A, 176-A, 176-B, 182, 185-A, 187-B, 191, 193, 194-D, 199-A, 199-B, 199-C, 200, 208-A, 209, 271, 272, 272-A, 303, 305, 306, 310, 314, 327, 328, 329, 330, 383, 457, 472, 473, 474, 501, 505, 507, 508, 559, 573, 574-B, 574-C, 578, 581, 581-G, 603, 612, 651, 652, 653, 654-A, 655, 656, 661, 681, 682, 683, 685, 691, 692, 693, 694, 700-A, 706-A, 707, 841, 942-A, 943-C, 944, 945, 946, 946-C, 949, 996, 1102, 1106-A, 1109, 1112-C, 1132, 1135, 1137, 1138, 1481, 1482, 1483, 1484, 1486, 1487, 1495, 1502, 1503, 1504, 1602, 1603, 1604, 1608, 1611, 1752, 1754-B, 1760, 1760-D, 1765, 1811, 1815, 1819, 1951-C, 2012, 2013, 2014, 2015, 2016, 2020, 2021, 2022, 2513-C, 2521-E, 2523, 2524, 2525, 2525-A, 2529, 2532, 2621-A, 2625, 2724, 2726, 2852, 2853, 2854, 2855, 2856, 2857, 2857-A, 2859, 2862-A, 2871, 2872, 2873, 2881, 2891-A, 2893, 2902, 2903, 2903-D, 2906, 2906-A, 3202, 3203, 3204-A, 3204-B, 3209, 3219-A, 4043, 4062, 4063, 4063-A, 4064-A, 4068, 4069, 4071, 4102, 4103, 4107, 4108, 4111, 4302, 4305, 4307-2, 4311-A, 4312-C, 4314, 4315, 4361, 4362-A, 4365-F-1, 4365-G, 4366-A, 4366-B, 4366-C, 4372-A, 4373-A, 4401, 4402, 4403-1, 4403-2, 4403-A, 4404-A, 4404-B-2, 4404-C, 4602, 4603, 4604, 4605, 4606, 4641, 4641-A, 4641-B, 4641-C, 4641-D, 4641-K, 4711, 4831, 4901, 4902, 4921, 4922, 4923-1, 4923-2, 5102, 5111, 5122, 5124-B, 5124-C, 5125, 5126, 5126-A, 5132, 5142, 5176, 5192, 5195, 5196, 5197, 5200, 5200-A, 5200-B, 5202-D, 5202-E, 5203-C, 5206, 5206-D, 5206-E, 5210, 5211, 5213-A, 5215, 5216-B, 5217, 5217-C, 5217-D, 5217-E, 5218-A, 5219-AAA, 5219-BB, 5219-BBB, 5219-DD, 5219-FF, 5219-GG, 5219-H, 5219-HH, 5219-II, 5219-JJ, 5219-KK, 5219-LL, 5219-MM, 5219-NN, 5219-O, 5219-OO, 5219-PP, 5219-Q, 5219-QQ, 5219-R, 5219-RR, 5219-SS, 5219-VV, 5219-W, 5219-WW, 5219-XX, 5219-YY-2, 5219-ZZ, 5220, 5221, 5227-A, 5228, 5250, 5250-A, 5250-B, 5253, 5265, 5278, 5279, 5283-A, 5287, 5295, 5332, 5402, 5403, 6201, 6206, 6207, 6232, 6234, 6235, 6250, 6251, 6252, 6252-A, 6253, 6254, 6258, 6259, 6260, 6261, 6262, 6263-2, 6264, 6271, 6281, 6572, 6582, 6583, 6592, 6602, 6612, 6613, 6651, 6652, 6656, 6753, 6754, 6755, 6756, 6760, 6764, 6901, 7122, 7126.

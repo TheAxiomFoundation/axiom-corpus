@@ -520,6 +520,7 @@ class _GenUnit:
     continuation: str | None
     wrap_children: bool
     history: str
+    note: bool = False
     children: list[_GenUnit] = field(default_factory=list)
 
     @property
@@ -544,6 +545,12 @@ class _GenUnit:
         children = "\n".join(child.html() for child in self.children)
         cont = self.continuation or ""
         history = f'<span class="bhistory">{self.history}</span>'
+        if self.note:
+            # Editorial apparatus inside the unit, carrying number-like labels.
+            history += (
+                '<div class="note"><span class="headnote">99. Quoted.</span>'
+                '<span class="letpara_id">ZZ.</span><span class="mrs-text paragraph">(9)</span> note</div>'
+            )
         if self.kind == "subsection":
             block = f'<div class="mrs-text paragraph B">{cont}</div>' if cont else ""
             return (
@@ -584,7 +591,7 @@ def _numbers(kind: str, count: int) -> list[str]:
 @st.composite
 def _units(draw, depth: int, max_depth: int) -> list[_GenUnit]:
     kind = _KINDS[depth]
-    count = draw(st.integers(min_value=0 if depth else 1, max_value=3))
+    count = draw(st.integers(min_value=0 if depth else 1, max_value=4))
     units = []
     for number in _numbers(kind, count):
         children = draw(_units(depth + 1, max_depth)) if depth + 1 <= max_depth else []
@@ -593,7 +600,9 @@ def _units(draw, depth: int, max_depth: int) -> list[_GenUnit]:
                 kind=kind,
                 number=number,
                 heading=draw(_SENTENCE).capitalize() if kind == "subsection" else None,
-                lead=draw(_SENTENCE),
+                lead=draw(st.sampled_from(["", "(WHOLE milk only) ", "(TEXT of it) ", "(including x) "]))
+                + draw(_SENTENCE),
+                note=draw(st.booleans()),
                 continuation=draw(st.none() | _SENTENCE),
                 wrap_children=draw(st.booleans()),
                 history=draw(st.sampled_from(["", "[PL 2001, c. 1, \u00a71 (NEW).]", "[PL 2019, c. 9, \u00a72 (AMD).]"])),
@@ -711,6 +720,16 @@ def test_every_retained_title_36_section_page_keeps_every_word():
             & set(tag.get("class") or ())
         ]
         assert len(parsed.subunits) == len(units), page.name
+        # Each child is its own element's statute words, in order, minus only its printed
+        # number (a subsection's whole headnote) and leading status markers: a body taken
+        # from the wrong element (for example two siblings swapped) fails here.
+        for unit, element in zip(parsed.subunits, units, strict=True):
+            element_words = _body_words_from_html(element)
+            body_words = _words(unit.body)
+            prefix = element_words[: len(element_words) - len(body_words)]
+            assert element_words[len(prefix) :] == body_words, (page.name, unit.segments)
+            markers = [] if unit.kind == "subsection" else [f"({marker})" for marker in unit.markers]
+            assert prefix == _words(" ".join([unit.label, *markers])), (page.name, unit.segments)
         unit_count += len(units)
     assert unit_count == 5812
 
@@ -911,3 +930,78 @@ def test_extract_state_statutes_passes_include_subunits(tmp_path, capsys, monkey
     capsys.readouterr()
 
     assert seen["include_subunits"] is expected
+
+
+@pytest.mark.parametrize("include_subunits", [False, True])
+def test_an_impossible_marker_date_keeps_the_section(tmp_path, include_subunits):
+    html = (
+        '<div class="MRSSection"><h3 class="heading_section">\u00a79. Test</h3>'
+        '<div class="mrs-text MRSLetteredPara"><span class="letpara_id">A.</span>'
+        "(TEXT EFFECTIVE 2/29/25) Operative text.</div></div>"
+    )
+    parsed = parse_maine_section(html, as_of=AS_OF)
+
+    assert parsed.body == "A. (TEXT EFFECTIVE 2/29/25) Operative text."
+    (unit,) = parsed.subunits
+    assert (unit.segments, unit.body, unit.markers, unit.status) == (
+        ("A",),
+        "Operative text.",
+        ("TEXT EFFECTIVE 2/29/25",),
+        None,
+    )
+
+
+def test_a_page_without_section_content_is_rejected_not_read_as_statute_text():
+    error_page = (
+        "<html><head><title>Error</title></head><body><h1>Temporarily unavailable</h1>"
+        "<p>Please try again later.</p></body></html>"
+    )
+    with pytest.raises(ValueError, match="no Maine section content"):
+        parse_maine_section(error_page)
+    # Without the section container only the Revisor's statute-text elements count.
+    bare = (
+        "<html><body><nav>Home | Statutes</nav>"
+        '<div class="mrs-text indpara">The assessor may act.<span class="bhistory">[PL 1, c. 1 (NEW).]</span></div>'
+        "<footer>Contact the Revisor</footer></body></html>"
+    )
+    assert parse_maine_section(bare).body == "The assessor may act."
+
+
+def test_a_headnote_inside_a_note_never_numbers_a_unit():
+    html = (
+        '<div class="MRSSection"><div class="MRSSubSection"><div class="note">'
+        '<span class="headnote">9. Quoted note.</span><span class="bhistory">[PL 9 (RP).]</span></div>'
+        '<span class="headnote">1. Actual heading.</span>Operative text.'
+        '<span class="bhistory">[PL 1 (NEW).]</span></div></div>'
+    )
+    parsed = parse_maine_section(html)
+
+    assert parsed.body == "1. Actual heading. Operative text."
+    (unit,) = parsed.subunits
+    assert (unit.segments, unit.heading, unit.body, unit.source_history) == (
+        ("1",),
+        "Actual heading",
+        "Operative text.",
+        ("[PL 1 (NEW).]",),
+    )
+
+
+@pytest.mark.parametrize(
+    ("lead", "markers", "body"),
+    [
+        ("(WHOLE milk only) must be supplied.", (), "(WHOLE milk only) must be supplied."),
+        ("(TEXT of the note) applies.", (), "(TEXT of the note) applies."),
+        ("(including benefits) is income.", (), "(including benefits) is income."),
+        ("(REPEALED)", ("REPEALED",), None),
+        ("(TEXT WITH CONFLICT) Rule.", ("TEXT WITH CONFLICT",), "Rule."),
+        ("(CONFLICT: Text as amended by PL 2025, c. 1) Rule.", ("CONFLICT: Text as amended by PL 2025, c. 1",), "Rule."),
+        ("(REALLOCATED FROM T. 36, \u00a75122, sub-\u00a72, \u00b6HH) Rule.", ("REALLOCATED FROM T. 36, \u00a75122, sub-\u00a72, \u00b6HH",), "Rule."),
+    ],
+)
+def test_only_the_revisors_status_forms_are_markers(lead, markers, body):
+    html = (
+        '<div class="MRSSection"><div class="mrs-text MRSLetteredPara"><span class="letpara_id">A.</span>'
+        f"{lead}</div></div>"
+    )
+    (unit,) = parse_maine_section(html).subunits
+    assert (unit.markers, unit.body) == (markers, body)

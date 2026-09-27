@@ -71,9 +71,16 @@ _PAREN_LABEL_RE = re.compile(r"^\((?P<number>[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*)\)$"
 # Leading status parentheticals the Revisor prints before a unit's text, e.g.
 # "(TEXT EFFECTIVE UNTIL 1/05/26)", "(REALLOCATED TO T. 36, §5122, sub-§2, ¶T)",
 # "(FUTURE CONFLICT: Text as amended by PL 2025, c. 367, §16)".
+# Only these complete forms are markers; any other parenthetical, even one that
+# opens with a capitalised word ("(WHOLE milk only)"), stays in the text.
 _STATUS_MARKER_RE = re.compile(
-    r"^\((?P<marker>(?:TEXT|WHOLE|REALLOCATED|REPEALED|FUTURE|CONTINGENT|CONFLICT|AFFECTED)\b"
-    r"[^()]*(?:\([^()]*\)[^()]*)*)\)\s*"
+    r"^\((?P<marker>(?:TEXT (?:EFFECTIVE|REPEALED|WITH CONFLICT)\b"
+    r"|REALLOCATED (?:TO|FROM)\b"
+    r"|(?:FUTURE )?CONFLICT:"
+    r"|(?:FUTURE )?CONTINGENT (?:REPEAL|TERMINATION|EFFECTIVE)\b"
+    r"|WHOLE SECTION TEXT\b"
+    r"|REPEALED(?=\))"
+    r")[^()]*(?:\([^()]*\)[^()]*)*)\)\s*"
 )
 _MARKER_DATE_RE = re.compile(
     r"^TEXT (?P<kind>EFFECTIVE UNTIL|EFFECTIVE|REPEALED) "
@@ -706,7 +713,14 @@ def parse_maine_section(
     EFFECTIVE") keeps the plain citation path in ``subunits``.
     """
     soup = BeautifulSoup(html, "lxml")
-    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content") or soup
+    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content")
+    if section_node is None:
+        # Without the Revisor's section container only the statute-text elements
+        # count; a page with none of them (an error page served with HTTP 200) is
+        # rejected rather than read as statute text.
+        if soup.select_one(".mrs-text, .MRSSubSection, .headnote_blip") is None:
+            raise ValueError("no Maine section content in page")
+        section_node = soup
     heading_node = section_node.select_one(".heading_section") if isinstance(section_node, Tag) else None
     display_section = target.display_section if target is not None else ""
     heading = target.heading if target is not None else ""
@@ -727,7 +741,10 @@ def parse_maine_section(
             text = _clean_text(blip.get_text(" ", strip=True))
             if text:
                 status_notes.append(text)
-        lines = _section_body_lines(section_node)
+        lines = _section_body_lines(
+            section_node,
+            roots=None if section_node is not soup else _statute_text_roots(soup),
+        )
         body_lines = [line.text for line in lines]
         for item in section_node.select(".bhistory"):
             text = _clean_text(item.get_text(" ", strip=True))
@@ -808,7 +825,17 @@ class _UnitNode:
         return list(reversed(nodes))
 
 
-def _section_body_lines(section_node: Tag) -> list[_BodyLine]:
+def _statute_text_roots(soup: BeautifulSoup) -> list[Tag]:
+    """Outermost statute-text elements of a page that has no section container."""
+    return [
+        tag
+        for tag in soup.select(".mrs-text, .MRSSubSection")
+        if tag.find_parent(class_=["mrs-text", "MRSSubSection"]) is None
+        and not _inside_non_body(tag, soup)
+    ]
+
+
+def _section_body_lines(section_node: Tag, *, roots: list[Tag] | None = None) -> list[_BodyLine]:
     """Split a section node into text lines, one per block, in document order.
 
     Every block element (and every numbered unit) starts a new line; inline
@@ -848,7 +875,14 @@ def _section_body_lines(section_node: Tag) -> list[_BodyLine]:
                 if text:
                     buffer.append(text)
 
-    walk(section_node, None)
+    if roots is None:
+        walk(section_node, None)
+    else:
+        for root in roots:
+            flush(None)
+            owner = root if _unit_kind(root) is not None else None
+            walk(root, owner)
+            flush(owner)
     flush(None)
     return lines
 
@@ -981,6 +1015,7 @@ def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag)
         text
         for item in tag.select(".bhistory")
         if _nearest_unit_ancestor(item, section_node) is tag
+        and not _inside_non_body(item, tag)
         and (text := _clean_text(item.get_text(" ", strip=True)))
     )
     for marker in markers:
@@ -988,7 +1023,14 @@ def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag)
         if match is None:
             continue
         year = int(match.group("year"))
-        marker_date = date(year + 2000 if year < 100 else year, int(match.group("month")), int(match.group("day")))
+        try:
+            marker_date = date(
+                year + 2000 if year < 100 else year, int(match.group("month")), int(match.group("day"))
+            )
+        except ValueError:
+            # An impossible date ("2/29/25") keeps its marker in notes; the unit is
+            # then treated as undated rather than aborting the whole section.
+            continue
         kind = match.group("kind")
         if kind == "EFFECTIVE UNTIL":
             node.effective_until = marker_date
@@ -1095,7 +1137,11 @@ def _split_status_markers(text: str) -> tuple[str, list[str]]:
 
 
 def _unit_history(tag: Tag) -> tuple[str, ...]:
-    history = [_clean_text(item.get_text(" ", strip=True)) for item in tag.select(".bhistory")]
+    history = [
+        _clean_text(item.get_text(" ", strip=True))
+        for item in tag.select(".bhistory")
+        if not _inside_non_body(item, tag)
+    ]
     return tuple(dict.fromkeys(text for text in history if text))
 
 
@@ -1127,7 +1173,9 @@ def _inside_non_body(tag: Tag, stop: Tag) -> bool:
 
 def _own_descendant(tag: Tag, selector: str, section_node: Tag) -> Tag | None:
     for candidate in tag.select(selector):
-        if _nearest_unit_ancestor(candidate, section_node) is tag:
+        if _nearest_unit_ancestor(candidate, section_node) is tag and not _inside_non_body(
+            candidate, tag
+        ):
             return candidate
     return None
 
