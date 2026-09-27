@@ -33,9 +33,9 @@ from axiom_corpus.corpus.california_versions import (
     LegInfoPicker,
     LegInfoPickerLink,
     LegInfoVersion,
+    leginfo_note_clauses,
     leginfo_page_version,
     leginfo_variant_slug,
-    leginfo_version_status,
     parse_leginfo_picker,
     validate_leginfo_selector,
 )
@@ -2413,6 +2413,15 @@ def extract_california_code_sections(
     selected = tuple(dict.fromkeys(_california_section_request(section) for section in sections))
     if not selected:
         raise ValueError("extract_california_code_sections: sections must be non-empty")
+    requested: dict[tuple[str, str], list[str | None]] = {}
+    for law_code, section_num, selector in selected:
+        requested.setdefault((law_code, _california_section_token(section_num)), []).append(selector)
+    for (law_code, token), selectors in requested.items():
+        if len(selectors) > 1 and any(selector is not None for selector in selectors):
+            raise ValueError(
+                f"extract_california_code_sections: {law_code} {token} is requested more than "
+                "once with a version selector; request it once (with @all for every version)"
+            )
     run_id = _california_sections_run_id(version, selected)
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
@@ -5526,8 +5535,14 @@ class CaliforniaVersionError(ValueError):
     """Concurrent LegInfo versions could not be captured exactly as selected."""
 
 
-def _california_page_variant(html_bytes: bytes) -> tuple[LegInfoVersion, str] | None:
-    """Return a version page's triple and its variant slug, or ``None``."""
+def _california_page_variant(
+    html_bytes: bytes, *, label: str
+) -> tuple[LegInfoVersion, str] | None:
+    """Return a version page's triple and its variant slug, or ``None`` without a triple.
+
+    A note the slug rules cannot read (an impossible date, an unsafe op value)
+    raises :class:`CaliforniaVersionError` with that cause.
+    """
     version = leginfo_page_version(html_bytes)
     if version is None:
         return None
@@ -5535,8 +5550,8 @@ def _california_page_variant(html_bytes: bytes) -> tuple[LegInfoVersion, str] | 
     history = _california_html_history(soup.find(id="single_law_section") or soup)
     try:
         return version, leginfo_variant_slug(history, version)
-    except ValueError:
-        return None
+    except ValueError as exc:
+        raise CaliforniaVersionError(f"{label}: {exc}") from exc
 
 
 def _select_california_versions(
@@ -5573,7 +5588,9 @@ def _cached_california_versions(
 
     The cache must hold the picker and a version page for every link it offers,
     each named by its own variant slug, so a rerun from retained bytes needs no
-    request and selects exactly what the network run selected.
+    request and selects exactly what the network run selected. Without a cached
+    picker the section is refetched, so missing versions cannot pass for a
+    single-version section. Two cached pages of one version raise.
     """
     token = _california_section_token(section_num)
     picker_path = download_root / _california_picker_html_relative_name(law_code, section_num)
@@ -5584,45 +5601,40 @@ def _cached_california_versions(
             content = path.read_bytes()
             if not _california_html_has_section(content):
                 continue
-            identified = _california_page_variant(content)
+            identified = _california_page_variant(content, label=label)
             if identified is None:
                 continue
             page_version, slug = identified
             expected_name = _california_section_html_relative_name(law_code, section_num, slug)
             if path.name != Path(expected_name).name:
                 continue
+            if page_version.normalized() in by_version:
+                raise CaliforniaVersionError(
+                    f"{label}: the download cache holds two pages of {page_version.label}"
+                )
             by_version[page_version.normalized()] = (content, page_version, slug)
-    if picker_path.exists():
-        picker_bytes = picker_path.read_bytes()
-        picker = parse_leginfo_picker(picker_bytes)
-        if picker is None or not picker.links:
-            return None
-        if any(link.version.normalized() not in by_version for link in picker.links):
-            return None
-        captured = [
-            _CaliforniaCapturedVersion(
-                variant=by_version[link.version.normalized()][2],
-                html_bytes=by_version[link.version.normalized()][0],
-                version=by_version[link.version.normalized()][1],
-                link=link,
-            )
-            for link in picker.links
-        ]
-        return _CaliforniaVersionCapture(
-            selector=selector,
-            picker_bytes=picker_bytes,
-            picker=picker,
-            versions=_select_california_versions(captured, selector=selector, label=label),
-        )
-    if len(by_version) != 1:
+    if not picker_path.exists():
         return None
-    ((content, page_version, slug),) = by_version.values()
-    single = [_CaliforniaCapturedVersion(slug, content, page_version, None)]
+    picker_bytes = picker_path.read_bytes()
+    picker = parse_leginfo_picker(picker_bytes)
+    if picker is None or not picker.links:
+        return None
+    if any(link.version.normalized() not in by_version for link in picker.links):
+        return None
+    captured = [
+        _CaliforniaCapturedVersion(
+            variant=by_version[link.version.normalized()][2],
+            html_bytes=by_version[link.version.normalized()][0],
+            version=by_version[link.version.normalized()][1],
+            link=link,
+        )
+        for link in picker.links
+    ]
     return _CaliforniaVersionCapture(
         selector=selector,
-        picker_bytes=None,
-        picker=None,
-        versions=_select_california_versions(single, selector=selector, label=label),
+        picker_bytes=picker_bytes,
+        picker=picker,
+        versions=_select_california_versions(captured, selector=selector, label=label),
     )
 
 
@@ -5677,7 +5689,7 @@ def _load_california_section_versions(
     picker: LegInfoPicker | None = None
     captured: list[_CaliforniaCapturedVersion] = []
     if _california_html_has_section(response.content):
-        identified = _california_page_variant(response.content)
+        identified = _california_page_variant(response.content, label=label)
         if identified is None:
             raise CaliforniaVersionError(f"{label}: LegInfo's section page has no version triple")
         captured.append(
@@ -5691,31 +5703,43 @@ def _load_california_section_versions(
             )
         picker_bytes = response.content
         current = picker
+        attempts = max(request_attempts, 1)
         for link in picker.links:
-            if link.index:
-                time.sleep(max(request_delay_seconds, 0.0))
-                fresh = _california_get(
-                    session,
-                    source_url,
-                    timeout_seconds=timeout_seconds,
-                    request_attempts=request_attempts,
-                )
-                reparsed = parse_leginfo_picker(fresh.content)
-                if reparsed is None or reparsed.versions != picker.versions:
-                    raise CaliforniaVersionError(
-                        f"{label}: LegInfo's picker changed while its versions were fetched"
+            post: requests.Response | None = None
+            for attempt in range(attempts):
+                try:
+                    if link.index or attempt:
+                        # The form's view state is spent by any post, so every
+                        # post after the first, retries included, needs a fresh GET.
+                        time.sleep(max(request_delay_seconds, 0.0))
+                        fresh = _california_get(
+                            session,
+                            source_url,
+                            timeout_seconds=timeout_seconds,
+                            request_attempts=request_attempts,
+                        )
+                        reparsed = parse_leginfo_picker(fresh.content)
+                        if reparsed is None or reparsed.versions != picker.versions:
+                            raise CaliforniaVersionError(
+                                f"{label}: LegInfo's picker changed while its versions were "
+                                "fetched"
+                            )
+                        current = reparsed
+                    post = session.post(
+                        urljoin(source_url, current.action),
+                        data=current.post_payload(current.links[link.index]),
+                        timeout=timeout_seconds,
                     )
-                current = reparsed
-            current_link = current.links[link.index]
-            post = session.post(
-                urljoin(source_url, current.action),
-                data=current.post_payload(current_link),
-                timeout=timeout_seconds,
-            )
-            post.raise_for_status()
+                    post.raise_for_status()
+                    break
+                except requests.RequestException:
+                    if attempt == attempts - 1:
+                        raise
+                    time.sleep(min(2**attempt, 8))
+            assert post is not None
             content = post.content
             identified = (
-                _california_page_variant(content)
+                _california_page_variant(content, label=label)
                 if _california_html_has_section(content)
                 else None
             )
@@ -6122,9 +6146,10 @@ def _california_version_section(
             for variant in capture.variants
         ],
     }
-    status = leginfo_version_status(section.history)
-    if status is not None:
-        metadata["status"] = status
+    metadata["leginfo_note_clauses"] = leginfo_note_clauses(section.history)
+    metadata["leginfo_version_count"] = (
+        len(capture.picker.links) if capture.picker is not None else 1
+    )
     if capture.picker is not None and captured.link is not None:
         metadata["leginfo_picker"] = {
             "source_path": picker_source_key,

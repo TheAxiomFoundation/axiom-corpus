@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import pytest
+import requests
 from hypothesis import given
 from hypothesis import strategies as st
 
@@ -59,6 +60,7 @@ class FakeLegInfo:
     single_page: bool = False
     wrong_version_on_post: int | None = None
     change_picker_on_get: int | None = None
+    fail_posts: set[int] = field(default_factory=set)
     log: list[tuple[str, str]] = field(default_factory=list)
     issued: int = 0
     live_token: str | None = None
@@ -96,13 +98,13 @@ class FakeLegInfo:
         fake = self
 
         class Response:
-            status_code = 200
-
-            def __init__(self, content: bytes):
+            def __init__(self, content: bytes, status_code: int = 200):
                 self.content = content
+                self.status_code = status_code
 
             def raise_for_status(self) -> None:
-                return None
+                if self.status_code >= 400:
+                    raise requests.HTTPError(f"{self.status_code} Server Error")
 
         class Session:
             def __init__(self) -> None:
@@ -126,6 +128,10 @@ class FakeLegInfo:
             def post(self, url: str, data: dict[str, str], timeout: float) -> Response:
                 fake.log.append(("POST", url))
                 assert url == "https://leginfo.legislature.ca.gov/faces/selectFromMultiples.xhtml"
+                posts = sum(method == "POST" for method, _ in fake.log)
+                if posts in fake.fail_posts:
+                    fake.live_token = None
+                    return Response(b"Service Unavailable", 503)
                 token = data["javax.faces.ViewState"]
                 if token != fake.live_token:
                     return Response(fake.picker(f"state-{fake.issued}", fake.versions))
@@ -200,8 +206,14 @@ def test_all_versions_become_variant_rows_and_the_plain_path_is_never_written(
     )
     assert metadata["variant"] == "operative-2024-07-01"
     assert metadata["canonical_citation_path"] == "us-ca/statute/wic/11450"
-    assert metadata["status"] == "future_or_conditional"
-    assert v1["metadata"]["status"] == "effective_until"
+    assert "status" not in metadata
+    assert metadata["leginfo_note_clauses"] == {
+        "operative": {"date": "2024-07-01", "conditional": True}
+    }
+    assert v1["metadata"]["leginfo_note_clauses"] == {
+        "inoperative": {"date": "2024-07-01", "conditional": True}
+    }
+    assert metadata["leginfo_version_count"] == 2
     assert metadata["leginfo_version_label"] == "Stats. 2026, Ch. 310, Sec. 2"
     assert metadata["variant_citation_paths"] == list(rows)
     assert metadata["leginfo_picker"]["index"] == 1
@@ -273,6 +285,93 @@ def test_a_single_page_section_still_gets_a_variant_row(tmp_path, monkeypatch):
         "?lawCode=WIC&sectionNum=11450",
     }
     assert [path.name for path in report.source_paths] == ["WIC-11450--operative-2024-07-01.html"]
+
+
+def test_three_concurrent_versions_are_all_captured(tmp_path, monkeypatch):
+    versions = [
+        FakeVersion(
+            ("2019", "27", "59"),
+            "(Amended by Stats. 2019, Ch. 27, Sec. 59. Repealed on or after June 1, 2020.)",
+            ("(a) First.",),
+            "id_a",
+        ),
+        FakeVersion(
+            ("2022", "588", "5"),
+            "(Section conditionally operative June 1, 2020, or after. Conditionally "
+            "inoperative on or after October 1, 2024, by its own provisions.)",
+            ("(a) Second.",),
+            "id_b",
+        ),
+        FakeVersion(
+            ("2022", "588", "6"),
+            "(Conditionally operative on or after October 1, 2024, by its own provisions.)",
+            ("(a) Third.",),
+            "id_c",
+        ),
+    ]
+    fake = FakeLegInfo(versions, section="11451.5")
+    _install(monkeypatch, fake)
+    report = _extract(tmp_path, "WIC:11451.5@all")
+    assert list(_rows(report)) == [
+        "us-ca/statute/wic/11451.5--repealed-2020-06-01",
+        "us-ca/statute/wic/11451.5--operative-2020-06-01",
+        "us-ca/statute/wic/11451.5--operative-2024-10-01",
+    ]
+    assert [method for method, _ in fake.log] == ["GET", "POST"] * 3
+
+
+def test_a_failed_post_is_retried_with_a_fresh_view_state(tmp_path, monkeypatch):
+    fake = FakeLegInfo(_two_versions(), fail_posts={2})
+    _install(monkeypatch, fake)
+    report = _extract(tmp_path, "WIC:11450@all")
+    assert len(_rows(report)) == 2
+    assert [method for method, _ in fake.log] == ["GET", "POST", "GET", "POST", "GET", "POST"]
+
+
+def test_a_post_that_keeps_failing_raises(tmp_path, monkeypatch):
+    _install(monkeypatch, FakeLegInfo(_two_versions(), fail_posts={1, 2, 3}))
+    with pytest.raises(CaliforniaVersionError, match="503"):
+        _extract(tmp_path, "WIC:11450@all")
+
+
+def test_a_section_requested_twice_with_a_selector_is_refused(tmp_path, monkeypatch):
+    _install(monkeypatch, FakeLegInfo(_two_versions()))
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    for sections in (
+        ("WIC:11450@all", "WIC:11450@operative-2024-07-01"),
+        ("WIC:11450@all", "WIC:11450.@all"),
+        ("WIC:11450", "WIC:11450@all"),
+    ):
+        with pytest.raises(ValueError, match="requested more than once"):
+            extract_california_code_sections(store, version="v", sections=sections)
+
+
+def test_a_note_with_an_impossible_date_raises_with_that_cause(tmp_path, monkeypatch):
+    versions = _two_versions()
+    versions[1].note = "(Conditionally operative on or after February 30, 2024.)"
+    _install(monkeypatch, FakeLegInfo(versions))
+    with pytest.raises(CaliforniaVersionError, match="impossible operative date"):
+        _extract(tmp_path, "WIC:11450@all")
+
+
+def test_the_cache_needs_the_picker_and_one_page_per_version(tmp_path, monkeypatch):
+    cache = tmp_path / "cache"
+    fake = FakeLegInfo(_two_versions())
+    _install(monkeypatch, fake)
+    _extract(tmp_path, "WIC:11450@all", cache=cache, base="first")
+    # Without the picker the cache is not trusted and the section is refetched.
+    (cache / "california-leginfo-pickers/WIC-11450.html").unlink()
+    fake.log.clear()
+    _extract(tmp_path, "WIC:11450@all", cache=cache, base="second")
+    assert [method for method, _ in fake.log] == ["GET", "POST", "GET", "POST"]
+    # Two cached pages of one version fail closed.
+    pages = cache / "california-leginfo-sections"
+    duplicate = (pages / "WIC-11450--operative-2024-07-01.html").read_bytes()
+    (pages / "WIC-11450--operative-2024-07-02.html").write_bytes(
+        duplicate.replace(b"July 1, 2024", b"July 2, 2024")
+    )
+    with pytest.raises(CaliforniaVersionError, match="two pages of Stats. 2026, Ch. 310, Sec. 2"):
+        _extract(tmp_path, "WIC:11450@all", cache=cache, base="third")
 
 
 def _tree(root: Path) -> dict[str, bytes]:

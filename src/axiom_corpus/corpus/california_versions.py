@@ -16,24 +16,29 @@ The corpus gives every concurrent version its own same-number variant path,
 the New Mexico, Vermont, Delaware, New Jersey and Alabama statute adapters
 use). :func:`leginfo_variant_slug` derives the slug from the version itself:
 
-1. ``inoperative-YYYY-MM-DD``: the note says the version becomes
-   (conditionally) inoperative on, or on or after, a date.
-2. ``repealed-YYYY-MM-DD``: otherwise, the note says it is repealed on, on or
-   after, or as of a date.
-3. ``operative-YYYY-MM-DD``: otherwise, the note says it is (conditionally)
+1. ``operative-YYYY-MM-DD``: the note says the version is (conditionally)
    operative on, or on or after, a date.
+2. ``inoperative-YYYY-MM-DD``: otherwise, the note says it becomes
+   (conditionally) inoperative on, or on or after, a date.
+3. ``repealed-YYYY-MM-DD``: otherwise, the note says it is repealed on, on or
+   after, or as of a date.
 4. ``stats-<year>[-ch-<chapter>][-sec-<section>]``: otherwise the triple
    itself (:func:`leginfo_act_slug`), labelled with LegInfo's own
    abbreviations. This covers, for example, the identical sections two 2002
    chapters each added to the Revenue and Taxation Code.
 
-The date clauses come first because they name the version's role, and the
-role outlives amendments. On 2026-09-25 LegInfo listed WIC 11450's later
-version as Stats. 2024, Ch. 798, Sec. 2. On 2026-09-26 it was Stats. 2026,
-Ch. 310, Sec. 2 (AB 2765), still "conditionally operative on or after July 1,
-2024". A triple-based path would have moved overnight. The slug is a label
-taken from LegInfo's note. The note says whether a date is conditional, and
-the slug does not say whether the condition has occurred.
+The date clauses come before the triple because they name the version's
+role, and the role outlives amendments. On 2026-09-25 LegInfo listed WIC
+11450's later version as Stats. 2024, Ch. 798, Sec. 2. On 2026-09-26 it was
+Stats. 2026, Ch. 310, Sec. 2 (AB 2765), still "conditionally operative on or
+after July 1, 2024". A triple-based path would have moved overnight. The
+operative date comes first among the clauses because a version's start is
+fixed when the version is created, while end dates are added to it and moved
+when a later version follows.
+
+The slug is a label taken from LegInfo's note. It does not say whether a
+condition has occurred. :func:`leginfo_note_clauses` records the dated
+clauses themselves, without judging which version is in force.
 """
 
 from __future__ import annotations
@@ -191,7 +196,9 @@ def _iso_date(text: str) -> str:
 def leginfo_variant_slug(history: str | None, version: LegInfoVersion) -> str:
     """Return the same-number variant slug for one concurrent version.
 
-    See the module docstring for the order of the rules.
+    See the module docstring for the order of the rules. A note that names an
+    impossible date raises ``ValueError`` instead of falling through to a
+    later rule.
 
     >>> v = LegInfoVersion("2026", "310", "2")
     >>> leginfo_variant_slug("(... Conditionally operative on or after July 1, 2024, by its "
@@ -201,16 +208,42 @@ def leginfo_variant_slug(history: str | None, version: LegInfoVersion) -> str:
     ...     LegInfoVersion("2002", "35", "22"))
     'stats-2002-ch-35-sec-22'
     """
+    clauses = leginfo_note_clauses(history)
+    for kind in ("operative", "inoperative", "repealed"):
+        if kind in clauses:
+            return f"{kind}-{clauses[kind]['date']}"
+    return version.act_slug
+
+
+def leginfo_note_clauses(history: str | None) -> dict[str, dict[str, object]]:
+    """Return the dated clauses of a LegInfo history note, without judging them.
+
+    Each of ``operative``, ``inoperative`` and ``repealed`` that the note names
+    maps to its ISO date and whether the note calls it conditional, e.g.
+    ``{"operative": {"date": "2024-07-01", "conditional": True}}``.
+    """
     note = " ".join((history or "").split())
-    for prefix, clause in (
+    clauses: dict[str, dict[str, object]] = {}
+    for kind, clause in (
+        ("operative", _OPERATIVE_CLAUSE),
         ("inoperative", _INOPERATIVE_CLAUSE),
         ("repealed", _REPEALED_CLAUSE),
-        ("operative", _OPERATIVE_CLAUSE),
     ):
         match = clause.search(note)
-        if match is not None:
-            return f"{prefix}-{_iso_date(match.group('date'))}"
-    return version.act_slug
+        if match is None:
+            continue
+        try:
+            iso = _iso_date(match.group("date"))
+        except ValueError as exc:
+            raise ValueError(
+                f"LegInfo history note names an impossible {kind} date "
+                f"{match.group('date')!r}: {history!r}"
+            ) from exc
+        clauses[kind] = {
+            "date": iso,
+            "conditional": note[: match.start()].lower().endswith("conditionally "),
+        }
+    return clauses
 
 
 def validate_leginfo_selector(value: str) -> str:
@@ -288,32 +321,3 @@ def leginfo_page_version(html_bytes: bytes) -> LegInfoVersion | None:
             return None
         values[field] = match.group("value")
     return LegInfoVersion(**values)
-
-
-_INOPERATIVE_RE = re.compile(
-    r"\b(?:inoperative|repealed conditionally|conditionally repealed|repealed as of|"
-    r"repealed on)\b",
-    re.IGNORECASE,
-)
-_CONDITIONALLY_OPERATIVE_RE = re.compile(
-    r"\b(?:conditionally operative|operative on or after)\b", re.IGNORECASE
-)
-
-
-def leginfo_version_status(history: str | None) -> str | None:
-    """Map a LegInfo history note to the corpus's variant ``status`` vocabulary.
-
-    The vocabulary is the one the New Mexico, Indiana and Nevada statute
-    adapters write: ``effective_until`` for a version whose note says it
-    becomes inoperative or is repealed, and ``future_or_conditional`` for one
-    whose note says it is conditionally operative or operative on or after a
-    date. The mapping reads only the note. It does not decide whether the
-    condition has occurred.
-    """
-    if not history:
-        return None
-    if _INOPERATIVE_RE.search(history):
-        return "effective_until"
-    if _CONDITIONALLY_OPERATIVE_RE.search(history):
-        return "future_or_conditional"
-    return None
