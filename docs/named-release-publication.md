@@ -154,17 +154,26 @@ rewritten. A release name with different content, or a successor release that
 tries to change a previously released scope, is rejected. A successor may
 reuse a scope only when the prior signed scope identity is byte-for-byte equal.
 
-Publication memory grows with a scope's row count, not its bytes. Every phase
-streams a provisions file one row at a time and keeps compact per-row metadata
-(identity, parent, source path, dates, row digests), never provision bodies:
-deep validation and the signed-source-reference check read rows as they
-parse; release content hashes the provisions artifact into a temporary
+Publication memory grows with the release's row count, not its bytes. Every
+phase streams a provisions file one row at a time and keeps compact per-row
+metadata (identity, parent, source path, dates, row digests), not provision
+bodies: deep validation and the signed-source-reference check read rows as
+they parse; release content hashes the provisions artifact into a temporary
 snapshot, then parses and projects that verified copy in one pass; staging
 parks projected rows in a temporary file and reads each back only to compare
 it with a staged row or to insert it; and R2 objects are verified in 1 MB
-reads. The streaming readers raise exactly the errors the whole-file readers
-did, and `tests/test_streaming_*.py` hold them to the pre-streaming
-implementations on generated inputs.
+reads. Bodies are still held briefly in bounded batches: a page of up to 1,000
+staged rows while it is compared, a chunk of up to 500 rows while it is
+inserted, and a whole file only on an error path that reproduces the old
+reader's error. The cross-scope checks (the release's citation-path set and
+staging's key map) keep one compact entry per row across every scope they
+cover. The streaming readers return the same records and raise the same
+errors as the whole-file readers they replace, with one exception: JSON nested
+within a few levels of the parser's recursion limit (about 52,000 levels) can
+raise `RecursionError` where the old reader raised another error. Both readers
+reject such a file, and no artifact nests that deep.
+`tests/test_streaming_*.py` hold the streaming code to the pre-streaming
+implementations, mostly on Hypothesis-generated inputs.
 
 ## Downstream resolution
 

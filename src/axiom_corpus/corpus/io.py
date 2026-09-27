@@ -5,8 +5,11 @@ release gates read artifacts of up to hundreds of megabytes (the May whole-eCFR
 provisions file is 756 MB), so they use the streaming forms here instead:
 ``iter_provisions`` yields one record per line, and
 ``load_source_inventory_references`` keeps only the three inventory fields the
-gates read. Both return or raise exactly what the whole-file readers would, so
+gates read. Both return or raise what the whole-file readers would, so
 switching a gate to them cannot change what it accepts or the error it reports.
+The one exception is JSON nested within a few levels of the parser's recursion
+limit (about 52,000 levels), where the streaming reader can raise
+``RecursionError`` instead of the whole-file reader's error; both reject it.
 """
 
 from __future__ import annotations
