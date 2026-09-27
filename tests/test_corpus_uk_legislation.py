@@ -1,5 +1,6 @@
 import json
 from datetime import date
+from pathlib import Path
 
 import pytest
 
@@ -614,6 +615,78 @@ def test_extract_uk_legislation_fetches_article_citation_xml(tmp_path, monkeypat
     assert row["source_path"] == (
         "sources/uk/regulation/2026-06-06-uk-uksi-2026-148-article14/uksi/2026/148/article-14.xml"
     )
+
+
+UK_CLML_FIXTURES = Path(__file__).parent / "fixtures" / "uk_clml"
+
+
+def test_extract_uk_legislation_real_order_article_clml(tmp_path, monkeypatch):
+    """Real legislation.gov.uk article CLML, fetched 2026-09-27: SI 2026/164 art. 8
+    is a revised Order article with two tables; SI 2026/555 art. 3 exists only as
+    made, so legislation.gov.uk serves it with a ``/made`` DocumentURI."""
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    fixtures = {
+        "https://www.legislation.gov.uk/uksi/2026/164/article/8/data.xml": (
+            "uksi-2026-164-article-8.xml"
+        ),
+        "https://www.legislation.gov.uk/uksi/2026/555/article/3/data.xml": (
+            "uksi-2026-555-article-3-made.xml"
+        ),
+    }
+
+    class FakeFetcher:
+        def build_url(self, citation):
+            return citation.data_xml_url
+
+        async def _fetch_xml(self, url):
+            return (UK_CLML_FIXTURES / fixtures[url]).read_text()
+
+    monkeypatch.setattr(uk_legislation, "UKLegislationFetcher", FakeFetcher)
+    base = tmp_path / "data" / "corpus"
+    version = "2026-09-27-uk-fuel-duty-reduction-orders"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version=version,
+        citations=("uksi/2026/164/article/8", "uksi/2026/555/article/3"),
+        source_as_of="2026-09-27",
+        expression_date=date(2026, 9, 27),
+    )
+
+    assert [class_report.document_class for class_report in report.class_reports] == [
+        "regulation"
+    ]
+    assert report.class_reports[0].coverage.complete
+    rows = {
+        row["citation_path"]: row
+        for row in map(
+            json.loads,
+            (base / f"provisions/uk/regulation/{version}.jsonl").read_text().splitlines(),
+        )
+    }
+    assert sorted(rows) == [
+        "uk/regulation/uksi/2026/164/article/8",
+        "uk/regulation/uksi/2026/555/article/3",
+    ]
+
+    revised = rows["uk/regulation/uksi/2026/164/article/8"]
+    assert revised["kind"] == "article"
+    assert revised["citation_label"] == "UKSI 2026/164 art. 8"
+    assert revised["heading"] == "Article 8"
+    assert revised["source_url"] == "http://www.legislation.gov.uk/uksi/2026/164/article/8"
+    assert revised["identifiers"]["legislation.gov.uk:provision"] == "article/8"
+    assert revised["expression_date"] == "2026-09-27"
+    assert "| (a) | Unleaded petrol | 0.5795 | 3.45 | 0.5595 |" in revised["body"]
+    assert (
+        "| (b) | Road fuel gas other than natural road fuel gas | 0.3161 | 3.45 | 0.3052 |"
+        in revised["body"]
+    )
+
+    made = rows["uk/regulation/uksi/2026/555/article/3"]
+    assert made["source_url"] == "http://www.legislation.gov.uk/uksi/2026/555/article/3/made"
+    assert made["source_path"] == f"sources/uk/regulation/{version}/uksi/2026/555/article-3.xml"
+    assert "in column (C), for “2.05” substitute “9.96”;" in made["body"]
 
 
 def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path):
