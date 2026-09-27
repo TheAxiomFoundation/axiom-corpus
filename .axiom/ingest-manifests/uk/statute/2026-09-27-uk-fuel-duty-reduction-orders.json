@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9f57151995df1278f0d4afc4222efdc47fd384b2",
+    "commit": "ae0b630d60f35ec79f2bb171154fb61a30d9d1d6",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-27-uk-fuel-duty-reduction-orders --source clml --citation ukpga/1979/8/section/1 --citation ukpga/1979/8/section/2 --citation uksi/2022/365/article/1 --citation uksi/2022/365/article/2 --citation uksi/2022/365/article/3 --citation uksi/2022/365/article/4 --citation uksi/2023/329/article/1 --citation uksi/2023/329/article/2 --citation uksi/2024/300/article/1 --citation uksi/2024/300/article/2 --citation uksi/2025/228/article/1 --citation uksi/2025/228/article/2 --citation uksi/2026/164/article/1 --citation uksi/2026/164/article/2 --citation uksi/2026/164/article/3 --citation uksi/2026/164/article/4 --citation uksi/2026/164/article/8 --citation uksi/2026/555/article/1 --citation uksi/2026/555/article/2 --citation uksi/2026/555/article/3 --as-of 2026-09-27 --expression-date 2026-09-27"
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-27-uk-fuel-duty-reduction-orders --source clml --citation ukpga/1979/8/section/1 --citation ukpga/1979/8/section/2 --citation uksi/2022/365/article/1 --citation uksi/2022/365/article/2 --citation uksi/2022/365/article/3 --citation uksi/2022/365/article/4 --citation uksi/2022/365/article/5 --citation uksi/2022/365/article/6 --citation uksi/2023/329/article/1 --citation uksi/2023/329/article/2 --citation uksi/2024/300/article/1 --citation uksi/2024/300/article/2 --citation uksi/2025/228/article/1 --citation uksi/2025/228/article/2 --citation uksi/2026/164/article/1 --citation uksi/2026/164/article/2 --citation uksi/2026/164/article/3 --citation uksi/2026/164/article/4 --citation uksi/2026/164/article/5 --citation uksi/2026/164/article/6 --citation uksi/2026/164/article/7 --citation uksi/2026/164/article/8 --citation uksi/2026/164/article/9 --citation uksi/2026/164/article/10 --citation uksi/2026/164/article/11 --citation uksi/2026/555/article/1 --citation uksi/2026/555/article/2 --citation uksi/2026/555/article/3 --as-of 2026-09-27 --expression-date 2026-09-27"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 2
   },
   "document_class": "statute",
-  "generated_at": "2026-09-27T12:37:53.404736+00:00",
+  "generated_at": "2026-09-27T13:13:34.133431+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "62TQZat30Uf1jA7hHVVhrKL9IMvkXO67FdCRLqs+26D6RE8lFKWVmDxn7lmp9r0gR6VgcmfZVZgCKM0yqpFXAQ=="
+    "value": "dvsW40oXpFrYT+rk1ZiodnIn7745DHJMeDefVnciDGKLWF/xUNuxTNcGJxaPxrC1gmoy7zdOmd13xrsLUPDXBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-27-uk-fuel-duty-reduction-orders"
