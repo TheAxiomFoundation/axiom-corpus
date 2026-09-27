@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import re
 import time
+from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -15,9 +16,10 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import CData, NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -43,6 +45,46 @@ _CHAPTER_PAGE_RE = re.compile(
 _SECTION_PAGE_RE = re.compile(
     r"title(?P<title>\d+[A-Z-]*)sec(?P<section>[0-9A-Z-]+)\.html$",
     re.I,
+)
+
+# The Revisor's section pages mark every numbered unit below the section with a
+# class naming its level in Maine's drafting hierarchy: subsection 1., paragraph
+# A., subparagraph (1), division (a) and subdivision (i) (36 M.R.S. §5122(2)(M-3)
+# itself cites "paragraph M-2, subparagraph (1), division (a)").
+_UNIT_KIND_BY_CLASS = {
+    "MRSSubSection": "subsection",
+    "MRSLetteredPara": "paragraph",
+    "MRSSubPara": "subparagraph",
+    "MRSDivision": "division",
+    "MRSSubDivision": "subdivision",
+}
+# Editorial apparatus kept out of provision bodies: the section heading, status
+# blips, amendment history (``.bhistory`` per unit, ``.qhistory`` per section)
+# and Revisor's notes. History and notes are carried in metadata instead.
+_NON_BODY_CLASSES = frozenset({"heading_section", "headnote_blip", "qhistory", "bhistory", "note"})
+_BLOCK_TAGS = frozenset(
+    {"div", "p", "li", "ul", "ol", "dl", "dt", "dd", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6"}
+)
+_SUBSECTION_HEADNOTE_RE = re.compile(r"^(?P<number>\d+[A-Z]*(?:-[0-9A-Z]+)*)\.\s*(?P<rest>.*)$")
+_LETTERED_LABEL_RE = re.compile(r"^(?P<number>[A-Z]+(?:-[0-9A-Z]+)*)\.$")
+_PAREN_LABEL_RE = re.compile(r"^\((?P<number>[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*)\)$")
+# Leading status parentheticals the Revisor prints before a unit's text, e.g.
+# "(TEXT EFFECTIVE UNTIL 1/05/26)", "(REALLOCATED TO T. 36, §5122, sub-§2, ¶T)",
+# "(FUTURE CONFLICT: Text as amended by PL 2025, c. 367, §16)".
+# Only these complete forms are markers; any other parenthetical, even one that
+# opens with a capitalised word ("(WHOLE milk only)"), stays in the text.
+_STATUS_MARKER_RE = re.compile(
+    r"^\((?P<marker>(?:TEXT (?:EFFECTIVE|REPEALED|WITH CONFLICT)\b"
+    r"|REALLOCATED (?:TO|FROM)\b"
+    r"|(?:FUTURE )?CONFLICT:"
+    r"|(?:FUTURE )?CONTINGENT (?:REPEAL|TERMINATION|EFFECTIVE)\b"
+    r"|WHOLE SECTION TEXT\b"
+    r"|REPEALED(?=\))"
+    r")[^()]*(?:\([^()]*\)[^()]*)*)\)\s*"
+)
+_MARKER_DATE_RE = re.compile(
+    r"^TEXT (?P<kind>EFFECTIVE UNTIL|EFFECTIVE|REPEALED) "
+    r"(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<year>\d{2}|\d{4})$"
 )
 
 
@@ -155,6 +197,40 @@ class MaineTitleDocument:
 
 
 @dataclass(frozen=True)
+class MaineSubunit:
+    """One numbered unit below a Maine section (subsection 1. through subdivision (i)).
+
+    ``segments`` is the unit's citation path relative to its section
+    (``("2", "M-2")`` for 36 M.R.S. §5122(2)(M-2)); ``numbers`` holds the
+    publisher's own numbers for the same chain, which differ from ``segments``
+    only where a same-number variant carries a ``--`` suffix.
+    """
+
+    kind: str
+    segments: tuple[str, ...]
+    numbers: tuple[str, ...]
+    label: str
+    heading: str | None
+    body: str | None
+    ordinal: int
+    references_to: tuple[str, ...] = ()
+    source_history: tuple[str, ...] = ()
+    markers: tuple[str, ...] = ()
+    status: str | None = None
+    variant: str | None = None
+    variant_of: tuple[str, ...] | None = None
+    variants: tuple[tuple[str, ...], ...] = ()
+
+    @property
+    def parent_segments(self) -> tuple[str, ...]:
+        return self.segments[:-1]
+
+    @property
+    def number(self) -> str:
+        return self.numbers[-1]
+
+
+@dataclass(frozen=True)
 class MaineParsedSection:
     """Parsed Maine section body."""
 
@@ -165,11 +241,12 @@ class MaineParsedSection:
     source_history: tuple[str, ...]
     notes: tuple[str, ...]
     status: str | None = None
+    subunits: tuple[MaineSubunit, ...] = ()
 
 
 @dataclass(frozen=True)
 class MaineProvision:
-    """Normalized Maine title, part, chapter, or section node."""
+    """Normalized Maine title, part, chapter, section, or sub-section node."""
 
     kind: str
     title: str
@@ -186,6 +263,8 @@ class MaineProvision:
     source_history: tuple[str, ...] = ()
     notes: tuple[str, ...] = ()
     status: str | None = None
+    identifiers: dict[str, str] = field(default_factory=dict)
+    extra_metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -289,8 +368,15 @@ def extract_maine_revised_statutes(
     request_delay_seconds: float = 0.02,
     timeout_seconds: float = 60.0,
     request_attempts: int = 3,
+    include_subunits: bool = False,
 ) -> StateStatuteExtractReport:
-    """Snapshot official Maine Revised Statutes HTML and extract provisions."""
+    """Snapshot official Maine Revised Statutes HTML and extract provisions.
+
+    Section bodies always carry every numbered unit of the section. With
+    ``include_subunits`` each subsection, paragraph, subparagraph, division and
+    subdivision is also emitted as its own provision right after its section
+    (``us-me/statute/36/5122/2/M-2``). The default keeps the section grain.
+    """
     jurisdiction = "us-me"
     title_filter = _optional_filter(only_title)
     chapter_filter = _optional_filter(only_chapter)
@@ -302,6 +388,7 @@ def extract_maine_revised_statutes(
     )
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
+    as_of = _optional_iso_date(expression_date_text)
     fetcher = _MaineFetcher(
         base_url=base_url,
         source_dir=Path(source_dir) if source_dir is not None else None,
@@ -420,6 +507,7 @@ def extract_maine_revised_statutes(
         fetcher,
         section_targets,
         workers=max(1, workers),
+        as_of=as_of,
     )
     for target, page, parsed, error in fetched_sections:
         if error is not None:
@@ -447,6 +535,18 @@ def extract_maine_revised_statutes(
         )
         if added:
             section_count += 1
+            if include_subunits:
+                for subunit in parsed.subunits:
+                    _append_provision(
+                        _subunit_provision(target, parsed, subunit),
+                        section_source,
+                        version=run_id,
+                        source_as_of=source_as_of_text,
+                        expression_date=expression_date_text,
+                        records=records,
+                        items=items,
+                        seen=seen,
+                    )
 
     if not records:
         raise ValueError("no Maine provisions extracted")
@@ -599,16 +699,43 @@ def parse_maine_section(
     html: str | bytes,
     *,
     target: MaineSectionTarget | None = None,
+    as_of: date | None = None,
 ) -> MaineParsedSection:
-    """Parse one official Maine section page."""
+    """Parse one official Maine section page.
+
+    The body is every text line of the section in document order: subsection
+    lead-ins, lettered paragraphs, subparagraphs, divisions, subdivisions,
+    continuation paragraphs and tables, each numbered unit starting its own
+    line with its printed number. Amendment history, status blips and Revisor's
+    notes are kept out of the body and returned as ``source_history`` and
+    ``notes``. ``as_of`` (the expression date) decides which of two same-number
+    units the Revisor prints side by side ("TEXT EFFECTIVE UNTIL" / "TEXT
+    EFFECTIVE") keeps the plain citation path in ``subunits``.
+    """
     soup = BeautifulSoup(html, "lxml")
-    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content") or soup
-    heading_node = section_node.select_one(".heading_section") if isinstance(section_node, Tag) else None
+    section_node = _first_statute_element(soup, "MRSSection") or _first_statute_element(
+        soup, "section-content"
+    )
+    if section_node is None:
+        # Without the Revisor's section container only the statute-text elements
+        # count; a page with none of them (an error page served with HTTP 200) is
+        # rejected rather than read as statute text.
+        blips = [
+            blip
+            for blip in soup.select(".headnote_blip")
+            if not _is_editorial(blip, soup, own_class="headnote_blip")
+        ]
+        if not _statute_text_roots(soup) and not blips:
+            raise ValueError("no Maine section content in page")
+        section_node = soup
+    heading_node = (
+        _first_statute_element(section_node, "heading_section") if isinstance(section_node, Tag) else None
+    )
     display_section = target.display_section if target is not None else ""
     heading = target.heading if target is not None else ""
     if heading_node is not None:
         parsed_section, parsed_heading = _parse_section_heading(
-            _clean_text(heading_node.get_text(" ", strip=True))
+            _statute_text(heading_node)
         )
         display_section = parsed_section or display_section
         heading = parsed_heading or heading
@@ -617,42 +744,37 @@ def parse_maine_section(
     notes: list[str] = []
     history: list[str] = []
     status_notes: list[str] = []
+    subunits: tuple[MaineSubunit, ...] = ()
     if isinstance(section_node, Tag):
         for blip in section_node.select(".headnote_blip"):
-            text = _clean_text(blip.get_text(" ", strip=True))
+            if _is_editorial(blip, section_node, own_class="headnote_blip"):
+                continue
+            text = _statute_text(blip)
             if text:
                 status_notes.append(text)
-        for subsection in section_node.select(".MRSSubSection"):
-            text_node = subsection.select_one(".mrs-text") or subsection
-            text = _clean_text(text_node.get_text(" ", strip=True))
+        lines = _section_body_lines(
+            section_node,
+            roots=None if section_node is not soup else _statute_text_roots(soup),
+        )
+        body_lines = [line.text for line in lines]
+        for item in section_node.select(".bhistory"):
+            if _is_editorial(item, section_node, own_class="bhistory"):
+                continue
+            text = _statute_text(item)
             if text:
-                body_lines.append(text)
-            for item in subsection.select(".bhistory"):
-                text = _clean_text(item.get_text(" ", strip=True))
-                if text:
-                    history.append(text)
-        if not body_lines:
-            # Sections without subsections (for example 36 M.R.S. §115) print their
-            # text in ``.mrs-text`` paragraphs directly under the section node.
-            for text_node in section_node.select(".mrs-text"):
-                if text_node.find_parent(class_="MRSSubSection") is not None:
-                    continue
-                text = _clean_text(text_node.get_text(" ", strip=True))
-                if text:
-                    body_lines.append(text)
-                for item in text_node.select(".bhistory"):
-                    text = _clean_text(item.get_text(" ", strip=True))
-                    if text:
-                        history.append(text)
+                history.append(text)
         for note in section_node.select(".note"):
             text = _clean_text(note.get_text(" ", strip=True))
             if text:
                 notes.append(text)
         for hist in section_node.select(".qhistory"):
-            text = _clean_text(hist.get_text(" ", strip=True))
+            if _is_editorial(hist, section_node, own_class="qhistory"):
+                continue
+            text = _statute_text(hist)
             text = re.sub(r"^SECTION HISTORY\s*", "", text, flags=re.I).strip()
             if text:
                 history.append(text)
+        subunits = _parse_subunits(section_node, lines, target=target, as_of=as_of)
     if not body_lines and status_notes:
         body_lines.extend(status_notes)
     status = _section_status(status_notes, target.status if target is not None else None)
@@ -668,7 +790,457 @@ def parse_maine_section(
         source_history=tuple(dict.fromkeys(history)),
         notes=tuple(dict.fromkeys(notes + status_notes)),
         status=status,
+        subunits=subunits,
     )
+
+
+@dataclass(frozen=True)
+class _BodyLine:
+    """One body line and the innermost numbered unit that owns it (None: the section)."""
+
+    text: str
+    owner: Tag | None
+
+
+@dataclass
+class _UnitNode:
+    tag: Tag
+    kind: str
+    parent: _UnitNode | None
+    order: int
+    number: str | None = None
+    label: str = ""
+    heading: str | None = None
+    first_line_rest: str | None = None
+    markers: tuple[str, ...] = ()
+    effective_until: date | None = None
+    effective_from: date | None = None
+    repealed_on: date | None = None
+    start: int | None = None
+    end: int | None = None
+    own_history: tuple[str, ...] = ()
+    operative: bool = False
+    children: list[_UnitNode] = field(default_factory=list)
+    segment: str | None = None
+    variant: str | None = None
+    variant_of: _UnitNode | None = None
+    variants: list[_UnitNode] = field(default_factory=list)
+    ordinal: int = 0
+
+    @property
+    def addressable(self) -> bool:
+        return self.number is not None and (self.parent is None or self.parent.addressable)
+
+    def chain(self) -> list[_UnitNode]:
+        nodes: list[_UnitNode] = []
+        node: _UnitNode | None = self
+        while node is not None:
+            nodes.append(node)
+            node = node.parent
+        return list(reversed(nodes))
+
+
+def _statute_text_roots(soup: BeautifulSoup) -> list[Tag]:
+    """Outermost statute-text elements of a page that has no section container."""
+    return [
+        tag
+        for tag in soup.select(".mrs-text, .MRSSubSection")
+        if tag.find_parent(class_=["mrs-text", "MRSSubSection"]) is None
+        and not _is_non_body(tag)
+        and not _inside_non_body(tag, soup)
+    ]
+
+
+def _section_body_lines(section_node: Tag, *, roots: list[Tag] | None = None) -> list[_BodyLine]:
+    """Split a section node into text lines, one per block, in document order.
+
+    Every block element (and every numbered unit) starts a new line; inline
+    elements such as links, labels and table cells stay in the line of their
+    block, joined with single spaces as ``get_text(" ", strip=True)`` would.
+    Text after a nested block inside the same parent becomes its own line.
+    """
+    lines: list[_BodyLine] = []
+    buffer: list[str] = []
+
+    def flush(owner: Tag | None) -> None:
+        if not buffer:
+            return
+        text = _clean_text(" ".join(buffer))
+        buffer.clear()
+        if text:
+            lines.append(_BodyLine(text=text, owner=owner))
+
+    def walk(node: Tag, owner: Tag | None) -> None:
+        for child in node.children:
+            if isinstance(child, Tag):
+                if _NON_BODY_CLASSES.intersection(child.get("class") or ()) or child.name in {
+                    "script",
+                    "style",
+                    "template",
+                }:
+                    continue
+                child_owner = child if _unit_kind(child) is not None else owner
+                if child.name in _BLOCK_TAGS or child_owner is not owner:
+                    flush(owner)
+                    walk(child, child_owner)
+                    flush(child_owner)
+                else:
+                    walk(child, owner)
+            elif type(child) in (NavigableString, CData):
+                text = child.strip()
+                if text:
+                    buffer.append(text)
+
+    if roots is None:
+        walk(section_node, None)
+    else:
+        for root in roots:
+            flush(None)
+            owner = root if _unit_kind(root) is not None else None
+            walk(root, owner)
+            flush(owner)
+    flush(None)
+    return lines
+
+
+def _parse_subunits(
+    section_node: Tag,
+    lines: list[_BodyLine],
+    *,
+    target: MaineSectionTarget | None,
+    as_of: date | None,
+) -> tuple[MaineSubunit, ...]:
+    nodes: list[_UnitNode] = []
+    by_tag: dict[int, _UnitNode] = {}
+    for tag in section_node.find_all(True):
+        kind = _unit_kind(tag)
+        if kind is None or _is_non_body(tag) or _inside_non_body(tag, section_node):
+            continue
+        parent_tag = _nearest_unit_ancestor(tag, section_node)
+        parent = by_tag.get(id(parent_tag)) if parent_tag is not None else None
+        node = _UnitNode(tag=tag, kind=kind, parent=parent, order=len(nodes))
+        nodes.append(node)
+        by_tag[id(tag)] = node
+        if parent is not None:
+            parent.children.append(node)
+    if not nodes:
+        return ()
+
+    for index, line in enumerate(lines):
+        owner = by_tag.get(id(line.owner)) if line.owner is not None else None
+        while owner is not None:
+            owner.start = index if owner.start is None else owner.start
+            owner.end = index + 1
+            owner = owner.parent
+
+    for node in nodes:
+        _read_unit_label(node, lines, section_node)
+    for node in reversed(nodes):
+        own_text = bool(node.first_line_rest)
+        if node.start is not None and node.end is not None:
+            own_text = own_text or any(
+                lines[index].owner is node.tag for index in range(node.start + 1, node.end)
+            )
+        node.operative = own_text or any(child.operative for child in node.children)
+
+    roots = [node for node in nodes if node.parent is None]
+    _assign_segments(roots, as_of=as_of)
+    for node in nodes:
+        if node.addressable:
+            _assign_segments(node.children, as_of=as_of)
+
+    subunits: list[MaineSubunit] = []
+    for node in nodes:
+        if not node.addressable or node.segment is None:
+            continue
+        chain = node.chain()
+        body_parts: list[str] = []
+        if node.start is not None and node.end is not None:
+            first = node.first_line_rest
+            if first is None:
+                first = lines[node.start].text
+            if first:
+                body_parts.append(first)
+            body_parts.extend(lines[index].text for index in range(node.start + 1, node.end))
+        subunits.append(
+            MaineSubunit(
+                kind=node.kind,
+                segments=tuple(str(item.segment) for item in chain),
+                numbers=tuple(str(item.number) for item in chain),
+                label=node.label,
+                heading=node.heading,
+                body="\n".join(body_parts).strip() or None,
+                ordinal=node.ordinal,
+                references_to=_references_from_links(node.tag, target=target),
+                source_history=_unit_history(node.tag),
+                markers=node.markers,
+                status=_unit_status(node, as_of=as_of),
+                variant=node.variant,
+                variant_of=(
+                    tuple(str(item.segment) for item in node.variant_of.chain())
+                    if node.variant_of is not None
+                    else None
+                ),
+                variants=tuple(
+                    tuple(str(item.segment) for item in variant.chain()) for variant in node.variants
+                ),
+            )
+        )
+    return tuple(subunits)
+
+
+def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag) -> None:
+    """Read the unit's printed number, heading and leading status markers."""
+    tag = node.tag
+    label = ""
+    rest_of_label = ""
+    if node.kind == "subsection":
+        headnote = _own_descendant(tag, ".headnote", section_node)
+        label = _statute_text(headnote) if headnote is not None else ""
+        match = _SUBSECTION_HEADNOTE_RE.match(label)
+        if match is not None:
+            node.number = match.group("number")
+            rest_of_label = match.group("rest")
+    elif node.kind == "paragraph":
+        letpara = _own_descendant(tag, ".letpara_id", section_node)
+        label = _statute_text(letpara) if letpara is not None else ""
+        match = _LETTERED_LABEL_RE.match(label)
+        if match is not None:
+            node.number = match.group("number")
+    else:
+        first = next(
+            (child for child in tag.children if isinstance(child, Tag) and not _is_non_body(child)),
+            None,
+        )
+        if first is not None and first.name == "span":
+            label = _statute_text(first)
+            match = _PAREN_LABEL_RE.match(label)
+            if match is not None:
+                node.number = match.group("number")
+    node.label = label
+
+    markers: list[str] = []
+    if node.kind == "subsection":
+        remaining, markers = _split_status_markers(rest_of_label)
+        node.heading = _clean_heading(remaining) or None
+    first_line = lines[node.start] if node.start is not None else None
+    if first_line is not None and first_line.owner is tag and label and first_line.text.startswith(label):
+        rest = first_line.text[len(label) :].strip()
+        if node.kind != "subsection":
+            rest, markers = _split_status_markers(rest)
+        node.first_line_rest = rest
+    node.markers = tuple(markers)
+    node.own_history = tuple(
+        text
+        for item in tag.select(".bhistory")
+        if _nearest_unit_ancestor(item, section_node) is tag
+        and not _is_editorial(item, tag, own_class="bhistory")
+        and (text := _statute_text(item))
+    )
+    for marker in markers:
+        match = _MARKER_DATE_RE.match(marker)
+        if match is None:
+            continue
+        year = int(match.group("year"))
+        try:
+            marker_date = date(
+                year + 2000 if year < 100 else year, int(match.group("month")), int(match.group("day"))
+            )
+        except ValueError:
+            # An impossible date ("2/29/25") keeps its marker in notes; the unit is
+            # then treated as undated rather than aborting the whole section.
+            continue
+        kind = match.group("kind")
+        if kind == "EFFECTIVE UNTIL":
+            node.effective_until = marker_date
+        elif kind == "EFFECTIVE":
+            node.effective_from = marker_date
+        else:
+            node.repealed_on = marker_date
+
+
+def _assign_segments(siblings: list[_UnitNode], *, as_of: date | None) -> None:
+    """Give each addressable sibling a unique citation-path segment.
+
+    The Revisor sometimes prints two or more units with the same number under
+    one parent: a live paragraph next to the placeholder of a repealed or
+    reallocated one (36 M.R.S. §5122(1)(KK)), or two dated versions ("TEXT
+    EFFECTIVE UNTIL 1/05/26" / "TEXT EFFECTIVE 1/05/26"). The unit in force on
+    ``as_of`` keeps the plain number; every other one gets a ``--`` variant
+    slug describing it (NM/VT convention, ``citation_segment.variant_segment``).
+    """
+    addressable = [node for node in siblings if node.number is not None]
+    groups: dict[str, list[_UnitNode]] = defaultdict(list)
+    for ordinal, node in enumerate(addressable, start=1):
+        node.ordinal = ordinal
+        groups[str(node.number)].append(node)
+    for number, group in groups.items():
+        segment = citation_segment(number)
+        if len(group) == 1:
+            group[0].segment = segment
+            continue
+        primary = _primary_variant(group, as_of=as_of)
+        primary.segment = segment
+        others = [node for node in group if node is not primary]
+        descriptors = [_variant_descriptor(node) for node in others]
+        for node, descriptor in zip(others, descriptors, strict=True):
+            if descriptors.count(descriptor) > 1:
+                # Two variants of one kind: suffix the 1-based printed position.
+                descriptor = f"{descriptor}-{group.index(node) + 1}"
+            node.variant = descriptor
+            node.segment = variant_segment(segment, descriptor)
+            node.variant_of = primary
+            primary.variants.append(node)
+
+
+def _primary_variant(group: list[_UnitNode], *, as_of: date | None) -> _UnitNode:
+    current = [node for node in group if _is_current(node, as_of=as_of)]
+    for candidates in (
+        [node for node in current if node.operative],
+        current,
+        [node for node in group if node.operative],
+    ):
+        if candidates:
+            return candidates[0]
+    return group[0]
+
+
+def _is_current(node: _UnitNode, *, as_of: date | None) -> bool:
+    if as_of is None:
+        return True
+    if node.effective_until is not None and as_of >= node.effective_until:
+        return False
+    if node.effective_from is not None and as_of < node.effective_from:
+        return False
+    return node.repealed_on is None or as_of >= node.repealed_on
+
+
+def _variant_descriptor(node: _UnitNode) -> str:
+    if node.effective_until is not None:
+        return f"effective-until-{node.effective_until.isoformat()}"
+    if node.effective_from is not None:
+        return f"effective-{node.effective_from.isoformat()}"
+    if node.repealed_on is not None:
+        return f"repealed-{node.repealed_on.isoformat()}"
+    if any(marker.startswith("REALLOCATED TO") for marker in node.markers):
+        return "reallocated"
+    if not node.operative:
+        return "repealed" if any("(RP)" in item for item in node.own_history) else "placeholder"
+    return "duplicate"
+
+
+def _unit_status(node: _UnitNode, *, as_of: date | None) -> str | None:
+    if node.repealed_on is not None:
+        # "(TEXT REPEALED 1/05/26)": repealed from that date on; before it the
+        # placeholder only announces the repeal (the markers say so).
+        return "repealed" if _is_current(node, as_of=as_of) else None
+    if any(marker.startswith("REALLOCATED TO") for marker in node.markers):
+        return "reallocated"
+    if not node.operative and any("(RP)" in item for item in node.own_history):
+        return "repealed"
+    if node.effective_until is not None:
+        return "effective-until"
+    return None
+
+
+def _split_status_markers(text: str) -> tuple[str, list[str]]:
+    markers: list[str] = []
+    remaining = text
+    while True:
+        match = _STATUS_MARKER_RE.match(remaining)
+        if match is None:
+            break
+        markers.append(_clean_text(match.group("marker")))
+        remaining = remaining[match.end() :]
+    return remaining.strip(), markers
+
+
+def _unit_history(tag: Tag) -> tuple[str, ...]:
+    history = [
+        _statute_text(item)
+        for item in tag.select(".bhistory")
+        if not _is_editorial(item, tag, own_class="bhistory")
+    ]
+    return tuple(dict.fromkeys(text for text in history if text))
+
+
+def _unit_kind(tag: Tag) -> str | None:
+    for class_name in tag.get("class") or ():
+        kind = _UNIT_KIND_BY_CLASS.get(class_name)
+        if kind is not None:
+            return kind
+    return None
+
+
+def _nearest_unit_ancestor(tag: Tag, stop: Tag) -> Tag | None:
+    for parent in tag.parents:
+        if parent is stop:
+            return None
+        if _unit_kind(parent) is not None:
+            return parent
+    return None
+
+
+def _first_statute_element(root: Tag, class_name: str) -> Tag | None:
+    """First element with ``class_name`` that is not itself, or inside, editorial apparatus."""
+    for tag in root.select(f".{class_name}"):
+        if not _is_editorial(tag, root, own_class=class_name):
+            return tag
+    return None
+
+
+def _is_editorial(tag: Tag, stop: Tag, *, own_class: str | None = None) -> bool:
+    """Whether ``tag`` is, or sits inside, editorial apparatus below ``stop``.
+
+    ``own_class`` is the apparatus class the caller is looking for (``bhistory``
+    when collecting history); any other apparatus class on the element, or on an
+    ancestor, makes it editorial.
+    """
+    classes = set(tag.get("class") or ()) - ({own_class} if own_class else set())
+    return bool(_NON_BODY_CLASSES.intersection(classes)) or _inside_non_body(tag, stop)
+
+
+def _statute_text(tag: Tag) -> str:
+    """``tag``'s text as ``get_text(" ", strip=True)`` joins it, without editorial descendants."""
+    parts: list[str] = []
+
+    def walk(node: Tag) -> None:
+        for child in node.children:
+            if isinstance(child, Tag):
+                if _is_non_body(child) or child.name in {"script", "style", "template"}:
+                    continue
+                walk(child)
+            elif type(child) in (NavigableString, CData):
+                text = child.strip()
+                if text:
+                    parts.append(text)
+
+    walk(tag)
+    return _clean_text(" ".join(parts))
+
+
+def _is_non_body(tag: Tag) -> bool:
+    return bool(_NON_BODY_CLASSES.intersection(tag.get("class") or ()))
+
+
+def _inside_non_body(tag: Tag, stop: Tag) -> bool:
+    for parent in tag.parents:
+        if parent is stop:
+            return False
+        if _NON_BODY_CLASSES.intersection(parent.get("class") or ()):
+            return True
+    return False
+
+
+def _own_descendant(tag: Tag, selector: str, section_node: Tag) -> Tag | None:
+    for candidate in tag.select(selector):
+        if (
+            _nearest_unit_ancestor(candidate, section_node) is tag
+            and not _is_non_body(candidate)
+            and not _inside_non_body(candidate, tag)
+        ):
+            return candidate
+    return None
 
 
 def _fetch_section_pages(
@@ -676,6 +1248,7 @@ def _fetch_section_pages(
     targets: list[MaineSectionTarget],
     *,
     workers: int,
+    as_of: date | None = None,
 ) -> list[tuple[MaineSectionTarget, _MaineSourcePage | None, MaineParsedSection | None, Exception | None]]:
     def fetch_one(target: MaineSectionTarget) -> tuple[
         MaineSectionTarget,
@@ -685,7 +1258,7 @@ def _fetch_section_pages(
     ]:
         try:
             page = fetcher.fetch(target.relative_path)
-            return target, page, parse_maine_section(page.data, target=target), None
+            return target, page, parse_maine_section(page.data, target=target, as_of=as_of), None
         except Exception as exc:  # noqa: BLE001
             return target, None, None, exc
 
@@ -792,6 +1365,7 @@ def _append_provision(
             legal_identifier=provision.legal_identifier,
             identifiers={
                 "maine:title": provision.title,
+                **provision.identifiers,
                 f"maine:{provision.kind}": provision.display_number,
                 "maine:source_id": provision.source_id,
             },
@@ -870,6 +1444,68 @@ def _section_provision(target: MaineSectionTarget, parsed: MaineParsedSection) -
         notes=parsed.notes,
         status=parsed.status or target.status,
     )
+
+
+def _subunit_provision(
+    target: MaineSectionTarget,
+    parsed: MaineParsedSection,
+    subunit: MaineSubunit,
+) -> MaineProvision:
+    section_number = parsed.display_section or target.display_section
+    relative = "/".join(subunit.segments)
+    parent_citation_path = (
+        f"{target.citation_path}/{'/'.join(subunit.parent_segments)}"
+        if subunit.parent_segments
+        else target.citation_path
+    )
+    identifiers = {"maine:section": section_number}
+    identifiers.update(_subunit_identifiers(parsed.subunits, subunit))
+    extra: dict[str, Any] = {
+        "section": section_number,
+        "section_heading": parsed.heading or target.heading,
+        "publisher_label": subunit.label,
+    }
+    if subunit.variant is not None:
+        extra["variant"] = subunit.variant
+    if subunit.variant_of is not None:
+        extra["variant_of"] = f"{target.citation_path}/{'/'.join(subunit.variant_of)}"
+    if subunit.variants:
+        extra["variants"] = [
+            f"{target.citation_path}/{'/'.join(segments)}" for segments in subunit.variants
+        ]
+    return MaineProvision(
+        kind=subunit.kind,
+        title=target.title,
+        source_id=f"{target.source_id}/{relative}",
+        display_number=subunit.number,
+        citation_path=f"{target.citation_path}/{relative}",
+        legal_identifier=target.legal_identifier + "".join(f"({number})" for number in subunit.numbers),
+        heading=subunit.heading,
+        body=subunit.body,
+        parent_citation_path=parent_citation_path,
+        level=3 + len(subunit.segments),
+        ordinal=subunit.ordinal,
+        references_to=subunit.references_to,
+        source_history=subunit.source_history,
+        notes=subunit.markers,
+        status=subunit.status,
+        identifiers=identifiers,
+        extra_metadata=extra,
+    )
+
+
+def _subunit_identifiers(
+    subunits: tuple[MaineSubunit, ...],
+    subunit: MaineSubunit,
+) -> dict[str, str]:
+    """Map each ancestor level's kind to its publisher number (``maine:subsection`` -> ``2``)."""
+    kinds = {item.segments: item.kind for item in subunits}
+    identifiers: dict[str, str] = {}
+    for depth in range(1, len(subunit.segments)):
+        kind = kinds.get(subunit.segments[:depth])
+        if kind is not None:
+            identifiers[f"maine:{kind}"] = subunit.numbers[depth - 1]
+    return identifiers
 
 
 def _parse_title_heading(soup: BeautifulSoup, title: MaineTitle) -> str:
@@ -1016,6 +1652,7 @@ def _metadata(provision: MaineProvision) -> dict[str, Any]:
         metadata["notes"] = list(provision.notes)
     if provision.status:
         metadata["status"] = provision.status
+    metadata.update(provision.extra_metadata)
     return metadata
 
 
@@ -1123,6 +1760,13 @@ def _slug(value: str) -> str:
 
 def _state_source_key(jurisdiction: str, run_id: str, relative_name: str) -> str:
     return f"sources/{jurisdiction}/{DocumentClass.STATUTE.value}/{run_id}/{relative_name}"
+
+
+def _optional_iso_date(value: str) -> date | None:
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        return None
 
 
 def _date_text(value: date | str | None, fallback: str) -> str:

@@ -1,0 +1,176 @@
+# Maine Revenue Services (MRS) individual income tax forms and instructions that
+# publish the Maine pension income deduction amount defined by
+# 36 M.R.S. §5122(2)(M-2)(2)(d)(iv) (the maximum annual Social Security benefit
+# for an individual at retirement age as of January 1 of the tax year):
+# $49,824 for tax year 2026 (2026 Form 1040ES-ME, page 2, line 2 note) and
+# $48,216 for tax year 2025 (2025 Form 1040ME Schedule 1S, page 2, worksheet
+# line P2; 2025 Form 1040ME instructions, page 8, line 4). Requested by
+# TheAxiomFoundation/rulespec-us#1419, which encodes §5122(2)(M-2) and needs
+# the MRS-published amounts as primary sources.
+#
+# One `form` scope, version 2026-09-26-me-pension-income-deduction-forms:
+#
+#   uv run --extra dev axiom-corpus-ingest extract-official-documents \
+#     --base data/corpus \
+#     --version 2026-09-26-me-pension-income-deduction-forms \
+#     --manifest manifests/us-me-pension-income-deduction-forms.yaml
+#
+# Conventions follow manifests/us-wi-2025-schedule-sb-instructions.yaml (official
+# PDF, single_block, form class, line statements checked against the PDF text)
+# and the state-form citation-path shape us-xx/form/<agency>/ty<year>/<id> used
+# by scripts/build_tax_forms_manifests.py and the 2026-09-14-ty2026-indexed-amounts
+# scopes (agency acronym slug: ador, cdor, drs, idr, istc...; here `mrs`).
+# `source_as_of` is the retrieval date; `expression_date` is January 1 of the
+# document's tax year, as the WI Schedule SB and CT-1040ES manifests do.
+documents:
+  - source_id: us-me-mrs-1040es-me-ty2026
+    jurisdiction: us-me
+    document_class: form
+    title: 2026 Form 1040ES-ME Instructions – Estimated Tax for Individuals
+    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
+    source_format: pdf
+    source_as_of: "2026-09-26"
+    expression_date: "2026-01-01"
+    citation_path: us-me/form/mrs/ty2026/1040es-me
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Maine Revenue Services
+      source_sha256: 2b4a9b22a77d096a47fd4d4cb0b9fd2255d773ea7b9123a8a9b86d519730275c
+      document_subtype: estimated_tax_instructions
+      form: Form 1040ES-ME
+      revision: "Revised: July 2026"
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: official_tax_year_2026_estimated_tax_instructions
+      certification_scope: estimated_tax_worksheet_pension_income_deduction_amount_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_basis: 36 M.R.S. §5122(2)(M-2)(2)(d)(iv)
+      pension_income_deduction_maximum_2026: "49824"
+      line_2_pension_income_deduction_note: >-
+        Page 2, 2026 Estimated Tax Worksheet, line 2 (Deduct - income
+        subtraction modifications included in line 1. See the 2025 Form 1040ME,
+        Schedule 1S.): "Note that the maximum pension income deduction is
+        increased to $49,824 for tax year 2026." followed by "The maximum
+        pension income deduction is equal to the annual social security benefit
+        for an individual at the retirement age, as defined in 42 USC § 416(l),
+        as of January 1, 2026."
+      source_note: >-
+        Official 6-page 2026 Form 1040ES-ME instructions (Revised: July 2026)
+        with the 2026 Estimated Tax Worksheet on page 2. Taken for the line 2
+        note that publishes the tax-year-2026 maximum pension income deduction
+        of $49,824 under 36 M.R.S. §5122(2)(M-2)(2)(d)(iv), requested by
+        TheAxiomFoundation/rulespec-us#1419. This intake preserves the official
+        instructions and does not certify final-return liability, RuleSpec
+        semantics, or PolicyEngine parity.
+  - source_id: us-me-mrs-1040me-schedule-1s-ty2025
+    jurisdiction: us-me
+    document_class: form
+    title: 2025 Form 1040ME Schedule 1S – Income Subtraction Modifications
+    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
+    source_format: pdf
+    source_as_of: "2026-09-26"
+    expression_date: "2025-01-01"
+    citation_path: us-me/form/mrs/ty2025/1040me-schedule-1s
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Maine Revenue Services
+      source_sha256: f158b7ef00c8f1bc27c8c35a65d5478dd410804b30afb20f279e3a81d9e5ca0a
+      document_subtype: individual_income_tax_schedule
+      form: Schedule 1S (Form 1040ME)
+      attachment_sequence_number: "5"
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: official_tax_year_2025_schedule
+      certification_scope: pension_income_deduction_worksheet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_basis: 36 M.R.S. §5122(2)(M-2)
+      pension_income_deduction_maximum_2025: "48216"
+      worksheet_line_p2_maximum_allowable_deduction: >-
+        Page 2, "Worksheet for Pension Income Deduction - Schedule 1S, Line 4",
+        line P2 "Maximum allowable deduction" prints 48,216.00 in both the
+        Taxpayer and Spouse columns. Line P1 is total eligible non-military
+        pension income (both Maine and non-Maine sources) included in federal
+        adjusted gross income (from federal Form 1040, lines 4b and 5b or Form
+        1040-SR, lines 4b and 5b); line P3 is total social security and
+        railroad retirement benefits received, whether taxable or not; line P4
+        subtracts P3 from P2 (if zero or less, enter zero); line P5 is the
+        smaller of P1 or P4; line P9 is total eligible military retirement pay
+        included in federal adjusted gross income; line P10 adds P8 and P9.
+      worksheet_phaseout_caution: >-
+        The worksheet's CAUTION states that if Form 1040ME, line 14 is more than
+        $125,000 if single or married filing separately, $187,500 if head of
+        household, or $250,000 if married filing jointly or qualifying surviving
+        spouse, the Worksheet for Phaseout of Non-Military Pension Income
+        Deduction must be completed.
+      source_note: >-
+        Official 2-page 2025 Form 1040ME Schedule 1S (Income Subtraction
+        Modifications, attachment sequence no. 5), whose page 2 carries the
+        Worksheet for Pension Income Deduction for Schedule 1S, line 4. Taken
+        for worksheet line P2, which publishes the tax-year-2025 maximum
+        allowable pension income deduction of $48,216 under
+        36 M.R.S. §5122(2)(M-2), requested by
+        TheAxiomFoundation/rulespec-us#1419. This intake preserves the official
+        schedule and does not certify final-return liability, RuleSpec
+        semantics, or PolicyEngine parity.
+  - source_id: us-me-mrs-1040me-instructions-ty2025
+    jurisdiction: us-me
+    document_class: form
+    title: 2025 Form 1040ME Instructions – Maine Resident Individual Income Tax Booklet
+    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_gen_instr_w_cover_pg.pdf
+    source_format: pdf
+    source_as_of: "2026-09-26"
+    expression_date: "2025-01-01"
+    citation_path: us-me/form/mrs/ty2025/1040me-instructions
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Maine Revenue Services
+      source_sha256: 00f731e053a19cc464595fbf38d61e11daa1e3e5a7bed525708a12d9b426051d
+      document_subtype: individual_income_tax_return_instructions
+      form: Form 1040ME
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: official_tax_year_2025_general_instructions_with_conformity_cover_page
+      certification_scope: schedule_1s_line_4_pension_income_deduction_instructions_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_basis: 36 M.R.S. §5122(2)(M-2)
+      pension_income_deduction_maximum_2025: "48216"
+      line_4_pension_income_deduction: >-
+        Page 8, Schedule 1S line 4 instructions: "Enter the pension income
+        deduction from the Pension Income Deduction Worksheet, line P10.
+        Include copies of your 1099 forms to verify the subtraction. Enclose
+        worksheet. 36 M.R.S. § 5122(2)(M-2)." The instructions state that you
+        and your spouse (if married) may each deduct up to $48,216 of other
+        eligible pension income that is included in federal adjusted gross
+        income, and that "The $48,216 cap must be reduced by any social
+        security and railroad retirement benefits received, whether taxable or
+        not." Benefits received under a United States military retirement
+        plan, including survivor benefits, are stated to be fully exempt.
+      conformity_cover_page_note: >-
+        Page 1 is an MRS "IMPORTANT UPDATE" cover page stating that Maine
+        conforms to the Internal Revenue Code as of December 31, 2024, that
+        federal Public Law 119-21 changes are expected to be considered in the
+        Second Regular Session of the 132nd Maine Legislature, and that the
+        2025 returns and instructions were developed under the Governor's
+        directive pending conformity legislation.
+      source_note: >-
+        Official 13-page 2025 Form 1040ME general instructions (2025 Maine
+        Resident Individual Income Tax Booklet) with the MRS conformity cover
+        page. Taken for the page 8 Schedule 1S line 4 instructions, which state
+        the tax-year-2025 $48,216 pension income deduction cap and its
+        reduction by social security and railroad retirement benefits under
+        36 M.R.S. §5122(2)(M-2), requested by
+        TheAxiomFoundation/rulespec-us#1419. This intake preserves the official
+        instructions and does not certify final-return liability, RuleSpec
+        semantics, or PolicyEngine parity.
