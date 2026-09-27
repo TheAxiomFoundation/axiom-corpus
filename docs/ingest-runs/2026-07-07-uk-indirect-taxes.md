@@ -22,6 +22,10 @@ current for FY 2026-27; as-of / expression-date 2026-06-30):
   and is NOT carried into the consolidated s.6(1A) text (verified: s.6(1A) reads
   £0.5795 at expression dates 2024-06-30 and 2026-06-30). Version
   `2026-07-07-uk-hoda-1979`.
+  Correction (2026-09-27): the cut is not set by Budget resolution. Treasury
+  orders under Excise Duties (Surcharges or Rebates) Act 1979 s. 1(2) make it,
+  starting with SI 2022/365. Those orders are now in the corpus; see
+  `2026-09-27-uk-trading-allowance-fuel-duty-orders.md`.
 - Communications Act 2003 (c. 21) s.363 "Licence required for use of TV receiver"
   and s.365 "TV licence fees": fee liability is "such sum ... as may be provided
   for by ... regulations", "subject to any concession" the BBC provides. Version
