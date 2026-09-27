@@ -282,7 +282,7 @@ class _ProvisionFacts(NamedTuple):
     sectioned_document: bool
 
 
-def _provision_facts(record: ProvisionRecord, shared: dict[str, str]) -> _ProvisionFacts:
+def _provision_facts(record: ProvisionRecord, shared: dict[object, object]) -> _ProvisionFacts:
     body = record.body
     has_body_text = bool(body and body.strip())
     return _ProvisionFacts(
@@ -310,7 +310,7 @@ def _sectioned_document(record: ProvisionRecord | _ProvisionFacts) -> bool:
     return record.kind == "document" and bool(body) and split_document_body(body or "") is not None
 
 
-def _shared[T](value: T, shared: dict[str, str]) -> T:
+def _shared[T](value: T, shared: dict[object, object]) -> T:
     # Every row of a scope repeats a few jurisdiction, class, version, source
     # and date strings; one object per value keeps the facts compact.
     if type(value) is str:
@@ -472,7 +472,7 @@ def _load_provisions_for_validation(
         )
         return None
     try:
-        shared: dict[str, str] = {}
+        shared: dict[object, object] = {}
         return tuple(_provision_facts(record, shared) for record in iter_provisions(path))
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         collector.add("error", "invalid_provisions", str(exc), scope=scope, path=path)

@@ -140,7 +140,7 @@ class NavigationSource(NamedTuple):
 
 def navigation_source(
     record: ProvisionRecord,
-    shared: dict[str, str] | None = None,
+    shared: dict[object, object] | None = None,
 ) -> NavigationSource:
     """Reduce one provision record to what the navigation build reads.
 
@@ -162,7 +162,7 @@ def navigation_source(
     )
 
 
-def _shared[T](value: T, shared: dict[str, str]) -> T:
+def _shared[T](value: T, shared: dict[object, object]) -> T:
     if type(value) is str:
         return shared.setdefault(value, value)  # type: ignore[return-value]
     return value
@@ -210,7 +210,7 @@ def build_navigation_nodes(
     :class:`NavigationSource` as it arrives, so a streamed iterable keeps
     memory to compact per-row metadata rather than provision bodies.
     """
-    shared: dict[str, str] = {}
+    shared: dict[object, object] = {}
     return build_navigation_nodes_from_sources(
         (navigation_source(record, shared) for record in records),
         jurisdiction=jurisdiction,

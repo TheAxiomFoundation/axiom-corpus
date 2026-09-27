@@ -846,7 +846,7 @@ def _provision_snapshot_projection(
         mapping_columns={"identifiers"},
     )
     sources: list[NavigationSource] = []
-    shared: dict[str, str] = {}
+    shared: dict[object, object] = {}
     rows = 0
     parse_failure: Exception | None = None
     projection_failure: Exception | None = None
