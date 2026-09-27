@@ -18,6 +18,14 @@ Governing version (verified live on 2026-09-24):
   financial assistance awarded on or after Dec. 8, 2025 and Jan. 22, 2026.
   Supplement 1 revises Chapter III.B (minimum number of reviewers); neither
   supplement revises Chapter III.C. The supplements are not ingested here.
+- Both supplements also revise Chapter II, which is in this scope. Supplement 1
+  revises II.D (including data management and sharing plans) and II.F, raising
+  the Planning cap from $100,000 to $200,000 a year, RAPID from $200,000 to
+  $300,000 and EAGER from $300,000 to $400,000; Supplement 2 revises II.D.
+  The Chapter II rows here are a snapshot of the 24-1 page and keep the
+  pre-supplement text (for example the caps in `chapter-ii/block-60` to `62`),
+  so an encoding of those provisions must check the supplements first.
+  (Checked on nsf.gov on 2026-09-27.)
 
 Official sources:
 - NSF 26-506, Pathways to Enable Secure Open-Source Ecosystems (PESOSE):
@@ -69,6 +77,16 @@ Known extractor limitation (pre-existing, not introduced here):
   Decline a Proposal for Financial or Administrative Reasons" (III.F.2); and
   26-506 "Summary Of Program Requirements", "V. Proposal Preparation And
   Submission Instructions", and "VII. Award Administration Information".
+- The extractor also reads only headings, paragraphs, list items, tables and
+  block quotes, so text sitting loose in the page container is dropped. In
+  this scope that loses one paragraph: 26-506's "Experiential Activities"
+  paragraph under "Important Information And Revision Notes" (source HTML
+  line 904 has no opening `<p>`), so `nsf-26-506/block-2` does not contain it.
+  The fuller statement of the same requirement (mandatory "I-Corps for
+  PESOSE" for Track 1 and Track 2 awardees, and the Track 2 waiver) is kept in
+  `nsf-26-506/block-13` ("A. Proposal Preparation Instructions"). A word-level
+  comparison of each document's content region against the provisions found
+  no other lost body text in this scope (independent review, 2026-09-27).
 - III.C (`chapter-iii/block-4`) has its own heading and body and is
   unaffected. Fixing the extractor would change block numbering or parentage
   for every official-document scope, so it belongs in a separate extractor
