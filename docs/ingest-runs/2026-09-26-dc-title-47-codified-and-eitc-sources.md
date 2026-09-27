@@ -27,7 +27,7 @@ No R2 upload, Supabase load, publication or activation was run for this ingest.
   (2026-09-23). For example, 47-1806.04.xml is blob `cc41d7fc2a`, and its only
   upstream commit is `db034d7fb013` (2021-10-17, message "2019-01-04").
 - The newest history note in those title 47 files is D.C. Law 21-98 (D.C. Act
-  21-307), both from 2015-2016. The title 4 files stop at D.C. Law 22-65.
+  21-307), both from Council Period 21. The title 4 files stop at D.C. Law 22-65.
 - `source_as_of` and `expression_date` were hardcoded to `2025-12-23` in
   `manifests/state-statutes.current.yaml` (added in 19c99dc01, 2026-05-01) and
   copied into the recovery manifest. The date is therefore not the date of the
@@ -69,7 +69,10 @@ paragraph after its subparagraphs. In title 47 this lost:
 - four article subheadings of the Multistate Tax Compact in § 47-441.
 
 `_dc_aftertext_lines` now emits the element at its paragraph's indent, in
-document order (`src/axiom_corpus/corpus/states.py`). A new test,
+document order (`src/axiom_corpus/corpus/states.py`). Body indentation mirrors
+the upstream XML nesting, not the legal structure. For example, the § 47-1002
+proviso sits inside `(D)` in the XML, although it refers to paragraph (20).
+Similarly, § 47-1806.04(e)(2)(C) is nested as a sibling of (2) upstream. A new test,
 `test_dc_section_body_keeps_aftertext_at_paragraph_level`, pins the output.
 
 ## D.C. Code title 47
@@ -193,6 +196,12 @@ uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
   --manifest manifests/us-dc-individual-income-tax-forms-ty2022-ty2023.yaml
 ```
 
+- **Dates.** `expression_date` is the first day of the tax year.
+  `source_as_of` is the retrieval date, following the TY2025 booklet
+  (`manifests/us-dc-individual-income-tax-forms-ty2025.yaml`). The publisher's
+  `Last-Modified` dates are in `metadata.publisher_last_modified`. The Rev. Procs.
+  instead use the IRB issue date, following
+  `manifests/us-irs-guidance-2026-inflation-adjustments.yaml`.
 - **Which revisions.** The OTR node pages (`/node/1639856`, `/node/1702786`) now
   link later revisions (March 2023 and April 2024). The manifest ingests the
   January revisions. They match the reference checksums, and OTR still serves

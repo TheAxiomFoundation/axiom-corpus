@@ -741,12 +741,24 @@ SAMPLE_DC_SECTION_WITH_AFTERTEXT = """<?xml version="1.0" encoding="utf-8"?>
     <aftertext>As the exemption applies to the Southern Court project, it shall be effective as of October 1, 1987.</aftertext>
   </para>
   <para>
+    <num>(21)</num>
+    <para>
+      <num>(D)</num>
+      <para>
+        <num>(i)</num>
+        <text>Property of a cooperative.</text>
+      </para>
+      <aftertext>This subparagraph applies to taxable years after 1990.</aftertext>
+    </para>
+  </para>
+  <para>
     <num>Article VI.</num>
     <text>The Commission shall report annually.</text>
     <aftertext>
-      <center>Committees.</center>
+      <center>Committees.<br/>Powers.</center>
     </aftertext>
   </para>
+  <aftertext>Nothing in this section limits the Mayor.</aftertext>
 </section>
 """
 
@@ -762,8 +774,13 @@ def test_dc_section_body_keeps_aftertext_at_paragraph_level():
             "  (A) Property used for low-income housing.",
             "As the exemption applies to the Southern Court project, it shall be "
             "effective as of October 1, 1987.",
+            "(21)",
+            "  (D)",
+            "    (i) Property of a cooperative.",
+            "  This subparagraph applies to taxable years after 1990.",
             "Article VI. The Commission shall report annually.",
-            "Committees.",
+            "Committees. Powers.",
+            "Nothing in this section limits the Mayor.",
         ]
     )
 

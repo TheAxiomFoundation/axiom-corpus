@@ -29,7 +29,7 @@ extractor does not record them in provision rows.
 `dc-law-xml` still contains a `us/dc/council/code/titles` tree, but it is not
 the maintained Code. At `dc-law-xml` main `a685aaa` (2026-09-23), the newest
 history note in its title 47 sections is D.C. Law 21-98 and in title 4 D.C. Law
-22-65 (2016-2017), although a few files there were touched as late as 2024.
+22-65, although a few files there were touched as late as 2024.
 `us-dc/statute/2026-05-19-title-4` and
 `us-dc/statute/2026-07-16-pit-east-title-47` were extracted from it with a
 hardcoded `source_as_of` of 2025-12-23, so their text is about ten years older
