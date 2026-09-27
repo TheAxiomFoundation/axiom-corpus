@@ -204,7 +204,7 @@ unchanged (§5122 keeps `88f3606d-…`).
 
 ### Verification
 
-- `tests/test_corpus_maine.py` (38 tests):
+- `tests/test_corpus_maine.py` (38 tests, some parametrised):
   - §5122 from the retained bytes (SHA-256 pinned): 225 body lines,
     54,705 characters, the (M-2)(1)(a)(i) sentence, the (M-3) continuation
     and subparagraphs, no history bracket in the body, 205 units, the
@@ -302,7 +302,16 @@ unchanged (§5122 keeps `88f3606d-…`).
   (`heading_section`, `headnote_blip`, `qhistory`, `bhistory`, `note`) other
   than the one being collected, and numbers, headings, history and blips are
   read without editorial descendants. Tests cover each apparatus class in each
-  placement. None of these placements occurs in the 1,923 retained files. Its lane had no network,
+  placement. None of these placements occurs in the 1,923 retained files. A
+  fourth pass (job `20260927-013340-maine-754-final2`) audited every site where
+  the parser selects elements or reads text, confirmed the rule at each but
+  one (the check that a page without a section container has statute content
+  also counted editorial-only elements), and regenerated the committed scope
+  byte for byte again; that check now uses the same filter, with tests. It
+  also noted two metadata collectors the rule does not cover, both unchanged
+  from the 2026-09-14 parser: a Revisor's note's text keeps any history span
+  inside it, and `references_to` includes links inside notes (no note in the
+  retained Title 36 pages has a link). Its lane had no network,
   so the other-title check below was run in this session.
 - Other titles (the section-body change applies to every title the adapter
   reads). 57 live pages fetched on 2026-09-27 at one request per second: the

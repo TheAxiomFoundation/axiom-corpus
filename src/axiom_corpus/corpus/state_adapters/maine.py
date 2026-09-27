@@ -720,7 +720,12 @@ def parse_maine_section(
         # Without the Revisor's section container only the statute-text elements
         # count; a page with none of them (an error page served with HTTP 200) is
         # rejected rather than read as statute text.
-        if soup.select_one(".mrs-text, .MRSSubSection, .headnote_blip") is None:
+        blips = [
+            blip
+            for blip in soup.select(".headnote_blip")
+            if not _is_editorial(blip, soup, own_class="headnote_blip")
+        ]
+        if not _statute_text_roots(soup) and not blips:
             raise ValueError("no Maine section content in page")
         section_node = soup
     heading_node = (

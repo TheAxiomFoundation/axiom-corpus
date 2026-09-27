@@ -958,6 +958,14 @@ def test_a_page_without_section_content_is_rejected_not_read_as_statute_text():
     )
     with pytest.raises(ValueError, match="no Maine section content"):
         parse_maine_section(error_page)
+    # Editorial material alone is not section content either.
+    for editorial_only in (
+        '<div class="note"><div class="mrs-text">Quoted editorial material.</div></div>',
+        '<div class="mrs-text note">Quoted editorial material.</div>',
+        '<div class="headnote_blip note">(REPEALED)</div>',
+    ):
+        with pytest.raises(ValueError, match="no Maine section content"):
+            parse_maine_section(editorial_only)
     # Without the section container only the Revisor's statute-text elements count.
     bare = (
         "<html><body><nav>Home | Statutes</nav>"
