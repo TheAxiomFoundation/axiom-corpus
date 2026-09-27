@@ -831,6 +831,7 @@ def _statute_text_roots(soup: BeautifulSoup) -> list[Tag]:
         tag
         for tag in soup.select(".mrs-text, .MRSSubSection")
         if tag.find_parent(class_=["mrs-text", "MRSSubSection"]) is None
+        and not _is_non_body(tag)
         and not _inside_non_body(tag, soup)
     ]
 
@@ -992,7 +993,10 @@ def _read_unit_label(node: _UnitNode, lines: list[_BodyLine], section_node: Tag)
         if match is not None:
             node.number = match.group("number")
     else:
-        first = next((child for child in tag.children if isinstance(child, Tag)), None)
+        first = next(
+            (child for child in tag.children if isinstance(child, Tag) and not _is_non_body(child)),
+            None,
+        )
         if first is not None and first.name == "span":
             label = _clean_text(first.get_text(" ", strip=True))
             match = _PAREN_LABEL_RE.match(label)
@@ -1162,6 +1166,10 @@ def _nearest_unit_ancestor(tag: Tag, stop: Tag) -> Tag | None:
     return None
 
 
+def _is_non_body(tag: Tag) -> bool:
+    return bool(_NON_BODY_CLASSES.intersection(tag.get("class") or ()))
+
+
 def _inside_non_body(tag: Tag, stop: Tag) -> bool:
     for parent in tag.parents:
         if parent is stop:
@@ -1173,8 +1181,10 @@ def _inside_non_body(tag: Tag, stop: Tag) -> bool:
 
 def _own_descendant(tag: Tag, selector: str, section_node: Tag) -> Tag | None:
     for candidate in tag.select(selector):
-        if _nearest_unit_ancestor(candidate, section_node) is tag and not _inside_non_body(
-            candidate, tag
+        if (
+            _nearest_unit_ancestor(candidate, section_node) is tag
+            and not _is_non_body(candidate)
+            and not _inside_non_body(candidate, tag)
         ):
             return candidate
     return None

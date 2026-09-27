@@ -1005,3 +1005,37 @@ def test_only_the_revisors_status_forms_are_markers(lead, markers, body):
     )
     (unit,) = parse_maine_section(html).subunits
     assert (unit.markers, unit.body) == (markers, body)
+
+
+@pytest.mark.parametrize(
+    ("html", "body", "units"),
+    [
+        (
+            '<div class="mrs-text">Statute.</div><div class="mrs-text note">Editorial note.</div>',
+            "Statute.",
+            [],
+        ),
+        (
+            '<div class="MRSSection"><div class="MRSSubSection"><span class="headnote note">9. Quoted.</span>'
+            '<span class="headnote">1. Actual.</span>Statute.</div></div>',
+            "1. Actual. Statute.",
+            [(("1",), "Actual", "Statute.")],
+        ),
+        (
+            '<div class="MRSSection"><div class="mrs-text MRSSubPara"><span class="note">(9)</span>'
+            "<span>(1)</span>Statute.</div></div>",
+            "(1) Statute.",
+            [(("1",), None, "Statute.")],
+        ),
+        (
+            '<div class="MRSSection"><div class="mrs-text MRSSubPara"><div class="note">Editorial note.</div>'
+            "<span>(1)</span>Statute.</div></div>",
+            "(1) Statute.",
+            [(("1",), None, "Statute.")],
+        ),
+    ],
+)
+def test_an_element_that_is_itself_a_note_is_never_text_or_a_label(html, body, units):
+    parsed = parse_maine_section(html)
+    assert parsed.body == body
+    assert [(unit.segments, unit.heading, unit.body) for unit in parsed.subunits] == units
