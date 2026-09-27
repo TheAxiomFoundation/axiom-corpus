@@ -26,7 +26,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f12ffda965531ea496121ac5099a969ba426c3e0",
+    "commit": "36fddfd49e164b4070f73491ec93e10b425d7195",
     "dirty_tracked": false,
     "root": "."
   },
@@ -43,19 +43,19 @@
     "source_count": 6
   },
   "document_class": "form",
-  "generated_at": "2026-09-27T05:32:26.402370+00:00",
+  "generated_at": "2026-09-27T05:40:44.841083+00:00",
   "jurisdiction": "us-me",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-26-me-title-36-subunits.md",
-      "sha256": "e6953bf680c08cfdfb2103959c2e7b98e9c07a02d85c1aa745148e132fc1872f"
+      "sha256": "91a8f35fdffcd8e56ce0003224a332b79277054afe4d12f9b1e3b418636d0043"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "LM3GYyPst/Cc1FFtuCV1vsm9M+U3RL9kgmrD6crTIURb+BcTX/dXclli6axOl1hYVamyCdk6c2Tbmnv31ZIpCQ=="
+    "value": "TPqTjfge0TBSankqUquI2HF+M61CfRx+u4quseBErEnnfshpd1OLKapCKJMhEia/R+Y75XPb2PKrjB9PuFoNBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-26-me-pension-income-deduction-forms"
