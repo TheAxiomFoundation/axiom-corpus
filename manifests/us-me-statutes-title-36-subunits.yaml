@@ -1,0 +1,36 @@
+version: "2026-09-26-income-tax-subunits"
+# Maine Revised Statutes Title 36 (Taxation) re-extracted from the official
+# Legislature HTML retained by us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36,
+# with the parser fix for section bodies that kept only each subsection's lead-in
+# (36 M.R.S. §5122 lost every lettered paragraph, including (2)(M-2) and (M-3))
+# and with every numbered unit below the section emitted as its own child
+# provision: subsection, paragraph, subparagraph, division and subdivision, e.g.
+# us-me/statute/36/5122/2/M-2 for 36 M.R.S. §5122(2)(M-2).
+# The adapter appends "-us-me-title-36", so the scope on disk is
+# us-me/statute/2026-09-26-income-tax-subunits-us-me-title-36. It supersedes
+# the 2026-09-14 scope: same section citation paths, corrected section bodies.
+# Run note: docs/ingest-runs/2026-09-26-me-title-36-subunits.md.
+sources:
+  - source_id: us-me-mrs-title-36
+    jurisdiction: us-me
+    document_class: statute
+    adapter: maine-revised-statutes
+    source_url: https://legislature.maine.gov/statutes/36/title36ch0sec0.html
+    version: "2026-09-26-income-tax-subunits"
+    options:
+      # The source bytes are the official pages retrieved on 2026-09-14 for the
+      # superseded scope (git-tracked; the adapter reads them from source_dir and
+      # never falls back to the network), so the retrieval and expression dates
+      # stay those of that retrieval.
+      source_as_of: "2026-09-14"
+      expression_date: "2026-09-14"
+      source_dir: ../data/corpus/sources/us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36
+      only_title: "36"
+      include_subunits: true
+      workers: 8
+    metadata:
+      source_authority: Maine Legislature (Office of the Revisor of Statutes)
+      source_scope_note: >-
+        Maine Revised Statutes Title 36 (Taxation) from the official Legislature
+        HTML retrieved 2026-09-14, with subsection, paragraph, subparagraph,
+        division and subdivision child provisions.

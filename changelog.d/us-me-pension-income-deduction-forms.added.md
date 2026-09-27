@@ -1,0 +1,1 @@
+Preserve Maine Revenue Services' 2026 Form 1040ES-ME, 2025 Form 1040ME Schedule 1S and 2025 Form 1040ME instructions, which state the pension income deduction amounts ($49,824 for 2026, $48,216 for 2025).

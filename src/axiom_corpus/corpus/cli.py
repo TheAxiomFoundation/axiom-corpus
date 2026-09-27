@@ -3070,6 +3070,7 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            include_subunits=_optional_bool(options.get("include_subunits"), default=False),
         )
     if adapter == "maryland-code":
         return extract_maryland_code(

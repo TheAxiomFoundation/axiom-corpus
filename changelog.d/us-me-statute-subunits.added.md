@@ -1,0 +1,1 @@
+Emit Maine subsections, lettered paragraphs, subparagraphs, divisions and subdivisions as child provisions (for example `us-me/statute/36/5122/2/M-2`) when a manifest sets `include_subunits: true`, and re-extract Title 36 that way from the retained 2026-09-14 official pages as `us-me/statute/2026-09-26-income-tax-subunits-us-me-title-36`.
