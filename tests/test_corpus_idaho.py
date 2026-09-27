@@ -1,4 +1,12 @@
+import json
+import re
+from datetime import date, datetime
+from pathlib import Path
+
 import pytest
+from bs4 import BeautifulSoup
+from hypothesis import HealthCheck, event, given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -8,13 +16,24 @@ from axiom_corpus.corpus.state_adapters.idaho import (
     IDAHO_TITLE_INDEX_SOURCE_FORMAT,
     IDAHO_TITLE_SOURCE_FORMAT,
     IdahoSectionListing,
+    _clean_text,
+    _is_history_marker,
+    _parse_section_divs,
     _RecordedSource,
+    _section_content_divs,
+    _strip_section_heading,
     extract_idaho_statutes,
     parse_idaho_chapter_page,
     parse_idaho_section_page,
+    parse_idaho_section_versions,
     parse_idaho_title_index,
     parse_idaho_title_page,
 )
+
+SCHEMA_PATH = Path(__file__).resolve().parents[1] / "schema" / "citation-path.v1.json"
+_SCHEMA = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+SEGMENT_RE = re.compile(_SCHEMA["$defs"]["hierarchy_segment"]["well_formed_pattern"])
+CITATION_PATH_RE = re.compile(_SCHEMA["$defs"]["citation_path"]["pattern"])
 
 SAMPLE_TITLE_INDEX_HTML = """
 <html><body>
@@ -240,3 +259,421 @@ def test_extract_idaho_statutes_from_source_dir_writes_complete_artifacts(tmp_pa
     assert records[2].metadata["references_to"] == ["us-id/statute/63-3003"]
     assert records[3].metadata is not None
     assert records[3].metadata["status"] == "repealed"
+
+
+RENDITIONED_LISTING = IdahoSectionListing(
+    title_number="63",
+    chapter="30",
+    section="63-3022E",
+    heading="Household deduction",
+    source_url=SAMPLE_RECORDED.source_url,
+    ordinal=34,
+)
+
+
+def test_parse_idaho_section_versions_keeps_later_rendition_as_variant():
+    current, future = parse_idaho_section_versions(
+        SAMPLE_RENDITIONED_SECTION_HTML,
+        listing=RENDITIONED_LISTING,
+        source=SAMPLE_RECORDED,
+        expression_date="2026-09-14",
+    )
+
+    assert current == parse_idaho_section_page(
+        SAMPLE_RENDITIONED_SECTION_HTML,
+        listing=RENDITIONED_LISTING,
+        source=SAMPLE_RECORDED,
+        expression_date="2026-09-14",
+    )
+    assert current.variant is None
+    assert current.citation_path == "us-id/statute/63-3022E"
+    assert current.status is None
+    assert current.effective_note is None
+
+    assert future.variant == "effective-2027-01-01"
+    assert future.citation_path == "us-id/statute/63-3022E--effective-2027-01-01"
+    assert future.source_id == "63-3022E--effective-2027-01-01"
+    assert future.canonical_citation_path == "us-id/statute/63-3022E"
+    assert future.legal_identifier == current.legal_identifier == "Idaho Code § 63-3022E"
+    assert future.heading == "Future text"
+    assert future.body == "[effective January 1, 2027] Uses section 66-403 (4)."
+    assert future.references_to == ("us-id/statute/66-403",)
+    assert future.source_history == current.source_history == ("[Added 2026.]",)
+    assert future.status == "future_or_conditional"
+    assert future.effective_note == "effective January 1, 2027"
+
+
+def test_parse_idaho_section_versions_after_the_switch_date():
+    current, earlier = parse_idaho_section_versions(
+        SAMPLE_RENDITIONED_SECTION_HTML,
+        listing=RENDITIONED_LISTING,
+        source=SAMPLE_RECORDED,
+        expression_date="2027-01-01",
+    )
+
+    assert current.citation_path == "us-id/statute/63-3022E"
+    assert current.heading == "Future text"
+    assert earlier.citation_path == "us-id/statute/63-3022E--effective-until-2027-01-01"
+    assert earlier.heading == "Current text"
+    assert earlier.status == "effective_until"
+    assert earlier.effective_note == "effective until January 1, 2027"
+
+
+def test_parse_idaho_section_versions_single_rendition_is_one_plain_section():
+    listing = IdahoSectionListing(
+        title_number="63",
+        chapter="30",
+        section="63-3002",
+        heading="Declaration of intent",
+        source_url=SAMPLE_RECORDED.source_url,
+        ordinal=1,
+    )
+
+    (only,) = parse_idaho_section_versions(
+        SAMPLE_SECTION_HTML, listing=listing, source=SAMPLE_RECORDED
+    )
+
+    assert only.variant is None
+    assert only.citation_path == "us-id/statute/63-3002"
+    assert only == parse_idaho_section_page(
+        SAMPLE_SECTION_HTML, listing=listing, source=SAMPLE_RECORDED
+    )
+
+
+def _rendition_div(text: str) -> str:
+    return (
+        '<div style="line-height: 12pt; text-align: justify">'
+        f'<span style="font-family: Courier New;">{text}</span></div>'
+    )
+
+
+def _section_page(section: str, renditions: list[tuple[str, list[str]]], history: str) -> str:
+    """An Idaho section page printing ``renditions`` as (first line, later lines)."""
+    divs = [
+        '<div style="line-height: 12pt; text-align: center">'
+        f'<span style="font-family: Courier New;">{text}</span></div>'
+        for text in ("TITLE 63", "REVENUE AND TAXATION", "CHAPTER 30", "INCOME TAX")
+    ]
+    for first, rest in renditions:
+        divs.append(_rendition_div(f"{section}. {first}"))
+        divs.extend(_rendition_div(line) for line in rest)
+    if history:
+        divs.extend((_rendition_div("History:"), _rendition_div(history)))
+    return f'<html><body><div class="pgbrk">{"".join(divs)}</div></body></html>'
+
+
+def test_parse_idaho_section_versions_names_an_unmarked_rendition_by_position():
+    html = _section_page(
+        "63-3022E",
+        [
+            ("Current text. [effective until January 1, 2027] (1) Old.", []),
+            ("Unmarked text. (1) Undated.", []),
+        ],
+        "[Added 2026.]",
+    )
+
+    current, unmarked = parse_idaho_section_versions(
+        html, listing=RENDITIONED_LISTING, source=SAMPLE_RECORDED, expression_date="2026-09-14"
+    )
+
+    assert current.heading == "Current text"
+    assert unmarked.variant == "variant-2"
+    assert unmarked.citation_path == "us-id/statute/63-3022E--variant-2"
+    assert unmarked.status is None
+    assert unmarked.effective_note is None
+
+
+def test_parse_idaho_section_versions_rejects_two_renditions_with_one_name():
+    html = _section_page(
+        "63-3022E",
+        [
+            ("Current text. [effective until January 1, 2027] (1) Old.", []),
+            ("Future text. [effective January 1, 2027] (1) New.", []),
+            ("Future text. [effective January 1, 2027] (1) Newer.", []),
+        ],
+        "[Added 2026.]",
+    )
+
+    with pytest.raises(ValueError, match="two renditions named 'effective-2027-01-01'"):
+        parse_idaho_section_versions(
+            html, listing=RENDITIONED_LISTING, source=SAMPLE_RECORDED, expression_date="2026-09-14"
+        )
+
+
+def test_extract_idaho_statutes_writes_variant_rows_after_their_section(tmp_path):
+    source_dir = tmp_path / "source"
+    section_dir = source_dir / IDAHO_SECTION_SOURCE_FORMAT / "title-63" / "chapter-30"
+    section_dir.mkdir(parents=True)
+    (source_dir / IDAHO_TITLE_INDEX_SOURCE_FORMAT).mkdir(parents=True)
+    (source_dir / IDAHO_TITLE_SOURCE_FORMAT).mkdir(parents=True)
+    (source_dir / IDAHO_CHAPTER_SOURCE_FORMAT / "title-63").mkdir(parents=True)
+    (source_dir / IDAHO_TITLE_INDEX_SOURCE_FORMAT / "index.html").write_text(
+        SAMPLE_TITLE_INDEX_HTML, encoding="utf-8"
+    )
+    (source_dir / IDAHO_TITLE_SOURCE_FORMAT / "title-63.html").write_text(
+        SAMPLE_TITLE_HTML, encoding="utf-8"
+    )
+    chapter_html = SAMPLE_CHAPTER_HTML.replace(
+        "</table>",
+        '<tr><td><a href="/statutesrules/idstat/Title63/T63CH30/SECT63-3022E">63-3022E</a>'
+        "</td><td>&#160;</td><td> HOUSEHOLD DEDUCTION. </td></tr></table>",
+    )
+    (source_dir / IDAHO_CHAPTER_SOURCE_FORMAT / "title-63" / "chapter-30.html").write_text(
+        chapter_html, encoding="utf-8"
+    )
+    (section_dir / "63-3002.html").write_text(SAMPLE_SECTION_HTML, encoding="utf-8")
+    (section_dir / "63-3022E.html").write_text(SAMPLE_RENDITIONED_SECTION_HTML, encoding="utf-8")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_idaho_statutes(
+        store,
+        version="2026-09-27",
+        source_dir=source_dir,
+        source_as_of="2026-09-14",
+        expression_date="2026-09-14",
+        only_title="63",
+        only_chapter="30",
+        limit=2,
+    )
+
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    assert report.section_count == 3
+    records = load_provisions(report.provisions_path)
+    inventory = load_source_inventory(report.inventory_path)
+    assert (
+        [record.citation_path for record in records]
+        == [item.citation_path for item in inventory]
+        == [
+            "us-id/statute/title-63",
+            "us-id/statute/title-63/chapter-30",
+            "us-id/statute/63-3002",
+            "us-id/statute/63-3022E",
+            "us-id/statute/63-3022E--effective-2027-01-01",
+        ]
+    )
+    plain, variant = records[3], records[4]
+    assert plain.metadata is not None and variant.metadata is not None
+    assert "variant" not in plain.metadata
+    assert variant.metadata["variant"] == "effective-2027-01-01"
+    assert variant.metadata["canonical_citation_path"] == plain.citation_path
+    assert variant.metadata["effective_note"] == "effective January 1, 2027"
+    assert variant.metadata["status"] == "future_or_conditional"
+    assert variant.id != plain.id
+    assert (variant.parent_citation_path, variant.level, variant.ordinal, variant.kind) == (
+        plain.parent_citation_path,
+        plain.level,
+        plain.ordinal,
+        plain.kind,
+    )
+    assert (variant.source_path, variant.source_url, variant.source_format) == (
+        plain.source_path,
+        plain.source_url,
+        plain.source_format,
+    )
+    assert inventory[4].sha256 == inventory[3].sha256
+    assert inventory[4].metadata is not None
+    assert inventory[4].metadata["variant"] == "effective-2027-01-01"
+    assert inventory[4].metadata["canonical_citation_path"] == plain.citation_path
+
+
+# --- Invariants over generated pages ---------------------------------------
+#
+# For every page of 1-4 renditions, each with no marker, "[effective <date>]"
+# or "[effective until <date>]", and every expression date:
+#   1. selection: the plain section is the one rendition the model says is in
+#      force (a page with one rendition is read whole), or parsing raises;
+#   2. differential: the plain section equals what the pre-variant adapter
+#      (``_reference_select_rendition``, a verbatim copy of origin/main
+#      f1916d73b's ``_select_section_rendition``) produced, error for error,
+#      so no plain row moves;
+#   3. conservation: each printed rendition is exactly one section, in printed
+#      order after the plain one, with its own heading and body and the
+#      page's shared History;
+#   4. naming: variant names follow the marker, are unique or rejected, and
+#      give grammar-valid sibling paths whose canonical path is the plain one;
+#   5. determinism: parsing twice gives equal results.
+
+_WORDS = ("income", "tax", "deduction", "shall", "be", "allowed", "household", "the", "$1,000")
+_DATES = (date(2025, 1, 1), date(2026, 7, 1), date(2027, 1, 1), date(2028, 6, 30))
+_MARKERS = st.one_of(st.none(), st.tuples(st.sampled_from(_DATES), st.booleans()))
+_LINES = st.lists(st.sampled_from(_WORDS), min_size=1, max_size=6).map(" ".join)
+_HEADINGS = st.lists(
+    st.sampled_from(("Household", "deduction", "Payment", "credit")), min_size=1, max_size=3
+).map(" ".join)
+_RENDITIONS = st.lists(
+    st.tuples(_HEADINGS, _MARKERS, st.lists(_LINES, min_size=1, max_size=3)),
+    min_size=1,
+    max_size=4,
+)
+
+
+def _marker_text(marker: tuple[date, bool]) -> str:
+    when, until = marker
+    return f"effective {'until ' if until else ''}{when:%B} {when.day}, {when.year}"
+
+
+def _reference_select_rendition(divs, *, section, expression_date):
+    """origin/main f1916d73b ``_select_section_rendition``, copied verbatim."""
+    starts = [
+        index
+        for index, div in enumerate(divs)
+        if _strip_section_heading(_clean_text(div), section)[1] is not None
+    ]
+    if len(starts) <= 1:
+        return divs
+    if expression_date is None:
+        raise ValueError(
+            f"Idaho section {section} publishes {len(starts)} renditions; "
+            "expression_date is required"
+        )
+
+    as_of = date.fromisoformat(expression_date)
+    matching: list[int] = []
+    unmarked: list[int] = []
+    for start in starts:
+        match = re.search(
+            r"\[effective(?P<until>\s+until)?\s+(?P<date>[A-Z][a-z]+\s+\d{1,2},\s+\d{4})\]",
+            _clean_text(divs[start]),
+            re.I,
+        )
+        if match is None:
+            unmarked.append(start)
+            continue
+        effective_date = datetime.strptime(match.group("date"), "%B %d, %Y").date()
+        is_until = match.group("until") is not None
+        if (is_until and as_of < effective_date) or (not is_until and as_of >= effective_date):
+            matching.append(start)
+    if len(matching) == 1:
+        selected_start = matching[0]
+    elif not matching and len(unmarked) == 1:
+        selected_start = unmarked[0]
+    else:
+        raise ValueError(f"Idaho section {section} has no unique rendition for {as_of.isoformat()}")
+
+    history_start = next(
+        (
+            index
+            for index in range(starts[-1] + 1, len(divs))
+            if _is_history_marker(_clean_text(divs[index]))
+        ),
+        len(divs),
+    )
+    next_start = next((start for start in starts if start > selected_start), history_start)
+    selected_end = min(next_start, history_start)
+    return (*divs[: starts[0]], *divs[selected_start:selected_end], *divs[history_start:])
+
+
+def _reference_plain_section(html: str, expression_date: str):
+    soup = BeautifulSoup(html, "lxml")
+    divs = _section_content_divs(soup)
+    selected = _reference_select_rendition(
+        divs, section=RENDITIONED_LISTING.section, expression_date=expression_date
+    )
+    return _parse_section_divs(selected, listing=RENDITIONED_LISTING, source=SAMPLE_RECORDED)
+
+
+def _in_force(marker: tuple[date, bool], as_of: date) -> bool:
+    when, until = marker
+    return as_of < when if until else as_of >= when
+
+
+@settings(max_examples=400, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(
+    renditions=_RENDITIONS,
+    as_of=st.dates(min_value=date(2024, 1, 1), max_value=date(2029, 12, 31)),
+    history=st.sampled_from(("", "[Added 2026.]")),
+)
+def test_idaho_rendition_invariants(renditions, as_of, history):
+    printed = []
+    expected_bodies = []
+    for heading, marker, lines in renditions:
+        first = f"[{_marker_text(marker)}] {lines[0]}" if marker else lines[0]
+        printed.append((f"{heading}. {first}", lines[1:]))
+        expected_bodies.append("\n".join([first, *lines[1:]]))
+    html = _section_page(RENDITIONED_LISTING.section, printed, history)
+    expression_date = as_of.isoformat()
+
+    def parse():
+        return parse_idaho_section_versions(
+            html,
+            listing=RENDITIONED_LISTING,
+            source=SAMPLE_RECORDED,
+            expression_date=expression_date,
+        )
+
+    # Model of which rendition is in force.
+    if len(renditions) == 1:
+        primary: int | None = 0
+    else:
+        matching = [i for i, r in enumerate(renditions) if r[1] and _in_force(r[1], as_of)]
+        unmarked = [i for i, r in enumerate(renditions) if not r[1]]
+        if len(matching) == 1:
+            primary = matching[0]
+        elif not matching and len(unmarked) == 1:
+            primary = unmarked[0]
+        else:
+            primary = None
+    names = [
+        (
+            f"effective-{'until-' if r[1][1] else ''}{r[1][0].isoformat()}"
+            if r[1]
+            else f"variant-{i + 1}"
+        )
+        for i, r in enumerate(renditions)
+    ]
+    others = [i for i in range(len(renditions)) if i != primary]
+
+    # 2. differential against the pre-variant adapter, error for error.
+    try:
+        reference = _reference_plain_section(html, expression_date)
+    except ValueError as exc:
+        reference = exc
+
+    if primary is None:
+        event("no unique rendition in force: fails closed")
+    elif len({names[i] for i in others}) < len(others):
+        event("two variants share a name: fails closed")
+    else:
+        event(f"{len(others)} variant(s)")
+    if primary is None or len({names[i] for i in others}) < len(others):
+        with pytest.raises(ValueError) as raised:
+            parse()
+        if primary is None:
+            assert isinstance(reference, ValueError)
+            assert str(raised.value) == str(reference)
+        else:
+            assert "two renditions named" in str(raised.value)
+        return
+
+    sections = parse()
+    # 5. determinism.
+    assert sections == parse()
+    plain, variants = sections[0], sections[1:]
+    # 1. selection and 2. differential.
+    assert plain == reference
+    assert plain.variant is None
+    assert plain.citation_path == "us-id/statute/63-3022E"
+    assert plain.heading == renditions[primary][0]
+    assert plain.body == expected_bodies[primary]
+    # 3. conservation: every printed rendition is exactly one section.
+    assert [section.body for section in variants] == [expected_bodies[i] for i in others]
+    assert [section.heading for section in variants] == [renditions[i][0] for i in others]
+    assert sorted(section.body or "" for section in sections) == sorted(expected_bodies)
+    assert all(section.source_history == ((history,) if history else ()) for section in sections)
+    # 4. naming.
+    assert [section.variant for section in variants] == [names[i] for i in others]
+    paths = [section.citation_path for section in sections]
+    assert len(set(paths)) == len(paths)
+    for section in variants:
+        assert section.canonical_citation_path == plain.citation_path
+        assert section.citation_path == f"{plain.citation_path}--{section.variant}"
+        assert CITATION_PATH_RE.fullmatch(section.citation_path)
+        assert SEGMENT_RE.fullmatch(section.citation_path.rsplit("/", 1)[1])
+        marker = renditions[others[variants.index(section)]][1]
+        if marker is None:
+            assert (section.status, section.effective_note) == (None, None)
+        else:
+            assert not _in_force(marker, as_of)
+            assert section.effective_note == _marker_text(marker)
+            assert section.status == ("effective_until" if marker[1] else "future_or_conditional")
