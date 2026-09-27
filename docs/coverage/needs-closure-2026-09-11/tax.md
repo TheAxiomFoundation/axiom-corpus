@@ -304,3 +304,25 @@ wrappers at all.
   yield one element (e.g. S24) where a full encoding would read several sub-rules. The
   federal list omits subchapter J/K/S pass-through rules and the possessions rules beyond
   931/933 as not individual-return-facing.
+
+## Citations superseded after this cut (added 2026-09-27)
+
+39 PRESENT rows cite a July 2026 recovery scope that the 2026-09-14 wave4 line
+swapped out for a whole-chapter statute scope: CA (2), ME (1), MI (14), MN (17),
+NY (1) and UT (4). The recovery audits (axiom-corpus#748 for CA, #757 for the
+rest) show the chapter scopes carry the same text. Their rows, though, are often
+not the ones cited here:
+
+- CA and ME cite `block-2` rows under empty section roots.
+- MN cites `block-N` rows.
+- MI cites subsection paths that each hold the whole section.
+- NY and UT cite rows that wrap the section in page chrome.
+
+`scope_version` and `citation_path` stay as they were, because they record the
+2026-09-11 cut and `verify_matrices.py` checks them against it.
+`scripts/mark_superseded_tax_matrix_citations.py` appends to each such row's
+`evidence_note` the path that carries the section in the chapter scope: the
+longest prefix of the cited path that is a row there. For example, CA
+`rtc/17062.1/block-2` becomes `rtc/17062.1`, and MI `206.30/10` becomes `206.30`.
+The CA chapter scope supersedes only the recovery scope's R&TC half; its
+`supersedes_note` in `manifests/tax-agent-queue.yaml` says so.
