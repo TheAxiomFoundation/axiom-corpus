@@ -4,10 +4,54 @@ This document describes the structure of the DC Council's law-xml repository and
 
 ## Repository Overview
 
-- **Source Repository**: https://github.com/DCCouncil/dc-law-xml
-- **Local Clone**: `sources/dc/dc-law-xml/`
+- **Codified D.C. Code source**: https://github.com/DCCouncil/law-xml-codified,
+  path `us/dc/council/code/titles/<title>/`. This is the XML that
+  code.dccouncil.gov serves.
+- **Session-law source (not the Code)**: https://github.com/DCCouncil/dc-law-xml
 - **Format**: XML with custom DC Council schema
 - **Scope**: District of Columbia statutes and code
+
+### Which branch is current
+
+`law-xml-codified` publishes one branch per codification run. On 2026-05-23 the
+Council re-rooted its history as `publication/2026-05-23`; that branch and its
+`publication/2026-05-23.<date>` snapshots carry every update since. The
+repository's default branch, `publication/2021-10-18`, is a separate root whose
+last commit is 2026-05-19, so it is stale. Before an ingest, take the most
+recently committed `publication/*` branch and confirm against the live site. For
+example, D.C. Code § 47-1803.02(a)(2)(BBB), added 2026-08-26, is on
+code.dccouncil.gov and on `publication/2026-05-23` but not on the default branch.
+Record the branch and commit in the ingest manifest command, because the
+extractor does not record them in provision rows.
+
+### Do not ingest the Code from `dc-law-xml`
+
+`dc-law-xml` still contains a `us/dc/council/code/titles` tree, but it is not
+the maintained Code. At `dc-law-xml` main `a685aaa` (2026-09-23), the newest
+history note in its title 47 sections is D.C. Law 21-98 and in title 4 D.C. Law
+22-65, although a few files there were touched as late as 2024.
+`us-dc/statute/2026-05-19-title-4` and
+`us-dc/statute/2026-07-16-pit-east-title-47` were extracted from it with a
+hardcoded `source_as_of` of 2025-12-23, so their text is about ten years older
+than their dates claim. `us-dc/statute/2026-09-26-codified-title-47` replaces
+the title 47 scope from `law-xml-codified`
+(`docs/ingest-runs/2026-09-26-dc-title-47-codified-and-eitc-sources.md`).
+
+### Temporary and permanent versions
+
+When emergency or temporary legislation amends a section, `titles/<n>/sections/`
+holds the version that includes it, with a leading `*NOTE: ... will expire on
+<date> ...*` paragraph. The permanent text is at `titles/99/<section>(Perm).xml`.
+The extractor reads `sections/` only, so rows carry the temporary version and
+their `expression_date` must be a date on which it was in force.
+
+### Legacy notes
+
+The rest of this guide describes the older `dc-law-xml` layout; the section XML
+schema (`section`, `para`, `num`, `heading`, `text`, `table`) is the same in
+both repositories.
+
+- **Legacy local clone**: `sources/dc/dc-law-xml/`
 
 ## XML Schema
 

@@ -1,0 +1,48 @@
+version: '2026-09-26-irs-rev-procs-2021-45-2022-38'
+documents:
+- source_id: irs-rev-proc-2021-45
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/rev-proc-2021-45
+  title: Rev. Proc. 2021-45, 2022 inflation adjusted items
+  source_url: https://www.irs.gov/irb/2021-48_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
+  source_format: pdf
+  source_as_of: '2021-11-29'
+  expression_date: '2022-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2021-45
+    irb_citation: 2021-48 IRB
+    irb_issue_date: '2021-11-29'
+    release_date: '2021-11-10'
+    tax_year: '2022'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:rulespec-us#1420 (DC EITC, D.C. Code 47-1806.04(f)); reference sha256
+      405535647b6287103f5392258d4342cdb70535bf07ff05d89eebc71768083627
+- source_id: irs-rev-proc-2022-38
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/rev-proc-2022-38
+  title: Rev. Proc. 2022-38, 2023 inflation adjusted items
+  source_url: https://www.irs.gov/irb/2022-45_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
+  source_format: pdf
+  source_as_of: '2022-11-07'
+  expression_date: '2023-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2022-38
+    irb_citation: 2022-45 IRB
+    irb_issue_date: '2022-11-07'
+    release_date: '2022-10-18'
+    tax_year: '2023'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:rulespec-us#1420 (DC EITC, D.C. Code 47-1806.04(f)); reference sha256
+      6c20f8a6c9a3bdf4251fcf50dbf2e2382abc8cbeb1e5e2d3eecdc38b2cbf6bbf

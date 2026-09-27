@@ -139,12 +139,22 @@ sources:
     document_class: statute
     adapter: dc-code
     source_url: https://code.dccouncil.gov/us/dc/council/code
+    # A checkout of DCCouncil/law-xml-codified, the XML behind code.dccouncil.gov.
+    # The dates are the committer date of the checked-out publication commit;
+    # update them together with the checkout. At 3a3c8ea, 22 title 47 sections
+    # carry temporary or emergency text (13 expiring 2026-09-25); rows reflect the
+    # text in force on these dates. Do not point this at the us/dc/council/code
+    # tree of DCCouncil/dc-law-xml: that is a legacy tree whose title 47 history
+    # ends at D.C. Law 21-98 (docs/DC_IMPORT_GUIDE.md).
     options:
-      source_dir: ../sources/dc/dc-law-xml/us/dc/council/code/titles
-      source_as_of: "2025-12-23"
-      expression_date: "2025-12-23"
+      source_dir: ../sources/dc/law-xml-codified/us/dc/council/code/titles
+      source_as_of: "2026-09-16"
+      expression_date: "2026-09-16"
     metadata:
       source_authority: Council of the District of Columbia
+      source_repository: https://github.com/DCCouncil/law-xml-codified
+      source_branch: publication/2026-05-23
+      source_commit: 3a3c8eaf780a8e6e4bb266550671da91320404bd
 
   - source_id: us-de-code
     jurisdiction: us-de

@@ -728,6 +728,63 @@ def test_extract_dc_code_writes_inventory_provisions_and_coverage(tmp_path):
     assert "1 | $100" in records[-1].body
 
 
+SAMPLE_DC_SECTION_WITH_AFTERTEXT = """<?xml version="1.0" encoding="utf-8"?>
+<section xmlns="https://code.dccouncil.us/schemas/dc-library">
+  <num>47-1002</num>
+  <heading>Exemptions.</heading>
+  <para>
+    <num>(20)</num>
+    <para>
+      <num>(A)</num>
+      <text>Property used for low-income housing.</text>
+    </para>
+    <aftertext>As the exemption applies to the Southern Court project, it shall be effective as of October 1, 1987.</aftertext>
+  </para>
+  <para>
+    <num>(21)</num>
+    <para>
+      <num>(D)</num>
+      <para>
+        <num>(i)</num>
+        <text>Property of a cooperative.</text>
+      </para>
+      <aftertext>This subparagraph applies to taxable years after 1990.</aftertext>
+    </para>
+  </para>
+  <para>
+    <num>Article VI.</num>
+    <text>The Commission shall report annually.</text>
+    <aftertext>
+      <center>Committees.<br/>Powers.</center>
+    </aftertext>
+  </para>
+  <aftertext>Nothing in this section limits the Mayor.</aftertext>
+</section>
+"""
+
+
+def test_dc_section_body_keeps_aftertext_at_paragraph_level():
+    from axiom_corpus.corpus.states import _parse_dc_section_xml
+
+    document = _parse_dc_section_xml(SAMPLE_DC_SECTION_WITH_AFTERTEXT.encode())
+
+    assert document.body == "\n".join(
+        [
+            "(20)",
+            "  (A) Property used for low-income housing.",
+            "As the exemption applies to the Southern Court project, it shall be "
+            "effective as of October 1, 1987.",
+            "(21)",
+            "  (D)",
+            "    (i) Property of a cooperative.",
+            "  This subparagraph applies to taxable years after 1990.",
+            "Article VI. The Commission shall report annually.",
+            "Committees. Powers.",
+            "Nothing in this section limits the Mayor.",
+        ]
+    )
+
+
 def test_extract_cic_html_release_writes_state_records(tmp_path):
     release_dir = tmp_path / "release76.2021.05.21"
     release_dir.mkdir()
