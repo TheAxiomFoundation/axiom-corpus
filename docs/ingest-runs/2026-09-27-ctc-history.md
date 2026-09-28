@@ -181,7 +181,8 @@ Remaining steps, owned by the dispatcher/authorized publication operator:
 
 ## Validation
 
-Final command results are recorded below before the draft PR handoff.
+Validation was run locally on Python 3.14.7. The draft PR remains unsigned;
+CI stops at its required artifact guard before running tests.
 
 - `uv run --extra dev ruff check .`: passed.
 - `uv run --extra dev mypy src/axiom_corpus/corpus --ignore-missing-imports`:
@@ -189,14 +190,52 @@ Final command results are recorded below before the draft PR handoff.
 - `.venv/bin/python -m pytest -q tests/test_corpus_public_laws.py`: 13 passed,
   including real-source regressions and CLI extraction.
 - `.venv/bin/python -m pytest -q tests/test_corpus_ctc_history.py`: 1 passed.
+- `uv run pytest -q tests/test_cli_help_groups.py --timeout=60 --tb=short`:
+  6 passed after registering the new command in the federal extraction group.
 - Explicit `coverage --write` on each scope: complete, 15/15 and 115/115.
 - Independent source/selector review: all 13 text-bearing public-law bodies
   preserve XML text; historical inventory, hashes, dates, and parents match;
   the draft union preserves all 1,042 baseline scopes and has no new
   public-law citation collision against its US statute scopes.
-- Full offline pytest, whole-suite pytest, citation-path validation and deep
-  release validation: results pending at the initial artifact commit; the
-  final handoff records their results.
+- `uv run --extra dev towncrier check`: passed against the committed feature
+  diff; it found `changelog.d/us-ctc-history.added.md`.
+- Standalone `scripts/validate_citation_paths.py` scan: passed, 586,573 rows
+  and 435,123 unique paths. The historical expression contributes exactly 75
+  uppercase-segment rows; the existing uppercase ratchet moves from 16,280 to
+  16,355 without changing any other baseline count.
+- Historical draft `validate-release --ignore-r2-missing`: passed, zero
+  errors and zero warnings. A temporary selector containing only the new
+  public-law scope also passed with zero errors and zero warnings. That
+  single-scope selector is validation-only and must not be activated.
+- `uv run pytest -q tests/test_corpus_cli.py tests/test_corpus_usc.py
+  tests/test_self_contain_usc_scope.py tests/test_corpus_public_laws.py
+  tests/test_corpus_ctc_history.py --timeout=60 --tb=short`: 122 passed,
+  two failed (60-second timeouts), in 825.46 seconds. Both timeout failures
+  were existing whole-title parsing tests:
+  `test_official_title_26_node_count_and_semantic_label_fidelity` and
+  `test_official_title_26_duplicate_number_siblings_survive_traversal`.
+  All 73 CLI tests and the new law/history regressions passed.
+- `uv run pytest -q -m "not integration and not slow"`: attempted, then
+  interrupted during the whole-corpus citation fixture. Seven earlier NC/NY
+  fixture failures occurred while the main-branch baseline was materializing;
+  their dedicated rerun passed all seven tests.
+- `uv run --extra dev python -m pytest -q`, with
+  `PYTEST_ADDOPTS='--timeout=60 --tb=short'`: interrupted after 660 passed,
+  47 skipped, 208 deselected, 7 failed and 17 errors. Two failures exposed the
+  missing `extract-public-laws` help-group entry, now fixed. All other five
+  failures and 17 errors were 60-second timeouts in Armenia source parsing,
+  whole-corpus claims/citation scanning, or concept-registry loading. This
+  is not a full-suite pass; CI must be rerun after dispatcher signing.
+- Deep validation of the entire 1,043-scope public-law union was interrupted
+  while checking existing source paths. Only its structural preservation and
+  lack of new public-law citation collisions are verified here; the dispatcher
+  must finish full union validation before publication.
+- [CI test job 108743524608](https://github.com/TheAxiomFoundation/axiom-corpus/actions/runs/36362918192/job/108743524608)
+  failed at **Guard generated corpus artifacts**, exit 1, reporting nine
+  unmanifested artifact changes across the two scopes. Each diagnostic requests
+  `axiom-corpus-ingest sign-ingest-manifest`. CI tests did not run. This is the
+  intentionally deferred dispatcher signing step, not permission to bypass
+  the guard.
 
 GitNexus: the pre-existing index failed with database-format mismatch (42 vs
 40). A full workspace rebuild stalled while parsing; a bounded fresh index of
@@ -210,6 +249,9 @@ AST comparison with `origin/main` finds only `build_parser` changed and
 `_cmd_extract_public_laws` added; no existing function removed. Existing
 subcommand dispatch remains unchanged and is covered by CLI tests. This is a
 bounded graph check, not a claim of full-repository graph coverage.
+The follow-up `_COMMAND_GROUPS` constant change has LOW graph impact; staged
+detection is MEDIUM in the same three feature files and five flows. AST
+comparison for that follow-up finds no function/class changes.
 
 Workspace note: the supplied detached worktree's Git metadata was outside the
 writable sandbox. The task used workspace-local Git metadata and a branch from
