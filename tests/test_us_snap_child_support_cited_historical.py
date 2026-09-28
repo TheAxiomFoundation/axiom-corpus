@@ -79,7 +79,9 @@ def test_colorado_child_support_is_subtracted_before_the_gross_income_test() -> 
 
 def test_rhode_island_preserves_the_2005_exclusion_and_older_conflicting_wording() -> None:
     body = _page(1, 136)
-    assert body.startswith("120")  # printed page = PDF page - 16
+    assert body.startswith("120")  # printed page = PDF page - 16 from PDF page 17
+    assert _page(1, 17).startswith("1\n")
+    assert _page(1, 1).startswith("Rhode Island Department of Human Services")
     assert "1008.20.22 (7 CFR 273.9) Child Support Income Exclusion REV:05/2005" in body
     assert (
         "Legally obligated child support payments made by a household member to or for a "

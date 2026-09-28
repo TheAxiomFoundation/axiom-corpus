@@ -41,9 +41,10 @@ documents:
       pdf_creation_date: '2014-09-23'
       pdf_creation_date_note: PDF metadata timestamp, not the rule effective date.
       page_numbering_note: >-
-        Page rows use PDF page numbers. The printed page number, which each row's
-        body begins with, is the PDF page number minus 16 (PDF page 136 is printed
-        page 120).
+        Page rows use PDF page numbers. PDF page 1 is an unnumbered cover and PDF
+        pages 2-16 are the contents; from PDF page 17 (printed page 1) each row's body
+        begins with its printed page number, the PDF page number minus 16 (PDF page
+        136 is printed page 120).
       extraction_granularity: pdf_page
       extraction_note: >-
         Within a page row, some section headings (for example "1038.19 (7 CFR 273.9)

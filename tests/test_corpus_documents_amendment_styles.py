@@ -21,7 +21,6 @@ from xml.sax.saxutils import escape
 
 import fitz
 import pytest
-from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus import documents
 
@@ -166,6 +165,32 @@ def test_bracket_mode_refuses_drawn_strike_throughs() -> None:
         documents._extract_pdf_blocks(content, extraction={"amendment_markup": _BRACKETS})
 
 
+def _struck_page_one(*, underlined: bool) -> bytes:
+    with fitz.open() as pdf:
+        page = pdf.new_page()
+        page.insert_text((72, 72), "Page 1", fontname="helv", fontsize=11)
+        page.draw_line((70, 69.3), (150, 69.3), width=0.6)
+        if underlined:
+            page.draw_line((70, 73.5), (150, 73.5), width=0.6)
+        return pdf.tobytes()
+
+
+def test_unmarked_lines_are_exempt_before_any_classification() -> None:
+    # A struck running page number would otherwise fail bracket mode.
+    content = _struck_page_one(underlined=False)
+    config = {"inserted_style": "bold", "deleted_style": "brackets", "unmarked_line_patterns": ["Page 1"]}
+    assert _bodies(content, config) == ["Page 1"]
+    assert _bodies(content, True) == ["[-Page 1-]"]
+
+
+def test_bold_mode_ignores_drawn_underlines_even_on_struck_text() -> None:
+    content = _struck_page_one(underlined=True)
+    assert _bodies(content, {"inserted_style": "bold"}) == ["[-Page 1-]"]
+    # The default still refuses a character that is both struck and underlined.
+    with pytest.raises(ValueError, match="both struck through and underlined"):
+        _bodies(content, True)
+
+
 @pytest.mark.parametrize(
     ("config", "error"),
     [
@@ -227,6 +252,64 @@ def test_html_amendment_tags_inside_words_add_no_spaces() -> None:
         },
     )
     assert block.body == "the household; (([-and-])) member{+s+}."
+
+
+_MARKED = {
+    "html_text_selector": "body",
+    "html_amendment_markup": {"inserted_selector": "u", "deleted_selector": "strike"},
+}
+
+
+@pytest.mark.parametrize(
+    ("content", "expected"),
+    [
+        # Text after a closing block is a new paragraph, not glued to the block.
+        (b"<body><div>Income <u>limit</u></div>Exception <strike>no</strike></body>",
+         "Income {+limit+}\n\nException [-no-]"),
+        # Table cells are separate words; rows are separate paragraphs.
+        (b"<body><table><tr><td>1</td><td><u>200</u></td></tr><tr><td><strike>3</strike></td></tr></table></body>",
+         "1 {+200+}\n\n[-3-]"),
+        # <br> separates words.
+        (b"<body><p>First<br><u>Second</u> <strike>x</strike></p></body>", "First {+Second+} [-x-]"),
+        # Comments and CDATA are not text (the default lxml parse drops CDATA).
+        (b"<body><p>A<!-- hidden --> <u>B</u><![CDATA[ hidden ]]> <strike>C</strike></p></body>",
+         "A {+B+} [-C-]"),
+    ],
+)
+def test_html_amendment_text_keeps_word_and_paragraph_boundaries(
+    content: bytes, expected: str
+) -> None:
+    (block,) = _html(content, _MARKED)
+    assert block.body == expected
+    (default,) = _html(content, {"html_text_selector": "body"})
+    assert documents._strip_amendment_markup(block.body).split() == default.body.split()
+
+
+def test_html_amendment_ranges_span_paragraphs_while_paragraphs_follow_lxml() -> None:
+    # lxml alone would close the <u> at the second <p>; html.parser alone would end
+    # the second paragraph at </u>. The aligned parses keep both right.
+    (block,) = _html(b"<body><p>a <u>b<p>c</u> d<p>e <strike>f</strike></body>", _MARKED)
+    assert block.body == "a {+b+}\n\n{+c+} d\n\ne [-f-]"
+
+
+def test_html_amendment_states_fail_when_the_two_parses_disagree() -> None:
+    root = documents._html_soup(b"<html><body><p>x y</p></body></html>").body
+    with pytest.raises(RuntimeError, match="disagree at non-space character 1"):
+        documents._html_amendment_states(
+            b"<html><body><p><u>x</u> z</p></body></html>",
+            root,
+            original_encoding=None,
+            drop_selectors=[],
+            extraction={"html_content_selector": "body", "html_amendment_markup": {"inserted_selector": "u"}},
+        )
+    with pytest.raises(RuntimeError, match="has text the lxml parse lacks"):
+        documents._html_amendment_states(
+            b"<html><body><p><u>x</u> y extra</p></body></html>",
+            root,
+            original_encoding=None,
+            drop_selectors=[],
+            extraction={"html_content_selector": "body", "html_amendment_markup": {"inserted_selector": "u"}},
+        )
 
 
 def test_explicit_html_encoding_decodes_strictly_and_keeps_the_default_parser() -> None:
@@ -422,42 +505,53 @@ def test_property_bracket_deletions_remove_brackets_and_split_anywhere() -> None
         assert second[2] is False
 
 
-def _random_fragment(rng: random.Random, depth: int = 0) -> str:
-    pieces: list[str] = []
+def _html_paragraphs(rng: random.Random) -> tuple[str, list[list[str]]]:
+    """Random paragraphs of words, returned with the words each paragraph must read.
+
+    Words are separated by random source whitespace; a word may be wrapped in an
+    inline tag, or split by one mid-word. Paragraphs are <p>, <div>, <li> or bare
+    text between blocks. The oracle is the generator's own word list.
+    """
+    html: list[str] = []
+    expected: list[list[str]] = []
+    previous_bare = False
     for _ in range(rng.randint(1, 4)):
-        roll = rng.random()
-        if roll < 0.45 or depth > 2:
-            pieces.append(_random_text(rng, "ab c\n", rng.randint(0, 6)))
-        elif roll < 0.85:
-            tag = rng.choice(("u", "strike", "b", "i", "span"))
-            pieces.append(f"<{tag}>{_random_fragment(rng, depth + 1)}</{tag}>")
-        elif roll < 0.95:
-            pieces.append(f"<p>{_random_fragment(rng, depth + 1)}</p>")
-        else:
-            pieces.append("<br>")
-    return "".join(pieces)
+        words: list[str] = []
+        pieces: list[str] = []
+        for _ in range(rng.randint(1, 4)):
+            word = _random_text(rng, "ab", rng.randint(1, 3))
+            tag = rng.choice(("u", "strike", "b", "span", "i", None))
+            cut = rng.randint(1, len(word))
+            if tag and cut < len(word) and rng.random() < 0.5:
+                rendered = f"{word[:cut]}<{tag}>{word[cut:]}</{tag}>"
+            elif tag:
+                rendered = f"<{tag}>{word}</{tag}>"
+            else:
+                rendered = word
+            if pieces:
+                pieces.append(rng.choice((" ", "\n", "  ", " \t ")))
+            pieces.append(rendered)
+            words.append(word)
+        container = rng.choice(("p", "div", "li", None if not previous_bare else "p"))
+        body = "".join(pieces)
+        html.append(f"<{container}>{body}</{container}>" if container else body)
+        previous_bare = container is None
+        expected.append(words)
+    # Both selectors must match something.
+    html.append("<p><u>z</u> <strike>y</strike></p>")
+    expected.append(["z", "y"])
+    return f"<html><body>{''.join(html)}</body></html>", expected
 
 
-def test_property_html_markup_keeps_every_source_character_in_order() -> None:
+def test_property_html_markup_reads_the_generated_words_and_paragraphs() -> None:
     rng = random.Random(9622)
-    checked = 0
-    for _ in range(_CASES):
-        fragment = _random_fragment(rng)
-        soup = BeautifulSoup(f"<div>{fragment}</div>", "html.parser")
-        root = soup.div
-        # A string inside both a <u> and a <strike> is a configuration error, not
-        # a property case; skip those.
-        if any(tag.find_parent("strike") for tag in root.select("u")) or any(
-            tag.find_parent("u") for tag in root.select("strike")
-        ):
-            continue
-        selected = {id(node): _INSERTED for node in root.select("u")}
-        selected.update({id(node): _DELETED for node in root.select("strike")})
-        text = documents._html_amendment_text(root, selected)
-        default = documents._normalize_text(root.get_text(" ", strip=True))
-        stripped = documents._strip_amendment_markup(text)
-        assert re.sub(r"\s", "", stripped) == re.sub(r"\s", "", default)
-        assert text.count("[-") == text.count("-]")
-        assert text.count("{+") == text.count("+}")
-        checked += 1
-    assert checked > _CASES // 2
+    for _ in range(_CASES // 3):
+        content, expected = _html_paragraphs(rng)
+        (block,) = _html(content.encode(), _MARKED)
+        paragraphs = [
+            documents._strip_amendment_markup(paragraph).split()
+            for paragraph in block.body.split("\n\n")
+        ]
+        assert paragraphs == expected, content
+        assert block.body.count("[-") == block.body.count("-]")
+        assert block.body.count("{+") == block.body.count("+}")

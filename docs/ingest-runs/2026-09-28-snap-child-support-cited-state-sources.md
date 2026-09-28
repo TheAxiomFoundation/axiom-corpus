@@ -253,9 +253,14 @@ documented in `docs/corpus-pipeline.md` ("Amended rule text in PDFs and HTML"):
   runs, and a run crossing a page break is flagged on both rows. Of 23 deletion runs on
   pages 9-20, two cross a page break (11 to 12 and 18 to 19). Removing the delimiters from
   each page gives its plain text without the brackets.
-- HTML `html_amendment_markup` keeps the source's spacing and paragraphs. WSR 09-15-085
-  reads `(([-and-]))` as printed and keeps its 42 paragraphs. `html_encoding` decodes
-  strictly without changing the parser.
+- HTML `html_amendment_markup` keeps the source's spacing and paragraphs. Text and
+  paragraph structure come from the default lxml parse, and each character's amendment
+  status comes from an html.parser parse of the same source, aligned character by
+  character. lxml alone would end WSR 09-15-085's underlined insertion at the first
+  `<p>`; html.parser alone would end paragraphs at mismatched inline end tags. The two
+  parses must agree on the non-space text, or extraction fails. WSR 09-15-085 reads
+  `(([-and-]))` as printed, with 42 paragraphs. `html_encoding` decodes strictly without
+  changing the parser.
 - DOCX `docx_symbol_map` writes Word `<w:sym>` glyphs, which default extraction skips.
   Title 67 stores 290 definition dashes as Symbol-font `F0BE`; mapped to U+2015, the
   character the same compilation types for that construction, §307 reads "d. SNAP―90
@@ -350,6 +355,33 @@ bytes before it was fixed:
   policyengine-us from 1.634 to 2.15, so the seeded tests stand in until a separate change
   adds it.
 
+### Second review (pull request #763)
+
+An independent adversarial review of the pull request (subfleet `review`, standard
+tier) reproduced two major and two minor defects in the new options. Each was
+reproduced here before it was fixed, and each now has a regression test.
+
+- **HTML word and paragraph boundaries.** A boundary was written only on entering a
+  block element, so text after a closing `</div>` ran into the block, and table cells
+  ran together (`1{+200+}` strips to `1200`). The check compared non-space characters
+  only, so it could not see this. Block elements now end paragraphs, and cells and
+  `<br>` separate words.
+- **CDATA.** html.parser keeps CDATA that the default lxml parse drops, and the check's
+  reference used the same html.parser tree. The resulting design takes text from lxml
+  and only amendment status from html.parser, with the two aligned and required to
+  agree. It also fixes a regression the first boundary fix caused: html.parser closes an
+  open `<p>` at a mismatched `</b>` or `</u>`, which split WSR 09-15-085's "(o)" from its
+  text. WSR 09-15-085's rows are unchanged from the first commit.
+- **PDF precedence.** `unmarked_line_patterns` now applies before any character is
+  classified, so a struck page number no longer fails bracket mode. Bold mode now
+  ignores drawn underlines when checking conflicts, so a struck, underlined character
+  is deleted rather than refused.
+- **Rhode Island.** The page-offset note now applies only from PDF page 17; pages 1-16
+  are the cover and contents.
+
+The HTML property test now checks against the generator's own words and paragraphs,
+1,000 generated documents, rather than comparing non-space characters.
+
 ## Citation-path ratchet and retention
 
 The new rows add 13 `block-N` paths (IM-39 1, IM-34 8, P.L. c.45 1, the two WSR orders 2,
@@ -406,7 +438,7 @@ uv run --extra dev axiom-corpus-ingest extract-maryland-comar --base data/corpus
 - **Tests.** The focused tests pass:
   - the new and updated `tests/test_us_snap_child_support_cited_*.py`;
   - `tests/test_corpus_documents_amendment_styles.py`, which covers the new options,
-    each error branch and the seeded property tests;
+    each error branch, the second review's cases and the seeded property tests;
   - #736's `tests/test_us_snap_child_support_state_sources.py`, which re-extracts the CA
     and DE PDFs, and `tests/test_corpus_documents_pdf_amendment_markup.py`;
   - `tests/test_ingest_manifest_provenance.py` and `tests/test_citation_path_grammar.py`.
@@ -425,10 +457,13 @@ uv run --extra dev axiom-corpus-ingest extract-maryland-comar --base data/corpus
   `source_bytes_note`.
 - **Default extraction unchanged.** Differential runs extracted existing retained
   documents with `origin/main`'s `documents.py` and the branch's, covering every
-  combination of extraction keys the manifests use (91) and excluding OCR scopes and PDFs
-  over 6 MB. The final code gave identical blocks on 764 documents (444 HTML, 320 PDF;
-  11,167 blocks). A reviewer's independent differential of the draft covered 14,588
-  released sources, also identical.
+  combination of extraction keys the manifests use (92 after merging `origin/main`
+  c65b2ca15) and excluding OCR scopes and PDFs over 6 MB. The final code, after the
+  second review's fixes, gave identical blocks on 765 documents (445 HTML, 320 PDF;
+  11,175 blocks). The first review's independent differential of the draft covered
+  14,588 released sources, and the second review's covered 27 documents (PDF, HTML and
+  DOCX, including the CA/DE markup scopes and a labeled-sections DOCX); both were also
+  identical.
 - **Citation-path collisions.** Every new citation path was checked against every
   tracked provisions file of its jurisdiction (231 files). There are no collisions,
   except that Maryland's scope carries the adapter's three shared containers

@@ -411,7 +411,8 @@ without them extraction is unchanged.
   delimiters, or if a character is both struck through and underlined.
 - Publishers with other conventions set them in the same mapping:
   - `inserted_style: bold` reads insertions from bold font flags instead of
-    drawn underlines, which are then ignored. Every bold span in the page range
+    drawn underlines, which are then ignored (a struck, underlined character is
+    simply deleted). Every bold span in the page range
     is an insertion, headings included, so restrict the range to the rule text
     (`typographic_underlines` phrases are exempt here too).
   - `deleted_style: brackets` reads deletions from literal square brackets
@@ -422,8 +423,9 @@ without them extraction is unchanged.
     Extraction fails on a drawn strike, a nested or unbalanced bracket, an
     insertion inside a deletion, or a deletion still open outside the range.
   - `unmarked_line_patterns` lists regular expressions for page furniture: a
-    line that fully matches one (a running page number such as `- 12 -`) gets no
-    amendment status, and brackets in it are not deletions.
+    line that fully matches one (a running page number such as `- 12 -`) is
+    exempt before any classification, so it gets no amendment status, raises no
+    classification error, and its brackets are not deletions.
   See `manifests/us-nj-prn-2016-017.yaml` (bold additions, bracketed deletions).
 - `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
   drawn last in the content stream is read where it is printed.
@@ -437,17 +439,20 @@ For HTML, `html_amendment_markup` takes explicit `deleted_selector` and
 `inserted_selector` CSS selectors and writes the same wdiff notation, recording
 the selectors and run counts on each block. Select amendment tags precisely so
 that emphasis is not read as amendment text; `manifests/us-wa-wsr-09-15-085.yaml`
-excludes the underlined "AMENDATORY SECTION" label. With this option, and only
-then, the page is parsed with `html.parser` instead of lxml, because lxml closes
-an amendment tag that spans unclosed paragraphs at the first `<p>`. The marked
-text keeps the source's own spacing (an amendment tag inside a word, or the
-Washington `((<strike>...</strike>))` deletion wrapper, gains no spaces) and
-starts a paragraph at each block tag and a line at each `<br>`. Removing the
-delimiters gives that text, and it has the same non-space characters, in order,
-as the default extraction; extraction checks both and fails otherwise. It also
-fails on a selector that matches nothing, a node or string both inserted and
-deleted, text that already contains a delimiter, `segmentation`, or WebWorks
-HTML. `html_amendment_markup: false` is the default.
+excludes the underlined "AMENDATORY SECTION" label. The marked text keeps the source's own spacing (an amendment tag inside a word, or the
+Washington `((<strike>...</strike>))` deletion wrapper, gains no spaces). A block
+tag (`p`, `div`, `li`, `tr`, a heading, ...) starts and ends a paragraph, a table
+cell or `<br>` separates words, and other tags add nothing; comments and CDATA
+are not text. The text and its paragraphs come from the default lxml parse;
+the amendment tags are selected in an html.parser parse of the same source,
+because lxml closes an inline `<u>` at the next `<p>` and would lose an amendment
+that spans paragraphs. The two parses must carry the same non-space characters in
+the same order, and each character takes its amendment status from its
+html.parser counterpart; a disagreement fails extraction instead of changing the
+text. Removing the delimiters gives the text. It also fails on a selector that matches
+nothing, a node or string both inserted and deleted, text that already contains a
+delimiter, `segmentation`, or WebWorks HTML. `html_amendment_markup: false` is the
+default.
 
 `html_encoding` decodes a page with a declared charset instead of heuristic
 detection, for legacy HTML that declares none (`windows-1252` for the Washington

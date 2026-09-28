@@ -27,7 +27,7 @@ import requests
 import xlrd
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
-from bs4.element import Comment, Tag
+from bs4.element import CData, Comment, Tag
 from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -1275,27 +1275,35 @@ def _pdf_page_layered_text(
         if block.get("type") != 0:
             continue
         for line in block.get("lines", ()):
-            line_start = len(chars)
             spans = line.get("spans", ())
             reference = _pdf_line_reference(spans)
+            # Page furniture is recognised from the whole line before any character
+            # is classified, so an exempt line never raises a classification error.
+            unmarked = markup is not None and any(
+                pattern.fullmatch(
+                    "".join(
+                        str(char.get("c", "")) for span in spans for char in span.get("chars", ())
+                    ).strip()
+                )
+                for pattern in markup.unmarked_line_patterns
+            )
             for span in spans:
                 span_size = float(span.get("size") or 0.0)
                 for char in span.get("chars", ()):
                     character = str(char.get("c", ""))
                     state = None
-                    if rules and reference is not None and not character.isspace():
-                        references = [reference]
-                        if span_size > 0:
-                            references.append((float(char["origin"][1]), span_size))
-                        state = _pdf_char_amendment_state(
-                            char,
-                            references=tuple(references),
-                            rules=rules,
-                            page_number=page_number,
-                        )
-                    if markup is not None:
+                    if markup is not None and not unmarked:
+                        struck = underlined = False
+                        if rules and reference is not None and not character.isspace():
+                            references = [reference]
+                            if span_size > 0:
+                                references.append((float(char["origin"][1]), span_size))
+                            struck, underlined = _pdf_char_rule_marks(
+                                char, references=tuple(references), rules=rules
+                            )
                         state = _pdf_styled_amendment_state(
-                            state,
+                            struck=struck,
+                            underlined=underlined,
                             bold=bool(int(span.get("flags", 0)) & fitz.TEXT_FONT_BOLD),
                             character=character,
                             markup=markup,
@@ -1303,13 +1311,7 @@ def _pdf_page_layered_text(
                         )
                     chars.append(character)
                     states.append(state)
-            unmarked = markup is not None and any(
-                pattern.fullmatch("".join(chars[line_start:]).strip())
-                for pattern in markup.unmarked_line_patterns
-            )
-            if unmarked:
-                states[line_start:] = [None] * (len(chars) - line_start)
-            exempt.extend([unmarked] * (len(chars) - line_start))
+                    exempt.append(unmarked)
             chars.append("\n")
             states.append(None)
             exempt.append(False)
@@ -1355,30 +1357,42 @@ def _pdf_page_layered_text(
 
 
 def _pdf_styled_amendment_state(
-    rule_state: str | None,
     *,
+    struck: bool,
+    underlined: bool,
     bold: bool,
     character: str,
     markup: _PdfAmendmentMarkupConfig,
     page_number: int,
 ) -> str | None:
-    """Apply the configured insertion and deletion styles to a character's rule state."""
-    state = rule_state
-    if markup.inserted_style == "bold" and state == _AMENDMENT_INSERTED:
-        # A drawn underline is not an insertion for a publisher that bolds additions.
-        state = None
-    if markup.deleted_style == "brackets" and state == _AMENDMENT_DELETED:
+    """Classify a character under the configured styles.
+
+    Only the configured signals count: a drawn underline is not an insertion when
+    insertions are bold, and literal brackets (handled later) replace drawn strikes.
+    Extraction fails only when two counted signals conflict, or on a drawn strike
+    that bracket mode cannot place.
+    """
+    inserted = bold if markup.inserted_style == "bold" else underlined
+    deleted = struck and markup.deleted_style == "strike-through"
+    if struck and markup.deleted_style == "brackets":
         raise ValueError(
             f"PDF page {page_number} character {character!r} is struck through, "
             "but amendment_markup deleted_style is brackets"
         )
-    if markup.inserted_style == "bold" and bold:
-        if state == _AMENDMENT_DELETED:
+    if deleted and inserted:
+        if markup.inserted_style == "bold":
             raise ValueError(
                 f"PDF page {page_number} character {character!r} is both struck through and bold"
             )
-        state = _AMENDMENT_INSERTED
-    return state
+        raise ValueError(
+            f"PDF page {page_number} character {character!r} is both struck "
+            "through and underlined; amendment_markup cannot classify it"
+        )
+    if deleted:
+        return _AMENDMENT_DELETED
+    if inserted:
+        return _AMENDMENT_INSERTED
+    return None
 
 
 def _pdf_bracket_deletions(
@@ -1484,13 +1498,13 @@ def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
     return (best[2], best[0])
 
 
-def _pdf_char_amendment_state(
+def _pdf_char_rule_marks(
     char: dict[str, Any],
     *,
     references: tuple[tuple[float, float], ...],
     rules: tuple[_PdfHorizontalRule, ...],
-    page_number: int,
-) -> str | None:
+) -> tuple[bool, bool]:
+    """Return whether a drawn rule strikes through and whether one underlines the character."""
     x0, _y0, x1, _y1 = char["bbox"]
     center = (float(x0) + float(x1)) / 2
     struck = underlined = False
@@ -1507,16 +1521,7 @@ def _pdf_char_amendment_state(
                 struck = True
             elif _PDF_UNDERLINE_OFFSET_RANGE[0] <= offset <= _PDF_UNDERLINE_OFFSET_RANGE[1]:
                 underlined = True
-    if struck and underlined:
-        raise ValueError(
-            f"PDF page {page_number} character {char.get('c')!r} is both struck "
-            "through and underlined; amendment_markup cannot classify it"
-        )
-    if struck:
-        return _AMENDMENT_DELETED
-    if underlined:
-        return _AMENDMENT_INSERTED
-    return None
+    return struck, underlined
 
 
 @dataclass(frozen=True)
@@ -3018,17 +3023,7 @@ def _extract_html_blocks(
     document: bytes | str = (
         _decode_html_strictly(content, str(encoding)) if encoding else content
     )
-    if _html_amendment_markup_requested(extraction):
-        # Older register HTML spans several unclosed paragraphs with one <u> tag.
-        # lxml closes that tag at the first <p>, losing the source's amendment
-        # range, so amendment markup (and only amendment markup) uses html.parser.
-        if isinstance(document, bytes):
-            detected = _html_soup(document).original_encoding
-            soup = BeautifulSoup(document, "html.parser", from_encoding=detected)
-        else:
-            soup = BeautifulSoup(document, "html.parser")
-    else:
-        soup = _html_soup(document)
+    soup = _html_soup(document)
     drop_selectors = [
         "script",
         "style",
@@ -3051,8 +3046,18 @@ def _extract_html_blocks(
         for node in soup.select(selector):
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
-    amendment_nodes = _html_amendment_nodes(root, extraction=extraction)
-    if amendment_nodes is not None and (extraction or {}).get("segmentation") is not None:
+    amendment_states = (
+        _html_amendment_states(
+            document,
+            root,
+            original_encoding=soup.original_encoding,
+            drop_selectors=drop_selectors,
+            extraction=extraction,
+        )
+        if _html_amendment_markup_requested(extraction)
+        else None
+    )
+    if amendment_states is not None and (extraction or {}).get("segmentation") is not None:
         raise ValueError("html_amendment_markup supports only default HTML blocks")
     title = _document_title(soup) or fallback_title
     if (extraction or {}).get("segmentation") == "anchor_range":
@@ -3064,7 +3069,7 @@ def _extract_html_blocks(
         )
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
-        if amendment_nodes is not None:
+        if amendment_states is not None:
             raise ValueError("html_amendment_markup does not support WebWorks HTML")
         return webworks_blocks
     if (extraction or {}).get("segmentation") == "labeled_sections":
@@ -3097,7 +3102,7 @@ def _extract_html_blocks(
         parts = []
 
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _html_amendment_text(node, amendment_nodes)
+        text = _html_amendment_text(node, amendment_states)
         if not text:
             continue
         if node.name in _HEADING_TAGS:
@@ -3108,7 +3113,7 @@ def _extract_html_blocks(
     flush()
     if blocks:
         return tuple(blocks)
-    fallback = _html_amendment_text(root, amendment_nodes)
+    fallback = _html_amendment_text(root, amendment_states)
     if not fallback:
         return ()
     return (
@@ -3141,13 +3146,15 @@ def _html_amendment_markup_requested(extraction: dict[str, Any] | None) -> bool:
     return (extraction or {}).get("html_amendment_markup") not in (None, False)
 
 
-# Tags that start a new paragraph in amendment-marked HTML text; <br> starts a line.
+# In amendment-marked HTML text a block tag starts and ends a paragraph, a table
+# cell and <br> separate words, and every other tag adds nothing.
 _HTML_AMENDMENT_BLOCK_TAGS = frozenset(
     {
         "address", "article", "blockquote", "center", "dd", "div", "dl", "dt", "h1", "h2",
         "h3", "h4", "h5", "h6", "hr", "li", "ol", "p", "pre", "section", "table", "tr", "ul",
     }
 )
+_HTML_AMENDMENT_WORD_BREAK_TAGS = frozenset({"td", "th"})
 
 
 def _html_amendment_nodes(
@@ -3177,51 +3184,127 @@ def _html_amendment_nodes(
     return selected
 
 
-def _html_amendment_text(node: Tag, selected: dict[int, str] | None) -> str:
-    """Return the node's text, wrapping selected amendment runs in wdiff delimiters.
+def _html_text_strings(root: Tag) -> list[Any]:
+    """The text strings under ``root`` in document order, without CDATA."""
+    return [string for string in root.strings if not isinstance(string, CData)]
 
-    Without amendment markup this is the default ``get_text(" ")`` text. With it,
-    the text keeps the source's own spacing (an amendment tag inside a word, or a
-    Washington ``((<strike>...</strike>))`` wrapper, gains no spaces) and breaks
-    paragraphs at block tags and lines at ``<br>``. Removing the delimiters gives
-    exactly that text, and it has the same non-space characters, in the same
-    order, as the default text.
+
+def _html_amendment_states(
+    document: bytes | str,
+    root: Tag,
+    *,
+    original_encoding: str | None,
+    drop_selectors: list[str],
+    extraction: dict[str, Any] | None,
+) -> dict[int, list[str | None]]:
+    """Amendment status of every character of every text string under ``root``.
+
+    ``root`` is the default lxml parse, which gives the text and its paragraph
+    structure. Amendment tags are selected in an html.parser parse of the same
+    source instead, because lxml closes an inline ``<u>`` or ``<strike>`` at the
+    next ``<p>`` and so loses an amendment that spans paragraphs (Washington
+    register orders do this). The two parses must carry the same non-space
+    characters in the same order; each lxml character takes the status of its
+    html.parser counterpart, and a disagreement fails extraction.
     """
-    if selected is None:
-        return _normalize_text(node.get_text(" ", strip=True))
-    string_ids = {id(string) for string in node.strings}
-    parts: list[str] = []
-    states: list[str | None] = []
-    for descendant in node.descendants:
-        if isinstance(descendant, Tag):
-            marker = (
-                "\n" if descendant.name == "br"
-                else "\n\n" if descendant.name in _HTML_AMENDMENT_BLOCK_TAGS
-                else ""
-            )
-            parts.append(marker)
-            states.extend([None] * len(marker))
-            continue
-        if id(descendant) not in string_ids:
-            continue
-        # HTML collapses source whitespace, line breaks included, to one space.
-        text = re.sub(r"\s+", " ", str(descendant))
+    marked_soup = (
+        BeautifulSoup(document, "html.parser", from_encoding=original_encoding)
+        if isinstance(document, bytes)
+        else BeautifulSoup(document, "html.parser")
+    )
+    for selector in drop_selectors:
+        for node in marked_soup.select(selector):
+            node.decompose()
+    marked_root = _html_content_root(marked_soup, extraction=extraction)
+    selected = _html_amendment_nodes(marked_root, extraction=extraction) or {}
+    marked: list[tuple[str, str | None]] = []
+    for string in _html_text_strings(marked_root):
         inherited = {
-            selected[id(parent)] for parent in descendant.parents if id(parent) in selected
+            selected[id(parent)] for parent in string.parents if id(parent) in selected
         }
         if len(inherited) > 1:
             raise ValueError("HTML amendment text is both inserted and deleted")
         state = next(iter(inherited), None)
-        parts.append(text)
-        states.extend([state] * len(text))
+        marked.extend((character, state) for character in str(string) if not character.isspace())
+    states: dict[int, list[str | None]] = {}
+    position = 0
+    for string in _html_text_strings(root):
+        string_states: list[str | None] = []
+        for character in str(string):
+            if character.isspace():
+                string_states.append(None)
+                continue
+            if position >= len(marked) or marked[position][0] != character:
+                raise RuntimeError(
+                    "html_amendment_markup: the html.parser and lxml parses of this source "
+                    f"disagree at non-space character {position}"
+                )
+            string_states.append(marked[position][1])
+            position += 1
+        states[id(string)] = string_states
+    if position != len(marked):
+        raise RuntimeError(
+            "html_amendment_markup: the html.parser parse of this source has text the "
+            "lxml parse lacks"
+        )
+    return states
+
+
+def _html_amendment_text(node: Tag, selected: dict[int, list[str | None]] | None) -> str:
+    """Return the node's text, wrapping selected amendment runs in wdiff delimiters.
+
+    Without amendment markup this is the default ``get_text(" ")`` text. With it,
+    the text keeps the source's own spacing (an amendment tag inside a word, or a
+    Washington ``((<strike>...</strike>))`` wrapper, gains no spaces): block tags
+    start and end paragraphs, table cells and ``<br>`` separate words, and other
+    tags add nothing. The node is from the lxml parse (see
+    ``_html_amendment_states``), so its paragraphs are the default extraction's.
+    Removing the delimiters gives exactly that text.
+    """
+    if selected is None:
+        return _normalize_text(node.get_text(" ", strip=True))
+    parts: list[str] = []
+    states: list[str | None] = []
+
+    def walk(current: Tag) -> None:
+        for child in current.children:
+            if isinstance(child, Tag):
+                if child.name == "br":
+                    parts.append("\n")
+                    states.append(None)
+                    continue
+                boundary = (
+                    "\n\n" if child.name in _HTML_AMENDMENT_BLOCK_TAGS
+                    else " " if child.name in _HTML_AMENDMENT_WORD_BREAK_TAGS
+                    else ""
+                )
+                parts.append(boundary)
+                states.extend([None] * len(boundary))
+                walk(child)
+                parts.append(boundary)
+                states.extend([None] * len(boundary))
+                continue
+            string_states = selected.get(id(child))
+            if string_states is None:
+                continue
+            # HTML collapses a run of source whitespace, line breaks included, to one space.
+            in_space = False
+            for character, state in zip(str(child), string_states, strict=True):
+                if character.isspace():
+                    if not in_space:
+                        parts.append(" ")
+                        states.append(None)
+                    in_space = True
+                    continue
+                parts.append(character)
+                states.append(state)
+                in_space = False
+
+    walk(node)
     raw = "".join(parts)
     rendered = _render_amendment_markup(raw, states)
-    stripped = _strip_amendment_markup(rendered.text)
-    if stripped != _normalize_text(raw):
+    if _strip_amendment_markup(rendered.text) != _normalize_text(raw):
         raise RuntimeError("HTML amendment markup changed the source text")
-    default = _normalize_text(node.get_text(" ", strip=True))
-    if re.sub(r"\s", "", stripped) != re.sub(r"\s", "", default):
-        raise RuntimeError("HTML amendment markup lost or added source characters")
     return rendered.text
 
 
