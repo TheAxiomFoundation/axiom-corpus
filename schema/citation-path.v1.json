@@ -129,6 +129,11 @@
       "example": "us/statute/26/3121/a/1",
       "notes": "USLM-derived. <title> is the numeric US Code title (26 IRC, 42 Social Security Act host title). Subsection depth mirrors USLM (a, 1, A, i...). Aspirational target form 'us/statute/26/32/a/1' (EITC) follows this family once Title 26 §32 is ingested."
     },
+    "us_public_law": {
+      "shape": "us/statute/pl/<congress>/<law-number>/<section>[/<subsection>...]",
+      "example": "us/statute/pl/119/21/70104/a/2",
+      "notes": "Govinfo public-law USLM. The pl/congress/law-number identity follows the source /us/pl identifier. Paths identify enacted amending provisions; quoted USC replacement text stays in the amendment body. Dated USC expressions retain the us_federal_statute paths and differ by version and expression_date."
+    },
     "us_federal_regulation": {
       "shape": "us/regulation/<title>/<part>[/<section>|/subpart-<X>...]",
       "example": "us/regulation/7/273/9",
@@ -204,7 +209,7 @@
       "page_n": 150654,
       "space_segments": 196,
       "endash_segments": 1652,
-      "uppercase_segments": 16280,
+      "uppercase_segments": 16355,
       "truncated_segments": 53,
       "collection_roots": 10
     }

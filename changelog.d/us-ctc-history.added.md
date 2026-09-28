@@ -1,0 +1,1 @@
+Add official public-law USLM extraction and child tax credit source history: P.L. 115-97 §11022, P.L. 119-21 §70104, and the dated 2024 expression of 26 U.S.C. §24. Artifacts and draft release selectors await dispatcher signing and publication.
