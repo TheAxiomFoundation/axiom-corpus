@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "commit": "084caf0523f1f0d8c38484fe8d584f77719effc6",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 74
   },
   "document_class": "regulation",
-  "generated_at": "2026-09-28T17:16:18.938455+00:00",
+  "generated_at": "2026-09-28T17:57:37.664969+00:00",
   "jurisdiction": "us-hi",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
-      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+      "sha256": "0cebdbecb639e85664e5e3727ed3a8a6b2e08ec06a513719b81853a005d94fc1"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "owLfHN/vyxr+PX7inZKhhToBSti+jdVmjQwpSTgsunexuY9aaQ+YH0wekh+Cd+fJSy98xf0UAdpokK98I3SRCg=="
+    "value": "JfZklcRT+3uDiOiENqTVm0TWoVvKNXJWY5zKnnm6bpNpltfX1iFg3+Jrla0ZOd0sAIwYi7RVYlnObQQucF0jBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-hi-har-17-676-2012-01-06"

@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01.json",
-      "sha256": "42c060eca689c58d1618af242bb5ac16b49480f06fd0c96116e2891dffe63d10"
+      "sha256": "22d8655e67a8a5c02091d0768f36205e737e0d608021eeae7fabf7a1c97b1426"
     },
     {
       "path": "data/corpus/provisions/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01.jsonl",
-      "sha256": "5a6ef298d1b1faf2b0b0ccc5796b706fe861312f51f63507a35535b3f6c20ceb"
+      "sha256": "cdd27c74e0d12c0b8d8473417f66f25eb6956f09f8e021fd1d4a73eff81accf8"
     },
     {
       "path": "data/corpus/sources/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01/official-documents/ri-218-820-snap-rules-2014-10-01-filing-record.html",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "commit": "084caf0523f1f0d8c38484fe8d584f77719effc6",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,19 +39,19 @@
     "source_count": 314
   },
   "document_class": "regulation",
-  "generated_at": "2026-09-28T17:16:27.727068+00:00",
+  "generated_at": "2026-09-28T17:57:45.634186+00:00",
   "jurisdiction": "us-ri",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
-      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+      "sha256": "0cebdbecb639e85664e5e3727ed3a8a6b2e08ec06a513719b81853a005d94fc1"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "gWNAgxZP+3y52uV8hmeIBehVJBQHf3GK1+maWr3TjX7k9j6AcNEdh0blSa2GTpx5gQ4n8ZBCSJckOxOoCKLlDw=="
+    "value": "hMWe6sLw0oSk/dn5h8LXmL9iwuR+DVimYaalqC1VaElAUFHsEAUS7GdoOY3asoQRvrtfxztXFHOgd8treBdHCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-ri-218-820-snap-rules-2014-10-01"
