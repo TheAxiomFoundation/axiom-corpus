@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/statute/2026-09-28-nj-pl-2013-c45.json",
+      "sha256": "c6958d0183413df7a2657e506bf4eb3dbd8fe2968b8643afe40014b7575b8176"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/statute/2026-09-28-nj-pl-2013-c45.json",
+      "sha256": "6f718bce023fcd3df3174c891f3073baad96648ef4ba8179417bb59383ac7328"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/statute/2026-09-28-nj-pl-2013-c45.jsonl",
+      "sha256": "6db0095d03fac0c1851c51bd4daf506e6198c02380fdc16a8c66825258e55745"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-09-28-nj-pl-2013-c45/official-documents/nj-pl-2013-c45.html",
+      "sha256": "7446947a23370100dc106ba8b948222b2e7479ff3d2518f6d282344de24aa360"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-nj-pl-2013-c45 --manifest manifests/us-nj-pl-2013-c45.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-28T17:16:25.619768+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/8gGGO5157mHFINhxEcKhqQc8WOzU4Rm2xYBlsymJDb6Y6Sekac/93toYt3JdbZGn49N0nri24gA6Kgaq8FQDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-nj-pl-2013-c45"
+}

@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-09-28-co-10-ccr-2506-1-2009-07-01.json",
+      "sha256": "497aee10438b7f48ba942c877d64bf2a6d8ef8afe1e82d0f6f9cddcbe47f46fc"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-09-28-co-10-ccr-2506-1-2009-07-01.json",
+      "sha256": "63daed30b9e71d1af84a5094f8d3ae81fe69474e393d58d2530670fa8e565c7f"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-09-28-co-10-ccr-2506-1-2009-07-01.jsonl",
+      "sha256": "00e1c6d209b1c5927644fd1ce4321cfe95b5aebf5ca17dab7016ed324a5afb14"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-09-28-co-10-ccr-2506-1-2009-07-01/official-documents/co-10-ccr-2506-1-2009-07-01.pdf",
+      "sha256": "702e55452624351ee1027502637369a3a65cfa0317d9d27378420894abbfeeaf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-co-10-ccr-2506-1-2009-07-01 --manifest manifests/us-co-10-ccr-2506-1-2009-07-01.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 237,
+    "missing_count": 0,
+    "provision_count": 237,
+    "source_count": 237
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-28T17:16:17.350749+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "O8monDJ5F7rn1UHTFMH8leueqVcbrGYwXkDrXAPs4mnlt6eaJfgTHIFMgfk/IAI11KTsxaaUdHr8axOpkqh1Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-co-10-ccr-2506-1-2009-07-01"
+}

@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/rulemaking/2026-09-28-nj-prn-2016-017.json",
+      "sha256": "a1b26cbc614c33ad0f1e9f1e02a6a1813aaf0714b0f56bf2741a8abb22a2bd0f"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/rulemaking/2026-09-28-nj-prn-2016-017.json",
+      "sha256": "0a4f1e26776cf50ef82038849699013d333ed826921b73d3cec4c36f7665be46"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/rulemaking/2026-09-28-nj-prn-2016-017.jsonl",
+      "sha256": "d9faa6d402bdba85314caed7503683c350a8ec3b0b282a5a65dd9bab7abd3d82"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/rulemaking/2026-09-28-nj-prn-2016-017/official-documents/nj-prn-2016-017.pdf",
+      "sha256": "64f265bc860a1f675099484f7ab1d2abf8c7e7c933c6d0f6626d99e0da5c893f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-nj-prn-2016-017 --manifest manifests/us-nj-prn-2016-017.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-09-28T17:16:26.688395+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GNbRtTDGQqIL1R49KNMQlMUqlYUIB/D3EBWDW0yWkYRAVuI/SI+r9HIweOsuSQ7fEyJOgIAzebfM0ZY257y7DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-nj-prn-2016-017"
+}

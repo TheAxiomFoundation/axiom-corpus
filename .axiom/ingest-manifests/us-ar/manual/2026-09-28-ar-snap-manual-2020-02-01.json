@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/manual/2026-09-28-ar-snap-manual-2020-02-01.json",
+      "sha256": "9a77b2b706478a1d80dfed18eccd1c2aeb53607553289607f5b154c59d74b0f1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/manual/2026-09-28-ar-snap-manual-2020-02-01.json",
+      "sha256": "9e61943b4582c027314d138dfac721118b2b13714faf226a6ce4e48e92d15a45"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/manual/2026-09-28-ar-snap-manual-2020-02-01.jsonl",
+      "sha256": "9b64ec727731dbf2189e62893d68b94da5c0f46a159cebc9b9eb452161d2e520"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/manual/2026-09-28-ar-snap-manual-2020-02-01/official-documents/ar-dhs-snap-manual-2020-02-01.pdf",
+      "sha256": "8dc2bfbcd8a46e485adb3fdd9631b6d80228c963f99a3d057b16be24fcd6c309"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-ar-snap-manual-2020-02-01 --manifest manifests/us-ar-snap-manual-2020-02-01.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1058,
+    "missing_count": 0,
+    "provision_count": 1058,
+    "source_count": 1058
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-28T17:16:15.997718+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "q7+0TjkmQRbsmz5nZbE22unKYgDiARtHaq7IA7Dx1LN2eWX47jSWuUWwjPkjRpNDz4gnjoqIxMrWFk16CaekCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-ar-snap-manual-2020-02-01"
+}

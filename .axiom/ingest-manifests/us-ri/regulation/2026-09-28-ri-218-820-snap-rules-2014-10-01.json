@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01.json",
+      "sha256": "4c969523ec2f3a8ecf06613fc3fc5c4945fdbe779cbd2fa8965f618a95fe5936"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01.json",
+      "sha256": "42c060eca689c58d1618af242bb5ac16b49480f06fd0c96116e2891dffe63d10"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01.jsonl",
+      "sha256": "5a6ef298d1b1faf2b0b0ccc5796b706fe861312f51f63507a35535b3f6c20ceb"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01/official-documents/ri-218-820-snap-rules-2014-10-01-filing-record.html",
+      "sha256": "0437731a2b21e71e6cf470605359faf097439c9c4be9e3aeef3626c059a8ee47"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-28-ri-218-820-snap-rules-2014-10-01/official-documents/ri-218-820-snap-rules-2014-10-01.pdf",
+      "sha256": "23027ddc2d875cc3057d844c70c0963ddbd17f302f47a6f6097bee488aec7912"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-ri-218-820-snap-rules-2014-10-01 --manifest manifests/us-ri-218-820-snap-rules-2014-10-01.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 314,
+    "missing_count": 0,
+    "provision_count": 314,
+    "source_count": 314
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-28T17:16:27.727068+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gWNAgxZP+3y52uV8hmeIBehVJBQHf3GK1+maWr3TjX7k9j6AcNEdh0blSa2GTpx5gQ4n8ZBCSJckOxOoCKLlDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-ri-218-820-snap-rules-2014-10-01"
+}

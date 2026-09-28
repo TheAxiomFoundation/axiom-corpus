@@ -1,0 +1,74 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17.json",
+      "sha256": "108dfba8da2cd2a4d6354553b1914ae7888cdd7224bf707705918f23d8436435"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17.json",
+      "sha256": "916fa818fdfd7e92a30f4a6c5eef61bcff559c04f867856c25586901156f4f79"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17.jsonl",
+      "sha256": "6279c2b2e54bdae7859adfc0a9a28b27fe9ac44f61e9dff652dc318c45499779"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/index.xml",
+      "sha256": "c46c820d4c57806e59d9909f28d2b0d086ed02aecbc2a62f249ec667cc6ca444"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/license.md",
+      "sha256": "a761bf991e0b5fb5d5259f60db10137b777333c54a49b9a40a6714e17b0af0d6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/index.xml",
+      "sha256": "45c4f854e5a67360ea3e671a37545a921d4900af57697559221f1ab1aaf7e4ca"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/index.xml",
+      "sha256": "b5d39d14ee78375c6e3e24aab65c8da4a1ec5722d3c73ddcbbfd5af7af88fde0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/index.xml",
+      "sha256": "abac0a7a27697fedbb4a642dc44741dbc6b3738938f25ff62e07282d88a526a4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-maryland-comar --base data/corpus --version 2026-09-28-md-snap-comar --publication-branch publication/2026-09-27.2026-09-27 --only-title 07 --only-subtitle 03 --only-chapter 17"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 66,
+    "missing_count": 0,
+    "provision_count": 66,
+    "source_count": 66
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-28T17:16:32.089732+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PmhEyFW+Y8AUvZKsZ1Egh5I56dTcMTht+/aLcogC/qkR9Q5erht07MoocU0fKDWFBh0xTVDWBHlvoGEVSQbUAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17"
+}

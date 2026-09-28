@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/rulemaking/2026-09-28-wa-wsr-09-15-085.json",
+      "sha256": "6051d598d62e12420a2576637c208bfbb0d33e5241a2043f4a9909d6231ea0f3"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/rulemaking/2026-09-28-wa-wsr-09-15-085.json",
+      "sha256": "7cddb7b6f4f9cfcd4fb0fc03fb7175fb36e30a353f8cdd14427ac73575de463c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/rulemaking/2026-09-28-wa-wsr-09-15-085.jsonl",
+      "sha256": "f60abddd24245f8bc8e64372d0f0c0fc77dba4b04e72f4dee1ad62e32d652876"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-09-28-wa-wsr-09-15-085/official-documents/wa-wsr-09-15-085.html",
+      "sha256": "d5cb51c135bc2eafc27d7e7a21598f421e1247697dd74f14b613db97a0af8e07"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-wa-wsr-09-15-085 --manifest manifests/us-wa-wsr-09-15-085.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-09-28T17:16:29.989598+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z0y7yjjH/Ag+Vp4uEJs1RrTERqwE4XvJ22qLEAKbgJKq7KQNqtaFpGRWhxqsRR14qHpdQRehd0NB6jwQaxfLBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-wa-wsr-09-15-085"
+}

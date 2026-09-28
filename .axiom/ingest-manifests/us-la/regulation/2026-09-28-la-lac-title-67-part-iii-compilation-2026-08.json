@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/regulation/2026-09-28-la-lac-title-67-part-iii-compilation-2026-08.json",
+      "sha256": "db67d384dcfa3ced4a7ed2fec2cb9332f0ea1804b97fcc7e4416c87897f6f3c5"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/regulation/2026-09-28-la-lac-title-67-part-iii-compilation-2026-08.json",
+      "sha256": "8faec697d25986ad8984f0d34e290f1c94d5a18f334aa73ad4f1e7895f272fbe"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/regulation/2026-09-28-la-lac-title-67-part-iii-compilation-2026-08.jsonl",
+      "sha256": "67a9ad63b0f6a878d15a1059f1e155678440a04baadc6b32111b59b8def49dc9"
+    },
+    {
+      "path": "data/corpus/sources/us-la/regulation/2026-09-28-la-lac-title-67-part-iii-compilation-2026-08/official-documents/la-osr-lac-67-iii.docx",
+      "sha256": "929dea17d238ba30424bd0f4c631e69ae8b933e550e3a5b6940fd63a15d1c28f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9cf21ee018c6a073aa77cebf1e862cc87f1fc48",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-28-la-lac-title-67-part-iii-compilation-2026-08 --manifest manifests/us-la-lac-title-67-part-iii.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 312,
+    "missing_count": 0,
+    "provision_count": 312,
+    "source_count": 312
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-28T17:16:20.028164+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-snap-child-support-cited-state-sources.md",
+      "sha256": "323fc4a92e6ef42c0b9e38e5d853c349434133d55737a6f8ffa275e4373a0743"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0D6dWds+ifOu/tvyIAa/RBiALaXCu9I13hzyhAFso0YZkSoS8ejLZpfLeMSf/+TM1YaXKKCGIMSte5JBeFClCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-la-lac-title-67-part-iii-compilation-2026-08"
+}
