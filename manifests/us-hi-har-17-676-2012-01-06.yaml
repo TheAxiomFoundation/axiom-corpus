@@ -1,0 +1,55 @@
+version: 2026-09-28-hi-har-17-676-2012-01-06
+documents:
+  - source_id: hi-dhs-har-17-676-2012-01-06
+    jurisdiction: us-hi
+    document_class: regulation
+    citation_path: us-hi/regulation/har/17/676/vintage/2012-01-06
+    title: Hawaii Administrative Rules Chapter 17-676, Income, as amended through January 6, 2012 (DHS posting of January 2014)
+    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2014/01/17-676.pdf
+    source_format: pdf
+    source_as_of: '2012-01-06'
+    expression_date: '2012-01-06'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Hawaii Department of Human Services
+      official_publisher: Hawaii Department of Human Services
+      document_subtype: historical_administrative_rules_posting
+      program: SNAP
+      legal_identifier: HAR Chapter 17-676
+      historical_vintage: true
+      vintage_date_basis: latest_printed_amendment
+      printed_compilation_date: '2006-11-09'
+      latest_printed_amendment_date: '2012-01-06'
+      expression_date_note: >-
+        Section histories print the compilation as "comp 11/09/06" (54 sections).
+        The latest printed action is the repeal of 17-676-55, "[R 1/06/12]" (PDF
+        page 38), so the posted text is current through January 6, 2012. The file
+        was created D:20140127140551-10'00' and posted under /uploads/2014/01/; that
+        posting date is recorded below and not used as a legal date.
+      posting_file_creation_date: '2014-01-27'
+      text_identity_note: >-
+        Every page's text is identical to the corresponding page row
+        us-hi/regulation/har/17/676/page-N of scope
+        us-hi/regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained, which
+        DHS posted in 2019 (HAR-17-676-INCOME.pdf). This scope adds the dating: the
+        same chapter text was posted by January 2014.
+      child_support_deduction_section_latest_amendment: '2008-11-22'
+      child_support_deduction_section_latest_amendment_note: >-
+        Printed history of section 17-676-72 on PDF page 48, am 11/22/08; this does
+        not assert the initial adoption date of paragraph (6).
+      extraction_granularity: pdf_page
+      topic: legally_obligated_child_support_deduction
+      authority_role: >-
+        Child support paid is a net-income deduction with no gross-income exclusion.
+        17-676-72(6) (PDF page 48) allows a deduction for legally obligated payments to
+        or for a nonhousehold member, including arrearages; alimony is not included in
+        it. 17-676-56(f) (PDF page 38) subtracts the payments in the net income
+        computation, though the section's printed cross-references in (g) and (j)(1)
+        name only subsections (c) to (e); 17-676-72(5) and 17-676-74(a) put child
+        support among the deductions taken before the shelter computation.
+      citation_path_note: >-
+        The current har/17/676 family gains vintage/<latest-amendment-date> for this
+        historical posting, so it does not collide with the current chapter's page rows.
+      discovered_via: policyengine-us SNAP child support references; live DHS January 2014 posting

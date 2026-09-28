@@ -1,0 +1,1936 @@
+{
+  "items": [
+    {
+      "citation_path": "us-md/regulation",
+      "metadata": {
+        "kind": "collection",
+        "publication_branch": "publication/2026-09-27.2026-09-27",
+        "source_as_of": "2026-09-27",
+        "source_repo": "https://github.com/maryland-dsd/law-xml-codified"
+      },
+      "sha256": "abac0a7a27697fedbb4a642dc44741dbc6b3738938f25ff62e07282d88a526a4",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/index.xml",
+      "source_url": "https://regs.maryland.gov"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07",
+      "metadata": {
+        "kind": "title",
+        "number": "07",
+        "title_heading": "DEPARTMENT OF HUMAN SERVICES",
+        "title_number": "07"
+      },
+      "sha256": "b5d39d14ee78375c6e3e24aab65c8da4a1ec5722d3c73ddcbbfd5af7af88fde0",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/index.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/index.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03",
+      "metadata": {
+        "kind": "subtitle",
+        "number": "03",
+        "subtitle_heading": "FAMILY INVESTMENT ADMINISTRATION",
+        "subtitle_number": "03",
+        "title_heading": "DEPARTMENT OF HUMAN SERVICES",
+        "title_number": "07"
+      },
+      "sha256": "45c4f854e5a67360ea3e671a37545a921d4900af57697559221f1ab1aaf7e4ca",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/index.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/index.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17",
+      "metadata": {
+        "annotations": [
+          {
+            "dest": "container",
+            "managed": "false",
+            "text": "Human Services Article, \u00a7\u00a75-207, 5-501, and 5-604; State Government Article, \u00a78-206; Annotated\u00a0Code\u00a0of\u00a0Maryland\nFederal Regulatory Reference\u20147 CFR \u00a7\u00a7271\u2014274",
+            "type": "Authority"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-05-16",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Effective date: May 16, 1988 (15:10 Md. R. 1200)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2001-07-23",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .02B amended effective November 14, 1988 (15:23 Md. R. 2657); November 20, 1994 (21:23 Md. R. 1931); January 2, 1995 (21:26 Md. R. 2184); July 31, 1995 (22:15 Md. R. 1118); July 23, 2001 (28:14 Md. R. 1320)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-01-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .03A amended effective November 14, 1988 (15:23 Md. R. 2657); November 20, 1994 (21:23 Md. R. 1931); January 2, 1995 (21:26 Md. R. 2184)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-07-31",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .03A-1 adopted effective July 31, 1995 (22:15 Md. R. 1118)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1994-11-20",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .03B amended effective November 20, 1994 (21:23 Md. R. 1931)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-07-31",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .03D amended effective July 31, 1995 (22:15 Md. R. 1118)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1994-11-20",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .03E amended effective November 20, 1994 (21:23 Md. R. 1931)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1994-11-20",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .04I adopted effective November 20, 1994 (21:23 Md. R. 1931)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1994-11-20",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .06D amended effective November 20, 1994 (21:23 Md. R. 1931)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-11-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .06F adopted effective November 14, 1988 (15:23 Md. R. 2657)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1989-05-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07A amended effective May 1, 1989 (16:8 Md. R. 908)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-10-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07B amended effective October 1, 1995 (22:18 Md. R. 1398)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-01-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07C amended effective May 1, 1989 (16:8 Md. R. 908); May 23, 1994 (21:10 Md. R. 842); November 20, 1994 (21:23 Md. R. 1931); January 2, 1995 (21:26 Md. R. 2184)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-01-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07J amended effective November 20, 1994 (21:23 Md. R. 1931); January 2, 1995 (21:26 Md. R. 2184)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-01-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07K amended effective January 2, 1995 (21:26 Md. R. 2184)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-10-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07N adopted effective October 1, 1995 (22:18 Md. R. 1398)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1989-07-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .08B amended as an emergency provision effective July 1, 1989 (16:14 Md. R. 1563); emergency status expired January 1, 1990 (Emergency provisions are temporary and not printed in COMAR)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-07-31",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .08B amended effective January 22, 1990 (17:1 Md. R. 68); July 31, 1995 (22:15 Md. R. 1118)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-07-31",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .08E amended effective July 31, 1995 (22:15 Md. R. 1118)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-07-31",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .09A amended effective July 31, 1995 (22:15 Md. R. 1118)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1996-10-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .10D-1 adopted effective October 1, 1996 (23:19 Md. R. 1373)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-10-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .10F amended effective January 2, 1995 (21:26 Md. R. 2184); October 1, 1995 (22:18 Md. R. 1398)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-01-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .10G amended effective January 2, 1995 (21:26 Md. R. 2184)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1994-11-20",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .10H amended effective November 20, 1994 (21:23 Md. R. 1931)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-01-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .10J amended effective May 1, 1989 (16:8 Md. R. 908); November 20, 1994 (21:23 Md. R. 1931); January 2, 1995 (21:26 Md. R. 2184)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-11-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .11A amended effective November 14, 1988 (15:23 Md. R. 2657)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1995-10-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .14A, C amended effective October 1, 1995 (22:18 Md. R. 1398)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1989-05-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .15C amended effective May 1, 1989 (16:8 Md. R. 908)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-11-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .16D amended effective November 14, 1988 (15:23 Md. R. 2657)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1990-04-02",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .18 repealed and new Regulation .18 adopted effective April 2, 1990 (17:6 Md. R. 740)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-11-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .19B amended effective November 14, 1988 (15:23 Md. R. 2657)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-11-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .19F amended effective November 14, 1988 (15:23 Md. R. 2657)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1988-11-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .23 adopted effective November 14, 1988 (15:23 Md. R. 2657)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1989-02-20",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .24 adopted effective February 20, 1989 (16:3 Md. R. 341)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "discontinuity": "true",
+            "effective": "1997-09-22",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Chapter revised effective September 22, 1997 (24:19 Md. R. 1339)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1998-01-26",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .03 amended effective January 26, 1998 (25:2 Md. R. 75)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1998-01-26",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .07C, G amended effective January 26, 1998 (25:2 Md. R. 75)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "1998-01-26",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .14A amended effective January 26, 1998 (25:2 Md. R. 75)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "discontinuity": "true",
+            "effective": "2000-12-25",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulations .01\u2014.24 repealed and new Regulations .01\u2014.59 adopted effective December 25, 2000 (27:25 Md. R. 2280)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "discontinuity": "true",
+            "effective": "2001-07-23",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Chapter revised effective July 23, 2001 (28:14 Md. R. 1320)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .09 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .09 amended effective November 25, 2002 (29:23 Md. R. 1810); April 1, 2003 (30:6 Md. R. 419); October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-11-25",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .19 amended effective November 25, 2002 (29:23 Md. R. 1810)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .20 amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .20G adopted as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .21A amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .22 amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .23 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .24 amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-11-25",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .25 amended effective November 25, 2002 (29:23 Md. R. 1810)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .26 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-04-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .26C amended effective April 1, 2003 (30:6 Md. R. 419)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .27 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .27 amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .28 repealed and new Regulation .28 adopted as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); adopted permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .30B amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .30C amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .30C, D amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .31 amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .38C amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .40 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .45 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-04-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .45 amended effective November 25, 2002 (29:23 Md. R. 1810); February 17, 2003 (30:3 Md. R. 177); April 1, 2003 (30:6 Md. R. 419)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .46 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-02-17",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .46E, F amended effective February 17, 2003 (30:3 Md. R. 177)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2002-03-18",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .47 amended as an emergency provision effective November 1, 2001 (28:24 Md. R. 2122); amended permanently effective March 18, 2002 (29:5 Md. R. 502)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .47A amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-04-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .47A, B amended effective April 1, 2003 (30:6 Md. R. 419)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .48 amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-04-01",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .48B amended effective April 1, 2003 (30:6 Md. R. 419)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-10-27",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .49A amended effective October 27, 2003 (30:21 Md. R. 1528)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-02-17",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .49H adopted effective February 17, 2003 (30:3 Md. R. 177)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2003-02-17",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .51A amended effective February 17, 2003 (30:3 Md. R. 177)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "discontinuity": "true",
+            "effective": "2005-09-12",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Chapter revised effective September 12, 2005 (32:18 Md. R. 1518)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2005-10-24",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .04C amended effective October 24, 2005 (32:21 Md. R. 1706)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .15B-1 adopted effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .23B amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .24A amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .30D amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .38B amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .45 amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .46E amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2007-11-19",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .47A amended effective November 19, 2007 (34:23 Md. R. 2026)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "discontinuity": "true",
+            "effective": "2009-12-14",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Chapter revised effective December 14, 2009 (36:25 Md. R. 1953)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2010-11-15",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .02B amended effective November 15, 2010 (37:23 Md. R. 1609)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2010-11-15",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .15 amended effective November 15, 2010 (37:23 Md. R. 1609)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2010-11-15",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .23 amended effective November 15, 2010 (37:23 Md. R. 1609)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2015-06-22",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .30B, C amended effective June 22, 2015 (42:12 Md. R. 761)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2015-06-22",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .32 amended effective June 22, 2015 (42:12 Md. R. 761)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2015-06-22",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .39B amended effective June 22, 2015 (42:12 Md. R. 761)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2010-11-15",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .45 amended effective November 15, 2010 (37:23 Md. R. 1609)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2010-11-15",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .49H amended effective November 15, 2010 (37:23 Md. R. 1609)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2014-05-12",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .56 amended effective May 12, 2014 (41:9 Md. R. 520)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2010-11-15",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .60 adopted effective November 15, 2010 (37:23 Md. R. 1609)",
+            "type": "History"
+          },
+          {
+            "dest": "container",
+            "effective": "2020-07-16",
+            "managed": "false",
+            "subtype": "Administrative History",
+            "text": "Regulation .61 adopted effective July 16, 2020 (47:14 Md. R. 674)",
+            "type": "History"
+          }
+        ],
+        "chapter_heading": "Food Supplement Program",
+        "chapter_number": "17",
+        "kind": "chapter",
+        "number": "17",
+        "subtitle_heading": "FAMILY INVESTMENT ADMINISTRATION",
+        "subtitle_number": "03",
+        "title_heading": "DEPARTMENT OF HUMAN SERVICES",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-01",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".01",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02"
+        ],
+        "regulation_number": ".02",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-03",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-30",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-06",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-05",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-04",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-07",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-03",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02"
+        ],
+        "regulation_number": ".03",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-04",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-40",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-56",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-10",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-23",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-04",
+          "us-md/statute/88a/50a",
+          "us-md/statute/gcr/5-602",
+          "us-md/statute/gcr/5-609"
+        ],
+        "regulation_number": ".04",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-05",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-03",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-05"
+        ],
+        "regulation_number": ".05",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-06",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-06",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02"
+        ],
+        "regulation_number": ".06",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-07",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".07",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-08",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-06"
+        ],
+        "regulation_number": ".08",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09"
+        ],
+        "regulation_number": ".09",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09-1",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09-1",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-26"
+        ],
+        "regulation_number": ".09-1",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-10",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-10"
+        ],
+        "regulation_number": ".10",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-11",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".11",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-12",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-20",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-06",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-56",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-10",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-12"
+        ],
+        "regulation_number": ".12",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-13",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".13",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-14",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-15",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-20",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-19"
+        ],
+        "regulation_number": ".14",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-15",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-15"
+        ],
+        "regulation_number": ".15",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-16",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-18"
+        ],
+        "regulation_number": ".16",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-17",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-14"
+        ],
+        "regulation_number": ".17",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-18",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-14"
+        ],
+        "regulation_number": ".18",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-19",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-19",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-14"
+        ],
+        "regulation_number": ".19",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-20",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-30",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-33",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-08",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-11",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-26",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-20",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-23"
+        ],
+        "regulation_number": ".20",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-24",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-13"
+        ],
+        "regulation_number": ".21",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-22",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-22"
+        ],
+        "regulation_number": ".22",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-23",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-23",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21"
+        ],
+        "regulation_number": ".23",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-24",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-22"
+        ],
+        "regulation_number": ".24",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-25",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-25",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-12",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02"
+        ],
+        "regulation_number": ".25",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-26",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".26",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-27",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-26"
+        ],
+        "regulation_number": ".27",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-28",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-25"
+        ],
+        "regulation_number": ".28",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-29",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-29"
+        ],
+        "regulation_number": ".29",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-30",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-30",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-39",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09-1",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-31"
+        ],
+        "regulation_number": ".30",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-31",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".31",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-32",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-39"
+        ],
+        "regulation_number": ".32",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-33",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-33"
+        ],
+        "regulation_number": ".33",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-34",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21"
+        ],
+        "regulation_number": ".34",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".35",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-36",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45"
+        ],
+        "regulation_number": ".36",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-37",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45"
+        ],
+        "regulation_number": ".37",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-38",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-37",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-38"
+        ],
+        "regulation_number": ".38",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-39",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-39"
+        ],
+        "regulation_number": ".39",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-40",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-04",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-11",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-40",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-10",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-03"
+        ],
+        "regulation_number": ".40",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-41",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".41",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-42",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-12"
+        ],
+        "regulation_number": ".42",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-33",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-34",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-35",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-36",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-37"
+        ],
+        "regulation_number": ".43",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-44",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-43",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-44",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-12"
+        ],
+        "regulation_number": ".44",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-45",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".45",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-46",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-46",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-16",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-49",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-52",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-47"
+        ],
+        "regulation_number": ".46",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-47",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-47",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-23"
+        ],
+        "regulation_number": ".47",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-48",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-47"
+        ],
+        "regulation_number": ".48",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-49",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-49",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-51",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-52",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-21",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-24",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-56",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-09",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-29"
+        ],
+        "regulation_number": ".49",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-50",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-54"
+        ],
+        "regulation_number": ".50",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-51",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-51",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-55"
+        ],
+        "regulation_number": ".51",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-52",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-46",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-15",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-44"
+        ],
+        "regulation_number": ".52",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-53",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-53"
+        ],
+        "regulation_number": ".53",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-54",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-55",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-54",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-32",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-53"
+        ],
+        "regulation_number": ".54",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-55",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-55",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-54"
+        ],
+        "regulation_number": ".55",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-56",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".56",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-57",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-02",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-59"
+        ],
+        "regulation_number": ".57",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-58",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".58",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-59",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".59",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-60",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "references_to": [
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-60",
+          "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-19"
+        ],
+        "regulation_number": ".60",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    },
+    {
+      "citation_path": "us-md/regulation/title-07/subtitle-03/chapter-17/regulation-61",
+      "metadata": {
+        "chapter_number": "17",
+        "kind": "regulation",
+        "regulation_number": ".61",
+        "subtitle_number": "03",
+        "title_number": "07"
+      },
+      "sha256": "a6d536234e1f27d49988b4faec211d94b51d3d8dba485df216689e44cd8e1df7",
+      "source_format": "maryland-comar-openlaw-xml",
+      "source_path": "sources/us-md/regulation/2026-09-28-md-snap-comar-publication-2026-09-27-title-07-subtitle-03-chapter-17/maryland-comar-xml/us/md/exec/comar/07/03/17.xml",
+      "source_url": "https://github.com/maryland-dsd/law-xml-codified/blob/publication%2F2026-09-27.2026-09-27/us/md/exec/comar/07/03/17.xml"
+    }
+  ]
+}

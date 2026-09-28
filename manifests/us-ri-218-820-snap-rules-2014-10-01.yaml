@@ -1,0 +1,91 @@
+version: 2026-09-28-ri-218-820-snap-rules-2014-10-01
+documents:
+  - source_id: ri-218-820-snap-rules-2014-10-01
+    jurisdiction: us-ri
+    document_class: regulation
+    citation_path: us-ri/regulation/218-820/vintage/2014-10-01
+    title: Rhode Island DHS Supplemental Nutrition Assistance Program Sections 1000-1083 (218-820), emergency amendment effective October 1, 2014
+    source_url: https://risos-apa-production-public.s3.amazonaws.com/DHS/7907.pdf
+    source_format: pdf
+    source_as_of: '2014-10-01'
+    expression_date: '2014-10-01'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Rhode Island Department of Human Services
+      official_publisher: Rhode Island Department of State
+      document_subtype: historical_administrative_regulation_filing
+      program: SNAP
+      legal_identifier: 218-820
+      legal_identifier_note: >-
+        The Secretary of State files these pre-RICR rules as Title 218, Chapter XXX,
+        Subchapter XX, Part 820 ("218-820"; URL form 218-XXX-XX-820). They were
+        repealed effective 10/09/2017, when 218-RICR-20-00-1 was adopted.
+      historical_vintage: true
+      vintage_date_basis: official_filing_record_effective_date
+      filing_id: '7907'
+      filing_type: emergency amendment
+      effective_date: '2014-10-01'
+      effective_end_date: '2015-01-29'
+      effective_end_date_note: >-
+        The printed end of the emergency filing. The filing record's history also
+        lists filing 7912, an amendment effective 12/15/2014 to 03/17/2015, so later
+        text governed from December 15, 2014.
+      expression_date_note: >-
+        The PDF cover prints only "October 2014". The day comes from the Secretary of
+        State filing record retained in this scope (the filing-record document), which
+        prints "EMERGENCY RULE" and "Effective 10/01/2014 to 01/29/2015" and links this
+        7907.pdf.
+      printed_compilation_month: '2014-10'
+      pdf_creation_date: '2014-09-23'
+      pdf_creation_date_note: PDF metadata timestamp, not the rule effective date.
+      page_numbering_note: >-
+        Page rows use PDF page numbers. The printed page number, which each row's
+        body begins with, is the PDF page number minus 16 (PDF page 136 is printed
+        page 120).
+      extraction_granularity: pdf_page
+      extraction_note: >-
+        Within a page row, some section headings (for example "1038.19 (7 CFR 273.9)
+        CHILD SUPPORT DEDUCTION REV:09/2000" on PDF page 288) run into the preceding
+        paragraph, and a line-end hyphen is joined with a space ("self- employed").
+      child_support_section_revision_month: '2005-05'
+      topic: legally_obligated_child_support_payment_exclusion
+      authority_role: >-
+        1008.20.22 (REV:05/2005, PDF page 136) declares legally obligated child
+        support paid to a nonhousehold member an income exclusion, though, placed
+        under 1008.20 Deductions from Income, it still refers to "this deduction".
+        1008.20 (PDF page 132) lists five deductions and not child support. 1010.20
+        (REV:05/2005, PDF page 145) says child support paid is not a deduction but an
+        income exclusion. The older 1038.19 (REV:09/2000, PDF page 288) still calls it
+        a deduction. The inconsistency is the source's own.
+      citation_path_note: >-
+        218-820/vintage/<effective-date> keys this filing to its own Secretary of
+        State identifier, distinct from the successor 218-RICR-20-00-1 rows.
+      discovered_via: policyengine-us SNAP child support references; official Secretary of State filing 7907
+  - source_id: ri-218-820-snap-rules-2014-10-01-filing-record
+    jurisdiction: us-ri
+    document_class: regulation
+    citation_path: us-ri/regulation/218-820/vintage/2014-10-01/filing-record
+    title: Rhode Island Department of State rule filing record, 218-820 Supplemental Nutrition Assistance Program Sections 1000 through 1083 (filing 7907)
+    source_url: https://rules.sos.ri.gov/Regulations/part/218-XXX-XX-820?reg_id=7907
+    source_format: html
+    source_as_of: '2026-09-28'
+    expression_date: '2026-09-28'
+    extraction:
+      html_content_selector: div.small-12.medium-9.columns
+      html_text_selector: div.small-12.medium-9.columns
+    metadata:
+      primary_source: true
+      source_authority: Rhode Island Department of State
+      official_publisher: Rhode Island Department of State
+      document_subtype: rule_filing_record
+      program: SNAP
+      legal_identifier: 218-820
+      filing_id: '7907'
+      source_as_of_note: official publisher retrieval date; the record reflects the filing's status on that date
+      authority_role: >-
+        The official filing record for the 7907.pdf filing: filing type, "EMERGENCY
+        RULE", "Effective 10/01/2014 to 01/29/2015", and the part's full filing
+        history, including filing 7912 and the 10/09/2017 repeal.
+      discovered_via: link from the Secretary of State filing overview for 7907.pdf

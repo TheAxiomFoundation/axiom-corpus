@@ -1,0 +1,58 @@
+documents:
+- source_id: nj-prn-2016-017
+  jurisdiction: us-nj
+  document_class: rulemaking
+  citation_path: us-nj/rulemaking/new-jersey-register/2016-05-02/prn-2016-017
+  title: NJ DHS Division of Family Development notice of proposal PRN 2016-017, N.J.A.C. 10:87 NJ SNAP amendments (48 N.J.R. 695(a)), agency copy
+  source_url: https://www.nj.gov/humanservices/notices/documents/rule-proposals/(F)%20PRN%202016-017%20(DHS-DFD%2010_87-1.11).pdf
+  source_format: pdf
+  source_as_of: '2026-09-28'
+  expression_date: '2016-05-02'
+  extraction:
+    amendment_markup:
+      start_page: 9
+      end_page: 20
+      inserted_style: bold
+      deleted_style: brackets
+      # The centered running page number, e.g. "- 12 -".
+      unmarked_line_patterns:
+      - '- \d+ -'
+  metadata:
+    primary_source: true
+    program: SNAP
+    topic: legally_obligated_child_support_payment_exclusion
+    discovered_via: 'policyengine-us child support election citations and PR #9622; source retrieved directly from the official publisher'
+    source_authority: New Jersey Department of Human Services, Division of Family Development
+    official_publisher: New Jersey Department of Human Services
+    document_subtype: agency_copy_of_register_rule_proposal
+    proposal_number: PRN 2016-017
+    register_citation: 48 N.J.R. 695(a)
+    register_citation_note: >-
+      From the history notes of the rules this proposal amends, in the released scope
+      us-nj/regulation/2026-07-17-nj-snap-rules (e.g.
+      us-nj/regulation/njac-10-87/10-87-5.9): "Amended by R.2017 d.022, effective
+      February 6, 2017. See: 48 N.J.R. 695(a), 49 N.J.R. 267(a)." The agency copy
+      itself prints no N.J.R. page.
+    printed_header_citation: 48 NJR 5(1)
+    printed_header_citation_note: Printed unlabeled at the top of page 1; it is not an N.J.R. volume-page citation.
+    adopted_as: R.2017 d.022, effective February 6, 2017 (49 N.J.R. 267(a))
+    publication_date: '2016-05-02'
+    filing_date: '2016-04-07'
+    expression_date_note: >-
+      The unlabeled date "May 2, 2016" printed under the page-1 header is read as the
+      N.J.R. publication date; it matches the 60-day comment period ending July 1,
+      2016 ("Submit comments by July 1, 2016"). The filing date is printed "Filed
+      April 7, 2016". This is a proposal, not an adopted regulation.
+    source_as_of_note: official publisher retrieval date
+    amendment_convention: >-
+      Page 8 specifies additions in boldface and deletions in brackets. On pages 9-20
+      bold additions are written {+text+} and bracketed deletions [-text-], the
+      brackets replaced by the delimiters. The deletion of N.J.A.C. 10:87-5.10(a)4v and
+      (a)5 runs from page 11 to page 12, and another from page 18 to page 19; those
+      rows carry deletion_continues_to_next_page / deletion_continues_from_previous_page.
+      Pages 1-8 and the running page numbers are not marked.
+    authority_role: >-
+      Proposes N.J.A.C. 10:87-5.9(a)20, excluding legally obligated or court-ordered
+      child support paid to or for a non-household member from income, and deletes
+      the child support deduction at 10:87-5.10(a)4v and (a)5, to implement P.L. 2013,
+      c.45; the proposal date alone does not date the statutory election.
