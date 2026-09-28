@@ -5546,6 +5546,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
             "extract-ecfr",
             "extract-usc",
             "extract-usc-dir",
+            "extract-public-laws",
             "extract-federal-register",
             "extract-federal-register-cfr-sections",
         ),
