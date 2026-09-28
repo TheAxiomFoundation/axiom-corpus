@@ -1,0 +1,609 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-az-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-az/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 22
+    index_records_total: 22
+- source_id: us-az-cms-chip-state-plan-spa-az-25-0007-and-az-25-0009-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-25-0007-and-AZ-25-0009: Approval Package (approved September 18, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-25-0007-and-AZ-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-25-0007-and-az-25-0009/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-25-0007-and-AZ-25-0009
+    cms_node_id: '185111'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=185111
+    approval_date: '2025-09-18'
+    effective_date: '2025-07-01'
+    summary: Through SPA AZ-25-0007, effective August 23, 2024, the state removes the premium lock out period, in accordance
+      with 42 CFR 457.570(c). Through SPA AZ-25-0009, effective July 1, 2025, the state provides the corresponding technical
+      edits in the CHIP state plan to reflect the removal of the premium lock out period.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-25-0005-and-az-25-0006-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-25-0005-and-AZ-25-0006: Approval Package (approved September 4, 2025, effective August 6, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-25-0005-and-AZ-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-08-06'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-25-0005-and-az-25-0006/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-25-0005-and-AZ-25-0006
+    cms_node_id: '184706'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=184706
+    approval_date: '2025-09-04'
+    effective_date: '2024-08-06'
+    summary: Through these SPAs, Arizona removes the state's waiting period in CHIP and describes the state's substitution
+      of coverage monitoring strategy.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-22-0017-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-22-0017: Approval Package (approved August 1, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-22-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-22-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-22-0017
+    cms_node_id: '169731'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169731
+    approval_date: '2024-08-01'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-24-0003-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-24-0003: Approval Package (approved May 13, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-24-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-24-0003
+    cms_node_id: '165251'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=165251
+    approval_date: '2024-05-13'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state documents the state’s compliance with the longstanding requirement to cover children’s
+      vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which requires states to cover age-appropriate
+      vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-23-0001-dral-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-23-0001-DRAL: Approval Package (approved June 15, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-23-0001-DRAL
+    cms_node_id: '149061'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=149061
+    approval_date: '2023-06-15'
+    effective_date: '2023-05-12'
+    summary: 'This letter reactivates Arizona''s approved Evergreen Disaster Relief State Plan Amendment to include the following
+      flexibilities: waiving the collection of premiums and suspending the premium lock-out policy.'
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-22-0010-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-22-0010: Approval Package (approved April 4, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-22-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-22-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-22-0010
+    cms_node_id: '146521'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=146521
+    approval_date: '2023-04-04'
+    effective_date: '2023-04-01'
+    summary: This SPA provides Arizona with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-22-0007-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-22-0007: Approval Package (approved July 13, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-22-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-22-0007/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-22-0007
+    cms_node_id: '137926'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=137926
+    approval_date: '2022-07-13'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-20-0012-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-20-0012: Approval Package (approved September 3, 2020, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-20-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-20-0012
+    cms_node_id: '145501'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145501
+    approval_date: '2020-09-03'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-19-0003-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-19-0003: Approval Package (approved August 15, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-19-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-19-0003/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-19-0003
+    cms_node_id: '4046'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4046
+    approval_date: '2019-08-15'
+    effective_date: '2019-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-17-0010-v2-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-17-0010-V2: Approval Package (approved February 16, 2018, effective October 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-17-0010-V2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-10-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-17-0010-v2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-17-0010-V2
+    cms_node_id: '3821'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3821
+    approval_date: '2018-02-16'
+    effective_date: '2017-10-01'
+    summary: Implements mental health parity requirements.
+    topics:
+    - Benefits
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-16-0017-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-16-0017: Approval Package (approved July 22, 2016, effective July 26, 2016)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-16-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-07-26'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-16-0017/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-16-0017
+    cms_node_id: '3531'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3531
+    approval_date: '2016-07-22'
+    effective_date: '2016-07-26'
+    summary: Lifts the state's existing enrollment freeze enabling children ages birth through age 19 with income above 133
+      percent up to and including 200 percent of the federal poverty level (FPL) to enroll in the state's CHIP, known as "KidsCare.".
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-13-0006-mc3-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-13-0006-MC3: Approval Package (approved October 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-13-0006-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-13-0006-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0006-MC3
+    cms_node_id: '2936'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2936
+    approval_date: '2014-10-23'
+    effective_date: '2014-01-01'
+    summary: 'Describes the state''s plan to provide coverage in its separate CHIP, for children subject to Section 2101(f)
+      of the Affordable Care Act, as specified in the state''s submission of CS14: Children Ineligible for Medicaid as a Result
+      of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-13-0006-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-13-0006: Approval Package (approved October 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-13-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-13-0006/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-13-0006
+    cms_node_id: '2691'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2691
+    approval_date: '2014-10-23'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP compiled state plan: Factsheet (approved March 15, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: AZ
+    cms_node_id: '1501'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1501
+    approval_date: '2010-03-15'
+    effective_date: '2010-01-01'
+    summary: Current CHIP State Plan as amended by SPA 12 and Factsheet as of 02-17-2010.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-az-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP compiled state plan: Current State Plan (approved March 15, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: AZ
+    cms_node_id: '1501'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1501
+    approval_date: '2010-03-15'
+    effective_date: '2010-01-01'
+    summary: Current CHIP State Plan as amended by SPA 12 and Factsheet as of 02-17-2010.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-az-cms-chip-state-plan-spa-az-cspa-12-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-CSPA-12: Approval Package (approved March 15, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-CSPA-12-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-cspa-12/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-CSPA-12
+    cms_node_id: '1626'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1626
+    approval_date: '2010-03-15'
+    effective_date: '2010-01-01'
+    summary: Enrollment Freeze.
+    topics: &id003
+    - Outreach & Enrollment
+    link_label: Approval Package
+- source_id: us-az-cms-chip-state-plan-spa-az-cspa-12-final-approved-state-plan
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-CSPA-12: Final Approved State Plan (approved March 15, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-CSPA-12-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-cspa-12/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: AZ-CSPA-12
+    cms_node_id: '1626'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1626
+    approval_date: '2010-03-15'
+    effective_date: '2010-01-01'
+    summary: Enrollment Freeze.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-az-cms-chip-state-plan-spa-az-cspa-11-increase-approval-package
+  jurisdiction: us-az
+  document_class: policy
+  title: 'Arizona CHIP SPA AZ-CSPA-11-Increase: Approval Package (approved April 13, 2009, effective February 4, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/AZ/AZ-CSPA-11-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-02-04'
+  citation_path: us-az/policy/cms/chip-state-plan/spa/az-cspa-11-increase/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Arizona
+    source_discovery_group: us-az/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: AZ-CSPA-11-Increase
+    cms_node_id: '2021'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2021
+    approval_date: '2009-04-13'
+    effective_date: '2009-02-04'
+    summary: Monthly premiums.
+    topics:
+    - Premiums
+    link_label: Approval Package

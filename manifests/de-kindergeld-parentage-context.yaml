@@ -1,0 +1,47 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindrg-1997-parentage-context",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/bgbl-1997-i-2942/kindschaftsrechtsreformgesetz/parentage-commencement-extract",
+      "title": "Gesetz zur Reform des Kindschaftsrechts (Kindschaftsrechtsreformgesetz – KindRG), 16. Dezember 1997, BGBl. I S. 2942–2967 — retained pages 1 and 26 (BGB §1591 and Article 17 commencement)",
+      "source_url": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F*%5B%40attr_id%3D%27bgbl197s2942.pdf%27%5D",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-08",
+      "expression_date": "1997-12-16",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block",
+        "ocr": true,
+        "ocr_language": "deu",
+        "ocr_dpi": 300,
+        "page_windows": [
+          {
+            "start_page": 1,
+            "end_page": 1
+          },
+          {
+            "start_page": 26,
+            "end_page": 26
+          }
+        ]
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesgesetzblatt online archive, Bundesanzeiger Verlag",
+        "document_type": "Änderungsgesetz (amendment act), bounded primary-source excerpt",
+        "date_document": "1997-12-16",
+        "date_publication": "1997-12-19",
+        "amendment_targets": [
+          "de/statute/bgb",
+          "de/statute/bgbeg"
+        ],
+        "source_note": "Bounded context excerpt from the unchanged full official PDF retained in the parentage-history scope. Only original PDF pages 1 and 26 (printed pages 2942 and 2967) are extracted by the existing page_windows pipeline. The first page introduces BGB 1591; the final page contains Article 17 section 1 commencement. This is not a complete-act capture, does not replace the full 26-page source, and does not claim that intervening amendment/transition provisions are irrelevant. Exact operative maternity and commencement spans are visually verified in the original retained images. Other OCR limitations remain disclosed.",
+        "snapshot_sha256": "bd58391268f7d4103670967f86ab7642fe9bae34faf56ec36415b2dadc1e2c7b",
+        "ocr_engine": "tesseract 5.5.3",
+        "ocr_language_data_sha256": "19d219bbb6672c869d20a9636c6816a81eb9a71796cb93ebe0cb1530e2cdb22d"
+      }
+    }
+  ]
+}

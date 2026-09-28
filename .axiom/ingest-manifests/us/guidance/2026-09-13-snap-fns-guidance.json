@@ -1,0 +1,105 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-13-snap-fns-guidance.json",
+      "sha256": "0d146c18d0e6d4894c0edb8a7e63e2743901be2bcafbebaea71187e10eba7fec"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-13-snap-fns-guidance.json",
+      "sha256": "4cc4b835d4a25348d4904bf991661ffe0f6295d38d689aefd74b3e477549a556"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-13-snap-fns-guidance.jsonl",
+      "sha256": "7ef2aebcc44016c7d14ffd4f947be8da2b2c8d9cae4db04213525067fc815aa5"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-abawd-waiver-status-fy2026-q1.pdf",
+      "sha256": "935102ee97403bc5eaf7c929b931e5d4ff87efbe2d4654cac88d0e1a91069c77"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-abawd-waiver-status-fy2026-q2.pdf",
+      "sha256": "6c8e8cda2068ceba7cf48b723f591e05bbc85fb1cc137174baddb7b543aad474"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-abawd-waiver-status-fy2026-q3.pdf",
+      "sha256": "ab65b3bbc62f27a6d3aa2811991b257e0f226c08791f0bdf6ddf4024a4b0e8c1"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-bbce-state-chart-2026-06.pdf",
+      "sha256": "3ebb8ab06035ebde78dc2bb780fcadf2b4179cb9627e54fb744cfd0c7fd41560"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-fy2026-cola-memo.pdf",
+      "sha256": "91c75d30be5e79781f6a424c9202ef86e58b1728c37e60dec5270013fe52ee80"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-fy2026-standard-utility-allowances.xlsx",
+      "sha256": "b5f5ca7b7ae372e20b037631f9ab113897e684271daf2bc9dfbcc4d962a8ea9b"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-fy2026-sua-simplified-process-memo.pdf",
+      "sha256": "7137ff9a5e6cf2ef400997d3f087793ae99504c8879ecbe1e44b001a9ff29059"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-abawd-waivers-implementation-memo.pdf",
+      "sha256": "ec22416a2ecb47ac115045d276c51ea733eafef97ee5d62498cb760929408e84"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-admin-cost-sharing-qas.pdf",
+      "sha256": "a700dfeffd116afa52f41bebed3f796372a8c73a0e9430ca3288aebaf89dc6da"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-alien-eligibility-qas-1.pdf",
+      "sha256": "7daaf18ea2a6f091ecd820a0a4e79543778a1d5f5ec4531cc5077acb288911e4"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-energy-assistance-payments-memo.pdf",
+      "sha256": "8c5d4881cc63d4cddd87fc86bdfc8159de19ffea880f3dabf39ca9aba2b0941f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-implementation-memo.pdf",
+      "sha256": "441b51d33f1a202b16cd320f250fd7cb8896e3ddc38de375b977837cfe542e5f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-internet-energy-assistance-qas-1.pdf",
+      "sha256": "63681d7185090c4cfca20c07a9f62ea5b8924373c42ca58e96f8592e585e4468"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-qc-variance-exclusion-qas.pdf",
+      "sha256": "91f2059ede53ed63dfa21649c99c5fc690633452278d214c38c1a814d8c5f14c"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-snap-fns-guidance/official-documents/snap-obbb-time-limit-changes-qas-1.pdf",
+      "sha256": "f79583c33dc9a97a888269e1baf737213ed0ccf7d1c5f666f55f69889a19873e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-fns-guidance (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 64,
+    "missing_count": 0,
+    "provision_count": 64,
+    "source_count": 64
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-13T20:37:09.609844+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "396zBVg0J6gm6ta9mCq8bcAB8VKclQkO0u/VB5ZBSPczil2dugbVBdW3kEgmwQmd0gpz1PkmvGEVlDUxKkBfBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-fns-guidance"
+}

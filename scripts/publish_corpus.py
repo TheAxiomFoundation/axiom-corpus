@@ -25,10 +25,12 @@ import argparse
 import json
 import os
 import sys
-from collections.abc import Mapping, Sequence
+import time
+from collections.abc import Iterator, Mapping, Sequence
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, TextIO
 
 from axiom_corpus.corpus.io import load_provisions
 from axiom_corpus.corpus.navigation import build_navigation_nodes
@@ -66,7 +68,9 @@ from axiom_corpus.release.manifest import (
     verify_release_object,
 )
 from axiom_corpus.release.publication import (
+    DEFAULT_R2_STAGING_WORKERS,
     R2ReadbackReport,
+    emit_progress,
     stage_release_artifacts,
     stage_signed_release_object,
 )
@@ -96,6 +100,42 @@ class PublicationReport:
         }
 
 
+@contextmanager
+def _phase(
+    stream: TextIO | None,
+    name: str,
+    **counts: object,
+) -> Iterator[dict[str, object]]:
+    """Emit flushed, timestamped start/end lines around one publication phase.
+
+    The yielded dict collects end-of-phase counts. A failure inside the phase
+    is logged with the phase name and elapsed time, then re-raised unchanged,
+    so a killed or failed CI run shows exactly which phase it was in.
+    """
+    started = time.monotonic()
+    emit_progress(stream, f"phase {name} start{_format_counts(counts)}")
+    result: dict[str, object] = {}
+    try:
+        yield result
+    except BaseException as exc:
+        emit_progress(
+            stream,
+            f"phase {name} failed elapsed={time.monotonic() - started:.1f}s "
+            f"error={type(exc).__name__}",
+        )
+        raise
+    emit_progress(
+        stream,
+        f"phase {name} end elapsed={time.monotonic() - started:.1f}s{_format_counts(result)}",
+    )
+
+
+def _format_counts(counts: Mapping[str, object]) -> str:
+    if not counts:
+        return ""
+    return "".join(f" {key}={value}" for key, value in counts.items())
+
+
 def publish_named_release(
     *,
     repo_root: Path,
@@ -111,6 +151,8 @@ def publish_named_release(
     chunk_size: int = 500,
     activate: bool = False,
     r2_client: Any | None = None,
+    r2_workers: int = DEFAULT_R2_STAGING_WORKERS,
+    progress_stream: TextIO | None = None,
 ) -> PublicationReport:
     """Execute the sole production publication boundary for one release.
 
@@ -120,7 +162,14 @@ def publish_named_release(
     another jurisdiction's release, so it is an explicit, separate decision (set
     ``activate=True`` here, or run ``scripts/activate_release.py`` — with
     ``--dry-run`` to preview the takeover — after publishing).
+
+    ``r2_workers`` bounds the thread pool that stages and reads back R2
+    objects; every object is still verified individually. ``progress_stream``
+    receives one flushed, timestamped line at the start and end of every
+    publication phase so a CI log shows where wall time goes.
     """
+    if r2_workers < 1:
+        raise ValueError("r2_workers must be positive")
     root = repo_root.resolve()
     corpus_root = base.resolve()
     public_key, legacy_public_keys = _trusted_release_public_keys(
@@ -134,62 +183,104 @@ def publish_named_release(
     release = ReleaseManifest.load(selector_path)
     _require_canonical_selector(root, selector_path, release)
     quality_profile = _require_publishable_quality_profile(release)
+    publication_started = time.monotonic()
+    emit_progress(
+        progress_stream,
+        f"publication start: release={release.name} scopes={len(release.scopes)} "
+        f"r2_workers={r2_workers} chunk_size={chunk_size}",
+    )
 
     # A cheap local gate runs before any external writes. The authoritative
     # validation attestation is generated again after remote readback/counting.
-    preflight = validate_release(corpus_root, release, max_issues=200)
-    _require_deep_validation(preflight, phase="preflight")
+    with _phase(progress_stream, "preflight-deep-validation", scopes=len(release.scopes)) as done:
+        preflight = validate_release(corpus_root, release, max_issues=200)
+        _require_deep_validation(preflight, phase="preflight")
+        done.update(errors=preflight.error_count, warnings=preflight.warning_count)
 
-    provisional_content = build_release_content(
-        root,
-        release=release,
-        validation={"passed": True, "phase": "preflight"},
-        base=base_rel,
-        bucket=r2_config.bucket,
-    )
-    expected_evidence = _expected_scope_evidence(provisional_content)
+    with _phase(progress_stream, "release-content", scopes=len(release.scopes)) as done:
+        provisional_content = build_release_content(
+            root,
+            release=release,
+            validation={"passed": True, "phase": "preflight"},
+            base=base_rel,
+            bucket=r2_config.bucket,
+        )
+        expected_evidence = _expected_scope_evidence(provisional_content)
+        done.update(
+            artifacts=len(provisional_content["artifacts"]),
+            bytes=sum(int(entry["bytes"]) for entry in provisional_content["artifacts"]),
+            provision_rows=sum(item.provision_rows for item in expected_evidence.values()),
+        )
 
-    r2_report = stage_release_artifacts(
-        root,
-        release_content=provisional_content,
-        config=r2_config,
-        client=r2_client,
-    )
+    with _phase(
+        progress_stream,
+        "r2-staging",
+        artifacts=len(provisional_content["artifacts"]),
+        workers=r2_workers,
+    ) as done:
+        r2_report = stage_release_artifacts(
+            root,
+            release_content=provisional_content,
+            config=r2_config,
+            client=r2_client,
+            workers=r2_workers,
+            progress_stream=progress_stream,
+        )
+        done.update(
+            verified=r2_report.artifact_count,
+            bytes=r2_report.artifact_bytes,
+            uploaded=r2_report.uploaded_count,
+            reused=r2_report.reused_count,
+        )
 
-    released_scopes = fetch_released_scope_objects(
-        release,
-        service_key=service_key,
-        supabase_url=supabase_url,
-    )
-    _require_safe_released_scope_reuse(
-        provisional_content,
-        released_scopes,
-        public_keys=(public_key, *legacy_public_keys),
-    )
+    with _phase(progress_stream, "released-scope-lookup", scopes=len(release.scopes)) as done:
+        released_scopes = fetch_released_scope_objects(
+            release,
+            service_key=service_key,
+            supabase_url=supabase_url,
+        )
+        _require_safe_released_scope_reuse(
+            provisional_content,
+            released_scopes,
+            public_keys=(public_key, *legacy_public_keys),
+        )
+        done.update(
+            released_scopes=sum(1 for objects in released_scopes.values() if objects),
+            unreleased_scopes=sum(1 for objects in released_scopes.values() if not objects),
+            prior_objects=len(
+                {obj.release_name for objects in released_scopes.values() for obj in objects}
+            ),
+        )
 
     staged_rows = 0
     scopes_to_stage: list[tuple[Any, list[Any]]] = []
     release_records: list[Any] = []
-    for scope in release.scopes:
-        expected = expected_evidence[scope.key]
-        if released_scopes[scope.key]:
-            staged_rows += expected.provision_rows
-            continue
-        provisions_path = (
-            corpus_root
-            / "provisions"
-            / scope.jurisdiction
-            / scope.document_class
-            / f"{scope.version}.jsonl"
-        )
-        records = load_provisions(provisions_path)
-        if len(records) != expected.provision_rows:
-            raise ReleaseManifestError(
-                f"local row count changed after hashing for {'/'.join(scope.key)}: "
-                f"expected {expected.provision_rows}, got {len(records)}"
+    with _phase(progress_stream, "local-provision-load") as done:
+        for scope in release.scopes:
+            expected = expected_evidence[scope.key]
+            if released_scopes[scope.key]:
+                staged_rows += expected.provision_rows
+                continue
+            provisions_path = (
+                corpus_root
+                / "provisions"
+                / scope.jurisdiction
+                / scope.document_class
+                / f"{scope.version}.jsonl"
             )
-        scopes_to_stage.append((scope, records))
-        release_records.extend(records)
+            records = load_provisions(provisions_path)
+            if len(records) != expected.provision_rows:
+                raise ReleaseManifestError(
+                    f"local row count changed after hashing for {'/'.join(scope.key)}: "
+                    f"expected {expected.provision_rows}, got {len(records)}"
+                )
+            scopes_to_stage.append((scope, records))
+            release_records.extend(records)
+        done.update(
+            unreleased_scopes=len(scopes_to_stage),
+            rows=len(release_records),
+            reused_released_rows=staged_rows,
+        )
 
     # One staging call covers every unreleased scope, so pre-staged rows whose
     # stale parent links cross scope boundaries within this release converge
@@ -198,78 +289,123 @@ def publish_named_release(
         expected_release_rows = sum(
             expected_evidence[scope.key].provision_rows for scope, _ in scopes_to_stage
         )
-        load_report = load_provisions_to_supabase(
-            release_records,
+        with _phase(
+            progress_stream,
+            "provision-staging",
+            scopes=len(scopes_to_stage),
+            rows=expected_release_rows,
+            chunk_size=chunk_size,
+        ) as done:
+            load_report = load_provisions_to_supabase(
+                release_records,
+                service_key=service_key,
+                supabase_url=supabase_url,
+                chunk_size=chunk_size,
+                progress_stream=progress_stream,
+            )
+            if load_report.rows_loaded != expected_release_rows:
+                raise ReleaseManifestError(
+                    f"Supabase staging wrote {load_report.rows_loaded} rows for "
+                    f"{release.name}; expected {expected_release_rows}"
+                )
+            staged_rows += load_report.rows_loaded
+            done.update(
+                rows_loaded=load_report.rows_loaded,
+                chunks=load_report.chunk_count,
+                inserted=load_report.rows_inserted,
+                replaced=load_report.rows_replaced,
+                already_staged=load_report.rows_already_staged,
+            )
+
+    if scopes_to_stage:
+        with _phase(
+            progress_stream,
+            "navigation-staging",
+            scopes=len(scopes_to_stage),
+            rows=sum(len(records) for _, records in scopes_to_stage),
+        ) as done:
+            navigation_rows_loaded = 0
+            for scope, records in scopes_to_stage:
+                expected = expected_evidence[scope.key]
+                navigation = build_navigation_nodes(records)
+                if len(navigation) != expected.navigation_rows:
+                    raise ReleaseManifestError(
+                        f"local navigation projection has {len(navigation)} rows for "
+                        f"{'/'.join(scope.key)}; expected {expected.navigation_rows}"
+                    )
+                navigation_report = write_navigation_nodes_to_supabase(
+                    navigation,
+                    service_key=service_key,
+                    supabase_url=supabase_url,
+                    chunk_size=chunk_size,
+                    replace_scope=True,
+                    replace_scopes=(scope.key,),
+                    progress_stream=progress_stream,
+                )
+                if navigation_report.rows_loaded != len(navigation):
+                    raise ReleaseManifestError(
+                        f"navigation staging was incomplete for {'/'.join(scope.key)}"
+                    )
+                navigation_rows_loaded += navigation_report.rows_loaded
+            done.update(rows_loaded=navigation_rows_loaded)
+
+    with _phase(progress_stream, "staged-evidence", scopes=len(release.scopes)) as done:
+        actual_evidence = fetch_staged_release_scope_evidence(
+            release,
             service_key=service_key,
             supabase_url=supabase_url,
-            chunk_size=chunk_size,
-            progress_stream=sys.stderr,
         )
-        if load_report.rows_loaded != expected_release_rows:
-            raise ReleaseManifestError(
-                f"Supabase staging wrote {load_report.rows_loaded} rows for "
-                f"{release.name}; expected {expected_release_rows}"
-            )
-        staged_rows += load_report.rows_loaded
-
-    for scope, records in scopes_to_stage:
-        expected = expected_evidence[scope.key]
-        navigation = build_navigation_nodes(records)
-        if len(navigation) != expected.navigation_rows:
-            raise ReleaseManifestError(
-                f"local navigation projection has {len(navigation)} rows for "
-                f"{'/'.join(scope.key)}; expected {expected.navigation_rows}"
-            )
-        navigation_report = write_navigation_nodes_to_supabase(
-            navigation,
-            service_key=service_key,
-            supabase_url=supabase_url,
-            chunk_size=chunk_size,
-            replace_scope=True,
-            replace_scopes=(scope.key,),
-            progress_stream=sys.stderr,
+        _require_exact_evidence(expected_evidence, actual_evidence)
+        done.update(
+            scopes=len(actual_evidence),
+            provision_rows=sum(item.provision_rows for item in actual_evidence.values()),
+            navigation_rows=sum(item.navigation_rows for item in actual_evidence.values()),
         )
-        if navigation_report.rows_loaded != len(navigation):
-            raise ReleaseManifestError(
-                f"navigation staging was incomplete for {'/'.join(scope.key)}"
-            )
 
-    actual_evidence = fetch_staged_release_scope_evidence(
-        release,
-        service_key=service_key,
-        supabase_url=supabase_url,
-    )
-    _require_exact_evidence(expected_evidence, actual_evidence)
+    with _phase(
+        progress_stream, "post-readback-deep-validation", scopes=len(release.scopes)
+    ) as done:
+        deep_report = validate_release(corpus_root, release, max_issues=200)
+        _require_deep_validation(deep_report, phase="post-readback")
+        done.update(errors=deep_report.error_count, warnings=deep_report.warning_count)
 
-    deep_report = validate_release(corpus_root, release, max_issues=200)
-    _require_deep_validation(deep_report, phase="post-readback")
-    validation = _validation_attestation(
-        deep_report,
-        quality_profile=quality_profile,
-        r2_report=r2_report,
-        expected_evidence=expected_evidence,
-        actual_evidence=actual_evidence,
-    )
-    content = build_release_content(
-        root,
-        release=release,
-        validation=validation,
-        base=base_rel,
-        bucket=r2_config.bucket,
-    )
-    if _publication_identity(content) != _publication_identity(provisional_content):
-        raise ReleaseManifestError("release artifacts changed between readback and signing")
+    with _phase(progress_stream, "sign-release-object") as done:
+        validation = _validation_attestation(
+            deep_report,
+            quality_profile=quality_profile,
+            r2_report=r2_report,
+            expected_evidence=expected_evidence,
+            actual_evidence=actual_evidence,
+        )
+        content = build_release_content(
+            root,
+            release=release,
+            validation=validation,
+            base=base_rel,
+            bucket=r2_config.bucket,
+        )
+        if _publication_identity(content) != _publication_identity(provisional_content):
+            raise ReleaseManifestError("release artifacts changed between readback and signing")
 
-    unsigned = build_unsigned_release_object(content)
-    signed = sign_release_object(unsigned, private_key=private_key)
-    # Requiring the independently configured public key catches a wrong or
-    # rotated private key before the object is uploaded or the pointer moves.
-    verify_release_object(signed, public_key=public_key)
-    release_key = stage_signed_release_object(
-        signed,
-        public_key=public_key,
-        config=r2_config,
-        client=r2_client,
+        unsigned = build_unsigned_release_object(content)
+        signed = sign_release_object(unsigned, private_key=private_key)
+        # Requiring the independently configured public key catches a wrong or
+        # rotated private key before the object is uploaded or the pointer moves.
+        verify_release_object(signed, public_key=public_key)
+        done.update(content_sha256=str(signed["content_sha256"]))
+
+    with _phase(progress_stream, "release-object-upload") as done:
+        release_key = stage_signed_release_object(
+            signed,
+            public_key=public_key,
+            config=r2_config,
+            client=r2_client,
+        )
+        done.update(key=release_key)
+    emit_progress(
+        progress_stream,
+        f"publication end: release={release.name} content_sha256={signed['content_sha256']} "
+        f"elapsed={time.monotonic() - publication_started:.1f}s",
     )
 
     activation: Mapping[str, object] | None = None
@@ -583,8 +719,7 @@ def _require_canonical_selector(
 def _require_publishable_quality_profile(release: ReleaseManifest) -> str:
     if release.quality_profile != COMPLETE_EXPRESSION_DATES_PROFILE:
         raise ReleaseManifestError(
-            "release publication requires quality_profile "
-            f"{COMPLETE_EXPRESSION_DATES_PROFILE!r}"
+            f"release publication requires quality_profile {COMPLETE_EXPRESSION_DATES_PROFILE!r}"
         )
     return release.quality_profile
 
@@ -647,6 +782,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--r2-bucket")
     parser.add_argument("--r2-endpoint")
     parser.add_argument("--chunk-size", type=int, default=500)
+    parser.add_argument(
+        "--r2-workers",
+        type=int,
+        default=DEFAULT_R2_STAGING_WORKERS,
+        help=(
+            "Bounded thread-pool size for content-addressed R2 upload and exact "
+            "readback. Every object is still hashed and verified individually; "
+            "this only changes how many are in flight."
+        ),
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
         "--activate",
@@ -663,7 +808,10 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    if args.r2_workers < 1:
+        parser.error("--r2-workers must be at least 1")
     repo_root = args.repo_root.resolve()
     base = (repo_root / args.base).resolve() if not args.base.is_absolute() else args.base.resolve()
     selector = resolve_release_manifest_path(args.release)
@@ -701,6 +849,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             legacy_public_keys=_legacy_public_keys_from_env(),
             chunk_size=args.chunk_size,
             activate=args.activate,
+            r2_workers=args.r2_workers,
+            progress_stream=sys.stderr,
         )
         payload = report.to_mapping()
 

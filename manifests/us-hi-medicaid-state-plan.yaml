@@ -1,0 +1,1047 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-hi-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1001&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 137
+- source_id: us-hi-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1001&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 37
+    index_records_total: 137
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-26-0005-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-26-0005: Approval Document (approved June 8, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-26-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-26-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-26-0005
+    cms_node_id: '193366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193366
+    approval_date: '2026-06-08'
+    effective_date: '2026-01-01'
+    summary: This amendment removes the requirement that certain Medicaid applicants apply for Medicare as a condition of
+      Medicaid eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-24-0008-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-24-0008: Approval Document (approved July 9, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-24-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-24-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-24-0008
+    cms_node_id: '182416'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=182416
+    approval_date: '2025-07-09'
+    effective_date: '2025-01-01'
+    summary: This amendment implements the new third-party liability requirements under the Consolidated Appropriations Act
+      of 2022.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-25-0005-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-25-0005: Approval Document (approved April 2, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-25-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-25-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-25-0005
+    cms_node_id: '178291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178291
+    approval_date: '2025-04-02'
+    effective_date: '2025-01-01'
+    summary: This amendment updates the language concerning non-discrimination.
+    topics:
+    - Affordable Care Act
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-24-0013-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-24-0013: Approval Document (approved November 15, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-24-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-24-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-24-0013
+    cms_node_id: '172656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=172656
+    approval_date: '2024-11-15'
+    effective_date: '2024-10-01'
+    summary: This amendment is to memorialize its new state supplement eligibility standards.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-24-0012-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-24-0012: Approval Document (approved October 28, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-24-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-24-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-24-0012
+    cms_node_id: '171281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=171281
+    approval_date: '2024-10-28'
+    effective_date: '2024-10-01'
+    summary: This amendment is to increase the monthly needs allowance for individuals living in certain long-term care facilities
+      from $50 to $75 for individuals and $100 to $150 for couples.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-24-0001-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-24-0001: Approval Document (approved April 15, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-24-0001
+    cms_node_id: '163096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163096
+    approval_date: '2024-04-15'
+    effective_date: '2024-01-01'
+    summary: This amendment is to memorialize the new income standards for its optional state supplement program, the beneficiaries
+      of which are eligible for Medicaid under Hawaii's state plan.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-23-0004-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-23-0004: Approval Document (approved March 1, 2024, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-23-0004
+    cms_node_id: '160341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160341
+    approval_date: '2024-03-01'
+    effective_date: '2023-01-01'
+    summary: This amendment is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-23-0010-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-23-0010: Approval Document (approved December 14, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-23-0010
+    cms_node_id: '157596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157596
+    approval_date: '2023-12-14'
+    effective_date: '2023-07-01'
+    summary: This amendment is to implement twelve months continuous eligibility for children.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-22-0001-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-22-0001: Approval Document (approved April 29, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-22-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-22-0001
+    cms_node_id: '135456'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135456
+    approval_date: '2022-04-29'
+    effective_date: '2022-01-01'
+    summary: This SPA amends to increase the monthly income eligibility standards for Hawaii's optional state supplement program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-21-0004-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-21-0004: Approval Document (approved May 10, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-21-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-21-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-21-0004
+    cms_node_id: '108621'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108621
+    approval_date: '2021-05-10'
+    effective_date: '2021-01-01'
+    summary: creates a new eligibility group. This group, also identified under the “Ticket to Work and Work Incentives Improvement
+      Act” authority, allows individuals with a disability at least 19 years of age but less than 65 years of age whose income
+      is below 138% of the Federal Poverty Level and applicable Household size a resource standard equal to three (3) times
+      the SSI resource limit adjusted annually by the increase in the consumer price index to qualify and or keep their Medicaid
+      coverage.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-19-0006-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-19-0006: Approval Document (approved March 4, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-19-0006_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-19-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-19-0006
+    cms_node_id: '86851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86851
+    approval_date: '2020-03-04'
+    effective_date: '2019-10-01'
+    summary: Comply with the Medicaid Drug Utilization Review (DUR) provisions included in Section 1004 of the Substance Use-Disorder
+      Prevention that promotes Opioid Recovery and Treatment (SUPPORT) for Patients and Communities Act
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-15-0007-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-15-0007: Approval Document (approved January 26, 2016, effective October 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-15-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-15-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-15-0007
+    cms_node_id: '20856'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20856
+    approval_date: '2016-01-26'
+    effective_date: '2016-10-01'
+    summary: This SPA extends Medicaid coverage for an initial period of 12 months for low-income families who no longer qualify
+      for Medicaid due to increased earned income or working hours from the caretaker relative's employment, or due to the
+      loss of a time-limited earned income disregard.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-0007-mm7-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-0007-MM7: Approval Document (approved November 18, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-0007-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-0007-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-0007-MM7
+    cms_node_id: '21691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21691
+    approval_date: '2015-11-18'
+    effective_date: '2014-01-01'
+    summary: This SPA proposes to implement presumptive eligibility conducted by hospitals in the Medicaid state plan in accordance
+      with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-14-0008-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-14-0008: Approval Document (approved February 17, 2015, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-14-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-14-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-14-0008
+    cms_node_id: '28731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28731
+    approval_date: '2015-02-17'
+    effective_date: '2014-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements, including the single streamlined application,
+      into Hawaii's approved Medicaid State Plan in accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-14-005-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-14-005: Approval Document (approved November 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-14-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-14-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-14-005
+    cms_node_id: '31156'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31156
+    approval_date: '2014-11-19'
+    effective_date: '2014-01-01'
+    summary: Removes barbiturates, benzodiazepines, and agents used to promote smoking cessation from the list of drugs the
+      state Medicaid program may exclude from coverage or otherwise restrict in order to comply with the requirements of Section
+      2502(a) of the Affordable Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-14-007-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-14-007: Approval Document (approved June 16, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-14-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-14-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-14-007
+    cms_node_id: '36096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36096
+    approval_date: '2014-06-16'
+    effective_date: '2014-04-01'
+    summary: Aligns Coverage of preventive services under the Medicaid State Plan with preventive services in Hawaii's approved
+      ABP and allows for coverage of these services without cost sharing.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-011-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-011: Approval Document (approved March 13, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-011
+    cms_node_id: '38186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38186
+    approval_date: '2014-03-13'
+    effective_date: '2013-12-31'
+    summary: Expands eligibility for children under the age of 19 years who would otherwise lose eligibility due to the elimination
+      of income disregards under modified adjusted gross income based methodologies.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-010-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-010: Approval Document (approved February 12, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-010
+    cms_node_id: '38596'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38596
+    approval_date: '2014-02-12'
+    effective_date: '2013-10-01'
+    summary: Expands eligibility by increasing the income limit for children ages 6 through 18 to 133 percent Federal Poverty
+      Level.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-0008-mm-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-0008-MM: Approval Document (approved October 25, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-0008-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-0008-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-0008-MM
+    cms_node_id: '40056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40056
+    approval_date: '2013-10-25'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-0007-mm6-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-0007-MM6: Approval Document (approved September 13, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-0007-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-0007-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-0007-MM6
+    cms_node_id: '40061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40061
+    approval_date: '2013-09-13'
+    effective_date: '2013-10-01'
+    summary: Incorporates Citizenship and Non-Citizenship Eligibility Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-0007-mm1-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-0007-MM1: Approval Document (approved September 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-0007-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-0007-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-0007-MM1
+    cms_node_id: '40071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40071
+    approval_date: '2013-09-13'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-23-0001-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-23-0001: Approval Document (approved April 13, 2013, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/HI-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-23-0001
+    cms_node_id: '146866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146866
+    approval_date: '2013-04-13'
+    effective_date: '2023-01-01'
+    summary: State Plan Amendment is to update in its state plan the income standards that are used to determine eligibility
+      for Hawaii's optional state supplement program, the beneficiaries of which are eligible for Medicaid under Hawaii's
+      state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-11-01-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-11-01: Approval Document (approved May 5, 2011, effective September 30, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-11-01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-30'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-11-01/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-11-01
+    cms_node_id: '23136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23136
+    approval_date: '2011-05-05'
+    effective_date: '2011-09-30'
+    summary: Implements the Asset Verification System for the purpose of determining Medicaid eligibility for aged, blind,
+      and disabled Medicaid applicants and recipients.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-09-012-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-09-012: Approval Document (approved September 7, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-09-012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-09-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-09-012
+    cms_node_id: '29246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29246
+    approval_date: '2010-09-07'
+    effective_date: '2009-10-01'
+    summary: This amendment implements the changes in the treatment of transfers of assets for less than fair market value
+      required by the Deficit Reduction Act of 2005.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-10-002-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-10-002: Approval Document (approved August 26, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-10-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-10-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-10-002
+    cms_node_id: '29236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29236
+    approval_date: '2010-08-26'
+    effective_date: '2010-04-01'
+    summary: This amendment prohibits the estate recovery of Medicare cost sharing benefits for dual eligible beneficiaries
+      age 55 and over.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-09-010-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-09-010: Approval Document (approved August 23, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-09-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-09-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-09-010
+    cms_node_id: '29256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29256
+    approval_date: '2010-08-23'
+    effective_date: '2009-10-01'
+    summary: This amendment reduces the amount of medical and remedial expenses that may be deducted in the post-eligibility
+      process to zero if they were incurred as the rest of the imposition of a transfer of asset penalty period.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-10-001-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-10-001: Approval Document (approved May 28, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-10-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-10-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-10-001
+    cms_node_id: '29241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29241
+    approval_date: '2010-05-28'
+    effective_date: '2010-01-01'
+    summary: This amendment changes the resource limit for Qualified Medicare Beneficiaries (QMB), Specified Low Income Medicare
+      Beneficiaries (SLMB) and Qualifying Individuals (QI) to conform to the resource limit for individuals who qualify for
+      the full subsidy Medicare Part D LIS as required by section 112 of the Medicare Improvements for Patients and Providers
+      Act of 2008 (MIPPA).
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-007-approval-document
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-007: Approval Document (approved September 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-007-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: HI-13-007
+    cms_node_id: '43821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43821
+    approval_date: '2013-09-13'
+    effective_date: '2014-01-01'
+    summary: 'The proposed amendments to the State Plan would implement provisions of the Patient Protection and Affordable
+      Care Act of 2010 and the Health Care and Education Reconciliation Act of 2010. The proposed amendments implements the
+      following: 1) New Medicaid eligibility groups; 2) Establishes financial methodologies for determining Medicaid eligibility
+      based on modified adjust gross income (MAGI); 3) Establish simplified and date-driven renewal polices for individuals
+      who eligibility is based on MAGI; 4) Simplifies residency, citizenship and immigration status; and 5) Allows presumptive
+      eligibility conducted by hospitals for certain Medicaid eligibility groups.'
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-007-attachment
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-007: Attachment (approved September 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-007-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-007/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: HI-13-007
+    cms_node_id: '43821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43821
+    approval_date: '2013-09-13'
+    effective_date: '2014-01-01'
+    summary: 'The proposed amendments to the State Plan would implement provisions of the Patient Protection and Affordable
+      Care Act of 2010 and the Health Care and Education Reconciliation Act of 2010. The proposed amendments implements the
+      following: 1) New Medicaid eligibility groups; 2) Establishes financial methodologies for determining Medicaid eligibility
+      based on modified adjust gross income (MAGI); 3) Establish simplified and date-driven renewal polices for individuals
+      who eligibility is based on MAGI; 4) Simplifies residency, citizenship and immigration status; and 5) Allows presumptive
+      eligibility conducted by hospitals for certain Medicaid eligibility groups.'
+    topics: *id002
+    link_label: Attachment
+- source_id: us-hi-cms-medicaid-state-plan-spa-hi-13-007-form-cms-179
+  jurisdiction: us-hi
+  document_class: policy
+  title: 'Hawaii Medicaid SPA HI-13-007: Form CMS-179 (approved September 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/HI/HI-13-007-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-hi/policy/cms/medicaid-state-plan/spa/hi-13-007/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Hawaii
+    source_discovery_group: us-hi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: HI-13-007
+    cms_node_id: '43821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43821
+    approval_date: '2013-09-13'
+    effective_date: '2014-01-01'
+    summary: 'The proposed amendments to the State Plan would implement provisions of the Patient Protection and Affordable
+      Care Act of 2010 and the Health Care and Education Reconciliation Act of 2010. The proposed amendments implements the
+      following: 1) New Medicaid eligibility groups; 2) Establishes financial methodologies for determining Medicaid eligibility
+      based on modified adjust gross income (MAGI); 3) Establish simplified and date-driven renewal polices for individuals
+      who eligibility is based on MAGI; 4) Simplifies residency, citizenship and immigration status; and 5) Allows presumptive
+      eligibility conducted by hospitals for certain Medicaid eligibility groups.'
+    topics: *id002
+    link_label: Form CMS-179

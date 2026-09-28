@@ -1,0 +1,1876 @@
+version: 2026-09-13-medicaid-state-eligibility-manual
+documents:
+- source_id: ne-dhhs-title-477-chapter-1
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 1: General Definitions'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%201%20%2809-17-2024%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-09-17'
+  citation_path: us-ne/regulation/title-477/chapter-1
+  extraction: &id001
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1749
+    chapter_number: '1'
+    chapter_name: GENERAL DEFINITIONS
+    effective_date: '2024-09-17'
+    pdf_blob_name: 477 NAC 1 (09-17-2024).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-2
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 2: Overview of Eligibility Requirements'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%202%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-2
+  extraction: &id002
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>\d{1,2}-\d{3}(?:\.\d{2})?(?:[A-Z]\d*[a-z]?(?:\(\d+\))?)?)\s+(?P<heading>[A-Z][^:]*?)(?::\s*(?P<body>.*))?\s*$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1760
+    chapter_number: '2'
+    chapter_name: OVERVIEW OF ELIGIBILITY REQUIREMENTS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 2 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-3
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 3: Application Process'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%203%20%2809-17-2024%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-09-17'
+  citation_path: us-ne/regulation/title-477/chapter-3
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1771
+    chapter_number: '3'
+    chapter_name: APPLICATION PROCESS
+    effective_date: '2024-09-17'
+    pdf_blob_name: 477 NAC 3 (09-17-2024).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-4
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 4: Effective Date of Medicaid Eligibility'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%204%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-4
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1772
+    chapter_number: '4'
+    chapter_name: EFFECTIVE DATE OF MEDICAID ELIGIBILITY
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 4 (07-29-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-5
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 5: Citizenship/alien Status and Identity'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%205%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-5
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1773
+    chapter_number: '5'
+    chapter_name: CITIZENSHIP/ALIEN STATUS AND IDENTITY
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 5 (07-29-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-6
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 6: State Residency'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%206%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-6
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1774
+    chapter_number: '6'
+    chapter_name: STATE RESIDENCY
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 6 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-7
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 7: Age and Date of Birth'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%207%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-7
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1775
+    chapter_number: '7'
+    chapter_name: AGE AND DATE OF BIRTH
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 7 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-8
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 8: Social Security Number'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%208%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-8
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1776
+    chapter_number: '8'
+    chapter_name: SOCIAL SECURITY NUMBER
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 8 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-9
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 9: Notification'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%209%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-9
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1777
+    chapter_number: '9'
+    chapter_name: NOTIFICATION
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 9 (07-29-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-10
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 10: Fair Hearing Processes'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2010%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-10
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1750
+    chapter_number: '10'
+    chapter_name: FAIR HEARING PROCESSES
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 10 (07-29-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-11
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 11: Living Arrangements'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2011%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-11
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1751
+    chapter_number: '11'
+    chapter_name: LIVING ARRANGEMENTS
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 11 (07-29-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-12
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 12: Third-Party Resources and Child Support Enforcement'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2012%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-12
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1752
+    chapter_number: '12'
+    chapter_name: THIRD-PARTY RESOURCES AND CHILD SUPPORT ENFORCEMENT
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 12 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-13
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 13: Medicaid Benefits Provided in Error'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2013%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-13
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1753
+    chapter_number: '13'
+    chapter_name: MEDICAID BENEFITS PROVIDED IN ERROR
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 13 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-14
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 14: Definitions Pertaining to MAGI-Based Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2014%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-14
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1754
+    chapter_number: '14'
+    chapter_name: DEFINITIONS PERTAINING TO MAGI-BASED PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 14 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: unnumbered definitions list (single body)
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-15
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 15: Household or Unit Size for MAGI-Based Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2015%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-15
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1755
+    chapter_number: '15'
+    chapter_name: HOUSEHOLD OR UNIT SIZE FOR MAGI-BASED PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 15 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-16
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 16: Income for MAGI-Based Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2016%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-16
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1756
+    chapter_number: '16'
+    chapter_name: INCOME FOR MAGI-BASED PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 16 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-17
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 17: Resources for MAGI-Based Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2017%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-17
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1757
+    chapter_number: '17'
+    chapter_name: RESOURCES FOR MAGI-BASED PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 17 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-18
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 18: Relative Responsibility for MAGI-Based Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2018%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-18
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1758
+    chapter_number: '18'
+    chapter_name: RELATIVE RESPONSIBILITY FOR MAGI-BASED PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 18 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-20
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 20: Definitions Pertaining to Non-Modified Adjusted Gross Income (MAGI) Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2020%20%2810-04-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-04'
+  citation_path: us-ne/regulation/title-477/chapter-20
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1761
+    chapter_number: '20'
+    chapter_name: DEFINITIONS PERTAINING TO NON-MODIFIED ADJUSTED GROSS INCOME (MAGI) PROGRAMS
+    effective_date: '2020-10-04'
+    pdf_blob_name: 477 NAC 20 (10-04-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-21
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 21: Household or Unit Size for Non-MAGI Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2021%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-21
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1762
+    chapter_number: '21'
+    chapter_name: HOUSEHOLD OR UNIT SIZE FOR NON-MAGI PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 21 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-22
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 22: Income for Non-Modified Adjusted Gross Income (non-MAGI) Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2022%20%2811-04-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-11-04'
+  citation_path: us-ne/regulation/title-477/chapter-22
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1763
+    chapter_number: '22'
+    chapter_name: INCOME FOR NON-MODIFIED ADJUSTED GROSS INCOME (NON-MAGI) PROGRAMS
+    effective_date: '2020-11-04'
+    pdf_blob_name: 477 NAC 22 (11-04-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-23
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 23: Resources for Non-Modified Adjusted Gross Income (MAGI) Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2023%20%2810-04-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-04'
+  citation_path: us-ne/regulation/title-477/chapter-23
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1764
+    chapter_number: '23'
+    chapter_name: RESOURCES FOR NON-MODIFIED ADJUSTED GROSS INCOME (MAGI) PROGRAMS
+    effective_date: '2020-10-04'
+    pdf_blob_name: 477 NAC 23 (10-04-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-24
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 24: Relative Responsibility and Sponsor Deeming for Aliens for Non-MAGI Programs'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2024%20%2803-13-2018%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-03-13'
+  citation_path: us-ne/regulation/title-477/chapter-24
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1765
+    chapter_number: '24'
+    chapter_name: RELATIVE RESPONSIBILITY AND SPONSOR DEEMING FOR ALIENS FOR NON-MAGI PROGRAMS
+    effective_date: '2018-03-13'
+    pdf_blob_name: 477 NAC 24 (03-13-2018).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2018 filing: chapter-section labels (NN-001.01A)'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-25
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 25: Budgeting for the Medically Needy'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2025%20%2801-20-2025%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-20'
+  citation_path: us-ne/regulation/title-477/chapter-25
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1766
+    chapter_number: '25'
+    chapter_name: BUDGETING FOR THE MEDICALLY NEEDY
+    effective_date: '2025-01-20'
+    pdf_blob_name: 477 NAC 25 (01-20-2025).pdf
+    official_pdf_blob_available: true
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-26
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 26: Spousal Impoverishment Medicaid Program (SIMP)'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2026%20%2807-29-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-29'
+  citation_path: us-ne/regulation/title-477/chapter-26
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1767
+    chapter_number: '26'
+    chapter_name: SPOUSAL IMPOVERISHMENT MEDICAID PROGRAM (SIMP)
+    effective_date: '2020-07-29'
+    pdf_blob_name: 477 NAC 26 (07-29-2020).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-27
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 27: Eligibility for the Aged, Blind, and Disabled; Medically Needy; Qualified Disabled
+    Working Individuals; Medicaid Insurance for the Workers with Disabilities; Breast and Cervical Cancer; Emergency Medical
+    Services Assistance; and Katie Beckett'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2027%20%2809-28-2021%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-09-28'
+  citation_path: us-ne/regulation/title-477/chapter-27
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1768
+    chapter_number: '27'
+    chapter_name: ELIGIBILITY FOR THE AGED, BLIND, AND DISABLED; MEDICALLY NEEDY; QUALIFIED DISABLED WORKING INDIVIDUALS;
+      MEDICAID INSURANCE FOR THE WORKERS WITH DISABILITIES; BREAST AND CERVICAL CANCER; EMERGENCY MEDICAL  SERVICES ASSISTANCE;
+      AND KATIE BECKETT
+    effective_date: '2021-09-28'
+    pdf_blob_name: 477 NAC 27 (09-28-2021).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-28
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 28: Children Eligible for IV-E Assistance; Non-IV-E Adoption Subsidy; Former Foster
+    Care Children'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2028%20%2803-20-2024%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-20'
+  citation_path: us-ne/regulation/title-477/chapter-28
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1769
+    chapter_number: '28'
+    chapter_name: CHILDREN  ELIGIBLE  FOR  IV-E  ASSISTANCE;  NON-IV-E  ADOPTION SUBSIDY; FORMER FOSTER CARE CHILDREN
+    effective_date: '2024-03-20'
+    pdf_blob_name: 477 NAC 28 (03-20-2024).pdf
+    official_pdf_blob_available: false
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-chapter-29
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 477 NAC Chapter 29: Heritage Health Adult Program'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/477%20NAC%2029%20%2804-26-2026%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-26'
+  citation_path: us-ne/regulation/title-477/chapter-29
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (477 NAC), filed with the Secretary of State
+    document_subtype: official_filed_administrative_regulation_chapter
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477.aspx
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/232
+    agency_id: 37
+    title_id: 232
+    title_number: 477
+    chapter_id: 1770
+    chapter_number: '29'
+    chapter_name: HERITAGE HEALTH ADULT PROGRAM
+    effective_date: '2026-04-26'
+    pdf_blob_name: 477 NAC 29 (04-26-2026).pdf
+    official_pdf_blob_available: true
+    section_numbering: '2020+ filing: 001./005.01 labels'
+    tls_note: rules.nebraska.gov serves its leaf certificate only; verified with the committed DigiCert Global G2 TLS RSA
+      SHA256 2020 CA1 intermediate through REQUESTS_CA_BUNDLE (verification never disabled)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://rules.nebraska.gov/rules?agencyId=37&titleId=232
+- source_id: ne-dhhs-title-477-appendix-477-000-002
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-002
+  source_url: https://dhhs.ne.gov/Documents/477-000-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-002
+  extraction: &id003
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-002
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-003
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-003
+  source_url: https://dhhs.ne.gov/Documents/477-000-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-003
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-003
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-004
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-004
+  source_url: https://dhhs.ne.gov/Documents/477-000-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-004
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-004
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-005
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-005
+  source_url: https://dhhs.ne.gov/Documents/477-000-005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-005
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-005
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-006
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-006
+  source_url: https://dhhs.ne.gov/Documents/477-000-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-006
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-006
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-007
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-007
+  source_url: https://dhhs.ne.gov/Documents/477-000-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-007
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-007
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-008
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-008
+  source_url: https://dhhs.ne.gov/Documents/477-000-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-008
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-008
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-009
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-009
+  source_url: https://dhhs.ne.gov/Documents/477-000-009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-009
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-009
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-010
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-010
+  source_url: https://dhhs.ne.gov/Documents/477-000-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-010
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-010
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-011
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-011
+  source_url: https://dhhs.ne.gov/Documents/477-000-011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-011
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-011
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-012
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-012
+  source_url: https://dhhs.ne.gov/Documents/477-000-012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-012
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-012
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-013
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-013
+  source_url: https://dhhs.ne.gov/Documents/477-000-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-013
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-013
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-014
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-014
+  source_url: https://dhhs.ne.gov/Documents/477-000-014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-014
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-014
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-015
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-015
+  source_url: https://dhhs.ne.gov/Documents/477-000-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-015
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-015
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-016
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-016
+  source_url: https://dhhs.ne.gov/Documents/477-000-016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-016
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-016
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-017
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-017
+  source_url: https://dhhs.ne.gov/Documents/477-000-017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-017
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-017
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-026
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-026
+  source_url: https://dhhs.ne.gov/Documents/477-000-026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-026
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-026
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-029
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-029
+  source_url: https://dhhs.ne.gov/Documents/477-000-029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-029
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-029
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-030
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-030
+  source_url: https://dhhs.ne.gov/Documents/477-000-030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-030
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-030
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-031
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-031
+  source_url: https://dhhs.ne.gov/Documents/477-000-031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-031
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-031
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-032
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-032
+  source_url: https://dhhs.ne.gov/Documents/477-000-032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-032
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-032
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-033
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-033
+  source_url: https://dhhs.ne.gov/Documents/477-000-033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-033
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-033
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-034
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-034
+  source_url: https://dhhs.ne.gov/Documents/477-000-034.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-034
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-034
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-036
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-036
+  source_url: https://dhhs.ne.gov/Documents/477-000-036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-036
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-036
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-037
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-037
+  source_url: https://dhhs.ne.gov/Documents/477-000-037.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-037
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-037
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-038
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-038
+  source_url: https://dhhs.ne.gov/Documents/477-000-038.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-038
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-038
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-039
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-039
+  source_url: https://dhhs.ne.gov/Documents/477-000-039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-039
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-039
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-040
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-040
+  source_url: https://dhhs.ne.gov/Documents/477-000-040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-040
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-040
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-041
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-041
+  source_url: https://dhhs.ne.gov/Documents/477-000-041.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-041
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-041
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-042
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-042
+  source_url: https://dhhs.ne.gov/Documents/477-000-042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-042
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-042
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-043
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-043
+  source_url: https://dhhs.ne.gov/Documents/477-000-043.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-043
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-043
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-044
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-044
+  source_url: https://dhhs.ne.gov/Documents/477-000-044.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-044
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-044
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-045
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-045
+  source_url: https://dhhs.ne.gov/Documents/477-000-045.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-045
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-045
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-047
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-047
+  source_url: https://dhhs.ne.gov/Documents/477-000-047.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-047
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-047
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-048
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-048
+  source_url: https://dhhs.ne.gov/Documents/477-000-048.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-048
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-048
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-049
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-049
+  source_url: https://dhhs.ne.gov/Documents/477-000-049.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-049
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-049
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-050
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-050
+  source_url: https://dhhs.ne.gov/Documents/477-000-050.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-050
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-050
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-051
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-051
+  source_url: https://dhhs.ne.gov/Documents/477-000-051.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-051
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-051
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-052
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-052
+  source_url: https://dhhs.ne.gov/Documents/477-000-052.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-052
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-052
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+- source_id: ne-dhhs-title-477-appendix-477-000-061
+  jurisdiction: us-ne
+  document_class: regulation
+  title: Nebraska Title 477 Appendix 477-000-061
+  source_url: https://dhhs.ne.gov/Documents/477-000-061.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ne/regulation/title-477/appendix/477-000-061
+  extraction: *id003
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services, Division of Medicaid and Long-Term Care
+    document_subtype: regulation_appendix_table_pdf
+    program: MEDICAID
+    manual: Nebraska Title 477 NAC Medicaid Eligibility
+    manual_index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    appendix_number: 477-000-061
+    expression_date_note: fetch date; each appendix prints its own revision date in the page header (REV. ...)
+    source_discovery_group: us-ne/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 7 (2026-09-13 re-probe of blocked publishers); publisher index
+      https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx

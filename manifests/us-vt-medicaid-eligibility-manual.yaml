@@ -1,0 +1,143 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: vt-ahs-hbee-part-1
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 1 General Provisions and Definitions
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-1-General-Provisions-and-Definitions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-1
+  extraction: &id001
+    segmentation: labeled_sections
+    start_page: 3
+    section_heading_pattern: ^\s*(?P<label>\d{1,2}\.\d\d)\s+(?P<heading>[A-Z].*?)\s*\(\d\d/\d\d/\d{4}, GCR [\d-]+\)\s*$
+    section_label_template: '{label}'
+    heading_continuation_pattern: (?!)
+    drop_line_patterns:
+    - ^\s*Agency of Human Services\s*$
+    - ^\s*Health Benefits Eligibility and Enrollment\s*$
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+- source_id: vt-ahs-hbee-part-2
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 2 Eligibility Standards
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-2-Eligibility-Standards.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-2
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+- source_id: vt-ahs-hbee-part-3
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 3 Nonfinancial Eligibility Requirements
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-3-Nonfinancial-Eligibility-Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-3
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+- source_id: vt-ahs-hbee-part-4
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 4 Special Rules for Medicaid Coverage of Long-Term Care
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-4-Special-Rules-for-Medicaid-LTC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-4
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+- source_id: vt-ahs-hbee-part-5
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 5 Financial Methodologies
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-5-Financial-Methodologies.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-5
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+- source_id: vt-ahs-hbee-part-7
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 7 Eligibility-and-Enrollment Procedures
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-7-Eligibility-and-Enrollment-Procedures.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-7
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+- source_id: vt-ahs-hbee-part-8
+  jurisdiction: us-vt
+  document_class: manual
+  title: Health Benefits Eligibility and Enrollment Rules, Part 8 State Fair Hearings and Expedited Eligibility Appeals
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/23-088-HBEE-Part-8-adopted-scrubbed.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-vt/manual/dvha/medicaid/hbee-part-8
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services / Department of Vermont Health Access
+    document_subtype: hbee_eligibility_part_pdf
+    program: MEDICAID
+    manual: Vermont Health Benefits Eligibility and Enrollment Rules (HBEE)
+    manual_index_url: https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee
+    source_discovery_group: us-vt/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.vermont.gov/rules-policies/health-care-rules/health-benefits-eligibility-and-enrollment-rules-hbee

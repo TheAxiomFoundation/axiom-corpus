@@ -1,0 +1,407 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-vt-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 8
+    index_records_total: 8
+- source_id: us-vt-cms-chip-state-plan-spa-vt-21-0001-chip-approval-package
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-21-0001-CHIP: Approval Package (approved August 5, 2021, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT-21-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-21-0001-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-21-0001-CHIP
+    cms_node_id: '110901'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110901
+    approval_date: '2021-08-05'
+    effective_date: '2020-07-01'
+    summary: This SPA aligns the strategic objectives and goals.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-vt-cms-chip-state-plan-spa-vt-14-0005-mc2-approval-package
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-14-0005-MC2: Approval Package (approved June 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-14-0005-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-14-0005-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-14-0005-MC2
+    cms_node_id: '2831'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2831
+    approval_date: '2014-06-22'
+    effective_date: '2014-01-01'
+    summary: MAGI Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-vt-cms-chip-state-plan-spa-vt-14-002-mc3-approval-package
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-14-002-MC3: Approval Package (approved June 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-14-002-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-14-002-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-14-002-MC3
+    cms_node_id: '2836'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2836
+    approval_date: '2014-06-11'
+    effective_date: '2014-01-01'
+    summary: 'The SPA number VT-14-002 describes the state''s plan to provide coverage in a separate CHIP, for children subject
+      to Section 2101(f) of the Affordable Care Act, as specified in the state''s submission of CS 14: Children Ineligible
+      for Medicaid as a Result of the Elimination of Income Disregards.'
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-10-approval-package
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-10: Approval Package (approved August 29, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-10-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-10/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-CSPA-10
+    cms_node_id: '1721'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1721
+    approval_date: '2012-08-29'
+    effective_date: '2011-10-01'
+    summary: Proposing to extend coverage to dependent children of state employees per Section 10203 of the Affordable Care
+      Act of 2010 and to remove the 30-day waiting period for new CHIP enrollees.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-10-final-approved-state-plan
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-10: Final Approved State Plan (approved August 29, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-10-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-10/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: VT-CSPA-10
+    cms_node_id: '1721'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1721
+    approval_date: '2012-08-29'
+    effective_date: '2011-10-01'
+    summary: Proposing to extend coverage to dependent children of state employees per Section 10203 of the Affordable Care
+      Act of 2010 and to remove the 30-day waiting period for new CHIP enrollees.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-vt-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP compiled state plan: Factsheet (approved October 2, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VTCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: VT
+    cms_node_id: '1936'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1936
+    approval_date: '2008-10-02'
+    effective_date: '2007-07-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 10-02-2008.
+    topics: &id003
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-vt-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP compiled state plan: Current State Plan (approved October 2, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VTCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: VT
+    cms_node_id: '1936'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1936
+    approval_date: '2008-10-02'
+    effective_date: '2007-07-01'
+    summary: Current CHIP State Plan as amended by SPA 8 and Factsheet as of 10-02-2008.
+    topics: *id003
+    link_label: Current State Plan
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-09-approval-package
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-09: Approval Package (approved October 2, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-9-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-09/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-CSPA-09
+    cms_node_id: '2081'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2081
+    approval_date: '2008-10-02'
+    effective_date: '2007-07-01'
+    summary: Proposing to implement a premium grace period per CHIRRA Section 504 Premium Grace CHIPRA Option 214 and implement
+      telemedicine services for children with mental health needs.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-09-final-approved-state-plan
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-09: Final Approved State Plan (approved October 2, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-9-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-09/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: VT-CSPA-09
+    cms_node_id: '2081'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2081
+    approval_date: '2008-10-02'
+    effective_date: '2007-07-01'
+    summary: Proposing to implement a premium grace period per CHIRRA Section 504 Premium Grace CHIPRA Option 214 and implement
+      telemedicine services for children with mental health needs.
+    topics: *id004
+    link_label: Final Approved State Plan
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-8-approval-package
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-8: Approval Package (approved October 2, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-8-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-8/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VT-CSPA-8
+    cms_node_id: '2056'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2056
+    approval_date: '2008-10-02'
+    effective_date: '2007-07-01'
+    summary: Cost sharing changes.
+    topics: &id005
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-8-final-approved-state-plan
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-8: Final Approved State Plan (approved October 2, 2008, effective July 1, 2007)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-8-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-07-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-8/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: VT-CSPA-8
+    cms_node_id: '2056'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2056
+    approval_date: '2008-10-02'
+    effective_date: '2007-07-01'
+    summary: Cost sharing changes.
+    topics: *id005
+    link_label: Final Approved State Plan
+- source_id: us-vt-cms-chip-state-plan-spa-vt-cspa-11-pending-state-plan
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont CHIP SPA VT-CSPA-11: Pending State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/VT/VT-CSPA-11.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-vt/policy/cms/chip-state-plan/spa/vt-cspa-11/pending-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Vermont
+    source_discovery_group: us-vt/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_document
+    transmittal_number: VT-CSPA-11
+    cms_node_id: '2311'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2311
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Benefit Changes and Hospice.
+    topics:
+    - Benefits
+    link_label: Pending State Plan

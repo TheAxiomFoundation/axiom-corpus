@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "178b63c5a9e83622c29f98fb1c0ac298838f011826dfcc00d40893a95c01345e"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "8105cf2fd4ac86a79f91adc8d9008b8baeb62781e2b3fd59a464ab4d11efb269"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/manual/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "eed6b6b1bac60d8808eb05325f03ee41539545a67f44edbd0240cbf2a40b04c0"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-ssi-state-supplement/official-documents/la-ldh-medicaid-eligibility-manual-j-0000.pdf",
+      "sha256": "e2dadb267780c8deb4a4bc0e01ce0f0777433d9948cd74365cb26296ddc80acf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-la-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:53:41.217823+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YWbIHNknJe1aQX2itOhuttaKg+2YOvJn1Y/SHLYsQEYNx+/BbmZLNyx5A+5M/mWIn5WQJIz1U5sG9AJImJVkBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

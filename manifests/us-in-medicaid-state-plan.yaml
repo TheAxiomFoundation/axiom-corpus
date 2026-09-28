@@ -1,0 +1,1444 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-in-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 235
+- source_id: us-in-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 235
+- source_id: us-in-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 35
+    index_records_total: 235
+- source_id: us-in-cms-medicaid-state-plan-spa-in-25-0004-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-25-0004: Approval Document (approved September 19, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-25-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-25-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-25-0004
+    cms_node_id: '185091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185091
+    approval_date: '2025-09-19'
+    effective_date: '2025-07-01'
+    summary: This State Plan Amendment attests to the state's compliance with the third-party liability requirements in Section
+      1902(a)(25)(1) of the Social Security Act.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-23-0009-a-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-23-0009-A: Approval Document (approved January 4, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-23-0009-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-23-0009-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-23-0009-A
+    cms_node_id: '158241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=158241
+    approval_date: '2024-01-04'
+    effective_date: '2024-01-01'
+    summary: This Amendment makes conforming changes to the Medicaid State Plan to modify 12-month continuous eligibility
+      policies for children.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-23-0005-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-23-0005: Approval Document (approved September 13, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-23-0005
+    cms_node_id: '153796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=153796
+    approval_date: '2023-09-13'
+    effective_date: '2023-04-01'
+    summary: The SPA exempts structured family caregiver payments as countable income in determining income eligibility for
+      most non-MAGI based eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-23-0001-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-23-0001: Approval Document (approved April 5, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-23-0001
+    cms_node_id: '146716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146716
+    approval_date: '2023-04-05'
+    effective_date: '2023-01-01'
+    summary: Indiana adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as
+      enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-22-0003-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-22-0003: Approval Document (approved September 23, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-22-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-22-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-22-0003
+    cms_node_id: '140126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140126
+    approval_date: '2022-09-23'
+    effective_date: '2022-04-01'
+    summary: This amendment target zero cost sharing to individuals in any eligibility group who are eligible for extended
+      postpartum coverage under section 1902(e)(16) of the Social Security Act.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-21-0002-a-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-21-0002-A: Approval Document (approved March 4, 2022, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-21-0002-A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-21-0002-a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-21-0002-A
+    cms_node_id: '133341'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=133341
+    approval_date: '2022-03-04'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment (SPA) to respond to the COVID-19 national emergency.
+      The purpose of this amendment is to suspend all cost sharing.
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-21-0017-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-21-0017: Approval Document (approved January 24, 2022, effective December 31, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-21-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-12-31'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-21-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-21-0017
+    cms_node_id: '135616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=135616
+    approval_date: '2022-01-24'
+    effective_date: '2021-12-31'
+    summary: This State Plan Amendment makes conforming changes to the Medicaid State Plan to bring Indiana Medicaid into
+      compliance with the new Bipartisan Budget Act (BBA) of 2018 singed into law by the Centers for Medicare and Medicaid
+      Services (CMS) February 9, 2018. This new legislation requires modifications in coordination of benefits claims processing
+      rules.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-21-0001-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-21-0001: Approval Document (approved June 28, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/IN-21-0001
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-21-0001/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-21-0001
+    cms_node_id: '109901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109901
+    approval_date: '2021-06-28'
+    effective_date: '2020-10-01'
+    summary: This amendment proposes to add medication-assisted treatment (MAT) as a mandatory benefit in the Medicaid state
+      plan.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-20-0001-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-20-0001: Approval Document (approved November 16, 2020, effective February 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/IN-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-02-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-20-0001
+    cms_node_id: '103916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103916
+    approval_date: '2020-11-16'
+    effective_date: '2020-02-01'
+    summary: Tobacco Cessation
+    topics:
+    - All Drugs Used for Smoking Cessation
+    - Cost Sharing
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-20-0005-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-20-0005: Approval Document (approved September 23, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/IN-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-20-0005
+    cms_node_id: '102836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102836
+    approval_date: '2020-09-23'
+    effective_date: '2020-10-01'
+    summary: Adds additional service units using the prior authorization (PA) process per the Mental Health Parity and Addiction
+      Equity Act (MHPAEA)
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-20-0002-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-20-0002: Approval Document (approved August 20, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-20-0002-corrected.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-20-0002
+    cms_node_id: '101626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101626
+    approval_date: '2020-08-20'
+    effective_date: '2020-10-01'
+    summary: Enrolling Licensed Mental Health Practitioners
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-20-0006-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-20-0006: Approval Document (approved July 10, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-20-0006
+    cms_node_id: '100536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100536
+    approval_date: '2020-07-10'
+    effective_date: '2020-07-01'
+    summary: Delegation of Administrative Law Proceedings Authority to the Office of Administrative Law Proceedings (OALP)
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-013-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-013: Approval Document (approved March 23, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IN-19-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-19-013
+    cms_node_id: '101841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101841
+    approval_date: '2020-03-23'
+    effective_date: '2020-04-01'
+    summary: state increases service units, changes the eligibility age from 35 years and older to 19 years and older, and
+      removes peer support services
+    topics:
+    - Current State Plan
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-0019-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-0019: Approval Document (approved March 13, 2020, effective November 28, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-19-0019_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-28'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-19-0019
+    cms_node_id: '87406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=87406
+    approval_date: '2020-03-13'
+    effective_date: '2019-11-28'
+    summary: This SPA make Changes to Pharmacy DUR language to adhere to SUPPORT Act requirements
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-0014-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-0014: Approval Document (approved March 5, 2020, effective November 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-19-0014
+    cms_node_id: '86411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86411
+    approval_date: '2020-03-05'
+    effective_date: '2019-11-01'
+    summary: Technical changes to the Child Mental Health Wraparound HCBS state plan benefit to correct errors in pagination
+      resulting from the approved SPA TN 19-007. This SPA makes revisions to the qualification requirements for staff making
+      level of need determinations to allow for the inclusion of experience in areas closely related to wraparound services
+      to count towards an individual’s experience, in addition to clinical experience.
+    topics: &id002
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-0014-attachment
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-0014: Attachment (approved March 5, 2020, effective November 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/RI/RI-20-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-0014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IN-19-0014
+    cms_node_id: '86411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86411
+    approval_date: '2020-03-05'
+    effective_date: '2019-11-01'
+    summary: Technical changes to the Child Mental Health Wraparound HCBS state plan benefit to correct errors in pagination
+      resulting from the approved SPA TN 19-007. This SPA makes revisions to the qualification requirements for staff making
+      level of need determinations to allow for the inclusion of experience in areas closely related to wraparound services
+      to count towards an individual’s experience, in addition to clinical experience.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-0014-form-cms-179
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-0014: Form CMS-179 (approved March 5, 2020, effective November 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/NH/NH 20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-0014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IN-19-0014
+    cms_node_id: '86411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86411
+    approval_date: '2020-03-05'
+    effective_date: '2019-11-01'
+    summary: Technical changes to the Child Mental Health Wraparound HCBS state plan benefit to correct errors in pagination
+      resulting from the approved SPA TN 19-007. This SPA makes revisions to the qualification requirements for staff making
+      level of need determinations to allow for the inclusion of experience in areas closely related to wraparound services
+      to count towards an individual’s experience, in addition to clinical experience.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-014-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-014: Approval Document (approved March 5, 2020, effective November 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-19-014_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-11-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-19-014
+    cms_node_id: '86496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86496
+    approval_date: '2020-03-05'
+    effective_date: '2019-11-01'
+    summary: Transmittal Number (TN) 19-014 Child Mental Health Wraparound §1915(i) home and community-based services (HCBS)
+      state plan amendment (SPA) makes technical changes to correct errors in pagination
+    topics:
+    - Children's Health Insurance Program
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-0015-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-0015: Approval Document (approved November 12, 2019, effective October 13, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-19-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-13'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-19-0015
+    cms_node_id: '4321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4321
+    approval_date: '2019-11-12'
+    effective_date: '2019-10-13'
+    summary: Revises Medicaid reimbursement rates for medical equipment, medical supplies, and vision supplies and reestablishes
+      the state's previous reimbursement methodology on a time-limited basis.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-19-0002-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-19-0002: Approval Document (approved August 14, 2019, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-19-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-19-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-19-0002
+    cms_node_id: '5241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=5241
+    approval_date: '2019-08-14'
+    effective_date: '2019-01-01'
+    summary: Increases the Vaccines for Children administration fee maximum from 8 to 15.
+    topics:
+    - Cost Sharing
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-15-013-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-15-013: Approval Document (approved September 16, 2015, effective April 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-15-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-15-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-15-013
+    cms_node_id: '22376'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22376
+    approval_date: '2015-09-16'
+    effective_date: '2015-04-01'
+    summary: Adds presumptive eligibility for parents and other caretaker relatives, pregnant women, infants and children
+      under age 19, adult group, former foster children, and individuals eligible for family planning services; and Expands
+      the definition of qualified providers to include acute care hospitals, psychiatric hospitals, community mental health
+      centers, federally qualified health centers, rural health centers and local health departments.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-15-008-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-15-008: Approval Document (approved May 5, 2015, effective February 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-15-008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-02-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-15-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-15-008
+    cms_node_id: '27776'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27776
+    approval_date: '2015-05-05'
+    effective_date: '2015-02-01'
+    summary: This amendment aligns the populations authorized through the State Plan versus 1115 waiver to include pregnant
+      women eligible under 42 CFR 436.116, children eligible under 42 CFR 425.117 and 42 CFR 435.118, and presumptively eligible
+      pregnant women.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-14-002-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-14-002: Approval Document (approved May 28, 2014, effective June 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-14-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-06-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-14-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-14-002
+    cms_node_id: '36716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36716
+    approval_date: '2014-05-28'
+    effective_date: '2014-06-01'
+    summary: Clarifies that only Community Mental Health Centers (CMHCs) are allowed to provide MRO services.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-13-001-mm1-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-13-001-MM1: Approval Document (approved January 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-13-001-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-13-001-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-13-001-MM1
+    cms_node_id: '39121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39121
+    approval_date: '2014-01-23'
+    effective_date: '2014-01-01'
+    summary: Updates MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-13-007-mm7-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-13-007-MM7: Approval Document (approved January 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-13-007-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-13-007-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-13-007-MM7
+    cms_node_id: '39126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39126
+    approval_date: '2014-01-23'
+    effective_date: '2014-01-01'
+    summary: Changes Computer-Based Hospital Presumptive Eligibility Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-13-002-mm7-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-13-002-MM7: Approval Document (approved January 23, 2014, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-13-002-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-13-002-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-13-002-MM7
+    cms_node_id: '38751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38751
+    approval_date: '2014-01-23'
+    effective_date: '2014-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-13-005-mm5-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-13-005-MM5: Approval Document (approved January 16, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-13-005-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-13-005-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-13-005-MM5
+    cms_node_id: '34346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34346
+    approval_date: '2014-01-16'
+    effective_date: '2014-01-01'
+    summary: Implements MAGI Residency.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-13-006-mm6-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-13-006-MM6: Approval Document (approved January 13, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-13-006-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-13-006-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-13-006-MM6
+    cms_node_id: '39386'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39386
+    approval_date: '2014-01-13'
+    effective_date: '2014-01-01'
+    summary: Updates MAGI Citizenship/Immigration.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-13-003-mm3-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-13-003-MM3: Approval Document (approved November 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-13-003-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-13-003-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-13-003-MM3
+    cms_node_id: '40046'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40046
+    approval_date: '2013-11-20'
+    effective_date: '2014-01-01'
+    summary: Updates MAGI Income-Based Methodology.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-12-014-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-12-014: Approval Document (approved January 10, 2013, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-12-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-12-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-12-014
+    cms_node_id: '46801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46801
+    approval_date: '2013-01-10'
+    effective_date: '2012-10-01'
+    summary: Adds Presumptive Eligibility to Family Planning Services.
+    topics: &id003
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-12-014-attachment
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-12-014: Attachment (approved January 10, 2013, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-12-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-12-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IN-12-014
+    cms_node_id: '46801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46801
+    approval_date: '2013-01-10'
+    effective_date: '2012-10-01'
+    summary: Adds Presumptive Eligibility to Family Planning Services.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-in-cms-medicaid-state-plan-spa-in-12-014-form-cms-179
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-12-014: Form CMS-179 (approved January 10, 2013, effective October 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-12-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-12-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IN-12-014
+    cms_node_id: '46801'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46801
+    approval_date: '2013-01-10'
+    effective_date: '2012-10-01'
+    summary: Adds Presumptive Eligibility to Family Planning Services.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-in-cms-medicaid-state-plan-spa-in-12-004-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-12-004: Approval Document (approved April 27, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-12-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-12-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-12-004
+    cms_node_id: '43581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43581
+    approval_date: '2012-04-27'
+    effective_date: '2012-07-01'
+    summary: This SPA makes conforming changes to the State Plan to Implement a system to screen all participating providers
+      according to their categorical risk level , upon initial enrollment and upon re-enrollment or revalidation of enrollment.
+    topics: &id004
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-12-004-attachment
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-12-004: Attachment (approved April 27, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-12-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-12-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IN-12-004
+    cms_node_id: '43581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43581
+    approval_date: '2012-04-27'
+    effective_date: '2012-07-01'
+    summary: This SPA makes conforming changes to the State Plan to Implement a system to screen all participating providers
+      according to their categorical risk level , upon initial enrollment and upon re-enrollment or revalidation of enrollment.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-in-cms-medicaid-state-plan-spa-in-12-004-form-cms-179
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-12-004: Form CMS-179 (approved April 27, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-12-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-12-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IN-12-004
+    cms_node_id: '43581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43581
+    approval_date: '2012-04-27'
+    effective_date: '2012-07-01'
+    summary: This SPA makes conforming changes to the State Plan to Implement a system to screen all participating providers
+      according to their categorical risk level , upon initial enrollment and upon re-enrollment or revalidation of enrollment.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-in-cms-medicaid-state-plan-spa-in-11-026-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-11-026: Approval Document (approved March 28, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-11-026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-11-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-11-026
+    cms_node_id: '33161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33161
+    approval_date: '2012-03-28'
+    effective_date: '2011-10-01'
+    summary: This SPA makes changes to the State Plan as a result of Section 4107 of the Affordable Care Act that amends section
+      1905 of the Social Security Act to require coverage of counseling and pharmacotherapy for cessation of tobacco use by
+      pregnant women.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-10-009-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-10-009: Approval Document (approved March 16, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-10-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-10-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-10-009
+    cms_node_id: '43716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43716
+    approval_date: '2011-03-16'
+    effective_date: '2010-07-01'
+    summary: Exempt Medicare cost - sharing benefits paid under the Medicare Savings Program from estate recovery in accordance
+      with MIPPA Section 115.
+    topics: &id005
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-10-009-attachment
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-10-009: Attachment (approved March 16, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-10-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-10-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IN-10-009
+    cms_node_id: '43716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43716
+    approval_date: '2011-03-16'
+    effective_date: '2010-07-01'
+    summary: Exempt Medicare cost - sharing benefits paid under the Medicare Savings Program from estate recovery in accordance
+      with MIPPA Section 115.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-in-cms-medicaid-state-plan-spa-in-10-009-form-cms-179
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-10-009: Form CMS-179 (approved March 16, 2011, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-10-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-10-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IN-10-009
+    cms_node_id: '43716'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43716
+    approval_date: '2011-03-16'
+    effective_date: '2010-07-01'
+    summary: Exempt Medicare cost - sharing benefits paid under the Medicare Savings Program from estate recovery in accordance
+      with MIPPA Section 115.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-in-cms-medicaid-state-plan-spa-in-10-008-approval-document
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-10-008: Approval Document (approved September 22, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-10-008-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-10-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IN-10-008
+    cms_node_id: '43721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43721
+    approval_date: '2010-09-22'
+    effective_date: '2010-04-01'
+    summary: Exempt Medicare cost - sharing benefits paid under the Medicare Savings Program from estate recovery in accordance
+      with MIPPA Section 115.
+    topics: &id006
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-in-cms-medicaid-state-plan-spa-in-10-008-attachment
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-10-008: Attachment (approved September 22, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-10-008-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-10-008/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IN-10-008
+    cms_node_id: '43721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43721
+    approval_date: '2010-09-22'
+    effective_date: '2010-04-01'
+    summary: Exempt Medicare cost - sharing benefits paid under the Medicare Savings Program from estate recovery in accordance
+      with MIPPA Section 115.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-in-cms-medicaid-state-plan-spa-in-10-008-form-cms-179
+  jurisdiction: us-in
+  document_class: policy
+  title: 'Indiana Medicaid SPA IN-10-008: Form CMS-179 (approved September 22, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IN/IN-10-008-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-in/policy/cms/medicaid-state-plan/spa/in-10-008/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Indiana
+    source_discovery_group: us-in/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IN-10-008
+    cms_node_id: '43721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43721
+    approval_date: '2010-09-22'
+    effective_date: '2010-04-01'
+    summary: Exempt Medicare cost - sharing benefits paid under the Medicare Savings Program from estate recovery in accordance
+      with MIPPA Section 115.
+    topics: *id006
+    link_label: Form CMS-179

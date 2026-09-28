@@ -1,0 +1,32 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-la-liheap-lhc-liheap-model-plan-ffy2026
+  jurisdiction: us-la
+  document_class: policy
+  title: Louisiana LIHEAP FFY 2026 Model Plan with the Heating and Cooling Benefit Matrix attachment
+  source_url: https://www.lhc.la.gov/hubfs/Document%20Libraries/Energy%20Assistance/FFY%202026%20LIHEAP%20Model%20Plan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-la/policy/lhc/liheap/model-plan-ffy2026
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Housing Corporation
+    document_subtype: state_plan_with_attachments_pdf
+    program: LIHEAP
+    state: LA
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://www.lhc.la.gov/energy-assistance
+    on_clearinghouse_index: true
+    source_discovery_group: us-la/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.lhc.la.gov/energy-assistance
+    extraction_granularity: pdf_page
+    expression_date_note: report period 10/01/2025 to 09/30/2026
+    access_note: lhc.la.gov HTTP 200 to the plain client
+    page_count: 62
+    benefit_matrix_pdf_pages: '60'
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

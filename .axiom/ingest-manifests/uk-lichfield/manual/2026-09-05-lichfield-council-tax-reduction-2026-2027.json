@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-lichfield/manual/2026-09-05-lichfield-council-tax-reduction-2026-2027.json",
+      "sha256": "7b483fabf0b2c9b6ba42717b3130219b04b9c8f12bbfa73b27b0c5630241e519"
+    },
+    {
+      "path": "data/corpus/inventory/uk-lichfield/manual/2026-09-05-lichfield-council-tax-reduction-2026-2027.json",
+      "sha256": "077d814b33d040c1b3bb368ecb5e777b485ce87c0040a68d9d7d7c865f2f42ee"
+    },
+    {
+      "path": "data/corpus/provisions/uk-lichfield/manual/2026-09-05-lichfield-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "2209efa047dc040a9c76d8314011edc408c83211175a26c0ecaa649542927e61"
+    },
+    {
+      "path": "data/corpus/sources/uk-lichfield/manual/2026-09-05-lichfield-council-tax-reduction-2026-2027/official-documents/lichfield-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "344ee6de196ad984f1964bf8c155d229f7e03164027a858b7da792d901fe15b0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-lichfield-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-lichfield-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 83,
+    "missing_count": 0,
+    "provision_count": 83,
+    "source_count": 83
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:51.153810+00:00",
+  "jurisdiction": "uk-lichfield",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vG4KHpXkqZNal4LznKat81Sf/YIi0QsGAh91JpaBIBLwowb7iHlh/QCTm1/Ngq+oZ6hALgZqOKlXW2lwiD/8BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-lichfield-council-tax-reduction-2026-2027"
+}

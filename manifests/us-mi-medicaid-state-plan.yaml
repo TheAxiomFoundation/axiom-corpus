@@ -1,0 +1,1690 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-mi-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 383
+- source_id: us-mi-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 383
+- source_id: us-mi-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 383
+- source_id: us-mi-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 83
+    index_records_total: 383
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-1501-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-1501: Approval Document (approved May 15, 2026, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-1501.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-1501/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-1501
+    cms_node_id: '192561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192561
+    approval_date: '2026-05-15'
+    effective_date: '2025-10-01'
+    summary: This amendment aims to add an addictionologist to the health home staffing structure along with adjusting the
+      FTE to the Peer Recovery Coach and Community Health Worker line item. This update will reflect current roles and responsibilities
+      in the model. MDHHS is planning to adjust the current Case Rate based on the added roles and responsibilities for the
+      SUDHH.
+    topics:
+    - Eligibility
+    - Health Homes
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-26-0001-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-26-0001: Approval Document (approved April 10, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-26-0001
+    cms_node_id: '191616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=191616
+    approval_date: '2026-04-10'
+    effective_date: '2026-04-01'
+    summary: This amendment updates Michigan’s Alternative Benefit Plan to add coverage for licensed midwifery services in
+      alignment with the state’s traditional Medicaid State Plan.
+    topics:
+    - Alternative Benefit Plan
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0021-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0021: Approval Document (approved March 6, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0021
+    cms_node_id: '190086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190086
+    approval_date: '2026-03-06'
+    effective_date: '2026-04-01'
+    summary: This amendment updates the State Plan to include coverage and reimbursement for licensed midwifery services for
+      eligible Medicaid beneficiaries.
+    topics:
+    - Benefits
+    - Coverage and Reimbursement
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0101-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0101: Approval Document (approved February 26, 2026, effective February 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0101.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-02-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0101/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0101
+    cms_node_id: '189661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189661
+    approval_date: '2026-02-26'
+    effective_date: '2026-02-01'
+    summary: This amendment proposed to disregard all payments received from the Flint Water Settlement as income and as a
+      resource for non-MAGI eligibility groups.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0020-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0020: Approval Document (approved February 19, 2026, effective June 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-06-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0020
+    cms_node_id: '189281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189281
+    approval_date: '2026-02-19'
+    effective_date: '2026-06-01'
+    summary: This amendment clarifies Behavioral Health Treatment, Applied Behavior Analysis service access for Medicaid beneficiaries
+      and increases the ability for children with a diagnosis of Autism Spectrum Disorder to receive early interventions and
+      supports.
+    topics:
+    - Coverage
+    - Eligibility
+    - Preventive Services
+    - Prior Authorization
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0015-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0015: Approval Document (approved December 8, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0015
+    cms_node_id: '187166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187166
+    approval_date: '2025-12-08'
+    effective_date: '2025-01-01'
+    summary: This amendment provides Targeted Case Management for eligible juveniles who are within 30 days of their scheduled
+      date of release from a public institution following adjudication.
+    topics:
+    - Alternative Benefit Plan
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0011-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0011: Approval Document (approved November 14, 2025, effective November 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0011
+    cms_node_id: '187211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187211
+    approval_date: '2025-11-14'
+    effective_date: '2025-11-01'
+    summary: This amendment removes copayments for HIV PrEP (pre-exposure prophylaxis) and HIV PEP (post-exposure prophylaxis)
+      drug products to align with both the US Preventive Services Task Force Guidelines for prevention of acquisition of HIV
+      and the CDC's Clinical Guidance for HIV PEP.
+    topics:
+    - Cost Sharing
+    - Coverage
+    - Preventive Services
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0006-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0006: Approval Document (approved September 15, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0006
+    cms_node_id: '184871'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=184871
+    approval_date: '2025-09-15'
+    effective_date: '2025-01-01'
+    summary: This amendment is to provide for mandatory coverage in accordance with section 1902(a)(84)(D) of the Social Security
+      Act (the Act) for eligible juveniles who are incarcerated in a public institution post-adjudication of charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-0100-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-0100: Approval Document (approved April 25, 2025, effective February 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-0100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-02-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-0100/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-0100
+    cms_node_id: '179201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179201
+    approval_date: '2025-04-25'
+    effective_date: '2025-02-01'
+    summary: This amendment proposed a resource disregard in order to increase the effective resource standards for all Medicaid
+      eligibility groups subject to a resource test.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-24-0120-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-24-0120: Approval Document (approved June 21, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-24-0120.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-24-0120/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-24-0120
+    cms_node_id: '166731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=166731
+    approval_date: '2024-06-21'
+    effective_date: '2024-01-01'
+    summary: To disregard, under the authority of section 1902(r)(2) of the Social Security Act, assistance received from
+      guaranteed income programs.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-24-0110-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-24-0110: Approval Document (approved May 30, 2024, effective August 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-24-0110.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-08-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-24-0110/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-24-0110
+    cms_node_id: '165821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165821
+    approval_date: '2024-05-30'
+    effective_date: '2024-08-01'
+    summary: Implements Section 214 of CHIPRA in order to cover pregnant women and lawfully residing women under the age of
+      21.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-23-0500-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-23-0500: Approval Document (approved March 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-23-0500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-23-0500/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-23-0500
+    cms_node_id: '161986'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161986
+    approval_date: '2024-03-19'
+    effective_date: '2024-01-01'
+    summary: Updates G2c and G3 templates to eliminate the Healthy Michigan Plan copay tier and modify the cost sharing limitation
+      language to remove the references to the Healthy Michigan Plan.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-24-0500-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-24-0500: Approval Document (approved March 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-24-0500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-24-0500/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-24-0500
+    cms_node_id: '161991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161991
+    approval_date: '2024-03-19'
+    effective_date: '2024-01-01'
+    summary: Updates the G3 templates to eliminate the MiChild Premium from the SPA page.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-24-0100-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-24-0100: Approval Document (approved March 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-24-0100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-24-0100/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-24-0100
+    cms_node_id: '161996'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=161996
+    approval_date: '2024-03-19'
+    effective_date: '2024-01-01'
+    summary: To address continuous eligibility for children under 19 years of age.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-24-0001-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-24-0001: Approval Document (approved March 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-24-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-24-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-24-0001
+    cms_node_id: '162001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=162001
+    approval_date: '2024-03-19'
+    effective_date: '2024-01-01'
+    summary: Eliminates the MiChild Premium Payment.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-23-0110-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-23-0110: Approval Document (approved July 17, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-23-0110.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-23-0110/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-23-0110
+    cms_node_id: '150516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150516
+    approval_date: '2023-07-17'
+    effective_date: '2023-07-01'
+    summary: To provide authority for access to family planning for Michiganders who do not qualify under the income eligibility
+      for Healthy Michigan or traditional Medicaid but have incomes below 200 percent of the federal poverty level (195 percent
+      of the federal poverty level with a 5 percent income disregard).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-23-0100-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-23-0100: Approval Document (approved June 20, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/spa/downloads/MI-23-0100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-23-0100/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-23-0100
+    cms_node_id: '150091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150091
+    approval_date: '2023-06-20'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-21-0004-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-21-0004: Approval Document (approved April 28, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-21-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-21-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-21-0004
+    cms_node_id: '107991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=107991
+    approval_date: '2021-04-28'
+    effective_date: '2021-01-01'
+    summary: Effective January 1, 2021, this amendment updates the Pediatric Psychiatric Service rate.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-20-1501-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-20-1501: Approval Document (approved September 9, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MI-20-1501
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-20-1501/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-20-1501
+    cms_node_id: '102921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102921
+    approval_date: '2020-09-09'
+    effective_date: '2020-07-01'
+    summary: Revises the current Opioid Health Home (OHH) State Plan Amendment
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-20-0501-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-20-0501: Approval Document (approved July 6, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MI-20-0501.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-20-0501/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-20-0501
+    cms_node_id: '105466'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105466
+    approval_date: '2020-07-06'
+    effective_date: '2020-04-01'
+    summary: Updates G2a and G2c templates to make a technical classification to pharmacy copay limits made in SPA-18-0500
+      and SPA 20-0500
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-20-0500-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-20-0500: Approval Document (approved June 19, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-20-0500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-20-0500/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-20-0500
+    cms_node_id: '183726'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183726
+    approval_date: '2020-06-19'
+    effective_date: '2020-01-01'
+    summary: This SPA is a technical clarification of the pharmacy copay limits implemented under SPA 18-0500
+    topics:
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-20-0005-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-20-0005: Approval Document (approved June 5, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-20-0005
+    cms_node_id: '99106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99106
+    approval_date: '2020-06-05'
+    effective_date: '2020-03-01'
+    summary: This time limited state plan amendment responds COVID-19 emergency. The purpose of this amendment requests changes
+      to cost sharing requirements for testing, quantity limits for DME and medical supplies, transportation requirements
+      and covered laboratory services for beneficiaries covered under traditional Medicaid and the Alternative Benefit Plans.
+      This also amends Telehealth policy and modification of face-to-face requirements, Pharmacy adjustments to quantity limits
+      and prior authorization requirements for automatic renewal. Provider payment rates are increased under this amendment
+      and modifies to person-centered planning requirements, Long-term care facility cost reporting and practitioner licensing
+      requirements.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-19-0012-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-19-0012: Approval Document (approved March 11, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-19-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-19-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-19-0012
+    cms_node_id: '86671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86671
+    approval_date: '2020-03-11'
+    effective_date: '2019-10-01'
+    summary: Changes to the state's Pharmacy DUR language in compliance with the SUPPORT Act.
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-19-0013-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-19-0013: Approval Document (approved March 6, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-19-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-19-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-19-0013
+    cms_node_id: '86826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86826
+    approval_date: '2020-03-06'
+    effective_date: '2019-10-01'
+    summary: Clarifies coverage of certain Active Pharmaceutical Ingredients (APIs) and Excipients when billed as part of
+      a compounded drug claim
+    topics:
+    - Benefits
+    - Eligibility
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-19-0011-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-19-0011: Approval Document (approved November 26, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-19-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-19-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-19-0011
+    cms_node_id: '4121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4121
+    approval_date: '2019-11-26'
+    effective_date: '2019-10-01'
+    summary: Maternal and Infant Health Program Rate Update.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-19-0010-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-19-0010: Approval Document (approved November 12, 2019, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-19-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-19-0010
+    cms_node_id: '4221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4221
+    approval_date: '2019-11-12'
+    effective_date: '2019-10-01'
+    summary: Non-Emergency Medical Transportation (NEMT) Update.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-19-0006-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-19-0006: Approval Document (approved September 27, 2019, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-19-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-19-0006
+    cms_node_id: '4876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4876
+    approval_date: '2019-09-27'
+    effective_date: '2022-10-01'
+    summary: This 1915(i) SPA authorizes the provision of Community Supports Services to Medicaid beneficiaries that are currently
+      provided as Section 1915(b)(3) services under the Managed Specialty Services and Supports Program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-18-0100-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-18-0100: Approval Document (approved February 20, 2019, effective December 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-18-0100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-12-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-18-0100/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-18-0100
+    cms_node_id: '7091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7091
+    approval_date: '2019-02-20'
+    effective_date: '2018-12-01'
+    summary: Former Foster Care Youth.
+    topics:
+    - Program Administration
+    - State Plan Factsheet
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-16-0110-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-16-0110: Approval Document (approved January 11, 2019, effective March 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-16-0110.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-03-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-16-0110/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-16-0110
+    cms_node_id: '7571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7571
+    approval_date: '2019-01-11'
+    effective_date: '2016-03-01'
+    summary: Updates the application the State will use for individuals who apply for coverage that may be eligible based
+      on the MAGI standard.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-18-0002-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-18-0002: Approval Document (approved May 31, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-18-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-18-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-18-0002
+    cms_node_id: '10381'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10381
+    approval_date: '2018-05-31'
+    effective_date: '2018-01-01'
+    summary: This SPA adjusts the PACE enrollment/disenrollment process from paper to electronic as part of the Community
+      Health Automated Medicaid Processing System (CHAMPS) Modernizing Continuum of Care (MCC) project.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-17-0100-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-17-0100: Approval Document (approved March 13, 2018, effective November 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-17-0100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-11-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-17-0100/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-17-0100
+    cms_node_id: '11276'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11276
+    approval_date: '2018-03-13'
+    effective_date: '2017-11-01'
+    summary: Eligibility Redeterminations.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-16-0500-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-16-0500: Approval Document (approved November 18, 2016, effective April 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-16-0500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-04-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-16-0500/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-16-0500
+    cms_node_id: '17366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=17366
+    approval_date: '2016-11-18'
+    effective_date: '2017-04-01'
+    summary: Cost Sharing - HMP Copay Increases.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0016-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0016: Approval Document (approved August 11, 2016, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0016
+    cms_node_id: '16506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16506
+    approval_date: '2016-08-11'
+    effective_date: '2014-01-01'
+    summary: Cost Sharing.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-15-0100-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-15-0100: Approval Document (approved March 3, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-15-0100.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-15-0100/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-15-0100
+    cms_node_id: '20486'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20486
+    approval_date: '2016-03-03'
+    effective_date: '2016-01-01'
+    summary: This amendment adds the optional eligibility group targeted low income children category due to the transition
+      from MIChild to Medicaid Expansion.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-15-0015-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-15-0015: Approval Document (approved February 25, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-15-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-15-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-15-0015
+    cms_node_id: '20561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20561
+    approval_date: '2016-02-25'
+    effective_date: '2016-01-01'
+    summary: Medicaid Expansion Cost Sharing.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-15-1000-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-15-1000: Approval Document (approved September 30, 2015, effective September 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-15-1000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-09-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-15-1000/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-15-1000
+    cms_node_id: '22196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=22196
+    approval_date: '2015-09-30'
+    effective_date: '2015-09-01'
+    summary: Enrollment of Psychologist, Social Workers and Professional Counselors as Medicaid Providers in the Alternative
+      Benefits Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-14-0008-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-14-0008: Approval Document (approved December 11, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-14-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-14-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-14-0008
+    cms_node_id: '30376'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=30376
+    approval_date: '2014-12-11'
+    effective_date: '2014-07-01'
+    summary: Health Home Chronic Care Management for Individuals with Serious and Persistent Mental Health Conditions.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-14-0170-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-14-0170: Approval Document (approved June 26, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-14-0170.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-14-0170/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-14-0170
+    cms_node_id: '36026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36026
+    approval_date: '2014-06-26'
+    effective_date: '2014-04-01'
+    summary: Implements Adult Group Coverage.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0120-mm7-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0120-MM7: Approval Document (approved May 9, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0120-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0120-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0120-MM7
+    cms_node_id: '37421'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37421
+    approval_date: '2014-05-09'
+    effective_date: '2014-01-01'
+    summary: Updates Presumptive Eligibility by Hospitals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0130-mm4-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0130-MM4: Approval Document (approved May 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0130-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0130-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0130-MM4
+    cms_node_id: '37326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37326
+    approval_date: '2014-05-02'
+    effective_date: '2014-01-01'
+    summary: Establishes Michigan Department of Community Health (MDCH) As the Single State Agnecy to Supervise the Administration
+      of the Medicaid Program Under Title XIX of the Social Security Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0140-mm2-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0140-MM2: Approval Document (approved February 20, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0140-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0140-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0140-MM2
+    cms_node_id: '38746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38746
+    approval_date: '2014-02-20'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0150-mm6-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0150-MM6: Approval Document (approved February 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0150-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0150-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0150-MM6
+    cms_node_id: '38886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38886
+    approval_date: '2014-02-10'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy related to Immigrant
+      Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0160-mm5-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0160-MM5: Approval Document (approved February 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0160-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0160-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0160-MM5
+    cms_node_id: '38891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38891
+    approval_date: '2014-02-10'
+    effective_date: '2014-01-01'
+    summary: Affirms State Residency Regulations and Addresses Interstate Agreements and Temporary Absence from State.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-13-0100-mm1-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-13-0100-MM1: Approval Document (approved February 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-13-0100-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-13-0100-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-13-0100-MM1
+    cms_node_id: '37646'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37646
+    approval_date: '2014-02-03'
+    effective_date: '2014-01-01'
+    summary: Updates Mandatory and Optional Eligibility Groups in Family/Adult Category.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-11-014-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-11-014: Approval Document (approved July 12, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-11-014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-11-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-11-014
+    cms_node_id: '33056'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33056
+    approval_date: '2012-07-12'
+    effective_date: '2012-07-01'
+    summary: This amendment is to add Western Michigan University to the Physician Adjuster Program.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-11-13-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-11-13: Approval Document (approved January 10, 2012, effective March 31, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-11-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-03-31'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-11-13/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-11-13
+    cms_node_id: '33071'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33071
+    approval_date: '2012-01-10'
+    effective_date: '2012-03-31'
+    summary: This amendment requests an exception to the Medicaid RAC January 1, 2012 implementation date published in CMS'
+      September 16, 2011 final rule. The State proposes to implement its program by March 31, 2012.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-09-003-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-09-003: Approval Document (approved March 9, 2010, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MI/MI-09-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-09-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-09-003
+    cms_node_id: '29406'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29406
+    approval_date: '2010-03-09'
+    effective_date: '2009-07-01'
+    summary: This SPA proposes to place reasonable limits on the amounts of incurred necessary medical and remedial care expenses
+      recognized under State law, but not covered under the State Plan.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mi-cms-medicaid-state-plan-spa-mi-25-1500-approval-document
+  jurisdiction: us-mi
+  document_class: policy
+  title: 'Michigan Medicaid SPA MI-25-1500: Approval Document (approved No Approval Date, effective No Effective Date)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MI-25-1500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mi/policy/cms/medicaid-state-plan/spa/mi-25-1500/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Michigan
+    source_discovery_group: us-mi/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MI-25-1500
+    cms_node_id: '189671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=189671
+    approval_date: null
+    effective_date: null
+    summary: This amendment proposes to expand the Behavioral Health Home program in three counties in Prepaid Inpatient Health
+      Plan (PIHP) region 10 and to add staff to the Health Home staffing structure.
+    topics:
+    - Coverage
+    - Eligibility
+    - Health Homes
+    - Medicaid and CHIP Program (MACPro)
+    - Reimbursement
+    link_label: Approval Document

@@ -1,0 +1,28 @@
+version: '2026-09-10'
+documents:
+- source_id: us-sc-dss-tanf-policy-manual-volume-67
+  jurisdiction: us-sc
+  document_class: manual
+  title: South Carolina Temporary Assistance for Needy Families (TANF) Policy Manual (Volume 67)
+  source_url: https://dss.sc.gov/media/bxwc1jdj/tanf-policy-manual-volume-67-final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-07-31'
+  citation_path: us-sc/manual/dss/tanf-policy-manual
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Social Services
+    document_subtype: policy_manual
+    program: TANF
+    state_program: South Carolina TANF (Family Independence)
+    federal_program: TANF
+    manual_landing_page: https://dss.sc.gov/about/data-and-resources/manuals/
+    source_discovery_group: us-sc/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dss.sc.gov/about/data-and-resources/manuals/
+    manual_volume: 67
+    official_listing_title: Temporary Assistance for Needy Families (TANF) Policy Manual
+    listing_section: Economic Services Policy and Procedure Manuals
+    source_last_modified: '2026-07-31'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-sc SNAP manual scope (SNAP manual volume 71 on the same page)
+    superseded_lead_url: https://dss.sc.gov/media/ojqddxsk/tanf-policy-manual-volume-65.pdf

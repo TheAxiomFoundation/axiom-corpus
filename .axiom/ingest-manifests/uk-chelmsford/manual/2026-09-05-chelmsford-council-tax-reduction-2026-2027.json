@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-chelmsford/manual/2026-09-05-chelmsford-council-tax-reduction-2026-2027.json",
+      "sha256": "22cb2ab00f44442558872bbeeb974aa1a1a34e8fc2f7a1caa4bc4f3c1bb7fa83"
+    },
+    {
+      "path": "data/corpus/inventory/uk-chelmsford/manual/2026-09-05-chelmsford-council-tax-reduction-2026-2027.json",
+      "sha256": "54ad526701424b36ee4d702c42b783cd4e70c3635974d6edb658a1aa601c26a5"
+    },
+    {
+      "path": "data/corpus/provisions/uk-chelmsford/manual/2026-09-05-chelmsford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "519a08809ecac38917c875e84a4fffc5a60b85d75dbf71581fc4dc7bbe3107b2"
+    },
+    {
+      "path": "data/corpus/sources/uk-chelmsford/manual/2026-09-05-chelmsford-council-tax-reduction-2026-2027/official-documents/chelmsford-council-adoption-2026-27.pdf",
+      "sha256": "3bc0521fe77622c5fd7e92cf4cfca6c9bc55c46ea2b4981555d885b6572eb0c5"
+    },
+    {
+      "path": "data/corpus/sources/uk-chelmsford/manual/2026-09-05-chelmsford-council-tax-reduction-2026-2027/official-documents/chelmsford-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "bdc2c13a08c9c1d3d41bafd5076a5caaf799b29487c846c33d36968bc9153f33"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "fce60ac64044da4f582f5742096cf476d9fbdf97",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-chelmsford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-chelmsford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 144,
+    "missing_count": 0,
+    "provision_count": 144,
+    "source_count": 144
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T22:14:27.782641+00:00",
+  "jurisdiction": "uk-chelmsford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6hwstQTOGGtAKi9xX1hnRYUAiBQDsEZJO6db2xxxExyrXIvM9st3asx86LA0LFZcBao0hXjEqted6Si62ggTBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-chelmsford-council-tax-reduction-2026-2027"
+}

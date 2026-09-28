@@ -14,11 +14,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterable, Iterator, Mapping, Sequence
-from contextlib import suppress
+from contextlib import closing, suppress
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import TextIO
+from typing import Any, TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from axiom_corpus.corpus.models import ProvisionRecord
@@ -621,17 +621,40 @@ def fetch_release_provision_counts(
     )
 
 
-def fetch_staged_release_scope_evidence(
-    release: ReleaseManifest,
+# Staged evidence is one per-scope aggregate (row counts plus projection
+# digests over every staged row), so a whole-release request scales with the
+# release's total row count and Supabase's HTTP gateway cuts it off long before
+# the function's own statement_timeout. The RPC is per scope, so the client asks
+# for bounded chunks and merges them; a chunk the gateway still rejects is split
+# in half until it fits.
+_STAGED_EVIDENCE_CHUNK_SCOPES = 32
+_STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS = 3
+_STAGED_EVIDENCE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+_STAGED_EVIDENCE_FIELDS = frozenset(
+    {
+        "jurisdiction",
+        "document_class",
+        "version",
+        "provision_count",
+        "navigation_count",
+        "provision_projection_sha256",
+        "navigation_projection_sha256",
+    }
+)
+
+
+def _fetch_staged_scope_evidence_rows(
+    scopes: Sequence[ReleaseScope],
     *,
     service_key: str,
-    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
-) -> dict[tuple[str, str, str], StagedScopeEvidence]:
-    """Fetch exact counts and projection digests for every staged scope.
+    supabase_url: str,
+) -> list[object]:
+    """Call the evidence RPC for one chunk of scopes, splitting it when rejected.
 
-    There is intentionally no materialized-view or paged-client fallback. The
-    publication boundary requires the dedicated evidence RPC; absence or
-    failure is fatal before signing.
+    A 4xx other than 413/414 is a real error and propagates. Gateway rejections
+    (5xx, including 504 on a request that ran too long) and transport timeouts
+    are retried with backoff, and a multi-scope chunk that keeps failing is
+    split in half so that a request that is merely too large still converges.
     """
     payload = {
         "p_scopes": [
@@ -640,7 +663,7 @@ def fetch_staged_release_scope_evidence(
                 "document_class": scope.document_class,
                 "version": scope.version,
             }
-            for scope in release.scopes
+            for scope in scopes
         ]
     }
     req = urllib.request.Request(
@@ -657,22 +680,70 @@ def fetch_staged_release_scope_evidence(
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        rows = json.loads(resp.read())
-    if not isinstance(rows, list):
-        raise RuntimeError("unexpected staged release-evidence response")
+
+    def _split() -> list[object]:
+        midpoint = len(scopes) // 2
+        return _fetch_staged_scope_evidence_rows(
+            scopes[:midpoint], service_key=service_key, supabase_url=supabase_url
+        ) + _fetch_staged_scope_evidence_rows(
+            scopes[midpoint:], service_key=service_key, supabase_url=supabase_url
+        )
+
+    for attempt in range(_STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected staged release-evidence response")
+            return rows
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500 and exc.code not in {413, 414}:
+                raise
+            if len(scopes) > 1:
+                return _split()
+            if attempt + 1 == _STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
+            if attempt + 1 == _STAGED_EVIDENCE_FETCH_MAX_ATTEMPTS:
+                if len(scopes) == 1:
+                    raise
+                return _split()
+        time.sleep(_STAGED_EVIDENCE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("staged-evidence retry loop exhausted unexpectedly")
+
+
+def fetch_staged_release_scope_evidence(
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    chunk_scopes: int = _STAGED_EVIDENCE_CHUNK_SCOPES,
+) -> dict[tuple[str, str, str], StagedScopeEvidence]:
+    """Fetch exact counts and projection digests for every staged scope.
+
+    There is intentionally no materialized-view or paged-client fallback. The
+    publication boundary requires the dedicated evidence RPC; absence or
+    failure is fatal before signing. The RPC computes each scope independently,
+    so the release is requested in chunks of at most ``chunk_scopes`` scopes
+    and the rows are merged; every requested scope must appear exactly once
+    across all chunks.
+    """
+    if chunk_scopes < 1:
+        raise ValueError("chunk_scopes must be positive")
+    scopes = tuple(release.scopes)
+    rows: list[object] = []
+    for start in range(0, len(scopes), chunk_scopes):
+        rows.extend(
+            _fetch_staged_scope_evidence_rows(
+                scopes[start : start + chunk_scopes],
+                service_key=service_key,
+                supabase_url=supabase_url,
+            )
+        )
     evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
-    expected_fields = {
-        "jurisdiction",
-        "document_class",
-        "version",
-        "provision_count",
-        "navigation_count",
-        "provision_projection_sha256",
-        "navigation_projection_sha256",
-    }
     for row in rows:
-        if not isinstance(row, dict) or set(row) != expected_fields:
+        if not isinstance(row, dict) or set(row) != _STAGED_EVIDENCE_FIELDS:
             raise RuntimeError("staged release-evidence response contains a malformed row")
         key = (
             str(row.get("jurisdiction") or ""),
@@ -823,9 +894,7 @@ def fetch_released_scope_objects(
 ) -> dict[tuple[str, str, str], tuple[ReleasedScopeObject, ...]]:
     """Return prior signed objects that make requested scopes immutable."""
 
-    memberships: dict[tuple[str, str, str], list[str]] = {
-        key: [] for key in release.scope_keys
-    }
+    memberships: dict[tuple[str, str, str], list[str]] = {key: [] for key in release.scope_keys}
     seen_memberships: set[tuple[tuple[str, str, str], str]] = set()
     objects_by_name: dict[str, tuple[str, Mapping[str, object]]] = {}
     object_set_fields = {"release_name", "content_sha256", "release_object", "scopes"}
@@ -896,24 +965,61 @@ def fetch_released_scope_objects(
 
 
 _RELEASE_ACTIVATION_CHUNK_SIZE = 128 * 1024
+_RELEASE_ACTIVATION_CHUNK_PACING_SECONDS = 1.5
 
 
 # Column list must exactly match corpus.preview_corpus_release_activation's
 # RETURNS TABLE (pair-level; no per-version columns). A postgres test runs this
 # string against the live function so the two cannot drift apart.
+# The Management API query endpoint runs every request in its own session with
+# a bounded statement_timeout. A SET inside a function cannot lengthen a timer
+# that was armed when the outer statement began, so activate_corpus_release's
+# own "SET statement_timeout = 0" never applied: run 34866210267 (761 scopes)
+# was cancelled with 57014 about five minutes into the per-scope counts. The
+# long release statements are therefore sent with the timeout disabled as the
+# leading statement of the same request. Multi-statement text cannot carry bind
+# parameters, so the handful of values are inlined as validated literals.
+UNBOUNDED_STATEMENT_PREFIX = "SET statement_timeout = 0;\n"
+_SQL_PLAIN_LITERAL_RE = re.compile(r"[A-Za-z0-9._:@+-]{1,200}")
+_SQL_JSONB_DOLLAR_TAG = "$axiom_release_json$"
+
 PREVIEW_ACTIVATION_QUERY = (
     "SELECT jurisdiction, document_class, current_release_name, "
     "current_content_sha256, changes "
-    "FROM corpus.preview_corpus_release_activation($1::jsonb)"
+    "FROM corpus.preview_corpus_release_activation({release_identity})"
 )
 
 
 ACTIVATE_RELEASE_QUERY = (
     "SELECT corpus.activate_corpus_release("
     "corpus.load_release_activation_upload("
-    "$1::text, $2::text, $3::text, $4::text"
+    "{upload_id}, {release}, {content_sha256}, {object_sha256}"
     ")) AS result"
 )
+
+
+def sql_text_literal(value: object) -> str:
+    """Quote a plain identifier-like string (hex digest, upload id, release name).
+
+    Anything outside ``[A-Za-z0-9._:@+-]`` is refused rather than escaped: the
+    release identity never needs other characters, and refusing keeps the
+    inlined statement free of quoting subtleties.
+    """
+    if not isinstance(value, str) or _SQL_PLAIN_LITERAL_RE.fullmatch(value) is None:
+        raise RuntimeError("management SQL literal is not a plain identifier-like string")
+    return f"'{value}'"
+
+
+def sql_jsonb_literal(value: str) -> str:
+    """Dollar-quote a JSON document as a ``jsonb`` literal."""
+    if not isinstance(value, str) or _SQL_JSONB_DOLLAR_TAG in value or "\0" in value:
+        raise RuntimeError("management SQL jsonb literal cannot be dollar-quoted")
+    return f"{_SQL_JSONB_DOLLAR_TAG}{value}{_SQL_JSONB_DOLLAR_TAG}::jsonb"
+
+
+def unbounded_statement(template: str, **literals: str) -> str:
+    """Render ``template`` with pre-quoted literals behind the timeout reset."""
+    return UNBOUNDED_STATEMENT_PREFIX + template.format(**literals)
 
 
 STAGE_RELEASE_ACTIVATION_CHUNK_QUERY = (
@@ -925,8 +1031,7 @@ STAGE_RELEASE_ACTIVATION_CHUNK_QUERY = (
 
 
 DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY = (
-    "DELETE FROM corpus.release_activation_upload_chunks "
-    "WHERE upload_id = $1::text"
+    "DELETE FROM corpus.release_activation_upload_chunks WHERE upload_id = $1::text"
 )
 
 
@@ -991,33 +1096,191 @@ def preview_corpus_release_activation(
             f"refusing to preview against Supabase project {project_ref!r}: "
             f"expected {expected_project_ref!r}"
         )
+    # The preview function consumes only these signed fields. Excluding
+    # artifact and validation inventories keeps this request read-only and
+    # bounded even for comprehensive releases.
+    release_identity = json.dumps(
+        {
+            "release": release_object["release"],
+            "content": {
+                "scopes": release_object["content"]["scopes"],  # type: ignore[index]
+            },
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
     rows = _management_api_post_json_with_curl(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
         payload={
-            "query": PREVIEW_ACTIVATION_QUERY,
-            # The preview function consumes only these signed fields. Excluding
-            # artifact and validation inventories keeps this request read-only
-            # and bounded even for comprehensive releases.
-            "parameters": [
-                json.dumps(
-                    {
-                        "release": release_object["release"],
-                        "content": {
-                            "scopes": release_object["content"]["scopes"],  # type: ignore[index]
-                        },
-                    },
-                    separators=(",", ":"),
-                    sort_keys=True,
-                )
-            ],
+            "query": unbounded_statement(
+                PREVIEW_ACTIVATION_QUERY,
+                release_identity=sql_jsonb_literal(release_identity),
+            ),
             "read_only": True,
         },
         access_token=access_token,
-        timeout=120,
+        timeout=900,
     )
     if not isinstance(rows, list):
         raise RuntimeError(f"unexpected activation preview response: {rows!r}")
     return [row for row in rows if isinstance(row, dict)]
+
+
+# Cloudflare fronts api.supabase.com with a 120 s proxy read timeout (error
+# 524, run 34879466018), so the Management API cannot carry a statement that
+# verifies and repoints 800+ scopes even with statement_timeout disabled. When a
+# direct database URL is configured (Actions secret SUPABASE_DB_URL: the
+# project's session-pooler connection string), activation and its preview run
+# over psycopg2 instead: same functions, same verification, no HTTP proxy.
+DEFAULT_DATABASE_URL_ENV = "SUPABASE_DB_URL"
+_DIRECT_STATEMENT_TIMEOUT = "SET statement_timeout = 0"
+
+
+def database_url_names_project(database_url: str, project_ref: str) -> bool:
+    """True when the connection string belongs to ``project_ref``.
+
+    Supabase direct hosts are ``db.<ref>.supabase.co``; pooler connections carry
+    the ref in the user name (``postgres.<ref>``). Either form must name the
+    expected project so a stray URL cannot activate elsewhere.
+    """
+    parsed = urllib.parse.urlsplit(database_url)
+    host = parsed.hostname or ""
+    user = urllib.parse.unquote(parsed.username or "")
+    return host == f"db.{project_ref}.supabase.co" or user.endswith(f".{project_ref}")
+
+
+def _direct_connection(database_url: str) -> Any:
+    import psycopg2
+
+    connection = psycopg2.connect(database_url)
+    connection.autocommit = True
+    with connection.cursor() as cursor:
+        cursor.execute(_DIRECT_STATEMENT_TIMEOUT)
+    return connection
+
+
+def _stage_release_activation_upload_direct(
+    connection: Any, release_object: Mapping[str, object]
+) -> tuple[str, str]:
+    raw = canonical_json_bytes(release_object).decode("ascii")
+    chunks = [
+        raw[offset : offset + _RELEASE_ACTIVATION_CHUNK_SIZE]
+        for offset in range(0, len(raw), _RELEASE_ACTIVATION_CHUNK_SIZE)
+    ]
+    upload_id = secrets.token_hex(32)
+    object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+    with connection.cursor() as cursor:
+        cursor.execute(DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY)
+        for index, chunk in enumerate(chunks):
+            cursor.execute(
+                STAGE_RELEASE_ACTIVATION_CHUNK_QUERY.replace("$1::text", "%s")
+                .replace("$2::text", "%s")
+                .replace("$3::text", "%s")
+                .replace("$4::integer", "%s")
+                .replace("$5::integer", "%s")
+                .replace("$6::text", "%s"),
+                (
+                    upload_id,
+                    str(release_object["release"]),
+                    str(release_object["content_sha256"]),
+                    index,
+                    len(chunks),
+                    chunk,
+                ),
+            )
+            row = cursor.fetchone()
+            if row is None or row[0] != index:
+                raise RuntimeError(
+                    f"unexpected release activation chunk response at index {index}: {row!r}"
+                )
+    return upload_id, object_sha256
+
+
+def preview_corpus_release_activation_direct(
+    release_object: Mapping[str, object],
+    *,
+    database_url: str,
+    public_key: str,
+    expected_project_ref: str,
+) -> list[dict[str, object]]:
+    """``preview_corpus_release_activation`` over a direct database connection."""
+    verify_release_object(release_object, public_key=public_key)
+    if not database_url_names_project(database_url, expected_project_ref):
+        raise RuntimeError(
+            f"refusing to preview: database URL does not name project {expected_project_ref!r}"
+        )
+    release_identity = json.dumps(
+        {
+            "release": release_object["release"],
+            "content": {"scopes": release_object["content"]["scopes"]},  # type: ignore[index]
+        },
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+    with closing(_direct_connection(database_url)) as connection, connection.cursor() as cursor:
+        cursor.execute(
+            PREVIEW_ACTIVATION_QUERY.format(release_identity="%s::jsonb"), (release_identity,)
+        )
+        columns = [description[0] for description in cursor.description]
+        rows = [dict(zip(columns, values, strict=True)) for values in cursor.fetchall()]
+    return rows
+
+
+def activate_corpus_release_direct(
+    release_object: Mapping[str, object],
+    *,
+    database_url: str,
+    public_key: str,
+    expected_project_ref: str,
+) -> dict[str, object]:
+    """``activate_corpus_release`` over a direct database connection.
+
+    Same Ed25519 verification, same chunked upload table, same
+    ``corpus.activate_corpus_release`` transaction and the same response
+    checks; only the transport differs, so the statement is bounded by nothing
+    but its own work.
+    """
+    verify_release_object(release_object, public_key=public_key)
+    if not database_url_names_project(database_url, expected_project_ref):
+        raise RuntimeError(
+            f"refusing to activate: database URL does not name project {expected_project_ref!r}"
+        )
+    with closing(_direct_connection(database_url)) as connection:
+        upload_id, object_sha256 = _stage_release_activation_upload_direct(
+            connection, release_object
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    ACTIVATE_RELEASE_QUERY.format(
+                        upload_id="%s", release="%s", content_sha256="%s", object_sha256="%s"
+                    ),
+                    (
+                        upload_id,
+                        str(release_object["release"]),
+                        str(release_object["content_sha256"]),
+                        object_sha256,
+                    ),
+                )
+                row = cursor.fetchone()
+            if row is None or len(row) != 1:
+                raise RuntimeError(f"unexpected corpus activation query response: {row!r}")
+            result = row[0]
+            if isinstance(result, str):
+                result = json.loads(result)
+            if not isinstance(result, dict) or result.get("active") is not True:
+                raise RuntimeError(f"unexpected corpus activation response: {result!r}")
+            if result.get("release") != release_object.get("release"):
+                raise RuntimeError("activated release name does not match the requested object")
+            if result.get("content_sha256") != release_object.get("content_sha256"):
+                raise RuntimeError("activated release digest does not match the requested object")
+            _require_complete_activation_scopes(result, release_object)
+            return result
+        finally:
+            with suppress(Exception), connection.cursor() as cursor:
+                cursor.execute(
+                    DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY.replace("$1::text", "%s"), (upload_id,)
+                )
 
 
 def activate_corpus_release(
@@ -1061,17 +1324,17 @@ def activate_corpus_release(
         rows = _management_api_post_json_with_curl(
             endpoint,
             payload={
-                "query": ACTIVATE_RELEASE_QUERY,
-                "parameters": [
-                    upload_id,
-                    str(release_object["release"]),
-                    str(release_object["content_sha256"]),
-                    object_sha256,
-                ],
+                "query": unbounded_statement(
+                    ACTIVATE_RELEASE_QUERY,
+                    upload_id=sql_text_literal(upload_id),
+                    release=sql_text_literal(str(release_object["release"])),
+                    content_sha256=sql_text_literal(str(release_object["content_sha256"])),
+                    object_sha256=sql_text_literal(object_sha256),
+                ),
                 "read_only": False,
             },
             access_token=access_token,
-            timeout=600,
+            timeout=1800,
         )
         if (
             not isinstance(rows, list)
@@ -1126,6 +1389,10 @@ def _stage_release_activation_upload(
                 f"unexpected stale release activation cleanup response: {stale_rows!r}"
             )
         for index, chunk in enumerate(chunks):
+            if index:
+                # Stay under the Management API's per-minute budget: a 761-scope
+                # release object is about 70 chunks, which unpaced exceeds it.
+                time.sleep(_RELEASE_ACTIVATION_CHUNK_PACING_SECONDS)
             rows = _management_api_post_json_with_curl(
                 endpoint,
                 payload={
@@ -1224,7 +1491,43 @@ def _require_complete_activation_scopes(
         )
 
 
+# The Supabase Management API throttles a project to a small per-minute request
+# budget and answers the excess with 429 "ThrottlerException: Too Many Requests".
+# A throttled request was not executed, so it is safe to wait and send it again.
+_MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS = (15.0, 30.0, 60.0, 60.0, 60.0)
+_MANAGEMENT_API_THROTTLE_MARKERS = ("Too Many Requests", "ThrottlerException")
+
+
+def _is_management_api_throttle(error: BaseException) -> bool:
+    text = str(error)
+    return any(marker in text for marker in _MANAGEMENT_API_THROTTLE_MARKERS)
+
+
 def _management_api_post_json_with_curl(
+    url: str,
+    *,
+    payload: Mapping[str, object],
+    access_token: str,
+    timeout: int,
+) -> object:
+    """POST JSON to the Management API, waiting out its per-minute throttle.
+
+    Every other failure (transport error, non-2xx that is not a throttle,
+    malformed JSON) propagates unchanged from the first attempt.
+    """
+    for backoff in (*_MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS, None):
+        try:
+            return _management_api_post_json_with_curl_once(
+                url, payload=payload, access_token=access_token, timeout=timeout
+            )
+        except RuntimeError as exc:
+            if backoff is None or not _is_management_api_throttle(exc):
+                raise
+            time.sleep(backoff)
+    raise AssertionError("management API throttle retry loop exhausted unexpectedly")
+
+
+def _management_api_post_json_with_curl_once(
     url: str,
     *,
     payload: Mapping[str, object],

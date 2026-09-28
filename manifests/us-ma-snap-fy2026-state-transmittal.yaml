@@ -1,0 +1,29 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-ma-dta-snap-issuance-tables-1-10-fy2026
+  jurisdiction: us-ma
+  document_class: guidance
+  title: 'SNAP program issuance tables: number of persons in household 1 to 10, as referenced at 106 CMR 364.980 (October
+    1, 2025)'
+  source_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+  download_url: https://www.mass.gov/doc/snap-program-issuance-tables-number-of-persons-in-household-1-to-10-as-referenced-at-106-cmr-364980/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-ma/guidance/dta/snap-issuance-tables/fy2026/households-1-10
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance (DTA)
+    program: SNAP
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/lists/department-of-transitional-assistance-program-eligibility-charts-and-tables
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: benefit_issuance_table
+    table_date: '2025-12-16'
+    fiscal_year: '2026'
+    pointer: us-ma/guidance/dta/policy-online/snap-cola/2025-10-01 (selected scope) carries the COLA notice

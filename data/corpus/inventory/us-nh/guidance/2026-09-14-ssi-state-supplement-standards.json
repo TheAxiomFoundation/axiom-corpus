@@ -1,0 +1,155 @@
+{
+  "items": [
+    {
+      "citation_path": "us-nh/guidance/dhhs/sr/26-01",
+      "metadata": {
+        "access_note": "dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the extractor's browser_impersonation option, TLS verification on",
+        "block_count": 1,
+        "closure_elements": [
+          "SSI-ST-4"
+        ],
+        "content_type": "text/html; charset=UTF-8",
+        "discovered_via": "manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "document_subtype": "supervisory_release_html",
+        "download_url": "https://www.dhhs.nh.gov/sr_htm/html/sr_26-01_dated_01_26.htm",
+        "expression_date_note": "SR 26-01 dated 01/26, effective with the 2026 COLA",
+        "extraction_granularity": "html_blocks",
+        "federal_program": "SSI",
+        "index_url": "https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "kind": "document",
+        "primary_source": true,
+        "program": "ssi_state_supplement",
+        "source_authority": "New Hampshire Department of Health and Human Services",
+        "source_discovery_group": "us-nh/guidance/ssi-state-supplement-standards",
+        "state": "NH",
+        "title": "New Hampshire DHHS Supervisory Release SR 26-01 (dated 01/26): COLA for 2026 and the OAA, APTD and ANB standards of need"
+      },
+      "sha256": "0077a20516673f4cc37f0f356f868dd5994233ab86c9c29bbdc565b7e90303d1",
+      "source_format": "html",
+      "source_path": "sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-sr-26-01.html",
+      "source_url": "https://www.dhhs.nh.gov/sr_htm/html/sr_26-01_dated_01_26.htm"
+    },
+    {
+      "citation_path": "us-nh/guidance/dhhs/sr/26-01/block-1",
+      "metadata": {
+        "access_note": "dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the extractor's browser_impersonation option, TLS verification on",
+        "block_count": 1,
+        "closure_elements": [
+          "SSI-ST-4"
+        ],
+        "content_type": "text/html; charset=UTF-8",
+        "discovered_via": "manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "document_subtype": "supervisory_release_html",
+        "download_url": "https://www.dhhs.nh.gov/sr_htm/html/sr_26-01_dated_01_26.htm",
+        "expression_date_note": "SR 26-01 dated 01/26, effective with the 2026 COLA",
+        "extraction_granularity": "html_blocks",
+        "federal_program": "SSI",
+        "index_url": "https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "kind": "block",
+        "primary_source": true,
+        "program": "ssi_state_supplement",
+        "source_authority": "New Hampshire Department of Health and Human Services",
+        "source_discovery_group": "us-nh/guidance/ssi-state-supplement-standards",
+        "source_url": "https://www.dhhs.nh.gov/sr_htm/html/sr_26-01_dated_01_26.htm",
+        "state": "NH",
+        "title": "New Hampshire DHHS Supervisory Release SR 26-01 (dated 01/26): COLA for 2026 and the OAA, APTD and ANB standards of need"
+      },
+      "sha256": "0077a20516673f4cc37f0f356f868dd5994233ab86c9c29bbdc565b7e90303d1",
+      "source_format": "html",
+      "source_path": "sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-sr-26-01.html",
+      "source_url": "https://www.dhhs.nh.gov/sr_htm/html/sr_26-01_dated_01_26.htm"
+    },
+    {
+      "citation_path": "us-nh/guidance/dhhs/bds/2026-standard-of-need-and-income-changes",
+      "metadata": {
+        "access_note": "dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the extractor's browser_impersonation option, TLS verification on",
+        "block_count": 2,
+        "closure_elements": [
+          "SSI-ST-4"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "document_subtype": "agency_memo_pdf",
+        "download_url": "https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf",
+        "expression_date_note": "printed 'January 1, 2026'",
+        "extraction_granularity": "pdf_page",
+        "federal_program": "SSI",
+        "index_url": "https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "kind": "document",
+        "page_count": 2,
+        "primary_source": true,
+        "program": "ssi_state_supplement",
+        "source_authority": "New Hampshire Department of Health and Human Services",
+        "source_discovery_group": "us-nh/guidance/ssi-state-supplement-standards",
+        "state": "NH",
+        "title": "New Hampshire DHHS Bureau of Developmental Services: 2026 Standard of Need and Income Changes (January 1, 2026)"
+      },
+      "sha256": "1ebdde8884e0296da035df00b4ea59755bda4c7c2c3a47a65cf035404641bbd7",
+      "source_format": "pdf",
+      "source_path": "sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-bds-2026-standard-of-need-and-income-changes.pdf",
+      "source_url": "https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf"
+    },
+    {
+      "citation_path": "us-nh/guidance/dhhs/bds/2026-standard-of-need-and-income-changes/page-1",
+      "metadata": {
+        "access_note": "dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the extractor's browser_impersonation option, TLS verification on",
+        "block_count": 2,
+        "closure_elements": [
+          "SSI-ST-4"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "document_subtype": "agency_memo_pdf",
+        "download_url": "https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf",
+        "expression_date_note": "printed 'January 1, 2026'",
+        "extraction_granularity": "pdf_page",
+        "federal_program": "SSI",
+        "index_url": "https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "kind": "page",
+        "page_count": 2,
+        "page_number": 1,
+        "primary_source": true,
+        "program": "ssi_state_supplement",
+        "source_authority": "New Hampshire Department of Health and Human Services",
+        "source_discovery_group": "us-nh/guidance/ssi-state-supplement-standards",
+        "state": "NH",
+        "title": "New Hampshire DHHS Bureau of Developmental Services: 2026 Standard of Need and Income Changes (January 1, 2026)"
+      },
+      "sha256": "1ebdde8884e0296da035df00b4ea59755bda4c7c2c3a47a65cf035404641bbd7",
+      "source_format": "pdf",
+      "source_path": "sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-bds-2026-standard-of-need-and-income-changes.pdf",
+      "source_url": "https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf"
+    },
+    {
+      "citation_path": "us-nh/guidance/dhhs/bds/2026-standard-of-need-and-income-changes/page-2",
+      "metadata": {
+        "access_note": "dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14; fetched with the extractor's browser_impersonation option, TLS verification on",
+        "block_count": 2,
+        "closure_elements": [
+          "SSI-ST-4"
+        ],
+        "content_type": "application/pdf",
+        "discovered_via": "manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "document_subtype": "agency_memo_pdf",
+        "download_url": "https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf",
+        "expression_date_note": "printed 'January 1, 2026'",
+        "extraction_granularity": "pdf_page",
+        "federal_program": "SSI",
+        "index_url": "https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm",
+        "kind": "page",
+        "page_count": 2,
+        "page_number": 2,
+        "primary_source": true,
+        "program": "ssi_state_supplement",
+        "source_authority": "New Hampshire Department of Health and Human Services",
+        "source_discovery_group": "us-nh/guidance/ssi-state-supplement-standards",
+        "state": "NH",
+        "title": "New Hampshire DHHS Bureau of Developmental Services: 2026 Standard of Need and Income Changes (January 1, 2026)"
+      },
+      "sha256": "1ebdde8884e0296da035df00b4ea59755bda4c7c2c3a47a65cf035404641bbd7",
+      "source_format": "pdf",
+      "source_path": "sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-bds-2026-standard-of-need-and-income-changes.pdf",
+      "source_url": "https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf"
+    }
+  ]
+}

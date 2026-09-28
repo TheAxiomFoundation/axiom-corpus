@@ -1,0 +1,837 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ga-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=776&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 29
+    index_records_total: 29
+- source_id: us-ga-cms-chip-state-plan-spa-ga-25-0042-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-25-0042: Approval Package (approved April 23, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-25-0042.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-25-0042/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-25-0042
+    cms_node_id: '191966'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=191966
+    approval_date: '2026-04-23'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, Georgia demonstrates compliance with section 5121 of the Consolidated Appropriations Act, 2023
+      (CAA, 2023) by transitioning eligible children who are enrolled in CHIP to Medicaid when they become incarcerated. The
+      state will provide pre-release services to eligible juveniles under the Medicaid state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-24-0039-and-ga-24-0041-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-24-0039 and GA-24-0041: Approval Package (approved July 22, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-24-0039-0041.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-24-0039-and-ga-24-0041/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-24-0039 and GA-24-0041
+    cms_node_id: '169226'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169226
+    approval_date: '2024-07-22'
+    effective_date: '2024-10-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023) effective January
+      1, 2024. Additionally, through this SPA, the state is aligning section 8.7 to make updates related to descriptions of
+      timeframes, notice requirements, and consequences of non payment of cost sharing charges. The state waives the collection
+      of CHIP premiums through September 30, 2024 and resumes collection of premiums effective October 1, 2024.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-23-0034-and-ga-23-0035-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-23-0034 and GA-23-0035: Approval Package (approved November 21, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-23-0034-and-GA-23-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-23-0034-and-ga-23-0035/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-23-0034 and GA-23-0035
+    cms_node_id: '156121'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=156121
+    approval_date: '2023-11-21'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, Georgia expands coverage to otherwise eligible lawfully residing, non-citizen targeted low
+      income children under section 214 of CHIPRA.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-23-0001-dral-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-23-0001-DRAL: Approval Package (approved June 15, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-23-0001-DRAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-23-0001-dral/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-23-0001-DRAL
+    cms_node_id: '148986'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148986
+    approval_date: '2023-06-15'
+    effective_date: '2023-05-12'
+    summary: 'This letter reactivates Georgia''s approved Evergreen Disaster Relief State Plan Amendment to include the following
+      flexibilities: delay applications/renewals and other changes in circumstances and waive premiums and copayments for
+      our CHIP enrollees.'
+    topics:
+    - Cost Sharing
+    - Disaster Relief
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-22-0033-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-22-0033: Approval Package (approved October 26, 2022, effective November 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-22-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-11-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-22-0033/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-22-0033
+    cms_node_id: '141046'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=141046
+    approval_date: '2022-10-26'
+    effective_date: '2022-11-01'
+    summary: This SPA provides Georgia with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its separate CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-22-0032-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-22-0032: Approval Package (approved August 25, 2022, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-22-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-22-0032/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-22-0032
+    cms_node_id: '139401'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139401
+    approval_date: '2022-08-25'
+    effective_date: '2022-10-01'
+    summary: This SPA implements the Express Lane Eligibility option.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-22-0031-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-22-0031: Approval Package (approved March 10, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-22-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-22-0031/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-22-0031
+    cms_node_id: '134031'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=134031
+    approval_date: '2022-03-10'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost-sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-20-0030-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-20-0030: Approval Package (approved October 13, 2020, effective October 24, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA-20-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-24'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-20-0030/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-20-0030
+    cms_node_id: '103176'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=103176
+    approval_date: '2020-10-13'
+    effective_date: '2019-10-24'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-chipspa-18-0027-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CHIPSPA-18-0027: Approval Package (approved September 13, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CHIPSPA-18-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-chipspa-18-0027/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-CHIPSPA-18-0027
+    cms_node_id: '3926'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3926
+    approval_date: '2018-09-13'
+    effective_date: '2018-07-01'
+    summary: Updates its review process for eligibility and enrollment matters to be consistent with the state's Medicaid
+      appeals process.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-18-0025-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-18-0025: Approval Package (approved March 22, 2018, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-18-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-18-0025/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-18-0025
+    cms_node_id: '3866'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3866
+    approval_date: '2018-03-22'
+    effective_date: '2017-07-01'
+    summary: This CHIP SPA eliminates its one-month premium lock-out period and makes technical changes to the disenrollment
+      procedures in Section 8.7 of the CHIP state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-17-0024-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-17-0024: Approval Package (approved January 4, 2018, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-17-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-17-0024/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-17-0024
+    cms_node_id: '3811'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3811
+    approval_date: '2018-01-04'
+    effective_date: '2017-07-01'
+    summary: Through this SPA, Georgia adds nonemergency medical transportation, case management services, and enabling services
+      as covered benefits under the CHIP state plan.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-15-0021-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-15-0021: Approval Package (approved February 3, 2016, effective April 1, 2016)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-15-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-04-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-15-0021/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-15-0021
+    cms_node_id: '3311'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3311
+    approval_date: '2016-02-03'
+    effective_date: '2016-04-01'
+    summary: Eliminates the express lane eligibility program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-13-0016-mc1-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-13-0016-MC1: Approval Package (approved May 20, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-13-0016-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-13-0016-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0016-MC1
+    cms_node_id: '3156'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3156
+    approval_date: '2015-05-20'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-13-0025-mc2-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-13-0025-MC2: Approval Package (approved February 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-13-0025-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-13-0025-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0025-MC2
+    cms_node_id: '3161'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3161
+    approval_date: '2014-02-25'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-13-0018-mc4-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-13-0018-MC4: Approval Package (approved February 21, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-13-0018-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-13-0018-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0018-MC4
+    cms_node_id: '2706'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2706
+    approval_date: '2014-02-21'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements in accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-13-0017-mc3-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-13-0017-MC3: Approval Package (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-13-0017-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-13-0017-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0017-MC3
+    cms_node_id: '3166'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3166
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-13-0019-mc5-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-13-0019-MC5: Approval Package (approved February 6, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-13-0019-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-13-0019-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0019-MC5
+    cms_node_id: '3171'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3171
+    approval_date: '2014-02-06'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income (MAGI) Eligibility and has an effective date of January 1,
+      2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-19-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-19: Approval Package (approved April 9, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-19-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-19/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-CSPA-19
+    cms_node_id: '2006'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2006
+    approval_date: '2012-04-09'
+    effective_date: '2012-04-01'
+    summary: Decreases co-payments for families.
+    topics: &id002
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-19-final-approved-state-plan
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-19: Final Approved State Plan (approved April 9, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-19-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-19/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: GA-CSPA-19
+    cms_node_id: '2006'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2006
+    approval_date: '2012-04-09'
+    effective_date: '2012-04-01'
+    summary: Decreases co-payments for families.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-18-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-18: Approval Package (approved November 18, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-18-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-18/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-CSPA-18
+    cms_node_id: '1581'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1581
+    approval_date: '2011-11-18'
+    effective_date: '2003-06-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics: &id003
+    - Expansion
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-18-final-approved-state-plan
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-18: Final Approved State Plan (approved November 18, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-18-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-18/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: GA-CSPA-18
+    cms_node_id: '1581'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1581
+    approval_date: '2011-11-18'
+    effective_date: '2003-06-01'
+    summary: Section 10203 of the Affordable Care Act of 2010.- Children of State Employees.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-15-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-15: Approval Package (approved February 10, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-15-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-15/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-CSPA-15
+    cms_node_id: '1891'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1891
+    approval_date: '2011-02-10'
+    effective_date: '2003-06-01'
+    summary: CHIRRA Section 504 - Premium Grace, Managed care, Citizenship Documentation.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-15-final-approved-state-plan
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-15: Final Approved State Plan (approved February 10, 2011, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-15-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-15/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: GA-CSPA-15
+    cms_node_id: '1891'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1891
+    approval_date: '2011-02-10'
+    effective_date: '2003-06-01'
+    summary: CHIRRA Section 504 - Premium Grace, Managed care, Citizenship Documentation.
+    topics: *id004
+    link_label: Final Approved State Plan
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-14-approval-package
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-14: Approval Package (approved October 25, 2007, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-14-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-14/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-CSPA-14
+    cms_node_id: '1316'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1316
+    approval_date: '2007-10-25'
+    effective_date: '2003-06-01'
+    summary: Reopening of enrollment into CHIP.
+    topics: &id005
+    - Outreach & Enrollment
+    link_label: Approval Package
+- source_id: us-ga-cms-chip-state-plan-spa-ga-cspa-14-final-approved-state-plan
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia CHIP SPA GA-CSPA-14: Final Approved State Plan (approved October 25, 2007, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/GA/GA-CSPA-14-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ga/policy/cms/chip-state-plan/spa/ga-cspa-14/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: GA-CSPA-14
+    cms_node_id: '1316'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1316
+    approval_date: '2007-10-25'
+    effective_date: '2003-06-01'
+    summary: Reopening of enrollment into CHIP.
+    topics: *id005
+    link_label: Final Approved State Plan

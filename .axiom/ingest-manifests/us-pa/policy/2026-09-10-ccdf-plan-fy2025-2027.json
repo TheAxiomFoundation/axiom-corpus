@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "d016163b2035d32696373568000f696fdb954ec42f6f7506108bc8d1cf7e6e46"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "8c27ec3cef33971d0e5e99ad90005ba3f36fffb900cd702dedaa7c9c39a492d6"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/policy/2026-09-10-ccdf-plan-fy2025-2027.jsonl",
+      "sha256": "582ed10d787553990f2f7e091c732d62423aa737d4f8a89df893dcba3070ad9f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-09-10-ccdf-plan-fy2025-2027/official-documents/us-pa-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "c657f42f8e3480dea04d25d4e1a3c4e078a482ea9f49b82f5d57d9598930b3ec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ccdf-plan-fy2025-2027 --manifest manifests/us-pa-ccdf-state-plan-fy2025-2027.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-12T12:42:07.957913+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rykZjhVXXCdfn5khqsv0/Uf149vMLEUVd9TMejwUB/Ge41m5+TFU1b7a7ssddVuYR8tjLi33WNhTkI9i5/sqAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ccdf-plan-fy2025-2027"
+}

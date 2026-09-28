@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-parentage-context.json",
+      "sha256": "ba2085b160fb813f6bb32e1df64eb14c5d2e0b592ba2d1ac85fb244a7abb2cbb"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-parentage-context.json",
+      "sha256": "f16addeedc8098894e5959e842559657013c9c243e08715466ad0f3ec4dbb8a6"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-context.jsonl",
+      "sha256": "906ddf936de0e23c6f1b80685272b0744b16cbcd1a26e1466a48dbf5647e767f"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-context/official-documents/de-kindrg-1997-parentage-context.pdf",
+      "sha256": "bd58391268f7d4103670967f86ab7642fe9bae34faf56ec36415b2dadc1e2c7b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f03044cc08bb85432deb1cde548a3e9592562777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Existing official-document page_windows OCR capture; exact replay command in docs/ingest-runs/2026-09-08-de-kindergeld-parentage-context.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T18:46:20.080719+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-context-audit.json",
+      "sha256": "086ae40be48256377b97ae1662aeb639c06bcbf3003a318b8f298f2372f87725"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-context.md",
+      "sha256": "cc91ac2ae619b4adbbc0a4789caeda0a06cacc5a07a9745e361f668f1ae09e61"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FETj2go9SNOxa4c/kT5zuD2F3jCcqxgAQr0ALcZYALI2F1KJ8jMkYqCfJxqnVcl6n3g2RSaVJz3fpHV+NICSCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-parentage-context"
+}

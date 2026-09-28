@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-reading/manual/2026-09-05-reading-council-tax-reduction-2026-2027.json",
+      "sha256": "35bc1724a825af01a6553952e8f6e9f688021fb84e138f9693a71814069ed1b1"
+    },
+    {
+      "path": "data/corpus/inventory/uk-reading/manual/2026-09-05-reading-council-tax-reduction-2026-2027.json",
+      "sha256": "7418d7967170690855893f7e4f689df24c23c38dc6689073623a5a8d82d5fc52"
+    },
+    {
+      "path": "data/corpus/provisions/uk-reading/manual/2026-09-05-reading-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "d47d79e5bb7671fa72552ccbd4db59ac1c876bc633d0bf86f42118baf732600e"
+    },
+    {
+      "path": "data/corpus/sources/uk-reading/manual/2026-09-05-reading-council-tax-reduction-2026-2027/official-documents/reading-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "8a5c703e7ffe421232099d8e0bb08da06c854701dc6058f42943b73fb7ff61fb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8571ba04c52b068ade4cab4dd5b5f44d9082b79c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-reading-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-reading-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 152,
+    "missing_count": 0,
+    "provision_count": 152,
+    "source_count": 152
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:29:28.259401+00:00",
+  "jurisdiction": "uk-reading",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "P2v58QO0S7+bGh9fNKxXpENA3E31LX3BCZmqrfQ2jVSslUHC1CORySYxPea7VVQo7p8mQTZIhm+Nte7SX+ayAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-reading-council-tax-reduction-2026-2027"
+}

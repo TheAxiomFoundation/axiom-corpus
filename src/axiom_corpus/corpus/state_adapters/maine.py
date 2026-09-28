@@ -631,6 +631,19 @@ def parse_maine_section(
                 text = _clean_text(item.get_text(" ", strip=True))
                 if text:
                     history.append(text)
+        if not body_lines:
+            # Sections without subsections (for example 36 M.R.S. §115) print their
+            # text in ``.mrs-text`` paragraphs directly under the section node.
+            for text_node in section_node.select(".mrs-text"):
+                if text_node.find_parent(class_="MRSSubSection") is not None:
+                    continue
+                text = _clean_text(text_node.get_text(" ", strip=True))
+                if text:
+                    body_lines.append(text)
+                for item in text_node.select(".bhistory"):
+                    text = _clean_text(item.get_text(" ", strip=True))
+                    if text:
+                        history.append(text)
         for note in section_node.select(".note"):
             text = _clean_text(note.get_text(" ", strip=True))
             if text:

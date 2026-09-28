@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "85218b1223c4c1c8f641291f66c2d514aceab8d01cfa5c50f2a07c1817223e6c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "62466a6eadecdfd36591fd6ed264bfd7bf2a9f5fb2045b1526ead463f42488c5"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "0829ea2b2184fb5fed4dd4d8aa9e63482cf42723dd9c9351cf106fd74a200fb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/regulation/2026-09-14-income-tax-regulations/official-documents/ok-oar-oac-710-50-income-tax.json",
+      "sha256": "f1c897821c050d5bfcbb8639d2b024dd595f262ca39109597ee5fe6d8c7f145d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 175,
+    "missing_count": 0,
+    "provision_count": 175,
+    "source_count": 175
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T17:49:53.151391+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "I4rxeBv8jISFWa/zkEkEQqVAezF1XFa72eDYoZLy3y22o/gcMbiM+UhlmEgrk3kNoH0UOXkdeHSR9BfMh5XrAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

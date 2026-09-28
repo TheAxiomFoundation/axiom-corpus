@@ -1,0 +1,177 @@
+version: '2026-09-14'
+documents:
+- source_id: me-mrs-rule-803
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/803
+  title: '18-125 CMR Chapter 803: Income Tax Withholding Reports and Payments (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule%20803_May_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules
+- source_id: me-mrs-rule-805
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/805
+  title: '18-125 CMR Chapter 805: Composite Filing (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule%20805_April_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules
+- source_id: me-mrs-rule-806
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/806
+  title: '18-125 CMR Chapter 806: Nonresident Individual Income Tax (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule_806_August_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules
+- source_id: me-mrs-rule-807
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/807
+  title: '18-125 CMR Chapter 807: Residency (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule%20807%20-%20December%2026%202020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules
+- source_id: me-mrs-rule-812
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/812
+  title: '18-125 CMR Chapter 812: Credit for Educational Opportunity (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule_812_May_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules
+- source_id: me-mrs-rule-813
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/813
+  title: '18-125 CMR Chapter 813: Property Tax Fairness Credit (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule_813_May_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules
+- source_id: me-mrs-rule-825
+  jurisdiction: us-me
+  document_class: regulation
+  citation_path: us-me/regulation/18-125-cmr/825
+  title: '18-125 CMR Chapter 825: Tribal Member Income from Sources on Tribal Land (Maine Revenue Services)'
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/Rule_825_September_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^\.(?P<num>\d{2})\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^\.(?P<num>\d{2})\s*$
+    label_only_heading_pattern: ^[A-Z].+$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    section_heading_requires_bold: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    official_publisher: Maine Revenue Services
+    document_subtype: agency_rule_chapter
+    program: individual_income_tax
+    source_discovery_group: us-me/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.maine.gov/revenue/publications/rules

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-09-10.json",
+      "sha256": "a7a2bd7743d1a1290a9539c6333a37ec33db3025df63bf8796cbef169ebd06c9"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-09-10.json",
+      "sha256": "19d4375ea9cac2010b7570b3fcceaef8b4b3a7e4b4e2413b6ef0cabebfd309ed"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-09-10.jsonl",
+      "sha256": "6999228a7a601e779386a019717190950c754775d6d0ad75a19ee435ccd431bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-09-10/official-documents/us-ks-acf-liheap-plan-fy2026.pdf",
+      "sha256": "ceee8712dc8acddc2407a641ccd7f46c206649198272cd93f1d04d4521c771e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-ks-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T21:50:14.055783+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+o6rnXBlvf55R2bswBLFwFZfxvqn/Kztf0KVoGIh0SI7Aq1jtHLuF7IcKj6A9XLII3sW3cQfQoHOir3lMrK8AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

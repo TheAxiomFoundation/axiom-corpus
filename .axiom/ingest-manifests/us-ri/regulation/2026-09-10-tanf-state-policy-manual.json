@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "d3df557df8eeb67cced09ebffcdf572addeaefc3f92a8c78df5a8dd3e449fa2a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "fd60ee05de56ca7649e2666941b9c2615119b53c26f48753b7e3b36445929a63"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/regulation/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "fbc0665c70a2fcbb7397fa6e342ed5f2c0c89a3333db8c414ee6a99306d7937e"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ri-dhs-riw-218-20-00-2.pdf",
+      "sha256": "573b0101662d80cc4c091b4273a74e8b4879197a3bb8d9218bc269749dc024b0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 167,
+    "missing_count": 0,
+    "provision_count": 167,
+    "source_count": 167
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-12T12:46:06.688020+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cZ1lIM2tYqcqmfDfkl3vF0fyGahxvBW4rNJQboIHm49NJm1Y/Abh1iCfFzEt9n2Jl9e3MZ8FdPrk1kxhXMOFBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

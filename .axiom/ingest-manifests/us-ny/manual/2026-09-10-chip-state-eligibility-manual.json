@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "edfe831a5c38929a0a3f7538200498a9ac6a1aa56ae87389a6c8638272348d94"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "d8eb057de61297e8b6634f1599fbeb7d29d4769352d090be34ea2443f33111e9"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "d321d8e8d5df0f0ee8d6e2d658078b151acefe989b49b9218a4ed7b57e1ce4ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ny-doh-child-health-plus-eligibility-and-cost.html",
+      "sha256": "755e74bf91f5b13e35e26a9637c9f61ff171f4ad85e07329ffc69a76511926a1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ny-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:25:39.966038+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OpNNsAYQo6UfHvsN8dHwaBM+Is1bFC8EOMroRRCT+7V+WwvURvDWCUqa5yOiZV+cWq+8PAOXwQ4CuGT3KXJVAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

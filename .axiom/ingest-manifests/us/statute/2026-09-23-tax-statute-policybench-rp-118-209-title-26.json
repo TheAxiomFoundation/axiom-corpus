@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-23-tax-statute-policybench-rp-118-209-title-26.json",
+      "sha256": "e3e3aae0ebfb201650eb105e5c8c711031d9d81e76fa2a6ced5365e782485ae9"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-23-tax-statute-policybench-rp-118-209-title-26.json",
+      "sha256": "6f6c89f3c6dcc66c717d3fba5521d6149398bd33f98602f75ea9f39c34ca61b4"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-23-tax-statute-policybench-rp-118-209-title-26.jsonl",
+      "sha256": "9ff50e640010c336fbc0b0c9216cb77d138f571d8d355a9fa790b9609f2d33e4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-23-tax-statute-policybench-rp-118-209-title-26/olrc/xml_usc26@118-209not159.zip",
+      "sha256": "92e448a694abbf65e8c7272ec88be3bf9e57818cb3d1cc7bc2624b937cb83148"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "548e1c680621121fdb214e7afbefb2ba31451263",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-09-23-tax-statute-policybench-rp-118-209 --source-zip xml_usc26@118-209not159.zip --title 26 --source-as-of 2024-12-23 --expression-date 2024-12-23 --source-url https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/xml_usc26@118-209not159.zip --prior-release-point --section 67 --section 170 && python scripts/self_contain_usc_scope.py --base data/corpus --version 2026-09-23-tax-statute-policybench-rp-118-209-title-26 (run note: docs/ingest-runs/2026-09-23-tax-statute-policybench.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 506,
+    "missing_count": 0,
+    "provision_count": 506,
+    "source_count": 506
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-23T19:23:31.756056+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tSWAQkGwiHc7tfE4IUCWonPnHst4ktIxy43O1+EqIoYdQsJW1BhMOPUr30cTvVvJxzat7B/H8fKosPFH40ZODA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-tax-statute-policybench-rp-118-209-title-26"
+}

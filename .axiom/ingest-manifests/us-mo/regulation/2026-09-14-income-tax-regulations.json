@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "4a9bcd2c6887a5c83d1a3543bdb434abda37f97c1465cb4a51a3b4c44a55abf1"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "55a06c254b470695d739f3e34a16ca168a13e535036ec7c727075f77b007fc07"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "79310df4173219e659aad3da451b614e2fcb554f0aa09b38246fe4a32f5ff128"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/regulation/2026-09-14-income-tax-regulations/official-documents/mo-sos-12-csr-10-2-income-tax.pdf",
+      "sha256": "c623253e8e513dc15b419444dfb3fc4f0d03e31c320ffb1ca2da8a1c6930b723"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T17:03:44.515335+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bLvkdsoxrtHsgSpPJTqR2zfpx9xnZS2WCVlXGKm91ZHDEtNhkkpBxtMASqrkxE2a20Qdj9TFXzTJcK4YbhbSCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

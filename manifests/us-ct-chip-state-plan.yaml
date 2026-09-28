@@ -1,0 +1,516 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ct-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 17
+    index_records_total: 17
+- source_id: us-ct-cms-chip-state-plan-spa-ct-23-0002-chip-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-23-0002-CHIP: Approval Package (approved April 20, 2026, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT-23-0002-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-23-0002-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-23-0002-CHIP
+    cms_node_id: '191961'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=191961
+    approval_date: '2026-04-20'
+    effective_date: '2022-07-01'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+      Additionally, through this SPA, the state eliminates the HUSKY Plus program and incorporates all services previously
+      provided to a subset of children into the existing HUSKY B program, with the exception of non-emergency medical transportation.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-24-0001-chip-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-24-0001-CHIP: Approval Package (approved July 10, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT-24-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-24-0001-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-24-0001-CHIP
+    cms_node_id: '169221'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169221
+    approval_date: '2024-07-10'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-22-0001-amp-ct-22-0001-chip-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-22-0001 &amp; CT-22-0001-CHIP: Approval Package (approved October 24, 2022, effective April
+    1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT-22-0001-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-22-0001-amp-ct-22-0001-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-22-0001 &amp; CT-22-0001-CHIP
+    cms_node_id: '145381'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145381
+    approval_date: '2022-10-24'
+    effective_date: '2022-04-01'
+    summary: This SPA extends CHIP eligibility to children from conception to the end of pregnancy (otherwise known as “unborn”)
+      whose parent is not otherwise eligible for Medicaid or CHIP with incomes up to and including 208 percent of the federal
+      poverty level (FPL).
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-22-0005-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-22-0005: Approval Package (approved July 26, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT-22-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-22-0005/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-22-0005
+    cms_node_id: '138176'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=138176
+    approval_date: '2022-07-26'
+    effective_date: '2022-04-01'
+    summary: This SPA provides Connecticut with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-18-0011-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-18-0011: Approval Package (approved September 2, 2021, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/CT-18-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-18-0011/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-18-0011
+    cms_node_id: '125861'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=125861
+    approval_date: '2021-09-02'
+    effective_date: '2017-07-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-17-0010-chip-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-17-0010-CHIP:: Approval Package (approved November 15, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-17-0010-CHIP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-17-0010-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: 'CT-17-0010-CHIP:'
+    cms_node_id: '3786'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3786
+    approval_date: '2017-11-15'
+    effective_date: '2017-07-01'
+    summary: Adds coverage of gender dysphoria treatment services and updates the state's premium bands to be consistent with
+      Modified Adjusted Gross Income.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-chipspa-8-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-CHIPSPA-8: Approval Package (approved August 21, 2015, effective March 1, 2011)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-CHIPSPA-8.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-03-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-chipspa-8/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-CHIPSPA-8
+    cms_node_id: '3296'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3296
+    approval_date: '2015-08-21'
+    effective_date: '2011-03-01'
+    summary: This SPA permits Connecticut to make changes to co-payment amounts, Increases in co-insurance and A change in
+      the calculation methodology to determine the maximum cost-sharing amounts.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-14-0005-mc5-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-14-0005-MC5: Approval Package (approved February 24, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-14-0005-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-14-0005-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0005-MC5
+    cms_node_id: '2951'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2951
+    approval_date: '2015-02-24'
+    effective_date: '2014-01-01'
+    summary: This SPA is related to Modified Adjusted Gross Income Eligibility.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-14-0003-mc3-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-14-0003-MC3: Approval Package (approved September 22, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-14-0003-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-14-0003-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-14-0003-MC3
+    cms_node_id: '2946'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2946
+    approval_date: '2014-09-22'
+    effective_date: '2014-01-01'
+    summary: This SPA relates to Modified Adjusted Gross Income Eligibility and has an effective date of January 1, 2014.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP compiled state plan: Factsheet (approved December 18, 2009, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CTCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: CT
+    cms_node_id: '1276'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1276
+    approval_date: '2009-12-18'
+    effective_date: '2009-12-01'
+    summary: Current CHIP State Plan as amended by SPA 7 and Factsheet as of 12-08-2009.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ct-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP compiled state plan: Current State Plan (approved December 18, 2009, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CTCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CT
+    cms_node_id: '1276'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1276
+    approval_date: '2009-12-18'
+    effective_date: '2009-12-01'
+    summary: Current CHIP State Plan as amended by SPA 7 and Factsheet as of 12-08-2009.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-ct-cms-chip-state-plan-spa-ct-cspa-7-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-CSPA-7: Approval Package (approved December 18, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-CSPA-7-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-cspa-7/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-CSPA-7
+    cms_node_id: '2236'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2236
+    approval_date: '2009-12-18'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-cspa-7-final-approved-state-plan
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-CSPA-7: Final Approved State Plan (approved December 18, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-CSPA-7-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-cspa-7/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CT-CSPA-7
+    cms_node_id: '2236'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2236
+    approval_date: '2009-12-18'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-ct-cms-chip-state-plan-spa-ct-cspa-6-approval-package
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-CSPA-6: Approval Package (approved August 14, 2009, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-CSPA-6-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CT-CSPA-6
+    cms_node_id: '1406'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1406
+    approval_date: '2009-08-14'
+    effective_date: '2003-06-01'
+    summary: Waiving premiums for newborns for 4 months PIHP to replace MCO dental and pharmacy carve-outs.
+    topics:
+    - Dental
+    link_label: Approval Package
+- source_id: us-ct-cms-chip-state-plan-spa-ct-cspa-8-pending-state-plan
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut CHIP SPA CT-CSPA-8: Pending State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CT/CT-CSPA-8-INITIAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ct/policy/cms/chip-state-plan/spa/ct-cspa-8/pending-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Connecticut
+    source_discovery_group: us-ct/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_document
+    transmittal_number: CT-CSPA-8
+    cms_node_id: '1716'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1716
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Proposing to increase cost sharing and implement presumptive eligibility.
+    topics:
+    - Cost Sharing
+    link_label: Pending State Plan

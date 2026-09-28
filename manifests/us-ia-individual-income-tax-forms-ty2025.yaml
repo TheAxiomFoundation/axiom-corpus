@@ -1,0 +1,44 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ia-idr-ia-1040-ty2025
+  jurisdiction: us-ia
+  document_class: form
+  title: 2025 IA 1040 Iowa Individual Income Tax Return (41-001)
+  source_url: https://revenue.iowa.gov/media/4402/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ia/form/idr/ty2025/ia-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ia/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+- source_id: us-ia-idr-ia-1040-expanded-instructions-ty2025
+  jurisdiction: us-ia
+  document_class: form
+  title: 2025 IA 1040 Expanded Instructions (printable)
+  source_url: https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/past-instructions
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ia/form/idr/ty2025/ia-1040-expanded-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ia/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+  download_url: https://revenue.iowa.gov/media/4435/download?inline

@@ -1,0 +1,3915 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-oh-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 512
+- source_id: us-oh-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 512
+- source_id: us-oh-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 512
+- source_id: us-oh-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 512
+- source_id: us-oh-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 6
+    index_records_on_page: 100
+    index_records_total: 512
+- source_id: us-oh-cms-medicaid-state-plan-spa-index-p06
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=5
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p06
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 6
+    index_pages: 6
+    index_records_on_page: 12
+    index_records_total: 512
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-26-0005-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-26-0005: Approval Document (approved July 31, 2026, effective August 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-26-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-08-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-26-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-26-0005
+    cms_node_id: '195221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=195221
+    approval_date: '2026-07-31'
+    effective_date: '2026-08-01'
+    summary: The purpose of this amendment is to renew Ohio's 1915 State Plan HCBS benefit.
+    topics:
+    - Benefits
+    - Eligibility
+    - Home and Community Based Services
+    - Managed Care
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-26-0011-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-26-0011: Approval Document (approved July 21, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-26-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-26-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-26-0011
+    cms_node_id: '194201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=194201
+    approval_date: '2026-07-21'
+    effective_date: '2026-04-01'
+    summary: This amendment adds updated Cooperative Arrangements with the Opportunities for Ohioans with Disabilities Agency
+      (OOD) and the Ohio Department of Developmental Disabilities (DODD).
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-26-0008-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-26-0008: Approval Document (approved June 16, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-26-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-26-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-26-0008
+    cms_node_id: '193491'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=193491
+    approval_date: '2026-06-16'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to update the Comprehensive Maternal Care (CMC) Program Updates for Program Year 2026.
+      PY 2026 updates include updating the Pregnancy Risk Assessment Form name to Perinatal Risk Assessment Form to account
+      for additional submissions in the postpartum period, shifting performance requirements to the monitoring and reporting
+      section of the state plan, and clarifying that ODM may recoup payments from entities that do not meet other program
+      requirements.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-26-0004-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-26-0004: Approval Document (approved May 1, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-26-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-26-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-26-0004
+    cms_node_id: '192136'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192136
+    approval_date: '2026-05-01'
+    effective_date: '2026-01-01'
+    summary: 'This amendment proposes to update the Comprehensive Primary Care (“CPC”) and CPC for Kids programs for Program
+      Year 2026 as follows: remove the team-based care activity and replace it with continuous quality improvement; add CPC
+      entity staff and provider experience to the patient experience activity, and update the risk outlier determination methodology,
+      clarify that recipients attributed to other population health APMs administered by Ohio Medicaid are only excluded from
+      PMPM payment, add that entities must outreach to attributed Medicaid individuals who are not current patients, and actively
+      use EHR in clinical services.'
+    topics:
+    - Eligibility
+    - Program Administration
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-26-0001-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-26-0001: Approval Document (approved April 17, 2026, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-26-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-26-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-26-0001
+    cms_node_id: '191701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=191701
+    approval_date: '2026-04-17'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to amend Attachment 2.6-A to remove the payment of premium requirement and the premium
+      calculation methodology for the Ticket to Work Basic Coverage Group and Medical Improvement Group as a result of recent
+      state legislation.
+    topics:
+    - Cost Sharing
+    - Coverage
+    - Medicaid and CHIP Program (MACPro)
+    - Premiums
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0030-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0030: Approval Document (approved March 26, 2026, effective November 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0030
+    cms_node_id: '190541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190541
+    approval_date: '2026-03-26'
+    effective_date: '2025-11-01'
+    summary: This amendment proposes to amend Attachments 3.1-A and 4.19-B due to an Ohio agency name change from the Ohio
+      Department of Mental Health and Addiction Services (MHAS) to the Ohio Department of Behavioral Health (DBH).
+    topics:
+    - Coverage
+    - Eligibility
+    - Inpatient
+    - Other Licensed Practitioners
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0022-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0022: Approval Document (approved December 12, 2025, effective January 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0022
+    cms_node_id: '187356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187356
+    approval_date: '2025-12-12'
+    effective_date: '2026-01-01'
+    summary: This amendment proposes to increase the personal needs allowance for institutionalized individuals, and Aid to
+      Families with Dependent Children (AFDC) related children, and adults.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0016-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0016: Approval Document (approved November 19, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0016
+    cms_node_id: '187396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187396
+    approval_date: '2025-11-19'
+    effective_date: '2025-07-01'
+    summary: The purpose of this amendment is to update PACE AWOP methodology to address PACE sites outside of MyCare counties.
+    topics:
+    - Eligibility
+    - Home and Community Based Services
+    - Managed Care
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0008-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0008: Approval Document (approved October 24, 2025, effective April 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0008
+    cms_node_id: '187651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187651
+    approval_date: '2025-10-24'
+    effective_date: '2025-04-01'
+    summary: This amendment is to update Ohio's alternative single, streamlined paper and online applications.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0004-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0004: Approval Document (approved September 18, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0004
+    cms_node_id: '185036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185036
+    approval_date: '2025-09-18'
+    effective_date: '2025-01-01'
+    summary: This amendment is to provide for mandatory coverage in accordance with section 1902(a)(84)(D) of the Social Security
+      Act (the Act) for eligible juveniles that are incarcerated in a public institution post-adjudication of charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0002-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0002: Approval Document (approved May 16, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0002
+    cms_node_id: '179686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179686
+    approval_date: '2025-05-16'
+    effective_date: '2025-01-01'
+    summary: This amendment updates Ohio's Comprehensive Primary Care (CPC) and CPC for Kids Programs under the state plan
+      for program year 2025.
+    topics:
+    - Eligibility
+    - Program Administration
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0003-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0003: Approval Document (approved May 16, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0003
+    cms_node_id: '179691'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179691
+    approval_date: '2025-05-16'
+    effective_date: '2025-01-01'
+    summary: This amendment updates Ohio's Comprehensive Maternal Care Program under the state plan for calendar year 2025.
+    topics:
+    - Eligibility
+    - Program Administration
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-25-0006-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-25-0006: Approval Document (approved May 2, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-25-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-25-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-25-0006
+    cms_node_id: '179401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=179401
+    approval_date: '2025-05-02'
+    effective_date: '2025-01-01'
+    summary: 'This amendment implements a performance standard for qualified entities and hospitals determining presumptive
+      eligibility for the following Medicaid eligibility groups: Parent/Caretaker Relatives, Group VIII Adults, and Former
+      Foster Care Children.'
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-24-0014-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-24-0014: Approval Document (approved December 10, 2024, effective October 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-24-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-24-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-24-0014
+    cms_node_id: '175236'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=175236
+    approval_date: '2024-12-10'
+    effective_date: '2024-10-01'
+    summary: This amendment is to adopt the optional eligibility group described in section 1902(a)(10)(A)(ii)(XIII) of the
+      Social Security Act, which serves working individuals who have disabilities and incomes below 250 percent of the federal
+      poverty level.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-24-0013-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-24-0013: Approval Document (approved November 22, 2024, effective September 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-24-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-09-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-24-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-24-0013
+    cms_node_id: '173606'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173606
+    approval_date: '2024-11-22'
+    effective_date: '2024-09-01'
+    summary: To apply disregards, under the authority of section 1902(r)(2) of the Social Security Act, in determining eligibility
+      for certain non-MAGI groups for settlement payments related to the February 3, 2023, train derailment in East Palestine,
+      Ohio.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0024-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0024: Approval Document (approved May 9, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0024
+    cms_node_id: '163976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163976
+    approval_date: '2024-05-09'
+    effective_date: '2024-01-01'
+    summary: This amendment is to amend its hospital presumptive eligibility SPA and presumptive eligibility program to include
+      a performance standard for qualified entities or hospitals determining presumptive eligibility for pregnant women and/or
+      children.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0028-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0028: Approval Document (approved December 7, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0028
+    cms_node_id: '156721'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=156721
+    approval_date: '2023-12-07'
+    effective_date: '2023-07-01'
+    summary: To memorialize the new income standards for its optional state supplement program, beneficiaries of which are
+      eligible for Medicaid under the state's plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0031-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0031: Approval Document (approved December 4, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0031/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0031
+    cms_node_id: '156506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=156506
+    approval_date: '2023-12-04'
+    effective_date: '2024-01-01'
+    summary: This amendment revises the Medicaid State Plan to ensure that laws are in effect barring third-party payers from
+      refusing payment for an item or service solely because it did not receive prior authorization under the third-party
+      payer's rules.
+    topics:
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0018-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0018: Approval Document (approved July 19, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0018
+    cms_node_id: '150611'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150611
+    approval_date: '2023-07-19'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to temporarily
+      extend the suspension of premiums for the Medicaid Buy-In for Workers with Disabilities (MBIWD) effective 5/12/23 through
+      7/31/23. This provision was approved in disaster relief SPA OH-22-0013 effective 7/1/21.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0013-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0013: Approval Document (approved June 20, 2023, effective April 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0013
+    cms_node_id: '150101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150101
+    approval_date: '2023-06-20'
+    effective_date: '2023-04-01'
+    summary: To adopt new income and resource disregards, authorized under section 1902(r)(2)(A) of the Social Security Act,
+      for the eligibility determinations of the non-MAGI groups covered under the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0014-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0014: Approval Document (approved June 9, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0014
+    cms_node_id: '148831'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148831
+    approval_date: '2023-06-09'
+    effective_date: '2023-05-12'
+    summary: To permanently elect the option to extend the Reasonable Opportunity Period for non-citizens who are making a
+      good faith effort to resolve any inconsistencies or obtain any necessary documentation, or the agency needs more time
+      to complete the verification process. In response to the COVID-19 Public Health Emergency that started March 13, 2020,
+      Ohio elected to allow an extension to the ROP for non-citizens through an approved Disaster Relief SPA (SPA 20-012)
+      due to the Public Health Emergency. With the approval of this state plan amendment, Ohio is electing to permanently
+      allow extensions to the ROP for non-citizens.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0007-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0007: Approval Document (approved June 9, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0007
+    cms_node_id: '148836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148836
+    approval_date: '2023-06-09'
+    effective_date: '2023-01-01'
+    summary: Updates post-eligibility treatment of income exclusions in accordance with the Stephen Beck Jr. Achieving a Better
+      Life Experience (ABLE) Act and recently passed State legislation.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0015-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0015: Approval Document (approved June 2, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0015
+    cms_node_id: '148661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148661
+    approval_date: '2023-06-02'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to temporarily
+      extend the disregard of accumulated resources that was approved effective 11/2/20 in Disaster Relief SPA OH-22-0012.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-23-0006-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-23-0006: Approval Document (approved May 12, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-23-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-23-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-23-0006
+    cms_node_id: '148126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148126
+    approval_date: '2023-05-12'
+    effective_date: '2023-01-01'
+    summary: Proposed to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0040-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0040: Approval Document (approved March 22, 2023, effective December 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-12-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0040/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0040
+    cms_node_id: '146096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=146096
+    approval_date: '2023-03-22'
+    effective_date: '2022-12-01'
+    summary: Proposes a resource disregard for individuals who received refunds of premiums paid while enrolled in Ohio's
+      Ticket to Work Basic and Medically Improved eligibility groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0013-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0013: Approval Document (approved March 3, 2023, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0013
+    cms_node_id: '145041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=145041
+    approval_date: '2023-03-03'
+    effective_date: '2021-07-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to suspend premiums for the TWIIAA Basic Coverage and Medical Improvement Groups, known in Ohio
+      as Medicaid Buy-In for Workers with Disabilities (MBIWD).
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0039-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0039: Approval Document (approved February 27, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0039.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0039/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0039
+    cms_node_id: '144951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=144951
+    approval_date: '2023-02-27'
+    effective_date: '2022-10-01'
+    summary: This amendment proposes to remove obsolete pages from Attachment 2.6-A of the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0035-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0035: Approval Document (approved January 27, 2023, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0035.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0035/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0035
+    cms_node_id: '144006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=144006
+    approval_date: '2023-01-27'
+    effective_date: '2022-10-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to resume prior authorization of private duty nursing (PDN) services and home health (HH) services
+      that were approved in Ohio DR SPA 20-0012 on 5/22/20 in response to the COVID-19 PHE and resumes review of the normal
+      limits on PDN & HH services with a process to exceed based on medical necessity.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0028-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0028: Approval Document (approved September 29, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0028
+    cms_node_id: '140496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140496
+    approval_date: '2022-09-29'
+    effective_date: '2022-07-01'
+    summary: Proposes to rescind the temporary third-party liability bypass for behavioral health providers who bill a third
+      party but do not receive a response after 30 days.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0022-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0022: Approval Document (approved September 26, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0022
+    cms_node_id: '140421'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140421
+    approval_date: '2022-09-26'
+    effective_date: '2022-04-01'
+    summary: Proposed the addition of a resource disregard under the authority of section 1902(r)(2) of the Social Security
+      Act for all non-MAGI based groups covered under Ohio's state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0020-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0020: Approval Document (approved September 1, 2022, effective June 2, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-06-02'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0020
+    cms_node_id: '139526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139526
+    approval_date: '2022-09-01'
+    effective_date: '2022-06-02'
+    summary: To update state plan language related to the coordination of benefits for hospital services and remove obsolete
+      rules-based language that is no longer pertinent.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-22-0012-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-22-0012: Approval Document (approved June 14, 2022, effective November 2, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-22-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-11-02'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-22-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-22-0012
+    cms_node_id: '136731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=136731
+    approval_date: '2022-06-14'
+    effective_date: '2020-11-02'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to disregard certain accumulated resources that are normally subject to the post-eligibility treatment
+      of income (PETI) rules for long term care beneficiaries.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-21-0029-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-21-0029: Approval Document (approved December 7, 2021, effective November 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/OH-21-0029
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-11-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-21-0029/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-21-0029
+    cms_node_id: '128661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=128661
+    approval_date: '2021-12-07'
+    effective_date: '2021-11-01'
+    summary: This amendment proposes to increase payment rates for home health and private duty nursing services; allow nurse
+      practitioners, clinical nurse specialists, and physician assistants to order home health services and complete required
+      face-to-face visits; and allow required face-to-face visits to occur through telehealth when clinically appropriate.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-21-0014-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-21-0014: Approval Document (approved July 1, 2021, effective May 1, 2021)'
+  source_url: https://www.medicaid.gov/media/file/2020amr-adasthma-medication-ratio-ages-19-64.json
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-05-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-21-0014/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-21-0014
+    cms_node_id: '109841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=109841
+    approval_date: '2021-07-01'
+    effective_date: '2021-05-01'
+    summary: Effective May 1, 2021, this amendment adds greater clarification around Automatic Assignment of Rights.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-21-0006-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-21-0006: Approval Document (approved April 27, 2021, effective August 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-21-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-08-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-21-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-21-0006
+    cms_node_id: '108001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=108001
+    approval_date: '2021-04-27'
+    effective_date: '2021-08-01'
+    summary: Effective August 1, 2021 and expiring on July 31, 2026, this amendment renews Ohio's 1915(i) State Plan Home
+      and Community Based Services (HCBS) benefit, specialized recovery services program.
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-21-0001-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-21-0001: Approval Document (approved March 31, 2021, effective January 5, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-05'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-21-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-21-0001
+    cms_node_id: '106971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106971
+    approval_date: '2021-03-31'
+    effective_date: '2021-01-05'
+    summary: Effective 1/5/21 this State Plan Amendment rescinds the temporary suspension of beneficiary copayments that was
+      approved in DR SPA OH-20-0012 in response to the COVID-19 Public Health Emergency (PHE).
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-21-0002-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-21-0002: Approval Document (approved March 31, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-21-0002
+    cms_node_id: '106976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106976
+    approval_date: '2021-03-31'
+    effective_date: '2021-01-01'
+    summary: This SPA rescinds the temporary Presumptive Eligibility (PE) flexibilities, approved in Disaster Relief SPA OH-20-0012
+      in response to the COVID-19 Public Health Emergency (PHE), which expanded the populations for which PE determinations
+      could be made.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0015-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0015: Approval Document (approved September 23, 2020, effective April 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OH-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0015
+    cms_node_id: '102591'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102591
+    approval_date: '2020-09-23'
+    effective_date: '2020-04-01'
+    summary: amended to disregard temporary decennial census income for Non-MAGI eligibility groups by applying less restrictive
+      income methodologies
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0010-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0010: Approval Document (approved June 8, 2020, effective March 14, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-14'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0010
+    cms_node_id: '99221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99221
+    approval_date: '2020-06-08'
+    effective_date: '2020-03-14'
+    summary: Updates the payment for Ambulatory Surgery Centers implementation of Enhanced Ambulatory Patient Grouping (EAPG)
+      3.14
+    topics:
+    - Financing & Reimbursement
+    - Individual CoPayments or Insurance Payments
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0012-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0012: Approval Document (approved May 22, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-20-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0012
+    cms_node_id: '98661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98661
+    approval_date: '2020-05-22'
+    effective_date: '2020-03-01'
+    summary: 'This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to extend the reasonable opportunity period for certain non-citizens, allow hospital presumptive eligibility (PE)
+      for additional groups and designates the State Medicaid Agency as a qualified entity for PE for MAGI groups, suspend
+      all cost-sharing, modify the NF benefit to include health care isolation centers (HCIC) to provide COVID-related care
+      for individuals who cannot safely remain at home or in a NF. It also suspends limits on private duty nursing services;
+      allows physicians and other licensed practitioners, in accordance with state law, to order durable medical equipment;
+      expands telehealth; and extends prior authorization for medications by automatic renewal without clinical review or
+      time/quantity extensions. It also makes the following Payment changes: adds a telehealth originating site fee; increases
+      payments for lab and NF services related to COVID; and increases limits on bed hold days. Finally, t designates COVID-19
+      quarantine or isolation levels of care as categorical qualification for pre-admission screening; and suspends state
+      plan staffing requirements for NF ventilator weaning.'
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0003-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0003: Approval Document (approved April 17, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0003
+    cms_node_id: '98006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98006
+    approval_date: '2020-04-17'
+    effective_date: '2020-01-01'
+    summary: updates the Attachment 4.19-B pages to account for new, amended, and/or deleted Healthcare Common Procedure Code
+      System Codes
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0011-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0011: Approval Document (approved April 9, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-20-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0011
+    cms_node_id: '94356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=94356
+    approval_date: '2020-04-09'
+    effective_date: '2020-01-01'
+    summary: This SPA updates the narrative description of the interagency agreement between the Ohio Department of Medicaid
+      and the Ohio Department of Developmental Disabilities
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0005-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0005: Approval Document (approved March 10, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0005
+    cms_node_id: '86686'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=86686
+    approval_date: '2020-03-10'
+    effective_date: '2020-01-01'
+    summary: Proposes changes to coverage and limitations for dental services to reflect changes in the practice of dentistry,
+      and updates payment rates
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-20-0002-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-20-0002: Approval Document (approved February 14, 2020, effective January 31, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-31'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-20-0002
+    cms_node_id: '59091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=59091
+    approval_date: '2020-02-14'
+    effective_date: '2020-01-31'
+    summary: Provider Enrollment & Screening
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-19-0025-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-19-0025: Approval Document (approved February 5, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-19-0025_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-19-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-19-0025
+    cms_node_id: '58751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58751
+    approval_date: '2020-02-05'
+    effective_date: '2020-01-01'
+    summary: Comprehensive Primary Care Program (CPC) for Kids
+    topics:
+    - Benefits
+    - Children's Health Insurance Program
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-19-0026-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-19-0026: Approval Document (approved December 18, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-19-0026_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-19-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-19-0026
+    cms_node_id: '58271'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58271
+    approval_date: '2019-12-18'
+    effective_date: '2020-01-01'
+    summary: Recovery Audit Contractor Exception 2020
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-19-0024-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-19-0024: Approval Document (approved November 26, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-19-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-19-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-19-0024
+    cms_node_id: '52376'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52376
+    approval_date: '2019-11-26'
+    effective_date: '2020-01-01'
+    summary: Public Assistance Reporting Information System (PARIS)
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-18-026-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-18-026: Approval Document (approved December 12, 2018, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-18-026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-18-026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-18-026
+    cms_node_id: '7736'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7736
+    approval_date: '2018-12-12'
+    effective_date: '2019-01-01'
+    summary: Clarifies State Operated Intermediate Care Facilities for Individuals with Intellectual Disability language.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-18-010-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-18-010: Approval Document (approved May 11, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-18-010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-18-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-18-010
+    cms_node_id: '10661'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10661
+    approval_date: '2018-05-11'
+    effective_date: '2018-07-01'
+    summary: 'Managed Care: Ticket to Work and Medically Improved Eligibility Groups Required Enrollment.'
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-17-016-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-17-016: Approval Document (approved January 24, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-17-016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-17-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-17-016
+    cms_node_id: '11956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11956
+    approval_date: '2018-01-24'
+    effective_date: '2018-01-01'
+    summary: Payment for Physicians and Licensed Practitioners services.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-17-0014-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-17-0014: Approval Document (approved September 29, 2017, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-17-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-17-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-17-0014
+    cms_node_id: '13541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=13541
+    approval_date: '2017-09-29'
+    effective_date: '2017-01-01'
+    summary: 'Eligibility: Reasonable Classifications for Individuals Under Age 21.'
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-17-022-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-17-022: Approval Document (approved August 3, 2017, effective September 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-17-022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-09-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-17-022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-17-022
+    cms_node_id: '14216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=14216
+    approval_date: '2017-08-03'
+    effective_date: '2017-09-01'
+    summary: 'Cost-Eligibility Treatment of Income: Excluded Income.'
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-16-0030-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-16-0030: Approval Document (approved January 5, 2017, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-16-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-16-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-16-0030
+    cms_node_id: '16841'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16841
+    approval_date: '2017-01-05'
+    effective_date: '2017-01-01'
+    summary: Eligibility groups - mandatory coverage - parents and other caretaker relatives.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-16-003-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-16-003: Approval Document (approved April 12, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-16-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-16-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-16-003
+    cms_node_id: '19921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19921
+    approval_date: '2016-04-12'
+    effective_date: '2016-01-01'
+    summary: Eligibility Residential State Supplemental Changes.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-16-0002-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-16-0002: Approval Document (approved April 11, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-16-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-16-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-16-0002
+    cms_node_id: '19926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=19926
+    approval_date: '2016-04-11'
+    effective_date: '2016-01-01'
+    summary: Eligibility Rescission of Optional Limited Family Planning Group.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-15-021-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-15-021: Approval Document (approved March 18, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-15-021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-15-021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-15-021
+    cms_node_id: '20241'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20241
+    approval_date: '2016-03-18'
+    effective_date: '2016-01-01'
+    summary: 'Eligibility: Transitional Medical Assistance - Initial Eligibility Period.'
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-15-020-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-15-020: Approval Document (approved March 9, 2016, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-15-020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-15-020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-15-020
+    cms_node_id: '20411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=20411
+    approval_date: '2016-03-09'
+    effective_date: '2016-01-01'
+    summary: 'Eligibility: Monthly Personal Needs Allowance for Residents of Intermediate Care Facilities for Individuals
+      with Intellectual Disabilities.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-15-019-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-15-019: Approval Document (approved December 17, 2015, effective January 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-15-019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-15-019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-15-019
+    cms_node_id: '21206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21206
+    approval_date: '2015-12-17'
+    effective_date: '2016-01-01'
+    summary: 'Payment for Services: Removal of the Medicare Part B cost-sharing exemption for physician services.'
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0028-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0028: Approval Document (approved August 6, 2015, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0028
+    cms_node_id: '23321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23321
+    approval_date: '2015-08-06'
+    effective_date: '2013-10-01'
+    summary: 'Updates MAGI Eligibility & Benefits: Single State Agency.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-014-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-014: Approval Document (approved June 11, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-014
+    cms_node_id: '26931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26931
+    approval_date: '2015-06-11'
+    effective_date: '2014-01-01'
+    summary: Psychologists services Coverage and Limitations.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-15-001-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-15-001: Approval Document (approved May 8, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-15-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-15-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-15-001
+    cms_node_id: '27351'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27351
+    approval_date: '2015-05-08'
+    effective_date: '2015-01-01'
+    summary: Financial Eligibility-personal needs allowance.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-14-003-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-14-003: Approval Document (approved December 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-14-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-14-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-14-003
+    cms_node_id: '29876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29876
+    approval_date: '2014-12-19'
+    effective_date: '2014-01-01'
+    summary: Financial eligibility - personal needs allowance.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-14-0013-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-14-0013: Approval Document (approved September 22, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-14-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-14-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-14-0013
+    cms_node_id: '32761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32761
+    approval_date: '2014-09-22'
+    effective_date: '2014-04-01'
+    summary: Presumptive eligibility for former foster care children.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-14-0007-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-14-0007: Approval Document (approved June 11, 2014, effective March 31, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-14-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-03-31'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-14-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-14-0007
+    cms_node_id: '36131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36131
+    approval_date: '2014-06-11'
+    effective_date: '2014-03-31'
+    summary: Implements Presumptive Eligibility (PE) for Parents/ Caretaker Relatives, and the Adult Group.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-14-0001-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-14-0001: Approval Document (approved April 25, 2014, effective February 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-14-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-02-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-14-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-14-0001
+    cms_node_id: '37636'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37636
+    approval_date: '2014-04-25'
+    effective_date: '2014-02-01'
+    summary: 'Updates MAGI Eligibility and Benefits: SPA Group 7 Hospital Presumptive Eligibility.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0030-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0030: Approval Document (approved February 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0030
+    cms_node_id: '38531'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38531
+    approval_date: '2014-02-20'
+    effective_date: '2014-01-01'
+    summary: Implements MAGI Citizenship Immigration Status.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0029-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0029: Approval Document (approved February 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0029
+    cms_node_id: '38536'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38536
+    approval_date: '2014-02-20'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI Residency.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0026-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0026: Approval Document (approved February 20, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0026
+    cms_node_id: '38541'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38541
+    approval_date: '2014-02-20'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including the Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0027-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0027: Approval Document (approved February 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0027-TC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0027
+    cms_node_id: '38736'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38736
+    approval_date: '2014-02-11'
+    effective_date: '2014-01-01'
+    summary: Technical Correction to OH-13-0027 - Implements MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0025-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0025: Approval Document (approved February 10, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0025-TC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0025
+    cms_node_id: '38741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38741
+    approval_date: '2014-02-10'
+    effective_date: '2014-01-01'
+    summary: Technical Correction to OH-13-0025 - Implements MAGI Based Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0025-mm-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0025-MM: Approval Document (approved February 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0025-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0025-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0025-MM
+    cms_node_id: '39001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39001
+    approval_date: '2014-02-03'
+    effective_date: '2014-01-01'
+    summary: MAGI Based Eligibility Groups.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-14-0026-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-14-0026: Approval Document (approved January 15, 2014, effective October 29, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-14-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-29'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-14-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-14-0026
+    cms_node_id: '29286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29286
+    approval_date: '2014-01-15'
+    effective_date: '2014-10-29'
+    summary: Ohio Department of Youth Services (DYS) as a qualified entity for presumptive eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0027-approval-document-2
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0027: Approval Document (approved January 8, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0027/approval-document-2
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0027
+    cms_node_id: '39396'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39396
+    approval_date: '2014-01-08'
+    effective_date: '2014-01-01'
+    summary: Adds MAGI-Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-013-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-013: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-013
+    cms_node_id: '38966'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38966
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Physical therapy and related services coverage and limitations. Preventive services coverage limitations and
+      payment for services.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0032-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0032: Approval Document (approved December 16, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0032
+    cms_node_id: '39561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39561
+    approval_date: '2013-12-16'
+    effective_date: '2014-01-01'
+    summary: Establishes Alternative Benefit Plan and Reflects Correct Page Numbering for OH-13-0032.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-0018-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-0018: Approval Document (approved October 10, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-0018
+    cms_node_id: '40006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40006
+    approval_date: '2013-10-10'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Group - Medicaid Coverage for Individuals with Incomes Below 133% of FPL.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-004-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-004: Approval Document (approved September 4, 2013, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-12-004
+    cms_node_id: '45391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45391
+    approval_date: '2013-09-04'
+    effective_date: '2012-01-01'
+    summary: Licensed or otherwise state-approved freestanding birth centers and licensed or otherwise state-recognized covered
+      professionals providing services.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-004-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-004: Attachment (approved September 4, 2013, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-12-004
+    cms_node_id: '45391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45391
+    approval_date: '2013-09-04'
+    effective_date: '2012-01-01'
+    summary: Licensed or otherwise state-approved freestanding birth centers and licensed or otherwise state-recognized covered
+      professionals providing services.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-004-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-004: Form CMS-179 (approved September 4, 2013, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-12-004
+    cms_node_id: '45391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45391
+    approval_date: '2013-09-04'
+    effective_date: '2012-01-01'
+    summary: Licensed or otherwise state-approved freestanding birth centers and licensed or otherwise state-recognized covered
+      professionals providing services.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-001-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-001: Approval Document (approved May 22, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-001-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-13-001
+    cms_node_id: '46066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46066
+    approval_date: '2013-05-22'
+    effective_date: '2013-04-01'
+    summary: Eligibility determinations for certain individuals who are in the custody of the Department of Rehabilitation
+      and Corrections.
+    topics: &id003
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-001-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-001: Attachment (approved May 22, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-001-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-001/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-13-001
+    cms_node_id: '46066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46066
+    approval_date: '2013-05-22'
+    effective_date: '2013-04-01'
+    summary: Eligibility determinations for certain individuals who are in the custody of the Department of Rehabilitation
+      and Corrections.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-13-001-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-13-001: Form CMS-179 (approved May 22, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-13-001-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-13-001/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-13-001
+    cms_node_id: '46066'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46066
+    approval_date: '2013-05-22'
+    effective_date: '2013-04-01'
+    summary: Eligibility determinations for certain individuals who are in the custody of the Department of Rehabilitation
+      and Corrections.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-006-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-006: Approval Document (approved March 4, 2013, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-006-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-12-006
+    cms_node_id: '40786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40786
+    approval_date: '2013-03-04'
+    effective_date: '2012-04-01'
+    summary: Presumptive eligibility for children.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-006-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-006: Attachment (approved March 4, 2013, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-006-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-006/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-12-006
+    cms_node_id: '40786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40786
+    approval_date: '2013-03-04'
+    effective_date: '2012-04-01'
+    summary: Presumptive eligibility for children.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-006-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-006: Form CMS-179 (approved March 4, 2013, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-12-006
+    cms_node_id: '40786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40786
+    approval_date: '2013-03-04'
+    effective_date: '2012-04-01'
+    summary: Presumptive eligibility for children.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-003-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-003: Approval Document (approved March 1, 2013, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-003-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-12-003
+    cms_node_id: '40796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40796
+    approval_date: '2013-03-01'
+    effective_date: '2012-04-01'
+    summary: Presumptive eligibility for pregnant women.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-003-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-003: Attachment (approved March 1, 2013, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-12-003
+    cms_node_id: '40796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40796
+    approval_date: '2013-03-01'
+    effective_date: '2012-04-01'
+    summary: Presumptive eligibility for pregnant women.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-12-003-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-12-003: Form CMS-179 (approved March 1, 2013, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-12-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-12-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-12-003
+    cms_node_id: '40796'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40796
+    approval_date: '2013-03-01'
+    effective_date: '2012-04-01'
+    summary: Presumptive eligibility for pregnant women.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-011-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-011: Approval Document (approved March 9, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-011-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-10-011
+    cms_node_id: '40936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40936
+    approval_date: '2012-03-09'
+    effective_date: '2012-07-01'
+    summary: Targeted Case Management services provided to Medicaid-eligible expectant first time parents, first time parents,
+      infants, and toddlers under the age of three years who are enrolled and participating in Ohio's Help Me Grow Home Visiting
+      Program.
+    topics: &id006
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-011-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-011: Attachment (approved March 9, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-011-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-011/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-10-011
+    cms_node_id: '40936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40936
+    approval_date: '2012-03-09'
+    effective_date: '2012-07-01'
+    summary: Targeted Case Management services provided to Medicaid-eligible expectant first time parents, first time parents,
+      infants, and toddlers under the age of three years who are enrolled and participating in Ohio's Help Me Grow Home Visiting
+      Program.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-011-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-011: Form CMS-179 (approved March 9, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-011-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-011/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-10-011
+    cms_node_id: '40936'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40936
+    approval_date: '2012-03-09'
+    effective_date: '2012-07-01'
+    summary: Targeted Case Management services provided to Medicaid-eligible expectant first time parents, first time parents,
+      infants, and toddlers under the age of three years who are enrolled and participating in Ohio's Help Me Grow Home Visiting
+      Program.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-001-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-001: Approval Document (approved January 26, 2012, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-001-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-10-001
+    cms_node_id: '40981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40981
+    approval_date: '2012-01-26'
+    effective_date: '2010-07-01'
+    summary: State plan amendment TN 10-001 modifies rate growth for nursing facilities. It also includes a new provision
+      that provides an additional amount for real estate taxes for those facilities that had a credit reducing their real
+      estate taxes reflected on the base year cost report to zero. This amendment also modifies the state fiscal year 2011
+      Medicaid per diem rate for the states ICF-MR outlier facility.
+    topics: &id007
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-001-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-001: Attachment (approved January 26, 2012, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-001-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-001/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-10-001
+    cms_node_id: '40981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40981
+    approval_date: '2012-01-26'
+    effective_date: '2010-07-01'
+    summary: State plan amendment TN 10-001 modifies rate growth for nursing facilities. It also includes a new provision
+      that provides an additional amount for real estate taxes for those facilities that had a credit reducing their real
+      estate taxes reflected on the base year cost report to zero. This amendment also modifies the state fiscal year 2011
+      Medicaid per diem rate for the states ICF-MR outlier facility.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-001-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-001: Form CMS-179 (approved January 26, 2012, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-001-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-001/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-10-001
+    cms_node_id: '40981'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40981
+    approval_date: '2012-01-26'
+    effective_date: '2010-07-01'
+    summary: State plan amendment TN 10-001 modifies rate growth for nursing facilities. It also includes a new provision
+      that provides an additional amount for real estate taxes for those facilities that had a credit reducing their real
+      estate taxes reflected on the base year cost report to zero. This amendment also modifies the state fiscal year 2011
+      Medicaid per diem rate for the states ICF-MR outlier facility.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-013-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-013: Approval Document (approved October 20, 2011, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-013-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-10-013
+    cms_node_id: '40931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40931
+    approval_date: '2011-10-20'
+    effective_date: '2012-01-01'
+    summary: State Eligibility Option for Family Planning Services.
+    topics: &id008
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-013-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-013: Attachment (approved October 20, 2011, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-013-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-013/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-10-013
+    cms_node_id: '40931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40931
+    approval_date: '2011-10-20'
+    effective_date: '2012-01-01'
+    summary: State Eligibility Option for Family Planning Services.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-013-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-013: Form CMS-179 (approved October 20, 2011, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-013-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-013/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-10-013
+    cms_node_id: '40931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40931
+    approval_date: '2011-10-20'
+    effective_date: '2012-01-01'
+    summary: State Eligibility Option for Family Planning Services.
+    topics: *id008
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-11-008-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-11-008: Approval Document (approved August 8, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-11-008-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-11-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-11-008
+    cms_node_id: '40891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40891
+    approval_date: '2011-08-08'
+    effective_date: '2011-04-01'
+    summary: Documentation of elimination of resource tests for qualified children, foster, adoption children, and Ribicoff
+      children under Title XIX of the Social Security Act and qualification for the 2011 CHIPRA performance bonus under Title
+      XXI of the Social Security Act.
+    topics: &id009
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-11-008-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-11-008: Attachment (approved August 8, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-11-008-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-11-008/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-11-008
+    cms_node_id: '40891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40891
+    approval_date: '2011-08-08'
+    effective_date: '2011-04-01'
+    summary: Documentation of elimination of resource tests for qualified children, foster, adoption children, and Ribicoff
+      children under Title XIX of the Social Security Act and qualification for the 2011 CHIPRA performance bonus under Title
+      XXI of the Social Security Act.
+    topics: *id009
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-11-008-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-11-008: Form CMS-179 (approved August 8, 2011, effective April 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-11-008-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-11-008/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-11-008
+    cms_node_id: '40891'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40891
+    approval_date: '2011-08-08'
+    effective_date: '2011-04-01'
+    summary: Documentation of elimination of resource tests for qualified children, foster, adoption children, and Ribicoff
+      children under Title XIX of the Social Security Act and qualification for the 2011 CHIPRA performance bonus under Title
+      XXI of the Social Security Act.
+    topics: *id009
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-006-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-006: Approval Document (approved November 29, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-006-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-10-006
+    cms_node_id: '40956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40956
+    approval_date: '2010-11-29'
+    effective_date: '2010-07-01'
+    summary: Cost Reports.
+    topics: &id010
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-006-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-006: Attachment (approved November 29, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-006-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-006/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-10-006
+    cms_node_id: '40956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40956
+    approval_date: '2010-11-29'
+    effective_date: '2010-07-01'
+    summary: Cost Reports.
+    topics: *id010
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-006-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-006: Form CMS-179 (approved November 29, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-10-006
+    cms_node_id: '40956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40956
+    approval_date: '2010-11-29'
+    effective_date: '2010-07-01'
+    summary: Cost Reports.
+    topics: *id010
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-005-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-005: Approval Document (approved June 28, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-005-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-10-005
+    cms_node_id: '40961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40961
+    approval_date: '2010-06-28'
+    effective_date: '2010-04-01'
+    summary: 'This amendment serves to implement Section 19002(a)(10)(A) of the Social Security Act (the Act), including continuous
+      eligibility under Section 1902(e)(12) and presumptive eligibility for children under Section 1920A of the Act . Ohio
+      is a Medicaid expansion state under Title XXI; this is a companion state plan submission to our Title XXI state plan
+      amendment, SCHIP #5.'
+    topics: &id011
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-005-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-005: Attachment (approved June 28, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-005-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-005/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-10-005
+    cms_node_id: '40961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40961
+    approval_date: '2010-06-28'
+    effective_date: '2010-04-01'
+    summary: 'This amendment serves to implement Section 19002(a)(10)(A) of the Social Security Act (the Act), including continuous
+      eligibility under Section 1902(e)(12) and presumptive eligibility for children under Section 1920A of the Act . Ohio
+      is a Medicaid expansion state under Title XXI; this is a companion state plan submission to our Title XXI state plan
+      amendment, SCHIP #5.'
+    topics: *id011
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-10-005-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-10-005: Form CMS-179 (approved June 28, 2010, effective April 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-10-005-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-04-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-10-005/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-10-005
+    cms_node_id: '40961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40961
+    approval_date: '2010-06-28'
+    effective_date: '2010-04-01'
+    summary: 'This amendment serves to implement Section 19002(a)(10)(A) of the Social Security Act (the Act), including continuous
+      eligibility under Section 1902(e)(12) and presumptive eligibility for children under Section 1920A of the Act . Ohio
+      is a Medicaid expansion state under Title XXI; this is a companion state plan submission to our Title XXI state plan
+      amendment, SCHIP #5.'
+    topics: *id011
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-021-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-021: Approval Document (approved June 1, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-021-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-09-021
+    cms_node_id: '41026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41026
+    approval_date: '2010-06-01'
+    effective_date: '2010-01-01'
+    summary: The proposed amendment updates five State Plan Amendment pages to reflect the new resource limit for Medicare
+      Savings Plans, as amended by MIPP A section 112. The proposed amendment addresses MIPPA section 115 by exempting Medicare
+      cost sharing from Medicaid estate recovery for six categories of dual eligibles with dates of service on or after January
+      1, 2010.
+    topics: &id012
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-021-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-021: Attachment (approved June 1, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-021-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-021/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-09-021
+    cms_node_id: '41026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41026
+    approval_date: '2010-06-01'
+    effective_date: '2010-01-01'
+    summary: The proposed amendment updates five State Plan Amendment pages to reflect the new resource limit for Medicare
+      Savings Plans, as amended by MIPP A section 112. The proposed amendment addresses MIPPA section 115 by exempting Medicare
+      cost sharing from Medicaid estate recovery for six categories of dual eligibles with dates of service on or after January
+      1, 2010.
+    topics: *id012
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-021-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-021: Form CMS-179 (approved June 1, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-021-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-021/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-09-021
+    cms_node_id: '41026'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41026
+    approval_date: '2010-06-01'
+    effective_date: '2010-01-01'
+    summary: The proposed amendment updates five State Plan Amendment pages to reflect the new resource limit for Medicare
+      Savings Plans, as amended by MIPP A section 112. The proposed amendment addresses MIPPA section 115 by exempting Medicare
+      cost sharing from Medicaid estate recovery for six categories of dual eligibles with dates of service on or after January
+      1, 2010.
+    topics: *id012
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-027-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-027: Approval Document (approved March 15, 2010, effective November 30, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-027-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-30'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-027/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-09-027
+    cms_node_id: '41011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41011
+    approval_date: '2010-03-15'
+    effective_date: '2009-11-30'
+    summary: Cost Reports.
+    topics: &id013
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-027-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-027: Attachment (approved March 15, 2010, effective November 30, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-027-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-30'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-027/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-09-027
+    cms_node_id: '41011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41011
+    approval_date: '2010-03-15'
+    effective_date: '2009-11-30'
+    summary: Cost Reports.
+    topics: *id013
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-027-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-027: Form CMS-179 (approved March 15, 2010, effective November 30, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-027-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-30'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-027/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-09-027
+    cms_node_id: '41011'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41011
+    approval_date: '2010-03-15'
+    effective_date: '2009-11-30'
+    summary: Cost Reports.
+    topics: *id013
+    link_label: Form CMS-179
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-032-approval-document
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-032: Approval Document (approved November 30, 2009, effective September 30, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-032-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-30'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OH-09-032
+    cms_node_id: '41001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41001
+    approval_date: '2009-11-30'
+    effective_date: '2009-09-30'
+    summary: Supplemental inpatient hospital payments for children's hospitals.
+    topics: &id014
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-032-attachment
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-032: Attachment (approved November 30, 2009, effective September 30, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-032-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-30'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-032/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: OH-09-032
+    cms_node_id: '41001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41001
+    approval_date: '2009-11-30'
+    effective_date: '2009-09-30'
+    summary: Supplemental inpatient hospital payments for children's hospitals.
+    topics: *id014
+    link_label: Attachment
+- source_id: us-oh-cms-medicaid-state-plan-spa-oh-09-032-form-cms-179
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Medicaid SPA OH-09-032: Form CMS-179 (approved November 30, 2009, effective September 30, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/OH/OH-09-032-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-09-30'
+  citation_path: us-oh/policy/cms/medicaid-state-plan/spa/oh-09-032/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Ohio
+    source_discovery_group: us-oh/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: OH-09-032
+    cms_node_id: '41001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=41001
+    approval_date: '2009-11-30'
+    effective_date: '2009-09-30'
+    summary: Supplemental inpatient hospital payments for children's hospitals.
+    topics: *id014
+    link_label: Form CMS-179

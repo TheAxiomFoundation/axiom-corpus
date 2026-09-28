@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "7735e24c7d2c6aafe77f9fc0ff3d15788c1d680b8d85cf80f1cfaaf7d96c1739"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "b74bb9ad2e018223b270ae31a92067aa465fcbf17a01f265ea2003520e0fc1c0"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "0239b6538222036e1aa38db83e3bc6b52279ce1a3ef4de0be18294d9e555f0ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-09-14-msp-income-standards/official-documents/us-ny-doh-gis-26-ma-05-attachment-1.pdf",
+      "sha256": "dcf7f71f46542cdfef77416791a5c495e11b07fd079826cee7ee4b08601479e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-09-14-msp-income-standards/official-documents/us-ny-doh-gis-26-ma-05.pdf",
+      "sha256": "363bd645b1ce8248180c22583211c61faa0bd088d9fec83a49fc82b80aec194b"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-09-14-msp-income-standards/official-documents/us-ny-doh-medicare-savings-programs-2026.html",
+      "sha256": "f18d425c0c2c87edb35235e2a0fc664084a8f97a8861cb1e31d5108532fbab41"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ny-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:38:22.695913+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4kJsnVU80mlGSWr5XKoj3vaa+z5vNFSmhX7TRwXw922BlN8TBmyInbQbRa8zC8B4irrDcdwN6DX9HbQ2L+CgCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

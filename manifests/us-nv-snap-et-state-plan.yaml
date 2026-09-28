@@ -1,0 +1,32 @@
+version: 2026-09-13-snap-et-state-plan
+documents:
+- source_id: nv-snap-et-state-plan-ffy2026
+  jurisdiction: us-nv
+  document_class: policy
+  title: Nevada SNAP E&T State Plan FFY 2026
+  source_url: https://www.fna.usda.gov/snap-et/stateplan/nevada
+  download_url: https://www.fna.usda.gov/sites/default/files/resource-files/nv-snapet-stateplanFY26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-nv/policy/snap-et-state-plan/ffy2026
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Administration (Food and Nutrition Service until 2026-06-01), publishing
+      the Nevada SNAP state agency's plan
+    document_subtype: state_plan
+    program: SNAP
+    topic: employment_and_training
+    fiscal_year: '2026'
+    effective_start: '2025-10-01'
+    effective_end: '2026-09-30'
+    source_status: current
+    policy_status: current
+    extraction_granularity: pdf_page
+    publisher_index_url: https://www.fna.usda.gov/snap-et/stateplan
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/nevada
+    source_discovery_group: us-nv/policy/snap-et-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; FNA SNAP E&T State Plans index, state page 'Print
+      Version (1.00 MB)' link
+    closure_element: snap_s31
+    fna_page_updated: August 07, 2026

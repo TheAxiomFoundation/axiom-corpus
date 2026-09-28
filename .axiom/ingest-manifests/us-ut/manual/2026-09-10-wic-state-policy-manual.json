@@ -1,0 +1,473 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "bb277020c27ba46e399c9474a387cf33ce0ef3d2c8e59a7120b9c0236dfff2e5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "f9c29eecd142179c0bccab37e4cadbff774416c6c2cfa1ff6c780a0ee51ffc25"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "2869182e2662b0b6df98f57d07e149fd9264f368a5ce827e70e9badc330eb8b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-ad-hoc-reports.pdf",
+      "sha256": "2d50736cb40d4d1e61c46111d40b223e7f08349d4a766e42062ffd9e18166681"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-adjunct-eligibility.pdf",
+      "sha256": "f275777aaf5753350239f8c83024f9cd54c279346c5cebd0232934db3470de3b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-anthro-and-biochemical-procedures.pdf",
+      "sha256": "619086c65148dc255b660d934fc6aadd2ff3b3df1662be68b8b561d608e023d2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-appeals.pdf",
+      "sha256": "8f29818bdd4f0e50c9064a59ccd95c5915977222e65c603775305ebec7aa3f87"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-breastfeeding-aids.pdf",
+      "sha256": "6876392c6a9c15e684ae7370eb7f4362b164517bc23436b55b40647fbbbd271e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-breastfeeding-and-the-nutrition-interview.pdf",
+      "sha256": "5d24ad448603639cfdd83703874fe143cdcf040e5e28ad5b00726c5ef2e8cb78"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-breastfeeding-counseling.pdf",
+      "sha256": "90ec5e411696246f52f12160ab1b995b14fc340cf67d4e60632a4609da9b4874"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-breastfeeding-descriptions.pdf",
+      "sha256": "61c3b81fa394cf8b73c3a06aec5c831a6d7667cd1589e96fec4183f1b8729b58"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-breastfeeding-positive-peer-influence.pdf",
+      "sha256": "56518875383e7b06184d54302adbcae9116e18fbad0089a1c2622d1c26c31d09"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-breastfeeding-promotion-and-support.pdf",
+      "sha256": "50e7e4ca1bf61d0f4e42b761a50fe01e227c5bfdd473998b53b938c51022c230"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-card-inventory.pdf",
+      "sha256": "c3e8a2162183d3810b8eecce435e48ed5ff414aebae4467c8db8b10d8a4d0822"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-card-issuance.pdf",
+      "sha256": "28748a2c09e7cf6fac1b222293dd5a4a7cd14ef7c608e353f8a56f051d589b8b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-categories-and-certification-periods.pdf",
+      "sha256": "2c62e787f766710a891ca429893ac246f90fa5cc3acabaaedcc30708df668a17"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-certification-health-assessment.pdf",
+      "sha256": "c24a5475b5e6de3b8e02f1c4bff5629a191fb422ffd7322a915ef95be11c740b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-civil-rights-reviews.pdf",
+      "sha256": "9a3291da915aa5c6220d2f3da64158a43ed69e54222e6257cf8191caa70ea003"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-civil-rights-training.pdf",
+      "sha256": "e6bca3592f05b37a8005e5d3091e510e776b5f4f4115f1dadffaf5834294ecf0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-clinic-forms-and-supplies-ordering-uci.pdf",
+      "sha256": "ec113e3af9293e8e847147c3b149f84c714f7b630ab792edcbd0d37b2deb07ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-collection-of-racial-and-ethnic-data.pdf",
+      "sha256": "ce1bd77946db516aea8e1e77e924370425f9d2982802dc821caa53745498e2a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-complaint-handling.pdf",
+      "sha256": "a5843da9596caf0d3a067975c9a3e93ba001afb08ed88f6cea72638b461636e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-complaints-against-vendors.pdf",
+      "sha256": "5761c1d6d88b8b976059a76dce1acda6bd245613ff15e615f68b36628f19891a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-complaints-of-discrimination.pdf",
+      "sha256": "41c0797fb3e62a1f1d062dbcd9b7c13e50b881fc2f5a5aa65a186cce86e4c14d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-computer-hardware.pdf",
+      "sha256": "be8755aad9a809a1dcc2736df9b33517361f6e85a8c2b37c7ded5b9b0e72dd0c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-confidentiality.pdf",
+      "sha256": "cce1e564dd1b4d85cb882cc5c33589e63aaedf995eba3b7c40985f98620fece4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-conflict-of-interest.pdf",
+      "sha256": "e89e2b72e3d47b86965457749ad6a1feec74a975fcfc4eebfa81bf33af0c84eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-definitions.pdf",
+      "sha256": "50861a4a1d0b4fdf68e6d66281eb6b5874182bbb9f230c9012ce2b83c60fa688"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-direct-and-indirect-cost.pdf",
+      "sha256": "0af120da58744621847baac6a0eaefe94a20c52b38bb7dc9c4551eea4369b6fb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-documentation.pdf",
+      "sha256": "86951d010f73a36b8d0d1e90700846d135372b175a3405ffee2222a495143ccf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-dual-participation.pdf",
+      "sha256": "da35cb39d5046273a45160d2d3fef664d011d670240cc2fe414e833cb11de6de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-emergency-planning.pdf",
+      "sha256": "ed902a5e5df6da61ace4ac5e52441e01a24830ffc6f0a6cddedef97cade944b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-equipment-inventory.pdf",
+      "sha256": "32fb14faf37a48ff3140f0eec525c3d82d5628380b4264dfbd376ef334615464"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-equipment-purchasing.pdf",
+      "sha256": "c655e48892bbaf2b665a941205a9c4dc40e9341db543f3e764022744f7093201"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-fiscal-audits.pdf",
+      "sha256": "6b4adb7d5a6e0407d5ef149928dbce623434ef15b1301a067663dfb67968780a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-food-and-nsa-expenses.pdf",
+      "sha256": "00b4c677176ecdf49987ed8abf5284089106a47d948850996128e16f447e4b72"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-food-packages.pdf",
+      "sha256": "ac806b3dd03dbfa5e4c992adb9623b296eb849d6021fdeaae23c5b8c6ce05967"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-foods-that-are-authorized.pdf",
+      "sha256": "1ec5fe8ede0a4af6594912281b0a1c8a271a22d3f7f9d05e75fc4587b5d1dfde"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-forms-and-training-modules.pdf",
+      "sha256": "a8866d3653f0e055cf042c23d173fbcd2899d2cca0dec11baf89928e2e271988"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-formula-and-food-authorization-form.pdf",
+      "sha256": "a1f555b84eacf97a3c93ad16f12e29421d3d356f12951691d44986f148b73cf2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-formula-and-food-returns.pdf",
+      "sha256": "953e2cc488d5aaddf09afbf6dc2787042c86774f678980479518e1d4dcf39c69"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-funding-committee.pdf",
+      "sha256": "918bdf3193131b2947086d7308a56570722bd58335a927c0369136458cba5242"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-funding-formula.pdf",
+      "sha256": "528d42851e07049c56beb62d57d9a117590158680e9b2c2330e8fc7ed0b6fdcf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-healthcare-referrals.pdf",
+      "sha256": "738ef2bc410995219f24a59e598631bf2073e6203a70764ef7e9bd94032776e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-high-risk-protocols.pdf",
+      "sha256": "d0b8f9109869d71ccc498e5f4bc29febbc4478255dedde9597169e7e9a3e382f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-homeless-and-domestic-violence-shelters.pdf",
+      "sha256": "3763a2d3167001c3b102afe3985b5e6057539b595d7006e1b1ca1681f148041f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-homeless-applicants.pdf",
+      "sha256": "d5b4d2a4d7e988c936c8cfa0a969a6b5e416a43600a1c2ce2c10b43a34a98e17"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-households.pdf",
+      "sha256": "9026f40baea6592c8ab53c876479f167994542df7a69feb2c42122500e50f536"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-income-documentation.pdf",
+      "sha256": "8a8ff27113a097b9030899de86ce8ebc0d24298adcabe9fefa6b351c276dc371"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-income-exclusions.pdf",
+      "sha256": "551105f5f5f337b7889df26a4bf04160c5e52bcb238a9b4bcf420391ff1fdb7c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-income-guidelines.pdf",
+      "sha256": "c5af503be8c91ca92592b1c17fc78353e6892116df8fa73e70c22a054522ba66"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-income-reassessment.pdf",
+      "sha256": "e6b577898fe28232333712f3ff24ec360e660b97e579dd17201547d7ff22e6dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-income-types.pdf",
+      "sha256": "834e72f7fcdbea206ff01311e1e88405814bf36913d9998dc36d98e2b20dc00b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-ineligible-applicants.pdf",
+      "sha256": "ea8af75e77f8df4c9f73395e5aeba9a8d47901df49f4a2f933fd8dd72570fb52"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-info-reports.pdf",
+      "sha256": "7d759050c6055b813637c2e02c755335188cbd91625b9a048f17f6c16ca751eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-info-system-planning.pdf",
+      "sha256": "9f5d4158151ba71322b5fba28d50935bb78ddbb6acc2ff6e9c5181f5df022c14"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-instructions-to-participants.pdf",
+      "sha256": "1aa30ad0696eb357eb9a2da275f43f37c10ebe5ab0806fc79835960cfc8ded4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-limited-english-proficiency.pdf",
+      "sha256": "ba2134bb82525b7e491c7aa68a0878a70c45d3b73185baa7d68e6b3e879bece5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-medicaid.pdf",
+      "sha256": "d95311ed4d957dabf01627bd511019701aa92cc270773a7921fa391a993872f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-meetings.pdf",
+      "sha256": "7b14c39c260fdd731feae4c3aacb40b127b25a001c260918195bdd3b8663df06"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-memos.pdf",
+      "sha256": "ff319d6054262f43fc18557d23650a26b81d1db2a2f281d903f071a4e295b193"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-midcertification-health-assessments.pdf",
+      "sha256": "c88cda8f1f0145bff0d62a03e37b10e0bb723b2859e81891d2cc64854597ed67"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-migrant-applicants.pdf",
+      "sha256": "73d219b1454d80eda7c3cd1eb712c474b0c936b063d311abad963a28dbeb0b72"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-missed-appointments.pdf",
+      "sha256": "d2092e2edc558d4573ee3870fdce52b7680462f65408a2452cf4958fe9da0dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-monitoring-and-evaluation-nep.pdf",
+      "sha256": "d8c003cd8566a4a4cb6f96985bd79059e9e07de2dcbc92514b412d14f3fad34b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-monitoring-of-nutrition-ed-costs.pdf",
+      "sha256": "1e023793e69c4304de7bf9c26f8caf38c907fc5f9eaa38acded700278fe53973"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-monitoring-of-staff.pdf",
+      "sha256": "90ed8ef4932af1afb6fd9c4347148ca00fc2b483d17f068160d7958147376fe6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-nondiscrimination-statement.pdf",
+      "sha256": "2496a095f11b50485f5c550162a0c26be00f60cab5e5b4833dd5efc5ea551d83"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-nutrition-education.pdf",
+      "sha256": "85e244b4b1351f22cb8bd5f0164e54052d69097ee0d0d7fbef538e1a09a2eb65"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-nutrition-risk-manual.pdf",
+      "sha256": "0dca70b4f3eb90f3f85fb756c660a60b5bd2ee0227e26373aaf8aade91a52a9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-ordering-formula-from-state.pdf",
+      "sha256": "ccb70ec3995f2869bb4fc23bfcbdcc1df383a19f7572978cd18b6523ccca8c62"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-outreach.pdf",
+      "sha256": "c40d98ac8044fe9ec90d41d0437e631b19c7a633bfc0eedc9fbadaf6e7609bd4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-parent-guardians-and-proxies.pdf",
+      "sha256": "ea0b8532055b36fc70748a3cef540e2a50661866fe9d0eff1efcc1b2777a527a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-participant-violations.pdf",
+      "sha256": "c7f6dd3d67eb906dde87947e1c762255d7b923e0437f17d9e747071153ac0bc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-persons-with-disabilities.pdf",
+      "sha256": "59e1dcdc24a96523e5a3805a23e2bc556860111aee20a45fadd052b0e925b383"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-positive-breastfeeding-clinic-environment.pdf",
+      "sha256": "245b3695aa24130771ab49b094f095197792e1e4be8829dc0daf45e8b842dfcb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-presence-at-certification.pdf",
+      "sha256": "e1550be8fe7c966dbd46a9e0f4c69fe072f3d4671ff593bdcc215decffb0bb5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-processing-standards.pdf",
+      "sha256": "71d8c81f2c1f21bf9703df4a1fc9b8edceaf90bc02b5aac2dd1e801ba201dd47"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-proof-of-identity.pdf",
+      "sha256": "0b08c4df51a01439d57b45418b32f5460ffe624a704a352abd37a0fabb7ff18b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-proof-of-residency.pdf",
+      "sha256": "43be7ad75fb494707b4381600cdcc28a6e27181eef0e6d62aba3924973258a68"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-proration.pdf",
+      "sha256": "6bbddfa812f3d805733eff57c7bf14b06ab8e858f0897be931a0f961867d5366"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-provisional-certification.pdf",
+      "sha256": "f5839add8f18d59e5c5aaccf4270c8089823c5ad80dd9252f850fdf4fce7edaf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-public-notification.pdf",
+      "sha256": "4cad14e16a36c9e2a7279c5585023a2e423da2d879401bd42bbc75fc882d41dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-record-retention.pdf",
+      "sha256": "cb77e1269c6e7a6852377c489f2c2e39724cc1fad1717aa6522c860d9ced35a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-replacing-cards.pdf",
+      "sha256": "e604d1f265d14714872b54192bdb755e7c0d4ad249f06608088fbfcf36c5e40d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-reporting-participant-shopping-problems.pdf",
+      "sha256": "a6f46445971abffbdd9d75799325098be9673f77bcbf68ae295a327452922401"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-required-reports.pdf",
+      "sha256": "181e6b8bf6f6ba4dc06cda1914e46e4c06dda0bba78bf67e2422606858dc1e3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-rights-and-responsibilities-procedures.pdf",
+      "sha256": "4e4e89115409c36f8844d936bc653de1c86ad31f95c179863d857a3f7eb80690"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-self-evaluation-tool.pdf",
+      "sha256": "f3018510cd28b0f9c6e7da563c6a9dfeba498d2e029db204e55e87ff6f2a927a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-sharepoint.pdf",
+      "sha256": "1d3a98a234d74e7f9c8d6b5dd8c2877acbcfef2a24a67ba01f8d881c4b9d7d1f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-special-income-situations.pdf",
+      "sha256": "72b2fa858400a267396f9481c60e92eaa16d92fcf61b8785f2bc1bbef1725dbe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-staff-training.pdf",
+      "sha256": "ca4efe37b18f1ad8fb8dc8ec467f7664d2f9f36620d8fb88db10996ba825085f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-staffing-requirements.pdf",
+      "sha256": "0b4d288fc564345cedbbd82d160635ae01b59cd6ad272afc13b07d65c316715b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-state-and-local-responsibilities.pdf",
+      "sha256": "9de9f4132111c6139f8da5e246617f58931649aff3f3819bfc17084e290eef22"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-state-management-evaluations.pdf",
+      "sha256": "855dd7c07f29f1990f557ffcdc2975a52c3ced9c0a8e9f849e2b5e6f83bc5912"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-state-plan-process.pdf",
+      "sha256": "48570ea13a0a713481200facee4a2474e94a9fdae8305ce4dda8193d076888aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-steps-for-certification.pdf",
+      "sha256": "971046092d19e90c5518a4ee2d5c1f49a6346eae0dd238e276d674c63cdd6ba2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-system-security.pdf",
+      "sha256": "0fb4bcd32cc10436798a13a1182ed4845b52a7080184190e456229add2a7d22c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-tailoring-food-packages.pdf",
+      "sha256": "4fbab89c5b32fb4fc8118ac452e8f0f277bc34e2224e00be2f6f5e090ced4d0b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-technical-assistance-visits.pdf",
+      "sha256": "37d48bc641a66268ce5f4a577c4a50b13180db7f25921d61b5912cf634da912b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-termination.pdf",
+      "sha256": "8f48825975cea6fa3beda0cb9797f69024770df94284022fb5fb8573f142d7eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-time-studies.pdf",
+      "sha256": "22d96847c24504a7df65249ed38210389bba22f74eb55a18d2efd9a7c208cfa9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-transfers.pdf",
+      "sha256": "2965623060d07fe8d5cb543f21a84dced5276f5e171ebc60675002509e1fa17f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-usda-management-evaluations.pdf",
+      "sha256": "dc0758b7ffd8934eb1fe5aa774b5f55fbac81af96bf7f2503d0f645a90c5093d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-vendor-authorization.pdf",
+      "sha256": "2fb1d2e1971854c08c7dbcea68a29cfa7566c55edca895e369dec9a72fe9af53"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-vendor-files.pdf",
+      "sha256": "4a7c61749837e8acc94a69ce59c335227f57e26391f294cf951c43fa38493144"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-vendor-monitoring.pdf",
+      "sha256": "3d529caf74dc705b3b3cd75a4fadeb842b514bee3bb0388f74a3ef9a4c624171"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-vendor-training.pdf",
+      "sha256": "4c103c2001703bc5bca96f157f5168bc3a1bdda5fccd1209b642b27132c278c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-voter-registration.pdf",
+      "sha256": "b5dcf097c0068e976441c93a02123bb0cee56fcccd5edd25e0ec6b687b1f5426"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ut-wic-manual-waiting-lists.pdf",
+      "sha256": "e9b3423c7fc1b6e52e48a73142a6a3e71bead3db86fc7afdd881d738900e0bf2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-ut-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 214,
+    "missing_count": 0,
+    "provision_count": 214,
+    "source_count": 214
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:57:42.832038+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jGUPDFZdOyfhJ9godOZ+FrTvZvw0p2e2AEQDzkHO2DWmv9CwyfL93SevbSbZEVAtaRZ25TBGWO4JSMbRie+oBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

@@ -1,0 +1,25 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-mi-mdhhs-rft-242-2026-04
+  jurisdiction: us-mi
+  document_class: manual
+  title: 'RFT 242: AD-Care and Medicare Savings Program Income Limits (RFB 2026-004, 4-1-2026)'
+  source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/RF/Public/RFT/242.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-mi/manual/mdhhs/bridges-reference-tables/rft-242
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Health and Human Services, Bridges Reference Tables Manual
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-mi/manual
+    index_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/RF/Public/RFT/000.pdf
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: reference_table
+    document_number: RFT 242 (RFB 2026-004)
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-4

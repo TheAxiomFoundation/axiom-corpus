@@ -1,0 +1,445 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-09-11-ga-snap-manual-supersede.json",
+      "sha256": "ff4c6ce10ea0cfc5c293fe542396e091f09d094170b941cf57f69a147952c0db"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-09-11-ga-snap-manual-supersede.json",
+      "sha256": "a75bd65706c09efe9c49eb2f211dc67acb068f73ed8a6e02d1d7374e4021b8db"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-09-11-ga-snap-manual-supersede.jsonl",
+      "sha256": "1916257431802340cb5012958b3f5796b71466ab6a13928d636486c5e3442e4a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3000.html",
+      "sha256": "430324f5d8cb578d66ced11333e5b7e9f02f755afb2914d32fafd47bdf69bc18"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3005.html",
+      "sha256": "5a1c6218b7a9b638ac725e53e5d81f9e1477df9065759cb717399848736cf0ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3010.html",
+      "sha256": "16a1c23e702cba943e47177c3e93d90d7ffc502696c5c9880db3e2cad2d80443"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3020.html",
+      "sha256": "e815dd83fbb833c34e849aa907dffdc6aaf4ed61f8d4ab4d6598fb41989a2b47"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3025.html",
+      "sha256": "05e4d4f15f278b5c538d3a37c651733f0febf0ff7dc8a267c0e4ef09675dd08c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3030.html",
+      "sha256": "4f5e522bffb58ed9efaac01dd90ddea730a499cd40da91054a22611911d668e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3035.html",
+      "sha256": "1be4a78b5c167d00bde82340cafb489c4a7d74afa4bc40d52b9436fe0dd0d44a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3040.html",
+      "sha256": "1065a4c086d38260873158e6966ae30b6007ef2506090e9f6f9684d5f32a4d36"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3100.html",
+      "sha256": "2ae9ea05e7930b824f4a1ad9b5c6bf9e65fa9dab4b0cf90fec70d5d63ee18c9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3105.html",
+      "sha256": "5a3fe643e96993e5df9da9e17a94a4b27e1ce7db4997f03abbd38447f50652c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3110.html",
+      "sha256": "77b76641cbe6dae918c6a9e07c77674d86e2969f0f156b51353e87ffb00c1c4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3115.html",
+      "sha256": "d2e0760dff36a6fa26b2231e34c4f70fd5da0e3c066623132e593e03ebfc09cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3120.html",
+      "sha256": "42242be7ede0e5c9ca5d33ccc06e83a9cfb5d93cd5e7ba0af1e1003f3866b506"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3125.html",
+      "sha256": "608710f190128e1198d81df0aa80b55ea40f407fad942651336354c07c9260a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3200.html",
+      "sha256": "1645c122f97561285079b1fc2c04634b3c6d9c4efb30b39e153f05ebd6240988"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3205.html",
+      "sha256": "2ad218dc0917ef6d57ab173b5e4e9b2505f16f29a9b092cae21c6ccc472599ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3210.html",
+      "sha256": "d294f77266bdf32c2d3abb172e35b291c1a3b597f1421c13ecd31389faa162d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3215.html",
+      "sha256": "7906fc6b2cb73b35274b667270b10cbd0635e3b61f5524db7fbaf257dd09abb4"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3220.html",
+      "sha256": "64cc079a9b8413b579374837db364bae316be031eca79f7f52bd90e995025230"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3225.html",
+      "sha256": "8b1c718c285bd7acd2e14bb240a79a8c7fcf79676ffc517b63ba7a0aa7ca07b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3230.html",
+      "sha256": "2fe97179e4e635581c0b21e434456f5e51765cef70bd4322000e91fa065cd462"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3235.html",
+      "sha256": "c39404aeb5de1011270e96d2f64cc7e01fabf24a79e1676d9f4177ef14745ae2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3240.html",
+      "sha256": "55046966ca7b03611eefa1ef21f25b382c384f919c8176f07e925a9515a15734"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3245.html",
+      "sha256": "53047412540a1ce88c130b1573b8a2c0c69c1177296beb1a62770d62d3f32d9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3300.html",
+      "sha256": "a1ea06cddc4298a7a6d4d30b0a250dc292c90f70bb846876b27e43b6e4a96a89"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3305.html",
+      "sha256": "4254b79b875f7f2a9a05e5dc8a877debd08e3370e9d08ea0b0060e795e10cd55"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3310.html",
+      "sha256": "9d41915a56767959dbc71675df1bed06ae169928d3f4dbae923d2d91190e9e3d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3315.html",
+      "sha256": "7934baf41f27dc17b5f39ffd5a39c6548fa103a40d066ebedf294acd04ee8882"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3320.html",
+      "sha256": "b5ca41423201fc535b785cae5eb9770d1bf444387679dfc588d0cdaf6420df91"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3325.html",
+      "sha256": "e4fdbdf2b1750c9f49cdb9a875a409ba5fce6735d6102d8c75a64746256b5a77"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3335.html",
+      "sha256": "5252ec0e2267ef164179cb1d67bcf74d0116b2d8b3af97c478e141e318c26baf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3340.html",
+      "sha256": "3c228a30acd0f86f08a74631caf5e8e7d00329051ff3f7439400e0de9080dd33"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3345.html",
+      "sha256": "e41f51e949ee539f2d5b574c568d33e79d44458e879f3f1e4782fa2a554f958e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3350.html",
+      "sha256": "11e487f4d8d80d848600946dd5cd971cc6322e7e8b8dc6405cded80679c5cb2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3355.html",
+      "sha256": "0b1032e8a22f0010ee8e431ab8c87afefcaea3ae47dac4f933c473ff3e03b793"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3360.html",
+      "sha256": "ec41d4b5911ac4ae68bf329879a86e4b7c05fefc6d966ebe3d1c43f82939d82c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3365.html",
+      "sha256": "cc2c10a52de9b29d056a163cd49c287ff6e04583164c05f66f2861eec43e25b4"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3370.html",
+      "sha256": "2b0f9bc4912373846c78a91d007b09dce3dd2f949238015afbacca50f75c238b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3375.html",
+      "sha256": "abd8485f3cd4b8613becf230ad145442b214fa42d6cd0c2a0facddf0409179d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3380.html",
+      "sha256": "104fdefdbd6badb29b921e7e1d20a1a1e56c6a43c325e1b492c51a8b87ff4e7d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3385.html",
+      "sha256": "56ed44f17bc0cab94a9965ce1658ae69046a5343903cc63ff485f689852e5967"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3400.html",
+      "sha256": "c244a50e8422b7b49383c0c3e50e4e9889bec281b92559c8126e7490382a0014"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3405.html",
+      "sha256": "2bc352c67bc6abf80634b7c191c5f1006d5879e023a95c552406e595545a2749"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3415.html",
+      "sha256": "7b7459b6145abe0e076779089a9e3a0c200ad5735d091ed42d3c282e5943bf4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3420.html",
+      "sha256": "4e123253f548c2730b671824480b8b7d14e53db3c27135a311c7366201641f21"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3425.html",
+      "sha256": "5242ab1fa771b08de47fefc397b43cc78f617ddd4f2ddc2dd246b6a959260b54"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3430.html",
+      "sha256": "bf3833f39a6e891750d2d13e5d6e67ac4922050aed22e7dd896e33b79e7b2108"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3500.html",
+      "sha256": "494129ec295d4cab8006df5f1ebf649a34728915100f41190681d01cf8b55cd2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3505.html",
+      "sha256": "9a4dda0c5f08021cadfea60b1d2e55621dbecd1261d308562998ed61f6410fbe"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3510.html",
+      "sha256": "b5de78af2276151e0dfa3d920aa17ee73f3b9496c3caafc9d8728dac21321a83"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3515.html",
+      "sha256": "b83862b6682f76bfb3893d397c0ce34eb3c8284d65bfe61fa346ebad43107b32"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3520.html",
+      "sha256": "035fb2b0372d5fe2f7f74210fe61f02a6832dab9582459b99cd69e275af5f42c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3525.html",
+      "sha256": "2e6003eaf5175fcc01c7ef08d5c202281836e6820c4546b227502996bca598b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3530.html",
+      "sha256": "42bac3d15959296987e4dc0cb479fe8d875fad9b837c7fe05e59e169955cf9f3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3600.html",
+      "sha256": "18db48ba4ad703eea4dc9e703c1e6108a55aa9e108bc9194cb67b9a19adc83a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3605.html",
+      "sha256": "f2afefe40a3b752812c8d3529d9448343db83eaff999280a3c083575e0778aa2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3610.html",
+      "sha256": "d3119f7231bb4b418a5d4bb90a4f2c2d0d3a02894cf8f69f56dc07793a00da88"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3611.html",
+      "sha256": "d8a6c5b45761267d2ecb06859e13e6c0867776297bf684741886e154f43c1b98"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3612.html",
+      "sha256": "6c533826338be46c3831b3d58e180eadaf7e07b28a27ec4e95f5601b01690cfa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3613.html",
+      "sha256": "57bb154779f59d53eb3562e4a2b8f37329670461a2619773e28bad9ecfb224ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3614.html",
+      "sha256": "f8a677b3783f8ab021e055f05e6ab1bcecabf1f8814dd730a3f72fafba980c0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3615.html",
+      "sha256": "24f9b291f9f9b664773ea99d164236672cc4c1ef0401fafbce10ae13b698d9e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3616.html",
+      "sha256": "b312cd1cae8cd8806dfbc9a82b0e662ba744568a0bede43e6044a7120a908edd"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3617.html",
+      "sha256": "3641ffd98e9840bf8e26db002444389069a9b942016144ff520e5267bbd91858"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3618.html",
+      "sha256": "5dadcef9bd444e1cdec87f98b0c23b9a4c82ad0dcf8eac81c129dee09305a93c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3620.html",
+      "sha256": "dd2bdde8c53ad3e10cbce5ea97b08327251db1d77cb912ebbbf6a44fe2448290"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3625.html",
+      "sha256": "e09ddc90e44224a07f6129b1ceec5b6a738aa856b203ec9093194b1b86e10e0e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3630.html",
+      "sha256": "bdc27c7a44c2bcc1ecdfd7df0e760b1df50a8118978805fd2928055c6a544321"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3635.html",
+      "sha256": "f7e6d8f6fb4ab9c468d43a44d25c87313cbdf095e44395e97740daba1e20ca08"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3640.html",
+      "sha256": "a3de74a10debff71c41f3f38b536651892624598045a1ca11012dcddfc995bc2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3650.html",
+      "sha256": "d6d66f0802e214966935e87dd99aae9138ee15cc2a787065a4c892c794bd5cec"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3700.html",
+      "sha256": "596430953477ecacf543d8e2c6bbeaef99d1de5330a0f67f689f9b9fbe4dc5cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3704.html",
+      "sha256": "fb2f561a6485e6b6663f46fbab8de1b94aa9a4fdaf4922ff8e28a4f9bbfa4ebb"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3705.html",
+      "sha256": "8ce5f886ce7957a7a932369e5ea1c515b33d8d8bc855f8c02f745c34497a744a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3710.html",
+      "sha256": "d8999951c41ffd6ad4e1ab2b2df73743798e2381b2db9e1d144bf0c6be7e3d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3715.html",
+      "sha256": "f4d80dadaec0c1626991d45e6c0a4fccd2ca2ed7e65619c73646222a8d007123"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3720.html",
+      "sha256": "8ad4a93fe361fca3ec658180ecee01be8a842f7b3152eb19acf22827b6405381"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3725.html",
+      "sha256": "83206f6cbc0702699f6475e47d45a2ac7510ef1147880986040abee4a7d0434c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3730.html",
+      "sha256": "f85f1a666cd6a55ae0e7a98f9c99b9df5b277fcbd24c3484b0112dca7fa2663e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3800.html",
+      "sha256": "546f9158acbace1c3e0c70c0b204e6eaa7dd619525dd394b1be423000e5a7dc3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3805.html",
+      "sha256": "410bcf1b5b3045fe8e59c07c19588d8073236ef21c0ee4629c57e6b573985abf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-3810.html",
+      "sha256": "e25155a5439b61fe5e00bffbee50af354c22a256f92563097a796fdd13ea21f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-a-boi-tables-au-sizes-1-10-fy26-with-cents.pdf",
+      "sha256": "b59c9ef9ef8f3b129f5f9164621faedd665dd1c4978da02376fe76f8f39cd74f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-a-boi-tables-au-sizes-1-10-fy26.pdf",
+      "sha256": "86553a38b4e586fa0723dc50857f16062faaae96adac841f82c8b6817867e7e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-a-boi-tables-au-sizes-11-20-fy26-with-cents.pdf",
+      "sha256": "7e875476b225dd1d1b79bb17a705e74952f591fc7a75e325022effc6a456030d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-a-boi-tables-au-sizes-11-20-fy26.pdf",
+      "sha256": "64cb47015b563cd967765eea144cf6c4bc11ebbd5da2244296169e7a6e98d42d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-a-financial-standards-overview.html",
+      "sha256": "d581379d803d628040efa10d17b0cdbf9156d181b18ea2b320243deb5ff59989"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-a-food-stamp-income-limits.html",
+      "sha256": "21220f47dde419b8847bfb1873f1a7eef7333240636609f8ce5e39ab10406b07"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-administrative-disqualification-hearings.html",
+      "sha256": "373cb1c538cbb61484ff82f2a5b550003baaa0b2d816f2541575ce8d3037f889"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-final-appeals.html",
+      "sha256": "0d59e07b4ca4813c44bfadf3efb4224d318e3a264b9f32536f6628f3ee30de33"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-hearings-overview.html",
+      "sha256": "f6c5b5d05baa9a0b197e174b016e11e1ef9eb63c8a11741cb3afc99e7ee54132"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-hearings-toc.html",
+      "sha256": "5e5beb4785d4ab096459ad9db41f4c18ffa5ca58b8d45dd0a802293bdc6e53fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-initial-hearings.html",
+      "sha256": "bea03dc6f455a4ac771e277a403459fe52fdefec6b518fc7559c22521344102e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-responsibilities-of-ogc.html",
+      "sha256": "46a83b569cd95c9f6f27fe24fd89e217c1241cb43f062675339e1fdf88489242"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-b-responsibilities-of-the-office-of-state-administrative-hearings-osah.html",
+      "sha256": "0c8cb0e35c19f04e37eb8cd3ed75b4f7e27a165468d8b50ccab9f8f854254f89"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-d.html",
+      "sha256": "0e174ec913dff353ffdb08236c10dcbed71e202c481e8bc2965e1eb0f29448c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-e.html",
+      "sha256": "4595428a3e318afd6be99a79f4c082f9d9cb72180c4eca0daeee87fa454735a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-f-forms-toc.html",
+      "sha256": "e37739a8e8e61b8a35ce33912424ea34899424cac2d12d8ab044fc6f2414bab8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-j.html",
+      "sha256": "f503dbf11896b022c9775230d3ae712a9a8d4fdd6f594bf806579fb0b96b6692"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-11-ga-snap-manual-supersede/official-documents/ga-dfcs-snap-appendix-l.html",
+      "sha256": "69370ac022c60d5f990e9387c817003aa5943d9af725c45b8c0f83082a4a7462"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de9a23d2d7610775f446ff26f26e48c9b04a9b7e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-ga-snap-manual-supersede (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1207,
+    "missing_count": 0,
+    "provision_count": 1207,
+    "source_count": 1207
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-13T19:31:49.764448+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4uU/xr4MvuQK2QqNhsRyzGNKg+x11r5I0U0VuBxxX7IJ8uGMSkN8kwsMeVYrAoIyf3E2ZzMF91ES4vCH9DuNAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-ga-snap-manual-supersede"
+}

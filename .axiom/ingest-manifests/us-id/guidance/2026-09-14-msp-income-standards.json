@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "22551bfa267d7c687edd300956493d5e1ad6efef042702b5e0d4533c5f8639ef"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "32b73a29d45c2015d2bd07e1b5adc426eb6956b9ad37a2c68a83ee6e52743b6b"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "94e5588b82afcc8075627c86526283a367053234fd9e525ec5a4cf026dcfa0fd"
+    },
+    {
+      "path": "data/corpus/sources/us-id/guidance/2026-09-14-msp-income-standards/official-documents/us-id-dhw-medicaid-program-income-limits-2026.html",
+      "sha256": "6e1572a8b458e6a632f3f0992f2ea7cb534ffefa25709ea34405cf23e7ddb441"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-id-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:29:21.153548+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wtxEu0igV3Z21UwlpbAfZFpvWCLHT5TEjqr31PXdMH7MdDNSjoo0SnY7WIYlk5KQdj7wUNdD0iIWEqkNol7SCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

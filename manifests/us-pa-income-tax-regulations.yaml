@@ -1,0 +1,22 @@
+version: '2026-09-14'
+extractor: extract-pennsylvania-code --only-title 61 --only-chapter 101,103,105,107,109,111,113,115,117,119,121,123,125
+documents:
+- source_id: pa-pacode-61-article-v-personal-income-tax
+  jurisdiction: us-pa
+  document_class: regulation
+  citation_path: us-pa/regulation/title-61
+  title: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
+  source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/061toc.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Revenue
+    official_publisher: Pennsylvania Legislative Reference Bureau (pacodeandbulletin.gov)
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-pa/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/061toc.html
+    extractor: uv run axiom-corpus-ingest extract-pennsylvania-code --only-title 61 --only-chapter 101,103,105,107,109,111,113,115,117,119,121,123,125
+    pointer_manifest: true

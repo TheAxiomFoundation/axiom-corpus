@@ -1,0 +1,29 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-va-guidance-dars-auxiliary-grant-rate-letter-2026
+  jurisdiction: us-va
+  document_class: guidance
+  title: 'Virginia DARS Auxiliary Grant rate letter: rate increase effective January 1, 2026'
+  source_url: https://www.dss.virginia.gov/media/vdss/licensing/documents/assisted-living-facilities/additional-resources/ARC2026_ag_rate_letter.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-va/guidance/dars/auxiliary-grant-rate-letter/2026
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department for Aging and Rehabilitative Services (rate letter, hosted by VDSS); Virginia Law
+      Portal, Legislative Information System (22VAC30-80)
+    document_subtype: rate_letter_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: VA
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://www.dss.virginia.gov/licensed-care/assisted-living-facilities-alf/
+    source_discovery_group: us-va/guidance/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dss.virginia.gov/licensed-care/assisted-living-facilities-alf/
+    extraction_granularity: pdf_page
+    expression_date_note: letter dated November 10, 2025; rate effective January 1, 2026
+    access_note: dss.virginia.gov and law.lis.virginia.gov HTTP 200 to the plain client
+    page_count: 1
+    hosting_authority: Virginia Department of Social Services (dss.virginia.gov)

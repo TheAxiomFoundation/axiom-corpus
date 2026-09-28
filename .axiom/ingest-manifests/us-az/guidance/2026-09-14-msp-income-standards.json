@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "79c93fdd1252095fd82886f35992aade14d349ff00346e32280293ec9041542c"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "95a20337f495e9baa1f32770e581f549e90a7d0ac29e935e4b3c5f43ac280b71"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "953c9204851bc08eac2ccb547177b0670477a8b38cfd059830235db42b97f76d"
+    },
+    {
+      "path": "data/corpus/sources/us-az/guidance/2026-09-14-msp-income-standards/official-documents/us-az-ahcccs-eligibility-requirements-2026-02.pdf",
+      "sha256": "b4a5e195c3828ca62a357fea6bb7d5babe5fb4a2f304eee7af7c656ab5ad450e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-az-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:12:24.132306+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ODlAlgjl4jZrxKMibbyFMCwd1FIvcnPK11/7DbP3x/Q+8+2JnoOFKyJw7x1ucJl5bCasg6PMI8u0wBwYKqFwBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

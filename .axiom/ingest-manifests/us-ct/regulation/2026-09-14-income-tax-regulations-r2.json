@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/regulation/2026-09-14-income-tax-regulations-r2.json",
+      "sha256": "3eaa05eccf61e460bf9e491094e72f84f0eb61f113dba57fbc78657210da22ed"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/regulation/2026-09-14-income-tax-regulations-r2.json",
+      "sha256": "2f67895c4b6141f069c4d36e55415737758a64d454274b1b73ec3a53cfc8d275"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/regulation/2026-09-14-income-tax-regulations-r2.jsonl",
+      "sha256": "24f461a8fb5ab17c8de50818a0f3a66d082a2b00b6709f3944dbf9fd5ba8a3f2"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/regulation/2026-09-14-income-tax-regulations-r2/official-documents/ct-eregs-title-12-income-tax-drs.html",
+      "sha256": "e0e5fcb3404e0b93a332aa33ecc8dcd3f62eb83d92ddb874dc8186f2da11a713"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "778497ac1e62a3bdac8475458cfcd7a5a39885c9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations-r2 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 187,
+    "missing_count": 0,
+    "provision_count": 187,
+    "source_count": 187
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T19:56:31.448083+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Z4zh13UgH5HCSEHzxvYQUkGYXJo6deCXeA3sEtk5mDQALjWij18RDia2p5L33JStzCyoOEw4tROuRdrNgMNGDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations-r2"
+}

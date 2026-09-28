@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "96b7b903484b5b5626199f57c8eec7f98b5d2bcdeebd0642311ae5a423daa885"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "628672bf6ce9c1a8991323c4719d9c20662b82348bdcdcf8e9785751b0ff8310"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "501644e2b11b7a55f99e10da61e187ef6a8360e94919eb04c4435c06cb7fe7ea"
+    },
+    {
+      "path": "data/corpus/sources/us-id/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-id-istc-form-39r-ty2025.pdf",
+      "sha256": "25d31c120b7858c6b86aadbe046e21423d86dc5415269ef97f36fd329b17e78f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-id-istc-form-40-ty2025.pdf",
+      "sha256": "1390489138a7df67095155aaf34e6e8f39a4fd36041594f95b766f5e33bb8a13"
+    },
+    {
+      "path": "data/corpus/sources/us-id/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-id-istc-individual-income-tax-instructions-ty2025.pdf",
+      "sha256": "952263e92f7c096b10aba50555cc7c166c78efc3b6ce6e5029d4837404553005"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T21:46:46.986834+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Qo11H/O9QJGC3Zj0Vfmq+vyF3/dJC6NQ95GUMGm/BMA6GAgURk+YH9TftsMJBYx9AqhKgTK1vLrjBlrpxbHrAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

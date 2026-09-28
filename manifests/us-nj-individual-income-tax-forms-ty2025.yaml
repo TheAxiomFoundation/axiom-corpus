@@ -1,0 +1,43 @@
+version: '2026-09-10'
+documents:
+- source_id: us-nj-taxation-nj-1040-ty2025
+  jurisdiction: us-nj
+  document_class: form
+  title: Form NJ-1040, New Jersey Resident Income Tax Return (2025)
+  source_url: https://www.nj.gov/treasury/taxation/pdf/current/1040.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-nj/form/taxation/ty2025/nj-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Division of Taxation
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-nj/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.nj.gov/treasury/taxation/prntgit.shtml
+    discovered_via: manual-review:tax-agent-queue; index https://www.nj.gov/treasury/taxation/prntgit.shtml
+- source_id: us-nj-taxation-nj-1040-instructions-ty2025
+  jurisdiction: us-nj
+  document_class: form
+  title: Form NJ-1040, New Jersey Resident Return Instructions (2025)
+  source_url: https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-nj/form/taxation/ty2025/nj-1040-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Division of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-nj/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.nj.gov/treasury/taxation/prntgit.shtml
+    discovered_via: manual-review:tax-agent-queue; index https://www.nj.gov/treasury/taxation/prntgit.shtml

@@ -1,0 +1,25 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ga-dfcs-medicaid-2194-peachcare-for-kids
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia Medicaid Policy Manual: 2194 PeachCare for Kids'
+  source_url: https://pamms.dhs.ga.gov/dfcs/medicaid/2194/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-05-01'
+  citation_path: us-ga/manual/dfcs/chip/2194
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services, Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: CHIP
+    source_discovery_group: us-ga/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: PeachCare for Kids
+    manual_transmittal: MT 79
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/medicaid/

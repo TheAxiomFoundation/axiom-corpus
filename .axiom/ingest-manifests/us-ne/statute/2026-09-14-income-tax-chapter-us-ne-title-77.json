@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/statute/2026-09-14-income-tax-chapter-us-ne-title-77.json",
+      "sha256": "52597409e902333dc097c5c63ece5dbbc37e9d5c95445a8a9068d0fb9377d81f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/statute/2026-09-14-income-tax-chapter-us-ne-title-77.json",
+      "sha256": "e0da49410e2a31cd55aa80f39970f6f16fcdef229922f72cd987550a15c5edf1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/statute/2026-09-14-income-tax-chapter-us-ne-title-77.jsonl",
+      "sha256": "50eaaa958830710751489db89437e02a7da5482d19ab7c959bb9fbcefbef424e"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-09-14-income-tax-chapter-us-ne-title-77/nebraska-revised-statutes-html/chapters/chapter-77-full.html",
+      "sha256": "edd0bcc1e0dcd543780c5acf87ac7285ddc0068dc60daa75d301249dc208ccaa"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-09-14-income-tax-chapter-us-ne-title-77/nebraska-revised-statutes-html/index.html",
+      "sha256": "ed765742e453f26ede2348d529f4177a802d0c3e2c0316fd093d58fe816efba2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-us-ne-title-77 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2742,
+    "missing_count": 0,
+    "provision_count": 2742,
+    "source_count": 2742
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T17:21:42.874788+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "R90KIADfzDXl1VDPpQh+nb/bqLyO3LZ6jsCfbFyG5NMSEuILedEy0xWyTDdpBlSqqNsi5ZoxrwUdQRLi1oM2Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-us-ne-title-77"
+}

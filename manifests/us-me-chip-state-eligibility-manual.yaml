@@ -1,0 +1,29 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: me-ofi-mainecare-eligibility-manual-chapter-332-part-5
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 5: Children''s Health Insurance Program (CHIP)'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-29'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-5
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 5$
+    stop_text_pattern: ^PART 6$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services Office for Family Independence
+    document_subtype: administrative_rules_part
+    program: CHIP
+    source_discovery_group: us-me/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    publication_authority: Maine Secretary of State Administrative Procedure Act Office
+    rule_chapter: 10-144 C.M.R. Chapter 332
+    rule_part: '5'
+    rule_filing: 2025-101
+    state_program: Maine CHIP (formerly CubCare)

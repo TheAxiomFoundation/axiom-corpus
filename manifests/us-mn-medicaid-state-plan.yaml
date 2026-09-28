@@ -1,0 +1,1998 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-mn-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 436
+- source_id: us-mn-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 436
+- source_id: us-mn-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 436
+- source_id: us-mn-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 5
+    index_records_on_page: 100
+    index_records_total: 436
+- source_id: us-mn-cms-medicaid-state-plan-spa-index-p05
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=4
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p05
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 5
+    index_pages: 5
+    index_records_on_page: 36
+    index_records_total: 436
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-24-0036-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-24-0036: Approval Document (approved December 10, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-24-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-24-0036/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-24-0036
+    cms_node_id: '176091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=176091
+    approval_date: '2024-12-10'
+    effective_date: '2024-07-01'
+    summary: This Amendment disregards state tax refunds, rebates, and credits, and certain teacher stipends, in determining
+      eligibility for certain non-MAGI eligibility groups.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-24-0003-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-24-0003: Approval Document (approved June 21, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-24-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-24-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-24-0003
+    cms_node_id: '166656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=166656
+    approval_date: '2024-06-21'
+    effective_date: '2024-01-01'
+    summary: This SPA eliminates cost sharing for Minnesota’s Medicaid enrollees, pursuant to Minnesota Laws 2023, Chapter
+      70, Article 16, Section 12-14.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-24-0004-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-24-0004: Approval Document (approved June 21, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-24-0004
+    cms_node_id: '166666'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=166666
+    approval_date: '2024-06-21'
+    effective_date: '2024-01-01'
+    summary: This plan in which the state disregards, under the authority of section 1902(r)(2) of the Social Security Act,
+      all countable resources in determining eligibility for the Work Incentives eligibility group.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-24-0006-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-24-0006: Approval Document (approved February 27, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-24-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-24-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-24-0006
+    cms_node_id: '160016'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160016
+    approval_date: '2024-02-27'
+    effective_date: '2024-01-01'
+    summary: This amendment provides assurances in Attachment 4.22-B related to third party liability, under the Consolidated
+      Appropriations Act of 2022. In addition, the state is restoring a statement related to long term care insurance, originally
+      approved under SPA 09-001, but was missing from the submission of page 3 under previously-approved SPA 22-0015.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-22-0029-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-22-0029: Approval Document (approved December 6, 2023, effective September 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-22-0029.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-09-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-22-0029/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-22-0029
+    cms_node_id: '157231'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=157231
+    approval_date: '2023-12-06'
+    effective_date: '2022-09-01'
+    summary: With this Plan the state add to its state plan additional income and resource disregards under section 1902(r)(2)
+      of the Social Security Act.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-23-0030-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-23-0030: Approval Document (approved November 1, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-23-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-23-0030/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-23-0030
+    cms_node_id: '155331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155331
+    approval_date: '2023-11-01'
+    effective_date: '2024-01-01'
+    summary: The State is changing the implementation date of the previously approved MN-22-0017 SPA as well as incorporating
+      permanent funding for the moving expense allowance in Housing Stabilization - Transition Services.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-23-0002-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-23-0002: Approval Document (approved June 22, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-23-0002
+    cms_node_id: '150401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150401
+    approval_date: '2023-06-22'
+    effective_date: '2023-01-01'
+    summary: The State adopts the changes to the eligibility rules for the Former Foster Care Children eligibility group,
+      as enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-23-0001-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-23-0001: Approval Document (approved April 21, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-23-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-23-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-23-0001
+    cms_node_id: '147146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147146
+    approval_date: '2023-04-21'
+    effective_date: '2023-01-01'
+    summary: This amendment updates the state’s third-party liability obligations in Attachment 4.22-A of the Medicaid State
+      Plan.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-22-0015-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-22-0015: Approval Document (approved June 27, 2022, effective June 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-22-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-06-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-22-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-22-0015
+    cms_node_id: '137496'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=137496
+    approval_date: '2022-06-27'
+    effective_date: '2022-06-01'
+    summary: This amendment addresses third party liability and related Medicaid payments regarding medical support, prenatal
+      care and pediatric services, described in attachment 4.22-B of Minnesota’s Medicaid State Plan.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-22-0009-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-22-0009: Approval Document (approved April 14, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-22-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-22-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-22-0009
+    cms_node_id: '134836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=134836
+    approval_date: '2022-04-14'
+    effective_date: '2022-07-01'
+    summary: This SPA amends to increase an income disregard for certain medically needy groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-21-0022-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-21-0022: Approval Document (approved December 17, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MN-21-0022
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-21-0022/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-21-0022
+    cms_node_id: '129166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=129166
+    approval_date: '2021-12-17'
+    effective_date: '2021-07-01'
+    summary: This amendment proposes to change provider requirements for community mental health centers, adds coverage of
+      prophylaxis under the state’s dental benefit, allows for 90-day coverage of maintenance medications, and adds weight
+      loss drugs to the state’s prescription drug formulary.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-21-0003-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-21-0003: Approval Document (approved July 21, 2021, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/MN-21-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-21-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-21-0003
+    cms_node_id: '110116'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110116
+    approval_date: '2021-07-21'
+    effective_date: '2021-01-01'
+    summary: CMS is approving this time-limited state plan amendment (SPA) to respond to the COVID-19 national emergency.
+      The purpose of this amendment is to implement a more liberal income method for a disregard for pandemic unemployment
+      assistance income under section 2102 of the CARES Act.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-21-0004-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-21-0004: Approval Document (approved June 23, 2021, effective July 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MN-21-0004
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2021-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-21-0004/approval-document
+  request: *id001
+  extraction: {}
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-21-0004
+    cms_node_id: '110246'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110246
+    approval_date: '2021-06-23'
+    effective_date: '2021-07-01'
+    summary: CMS is approving the state’s request to amend its 1915(i) state plan home and community-based services (HCBS)
+      benefit, transmittal number TN 21-00004.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0020-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0020: Approval Document (approved February 22, 2021, effective November 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MN-20-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-11-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0020
+    cms_node_id: '106106'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106106
+    approval_date: '2021-02-22'
+    effective_date: '2020-11-01'
+    summary: Authorizes the department to establish provider specific rates for services provided by Psychiatric Residential
+      Treatment Facilities (PRTFs). The amendment also removes outdated language
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0010-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0010: Approval Document (approved February 12, 2021, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MN-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0010
+    cms_node_id: '106041'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=106041
+    approval_date: '2021-02-12'
+    effective_date: '2021-10-01'
+    summary: This SPA revises state plan language to modify the requirements for delivery of case management services
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0017-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0017: Approval Document (approved January 14, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MN-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0017
+    cms_node_id: '105476'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105476
+    approval_date: '2021-01-14'
+    effective_date: '2020-10-01'
+    summary: Effective for services on or after October 1, 2020, Minnesota 20-0017 will authorize the Department to provide
+      ongoing interim payments to hospitals eligible to receive the inpatient hospital supplemental payment.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0019-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0019: Approval Document (approved December 21, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/MN-20-0019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0019/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0019
+    cms_node_id: '105656'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=105656
+    approval_date: '2020-12-21'
+    effective_date: '2020-07-01'
+    summary: Amends 1915(i) state plan HCBS benefit
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-me-20-0007-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA ME-20-0007: Approval Document (approved October 28, 2020, effective November 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/ME-20-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-11-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/me-20-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ME-20-0007
+    cms_node_id: '103501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103501
+    approval_date: '2020-10-28'
+    effective_date: '2020-11-01'
+    summary: updates the performance standards, presumptive eligibility time period, application, and training material for
+      hospital presumptive eligibility
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-19-0017-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-19-0017: Approval Document (approved May 22, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-19-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-19-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-19-0017
+    cms_node_id: '98816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98816
+    approval_date: '2020-05-22'
+    effective_date: '2019-10-01'
+    summary: Adds income and resource disregards to certain individuals eligible for home and community-based waiver services
+      under Section 1915c of the Social Security Act..
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0006-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0006: Approval Document (approved May 22, 2020, effective March 13, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-13'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0006
+    cms_node_id: '98646'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98646
+    approval_date: '2020-05-22'
+    effective_date: '2020-03-13'
+    summary: 'This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to adopt the following less restrictive income methodologies: Disregard from income, any payment made by a state,
+      local or tribal government to relieve the adverse economic impacts of the COVID-19 pandemic for certain eligibility
+      groups, and Disregard from assets the payments of a state, local or tribal government to relieve the adverse economic
+      impacts of the COVID-19 pandemic that are retained following the month of receipt during the disaster period, and/or
+      retained following the disaster period for certain eligibility groups.'
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-19-0009-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-19-0009: Approval Document (approved May 19, 2020, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-19-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-19-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-19-0009
+    cms_node_id: '99001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99001
+    approval_date: '2020-05-19'
+    effective_date: '2019-09-01'
+    summary: Reinstates the Recovery Audit Contractor (RAC) Program
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0005-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0005: Approval Document (approved May 4, 2020, effective May 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-05-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0005
+    cms_node_id: '98151'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98151
+    approval_date: '2020-05-04'
+    effective_date: '2020-05-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-20-0002-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-20-0002: Approval Document (approved April 6, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-20-0002_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-20-0002
+    cms_node_id: '90951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=90951
+    approval_date: '2020-04-06'
+    effective_date: '2020-03-01'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. In this
+      amendment Minnesota elects to (1) waive cost sharing for COVID-19 testing and treatment, (2) suspend disenrollment due
+      to failure to pay premiums for working disabled BBA group, (3) expand telehealth, and (4) to allow for 90-day refills
+      without prior authorization for certain maintenance drugs.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-19-0007-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-19-0007: Approval Document (approved October 22, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-19-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-19-0007
+    cms_node_id: '4641'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4641
+    approval_date: '2019-10-22'
+    effective_date: '2019-07-01'
+    summary: Clarification that partial hospitalization services are made on a per diem basis.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-35-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-35: Approval Document (approved July 2, 2018, effective May 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-35.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-05-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-35/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-35
+    cms_node_id: '9931'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9931
+    approval_date: '2018-07-02'
+    effective_date: '2018-05-01'
+    summary: Amending the state plan to add reasonable classifications of children to ensure eligibility for benefits via
+      1915(i) authority.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-14-06-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-14-06: Approval Document (approved May 19, 2018, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-14-06.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-14-06/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-14-06
+    cms_node_id: '10576'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10576
+    approval_date: '2018-05-19'
+    effective_date: '2014-10-01'
+    summary: Revises cost sharing participation for disabled Medicaid consumers who are employed.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-15-0024-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-15-0024: Approval Document (approved May 19, 2018, effective September 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-15-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-09-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-15-0024/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-15-0024
+    cms_node_id: '10566'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10566
+    approval_date: '2018-05-19'
+    effective_date: '2015-09-01'
+    summary: Revises cost sharing for disabled employed individuals under the Balanced Budget Act.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-18-0002-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-18-0002: Approval Document (approved April 23, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-18-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-18-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-18-0002
+    cms_node_id: '10786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10786
+    approval_date: '2018-04-23'
+    effective_date: '2018-01-01'
+    summary: Implements more liberal asset method for parents in ABD or Medically Needy group in early childhood development
+      study.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-16-0006-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-16-0006: Approval Document (approved January 5, 2017, effective June 1, 2016)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-16-0006A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-06-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-16-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-16-0006
+    cms_node_id: '16861'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16861
+    approval_date: '2017-01-05'
+    effective_date: '2016-06-01'
+    summary: Changes to the spousal impoverishment eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-15-0006-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-15-0006: Approval Document (approved December 23, 2016, effective January 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-15-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-15-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-15-0006
+    cms_node_id: '16896'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=16896
+    approval_date: '2016-12-23'
+    effective_date: '2017-01-01'
+    summary: Adds the optional Medicaid eligibility group which provides coverage to women and men that is limited to family
+      planning and family planning-related services under the state plan.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-38-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-38 -: Approval Document (approved December 23, 2015, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-38.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-38/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-38 -
+    cms_node_id: '21126'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21126
+    approval_date: '2015-12-23'
+    effective_date: '2013-10-01'
+    summary: Revisions to cost sharing related to the family deductible.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-15-0013-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-15-0013: Approval Document (approved December 23, 2015, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-15-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-15-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-15-0013
+    cms_node_id: '21131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=21131
+    approval_date: '2015-12-23'
+    effective_date: '2015-07-01'
+    summary: Revisions to cost sharing premiums.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-14-0005-mm7-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-14-0005-MM7: Approval Document (approved August 29, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-14-0005-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-14-0005-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-14-0005-MM7
+    cms_node_id: '33561'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33561
+    approval_date: '2014-08-29'
+    effective_date: '2014-07-01'
+    summary: Medicaid MAGI Hospital Presumptive Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-0027-mm2-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-0027-MM2: Approval Document (approved December 31, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-0027-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-0027-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-0027-MM2
+    cms_node_id: '39526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39526
+    approval_date: '2013-12-31'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-0027-mm1-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-0027-MM1: Approval Document (approved December 27, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-0027-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-0027-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-0027-MM1
+    cms_node_id: '15211'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=15211
+    approval_date: '2013-12-27'
+    effective_date: '2014-01-01'
+    summary: MAGI-Based Eligibility Groups.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-0027-mm5-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-0027-MM5: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-0027-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-0027-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-0027-MM5
+    cms_node_id: '39741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39741
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Updates MAGI Eligibility and State Residency.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-0027-mm6-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-0027-MM6: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-0027-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-0027-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-0027-MM6
+    cms_node_id: '35761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35761
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Updates MAGI Eligibility/Citizenship & Immigration Status.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-0027-mm1a-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-0027-MM1A: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-0027-MM1A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-0027-mm1a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-0027-MM1A
+    cms_node_id: '40091'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40091
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Implements New MAGI-Based Mandatory Eligibility Group for Adults Age 19 up to Age 64.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-13-0027-mm3-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-13-0027-MM3: Approval Document (approved December 13, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-13-0027-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-13-0027-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-13-0027-MM3
+    cms_node_id: '35766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35766
+    approval_date: '2013-12-13'
+    effective_date: '2014-01-01'
+    summary: Implements MAGI Based Income Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-004-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-004: Approval Document (approved June 20, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-12-004
+    cms_node_id: '46216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46216
+    approval_date: '2013-06-20'
+    effective_date: '2012-07-01'
+    summary: Provider Screening and Enrollment.
+    topics: &id002
+    - Benefits
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-004-attachment
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-004: Attachment (approved June 20, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MN-12-004
+    cms_node_id: '46216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46216
+    approval_date: '2013-06-20'
+    effective_date: '2012-07-01'
+    summary: Provider Screening and Enrollment.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-004-form-cms-179
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-004: Form CMS-179 (approved June 20, 2013, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MN-12-004
+    cms_node_id: '46216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=46216
+    approval_date: '2013-06-20'
+    effective_date: '2012-07-01'
+    summary: Provider Screening and Enrollment.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-018-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-018: Approval Document (approved December 21, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-018-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-12-018
+    cms_node_id: '42766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42766
+    approval_date: '2012-12-21'
+    effective_date: '2012-07-01'
+    summary: Prohibition of premiums on American Indians.
+    topics: &id003
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-018-attachment
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-018: Attachment (approved December 21, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-018-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-018/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MN-12-018
+    cms_node_id: '42766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42766
+    approval_date: '2012-12-21'
+    effective_date: '2012-07-01'
+    summary: Prohibition of premiums on American Indians.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-018-form-cms-179
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-018: Form CMS-179 (approved December 21, 2012, effective July 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-018-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-018/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MN-12-018
+    cms_node_id: '42766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42766
+    approval_date: '2012-12-21'
+    effective_date: '2012-07-01'
+    summary: Prohibition of premiums on American Indians.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-009-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-009: Approval Document (approved September 25, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-12-009
+    cms_node_id: '33051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33051
+    approval_date: '2012-09-25'
+    effective_date: '2012-01-01'
+    summary: More liberal disregards of income and asset methods and exclusion from post-eligibility income pursuant to a
+      court order.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-009-attachment
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-009: Attachment (approved September 25, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MN-12-009
+    cms_node_id: '33051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33051
+    approval_date: '2012-09-25'
+    effective_date: '2012-01-01'
+    summary: More liberal disregards of income and asset methods and exclusion from post-eligibility income pursuant to a
+      court order.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-12-009-form-cms-179
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-12-009: Form CMS-179 (approved September 25, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-12-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-12-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MN-12-009
+    cms_node_id: '33051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33051
+    approval_date: '2012-09-25'
+    effective_date: '2012-01-01'
+    summary: More liberal disregards of income and asset methods and exclusion from post-eligibility income pursuant to a
+      court order.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-028-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-028: Approval Document (approved June 28, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-028-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-10-028
+    cms_node_id: '42881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42881
+    approval_date: '2011-06-28'
+    effective_date: '2011-01-01'
+    summary: Recipient Cost Sharing.
+    topics: &id005
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-028-attachment
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-028: Attachment (approved June 28, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-028-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-028/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MN-10-028
+    cms_node_id: '42881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42881
+    approval_date: '2011-06-28'
+    effective_date: '2011-01-01'
+    summary: Recipient Cost Sharing.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-028-form-cms-179
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-028: Form CMS-179 (approved June 28, 2011, effective January 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-028-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-01-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-028/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MN-10-028
+    cms_node_id: '42881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42881
+    approval_date: '2011-06-28'
+    effective_date: '2011-01-01'
+    summary: Recipient Cost Sharing.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-013-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-013: Approval Document (approved January 19, 2011, effective May 14, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-013-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-05-14'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-10-013
+    cms_node_id: '42951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42951
+    approval_date: '2011-01-19'
+    effective_date: '2010-05-14'
+    summary: Methods and Standards for Determining Payment Rates for Services Provided by Nursing Facilities.
+    topics: &id006
+    - Premiums
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-013-attachment
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-013: Attachment (approved January 19, 2011, effective May 14, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-013-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-05-14'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-013/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MN-10-013
+    cms_node_id: '42951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42951
+    approval_date: '2011-01-19'
+    effective_date: '2010-05-14'
+    summary: Methods and Standards for Determining Payment Rates for Services Provided by Nursing Facilities.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-013-form-cms-179
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-013: Form CMS-179 (approved January 19, 2011, effective May 14, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-013-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-05-14'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-013/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MN-10-013
+    cms_node_id: '42951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42951
+    approval_date: '2011-01-19'
+    effective_date: '2010-05-14'
+    summary: Methods and Standards for Determining Payment Rates for Services Provided by Nursing Facilities.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-009-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-009: Approval Document (approved August 19, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-009-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-10-009
+    cms_node_id: '42971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42971
+    approval_date: '2010-08-19'
+    effective_date: '2010-07-01'
+    summary: Adopting CHIPRA option to cover lawfully residing non-citizen pregnant women and and children; eliminating sponsor
+      deeming for non-citizen pregnant women and children; eliminating requirement that automatically eligible newborn live
+      with mother.
+    topics: &id007
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-009-attachment
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-009: Attachment (approved August 19, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-009-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-009/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: MN-10-009
+    cms_node_id: '42971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42971
+    approval_date: '2010-08-19'
+    effective_date: '2010-07-01'
+    summary: Adopting CHIPRA option to cover lawfully residing non-citizen pregnant women and and children; eliminating sponsor
+      deeming for non-citizen pregnant women and children; eliminating requirement that automatically eligible newborn live
+      with mother.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-10-009-form-cms-179
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-10-009: Form CMS-179 (approved August 19, 2010, effective July 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-10-009-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-10-009/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: MN-10-009
+    cms_node_id: '42971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=42971
+    approval_date: '2010-08-19'
+    effective_date: '2010-07-01'
+    summary: Adopting CHIPRA option to cover lawfully residing non-citizen pregnant women and and children; eliminating sponsor
+      deeming for non-citizen pregnant women and children; eliminating requirement that automatically eligible newborn live
+      with mother.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-mn-cms-medicaid-state-plan-spa-mn-09-007a-approval-document
+  jurisdiction: us-mn
+  document_class: policy
+  title: 'Minnesota Medicaid SPA MN-09-007A: Approval Document (approved November 20, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MN/MN-09-007A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-mn/policy/cms/medicaid-state-plan/spa/mn-09-007a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Minnesota
+    source_discovery_group: us-mn/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: MN-09-007A
+    cms_node_id: '24886'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=24886
+    approval_date: '2009-11-20'
+    effective_date: '2009-07-01'
+    summary: Reasonable Limits on Post-Eligibility Treatment of Income.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document

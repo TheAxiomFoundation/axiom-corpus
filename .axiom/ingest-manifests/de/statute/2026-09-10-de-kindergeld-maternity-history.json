@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-10-de-kindergeld-maternity-history.json",
+      "sha256": "4aca56ec162b45ed02362154497c68ba8e3eb3db181e16d10fee36e7a9de196c"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-10-de-kindergeld-maternity-history.json",
+      "sha256": "a837192044093fee9cf60e889d0c9eece4aab1f71257662c24c1595d855c9830"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-10-de-kindergeld-maternity-history.jsonl",
+      "sha256": "87a1f5d775c07ae803034b22db96f7c315c8062ad0dcc8b432bf7fc86340a668"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-maternity-history/official-documents/de-muschg3-2018-01-01.html",
+      "sha256": "8ace5248d4693335363dece0ad38035b126686a89e3844bceb3d238f91e5e116"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-maternity-history/official-documents/de-muschg3-2025-06-01.html",
+      "sha256": "76201945054a678389da88c35b8428ac8f02def9e73766f897c311ff6076467b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2f5d3eb6cf6d3abb6441e89552e44dfac31895b5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-09-10-de-kindergeld-maternity-history --manifest manifests/de-kindergeld-maternity-history.yaml; supported local_path replay of SHA-bound official DRV historical HTML"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-10T13:47:45.783516+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-maternity-audit.json",
+      "sha256": "9b9f27a50355f447f5eff32296d37adf6397820e527fac119aa5c20c9dd268cb"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-maternity.md",
+      "sha256": "0c24ed32dfa153191c3ef767fa17fc2f13d717722d0d9ace488ee577525ce5bb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "aCwSdvOqgtV1YAbhtIhEX6ohCZCoCzrIVVWuObLUHXMr8d/dVqyY5ge3A9JEZFUkateVYUycKQB3JwYfgTdFDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-maternity-history"
+}

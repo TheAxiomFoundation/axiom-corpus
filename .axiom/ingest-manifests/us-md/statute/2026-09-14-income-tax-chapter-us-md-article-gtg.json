@@ -1,0 +1,2969 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg.json",
+      "sha256": "c348f07f08649e92363c9aab6a10712df38e17b4030716d01dc3041e39305970"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg.json",
+      "sha256": "6e7686b81ce61b02c6fbf4694515767bed5af0f8068346f9b4aed377b132d58c"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg.jsonl",
+      "sha256": "36ff8622aa7a01b5f930cd3837a4857749981f66c32c347e2fa15afca4836b11"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-101.html",
+      "sha256": "fede04eac28e1564453210a22f0b5cc50946bb1e3eef5f89b2d3d430800252a6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-201.html",
+      "sha256": "f264796057954b898c8331baf60996acac2fc054d1d59235da42f509b52f0b9b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-202.html",
+      "sha256": "cd0ae16092ff1e01d8a430650ed194666b0328de19e5a3ddd3ddb24ee71c9892"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-203.html",
+      "sha256": "dd2d4ad3d2ca49a13f510ef243d7e1f2439677f14d5cc8805844e07bd9ed8a29"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-204.html",
+      "sha256": "1ee97b34da65a59ecc0b0b5c8ba883d33b397e9680c344345241b3365e850c29"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-205.html",
+      "sha256": "6424c7c61419e5362dc79330f0407f664d0fa93387947e72fee8fe021f6f8383"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-206.html",
+      "sha256": "e41a649f7bc701eedb993aa682f17eb1faa7c1d1ef28682ac79a30f8e0db8494"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-207.html",
+      "sha256": "e23db6015a239446582babd620423ed2fbca892cdfdece26c7f9c8f8a3e66811"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-208.html",
+      "sha256": "02a51d4145ff8b7f502bb72b411fa3579357a948999d268cba7123197d357092"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-301.html",
+      "sha256": "af89dea994a47f5d49bd7a6c2da7235a3f882f8dba5cfa286a9b36d4223c2b1b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-302.html",
+      "sha256": "5c84ec53740136f844357015aa65e95f66877fd62811318a03f15a87d6a084f8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-303.html",
+      "sha256": "dbba4eb1d9b57fbb7f41e6215d8ff77972e95b7a1a9bfae4dc8940703f228b61"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-304.html",
+      "sha256": "64c579a55cdf88112d661b7b187271c10b060cab6fe37a9a1d1ebc51892b517e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-305.html",
+      "sha256": "3813dcfb18f21872d0bd986411a972f3be5fd9deee82f8c014e0eaa233b4acea"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-306.html",
+      "sha256": "1ce312564af9dc5c5f926d873e50efb7e1263a75ceb692457f1564fa5b6cb513"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-307.html",
+      "sha256": "80721246a8098ac0bda90936b9e3a378f4bee46d123e712ee05e9b5e62c708e6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-401.html",
+      "sha256": "9830496c8866e17f457d37be8007c2ef7b6b5070e3fd2e0052af18a90b622e0b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-402.html",
+      "sha256": "212e5a3c1199dba6e42576886f9262575813ba807bb10830fa41985eedce25da"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-403.html",
+      "sha256": "f38b454face85da3fc51bc34e3d34d890a824ea9333c00e293d2ae74555bd0b7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-404.html",
+      "sha256": "76a0e2c6c9e4aeab4ff4cf2b15c2893e121a9423d52dbf08800a8ae73ecb30ce"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-405.html",
+      "sha256": "bd34611a935cbcac2367aa97b9c7affe9b16d75b597c6a4031302d57ffea66c3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-406.html",
+      "sha256": "03a6a218bf0694ed9bc7ddf9319eab40e97ae5337f207968edf07b0b2b886f92"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-407.html",
+      "sha256": "10eaad18488472664044e4660caf6d5a9e69937fec8c83877a1a275f74a58d03"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/1-408.html",
+      "sha256": "5b2188e4c147da4f259787009500ba0dd47e42844759e592eed032900cdfa9f9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-101.html",
+      "sha256": "f3d7bc87aa85ff0c264b960dd566087ef35d1d07c1c5a763f0f51c1ccce763b6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-102.1.html",
+      "sha256": "f1f2da25b52f53689675d3d7af8b47a62de90a8a47f5ad1479a8a1c0ff330d8d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-102.html",
+      "sha256": "89c52cf6f0a8b01980963466dba6a03eeda8c2697c5d33cfd86f741f3cd75c0c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-103.html",
+      "sha256": "95c86243aa2aa1d119f74c7c30dc2adc6821ba763616798eb4fb6868b94e9ebe"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-104.html",
+      "sha256": "f39ef5a815922360824ea88e5be74961a180621854c8f9abe5645307cedeb781"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-105.html",
+      "sha256": "cda1e307a574dff9ef0bfae9b4045e795f643f05b57c4d1edc0e88afa0d1505c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-106.1.html",
+      "sha256": "8948c58e6bbf86edbaa5765c96d3729a6dab556d1b1a7816b899760a05731c73"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-106.html",
+      "sha256": "49e0b5134e39e4d94235ee21aecbca70cb22b06ef811c9994b0f590f88ed4488"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-107.html",
+      "sha256": "c6ad6af0e8db5f7bf85f9298e0f54e4d6f90a87fc76fdd6ada559652496cc4f0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-108.html",
+      "sha256": "de11b8283fd391fb8c0f2e0e345c6f9af8c832c2c9cba05e842ec7512e6f9b58"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-109.html",
+      "sha256": "369e54da4e3a4ccee11a055a287979b8e7fd59032df0f902ad86eadf3aae33c6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-201.html",
+      "sha256": "f1afa96acbd6885125ba1fb75734bc1683f1684227af63cb5112675c8de303ff"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-203.html",
+      "sha256": "05ca0b3ef8f38fbf58d1799920c892e99a9507a11f86ea6ab2143ce74bd8cd6b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-204.html",
+      "sha256": "08ba596640cdfd051481a3f0680000a28b0fca9804fd6c30a9e0225f8576d22c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-205.html",
+      "sha256": "991130f0b78359718f200b42d61cce41459fa6a0823876d845468862cb60f6a0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-206.html",
+      "sha256": "6a8ae64486c170c98a23617f68029a1e681f05745af698b068a54354f7aef86e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-207.html",
+      "sha256": "5ac172b3d332d9cfa69a6ef043389720ee4c5a37f19288e5d6a5620b72bdeb55"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-208.html",
+      "sha256": "34538d96bae2ca3bc59c0196e173c00c2264552394dbeb21dd487ce1483e0973"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-209.html",
+      "sha256": "dd5a519411a2d1c8bc2599d80e3e07f737d107a83750ee05d73b8deeca28d417"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-210.1.html",
+      "sha256": "145760538d107347808cef42e636f5b75e6e5e8599582ec98d3d382a0ea9259e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-210.html",
+      "sha256": "d3ecda2d3cbc65b144b64683953046459ec9ca7c9dac64a9fb14fa069d030d62"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-211.html",
+      "sha256": "ef972d95c1425878749aebbdcf1f2e54c3e7f72810dd91aa4fe90fb87c07ed7a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-212.html",
+      "sha256": "d94692d17644cff499169aebc5833e036fbccc15f91f5bfd499748b092874d31"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-213.html",
+      "sha256": "ea215fddbc57faa4a63e15f3111ae2607ea08fa408f43d714d107a878d956a02"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-217.html",
+      "sha256": "56cebbd086c66315985f27c7efa57f275f0551367aacf10febb0bcd83eca50ee"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-218.html",
+      "sha256": "e61a4adb9bad3132f34884b1af88ddb0317143e47bb548c514e48c060021ba13"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-219.html",
+      "sha256": "cc17949e9f5bad4e454f85664dbed04cdfeaea232b12472dd0b12a9cd93b8e41"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-220.html",
+      "sha256": "74c8e62813112b1fb49f2b9c4f74e883c7d8fe669e79d31d1af592c55773eff8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-222.html",
+      "sha256": "4e82959325954c69c0cdbd9b78936ff832d0dc11638eb1eb6b01f3612f1ca9bd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-223.html",
+      "sha256": "7d2b48a475e126e85cecccd94f0a3bb75513ccd0af47eb51aee8013a42b8120f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-301.html",
+      "sha256": "f038d5dc2177008fa27d6e9cdfb3ea0fde086550472e99a53788245627b642f8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-304.html",
+      "sha256": "70b89eda9757c32a8c3a5b986edb28c3af1b479c59351546e8d61855be75c0dd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-305.html",
+      "sha256": "029fdce0313a89eeca0bdab729e088646e27428063e124a7633bf2ca47f40f9f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-306.1.html",
+      "sha256": "bd99b923e01aca1ab4e2b013b5972533eff2aaea2b047059869fb9e6992cbc6f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-306.2.html",
+      "sha256": "42f74cb9f38beaeefee64c0d82f771b7a2b8ac439a0000cfed5c9e1a4d53a30d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-306.html",
+      "sha256": "88557cd54f01a03f4df75086f29eec4d70b1bdf8742849b01dcac84d33926440"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-307.html",
+      "sha256": "a127627e6d083912c146e1ad34c9603f71bcebd4d140864dfeb8266d92d3f97a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-308.html",
+      "sha256": "fadae4e3eba1f04db0e89744905db69af308548a7567ab8d18f8cb6ff2d6f802"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-309.html",
+      "sha256": "d3e773fad8fe4a3ab67001696ffca2909dbf3be0b17db731b28e79c85587c61e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-310.html",
+      "sha256": "51f510fe5b29ffce86de7675ebf233ddfc70decb9fa66a659b1e21756d27ef4d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-401.html",
+      "sha256": "04a6ab254cb7007afa15e4e9c2f583b52fe9c7822610f50b3e472b081baa5910"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-402.html",
+      "sha256": "f8d997fd080449952df6bf22f47b8903a9624a506c2c29121653c8ced197a5d6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-403.html",
+      "sha256": "3cfe09bb3930345d5e67f5bd5c2765ad581027c16f46aed9c7de0a417674aee9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-501.html",
+      "sha256": "6e7806cf869bef812a6fcfda25215ebea9f2b6e22e69213c07ff31bb79fdf998"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-502.html",
+      "sha256": "ed5938dac815a9da770904598896257f5008ac14ff6eec55b6070fbab9352973"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-503.html",
+      "sha256": "56f10143a4f8bebaf7aca7f2b9803a175da2e1801775d6e0c6ed888e7341cf70"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-504.html",
+      "sha256": "ea88f9da17400781d9a45ebad5416a07af65ee5fd3e9e1a54f18748997e5e577"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-601.html",
+      "sha256": "c10d2c70062d84c1962a1a74cd48455584b10d35b864ce19a4230dc4435c69e1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-602.html",
+      "sha256": "2697a6a58fbd4daa77808d2996e5d3cbc36420513d95fbfea1fd49857b3300ab"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-603.html",
+      "sha256": "cfe67af840e752755df5ea4d098d6895835ca984b54242b11c5a1edf2f6102c8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-604.html",
+      "sha256": "93608a8964239d7fe20d18eb4813c1bbceafc57c025366f89f85f66e41a58dc2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-701.1.html",
+      "sha256": "5360da817580f56355842589f6a5c3666363ca74f1297920163ef84bbab50e54"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-701.html",
+      "sha256": "0e74036f499bdd8e28546ebf8eff352d8ded9b2609f036fb86977fbc79675480"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-702.html",
+      "sha256": "21dbd53f8a4a63d75c544f570958dd95eabd6def305783a71660d213c9879c29"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-703.2.html",
+      "sha256": "1858ba24c482a3c404d1120f853f25192b57e308702caef803ede43599e41f8f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-703.html",
+      "sha256": "cf4bf238577f5479eb110c40e0f1a4c1f15642d6422afc942f1c527637bbd06d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.1.html",
+      "sha256": "42d6c2600c8c5ed8482d7f21b4c7f63543fb94e67546b947d701b71f4671c496"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.4.html",
+      "sha256": "a8206a5403254ecc5e8f9c4ee165cd6441d7039aebd71cd7f03a7b6f6863c279"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.5.html",
+      "sha256": "355e14499b61fd6398ec3638e8bb67ba270710ea8e000b0d2bff183d4c038636"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.6.html",
+      "sha256": "11e8fd2cc46ca81e4b97abc5b9bb81f9529f57d10bab56377e0cf0d4834e29aa"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.7.html",
+      "sha256": "3d37415ea7b65d8ebd5c07d3c82aebf486901defc41c056d895963dbbdebd970"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.8.html",
+      "sha256": "1e4f66aac55637b4dfebbf221e89ae02b56526454b90ece9f2c4f31cc85f1042"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-704.html",
+      "sha256": "b050eedc8af26813fb67649c3daa89ed7bc5966d1a8cfae890334c95cc06fa62"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-705.html",
+      "sha256": "4fef6f1e0e49ce0fc4711ab370bfd35fd990bdb1eff82f01f618a3b577fe11a0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-706.html",
+      "sha256": "7ce306febec5316823db690d8f0c3bc2e6f46c09d389feaa3b305b7659644959"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-707.html",
+      "sha256": "a00a59f766d48d22f94281608ab070db3742b7b1fca44c261684611f7188cd60"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-709.html",
+      "sha256": "35ffa807c2e2e3d2b2250493819a248c337c1b7ffa9f292700a04dc0949b67ba"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-710.html",
+      "sha256": "44a68d8980f18d4a160a460a3d394381d8735da63504343a35b815676a02b350"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-714.html",
+      "sha256": "670ece212c1efea96680b33669ff0db50c5d1be9942a089f467866173c5781be"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-715.html",
+      "sha256": "9a1217436f6084a77c1bbfaaf0e81260090e9a29eb9568f1fae346c4fce903e6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-716.html",
+      "sha256": "9ecce61fb432407300c50a4ef84983582486f6e3cb73af06bb4bde571ddd85d9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-717.html",
+      "sha256": "ba396833ebe5252295ef89b64f4c65ca6a6ceb9b47fa0d8bf3dabd396ba2fa3b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-718.html",
+      "sha256": "c1c8103393f7e23c11ac26352f56c93913e71355521aba3830e07e331706d856"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-720.html",
+      "sha256": "21d76ee5d6593baf27743a36a238ca4588a3cb44f68fa2128e9098540d4a3712"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-721.html",
+      "sha256": "b01fd7e4fb54cfc631f66e47994efcfa7833dac2bcd7a33f887d5a4fde721147"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-722.html",
+      "sha256": "33eb9019e89e7256fb96d6fe415fa8818124ac501746f73d8c6c62e67380aad3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-723.html",
+      "sha256": "8aa0c193244272ff80f5d16cf86218f7199bb0c430a83435bccfaa767b8152ff"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-724.html",
+      "sha256": "21fea0afba37cccc8e31fdf6c4ae57044708087bfeb01b9069aab061157e1076"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-725.html",
+      "sha256": "12ad03e5a143f6a40fc2a33a948540e4dcaf4f651935695b33ca0cf3a0f665a1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-726.html",
+      "sha256": "4d6d72184473340d6a59ed7a04c5a2dcf10c31a1784f76afd64ba92d8ebb287a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-730.html",
+      "sha256": "fe6b7140df7934487d7283d7f66589c7b24642707ff073699728618d868b4a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-732.html",
+      "sha256": "66ccfe451f393c8cd169b94c905992146f8f8377976263c8160a5fb1c51a556a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-733.1.html",
+      "sha256": "ac533a5199975d64d0ee8b1e6e0124b04ea0d1ed5a248a5b0138eeea1474953f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-734.1.html",
+      "sha256": "03dd2f152052d559f67c70c8c2a654409e7d5d0f03571fa5498d2e80a56bffe2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-734.html",
+      "sha256": "cf17030f9625b83b19e0e408c73b608716b7e5e897a635663891cbd136fa36e8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-736.html",
+      "sha256": "0506fb475bde53302ee794650992d85ea3e0d7ac5dd8f9088160c728f57baac4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-738.html",
+      "sha256": "13e31957b4d00355e6817d41190d8c0089a47d3b20833bff5658da1c69b80cc2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-739.1.html",
+      "sha256": "d81f4791e0cc91d637cb1bf72b93dc55b55723ea0dd6d4e536be816619dbba86"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-739.html",
+      "sha256": "960a90bdcd4d07b5c081dceebc72b89cf1627d1c2eab8636f102f825b4ef5434"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-740.html",
+      "sha256": "a6920630af2a37767b64fa2070a46db42f9e0ad5fa8f2517f045c0f77e06dea9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-741.html",
+      "sha256": "b17e03440e523e1ccdf337b94c2a17c107e426a4ebd5910db74ee2050acd7ba5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-744.html",
+      "sha256": "4b9895989b43c4b1b7b5d8a5b727c77ed43143d5241e9be391d67db01dd6e34b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-745.html",
+      "sha256": "6be95f20f17759b355127c821753a73ca06da0809570cf5a762293164cbfdfef"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-746.html",
+      "sha256": "d0e97c53f46f5302b25eb8cfc374f617886d6337f1f0f971b45a2cd569730b62"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-749.html",
+      "sha256": "5f753f323e9bb7b3d1443d482c2b05b6009d6887a60566390f80544530f521c7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-750.html",
+      "sha256": "186c20e99cec6d424efaecea225e5be5de7f49c348828b9a3c7885a3e6abb6bd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-751.html",
+      "sha256": "d32205089c98c0396b7688a1c055694103b682f6e7aee86b3cbca4fe64ebbf61"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-752.html",
+      "sha256": "0e432faf5e13af702c799419787084136b7040ff687274aec269b6ff2a2d6f21"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-753.html",
+      "sha256": "f9334a94f0e948f0f35326a55a142cc6f455c44579a50dc2791f655c8bd206f8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-754.html",
+      "sha256": "922bd55a42963c4ce71629c5b7c591c87cf570d65a1e9bf491e62ee6d2d9ca06"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-755.html",
+      "sha256": "ed159fc95a2226964fbef741aeae036516dd640deb38fac59729f1f91e3d67f4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-756.html",
+      "sha256": "d7b161b78409b1735546e99b77277cc4edd8282775617e7654330ef68fb67e98"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-757.html",
+      "sha256": "68743e36fa32537266ab5bb6241710f644778d9e651a0b6abba0bbadc76b32bd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-758.html",
+      "sha256": "f7388b7cb378afa52f20f5e49a93837a9127995849a79d4bbdfafb169925f49d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-759.html",
+      "sha256": "bb887562d9684cdbd0c56cff892ef498f2fcd2f04c6d8aa655d57ed307bdff07"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-804.1.html",
+      "sha256": "763376f3d5190e92d7e821032122fd1f00570db32964d4f0b5932ef145722993"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-804.html",
+      "sha256": "4dc8401b571d4792c279163a4ee9c7bb94512f89559aba9ed9edc565320ac210"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-805.html",
+      "sha256": "94d969bdbdcdc57984c3910b8787ba86d3499800d9f3eb74c372833ed6344673"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-806.html",
+      "sha256": "162fa750f9f599f1bfbab52343202779981d568d19432f8cbc22e6081e67e3fc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-807.html",
+      "sha256": "f9e49697e3b2292b39bb6be812f74d0ce8dba24d246d715cd38736db0c7d467d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-808.html",
+      "sha256": "ed6e15fa1307470e51f1e4eb873b711529a2608ef750626fd78c7f2a6ac2b41b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-809.1.html",
+      "sha256": "8b15bca44a80f6464f8d39139d5e9464c80b71bd89af12d6ae389decd658de50"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-809.html",
+      "sha256": "202e412cec2b684f286cec3d0ea745ea801be7fd437559fdd677b9dc49df20b5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-810.html",
+      "sha256": "e6976b8ca6307a67324d895b7129feb72a5ea64a6a8657e6b65976ec89976526"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-811.html",
+      "sha256": "c8bd144cb0384c0a009b4cd088a2f1a6d765e36f6ab555714674a4adf296b696"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-812.1.html",
+      "sha256": "2df15142a261488115e3eb672e48bf4dfd85a9861ff9a9887e9d36050af23eed"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-812.html",
+      "sha256": "1b3aedef1139c7816e536ca6261591348126f0bda6f48bd71749797cab967458"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-813.html",
+      "sha256": "eb088abca979fce7f4cc193e8f76a0aa0700592c1307c26eabda17e474981f48"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-814.html",
+      "sha256": "9965a35427da6cfc6b73c9c6a00241c32ce1ede40937b31480a8ec0869a61783"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-815.html",
+      "sha256": "568c706e660e4b48c41acaa54119bcd19ff9c52792c0c3012428cc3fd16ad61f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-816.html",
+      "sha256": "2c8b52479620200e319afbbf45f885d13a1d7b3bd3d3f69862faf25d844add34"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-817.html",
+      "sha256": "f56df20979d2ccccbbebb183716550ac54ae363564645d3b34f1f03d69794e70"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-818.html",
+      "sha256": "eae7831fba9371611cb33c2cb95c8bda0dd5a9126fbf980abb87cdc173d2a444"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-819.1.html",
+      "sha256": "0ea58e421998b2f863968bf02a1499360ca146c273645e734382836f01f8af2f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-819.html",
+      "sha256": "b61465e4a5f59cac1e8a6502c4b570e2bfa2730798bb068112fed90aec5f1000"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-820.html",
+      "sha256": "c76a4da7856de54da4e8d583baa28d9c88bc9aa63bc50132151f133f7feb461f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-821.html",
+      "sha256": "9752a15246ccf65ef7bd850ed20a32e18438f99c6c0c72fe634ba24533ee5bf9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-822.html",
+      "sha256": "8f5eac28971ca2fe60e6c3fa4a204c57eed8be01c7dc08fd081d1aa03a9cb141"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-823.html",
+      "sha256": "6db7c719d5121974df5a7f682d3b629a00e298c3bca610fcf14d071535f4722c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-824.html",
+      "sha256": "a0029417d98787d5940f710ef0c9098d6ce1cff6da4fbe02332943b828406c73"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-825.html",
+      "sha256": "fc167cb8e659e548111a133f908d11956eb6ba5cd03e1faa2b8e1808a0d4a533"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-827.html",
+      "sha256": "128f023481448213544ec37d85e107badd71fcbb127d580315be82a39de228a3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-828.html",
+      "sha256": "abfbcde1ea60acd118f70002a02ef16e192368344bd25578152f0590e7e2e453"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-829.html",
+      "sha256": "6cd9826e0694a253754becd12070ac5e88593b25b03e24cc89a0481314acf141"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-830.html",
+      "sha256": "ff870c53a0d854f977d34726cd280373db37943d230b3ce6013d4debe01e06c0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-901.html",
+      "sha256": "436fa3da251733db38075436ab0b11e045527add715e88d5dc3b8a6dc96f1af4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-902.html",
+      "sha256": "735a876daddfa7e41a19ab77037b63984135967cfb526ce7012fded045f49972"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-905.html",
+      "sha256": "462e88b2209447486196e075b3016fa0b5f06965b77573da3efbe907d24a71f2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-906.html",
+      "sha256": "1e1cabdacbd62d393df5b86199236bc51b62a1bb51b6ea8796af7f5d317d6670"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-907.html",
+      "sha256": "1ad986d5d700b6111fc6000ad72e8c7d3f62324c3dda93646cfb96ea1393948a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-908.html",
+      "sha256": "6fb8bd8e750fb7a9daaa6efafb3adbf7840f94342e2bd3a70aadc275ba19e5d6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-909.html",
+      "sha256": "187448b0fcd515dc18836e84b7d423cb5f94aa15b04817c3bc2bbcf99449ed95"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-910.html",
+      "sha256": "b25f850ca8f76655761714df410815d48c4dcb8a1115492719938bf1b970c335"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-911.html",
+      "sha256": "59009cb72ee935367cda4814b220c47b1a49a0565efb7cc40a1761d698284744"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-912.html",
+      "sha256": "dfd2ba0254e72c1267be2e60b2668353fce5877136b4970f73fbc989f03ecb94"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/10-913.html",
+      "sha256": "e9d6534b23025f6fa795c5ebc398d87d3a64840f391947a482ec5ec9c4ae86d5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-101.html",
+      "sha256": "021e264afc67371983af3a77e4f8a2f1e152b6b871f111f787354dff2c59225c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-102.html",
+      "sha256": "711f77fb8a0deec0ce0b8d0cea83c9a5de4e6065ee8af4a8497fd3d2dbb94878"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-103.html",
+      "sha256": "307324f1b008b63963655bc0e5afbb8e48401e59fe6446c763d0ab8e2c55ed2a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-104.html",
+      "sha256": "84e4937517b54a96f3809cc3fc0a93772af1be8987887ff6f424a80482058ca2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-105.html",
+      "sha256": "b97b4ebd0f5a6c0c524cc350b1ea9b6103f1e9699c703cfb8af92db2bd6485fb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-106.html",
+      "sha256": "d8987547655c67041028df807593a535e3d619ae538f8bcfdcae4fef3c05ce04"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-108.html",
+      "sha256": "7174fc1a40db92f2e9de9cf40eb341688929aacf948bc3bc009aa179552d91bc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-109.html",
+      "sha256": "8e48228806782c5e8cbe3f23e902d25a18deb0c7b22f13b18e220d0dea2c49a3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-1A-01.html",
+      "sha256": "44a557eb94bffc5fc42c327cd81c3d30973951db37e3dc34080cf31444fdf2ae"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-1A-02.html",
+      "sha256": "dd26849bd5b9436d5489ee9f987ec8df81587fcbb65e32561600a6b143d7d26a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-1A-03.html",
+      "sha256": "8983ac65064dcdf9e37a559e6ea7a2a98a6839141d503e75f0b8c781fc3f07d5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-1A-04.html",
+      "sha256": "84e2dfb9d41f38dfc762b53de3103e3e1755133217e491793ff1c6778ec3a3c8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-1A-05.html",
+      "sha256": "164deb867d209ca1e0273b5f66b8a7e5f1fcdda54efffc12d63806dbd5e3db84"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-1A-06.html",
+      "sha256": "f17328851f8623bc8f3a7021cc15c489f16b101f63e831c19b4edabb9eba7764"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-201.1.html",
+      "sha256": "1a755b28d2244414e30d950ab77d496ec970b6f2e37149b7302b35aa2acbee1d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-201.html",
+      "sha256": "4019b23a97d327b06ce164a89711369b2355dd5af522b0f3376e4176e0674fd5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-204.html",
+      "sha256": "e2a4affb559a081256fd1db54e090a85d3a052cba0946e5d65bdebf9a01eb61d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-205.html",
+      "sha256": "e5845b159bbe93f83a6d202423541d774b6a90216e03323884cddbc3536377a2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-206.html",
+      "sha256": "dac2dc4483ea3631f902da440144e7d8f8d79fa8912f1ee27b435bbe8d90d1ee"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-207.html",
+      "sha256": "06aeac403fc2f8880ca6a51e708bd6de049908d9fff85e82a50d2faf329785d3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-208.html",
+      "sha256": "a3ef52c68d07e5ca04bcec04d5a4eaaae4649fae13b0002a3a4a3e7150f1a9c0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-209.html",
+      "sha256": "4504f622df4bea9cf29a890ff12c4972fd9bd2d95b164dc9eae1bb2428c535ad"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-210.html",
+      "sha256": "db1a92d76c7342af199b1f52d4e5152c7f767c4c65fd308b52608a23cb7702ca"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-211.html",
+      "sha256": "7dacdff20cb30e34720993bc2f152e2f299f736a17a2918d20bf012e9cf1b678"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-212.html",
+      "sha256": "a2e3221959fddc3b99d5dd26cfc8ef7bb1b90ded7863ece55da661e219479d70"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-213.html",
+      "sha256": "bba2fc8a1987199b91ebf0bd21f3773d5c7c05c88f8e495e9ad58a0d159c93b0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-214.1.html",
+      "sha256": "1f6dcd1cb6525faa29a5031e273a7bf2fac4cb3221dafb35943df20059eb9c50"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-214.html",
+      "sha256": "e7dc00780922be6f17c1f91eb73bf3ec3a58e73083a04bd38dc21b839a5f8da1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-215.html",
+      "sha256": "65d3808fca8a086589b8f56b4a926231334d2e19d42c997e200bff3fa78b26f2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-216.html",
+      "sha256": "69005362d3d1d889f8854532383147e38407e2fb0b7b668929003f5520d89d87"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-217.html",
+      "sha256": "975cc372cfdf884dd649dbb55696df9ca95d99ceac71762b9c71c65cefaf4896"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-218.html",
+      "sha256": "512562a1a7f308a49001b81011f5ef5d9d3a45a53012a126c2d416742f3d0744"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-219.html",
+      "sha256": "cd2b4385a4c8aeb24f746e5b6785ddd3bed5841caafe416007783b3e763336e4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-220.html",
+      "sha256": "ac5d35a5f8ee1c9b8dafa4edc2db31596869e169f24476b71f6c55642f52fd83"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-221.html",
+      "sha256": "4e88d396c11c0735b35bc1ec50eab11538b3500505815bc40e790ad4251314f5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-222.html",
+      "sha256": "a7e9ad379a61fd525b2b725c73cce94fc8b1ba97fc8a3c5641d83a40f3c52cfe"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-223.html",
+      "sha256": "b430a3ace89f54a222453bf1a1cc612ef18431824b0d700db9e5311c5d56ff07"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-224.html",
+      "sha256": "6199a9efe80adc8045c076aee0cde9f00eefdb4263e54d95e21975a071006a31"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-225.html",
+      "sha256": "099ff9e375ef9d8ec6fa58ef0e705b85728415ec18215e31b072b2f7149c8d0f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-226.html",
+      "sha256": "f63925eb1f21d43674af720c12d8930ebea76c15876eb3f2fe86326c8bbdfdbc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-227.html",
+      "sha256": "5c3bdeda5a8dbb4da006727b56304c7252d17b19aa43c8e123bb8f82bb2435f0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-228.html",
+      "sha256": "9711a2daa70d4e56b6c64f172ed430f7720264fccae9fadf16f228d8329105cb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-229.html",
+      "sha256": "145798aa0811ba19a32017f8be4399f82c2a781ed6966e31326927145be65276"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-230.html",
+      "sha256": "a599c7cc5780ddccd100b13beb48634904c299022a7586f97eaa4a3ab30398dc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-231.html",
+      "sha256": "0ca7f5989ee5e338125dc24e5664661fa04bb8999f64fe7391abb8b95f7d0316"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-232.html",
+      "sha256": "dbe8427820c17fb93d8d06a5534e642840b838dcf933ab23b08b773272e8ba13"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-233.html",
+      "sha256": "6180feb7d8843275af8cd631c347c401cdad823fe192a4692ca58c8ede36bc34"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-235.html",
+      "sha256": "4a16d763d23b87e269d5729dbec9238e5f141ac5e6c15e1d352644e1ca60c41d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-236.html",
+      "sha256": "75d7615c6850b0a5f10aead44a9ebfcbf5ef259ff6af7480639b87159c95abde"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-237.html",
+      "sha256": "a2c0bddd774fe2e28627d79f637800c2065fcbc4b6305b224b6a5ea2159b5721"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-238.html",
+      "sha256": "0ef809005f171a92541194a71f7de63111d45c4f480c6c0726ce9f25b966b97d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-239.html",
+      "sha256": "120253b6f2ac4fc92aad87445cb954d82efe5c60de210782e135a005215f8499"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-240.html",
+      "sha256": "59cdb6d2324e34fd57eddedd913c2c3c278cf8d845d3c2528099b2dad83daedf"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-241.html",
+      "sha256": "75a87e97faf5928277c3525e9464625e3fd4e62d0b907de41a85d513357668d0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-242.html",
+      "sha256": "8ba17504ff40decf764f68dba233da136b1bc1be61365d48ba471f0adb2190d3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-243.html",
+      "sha256": "31756d3ae2c430242457aaa6c2cf18a9f86295ffe6a135684da9105b273b1437"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-244.html",
+      "sha256": "6a62025f0df7ec7990e99288dd2964d95ca0784561d1893b7756ac4512fe0db9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-245.html",
+      "sha256": "9186eb46a93410436b84d7c0913d315456aadfac722ae7833ef8f1bce1ac27fe"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-246.html",
+      "sha256": "1ed911be22b4ae920927e559751738f5482c34d1fa4fcebc1b1116fd7fcc20aa"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-247.html",
+      "sha256": "6d72ecf46600b4407d30a208cb4ee49c40796f54464987c9fa6189ac19e35cc1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-248.html",
+      "sha256": "5c9f49e4ac273de860785250994e5e3b8c6180b0c023e72c3cfedeb7a79edcfa"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-301.html",
+      "sha256": "7e82718991be65137b49db7b866fff7654f7cda5b9f718988c42e2d8c8197375"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-302.html",
+      "sha256": "de71b5327f1fc1f15951b57947d00ad820f86a90048c60eddfc63230017a6101"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-303.html",
+      "sha256": "51a3bf8ee0d16270c1fa85d9beafbaf081f036b8d635826ddd2a546e1f75d566"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-401.html",
+      "sha256": "5b3991aee036aef255b140ce235262bab371a1a540adf911791d6aed27d92d7f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-402.html",
+      "sha256": "76c754b1b0e6986d270c5534e11e558f1430e29df17b8bd3020136031d12c070"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-403.1.html",
+      "sha256": "a1ff80255440dde0f41bdfe908877e718f841a146fbb6dc24eac5f2d3cd6a5ec"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-403.html",
+      "sha256": "9be40ebf9937433b2b9d9c16a63786755ebd4416d3fa0543dfdf1bc4340f2256"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-404.html",
+      "sha256": "cf1cf1b34669bcf92b4f0ab780c47e02b8498cf91c36f6e0afd83847116e5dea"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-405.html",
+      "sha256": "6ecdad8f3bc61ea912d36393fb24c01a4e2300a0521c8950814e51376d8e1923"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-406.html",
+      "sha256": "1ecc2c78e69713d262a4cd45116c398aea5f0a669067e0437e613935efcde1ed"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-407.html",
+      "sha256": "c8e0c183f76382a31ce279970fea5508a27c4ed75aa61792e96c4c7bfd1e7663"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-408.html",
+      "sha256": "eaa43327b12fb02f2706630e173c5358c09e07d9346dfdc31bcadea2f389992e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-409.html",
+      "sha256": "fffe2095bb0523c197578f6e1aad584d555a2007fd6539d42230cf76601ce8a8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-410.html",
+      "sha256": "7a1b23f711879f101ff80f466412b624945b835a51120d415fed5add8c0afa91"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-411.html",
+      "sha256": "e4a35a23c460282a695d7561f58bd543bd01b889571330a54476251be436b37f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-501.html",
+      "sha256": "70bd46eee2fd41d0aaef06e4ead6bcd8b4d36ee086b9087ff692aa8dccec4003"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-502.1.html",
+      "sha256": "0cc55d87bcbf749ffedb3e719866a2fdc8b72d2e51eba10a84cc888057d77943"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-502.2.html",
+      "sha256": "85773cd0b2345ae7c85dabd2da4186fd3f76a37bc0076795d7b7ce1cc1c3b337"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-502.3.html",
+      "sha256": "6f3cf489f4765e6c1101e031f9927af272f1f562fd9cbaf40eceb28943db2041"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-502.html",
+      "sha256": "220f4f3780d115e4081badd83357b2561fbc0c1028a0cad79fb4ef47fdb590a1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-503.html",
+      "sha256": "7ac4c0bb89fe4579f0ea14bae91aacfc151229a5f681362943feaac4010264c1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-504.html",
+      "sha256": "b505a219c46648aacc345121d6e06762bf48502dfeb92942595b05f46ef57552"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-505.html",
+      "sha256": "70b1b2f12fd9c860e0eebc3a2c34f6ec675a0780065f8f286eaa77e672a1ea8d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-601.html",
+      "sha256": "44125b08647f90d50ead9b5940f77732a97a7fa6184a7713696f1d71a911ab8f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-701.html",
+      "sha256": "180eb0380c615d3520f1cc09be70ce2a2961c0d3fb51db7dc4e7f3d6d56149ad"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-702.html",
+      "sha256": "e0ce4b239b7a46bacb51fc6c4cc9adf3ff59d54a2011b865c2d8d5099dcf1b7d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-703.html",
+      "sha256": "4015429af795a452d2189211e81652023fa3111e03d540da131bf6bc6989f726"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-704.html",
+      "sha256": "0a193027bed8252ca452875e56e37a434498b175041830c293ca800d8b5ca96d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-705.html",
+      "sha256": "6779925471bc90476bee8e1b97ac09eafef2c86851c7c8c5a3507c52bb0e2d74"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-706.html",
+      "sha256": "37cf9b4e11ff0cb6eb901c186b790bdec1a40cab7bed992b72624eb53e899317"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-707.html",
+      "sha256": "b75abc3946c284d6192a152d047698486d181535e9ef1a4c51a3d743298fd835"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-708.html",
+      "sha256": "e54ca051d94856bb576b3bbfd105477e4d50e90b044b0802d25bfd5266db8835"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-709.html",
+      "sha256": "8e392a4813c82f4d00a068dc38710a93c3acf86c1c81b8f0ace1ff83c8cbccab"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-710.html",
+      "sha256": "9bdef3c4c010aa1a289a86241ac1894fe9990345b0a72a1cb40698b141c12edb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-711.html",
+      "sha256": "72ccb71d35cc4cbffce4d4582d14c9a7983d9a6864eafda6dd224cc8ffe09c56"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/11-712.html",
+      "sha256": "1fd995e116899d0dabd92f190d107e13c5014bcd51d210732e7a4e625b48a3e1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-101.html",
+      "sha256": "b136a8eee0148d426073c2f8ae56e4de3d822670864a618422f514ff6ee097da"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-102.html",
+      "sha256": "da89f43f2cc88e101d33cf657751c9ea0d6915e96b67a74776368fab6d1774fc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-103.html",
+      "sha256": "795dc7ca027c825ea8d28b0df2ab2f432f68c96bafc88bdc9a0dbef1135c1588"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-104.html",
+      "sha256": "1c0a3080f7ec3398a17a194593b86ad6503156cb5042d7c6b9dbb471ab61b234"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-105.html",
+      "sha256": "0bc3faab1d7964616d1b42070667960a9f771f6943560805bb8ab86cf296ec06"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-201.html",
+      "sha256": "c078c9c2156839433b69f8f04d82ab0ee3f47c225f5cb9c757c4f4daa4da8505"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-202.1.html",
+      "sha256": "25d31115b5f65570f056e146fb5c1657e6f0740139279227ae347a3dcaa40a84"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-202.html",
+      "sha256": "5620134b975fe551cf88c73ba7a9d45c628854e9481ed8d38832a91514a99efc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-203.html",
+      "sha256": "4075aa56a1a517d620ab963a129a856927a76560078d162b4786ee4b98db2bd6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-204.html",
+      "sha256": "8225aae84fc72c3d9ba92ea3d8c37679b5da669d3f6586e8dbfb69089cf869ea"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-301.html",
+      "sha256": "a10d5782b9d7f1aa1ee9c854ee88a1ab2d01a5ec5988a76310454540ccaf13aa"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-302.html",
+      "sha256": "1fa99841064cdf335dc6b402b82f577f71f0686715b88dc77bb2754ede2c9f65"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-303.html",
+      "sha256": "dcb860ba531851dce52c1b15daffc3ade68d79767e76b18509876c8053a273b9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-304.html",
+      "sha256": "3b65bffe25c2f0620c13c55059d4928e0f75374560de182e0c5c7007bbeefa36"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/12-305.html",
+      "sha256": "95cf3f6e482faf54b5d8f5c0839c93d5b6ffd287daa00ac77ca8770b402da3d5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1001.html",
+      "sha256": "67582d038b697183bf2ee9645cbf767c79970eca7913a50a9a74ffa052e0ec1e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1002.html",
+      "sha256": "d1e412d1d52102f5fce0c40430d44e02660e25c23775b26db1456ae059d97401"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1003.html",
+      "sha256": "22e6f76a9bc8d4da4c4032d36a1eb411923a71b1cb93c28f9d07b7d49f913a31"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1004.html",
+      "sha256": "3362ba0114c3b6c8e74060fdae27817ea62d24c8cb269d74b7568dcc177f8efd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1005.html",
+      "sha256": "dc81af51a6d040bb13c3f675060d9c8dc9093fe2e7f2d04348abd6d0903d47c5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1006.html",
+      "sha256": "71015ed32cf61f35052f5cc5ad46d3057de777f6e32fde2dc9a88cc9f7bbb612"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1007.html",
+      "sha256": "0a29a9f89c5e6941d30e39e1970e5a2824aa05de853713fd12ec9880367f8470"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1008.html",
+      "sha256": "ec7882e45a94387dd21e29d73585dd22009384225a8ce9a9879f0b7172dd6f42"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1009.html",
+      "sha256": "b7d8c5ed3899cb931e5b2e25ae626577ec2ddb6d925e1daa5155b099ac466e1a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-101.html",
+      "sha256": "accf886f1547ffeec5c583be852f78b89800dce3d102ace4386bd35a2e116e37"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1010.html",
+      "sha256": "961e112f5fd47c27afb8cde4965399f1218a1f59de3ed591e26aa906d2b3fb89"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1012.html",
+      "sha256": "f41b161f862987221fe2173142ef6260c5848126504686f7fd571bad49f848a8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1013.html",
+      "sha256": "4a005c4f3c15ec9be37e77c4a49f799d9f70d43357fd09a2748a686446224a2d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1014.html",
+      "sha256": "fbe6f50d021e86f9d71dafc05a7c085e37a80d04b092dffb3a8de5bd05987f55"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1015.html",
+      "sha256": "49dfd3d5c067fc895300082331e5faeac219e8cc67bec63d07c80c18d350672f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1016.html",
+      "sha256": "c560d29bc5388ec14283f6318ef9a091e1ea46e5579c9271e37e153cd738ce4e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1017.html",
+      "sha256": "6f5c9412eb77e18491bd3647c9246ae353be9868ec9bd33e38d576309356bee7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1018.html",
+      "sha256": "13e7d345d1e0d85350af4b8ae907f8a2eda38078e1ea74b48a5d3bfce7999ecb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1019.html",
+      "sha256": "2ae66dcbab636bdfbca0032796a8f48b6ce12a6b09198433d45bae942d2145db"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-102.html",
+      "sha256": "eac6003db774fadab1508da63608b5fda9a55a399cffaa7de663acce86a78c40"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1020.html",
+      "sha256": "d899aa7a128a6512979b4eb087a9be83bd6875489eace7d2976ff7b4e8675622"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1021.html",
+      "sha256": "d855c311c3c9e44b2972131f1965b6e9c9b52a669a7b79198607d6ca4108fb07"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1022.html",
+      "sha256": "1e2cfade2959e0c6023101824da830d7712dfab4f8682a5cde15866a29df1f68"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1023.html",
+      "sha256": "0814d7bd024d945b5cdfb1af4b4843a791485dc0cdb0c2c17f779f5265ea719b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1024.html",
+      "sha256": "bbff3863a2a0516f5dd05a571253a2f0d9682fc83e143759874eaae20acd7df6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1025.html",
+      "sha256": "937e09e9744f4e6714763db4dc7760b020b1912031ebed76ba9b395c88a3815b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1026.html",
+      "sha256": "4d047e4b7fa64d0ce4e1d8296d92486e5473ba6c4b565042f263c55bbfe71e5c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1027.html",
+      "sha256": "5a41350da480886815984de4d6359162f8ba39b44cb4200a8dce9cffdd0cfdbb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1029.html",
+      "sha256": "c87015693c795df1677b4ca14800389d914d0f7316843653dc79530d375640d4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-103.html",
+      "sha256": "82b8c35cffe2edc4b96bed7cd72d795625da448559afb8950524e62f01cdeccf"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1030.html",
+      "sha256": "9bdf3221a253548c7c502574afe76b0420186cefd6091cb6eb7b7c4e21fd90c8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1031.html",
+      "sha256": "028f521a53416bdeaae474b6b6ca345a19bf9a36cb022424abd22e74c6ce593a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-104.html",
+      "sha256": "9ba07cd08c4e104af0c5b3edc1fd8b870a2437e00ad5a36dcfa107f7f30a46d5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-105.html",
+      "sha256": "198afdc4f546a8cb387c1a4e65166a0f6da67e54f45e50ab0b1c81f741b0f1d3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1101.html",
+      "sha256": "d39fa40dd5297942d45f319df886fff9d2daafd02c4eeec2b778a39d21d7350b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1102.html",
+      "sha256": "6c5020792be83e694ef70b58c851e93afcbcfb5f8901c66b15c520210751a1bf"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1103.html",
+      "sha256": "ada9e7fe7a801511a1a90e11f661f878d69b132ae62af8fb5a1c4f4903a02c27"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1104.html",
+      "sha256": "81b2d41401bf40a79640a1cffcaa136fb4c2b446789dd7329a42df6e1f5347a8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1A-01.html",
+      "sha256": "64b1cdf3c65ddc92f43fc669e2692e763fc453d5e37d08db72eb89e930de1f4d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1A-02.html",
+      "sha256": "a96fc0f369dae8a78d74f4f71a8132a2682031f6428ccad30fb6294ed77caff7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1A-03.html",
+      "sha256": "ccdaa3fd2a3e324c6b95b7d0c44c6582cee45eb01d9226bcd5a69abe96ac25fc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1A-04.html",
+      "sha256": "cbd88d78cd53deffdf93100582317f7fa768b6c7c3ef9682cb08cc1fbb2e81af"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-1A-05.html",
+      "sha256": "5ea651ba2ea996a554aea25d10739db1df8e0e5f07a5f276b8057b279ef57883"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-201.html",
+      "sha256": "bc66adf72e68b7e2c58b58611ccecb6cc72cbda5e28d2440d5f2eb6273793abd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-202.html",
+      "sha256": "d817097c778799a18ea28d1f0e3e0936e5352b8a64baf359e96c485a13cd55a4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-203.html",
+      "sha256": "bb5d0e17aff7716fbb4e032621c7c96c4d712e0d08acd09047e1123116d9284a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-204.html",
+      "sha256": "5ec00f9956ececa522ff98b1ff53388754d34286e37ad4de5534a13aaa8ebc7c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-205.html",
+      "sha256": "71cfa22b08c882725d2826428f9f538a770c2214318dfe1ebaf969810f83c008"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-206.html",
+      "sha256": "4fb8513d8ba755d1c1535255aad1108c71cdd03558f3d03d04db492bb1b7dbbb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-207.html",
+      "sha256": "5d1badadcda26611e23cd16e416af02e989dde843d5e74eeb6316a7776d42d5e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-208.html",
+      "sha256": "cfec4f4f91bd9bd8b2db5479771792d9a7fc3db5fc54b9e42eff595fbba41607"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-301.html",
+      "sha256": "4665fc91d141d8dc4c773e5060de6dc8e0527fd022a52db8b7e8f31c11c4afb4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-302.html",
+      "sha256": "f7f58b9b0790c8c6aab74c20e4d87b60f6d126edc73025428dfccb4009afec18"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-303.html",
+      "sha256": "c5cc48b9119e8db29ef70df3ec080924ed3aeb4b1697b1b509439254438ddccb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-304.html",
+      "sha256": "fafbaf2f736e42b4022d500893ee61be6c42f7635fc78c62caa65f460fe27343"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-401.html",
+      "sha256": "ab6fd4e7833c3965460786a754e7a8a2686b58dc6f9415985545c88d7469b334"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-402.html",
+      "sha256": "a838135955f48ccd0adacb23b9b6ef031bbf8fa40b762f964af786ae966fc048"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-403.html",
+      "sha256": "ce5d76f9cc04710489bdd9a77878e2edb1417b60da8fc4f328bf4b67938546b5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-405.html",
+      "sha256": "884ff8759134d72b0633d4b526b0b1c16336d89663a0e6f9cafe986e425f68df"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-406.html",
+      "sha256": "96b4565863e59316ab7dc519d50467c698a91b650c1fd4c0029ec5593a802081"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-407.html",
+      "sha256": "a5c2cb1f2c9f555b0fa62e91fbe56e17b23a462849f0ccb5aa5bffeb6c2f94fd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-408.html",
+      "sha256": "0511848a64df24bf006864197d80bb836d92e860924186123d934b3f6d6741fd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-409.html",
+      "sha256": "ecfd6a84d1e120ed2a2e09b35d7ec7c25330d801edadbc53910628298600453d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-410.html",
+      "sha256": "5e5258e8d042646f8f01ce3700d2926da944126a9cb04e70bc50b8c683dfd706"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-411.html",
+      "sha256": "db18c8e258493fd74dfa3f2886567876d5d1e445a1c6850686fb340134da2a00"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-412.html",
+      "sha256": "381290a2b2ba3cca5be89b6caca535474683061dc40a95edf2aee1ba5762d72d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-413.html",
+      "sha256": "08c539e8e81e3718b225494a56be0efe06f9da3859e85b221a9759e6de5ba18f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-501.html",
+      "sha256": "6bb9b018e08a5e98397254664a5fca944ae025ac3128171007f334979bcbd55e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-504.html",
+      "sha256": "a8441edf6fca9b11081f3ece09be3e00a5d5d5ee0cbb2292b724deb7ef025971"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-505.html",
+      "sha256": "186d88066f11329d69457e83985b1f9471b47499226accf77531a460811ba9c1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-508.html",
+      "sha256": "82f73d0e5ae306005d866c28d96d2db8a9caf18f09bda5a56030942827974ac0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-509.html",
+      "sha256": "f9f16d543045a646d4de6796cc5cdc4ebff753097a070892da7ed56ea4175fa4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-510.html",
+      "sha256": "25ea3ea9e21cfffd049b85fb764d3155cbb50af9fee9cf61f7f806821f0d7099"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-511.html",
+      "sha256": "8d1553becc99a985ba5d7bc706f7f42950fb03759919a7f8b429fb6356ab8a6a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-514.html",
+      "sha256": "d91ad382ce6c0ae8d2867407f166bbf6189c31863b7e6f1edfa22886a88da035"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-515.html",
+      "sha256": "afb84ed2227d39c8bcf8c427d324b3bb86889b877481df44753c8f8ac96ee3a5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-516.html",
+      "sha256": "a44a0a4029eb690498e7802c624151173d527b3935162560ee51ca215ab0c8dd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-517.html",
+      "sha256": "8e560d469a12a55f1d94b68aaa44a1361eba3d2f9adf697d54e0054d98458519"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-518.html",
+      "sha256": "9eb722b3ea1860112fa98947f2db4d397b2f5f534b600e28d0666cdd75132bff"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-519.html",
+      "sha256": "7b9bd83c61a96d1e23835273e530623ccdee8de439b148f2db14b184da5077fe"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-520.html",
+      "sha256": "657fd0031cae1802a44de62bc7e40a0e41099e4ff90a0ff38987c1906e59c9ae"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-521.html",
+      "sha256": "8cb2900f2415631a8e8d0964967b206fc77deca8f35d66278797ed055fd2ddf9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-522.html",
+      "sha256": "b94b6991aeef85be13b7c815d17cf235e91ea825c01110b9470787b5d585427d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-523.html",
+      "sha256": "b93ed4fa360f9cf1d1f855dccabda6cf5065cd1687d4f4dc27423608da10c5d6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-524.html",
+      "sha256": "d2a22305bfc400fc2b0e6c688673e66eb460ebaf17f9c4b3ee09b3d290b8079a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-525.html",
+      "sha256": "be447549c7b348edc0aa8300a82ccf6602511c672611f5620cb7c48eb6e8d2d5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-526.html",
+      "sha256": "82a086e391cbd1162337418fa6d640c218368e9e0f4adca835c58e641bfb0625"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-527.html",
+      "sha256": "65415edf2b26748921afd9d6dd9456934b8d5b19bf756af1f0e7ec82b623c14d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-528.html",
+      "sha256": "a49a5b33ff5e606ad21655acdcd176cd32e272e724cab975225cff940ba0d025"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-529.html",
+      "sha256": "0e385e14f30bf1e69c47231c0fbf9616618907d71fe5e53cf89edecec58ef6ff"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-532.html",
+      "sha256": "3ae1377118777d03165024cab1471342b387dea85f89f3835f4e176341f94d21"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-601.html",
+      "sha256": "d2417a2214845689a8a5a4bbb17e2cc1d6122b99aa8585ffc1eaa2b5f2cf7c29"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-602.html",
+      "sha256": "3502b3f983f12e31d326c67a765a36e21de34a5d99ec4f0afe0f844b70ec783b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-603.html",
+      "sha256": "bd220ac78d37834421d90144c9763e508f9f5de656747b98ff753ee7c95fe878"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-604.html",
+      "sha256": "854cbba8978812b667f6b7e44d2c7afdf0dbe9c8def6d44373058bc63e405125"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-605.html",
+      "sha256": "3b525a0c5df68ba9902c87edf17de6c5d03247cab60bf1acc950e2e7c11875c9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-606.html",
+      "sha256": "ec4f9b1737862c096f388c9b210180a97705de72fb96b4d7a5ee7360ed9ab49b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-701.html",
+      "sha256": "6d50a3cdfbe7469a4c981eb052dbfa46263bf43fc0cd64e86fc4be35f95e7379"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-702.html",
+      "sha256": "3f8249f3eba691d2397d31c8648a96a639ce5fd5c15f431cec7fee8dff33465a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-703.html",
+      "sha256": "2aeca4d558e308e36df51a189e7287d629efc1ce2971385296c71c4ab2c64706"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-704.html",
+      "sha256": "ddf6965652c52e3290c6631aaac9a8d68d6bf873462632c1917c9b6ecd713456"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-705.html",
+      "sha256": "c4ad9bd4fa6aa703e26b799c7d0749cb6259b9095ded457f48f38d0c22157246"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-706.1.html",
+      "sha256": "51b890dd9ad12db9b050a9b596877492c243befb32eec1d14d50010aa57f1f20"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-706.html",
+      "sha256": "cc956e8d459e3eb751797134f8e838911dac3e5e64a4800784f8892100cad29b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-707.html",
+      "sha256": "2d856aaa4ec8e0f8438e76ce40a5416378212f5ed4fac8ae0fb325771aa92900"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-708.html",
+      "sha256": "d229bace395f20a140ec21bff0583f92415f04c2e4a02127afe7b837fbe04d9a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-709.html",
+      "sha256": "fc402381a58700961db2504a3d53ea5f02da4e1e58e60f6dc31fc372b14f1709"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-710.html",
+      "sha256": "81f5303b91d0227863c798734e7dc825120d54b94ccec028b5625bc7dc8289e1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-711.html",
+      "sha256": "20cc1d21ca91151b8d62cbce181cceb589da2c82d75f8c48ae4701ee7fc9455e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-712.html",
+      "sha256": "fef93cfc6b88f857daa4ae79fc6a7f175e47b6dce645d49c3a2629438eaefc79"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-713.html",
+      "sha256": "502886a25cf6a1b5d644d89740502e18bd5a757492b371d2ac9793f1d479f0ed"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-714.html",
+      "sha256": "9149a2c40c7dbaa7f9b21634520df4a6b77082a646449474f1d1716cfe75bb77"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-715.html",
+      "sha256": "123393f732300355e357c836ab23a455564905f436680af628a45eabafa1b8b9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-716.html",
+      "sha256": "457fddaeaa86de16d9ca4e748668b873a028f689269ee9270df799573e095d26"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-717.html",
+      "sha256": "17e6cf9e1b37b72033bee49144eea2582add96887883264da246c1e1d2123095"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-801.html",
+      "sha256": "f324236e438933904d1ebc123e97f491bd949d5940db072108ea3716705efd08"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-802.html",
+      "sha256": "74f0f1c18e215ea87bad09bf92527cb3446e3ccf8796cfbf7b333ab90d10ccb7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-804.html",
+      "sha256": "e4af33088c31f0d7d5857721f6421f6f8f064fc2ebead29a23d4d3655cfd367d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-805.html",
+      "sha256": "ace0e79e4c2a57aa9f3d8e68ff1760e7d66cca109a305b762906fd69cd2720ac"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-806.html",
+      "sha256": "d602c71c8ff88f7d12eba49dbdee32ff8607467af558936e4b91c07afa5db032"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-807.html",
+      "sha256": "913c8a60521a130d97e2125060baba3b87ac95c295603e5f842ea10c5103f571"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-808.html",
+      "sha256": "7412e274f11092e632c7281d8775ee876ef403c64e8a68db42d3f10154f74660"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-809.html",
+      "sha256": "3591360e18d34c978366c59cb7d2a620c347d488fe6f42c5b9fa12df9401ce96"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-810.html",
+      "sha256": "dae60b77378eb503bb65ff1dfa417a1d0c52849c79f5973b48a2360502b284cb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-811.html",
+      "sha256": "820d339db23eb1fb009179e73f83540b641900eebc1d8dfc853e57a96b387969"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-812.html",
+      "sha256": "9caa86fcae3983706fece0310281e61a34f5179178dac2371b75f3a4864626fe"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-815.html",
+      "sha256": "7472707b2fe81771b48d5073fc0917bed9512e96f3b9a43a4a078531ac04550a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-816.html",
+      "sha256": "125c78a9a81dcecf5c607e832e45875fcf2a45b1962357cd8d50e925134b7204"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-817.html",
+      "sha256": "b98bc9949dcee110ca9324bfafd6b7939137356a58cb6e5ca5dd0b2db72ebbba"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-818.html",
+      "sha256": "0415d12045284e605f257b84983651706dedb11c201c1d20eb6439dc40d8f2b9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-821.html",
+      "sha256": "a303bf9329cb41d2b40e29f451ce9244694b640571a47565ba109be965febc86"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-824.html",
+      "sha256": "b686a0c4dabfc5d4efa7fa2deb97c17aa21e36c5f04f437667bdc326067ba32f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-825.html",
+      "sha256": "a6dd6a49db0b901979e7781b7122f27317ec32ad249de29df0e81194d0ad1f6d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-826.html",
+      "sha256": "607d8af90bcc3e584c9ab846ecf69267a94fe3f30078c608074e93eacbb90db4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-827.html",
+      "sha256": "23fbacbe19f50073ba211cd9bcbe8788750389708c33d6f6580c2f52ededbb8c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-828.html",
+      "sha256": "9600683b118fb93f553c881e7c1f34e07c4e6f9d7ed1bfbff478ba3dcdc33b77"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-829.html",
+      "sha256": "7273d6677bb188cca1e022aaa276c7d78954ebcf789bce709d005089e67f8f81"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-830.html",
+      "sha256": "f4f7453b5abaffa9dcbfddfd68639d324d790c3a08a3273a0377f5abd1cffb9f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-831.html",
+      "sha256": "bfa486917d13ec47afd9c1a7e3905a2ebdadbc40ace1efe8eab697e4bd4a9500"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-832.html",
+      "sha256": "d32ab53fe73819f3fce7c512c3d6b9e60e2f2c05da070d82fd187dfae8d815d8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-834.html",
+      "sha256": "02742c0afaa51e0e5d4e62b7c958b55cbac3f77ecf1be57aae8f345dff05908d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-835.html",
+      "sha256": "9f14e22564306b6c1795fba678646a44276cfb166d70e50ed8133c37e5162795"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-836.html",
+      "sha256": "daa8105452d0fe9c1826938a64cf28562d811d68280ea431a0a23c91b7b2004f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-837.html",
+      "sha256": "fde079f8196fd738531b3f93bda16ed562c1c737302c8b24d0c977fdd90d26d0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-838.html",
+      "sha256": "6cf2156a111310a74ca9c82f2e6470280fdd877b1f52c7ceabf203efdb8b39db"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-839.html",
+      "sha256": "0dfec88606bf603b5f87efc257f2cf4f220d1b93ba35fefdfb7d06444d87e9c4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-840.html",
+      "sha256": "f570147924cb46546939aba4cd1c0244043d9d0b04b83d1c1ceff910b2bc7891"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-841.html",
+      "sha256": "cd5a4fc43cae9e74fc089a095f53e4401fc1af77a0c1f1aba318bed93bfc56b7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-842.html",
+      "sha256": "fa80efc883c170eb3fdf6e1a2a06f9e1075ecc9dc53d37ac5732ae7f0876ff8b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-845.html",
+      "sha256": "94b5c8a84c58d5ca91f9be8e4b6c6e3430135c1c21bf8efed038d8b995c65780"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-901.html",
+      "sha256": "8316f77f206980f417b4d1a3b26c9daa5839a93b02cd40c5f1dec80505f3adf6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-902.html",
+      "sha256": "49daf0204912d4be218ce2f9c7d5270cc0e7d9ef2dc8541f35564a7b60c30d6c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-903.html",
+      "sha256": "52c8d59d6ba594dbfd53d2d1ea8012d1643b46e1494d115816328be5b9d0a951"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-904.html",
+      "sha256": "7c8fb0ae8d2947e710d783013f0804cc4c92fa49064214aebde32f1711aa4e81"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-905.html",
+      "sha256": "49d9e5fd635f6d21408066967b533df81cb9746546c21c08ad6353e2b810febd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-906.html",
+      "sha256": "0b50fe87c30b5ef3ef0f7ba6d0c51aef8eab487455b58eafff5617ae37d1b542"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-908.html",
+      "sha256": "f9b9df2c2d0cf9f10835e5c81f39a47722c276e09617a93fc2d77cec3ed26d5f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-909.html",
+      "sha256": "9242de4a29f3b0e0a3b8a1c7d7841094b29c9cddb824a977bc352026f5b69a2e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-912.html",
+      "sha256": "d6065cd26f6d27fb9dbccbc509bae3aa0a43b758a2f0ba5acb06e16903155b53"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-913.html",
+      "sha256": "bfc14881d2b50aff2c6d7ae269df2a23c528aae4df42df807f3152e5f502cb74"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-914.html",
+      "sha256": "052d6a125e6c9bcf41628a70e6587b41f7e63c1258413400ef17e0b5510dba7b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-915.html",
+      "sha256": "5d1afef98519428a9dd8dead6ba07a25a396846632051db8cbee0488ae95155b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-916.html",
+      "sha256": "cc35c46188d62ff34635d739bd549ba073ce94ba0e8bd76ab15c270d7833bc46"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-917.html",
+      "sha256": "2768cea320546cd4e921443dcae71e1a9d2840bb9e371dc0551ef750b75c75dc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-918.html",
+      "sha256": "9cf7c06505636baaf169f7063e3aa6d9b0e8ceb03fe97bc4d251046f95f0e3c3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-919.html",
+      "sha256": "9fc6b070277b4e28ce13f6dbda7f7fb273346e87a0f09e88de230469338030ac"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-920.html",
+      "sha256": "aeec6a0751039b35073a216364e82bd82cb87e79b1cd2b10c590b774b2266765"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-921.html",
+      "sha256": "0cfc988be6e7be6eddb9884461662ab046247223daf5a0c58c87cdffed60938f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-922.html",
+      "sha256": "c6a81218f51b14a211a624e9e327ff3b378e3a2672896752d569a41cc1de929f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-925.html",
+      "sha256": "b5171b1926f9fa0fff30c50206a3970179633abfdda634e5700994cd01119b71"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-926.html",
+      "sha256": "33ff250cebabdb6c1619614c0115c087acc710c29d93f459b0ae33fceda50019"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-927.html",
+      "sha256": "7b6eb9f7f167e6a116850794eae674bc2d0d40e7e4253a7e0b16525de490b3ca"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-930.html",
+      "sha256": "067b31bdbbc7443e4af2f2a4ba8ff2146c686c495f890762cb723e4bddcb5223"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-931.html",
+      "sha256": "21347924792c0b47dd73995f0504ea971b72a7a0033136ff64604957035a5494"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/13-932.html",
+      "sha256": "fb7d4eef700b8d559652c3c69b8427f5a6a536f2df1b3386b017bddc5383e48f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1001.html",
+      "sha256": "6ce9a7dd74bd176bab449080cf49cf6da10e7a9d1862b615c596fcbc8d8ac284"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1002.html",
+      "sha256": "70ba3010f1b722ad7fb7902d5a33339c0b2fd965ef03db4abb282a54f03c28a1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-101.html",
+      "sha256": "30db9b41136a4a4a98e9ea1251ec9e106eba4af89bd5bc5a8d2c836f5cee1929"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-102.1.html",
+      "sha256": "3470d3c969c7435f729c9eb70a07283046663ac781f6897d5c6131475afbe3a1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-102.2.html",
+      "sha256": "c4d9baf3d7289bf8377bdbfadc9122360b838937f5f06c851d4aef0edb060379"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-102.html",
+      "sha256": "bc6ee0cf0a99a08411b68c9c41515117282ef073d940391752e95743d0d7ef99"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-103.html",
+      "sha256": "75bd15b6080317cc456b806e4d1ce42030127569343ac5b7510610eb3c33d936"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-104.html",
+      "sha256": "38d43dcc7ec09b563def3b2e314b14ea6a6bdb05a97ccf868a53eda06a1ac5f6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-105.html",
+      "sha256": "b8b2c62a5005b1c82194efe3e9cccfe12fc3770e4c5de750a3076d2c5b6e57c6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-106.html",
+      "sha256": "81f645ca6a9fb6c01f3409290063cf24ff62a7d8b174e6b2fe0d766134e63820"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-107.html",
+      "sha256": "2ed18ae7c6b05d9708e3458962e82c19aa184c8a1d87a39aa3651f84a5bc255d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-108.html",
+      "sha256": "40e57362e529553b1b6eb2e4de03bf49e6e2f3958178755f2a0451d6ad1235c7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-109.html",
+      "sha256": "04c9d1259d06922ba90c66e963cd25b3c4842a55fc799c8aa50cc79d51b7b713"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-110.html",
+      "sha256": "58d0fa891c76d7de53117a2817ac7d42e4707569d7a6cb50f69b919bb66c102d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1101.html",
+      "sha256": "8e2cd3a0228b1836b1c9be20b63351aa064fda9e81e8f0ecd69a6a866f615bea"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1102.html",
+      "sha256": "da77d638158ecc12de3ed7f8b27ed1b74a1a892e8cad8adbd7e868a94f6dacf1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1103.html",
+      "sha256": "065b4d9dd7a82ad0cbdbf64ff12c8096f5ceb9b893094d1eda235889ce7fc525"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1104.html",
+      "sha256": "4e31a96bade48db49ea08eaf7950d0dc62fbc565a8124a76b39689e05f3b3fcd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-111.html",
+      "sha256": "1666577f8282913eb1bf60855639354f74e3ee185562b23b9a944de2b213644f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-112.html",
+      "sha256": "004c92d3579082d23c4973d61fa78c3fa6d41ddc9774248f26ab2295da09cde9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-113.1.html",
+      "sha256": "05265697e96c982e6c02a88ff2bb5e132f2c284e255093def28b15f407240de9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-113.html",
+      "sha256": "ab6d3b662d78934bc41170ba427c6f4eb0bc037ddbbf15124fdcf2aaf1dc9195"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-114.html",
+      "sha256": "549d20775c5d03175ccefbf2b9809af9ad0fb0284dcc1be1d2a39ccf1e7678d4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-115.html",
+      "sha256": "022cce1614d92f16b2c3889c2865a8e2abc0512d3f9a27b9a27bfc1c5f32d936"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-116.1.html",
+      "sha256": "b1bdf37932e5b56374c5262a83b16b3d9a40fcb07789538e148c7390348e0d49"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-116.html",
+      "sha256": "cbd8c62f392da3bf725eeab183e2c7b8768340fbb54f6282d3b82cc39c2e02d8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-117.html",
+      "sha256": "a4f4b01f3c0bbb08959fe1742479494c8dd406a5c0a21828c6b5c97606f19d99"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-118.html",
+      "sha256": "c50460347dd9d11bae63339096958078102994f612a62c704e558ab2f0815730"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-119.html",
+      "sha256": "a12bf0a8ebcf9af62a8b9fd57377e7258b248d4c433d257185187db9769d7d0e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-120.html",
+      "sha256": "fc4e8557984c6626cfa74f7cf992ea524f2976963a7f122b73500a2e49b25f80"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1201.html",
+      "sha256": "b4862b40632ff378f09483f4ba16e792dd78d9395ed2e36a6f5e1ff261db918f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1301.html",
+      "sha256": "be634b070ff76152ceaa82318e509b5426c994e100d6948832bfae400e27aa4e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1302.1.html",
+      "sha256": "69fab9f6ae9edb3846c4f020f25885eb528bc1c8d791a2236f4bd7577dd1602d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1302.2.html",
+      "sha256": "0659e11fbf4055bb7b78ba422c38e883f7768d8d8dd67361d66319c70178e3b6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1302.3.html",
+      "sha256": "fd7f5f65b035471bc05c625deadde165ff9198234c71dc1c70d44b9688fd20c4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1302.4.html",
+      "sha256": "4d3899981c90ade523a1189ed4180438ccdb4fbefed1d64ed3f025f4a59c917d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1302.5.html",
+      "sha256": "127f42b6851d0356b945399c7fba9ae40b068fae5ce1a92f5a3496508431e641"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1302.html",
+      "sha256": "e4ee3c25beccbd823f5b4971143b4f1e6eb7c3f06814a4234b0f8a8474bc5619"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1303.html",
+      "sha256": "10b55f7b15c7e20157179929071e72564b6331d7e8d8bdd2c4baba97c3162d5d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1401.html",
+      "sha256": "25692c687c4d6465ee691275c2ed7f2f4d7ffb022bce27a7d68fe5c5cb6a8a40"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1402.html",
+      "sha256": "60dae17823f90d3f4d72b61a34d85fe355f3f4d2c34d7fe84c7cb0c7f2470d01"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1601.html",
+      "sha256": "2587637f5d43f92318f1a35412e9cd3301699b8b3b781a6a4f7a7f8aff54a7dc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1602.html",
+      "sha256": "97729486bee92e5360b158919275806dc98199c08f9403ace39a4dedf9d54614"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-1603.html",
+      "sha256": "5fd7fe64408274dbb8c030e0159a764f407420da6257e0e08545282cd3a782d7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-201.html",
+      "sha256": "7b4ed5ebf1eb018dc365ce925d59af3c8dc863b9b5cb1582502234a6fd119afe"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-202.html",
+      "sha256": "8d0747c859f0806bd8c4309d3faf787c7bd500bfa1280e3f3f75fc8eb8aa8013"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-203.html",
+      "sha256": "e0631c22f16290e52ff5fea90038705c3e2bd233fa63f62b27013a99bc2f5cdd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-301.html",
+      "sha256": "2eb2629f51fb1699df2eab3f537c8e32c63016ff1e1f4ffc9c10da40f1fcbd7e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-302.html",
+      "sha256": "b3dae7f7d9d830d2ce9058446047f0ed91dbdf2e7386799c7530e40b43cf7c41"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-303.html",
+      "sha256": "7ee8b16fd0d803b48b93a4e2745bbe43a82f6e27a809657c9b337cb5af5eda51"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-401.html",
+      "sha256": "22c55dfa0581be6dc941265c9fda7ac5040708d5f465adba94a7d1f3a97ef769"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-402.html",
+      "sha256": "d23093bf4c181837281f2ff3b9dcda7e56ecbe9ce37a2bb9dfff3774e47b3ac0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-4A-01.html",
+      "sha256": "fcfea406d582b9c64cf42dac13b056dbd1bd1cf004683e327829ef83dff816bb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-4A-02.html",
+      "sha256": "9760cc15ca0a29134d0ed8b56980e4eeaeed8df51418142148a3f759a2f72ff4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-501.html",
+      "sha256": "2c9e4e1fd27678a4b17b4ffee106616f304abef7822b07871e59701f40cd0de6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-502.html",
+      "sha256": "c32ccde02b1b2623117a1d9e584a08aaaae7bdab25a7283460fcc1b9a7ace326"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-601.html",
+      "sha256": "9a7079ddd72b96909d68abee2224cb8599613bf07f60879dc37716b960b7ec7c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-604.html",
+      "sha256": "23a062847821967e78297f2ec8dc12df92c2249e9959b29ed66264a081536b2f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-605.1.html",
+      "sha256": "9fd488a653953805b0c86ce807c4648ddc45905cbe772f5c7d12fc3f8f735ba9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-605.2.html",
+      "sha256": "1e93b7dd1ae1f371c0d8fe76b28bae549321bae090ebe0d46f0b68d6c1773a96"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-605.3.html",
+      "sha256": "12a7e98752958c4865c9ace33bfd50acb56a8de7e8664da47e9617be96622ab9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-605.html",
+      "sha256": "21f9bfae9de07d12835927ef6b43ab07c7ba8955aede951c8b91ab095258bd39"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-606.html",
+      "sha256": "8fd58e9a7b57b063cc0d0eb608cf5d2e3634fbeb068de68a6f0ce7371d116dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-607.html",
+      "sha256": "a980dc33a4999662c221f460727fef47f1bbe4898674743145caa2b2e3ff5fd7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-608.html",
+      "sha256": "a678b0c1c2dcc5600706fa74984ef09a06c1fa445a3477934a46d21a5e5f4212"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-609.html",
+      "sha256": "05470bea50fa4020c2e589c57ea59ace3b3a4a98d10ac2cfc9701b77f3a46d0b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-610.html",
+      "sha256": "7891558408264b38a32fb1571e1c1703012a22ef2bf3a6a1e2749fbf2e7455f8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-611.html",
+      "sha256": "93f1f40199588be6bc151ef70ff051ab0f22c765bf39ac70615bab9471a57b0c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-613.1.html",
+      "sha256": "a57ad794752fd20b8f1487317d5d6f204bdce16d4a7a4ebc2b02c36ebf46ee3a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-613.html",
+      "sha256": "ece77c3a8a253b729ccfe15cbaa193b444ac8551bb356e628660f75f7cf1d52d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-614.1.html",
+      "sha256": "a3248ea98a5982d452e2ae489cfa1b314f9babd50fa2094f281a58d80548a56d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-614.html",
+      "sha256": "d7ac7e4fc538310301eb6e5c4a665b2d7a86b0292992278b39481c8765a47609"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-615.html",
+      "sha256": "f9d591ed548dec04596dc0f02b270c049befa2be016b28f8d07ee94a330b8e4d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-701.html",
+      "sha256": "d982bf592ef2a05c39fda90583c1c41200e4a4ffa37be5da94d3edba0107ef9a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-702.html",
+      "sha256": "487b8caaf57fe29d2b4e9ddc5e5b39878db7a3785ef6843a08089e5095486807"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-801.html",
+      "sha256": "65315f8679d80d582c8b432a46cf28fe149fb56f4d3efeb809f0a018bdd58d70"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-802.html",
+      "sha256": "92b429a746d2b41143042963b6a2cd2d3bc6448a04f1d910cc5b0e9ef5b330cd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-901.html",
+      "sha256": "86776767642486b9b603d54faa25212803eb076dfe399005f30655f232ddbcd3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/2-902.html",
+      "sha256": "f33a9f072af9c8752d3a0aab8a703458f5cadac431724f553caee77be0162365"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-101.html",
+      "sha256": "c3eb8fce8c07a22aff2599ab3ed75f9c7c20e80614a8b8db25d719df7833facf"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-102.html",
+      "sha256": "1468d4237bb3dbc398fff16fb4f33c6282c472b2f78addd1fee8bbb6710abd4e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-103.html",
+      "sha256": "7f770b84f67ce96bb3fd790adcc7d9a46fe02d8da0e11c2215e56ca925174d56"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-104.html",
+      "sha256": "dee77c05fd8bee56d461aa24c5148db3b06f4c5a28d0684fde083cff607309da"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-105.html",
+      "sha256": "b0891240591a7e1741935ea87bd0c30d1b7b2d210c8223a84872394951d18577"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-106.html",
+      "sha256": "15b820265edd96a7def3e4c71af6d38e8b3f8e83d9916592aba1e47dc8c3a117"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-107.html",
+      "sha256": "72b4e5728e078b441820bb5aabe476dd92089168020024905300fecff6050213"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-108.html",
+      "sha256": "a0388441ff36599485f6e8bc7f1b9aff909588f7ffe21598fa9296aaa44a62f1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-109.html",
+      "sha256": "ace2e4aa59160ebbf08b754d9ddb3bd946fad341df0bb15acd52ff2391e0a8ac"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-110.html",
+      "sha256": "6bb3b8ae8bce37a6f3f91fda8bb43c3f3f72c5af07cc30fb4b8f9fd8cde81480"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-111.html",
+      "sha256": "56624b2c2e0555e90678f31b82bb5401debea47257a60860225b53c0db6d64d0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-112.html",
+      "sha256": "0710c80092f4c5507874ce78de70f141e5b90bd5ea9031672ab01a64a4c91a8c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/3-113.html",
+      "sha256": "6698a08eb87b54a96a98983ee24bf78b03787f1411cd452df946c61ec49154b1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-101.html",
+      "sha256": "b526689df0f8fca3b0ce703993dad664b448bfa05b21a5d72eccb22d76c7c513"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-102.html",
+      "sha256": "442fd8d226d80bdf34b22c419478562e36578f7d22a3c60e95009c69cc61fcea"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-103.html",
+      "sha256": "62018cc0f505d59695830a93ebaa0fd31526b063e07ce865f322c061d20ca2ef"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-104.html",
+      "sha256": "f9d46a5dd66ee9526402df2a78fbace1b29347e1a814b1298ab4383722e6fb38"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-105.html",
+      "sha256": "c10a40c89f9a053a54adcd2b76a8bd6c5185c202ffcd7b8f3da3ae20a4156e5a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-201.html",
+      "sha256": "948b25582b70081b7b9d94660990c3add49f2609e21362e4d40cd38e14e5f47c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-202.html",
+      "sha256": "cbf1e6805550d3fa2eec46a35efa36509824e9d04622dd7e9aeba8b7c12c56e0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/4-301.html",
+      "sha256": "e56e154f149a6712bcab44e2adc1cc44a5242f2821ace61ca77b35b023487b33"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-101.html",
+      "sha256": "c688ce2b0eb2a9305b0d19b2011e1a8bfb2985e4225e05cada710fdfe7526586"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-102.html",
+      "sha256": "1082c45cfaa805b9e80e29febe07ebbd1df8f6747bffca5d7a273820c99ae7a2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-103.html",
+      "sha256": "1cfe7224f911d84475d8dc747e5932a93df762a493a02725ae8ee3dcfe5e6acc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-104.html",
+      "sha256": "533593cd57f4fb553136fb7d9d90fa127a25783964063b7f28db9985ebbb00b6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-105.html",
+      "sha256": "4f8cb55b58d9a07b689300cb1c16fc80161221c63da47d2b97244000baf1572e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-201.html",
+      "sha256": "01995a1431e9ee1e0ab7533546ceaf0bdb5cd1ad637ef5913769cb97c8ab9496"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-301.html",
+      "sha256": "8099063473382c15ca6036e771537870769813865cdf8bc6bb1c1e8b727dbe11"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-302.html",
+      "sha256": "6e5e68b828558ffd42b9b4fbf9bfea630311160dcc4ac0060f992cd4c4ad380e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/5-303.html",
+      "sha256": "d5d78fe5ee2e04be6d0bc67a75e1af666b652d391fbefcd4656ebab08b5f5e92"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-101.html",
+      "sha256": "5a2f013e480ba80317682c6796c501446d4b380eee878fd702dea3a83342580d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-102.html",
+      "sha256": "a929df2a0d280ba59a7607c7e73bd834b45cd66ae4bf548a46c18a3334b1d2ad"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-103.html",
+      "sha256": "98c776a3fdb1a5a399618e1aa9a50025a82d3f31f4a0ab487c11adbea8beade9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-104.html",
+      "sha256": "76ca61dc0f266a3ffc7eac8ec03e0260f78fc21d72088383d48f49fc02440b26"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-201.html",
+      "sha256": "c28b81cc212af4c034604f13aba5136d7dffcab74a052d74d1b4297ddbfc7af4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-202.html",
+      "sha256": "3c2c6b435aa6b1fff73701b90457e45502f09eaa26c1fee2f589c48b1cbe8854"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/6-301.html",
+      "sha256": "a89d44569f30c6542486153f644fdd5b7ca0ce6f0e68e8036f898f0bbe92a06f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-101.html",
+      "sha256": "a622cab99c4f1ce563e985a10d5495addf9188ce46f38672df840027f629f5c8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-104.html",
+      "sha256": "3e24dc0cda1c8d0004e8c7704dae5843f01541754e600f965cb2178f5ce26b2e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-105.html",
+      "sha256": "11d1552e1d7f8da11131a12dc5171d167751c20275343467c06de6954e72e968"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-106.html",
+      "sha256": "b247c7153c9cb19ac3f12840fa2335df4caa2b81898df2d23494681204d3abb0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-107.html",
+      "sha256": "18927a5dcf85efe2099bc6d84ecc19a0eafedee9e30381c1e6fbd594d533a728"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-108.html",
+      "sha256": "2897aa854635048db398c398044da32f232e99569665b3e717f36d848e88057f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-109.html",
+      "sha256": "fb80f7a5afcfe587d1d845180a50a4278ce9f495afbf4b6a56d7567116cd30ae"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-110.html",
+      "sha256": "4fb246b459ed3fa898fde10f1f2b597c400b90daa8a8973247d31f1cd46c1bd2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-111.html",
+      "sha256": "d17ba689da6f97e4657d5abc7863cd77263539d8ea4bd97a981e15f3427cd9a0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-112.html",
+      "sha256": "9b30f1d22b79511a6c13d46d8856228e5e2d6d82251f0207c9ccf382079a6963"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-113.html",
+      "sha256": "5a80382545ab9a75f1084de07331e7cbe65c16e170c11dcc8867b28f89ae9c1d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-114.html",
+      "sha256": "5e742997db9808ed1cbc9a44c871885a52cd7b24530182debf1c5e66d195af88"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-115.html",
+      "sha256": "4d01c7e012aa57d9a03caa3af07eacc764c2243ffb362e7ba1c21bb6d2e26e61"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-118.html",
+      "sha256": "bac02f1cb07d19d704bcd59dfaaffa763169b943de104282854564d6c3504c40"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-119.html",
+      "sha256": "fd227e8ab1a8f0a17b22d4c9e22a0ea88f6f6991ec8ba3df1191508cfc13767a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-120.html",
+      "sha256": "dfedcdc0e7d1d2e7b425736cf28f17897d0a7953f5775d0cd38fcdd8954173bc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-121.html",
+      "sha256": "16d6cdb1a61a3970164156af6d0618dbcf75dabbcb816f3b5eaf960fc91ce67a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-122.html",
+      "sha256": "3b5f8b73c354d8ce6acb6b63713248cb76fcfd5af6e08f37cf198ed9a85461a5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-201.html",
+      "sha256": "5e7cc6a76ac0dc2e46072988c7625e804718916a10b981566b32a16d3b851186"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-202.html",
+      "sha256": "fb352e8690f43e3f39eb8124de3b73467b405b5291fd3e2cda06a23d6c0dc147"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-203.html",
+      "sha256": "dc6ed0af927771d6383fe0a9b6978ce692bb5a85ff409527ecbb13034acfba09"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-204.html",
+      "sha256": "403597a2636630a9bdb119ac097fed78b1b53565ea787bd404e6297a29d7536b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-207.html",
+      "sha256": "7001b6e16b7715f379a489f1eb354ee4c71f452f0f5f1210fb6c878bae9e13f0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-208.html",
+      "sha256": "77841320d3921ecd041125f7d14ab1d2d3576aaa3de608d958cd2085f37add8d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-209.html",
+      "sha256": "33b7c120b8d4e2f8822e8188dc9118a58241426c13f46a2c45df0b06445a7800"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-210.html",
+      "sha256": "9986e21900fd6deb2a0d2d0ef0a1a3aacaa6a79045d30ec0e279cf090345ce45"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-211.html",
+      "sha256": "3633cc89ddc1929f74b6e9b0f6d22197a7486cf70dbaf1214fc63553136d986f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-214.html",
+      "sha256": "c18bd15c4e2e5bd7eaca0064c931ccde8f83a103e777a3df77b0cfd21a3582fd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-215.html",
+      "sha256": "949f81519eaacbfdc4ee69015faac11b2fd2f03770db4c2fe0c641876ac22dd6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-216.html",
+      "sha256": "6931dd96a1074a10e7255a552e979afb9f9d31d3e7181f9d7364285629da6ba3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-217.html",
+      "sha256": "6e39368816e5c864f6333c708b9ff8f9a61da7d98f7af2c7b809978211f5d5d1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-218.html",
+      "sha256": "21325ec472069ba40a6880123c4a0a73bcc3cbd90501129676483902b91dcf22"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-219.html",
+      "sha256": "3961484ec32b1dbf779ec2cb35089322b1c35cfa2ca34f98ca8a95a779b8df02"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-220.html",
+      "sha256": "7fefcbf959508094bbc309133f84fca5966784f7283923c61d45fc591a624f9c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-221.html",
+      "sha256": "9bfb214bd8d5e3aada14b3ededc8f11b392398e0e6f773823908bfa417844247"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-224.html",
+      "sha256": "66fbaebdbde1dd40b759d8cf450893062c5894252b79141a32eb25481eba004f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-225.html",
+      "sha256": "878276513ed0b82a0b3595693b92ad6151bb175922e3bb97b7f9fba69becde38"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-228.html",
+      "sha256": "5a34d2d1f5c62c8415e440f1bb74d400ee739e3d440ed3dd69fd58d9ea359272"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-231.html",
+      "sha256": "caf43bcff276eb6b00426994349f4bcf296ef28844b2933dd75918f275b54816"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-232.html",
+      "sha256": "d7d51e1958e038e37bd11f0db0df41320c36a89f7ec3415335777b1962ace5e4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-233.html",
+      "sha256": "dd6be618355dda1abdaeb319cb39c5ec9c40cf8cc13202996140f9d6e184e9f7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-234.html",
+      "sha256": "b963d3a3981378afcc9d6774785aa56b27f0fa8e678e639ed375ae5ff38c9a2b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-301.html",
+      "sha256": "9ec9f8d84f06d587a674047a052891c57889d710f6f4f5eca8c0eb562c13a7d5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-302.html",
+      "sha256": "5ad5e586de4a82f0ac91e2346ebb66170b32c73c928b35da507d055d8a2a4393"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-303.html",
+      "sha256": "8fc7332026ec9828529a044e6d5349f516fe56f59daf15cfec9d97623c015eed"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-304.html",
+      "sha256": "3112e62ae49644971558e5438ab0d2aa24a981e956594f84c482e326ff703f15"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-305.1.html",
+      "sha256": "600e2fe4a46db8d0e7c2932ece0d2cd6985f941c1ca1920ef7fabb0e0889801d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-305.html",
+      "sha256": "64a4a3ecaa6f282fbf4b8d17998bc0227cf826c6b47e3a38a3bb06f3992713ed"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-306.html",
+      "sha256": "96cd5d11992499406843b49f86fc14596955bf3879c9b6e15da0fa6793ef9570"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-307.html",
+      "sha256": "74b5e8699f75a05eeba5fb134b324370d0d8b096e3db496d7859f6d061313923"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-308.html",
+      "sha256": "4dfff66fb35c1dd2c02192dfacc74bcd88b15643a36b0d9870a05ae824d6e48a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-309.html",
+      "sha256": "c30586eeeb1874afc044f01f33b42f9951f79c43419605e6cd25c5690a205978"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-401.html",
+      "sha256": "4ff9af9e56a85dbb65c4d0fb696977a7d32269de58af0c20d9046025358672a5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-402.html",
+      "sha256": "3785d04088405eb3b8ecfb1cb20e4c50426990730c6f4353fd4edab8e54e3f1e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-403.html",
+      "sha256": "2466a64bcf51c7da96a050fe932cb8121217480ca8ef825fa50be7d67eb2bd91"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-404.html",
+      "sha256": "65111300682f28114803009b8afdc15e834028388c1cdfc1f48d084fb21b0ddc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-405.html",
+      "sha256": "c516d5bc703e1b91bfe8ecdae32f068ff908d1d3485368a012215b74c2609be3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7-406.html",
+      "sha256": "705439f933e8cb15595551335b2129306e3e8a34dca69d0a3a64b9192b82c6b1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7.5-101.html",
+      "sha256": "67daad1ccccd4f6ac356724e4c068085e1c757693b11d9fbde8d931cfbd890e8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7.5-102.html",
+      "sha256": "0aca10b066b5da510adb6d33279dbb5e26957a51e531a32519ab003012137324"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7.5-103.html",
+      "sha256": "dad8a579f23b572b1ee4621b2d7ce784a8a75f9312a70ec8ff9108bfe428b3a6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7.5-201.html",
+      "sha256": "2e0bd6685b1c8679c6668ebf5b1df319a4c3934c10e2a324e2fe50f9ddd2c133"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7.5-202.html",
+      "sha256": "075d5a953726152973ee5bfc2255032812697dd96943b54082d8fdf013d12b5c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/7.5-301.html",
+      "sha256": "a50ea9fa647b71e6628a6103446c26f53da8fcb671b1c408e44d2c9da6fa2b1e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-101.html",
+      "sha256": "fe7a59f7dda27f4ae648f9486f5507c6dc32358620b7de308f94be7da415ae79"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-102.html",
+      "sha256": "9ce0159c8110e1945bc9bc67e5abcc41cd240a6aa6197a01f712b0964693f1e0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-201.html",
+      "sha256": "11f8b1f087bad96dee841dea35f02f34de733ff20fb4743141d0dda537e925b6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-202.html",
+      "sha256": "929ab11bb48443986c94f5e202f5e434d7129dd5e90ae2bd4475d890213ba4d3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-203.html",
+      "sha256": "9cdfe1f43f51501cf97fe424446dc663fc2e48a2d577206bb5f925732e7925d0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-204.html",
+      "sha256": "aa5ad39a9b004481f31d77bea850dec6d75b20262cfeb3b775dece0ed165cfad"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-205.html",
+      "sha256": "1b786751ec6fa04542d76fc87e075bfd585f63ca005d99428d1d406db04ecaec"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-206.html",
+      "sha256": "79c87d07c7c9873e8b04e830b1f890830f45acf83a3954d108d3e95b268c185e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-207.html",
+      "sha256": "22a196dc0b878bba09147f317a39b9001888e2a5407048364793a762ea27caa9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-208.html",
+      "sha256": "5f5a8cb091a5b5a0685d50871ceb29e6bc6b23dc082dc7b834932fc4b9367bcd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-209.html",
+      "sha256": "31b185b640d3b7b3db7662fb01582da48d53dc6dc8edd63d78dc125786c40849"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-210.html",
+      "sha256": "83b06c7d4624c19f50d37663bd2f83664bdc2600aba8ffe3b047d77ca6ae0108"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-211.html",
+      "sha256": "a12261ff0a2e3cc104950a5a196214f31813fa5a91b3a81dfe681559e128a74a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-212.html",
+      "sha256": "d978c9fa47bd092b140716cbd8ec00d8bfb24926070000029f9ca5d87eb6853e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-214.html",
+      "sha256": "906e2ea5261b1a6193b6cc79f1756b982967002fbe9e4513e6e5954744ad771e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-215.html",
+      "sha256": "dcb333797900217e9d5bba91e8263cf1fc371cb27142e34d1d22d02afc623872"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-216.html",
+      "sha256": "b3ddadf066cf62b4e7c11d3178fae670be631f11aa41d0b3a891f2b5dce2feb8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-217.html",
+      "sha256": "8d7b78015ce387e5a8146a5910eb1260902467ca7dea8bf9c2e64b4c9767ee37"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-218.html",
+      "sha256": "959b3946124782f978be99c2b6a3fa3c9e514679c1cc7f20bfd062e6e2670ee8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-220.html",
+      "sha256": "27419a3b6457193115fc5c2f98ca8b00749d38301bc3e8f5f3782568456b25bd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-221.html",
+      "sha256": "2dc09fd792fbb5730811247eaaa83e023a3a8a3307b3e0f5b81e8bd320451c31"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-301.html",
+      "sha256": "20979dc470a7deefb9cb036c28a0fac4f32c103a76b32bfa5d16fcc9db0bef1b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-302.html",
+      "sha256": "7ed6e03a7d2d91aa303c97ff69efd1c511f24309617df1265697aa09254fd4f2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-303.html",
+      "sha256": "307342a6cb38571150355e97c434f519925e2c6f01a011da28590ce61fb9e563"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-304.html",
+      "sha256": "7285b836891b0eb1c477f59efbe8ad4caf629f02dff589aaacac82e9634dcbd8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-305.html",
+      "sha256": "30503f518a2aacf262ac9e88c43788ba4d4516c74b1c19c511a4f282804f9544"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-401.html",
+      "sha256": "3523bdbfbcea343db2849545f2272d34b7c715afe79cee79905bf48e885458f7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-402.1.html",
+      "sha256": "6b85c66bdd470f21cf6aa6221ade28a80c924c90e914b97d9fe8fb4d8891903c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-402.html",
+      "sha256": "192b70ac0dc05e0031e5b700a520df0f534e8e8d2678f0e28775cbc67b595405"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-403.html",
+      "sha256": "797eb7774c8fa6744e1527092f5257088b94c7ee0cdbc890bb75d0f0d1ab39dc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-404.html",
+      "sha256": "6fa867be50e6d7072b47a708259d3baebb6ccc53c269f4b793c8ace4744a661d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-405.html",
+      "sha256": "eb57f0e1ec4820763a4ca24a6139710b08688294805e27ca01374717a371eb54"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-406.html",
+      "sha256": "7da8aeb161716b11d3044e57a48c700e0fd1492589cd3d8e6ded9ae88e2b2f98"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-407.html",
+      "sha256": "f2aebe40018f76049cf8d9fe54ca4cb3cec269d5188956cf1d59ae9c926bdd53"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-408.html",
+      "sha256": "87d76ee4c1b904d7d24590e34f1a1732c49c9e7e38b0b8c2774059f1739bef77"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-409.html",
+      "sha256": "50977d90298bf55ec944f335c41b1641c383d9505996a8b2b55256c092a835b4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-411.html",
+      "sha256": "ce3b9e7f44d4b389e52710b026382e729d5dc8ce244a11265a32f9fe6dde5883"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-412.html",
+      "sha256": "b936e85c715b2528ac2cd970c51ba0dc22a11f1bf4e4814e451c5cced0bd0fe0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-413.html",
+      "sha256": "a70820914752ff3c6b907caa642106a04d7576fe9d8c2b1ab94ab61fee308e42"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-415.html",
+      "sha256": "03dfc5910a0659ed1177a409d611fdc57f038c57e4f1e95bbf0c016f7d94b5c2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/8-417.html",
+      "sha256": "fe00d6464a55e90d8e1ee3842618f31630a53c7bc1346f5d962a17babba02022"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-101.html",
+      "sha256": "96ab5d183652c83f1631e88c3ca9639a70269d6b49d845305aa8d093eb6e8dfb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-201.html",
+      "sha256": "0293d2646622ae55456da2f20fe38f96099f36c7b18a9def511c1b8f1837389d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-202.html",
+      "sha256": "86a798c7db38e69f09e1493e35be6c8a3b5ee210b5be925e76ab46286e6af636"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-203.html",
+      "sha256": "cb398b8c52ceedb2b3483cdfba4553c1217d6f7984901a3b59a1f9c03ee9cace"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-204.html",
+      "sha256": "949d033aafd3adcb5e87e070108b33c16e925a5d6a676abfbcdae2eb5d102d9c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-205.html",
+      "sha256": "390dbb5caea443b581d325dd4d0e64054b079c3e80c8df6e2d35a23e977a1a02"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-207.html",
+      "sha256": "cd3c0762e41393af9a5ee4ee4b745108c9d4d8908edf2470c1f651bff3700b34"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-208.html",
+      "sha256": "3c415b315cf390de8176b85fce2d0e24abc6d346701323093292c95e57af56f2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-209.html",
+      "sha256": "bec8f5d621caca0068c1314d56b75122764f88767dfa447211403d505d77cbf8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-212.html",
+      "sha256": "d53e70b824c3caea2b1bed68ed6031d2e1fd6077fb082862a9a2f0f602b14b02"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-213.html",
+      "sha256": "321961627748b9e1b7c034123ebe69df4111217f5ea4cb73f93a7a79383217bc"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-214.html",
+      "sha256": "c8834d0387aeb5ea2665f5b92735581a77ef62cece00e6f781868b4ccc0b509b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-215.html",
+      "sha256": "5483b1c3676b2a49609c2458e27827059b2a31c012345c74af288c196dbeb11e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-216.html",
+      "sha256": "2de94cb274b5d190c16b935151de10cbcd4a89309a8d35248c8db601c26f5fc9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-219.html",
+      "sha256": "ec307c2158df26a090160d55dc2eb18f5a621cdcee9776e9c7b30777d6b90817"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-220.html",
+      "sha256": "c86689e5aac4837d70219cec9f31fe8f0d812391af091483cb644f794e5d2174"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-221.html",
+      "sha256": "0af963bc06d63ecb44d7240c49b8b9354328c6dcd735bfa0a248258fdb2c0b30"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-222.html",
+      "sha256": "64c43eed5b5d42824c77db5a12476ffc530597b8dd254aa13d0a1fc4825250a1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-223.html",
+      "sha256": "aab0d9cb43f9aac47b836a3643561f67f3f2e70bee8667f7fc6c721d3f4ef1e2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-301.html",
+      "sha256": "3cea614b82ede516006ba8d171b1f1d8d06fa9e363fa07c473e3f78b6e9661c7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-302.html",
+      "sha256": "01c9392fa34df97e74d717e9f3c7a323f82a4e6a705a5dfe3f37129bef96ea49"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-303.1.html",
+      "sha256": "ece7a5c35e26a5cddc60381691b8d861747a7a5204ff9797f9be555e5514a56a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-303.html",
+      "sha256": "20a5a5fa608bbf75e8f6791a74273be0fe53d86c9fc992c264d9cc4bf7c09159"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-304.html",
+      "sha256": "ed3f68f59c7aa3fbaaa9d72220df01275df4f00b697eb7b91fa686670da84669"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-305.html",
+      "sha256": "c8fb8e0598447d22acde057d1509425e4ffb7c336974f0d98dd12451a6f1fd9f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-306.html",
+      "sha256": "ef50348e0121a74a4ba8910d579d936bdea7fc40f0d4bc6a015f2221aa8d2393"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-308.html",
+      "sha256": "ac6017894d2fc5e364ec00db1ca76e44058fe8563660c4bb8484507361e604f2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-309.html",
+      "sha256": "8b12888f2d9a607a0025854b768f0d28dda99594307b667848ddb11485badefa"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-310.html",
+      "sha256": "a9513ee915951a81d0afd70762b588e48c63af640e5c5abd99f6447f1abbed9f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-314.html",
+      "sha256": "c8013a51a3dfae213f0f04b029716e89362496e4c181a038c6d51209b3811ed0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-315.html",
+      "sha256": "ac38d56e11cdb7169e052cb7890701c0a788f7794eddb62e3e01d25c24ddf151"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-318.html",
+      "sha256": "224b4e4bac30a249c0ba31aced63b14416904fa80d49418ec6bd93393f334375"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-319.html",
+      "sha256": "0cb39e103f7fa9fbdea38c0eb625d761b3a9b49a3d422a2d71de82ff7cbc57db"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-320.html",
+      "sha256": "08e1caf6b6120c658d1afd898f6ff01f9ac3b86325cb2fc7fa458693c5710ed5"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-321.html",
+      "sha256": "1671b79221bff7f17032c428b8a2dee104f8910d22a9b4227f6dfedbb87721de"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-322.html",
+      "sha256": "d9922a51eb1b987d3cd54949b6c650e107c5d6af2c21438dc22b5a7ae7db561b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-323.html",
+      "sha256": "278fad1f4e00c42e572b2450a361c56752e469ae840636fe1fad40a3ce0d49c3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-324.html",
+      "sha256": "62eb4b8759ab6ce496f0e7a63cf588801621820e90aac8ab9303fed4cac13ad1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-325.html",
+      "sha256": "588311c9881bcf19ba6ea6a5701f44a9b46fe1fe6b7a20707cc628c41a42cae7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-326.html",
+      "sha256": "de39aed280bea85e9fed3adeaa97660bf7d8c54285d5871e9d1c6f0b7c2b0a6c"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-327.html",
+      "sha256": "974ec28b2aa5f0a3d13c00a25d1215085969937d5bbf65d7ba09cc6d4eb7c924"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-328.html",
+      "sha256": "f089c40c161f1c27e81b502bf3267b4d6de92ac8f79c59b3c8e3f63e3c3ce204"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-329.html",
+      "sha256": "ce9bc158484221f6080ad7b458f30f55340dfcd67b6fc783006ca751dcdd475e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-330.html",
+      "sha256": "39f175113ec093a37b224a94f02d397a3aefb8774a2e58ade6bf930c53faec02"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-331.html",
+      "sha256": "4f8de35dd5e08f6f677237acac6d04a3886cf01ba9e0e7407919937c8cf1f13e"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-332.html",
+      "sha256": "747909a8cf04802549fa160311b9397c0ca67c8c4fa939d4d74c94ea54f85dc7"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-333.html",
+      "sha256": "ca86102e980cb6aca5790e051156339ad27a0740ce0e1f5f57dc7329cf4ba919"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-334.html",
+      "sha256": "2be8bcfb94eda314e05347f64e911d2c87b863b5b7f5e458d3a0d7a9c1457844"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-335.html",
+      "sha256": "56f2c93ab028b60fab80d5386d83d57ed431eb77cd3bdfc57a9ac2c448425535"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-336.html",
+      "sha256": "84cb310f9140a133afc21f412cb833d5a0e65ee72db0de4d5e07d99d677e31bf"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-html/gtg/9-337.html",
+      "sha256": "b85d8cdb24b9f38eb5337026ae7d8a09056425d5a8b942536ac44032d5be6d86"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-json/articles.json",
+      "sha256": "f31e3d04781589002cf043c1ebacbcdb481da8752ff9e719f5b4a6cbc1f23d1f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-09-14-income-tax-chapter-us-md-article-gtg/maryland-code-html-json/maryland-code-json/sections/gtg.json",
+      "sha256": "37e88f94d38d22d732504377ec1ca77ebdf8d385e6e190ef8aa8ae18348ec153"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-us-md-article-gtg (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 744,
+    "missing_count": 0,
+    "provision_count": 744,
+    "source_count": 744
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T16:46:18.033787+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Gg68Xd1VorpS+IZuWNfiQwK8kDNREfEp7O+3OVz8d2oU2T3IPXTxzN/p4vRAprSckUj1LYS6VwRNwNrDZYU2Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-us-md-article-gtg"
+}

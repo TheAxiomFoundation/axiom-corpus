@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "3c53ca2707bccbb07e6eecfa3929a8bf47df8444dfddedf8d8aedba60b0b648b"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "17bcbac7e1e0c2c31f5d515c0c54d45431f3a19cd239c2eab1f2a71f36adf36e"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "b0497b21a00e1e6e6b23089b4eba84bdb72c53a38750814971f177f80058fe9e"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/regulation/2026-09-14-income-tax-regulations/official-documents/wi-legis-tax-2.pdf",
+      "sha256": "2d968c1828d69435a9bee21fa555b897f71602b00e099d8fb26c7e11720fea5e"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/regulation/2026-09-14-income-tax-regulations/official-documents/wi-legis-tax-3.pdf",
+      "sha256": "b7989a93321305c5e7bc74dea9a870e2a71177c98bc09a19d67a96372d1e61bd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 66,
+    "missing_count": 0,
+    "provision_count": 66,
+    "source_count": 66
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T18:34:26.395554+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YcUXbw+Ix+QA6O8bA10tTP5c5l8GePkq/lJK3RscKhdG9RA5L4rcSXWW5fUoJL/q/xj6QsgIKdm3DE8/oXGaBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

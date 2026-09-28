@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "4b8c0727d8aa915d1b51035667d34b7d9363e488d87a55889b8d97d6f98d69ab"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "c6c39e71e7433299853bfcd213867bcdf147328261e95603b331061b49b0be27"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "05715467a1b564426e498df70053100cfe68032302d748de8a39a95aa437398d"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-10-ssi-state-supplement/official-documents/me-ofi-mainecare-eligibility-manual-part-11.docx",
+      "sha256": "34f1fd1451aff9f78e7527aafb8bf9dba3a172c3851c4321b2cfdeedd1a847cc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-me-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:59:41.906086+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Vs9RBzQWbwAEvUB8ZAgV35xkRCtYMVFz62NuHTlf8wiR/8T01RTY/Vu7x9kG8rvk6/+4FvU4a6T95giDMWOxCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

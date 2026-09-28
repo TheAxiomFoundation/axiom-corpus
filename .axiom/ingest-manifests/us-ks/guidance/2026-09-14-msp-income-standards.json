@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "2a579c652230b72227701010d130fad178286396b8746d2c5866b03885a563c3"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "c0796ccbeeffb65ba1fe08de784eceb32c464ac11db765982c7b9fe838c1d00d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "e204cb01fd49122e7732e8abab99e53d239f6d5785eabc84521579b51393fad0"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-09-14-msp-income-standards/official-documents/us-ks-kdhe-medical-assistance-standards-f-8-2026-07.pdf",
+      "sha256": "19998b8f8daa46e62e46a0dd81a7eb788583e39c409784b3aaec5a6835aa193f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ks-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:33:58.654516+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iY3SP0hjoDRy+yKacRF3IjyeXJTyHQQxgcxb/3dki6DHVCP9WF4FwYxyGR9o+oIFcr/FGffelTu5qkGmVdheCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

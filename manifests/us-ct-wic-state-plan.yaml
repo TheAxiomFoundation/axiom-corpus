@@ -1,0 +1,50 @@
+version: 2026-09-13-wic-state-plan
+documents:
+- source_id: ct-wic-state-plan-section-1-program-operations-fy2025
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut WIC State Plan Section 1: State Plan for Program Operations FY 2025'
+  source_url: https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/dph/wic-2018/state-plan-policies---section-1/section-1---ct-state-plan-for-program-operations-fy-2025.pdf?rev=9aa3fe8439f74b52a18c4e87984d6518&hash=B94B5BC37590919D4D16F50C9793A1B0
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-ct/policy/wic-state-plan/fy2025/section-1-state-plan-for-program-operations
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Public Health, WIC Program
+    document_subtype: state_plan
+    program: WIC
+    fiscal_year: '2025'
+    plan_period: 2024-10-01 to 2025-09-30
+    plan_status: current (latest Section 1 posted)
+    extraction_granularity: pdf_page
+    publisher_page_url: https://portal.ct.gov/dph/wic/ct-wic-state-plan
+    source_discovery_group: us-ct/policy/wic-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; state WIC agency state plan page
+    closure_element: wic_s30
+- source_id: ct-wic-state-plan-bf-peer-counseling-update-fy2026
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Connecticut WIC State Plan: Breastfeeding Peer Counseling Program Update to Implementation Plan FY 2026'
+  source_url: https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/dph/wic-2018/state-plan-policies---section-1/ct-2025-bf-peer-counseling-program-update-to-implementation-plan-fy2026-final.pdf?rev=7d26c62cfb554802ad72934c6d1b863a&hash=F96C5B379527207A8E7887CF484B31E3
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ct/policy/wic-state-plan/fy2026/bf-peer-counseling-program-update
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Public Health, WIC Program
+    document_subtype: state_plan
+    program: WIC
+    fiscal_year: '2026'
+    plan_period: 2025-10-01 to 2026-09-30
+    plan_status: current
+    extraction_granularity: pdf_page
+    publisher_page_url: https://portal.ct.gov/dph/wic/ct-wic-state-plan
+    source_discovery_group: us-ct/policy/wic-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; state WIC agency state plan page
+    closure_element: wic_s30

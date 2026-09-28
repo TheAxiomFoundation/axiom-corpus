@@ -1,0 +1,29 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-oh-tanf-state-plan-2024
+  jurisdiction: us-oh
+  document_class: policy
+  title: Ohio TANF State Title IV-A Plan, 2024 combined print
+  source_url: https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/OWF/tanf/2024%20TANF%20State%20Plan%20Combined.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-oh/policy/acf/tanf-plan/2024
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Job and Family Services (Ohio Works First)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: '2024 TANF State Plan Combined (State Title IV-A Plan submitted under 42 U.S.C. 602; the print says ''Effective
+      Date: TBD''), hosted on the ODJFS asset host; the Cash Assistance page links no plan, located with a web search; expression_date
+      is the FFY 2025 start and should be reviewed'
+    publisher_index_url: https://jfs.ohio.gov/public-assistance/cash-assistance
+    listed_on_publisher_index: false
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-oh/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://jfs.ohio.gov/public-assistance/cash-assistance
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

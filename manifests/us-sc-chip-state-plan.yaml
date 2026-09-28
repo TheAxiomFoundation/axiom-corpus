@@ -1,0 +1,250 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-sc-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-sc/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 5
+    index_records_total: 5
+- source_id: us-sc-cms-chip-state-plan-spa-sc-13-0020-approval-package
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP SPA SC-13-0020: Approval Package (approved March 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SC-13-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/spa/sc-13-0020/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0020
+    cms_node_id: '2461'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2461
+    approval_date: '2014-03-26'
+    effective_date: '2014-01-01'
+    summary: Maintains Medicaid Eligibility for Children Who Would Otherwise be Subject to Section 2101(f) of the Affordable
+      Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-sc-cms-chip-state-plan-spa-sc-13-0027-approval-package
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP SPA SC-13-0027: Approval Package (approved February 25, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SC-13-0027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/spa/sc-13-0027/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-13-0027
+    cms_node_id: '2456'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2456
+    approval_date: '2014-02-25'
+    effective_date: '2014-01-01'
+    summary: Converts State's Existing Income Standards to MAGI Equivalent Standards, by Age Group, for Children Covered in
+      its Title XXI-Funded Medicaid Program.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-sc-cms-chip-state-plan-spa-sc-cspa-5-approval-package
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP SPA SC-CSPA-5: Approval Package (approved October 14, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SC-CSPA-5-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/spa/sc-cspa-5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-CSPA-5
+    cms_node_id: '1376'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1376
+    approval_date: '2010-10-14'
+    effective_date: '2010-10-01'
+    summary: Conversion of Separate CHIP into a Medicaid Expansion.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-sc-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP compiled state plan: Factsheet (approved October 14, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SCCurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: SC
+    cms_node_id: '1996'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1996
+    approval_date: '2010-10-14'
+    effective_date: '2010-10-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 10-18-2010.
+    topics: &id002
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-sc-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP compiled state plan: Current State Plan (approved October 14, 2010, effective October 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SCCurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-10-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: SC
+    cms_node_id: '1996'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1996
+    approval_date: '2010-10-14'
+    effective_date: '2010-10-01'
+    summary: Current CHIP State Plan as amended by SPA 5 and Factsheet as of 10-18-2010.
+    topics: *id002
+    link_label: Current State Plan
+- source_id: us-sc-cms-chip-state-plan-spa-sc-cspa-4-approval-package
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP SPA SC-CSPA-4: Approval Package (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SC-CSPA-4-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/spa/sc-cspa-4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: SC-CSPA-4
+    cms_node_id: '1481'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1481
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Provision of psychiatric residential treatment for CHIP enrollees.
+    topics: &id003
+    - Benefits
+    link_label: Approval Package
+- source_id: us-sc-cms-chip-state-plan-spa-sc-cspa-4-final-approved-state-plan
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina CHIP SPA SC-CSPA-4: Final Approved State Plan (approved September 24, 2009, effective July 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/SC/SC-CSPA-4-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-01'
+  citation_path: us-sc/policy/cms/chip-state-plan/spa/sc-cspa-4/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: South Carolina
+    source_discovery_group: us-sc/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: SC-CSPA-4
+    cms_node_id: '1481'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1481
+    approval_date: '2009-09-24'
+    effective_date: '2009-07-01'
+    summary: Provision of psychiatric residential treatment for CHIP enrollees.
+    topics: *id003
+    link_label: Final Approved State Plan

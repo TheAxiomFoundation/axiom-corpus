@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "905203097018e58ab0b59939f15ef1f1805e72f3dedebf8316e1ddb8456687a3"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "08c489a860b70a91f8bf9dff12b5ce2fda98e27bcec710de47a9b9cd82532cd6"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "f80cf125a72d3401b84e4aae5450cfcf8e394c5b03f6f24ca194dec283aec150"
+    },
+    {
+      "path": "data/corpus/sources/us-la/regulation/2026-09-14-income-tax-regulations/official-documents/la-osr-lac-61-i-chapter-13-income-individual.docx",
+      "sha256": "4390a984ef735d487775d72c383fea4b8968685d59a7d068d071d72684d1c717"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:39:33.887187+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5YUfSjbjeA44FnRjx+GubSKOk0+krpNgZMIKMMRXeg3P7DOZfMCqiPZ8/R26bN2BJuXQrcayuc4WD8mNJvYsCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

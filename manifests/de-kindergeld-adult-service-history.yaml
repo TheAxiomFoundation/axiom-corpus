@@ -1,0 +1,33 @@
+{
+  "documents": [
+    {
+      "source_id": "de-sg-58b-2025-history",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/sg/fassung-2013-04-13/58b",
+      "title": "§ 58b SG: Freiwilliger Wehrdienst (13.04.2013–31.12.2025)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_S-Z/SG/0058b/0058b_2013_04_13.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2013-04-13",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": "#StartContent",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2013-04-13",
+        "valid_until": "2025-12-31",
+        "snapshot_sha256": "adbeee56908a82812b85247823ec2fbba9a5f1bd7cf343173f2f1c0bdf522343",
+        "source_note": "Official archived normative text. Displayed metadata identifies commencement on 13 April 2013 and validity through 31 December 2025. Retains both operative paragraphs separately from the current 2026 consolidation. The capture does not replace the current SG act or assert applicability to earlier service periods."
+      }
+    }
+  ]
+}

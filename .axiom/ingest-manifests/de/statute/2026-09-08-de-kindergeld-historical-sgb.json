@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-historical-sgb.json",
+      "sha256": "6f32f340224c97f3a72945201d7a75c56cc16106969f8620af5d2a54e2d8913c"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-historical-sgb.json",
+      "sha256": "8f377ffd80ab33b6cd80c092f76ab0714ee14eecf4cc8ff1ab5559247144df76"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-historical-sgb.jsonl",
+      "sha256": "6cd843c3a51b602a754735b27a02dd838d58cd461db865cc4860d9cf22f7192a"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-historical-sgb/official-documents/de-sgb-6-270-until-2016.html",
+      "sha256": "a2ab32bb35dbb2e7d240b2e184a3e8a5a02a2540eaca3a4d4d07a7c969c8bcf5"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-historical-sgb/official-documents/de-sgb-7-217-until-2020.html",
+      "sha256": "356c2a1dd107c3ad031861cc848344147ddf9f35a1faa438e67c378fcbb9a0a0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T14:21:54.391756+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2nw2cDPrHGOoQbVa7TaBM0JHjq7/VSLuCOYHzmmKIKcVUngoIKbqdq5MFD2H2u3wjd7st4FIdJaMiETtRwBdDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-historical-sgb"
+}

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<container xmlns="https://open.law/schemas/library" xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <prefix>Chapter</prefix>
+  <num>09</num>
+  <heading>Credit for Employer-Provided Long-Term-Care Insurance</heading>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.01</num>
+    <heading>Definitions.</heading>
+    <para>
+      <num>A.</num>
+      <text>In this chapter, the following terms have the meanings indicated.</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>Terms Defined.</text>
+      <para>
+        <num>(1)</num>
+        <text>“Long-term-care insurance” has the meaning stated in <cite doc="Md. Code" path="gin|18-101">Insurance Article, §18-101(f), Annotated Code of Maryland</cite>.</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>“Employer” has the meaning stated in §3401(d) of the Internal Revenue Code.</text>
+      </para>
+      <para>
+        <num>(3)</num>
+        <text>“Employee” means an individual who is employed in this State.</text>
+      </para>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.02</num>
+    <heading>Credit Allowed.</heading>
+    <text>Subject to the limitations in <cite path="|03|04|09|.03">Regulation .03 of this chapter</cite>, an employer may claim a credit equal to 5 percent of the costs incurred by the employer during the taxable year to provide long-term-care insurance as part of an employee benefit package.</text>
+    <annotations/>
+  </section>
+  <section cache:ref-path="03|04|09|.03">
+    <prefix>Regulation</prefix>
+    <num>.03</num>
+    <heading>Limitations.</heading>
+    <para>
+      <num>A.</num>
+      <text>The credit in <cite path="|03|04|09|.02">Regulation .02 of this chapter</cite> may not exceed the lesser of:</text>
+      <para>
+        <num>(1)</num>
+        <text>$5,000; or</text>
+      </para>
+      <para>
+        <num>(2)</num>
+        <text>$100 multiplied by the number of employees covered by long-term-care insurance provided under the employee benefit package.</text>
+      </para>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The credit in <cite path="03|04|09|.03|A.">§A of this regulation</cite> and in <cite path="|03|04|09|.02">Regulation .02 of this chapter</cite> is not allowed to any employer who claims a credit for the same expenses against the public service company franchise tax.</text>
+    </para>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.04</num>
+    <heading>Exempt Organizations.</heading>
+    <text>If an employer is an organization that is exempt from taxation under §501(c)(3) or (4) of the Internal Revenue Code, then the credit under this chapter may be taken against the State income tax due on unrelated business taxable income as provided under Tax-General Article, §§<cite doc="Md. Code" path="gtg|10-304">10-304</cite> and <cite doc="Md. Code" path="gtg|10-812">10-812</cite>, Annotated Code of Maryland.</text>
+    <annotations/>
+  </section>
+  <section>
+    <prefix>Regulation</prefix>
+    <num>.05</num>
+    <heading>Carryover of Excess Credit.</heading>
+    <text>If the credit allowed under this chapter in any taxable year exceeds the total of tax otherwise payable by the employer for that taxable year, the employer may apply the excess as a credit for succeeding taxable years until the earlier of:</text>
+    <para>
+      <num>A.</num>
+      <text>The full amount of the excess is used; or</text>
+    </para>
+    <para>
+      <num>B.</num>
+      <text>The expiration of the fifth taxable year after the taxable year in which the costs to provide long-term-care insurance as part of an employee benefit package were incurred.</text>
+    </para>
+    <annotations/>
+  </section>
+  <annotations>
+    <annotation managed="false" type="Authority" dest="container"><cite doc="Md. Code" path="gtg|2-103">Tax-General Article, §2-103, </cite>Annotated Code of Maryland</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2000-01-24">Effective date: January 24, 2000 (27:1 Md. R. 74)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2010-04-19"><cite path="|03|04|09|.01|B.">Regulation .01B</cite> amended effective April 19, 2010 (37:8 Md. R. 614)</annotation>
+    <annotation managed="false" type="History" subtype="Administrative History" dest="container" effective="2006-10-09"><cite path="|03|04|09|.03|B.">Regulation .03B</cite> amended effective October 9, 2006 (33:20 Md. R. 1613)</annotation>
+  </annotations>
+</container>

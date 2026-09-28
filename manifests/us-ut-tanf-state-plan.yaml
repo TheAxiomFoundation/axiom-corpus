@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ut-tanf-state-plan-2022
+  jurisdiction: us-ut
+  document_class: policy
+  title: Utah TANF State Plan (effective October 2022)
+  source_url: https://jobs.utah.gov/edo/stateplans/tanfstateplan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ut/policy/acf/tanf-plan/2022
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services (Family Employment Program)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Utah TANF State Plan (effective October 2022); jobs.utah.gov answers the state plans directory with HTTP
+      403 and the FEP pages with HTTP 500 to this client, so the listing page could not be read (located with a web search)
+    publisher_index_url: https://jobs.utah.gov/edo/stateplans/
+    listed_on_publisher_index: false
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ut/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://jobs.utah.gov/edo/stateplans/
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

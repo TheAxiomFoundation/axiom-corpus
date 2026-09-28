@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/am/statute/2026-08-30-am-tax-code-2024-continuity.json",
+      "sha256": "3de18f25ff718da3a817c3d00c5e6fe613f6e851cfa6f86d7bf9ffa4905bfb32"
+    },
+    {
+      "path": "data/corpus/inventory/am/statute/2026-08-30-am-tax-code-2024-continuity.json",
+      "sha256": "aa30a88ad405fd8cd5d2b76323e43491fdea0532dc3d8bfe7ebd46a50b2ee820"
+    },
+    {
+      "path": "data/corpus/provisions/am/statute/2026-08-30-am-tax-code-2024-continuity.jsonl",
+      "sha256": "28e1261df0a84ce6a47e7acc665ed5ecc2d840b38b53f0e06faddf2c8971f2c8"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-190955-2024-03-24.html",
+      "sha256": "4d1f44a6f6538a7273c4a85267b5b9724f81c3443d2b8f0725df849d55561a22"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-191399-2024-04-05.html",
+      "sha256": "93fe6f8317a2baf16516d9eb0347c3dd8fa77cc6348f24a061abd90ef8b1c333"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-191449-2024-04-07.html",
+      "sha256": "db9e72ab6da74f88465624effd16ce240175eb5b4a3e14833176dbde450e76d6"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-192465-2024-05-04.html",
+      "sha256": "3a5408f0617ff70ece05eb0426abd553e6a5e9a6d664771aa295aeb085cd5bcd"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-193378-2024-06-01.html",
+      "sha256": "1262460071e553e6b0b2f643c3b5c8088eced5de01eee502cdb7b326f62746de"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-195238-2024-07-18.html",
+      "sha256": "401cb2f6cd4c23fddf6c8ed754002bb6231cf17bcd888046ea39492a34544ca0"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-196879-2024-09-01.html",
+      "sha256": "832471ccaab992f75b8c1307fd5a8c6fe7ed15b5bef9fbe588e6b4cb15bbfc4d"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-198522-2024-10-21.html",
+      "sha256": "372d31b89756a2a652b84303890a2839b891c4aff01cec3ceaea2203db453f20"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-198723-2024-10-24.html",
+      "sha256": "c8a7f77712012b94d2d7e927ac0315d3e4f9bacf8002fb3545564e08bc625e58"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-199704-2024-11-14.html",
+      "sha256": "8bd6d6aba2af8b7a212f31efc495d32fccf0c0338431418842a5aa7e5a6e09c2"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-199763-2024-11-18.html",
+      "sha256": "21ffa5aedf8cad671f4780c19b1011d328e6914135fe1a0cf4b0b522d1113c9b"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis/tax-code-200343-2024-11-29.html",
+      "sha256": "e9238543c2ee69ad5b5c02587dacf9b55825360625be47e35dbed8f0a44e4e64"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "354749a4fb0b02732419d3cede76ef9be05d9f30",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-am-arlis --base data/corpus --version 2026-08-30-am-tax-code-2024-continuity --manifest manifests/am-tax-code-2024-continuity-arlis.yaml --source-dir data/corpus/sources/am/statute/2026-08-30-am-tax-code-2024-continuity/arlis"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6968,
+    "missing_count": 0,
+    "provision_count": 6968,
+    "source_count": 6968
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-30T17:47:06.955950+00:00",
+  "jurisdiction": "am",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1+6dQLu3C7aNkP55rBA2sUHanup48M8a+9YjG4FvCCDFSjaJamBB5+s2ZPmHJgGL5SE2AYh19r3JEVcD1PWFCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-am-tax-code-2024-continuity"
+}

@@ -1,0 +1,23 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-id-dhw-apply-snap-income-limits-fy2026
+  jurisdiction: us-id
+  document_class: guidance
+  title: 'Apply for SNAP: Monthly income limits for SNAP, Effective October 2025 (DHW page)'
+  source_url: https://healthandwelfare.idaho.gov/services-programs/food-assistance/apply-snap
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-id/guidance/dhw/apply-snap-income-limits/fy2026
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare
+    program: SNAP
+    source_discovery_group: us-id/guidance
+    index_url: https://healthandwelfare.idaho.gov/services-programs/food-assistance
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: agency_program_page
+    fiscal_year: '2026'
+    caveat: gross income limits only

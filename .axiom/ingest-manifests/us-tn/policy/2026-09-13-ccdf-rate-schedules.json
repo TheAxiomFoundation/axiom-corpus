@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "264d2636337904222e4927e2eff085a818b33e2ce3d41b923dceabf0110841c9"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "a4d72030cd1be2ab1d5889807cad34ef6e756ef88ceb17173584413a02900204"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/policy/2026-09-13-ccdf-rate-schedules.jsonl",
+      "sha256": "12d5cc0762311bc3c734aebe04b20f33097d0e116815158e151720eec1fc7530"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-tn-ccdf-rate-schedule-income-eligibility-limits-and-copay-fees-2025-10-01.pdf",
+      "sha256": "9414b68a98dd3968071088f511b8ebbd013d7d51bd4ed54c043df1d042dc684c"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-tn-ccdf-rate-schedule-provider-reimbursement-rates-2026-01-01.pdf",
+      "sha256": "8fda3a6742d7ec1c72b8b4760f539b69de382d6c84f2a7f827c072c8c411ae4a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-rate-schedules (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:17:15.104496+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DwIr0emCRx2/MfwmfhB88oQNctBCLFBH22GAjEPt9P/iK+1oW6K6myRD5pmH77bx/W3SCstdS/E1U1bkagESDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-rate-schedules"
+}

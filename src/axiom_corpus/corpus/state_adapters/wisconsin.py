@@ -37,6 +37,30 @@ _SUBCHAPTER_CITE_RE = re.compile(
 )
 _SECTION_CITE_RE = re.compile(r"^statutes/(?P<label>\d+[A-Z]?\.\d+[A-Z0-9.]*)", re.I)
 _SECTION_TEXT_RE = re.compile(r"\b(?P<label>\d+[A-Z]?\.\d+[A-Z0-9.]*)(?:\s*\([^)]+\))*\b", re.I)
+_SUBUNIT_SEGMENT_RE = re.compile(r"^[A-Za-z0-9]+$")
+_PUBLICATION_NOTE_PATTERNS = (
+    re.compile(
+        r"\d{4}-\d{2} Wisconsin Statutes updated through .*?"
+        r"\(Published\s+\d{1,2}-\d{1,2}-\d{2}\)",
+        re.I,
+    ),
+    re.compile(
+        r"Updated through \d{4} Wisconsin Act \d+.*?in effect on [A-Z][a-z]+ \d{1,2}, \d{4}",
+        re.I,
+    ),
+)
+
+# The Legislature's HTML asserts every numbered unit below the section as its own
+# ``div`` with a ``data-path`` (``/statutes/statutes/71/i/05/6/b/54m``) and a
+# ``data-cites`` self-citation (``statutes/71.05(6)(b)54m.``). The class names the
+# Wisconsin hierarchy level: subsection (1), paragraph (a), subdivision 1., and
+# subdivision paragraph a.
+_SUBUNIT_KIND_BY_CLASS = {
+    "qsatxt_2subsect": "subsection",
+    "qsatxt_3para": "paragraph",
+    "qsatxt_4subdiv": "subdivision",
+    "qsatxt_5subdivpara": "subdivision_paragraph",
+}
 
 
 @dataclass(frozen=True)
@@ -93,6 +117,50 @@ class WisconsinSubchapter:
 
 
 @dataclass
+class _WisconsinSubunitBuilder:
+    """One officially numbered unit below a section (subsection through subdivision paragraph).
+
+    ``lines`` holds the unit's own text (its number and title removed, as the
+    section record removes the section number and title) followed by every
+    descendant unit's line in document order, with the descendants' own numbers
+    kept. The body is therefore the unit's complete subtree and a contiguous run
+    of the enclosing section body.
+    """
+
+    section_label: str
+    labels: tuple[str, ...]
+    kind: str
+    heading: str | None
+    official_citation: str
+    data_path: str
+    parent_citation_path: str
+    level: int
+    ordinal: int
+    lines: list[str] = field(default_factory=list)
+    references_to: list[str] = field(default_factory=list)
+    _reference_seen: set[str] = field(default_factory=set)
+
+    @property
+    def citation_path(self) -> str:
+        return f"us-wi/statute/{self.section_label}/{'/'.join(self.labels)}"
+
+    @property
+    def legal_identifier(self) -> str:
+        return f"Wis. Stat. {self.official_citation}"
+
+    def add_line(self, line: str | None) -> None:
+        if line:
+            self.lines.append(line)
+
+    def add_reference(self, label: str) -> None:
+        target = f"us-wi/statute/{label}"
+        if target == f"us-wi/statute/{self.section_label}" or target in self._reference_seen:
+            return
+        self._reference_seen.add(target)
+        self.references_to.append(target)
+
+
+@dataclass
 class _WisconsinSectionBuilder:
     label: str
     heading: str | None
@@ -103,10 +171,16 @@ class _WisconsinSectionBuilder:
     level: int
     ordinal: int
     source: WisconsinSource
+    data_path: str | None = None
     lines: list[str] = field(default_factory=list)
     history: list[str] = field(default_factory=list)
     references_to: list[str] = field(default_factory=list)
+    subunits: list[_WisconsinSubunitBuilder] = field(default_factory=list)
     _reference_seen: set[str] = field(default_factory=set)
+    _subunits_by_labels: dict[tuple[str, ...], _WisconsinSubunitBuilder] = field(
+        default_factory=dict
+    )
+    _child_counts: dict[str, int] = field(default_factory=dict)
 
     @property
     def citation_path(self) -> str:
@@ -130,6 +204,45 @@ class _WisconsinSectionBuilder:
             return
         self._reference_seen.add(target)
         self.references_to.append(target)
+
+    def ancestors_of(self, labels: tuple[str, ...]) -> list[_WisconsinSubunitBuilder]:
+        """Return the existing enclosing units of ``labels``, outermost first."""
+        return [
+            unit
+            for depth in range(1, len(labels))
+            if (unit := self._subunits_by_labels.get(labels[:depth])) is not None
+        ]
+
+    def subunit(self, labels: tuple[str, ...]) -> _WisconsinSubunitBuilder | None:
+        return self._subunits_by_labels.get(labels)
+
+    def add_subunit(
+        self,
+        *,
+        labels: tuple[str, ...],
+        kind: str,
+        heading: str | None,
+        official_citation: str,
+        data_path: str,
+    ) -> _WisconsinSubunitBuilder:
+        ancestors = self.ancestors_of(labels)
+        parent_citation_path = ancestors[-1].citation_path if ancestors else self.citation_path
+        ordinal = self._child_counts.get(parent_citation_path, 0) + 1
+        self._child_counts[parent_citation_path] = ordinal
+        unit = _WisconsinSubunitBuilder(
+            section_label=self.label,
+            labels=labels,
+            kind=kind,
+            heading=heading,
+            official_citation=official_citation,
+            data_path=data_path,
+            parent_citation_path=parent_citation_path,
+            level=self.level + len(labels),
+            ordinal=ordinal,
+        )
+        self._subunits_by_labels[labels] = unit
+        self.subunits.append(unit)
+        return unit
 
 
 @dataclass(frozen=True)
@@ -183,9 +296,12 @@ class _WisconsinFetcher:
 
     def _fetch_bytes(self, source_url: str, relative_path: str) -> bytes:
         if self.source_dir is not None:
+            # A source_dir run replays retained bytes; a missing file is a layout
+            # error, never a cue to fetch the live page in its place.
             path = self.source_dir / relative_path
-            if path.exists():
-                return path.read_bytes()
+            if not path.is_file():
+                raise FileNotFoundError(f"Wisconsin source file does not exist: {path}")
+            return path.read_bytes()
         if self.download_dir is not None:
             path = self.download_dir / relative_path
             if path.exists():
@@ -212,8 +328,25 @@ def extract_wisconsin_statutes(
     timeout_seconds: float = 90.0,
     request_attempts: int = 3,
     workers: int = 8,
+    include_subunits: bool = False,
+    include_publication_note: bool = True,
 ) -> StateStatuteExtractReport:
-    """Snapshot official Wisconsin Statutes HTML and extract normalized provisions."""
+    """Snapshot official Wisconsin Statutes HTML and extract normalized provisions.
+
+    With ``include_subunits=True`` every officially numbered unit below a section
+    that the Legislature's HTML identifies (subsection, paragraph, subdivision,
+    subdivision paragraph) is also emitted as its own child provision, e.g.
+    ``us-wi/statute/71.05/6/b/54m`` for Wis. Stat. 71.05(6)(b)54m. Section records
+    are unchanged either way. The default, ``include_subunits=False``, keeps the
+    section grain, so rerunning a scope extracted before child records existed
+    reproduces its output under the same version.
+
+    ``include_publication_note`` (the default) copies the TOC's official
+    publication note into every row's ``metadata.publication_note``.
+    ``include_publication_note=False`` leaves it out, which is how scopes
+    extracted before the note parser recognised their publication were written;
+    replaying such a scope from its retained bytes then reproduces it exactly.
+    """
     jurisdiction = "us-wi"
     chapter_filter = _normalize_chapter_filter(only_title)
     run_id = _wisconsin_run_id(version, only_title=chapter_filter, limit=limit)
@@ -243,7 +376,9 @@ def extract_wisconsin_statutes(
         source_paths=source_paths,
         source_document_id="statutes-toc",
     )
-    publication_note = extract_wisconsin_publication_note(toc_page.data)
+    publication_note = (
+        extract_wisconsin_publication_note(toc_page.data) if include_publication_note else None
+    )
     chapter_links = [
         chapter
         for chapter in parse_wisconsin_chapter_links(
@@ -284,6 +419,7 @@ def extract_wisconsin_statutes(
             chapter_page.data,
             chapter=chapter_link,
             source=chapter_source,
+            include_subunits=include_subunits,
         )
         for subchapter in subchapters:
             _append_subchapter_record(
@@ -307,6 +443,20 @@ def extract_wisconsin_statutes(
                 expression_date=expression_date_text,
                 publication_note=publication_note,
             )
+            if not include_subunits:
+                continue
+            for subunit in section.subunits:
+                _append_subunit_record(
+                    subunit,
+                    section=section,
+                    seen=seen,
+                    records=records,
+                    items=items,
+                    version=run_id,
+                    source_as_of=source_as_of_text,
+                    expression_date=expression_date_text,
+                    publication_note=publication_note,
+                )
         subchapter_count += len(subchapters)
         section_count += len(sections)
 
@@ -377,19 +527,11 @@ def parse_wisconsin_chapter_links(
 def extract_wisconsin_publication_note(html_data: str | bytes) -> str | None:
     """Extract the official publication/current-through note when present."""
     text = _clean_text(BeautifulSoup(_html_text(html_data), "lxml").get_text(" "))
-    match = re.search(
-        r"2023-24 Wisconsin Statutes updated through .*?\(Published\s+4-3-26\)",
-        text,
-        flags=re.I,
-    )
-    if match:
-        return _clean_text(match.group(0))
-    match = re.search(
-        r"Updated through 2025 Wisconsin Act 103.*?April 3, 2026",
-        text,
-        flags=re.I,
-    )
-    return _clean_text(match.group(0)) if match else None
+    for pattern in _PUBLICATION_NOTE_PATTERNS:
+        match = pattern.search(text)
+        if match:
+            return _clean_text(match.group(0))
+    return None
 
 
 def parse_wisconsin_chapter_page(
@@ -397,8 +539,14 @@ def parse_wisconsin_chapter_page(
     *,
     chapter: WisconsinChapterLink,
     source: WisconsinSource,
+    include_subunits: bool = False,
 ) -> tuple[tuple[WisconsinSubchapter, ...], tuple[_WisconsinSectionBuilder, ...]]:
-    """Parse subchapters and section bodies from one official chapter HTML page."""
+    """Parse subchapters and section bodies from one official chapter HTML page.
+
+    ``include_subunits=False`` (the default) skips building the sections' numbered
+    child units, leaving each section's ``subunits`` empty; section bodies are the
+    same either way.
+    """
     soup = BeautifulSoup(_html_text(html_data), "lxml")
     document = soup.find("div", id="document")
     root = document if isinstance(document, Tag) else soup
@@ -442,6 +590,7 @@ def parse_wisconsin_chapter_page(
                 level=2 if current_subchapter else 1,
                 ordinal=len(sections) + 1,
                 source=source,
+                data_path=_clean_text(div.get("data-path")) or None,
             )
             builder.add_line(_statute_text_line(div, section_intro=True))
             _collect_references(div, section=builder)
@@ -452,8 +601,11 @@ def parse_wisconsin_chapter_page(
         if builder is None:
             continue
         if any(item.startswith("qsatxt_") for item in classes):
-            builder.add_line(_statute_text_line(div, section_intro=False))
+            line = _statute_text_line(div, section_intro=False)
+            builder.add_line(line)
             _collect_references(div, section=builder)
+            if include_subunits:
+                _add_subunit_line(builder, div, classes=classes, line=line)
         elif "qsnote_history" in classes:
             builder.add_history(_note_text(div))
             _collect_references(div, section=builder)
@@ -680,6 +832,67 @@ def _append_section_record(
     )
 
 
+def _append_subunit_record(
+    subunit: _WisconsinSubunitBuilder,
+    *,
+    section: _WisconsinSectionBuilder,
+    seen: set[str],
+    records: list[ProvisionRecord],
+    items: list[SourceInventoryItem],
+    version: str,
+    source_as_of: str,
+    expression_date: str,
+    publication_note: str | None,
+) -> None:
+    metadata = _base_metadata(section.source, publication_note=publication_note)
+    if section.subchapter_label:
+        metadata["subchapter"] = section.subchapter_label
+    if section.subchapter_heading:
+        metadata["subchapter_heading"] = section.subchapter_heading
+    metadata["section"] = section.label
+    if section.heading:
+        metadata["section_heading"] = section.heading
+    metadata["official_citation"] = subunit.official_citation
+    metadata["data_path"] = subunit.data_path
+    if subunit.references_to:
+        metadata["references_to"] = subunit.references_to
+    _append_record(
+        records,
+        items,
+        seen=seen,
+        record=ProvisionRecord(
+            id=deterministic_provision_id(subunit.citation_path),
+            jurisdiction="us-wi",
+            document_class=DocumentClass.STATUTE.value,
+            citation_path=subunit.citation_path,
+            body="\n".join(subunit.lines) if subunit.lines else None,
+            heading=subunit.heading,
+            citation_label=subunit.legal_identifier,
+            version=version,
+            source_url=section.source.source_url,
+            source_path=section.source.source_path,
+            source_id=subunit.official_citation,
+            source_format=section.source.source_format,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            parent_citation_path=subunit.parent_citation_path,
+            parent_id=deterministic_provision_id(subunit.parent_citation_path),
+            level=subunit.level,
+            ordinal=subunit.ordinal,
+            kind=subunit.kind,
+            legal_identifier=subunit.legal_identifier,
+            identifiers={
+                "wisconsin:chapter": section.chapter,
+                "wisconsin:section": section.label,
+                "wisconsin:citation": subunit.official_citation,
+            },
+            metadata=metadata,
+        ),
+        source=section.source,
+        metadata=metadata,
+    )
+
+
 def _append_record(
     records: list[ProvisionRecord],
     items: list[SourceInventoryItem],
@@ -739,6 +952,105 @@ def _statute_text_line(div: Tag, *, section_intro: bool) -> str | None:
     return _clean_text(clone.get_text(" ")) or None
 
 
+def _add_subunit_line(
+    section: _WisconsinSectionBuilder,
+    div: Tag,
+    *,
+    classes: set[str],
+    line: str | None,
+) -> None:
+    """Record one numbered unit below ``section`` and feed its line to its ancestors.
+
+    The unit's identity comes from the Legislature's own ``data-path``, relative to
+    the section's ``data-path``. A text block without such a path (or with a
+    segment outside ``[A-Za-z0-9]``) stays in the section body only.
+    """
+    labels = _subunit_labels(_clean_text(div.get("data-path")), section.data_path)
+    if labels is None:
+        return
+    for ancestor in section.ancestors_of(labels):
+        ancestor.add_line(line)
+        _collect_references(div, section=ancestor)
+    existing = section.subunit(labels)
+    if existing is not None:
+        existing.add_line(line)
+        _collect_references(div, section=existing)
+        return
+    kind = next(
+        (_SUBUNIT_KIND_BY_CLASS[item] for item in sorted(classes) if item in _SUBUNIT_KIND_BY_CLASS),
+        None,
+    ) or _fallback_subunit_kind(classes)
+    unit = section.add_subunit(
+        labels=labels,
+        kind=kind,
+        heading=_subunit_heading(div),
+        official_citation=_subunit_official_citation(div, section.label, labels),
+        data_path=_clean_text(div.get("data-path")),
+    )
+    unit.add_line(_subunit_own_text(div))
+    _collect_references(div, section=unit)
+
+
+def _subunit_labels(data_path: str, section_data_path: str | None) -> tuple[str, ...] | None:
+    if not data_path or not section_data_path:
+        return None
+    prefix = section_data_path.rstrip("/") + "/"
+    if not data_path.startswith(prefix):
+        return None
+    labels = tuple(data_path[len(prefix) :].strip("/").split("/"))
+    if not labels or not all(_SUBUNIT_SEGMENT_RE.match(label) for label in labels):
+        return None
+    return labels
+
+
+def _fallback_subunit_kind(classes: set[str]) -> str:
+    for item in sorted(classes):
+        match = re.match(r"^qsatxt_\d+(?P<kind>[a-z]+)$", item)
+        if match:
+            return match.group("kind")
+    return "subunit"
+
+
+def _subunit_official_citation(div: Tag, section_label: str, labels: tuple[str, ...]) -> str:
+    """Return the Legislature's self-citation for a unit, e.g. ``71.05(6)(b)54m.``.
+
+    ``data-cites`` carries it verbatim (keeping the publisher's ``(L)`` for
+    paragraph l); the label derived from the path is only a fallback.
+    """
+    derived = section_label + "".join(
+        f"({label})" if depth < 2 else f"{label}." for depth, label in enumerate(labels)
+    )
+    for cite in _data_cites(div):
+        if not cite.startswith("statutes/") or cite.endswith("(intro.)"):
+            continue
+        value = cite.removeprefix("statutes/")
+        if value.lower() == derived.lower():
+            return value
+    return derived
+
+
+_SUBUNIT_NUMBER_OR_TITLE_SELECTOR = '[class^="qsnum_"], [class^="qstitle_"]'
+
+
+def _subunit_heading(div: Tag) -> str | None:
+    title = div.select_one('[class^="qstitle_"]')
+    if title is None:
+        return None
+    return _clean_text(title.get_text(" ")) or None
+
+
+def _subunit_own_text(div: Tag) -> str | None:
+    """Return a unit's own text without its number, title, or hidden reference anchor."""
+    clone = BeautifulSoup(str(div), "lxml").find("div")
+    if not isinstance(clone, Tag):
+        return None
+    for ref in clone.select(".reference"):
+        ref.decompose()
+    for element in clone.select(_SUBUNIT_NUMBER_OR_TITLE_SELECTOR):
+        element.decompose()
+    return _clean_text(clone.get_text(" ")) or None
+
+
 def _note_text(div: Tag) -> str | None:
     clone = BeautifulSoup(str(div), "lxml").find("div")
     if not isinstance(clone, Tag):
@@ -748,7 +1060,11 @@ def _note_text(div: Tag) -> str | None:
     return _clean_text(clone.get_text(" ")) or None
 
 
-def _collect_references(div: Tag, *, section: _WisconsinSectionBuilder) -> None:
+def _collect_references(
+    div: Tag,
+    *,
+    section: _WisconsinSectionBuilder | _WisconsinSubunitBuilder,
+) -> None:
     for anchor in div.find_all("a"):
         if not isinstance(anchor, Tag):
             continue

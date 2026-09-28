@@ -1,0 +1,3157 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/manual/2026-09-13-ssi-poms-si-remainder.json",
+      "sha256": "ea1ca47dc166837e945c3497365523f8d09eecd45db7c583449e285098dd5832"
+    },
+    {
+      "path": "data/corpus/inventory/us/manual/2026-09-13-ssi-poms-si-remainder.json",
+      "sha256": "14fbae417c3c2b576ec1065bf75766d42c3232267e85cf6436a1edae5d0ecdec"
+    },
+    {
+      "path": "data/corpus/provisions/us/manual/2026-09-13-ssi-poms-si-remainder.jsonl",
+      "sha256": "4e9a56bc1dc294c8f7076104ed991ba9045249dfc62c551cb685dee000714472"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00500-000.html",
+      "sha256": "090d125eb9a5ee76230cba198dd103814a30ce28a910da9290ef0fd1faf1ce01"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-000.html",
+      "sha256": "3482ff3902b876eae6c83e14235556bca8e98579ef94da760343c727f80472de"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-001.html",
+      "sha256": "2520abe1731da9926ca2287de2d33d6859037bb1e40d6ab4338590822e905160"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-005.html",
+      "sha256": "f0bb887468e596cc0f1cd6e4c42e62ff5886cf3393737cfc1992c31b3e50d39f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-010.html",
+      "sha256": "6000ad4ceb8377487abec5db89c4f0e2000d57d0f110fdbaed5d10a5062038aa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-020.html",
+      "sha256": "da4c82af49a1f74f659af1463a4626f4e3e5fd8aa76198f5b87c1d2a05452f81"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-021.html",
+      "sha256": "6c263f50189cc55df1b1c5049bfe25beda372aa6be510ae4302a76563fb7487b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-025.html",
+      "sha256": "ea8283144389c5f585a2b2fad8073ad94746462040a6f568c91cd63f4bf2fabe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-030.html",
+      "sha256": "f99f3b2152736990489d4fda8a98c39a6eb18a64779a485b01a8b0f04353475b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00510-031.html",
+      "sha256": "bdc8388f60ad9bb395de96cfad8af65dbe71627949853fd92ba5e3311b6a359b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00515-000.html",
+      "sha256": "22898e457e14a5991919737c63d65501049279aef1066f09d3b77f01610a3a77"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00515-001.html",
+      "sha256": "a3a080f46855bdc3bdc6131e84898a970886f964142b57e76a079f267aa592be"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00515-002.html",
+      "sha256": "7e5856aa44f7d69201e2eead004204cab5bb6dfd4453272bdefd2735fcb0ef59"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00515-003.html",
+      "sha256": "3aa307c8a17db3169c860de0b5f6247f24e662caafee29c7766af8407ec6f9c5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00515-010.html",
+      "sha256": "20d190625193d7d9bbe096fc1784fe9d662632e8acca5a28777ab5d448dc0cfe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-000.html",
+      "sha256": "36f458edead2b0464aa42d1077ef3765d61fc05fa679c4555ee8d596a04d121c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-001.html",
+      "sha256": "2c64402825f06588248f64bd82a00a357a577909303867e78d33bc171f2e7a36"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-005.html",
+      "sha256": "aa9734ccd89e62975ae17dbc7880a3e84f71aa58ad3322c6e6ddfa62f2389656"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-010.html",
+      "sha256": "3c8177f3cd31bd4b4dfe0329ccdfd28ee6a219a1566bdc0e6c1cbc71e02d7662"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-015.html",
+      "sha256": "e3a594967bbe2661eddeba6e3283c737530bd9d6eb5830b92af6e616d307ed60"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-017.html",
+      "sha256": "6e25cece97e9765204daae30d01420bab84535ce9de4c515c243fc884d397189"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-020.html",
+      "sha256": "577124d0a4db6f20af672530551550d4f358a4fd31b79eec1b7163a487698224"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-025.html",
+      "sha256": "61e5425e9d4cfb8a02d7386f2fceaf299683a455a6d26c9bcecc44ee6716bc77"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-030.html",
+      "sha256": "96a7399f5ed431c4bad64c828823d0c0072c5ecb632e3bdd1c164e071ed267db"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-040.html",
+      "sha256": "7778bfc99160b626f01290e51b4cb3f635941c6418ce9f5f4cb1541ecba2d1ce"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-100.html",
+      "sha256": "4c2750b4a2a2e86e236926da07c160de89fa5b3bfcce0937861a863716e891c8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-110.html",
+      "sha256": "9bc2bf278805ceeeeb59b68c0c676cd1b89ef4ec145d7923cbfd5e7f0d792188"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-120.html",
+      "sha256": "81edc6e3560697ae6b9c94d59fcc7e0d7dc7d74d93cd8ae5a26c6cc671b31484"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-130.html",
+      "sha256": "edadeeeb73b24b80031dc52969c8898f08d170f2ef7fdb8e0335a5beee0d25ea"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-140.html",
+      "sha256": "31c0fdff6b6d45fcd46b5be0bb2013aa3636cb32c1c1bcb12854da09604f0a95"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-150.html",
+      "sha256": "b254aa1f1a497b1361100c2647a61cb3207d2d081869b66ddc54ecf9184c99e2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-160.html",
+      "sha256": "d84d8ee61807a6ab76ad822322a5867c6f36c40a039c762aecabf4dd2da17f51"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-200.html",
+      "sha256": "c22154fe4a8c5bdb458074f034b7cfaaaa38043063fafc40ec005291f3c8345e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-205.html",
+      "sha256": "c434ace80293b99dbc36000ceb94e966eeedf74e4750b6c886f06b30b0f6e00a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-210.html",
+      "sha256": "2c5e2e65768301a05959d6cc876a74df9f2f69018a65a24601c47a1e411d91e1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-220.html",
+      "sha256": "5109f9e0cb2dda3f99cdf6760347d2e54358c66187d6c9ed1ec1cfc886b51c78"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-230.html",
+      "sha256": "9ca7e16a6d64e7282a86f88a7382654fc6d21b96b10fe4276f81e04445c9876c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-240.html",
+      "sha256": "b4bf8b45026ab925b5b8b366a4d2272968c55e94fdf831f95e655cadb3376bde"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-250.html",
+      "sha256": "bb55d21f41e1b7e71d5299ba4cba1584fd566dff8227921fef99d3cac0b35a51"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-260.html",
+      "sha256": "8b11b6654ae4f2501267b392a738d3c17d98da79159f03451bc096a3a9d8b677"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-270.html",
+      "sha256": "0587a2d9eb41b4cb02c3699d9bfc2d85849395acb81042d0aab86e485f00543d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-280.html",
+      "sha256": "ce5be665c6b82b76d1b2ae746d16c1ceabbfd53274784ce7c7b8f9341529cd75"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-400.html",
+      "sha256": "c99aed61cacc087c89a1ebc67089256fa98ef083414b3152f02fa6fc753a4e69"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-410.html",
+      "sha256": "2f77540de72e06f7f7096e146bc6cd1b331eca5ef305af4ba4f0c5fc27cb2340"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-420.html",
+      "sha256": "f919b0914f2c2a312392bf0aedc7e3b0afea137dc72b7e3479ac732f85ac9036"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-430.html",
+      "sha256": "03e8039a3f433e9a82ed7fa7ca7a23e3edf93989350e86763e10b7d537b0a3e7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-500.html",
+      "sha256": "af242a5a29b909b8027d16d34511138492e1832bc0e211a67a1416c7c1abdf99"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-510.html",
+      "sha256": "b044c3cc70493203a4067ffd059947f87ec3eab722e0e40ccc59cb52d547aa09"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-600.html",
+      "sha256": "ceafa817357a0e69332a0fa2a9be247afef33768411d15243f0983335ad8782f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-800.html",
+      "sha256": "0f1ec6b87cc483013e16f8c2fe83ff28a9051bb9529118cce01f0759fecb4acb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-900.html",
+      "sha256": "862e1d817cea2fe028c6acf489184c5e939a24fc27751c8eb08f8e8e77e123c7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-901.html",
+      "sha256": "d2b940f61ab969effce99bca3639c49b7ec0025966935adae96cc0cc6349bae5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-910.html",
+      "sha256": "5ed6b7e2a4b3d02c4a6c45fd468778fb79b0a7261f38effcdc527319b9ae46b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-920.html",
+      "sha256": "98f4f953b8359b7d69a197be5c4652d2fca26b4aecc938db44895333ce668b9a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-925.html",
+      "sha256": "fbb91a103b486f81762bf16c06acabf272b23507e262c3e8c2c2104ce7f9cae7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00530-930.html",
+      "sha256": "ac1dbad6e89afa7f5d1db7d57be76a8a0460f4f7e06b3dee0c94c6e97b2f55d7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00600-000.html",
+      "sha256": "127b535df9d952abbbc20c2e16b6ddaaa9510161a9817537ccbd37a9d24f03b5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-000.html",
+      "sha256": "ba4bd1aae9ff7b4585a4e84c2b34825e0fcbaece35125e37cd4a0bc2f2714b6b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-005.html",
+      "sha256": "1c22313f80d3dbb761a51c197d613e1e64d61629eb0bfa1001fdcd6820c737a1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-008.html",
+      "sha256": "5bb79ea631c9e26bd1e864cdc83532dc8bf0372d94818d0ad8ac1dd33e60c956"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-009.html",
+      "sha256": "a72bb877f0214e4321fa994d712ae6379b627f234c569ee6c1fb28f878bc700e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-011.html",
+      "sha256": "79853e99565d68c9a4de1cbe2a0f9667d8a56c43a51473c83f990e6e79c3f01b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-012.html",
+      "sha256": "b73d6fe6f874a9045728cf0c619ceb21a33ae11bc99c7ef2c6fcc0effccf4ec9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-025.html",
+      "sha256": "75d294e5fde765a5a5516f4026b59a8ff18f2c957098bcc1717e1a443f03ff42"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-035.html",
+      "sha256": "53b70e974d107fb47c41903c127057b1abd36548f2771e516de31906772f7ae0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-048.html",
+      "sha256": "0ce823874bd22544311a6a67de42cce402d78e9fe1fd96d996b88cd0a25e2dac"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-050.html",
+      "sha256": "0d4dc9c9978e3a11b7fb36e2ee965481093f9c4f954b824ca7f4e0af7b88e3b5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-080.html",
+      "sha256": "b56f0274098a34ba5d1e08829de0f543a3ddf843f506d7018e2ae2dfdd4c2828"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-100.html",
+      "sha256": "4a64856ad4517b1d36507435675d4098e7e4fb7344183b74f3e9c11a831780ea"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-110.html",
+      "sha256": "5baaf56625f47e1e85d5c74d66ace1404221d8ffff820f2c73d76ebfe412500b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-120.html",
+      "sha256": "bfba46e30e994b60ad9e6115ac251ba995f647002e2a81ae8213ece2eb9f0e37"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00601-140.html",
+      "sha256": "1ca0abf024ffc1e4470d853103357fe978fee451926ed04600d882af7842c1ad"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-000.html",
+      "sha256": "2645c2cd9e24689b153d7aca6b6b30493a19e7c37e21ef8d833f7c4590137deb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-001.html",
+      "sha256": "d095d0a11dafbcc74dd9ef18addcc62c6c223c591129fb4ccbd8632be51a3571"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-005.html",
+      "sha256": "8b003ac8b2d4073ba3658e8c1e68b69951952259092e74da5ed9d03b2cafe9f0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-010.html",
+      "sha256": "c543e3ada16a786ac9ecd504d87a2843cb6609ca1e153efd7e467decf7e4ee24"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-015.html",
+      "sha256": "52fbaa51b19fe642dccc0dc22340e1604c0da372bd87fada8fc72921c642472e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-020.html",
+      "sha256": "07de3771e5ee24562fd012685e7ddba0b2359fa31825249e33b890d77c54299b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00602-025.html",
+      "sha256": "abba161413bcb6f8977d8c823c552fd5fb1524bd513a902749c47c1e99ec03ba"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-000.html",
+      "sha256": "ea0ac6bcebfdaf6bdb73463be3f883610e0fb898f4a32bada153537c55529202"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-001.html",
+      "sha256": "d614d16df66cc41035f3fcf91e630d5f3ab89ef7ff4e8eccb72cc010eecef6d3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-002.html",
+      "sha256": "3ce8915c9f1153cd0e09735f1b5bca9814085a25a99fcb48f5f1fb7100e6a763"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-003.html",
+      "sha256": "c8c465853cf4153dc31437b03069d7047b7aa5afc80d30e0b7091466e25c83bc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-004.html",
+      "sha256": "42d3220b6adf7fdee86995033c5b4f8a918be4413323167402be034f96eab62c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-010.html",
+      "sha256": "38b0b9d841cd1abd0267feb33cda766e2b9aa1129c9d651456c3431f00106fac"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-011.html",
+      "sha256": "3d40793ae15fc217c049bf74e497a32486db45fe0ebfc5a5cb7a4e0fb422b0e2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-015.html",
+      "sha256": "55717257deb892d90730ad049ec2c72e115b0cbb115184f917f62468ef1f591a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-020.html",
+      "sha256": "3b84f9f6e33473ae3e5d3bc24e988e235ffabdd3288925a5b258aff67d801632"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-030.html",
+      "sha256": "39d75e04f71bd45efaa7e389561bb1fdbe8a453d840782d36d57a75451c8a2bc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-031.html",
+      "sha256": "0ad10cd381883e571e57f716c450c65de5401e6ccd53ddabbf78568ff92663ed"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-032.html",
+      "sha256": "66e52ed6e3d91c5966d6a4b8d4f430b14172a01369dffd063cdc64e55e8c1c6c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-033.html",
+      "sha256": "f62d940ae944e2703a17a1a87d6ed43aeab9f78a9baa74e01e66489b6e462783"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-034.html",
+      "sha256": "c29728a4cae26267e15b20fb99ec548c1a007b0d7e0402df516c05640e4dcf90"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-035.html",
+      "sha256": "4496a8c012055055bd2b40de7c55232746c3514e871e1d4505e3b560c7925803"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-036.html",
+      "sha256": "7d2fe606fcbc43753c668a3967176a86738681b72243f4998c52f3eea4ee1d66"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00603-040.html",
+      "sha256": "0a4cba74c41081bf6233d27386ffab84fdd3167ae144df0d521b32aba11dbc01"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-000.html",
+      "sha256": "dbe48798279b4cccf3d0d36b9f10578c8bbc3f922652fc2e46c2ab097cfd7639"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-001.html",
+      "sha256": "09216c0988d853f7e31c614a63b8cd3d39879c6cc9d0be71f8e81bb8e4ecb2a3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-002.html",
+      "sha256": "c921f03feaaa1e26e8d57960436ef715a9a12872581cfbf6b058b6b0b4dfe611"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-005.html",
+      "sha256": "90f5927d5a9731d7d415f7ab243673132ef318d6ca0455afad01571d8f4c722e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-006.html",
+      "sha256": "278b8ce2bdab2dda5af5f5619fe8d10dbae7913aacff8903e27ff05f1da78699"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-007.html",
+      "sha256": "e10ca3b63d1cbd407571e75a0869b100298ca089e2b690adda54006339e0e9eb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-008.html",
+      "sha256": "20f9069be574de100d54c8a3be64324325e80e23aca44cbf037c7045d892540f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-009.html",
+      "sha256": "5290a3e0788cda65ba15c06ff4a057ff55c3ff4a9e785e15c762a9cdb95298f0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-010.html",
+      "sha256": "85c2b7f1fa00abe23b7f3998050eb34c1fb7b8ca38c80bda7ecca3992fbf99ee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-015.html",
+      "sha256": "22b9798737ef0e146c93e9d40f1bccbe7a1146f67da8a7c9c94f2625d6c7fddc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-016.html",
+      "sha256": "97623fa1bdcac3f0dd057fcdd94c3e235e3f7591a94dc831079122d0bad3e564"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-017.html",
+      "sha256": "45606690ca443412cf75681628b42343e6fc3c8a9e187ce2c4b172e54dabf116"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-018.html",
+      "sha256": "08f802752d6c5feea4f0a51272c252086669027dbc2da11f0c8d7596971b6aa5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-019.html",
+      "sha256": "6ee771c59c5a64a0ced9adec95234c172e2ee219640ee01a5096612e33a51904"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-020.html",
+      "sha256": "9cd9edde32871962e1372ffdb810751c9cea4b8723f729c2a62f6b27b1cc51f2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-022.html",
+      "sha256": "e3c4df2f4f8989e18442c0112e4e6a898d93ad91956083b79928f031ecafd8cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-023.html",
+      "sha256": "0fbaca266ecf1cfd18b78be3ce63c68558ab829b5ade25377857576b20f2f950"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-024.html",
+      "sha256": "a5826bdbffb494f109ef1c866dc8c81c9c94dbd90841fc8aaf7bcf5af5548eeb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-025.html",
+      "sha256": "4e8116d8df6f2db47d02735640c753037c9da86ffc4be7512a2e30ee99223698"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-028.html",
+      "sha256": "78331b82e673c6d954f11fd192a7e1cfe9c936425df9343923310d7178eea721"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-030.html",
+      "sha256": "097ab3ec6ff6d9eee9b0931f8c3ae597128312691f03ad4b6446de4fee81ae32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-031.html",
+      "sha256": "c0bfc1726c5f3fdde1214317ea19f1a0e5fd95574e68b81d9d4c52eb5ba134fc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-035.html",
+      "sha256": "f7837d1b5a936491b1668a0b934d48310c7094d403eec5a30e005b69cd753d10"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-038.html",
+      "sha256": "18f78c4e0c90bf99b48f128a23283f28822ca15a575cc9e8025d9f13d4b71186"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-045.html",
+      "sha256": "3ea4c0ba3e2b78dc44339a1803ddfea2b37a4a142322180bbb607856933ba157"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-046.html",
+      "sha256": "a6197d238d3c3d4f2aeb299ae1183124a6dc736052ddea50ab67238f5f481719"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-047.html",
+      "sha256": "3c18546813ced180cbf348934943f4c3b3efb39230c87e6ff03f9c64ee7f7d75"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-048.html",
+      "sha256": "5ff46c6385d1c8819d1f5135bb6cc568183eff0d8c511f5a9617447e6cd79b9d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-049.html",
+      "sha256": "7ff1be88d879fded7882acdf3bcb46ae29b300039afdbb66ae54d94c396fa96b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-050.html",
+      "sha256": "ec9b3deb07e603f43b42d85e3f551947f3ab58146baaef0bd1e32ea27951c8ac"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-051.html",
+      "sha256": "fab261488509cd270eff7fb13a7b45380646dd22812fc3e28164609201b0aa3e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-052.html",
+      "sha256": "31f8d3dd75ceb03a03dad6f578901c2dd1581cd150fad3ed9379709b1a281b0d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-053.html",
+      "sha256": "8c69a4d1bb0406adb129d6d26a10ac2e6f812faaf690db48de559d7c88fb3b1d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-054.html",
+      "sha256": "c7872a695e1a17c6362dad967cb57fdcd48e96193beefcfaac046373610902d2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-055.html",
+      "sha256": "076f30b9cb21b1ee4fbf2457cf8a39c03274690fc35208a41c5cf5d388a5644d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-056.html",
+      "sha256": "ab3e56a0feed063cc2925ee548ffb537ee8706350670b1f1449a89fd646219b9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-057.html",
+      "sha256": "3ac1ad85f7200dc89297e2e0c08843660812ffd784125b58de6ac6c62e98c2c3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-058.html",
+      "sha256": "b8da12bee39945c69d15ce365ec10ce377d7daafce680835bf1be1f3b6bd2767"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-059.html",
+      "sha256": "5136fc561873fd89b97599b5dc536f83c2fb4a3527675455d40e4e2135c92cde"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-060.html",
+      "sha256": "bd0ee19cfa2acb9948bd8efa76902f912364e41f877b88fbd6d7e1235183b252"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-061.html",
+      "sha256": "0fa071d980f255d4732d76c231eac1046f5b20d7949b3856cf2f6218d046976f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-062.html",
+      "sha256": "f0100ec0d2c446988e1b72333afed49d774d8605660431884086992ef1ecc93b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-063.html",
+      "sha256": "daeb1f59d7f7e22e09b2392444e79ffdb33bdb377e3019569cb9732efac7db43"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-064.html",
+      "sha256": "14943c48ae2213185358c7d4694dbf710da7a4ab0b2694168bbf2124634775a8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-065.html",
+      "sha256": "ea8efe3947295a871d3a10793667b2f75f7f408e1e195416998491d27444c5c4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-070.html",
+      "sha256": "f3ba2a638f5e5810ea668697ef8c2365200a7f5117910432bbea24fff9fb4d0a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-071.html",
+      "sha256": "ee620583616428f4f3233ca1162ad086f5d73d599bbee7f78c06307fe9719797"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-072.html",
+      "sha256": "fdcc49b024f554a1072dacad0d22a7db10a752ba4d55878a4ca5cb39dedc9e3b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-073.html",
+      "sha256": "8a205362d390c1be63c94f8a37ab41bb6ce58db3ffc15ba4f6748e6f446ee374"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-074.html",
+      "sha256": "135f743942bfbff0393b75c82329f02f9aecb2ea5676b868e81b4fedbab68a7d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-075.html",
+      "sha256": "75cacf77d34c183e47ba989082b7b798b8b764705c2b8d5cb0bf784be9994728"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-077.html",
+      "sha256": "468990c240a62ed770b1536be55ff0fed386a3c27b2f22c981428065dd8eca68"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-078.html",
+      "sha256": "6bcec52705b83fd105c78651e7768c6cbe7be51fa6abc92068f4b58017c62fbd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-079.html",
+      "sha256": "67a44d78af13c3d1acbd86542013c7028424022661df2be64464ed3622c3cae4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-080.html",
+      "sha256": "52a865f7c1d39019a441e147c601e3bfccdb20f3279fb73b0b701242dddd67fc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-085.html",
+      "sha256": "1bddc4215ef6f2b40fbf7f97fa5aeb5ef1fc7520340d8e0413e884ed635523b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-086.html",
+      "sha256": "9cfaa0637d9d93a737cc41d34ba60fad14a773b7cd8f4c950cca224b82198820"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-087.html",
+      "sha256": "a959f948ac97a9371216ff46be44d5829923032d2c354f306a6d58980e91d2e6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-088.html",
+      "sha256": "491ae1a032f4e41093e015241cf326b33bc65363aa7d6dadc96ceae51f37d5b0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-089.html",
+      "sha256": "8785dccd618fd4fc132321905443afacd5e59dd6d5c707c9ce61e52e0b517758"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-090.html",
+      "sha256": "10f6c7f4d2c818da1c98705c2cc0a4151920d12105913ddc182637bdd53d6fea"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-091.html",
+      "sha256": "04f570a652e2e989073b7c6b1744e566950c6e0024f1d970ab530d66998847cb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-092.html",
+      "sha256": "7c2bbb702d5a6ed9aeea82881a6db22b49575d3a4e14d487d16ebccf5b6c5669"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-093.html",
+      "sha256": "f90da3ded5a48f3b1af0d559cd0207d1c1aaf88693040441c002308632b89572"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-095.html",
+      "sha256": "b74ba363dcbdc6cf991aa12bb58f8509ed4bc854583435598d1e9bcda007a2ed"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-096.html",
+      "sha256": "10c4cbb5bd8dc66c7f505e4697664796cf8e6e51ca21f65634807d475845fb5a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-097.html",
+      "sha256": "23742544523a138530a9bf0b7827c97b8c367ef4bbb26d18e95d8439ee69d2f3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-098.html",
+      "sha256": "3c97f4b704f973381aea56d3c66e570a90e4244eb3d0abc8ed5693ccebd9dd09"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-100.html",
+      "sha256": "b267f818a8f0191e0223d2d5b14f38b5b3a63ac2526038b2181e0f423864e0ad"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-105.html",
+      "sha256": "08a003468a0fe6ba490803e09c53b974ce0fa8ca3ff6cc84f5dd6748c4bc8c9c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-108.html",
+      "sha256": "d631a6e0fac450435dae653af21da5ba914f470e572a00daed98fd32981113e6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-109.html",
+      "sha256": "3d08dceb5051fd2fc0cc162b1c41b156d0559e514bfeb462a57ffe92c4a27cb9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-111.html",
+      "sha256": "976d8e494131d2d87a64d3a654ae06511ee72d921bc0286b4d0f00face8df767"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-113.html",
+      "sha256": "abd030585dfcba71136614f183e214f6a0212873ab22e6c64a9ddc76563bc610"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-114.html",
+      "sha256": "4d64c0cb5b25af63441a8c8ff3eaad2decd4ebfec470d5d736e2a6e31534bc54"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-116.html",
+      "sha256": "2f849042bc1307dc78a6c6ca2715f2df6f37b4a18b11b1769b422515cc2510d1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-118.html",
+      "sha256": "67db5ea2ef5691270feeea69cc09d88be27da31dbe8bdb02cde2be1c579194d8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-119.html",
+      "sha256": "f982e972f1487879d2485cb94d903de7f159966e8802a08a47ccdeed7f6eb26f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-120.html",
+      "sha256": "905c42c01a16554b25ce565e4d5992371ce6344c28a1ae8436cf9e386728e771"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00604-130.html",
+      "sha256": "4b8415d1685137b1646245171ce4bf750c1584ab5db22bc0450f10533a1acd18"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-000.html",
+      "sha256": "97c0fa7f949bd1f2c7673382ebe20ac8c35f9d9aca42ad1c7eccc5979afb5a4c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-001.html",
+      "sha256": "3b5aa5994a9d56a9ab32f265df5998db12d6b1736dcce9ac1bf12f4b4fb7acbe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-005.html",
+      "sha256": "7b174990d904814c11ba4d45b091e7094da43fd7d04f57557bee59c2acf8a7c2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-010.html",
+      "sha256": "c8ab3fbd97d395654460308a57bf3854d4b8b34e906c3ec8cd13710dcdacf5f6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-015.html",
+      "sha256": "3fbf68ed1933a33b53066a9f45cafcc20fa18e52a63ec7495443a56acc77ac4b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-020.html",
+      "sha256": "fa917d211fd9af3ff2699cbb11f1d1ce6971670bbf1b322b500866fad6b6b8a0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-025.html",
+      "sha256": "c588fd5c58b1c94094fb3b78d3a308aeb63aa839b1841582f45d2a3aaf91e941"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-030.html",
+      "sha256": "efc22b38881f40eb8e3a895186a5380992f7403f5fff68e2e72ad5e232053f86"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-031.html",
+      "sha256": "ab7d88ae88fd65384a81f344b17739460f46df7121501867c0fe410385cac528"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-035.html",
+      "sha256": "fa1990e15e3097699031fcb6186c0578568226eb888adf6cdf8a89dbb14c995a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-040.html",
+      "sha256": "d5b6c8f586717e91cea6e7af0856b4e659fa190e942e71535d653f00a2434215"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-045.html",
+      "sha256": "7131af28a993221b1aba47710579e1ef6d98380f8da8b6bcc05e679086d09dcc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00605-050.html",
+      "sha256": "2e3dc5540a43e3c5dfe2bdf3addae15dd23cc0cf86537f1bfff5e18da47ae063"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00800-000.html",
+      "sha256": "c858ae520e62c751bedd312d56cd4680e55ae16d6f029e9a6dfcd40ea863722e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-000.html",
+      "sha256": "d4fa2581262b32ae175ac07c0bfc0e380a23e6c039a26da6346379c908d837ca"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-001.html",
+      "sha256": "36a99d6f91ea0fc675e7b3c214727aa17379e1aaa04b2c8860c72be2885ed62e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-002.html",
+      "sha256": "54f81f9bb9bfc46f632b6332baa9739219a8084c0e561e1b66643858bdc2b46f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-003.html",
+      "sha256": "8d74736c292936bbd50520cc5df0f19388f8ae845c1beb2664dbf17e767f7172"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-004.html",
+      "sha256": "85de0c3b7ba6863d51c76cfbca5fda58cb89c2c2f7f1a6f3d324d0052ac807d2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-316.html",
+      "sha256": "a0eca3fbe2f8a195d92dce792a823964594e57ccc57d171cf9e55208e377e52b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00832-317.html",
+      "sha256": "f1c856c0911a326844523ea7c84577b12618aa12e80e8d174f7009ba10eb8fce"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-000.html",
+      "sha256": "fe2d8a0e448d9161c7bb88f02890bec7f1fb6a303586af740f4163acba491d54"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-001.html",
+      "sha256": "d8eba7949ef067d83ea4bc04e182d8918320d0cd8b2d5dd7b9bf7a7024540949"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-002.html",
+      "sha256": "481087b10f6919344c688432ec0428757a14ef76b417f814a25002ef0f2e3f05"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-003.html",
+      "sha256": "36385ca39ac516809d17c309467990c4ad6fa6d329fa39f2126b46453265e668"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-006.html",
+      "sha256": "41d24bff0008b296e83a4b7660bca1adbece726fd9277da091f4abdf06cb69a8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-007.html",
+      "sha256": "ff7526c1f3ae0973f9a1f7d835f98d4b3a70ef8f527df8ffc1f583903fa98ffe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-008.html",
+      "sha256": "aa3a6cb8c863b558a6981aa508454a03bc7289ce12e89a2ea2d19d21db29fbd8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-010.html",
+      "sha256": "3a6ced1d70719f1b6983f797da7e4c7428185447a745ba5105f6f9eef84f606d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-020.html",
+      "sha256": "52419a8a45218cbb18bb13e978057fd7ccf14a39f3078f3210a233f923f08707"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-023.html",
+      "sha256": "d393eadb93f83de0942ae86fec7ebcaa4614b47c62865d2f6831d7d3967c051b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-025.html",
+      "sha256": "c812cd709c8bf7cfb56cc69e4a133f5c1be7816e257114d8ffea7269091a2054"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-026.html",
+      "sha256": "2d7e9861752e677863bef844a616c5ed9625b7aaaba8406d5c68055351d6e18d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-040.html",
+      "sha256": "1550099e0cea1250b02b8d77e1a56eea4c36beb63510bd0d761208f0aea5f76e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-045.html",
+      "sha256": "40a9ab75726c6aaa3227b1123d7979bd53ca7ca7b846a79a91294c678660cc3c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-050.html",
+      "sha256": "e144f9f8be25446334d7a8113e6f2ef586d453c1c01688b377d2e7ac3dd7edb1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-055.html",
+      "sha256": "bea5ff7ef6e546791ef7db95e805775af33cde88508310daad9b3b2ff237edb0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-070.html",
+      "sha256": "38b9a4cad0b093ecc51bce43d79772a6caf65d1fb9408d2720d15d6b0e7dfc82"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-00870-100.html",
+      "sha256": "150bc65b391b98979cae5d62204d5231eec53071129b736845279fe73f6a2588"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01100-000.html",
+      "sha256": "f51d35492eb2dde50d172ba6d73a51eee3b8e6636b5d0420fc3cf828fd5e4cd7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-000.html",
+      "sha256": "0d0a0d531a941aca3fe9707e75ba050d0c99164e955d7a7d72a3b72f72e210fe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-001.html",
+      "sha256": "53e3a237b788b77a873577ee2b352a3a265d129d875444694409f379a34294e3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-003.html",
+      "sha256": "07da26dfb445cf55751c71262fa6dff60c2b126179dc84792c4d7c6f7309f6cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-005.html",
+      "sha256": "822aa93dbdee130c6a83f1c9d33233cdd8b21caff1a041619ea7ff1126c1d5ef"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-007.html",
+      "sha256": "7d0e27dda8e63210aa8f96dde47c9007971378a4efd76af78f522c04e1d617d1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-010.html",
+      "sha256": "a88a5d9a886d792cf672d47e14083ca6408ee9dc0bb45c656414e0ea4a4e523f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-012.html",
+      "sha256": "15bc687d1a003c48c130c39fa84294db09bc2413439602fe2c54c75cd94163fa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-100.html",
+      "sha256": "d43ff4b96a3f934de9d75ad9b1c48a88918580abc20a22f0a6a20d9937206dbb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-110.html",
+      "sha256": "fe44b4e80a5d77408641f9e4525ecbf367bdbd0bdad7a098f54aa9121f28a4de"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-111.html",
+      "sha256": "29df69859ee9696c0b4fb3f0ba48151b7b2431b5f17904df24ab84aefe78a342"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-112.html",
+      "sha256": "1d92a5bf16c0824c29ca54fcd6b4fb6f2ada45b3dc979e60e82b57312ad6aa28"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-113.html",
+      "sha256": "101c2de28c4c1302e3ff9d41ddc81e9d8a87c5fa5c9f7f467d591f5f397ae7c7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-114.html",
+      "sha256": "cf0e59fc97f048cadcfc3d82ff8dca564daba0c3dca63eb4815de21da85ef585"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-120.html",
+      "sha256": "dcff82d3f9c3af6e9731754907164fd0602eede5e2aa7f1a5d9a4516a8a1f507"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-121.html",
+      "sha256": "13e38750c6df3d0f92ff2f45728dc6a20f1655b8ae218b683ceb50f2505744eb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-122.html",
+      "sha256": "9a8de579cfb0980a8a37b89c9fed577e808bc946d68c2b99174a48aa29f12980"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-123.html",
+      "sha256": "027f93fee0566849b47898d979f5fcee334d82f6cf624c58969e8dc639cbf09e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-124.html",
+      "sha256": "e7733f74a579e498b3ae7d68f43d75d1da4d6b21090dd10c463f84e2664d1d25"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-125.html",
+      "sha256": "74f3f384354f0892a4eabf5feebedbb08128fe0c19859e3e7292053d77ca5369"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-126.html",
+      "sha256": "772a5ee8233d23d523598c56cc7cb9bbe90e7613cd5a5a8031ec444e41dcc0df"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-127.html",
+      "sha256": "82b88430dca138a5b9656cbc678758a5a1341e148925cae84e195430cfd46d8a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-150.html",
+      "sha256": "e26fafaa77923251b2be79870b4bbb061721d6d36f6210fbc6857a15f2addc5a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-151.html",
+      "sha256": "8efbe9c26efb00c9efdc2d9c2a1c0df5e580d81a44ce9d922ed2f5ddf35bb405"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-200.html",
+      "sha256": "9f0ba100936d21926f7c480ac0c78ba1e9d59b4528d0d11f46bf5fc74f575d62"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-201.html",
+      "sha256": "1d5849fd4183d3d6580a06f4830d728aad9667d54519b73b8e8384009fa5effa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-202.html",
+      "sha256": "1844d1957ab59095f4a5fbed02328cf3111e70d19084c2705fc223e0d2f763ad"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-203.html",
+      "sha256": "ee904a9c04f5515937c34bc1bca9e4b16a208711620818bdeff052480d07e663"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-204.html",
+      "sha256": "13ef1b8ce8e2205fa20a2d0d7190c945d29dd92c63c351eafc439742121c6c97"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-205.html",
+      "sha256": "d8881df1983e50da1e07a00eb31f382ec1cada26eec7957d286e7598e6428880"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-206.html",
+      "sha256": "f94217d32034e711bb17002d761c93ec029d54479ce12c7eba0f3284fdf4b69f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01150-210.html",
+      "sha256": "01b6a5924c00d624b533e11eec57fc4f1515da971da8bd400a9d0a5aae5b0904"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01200-000.html",
+      "sha256": "75431e1a7553b5ea9e7f868fe22aefde4bbb374d941e163bee67df468ebc1521"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-000.html",
+      "sha256": "408d6af110e343595f6ce55f1542d0da5cdf1c1ef3d41de98648267db732a8a9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-100.html",
+      "sha256": "49a4ac4cf0adc140ab479eb15fc04178eae7bc268100d5d6b3934039b416fa56"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-200.html",
+      "sha256": "18b5546f706826e3a682a495d31fde6e3fbddc14fa746b60bf3c254c9fc3ab4a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-300.html",
+      "sha256": "8976a56d272b478def194686d6c149224ccbcf3bb3edde99a698a5e094ede41e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-400.html",
+      "sha256": "e2ee3168afd586e383107bc9ec3a191d2af977ddc36b383bfffaf20897b2f9e3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-450.html",
+      "sha256": "d4eb47b3c55909daf6e9aec14793e02bc215cf82e13bc2b0b7756c588b36638d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-500.html",
+      "sha256": "685d5786990d4bc304c110f4fce922251b75d7f08629da6fc45f46928b7ae5f7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-600.html",
+      "sha256": "f759f69bfdd68834a3c4bdcbf60832b9879cdf148e5abb558af8c167de4ff106"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-610.html",
+      "sha256": "c5ef59407f9f85f11c3386fde4fd9fa6dc134015cd5803577017b2a75a352b92"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-620.html",
+      "sha256": "8a95ddb85004010eef0b24c061bbfa43d0cac82511c0a932f97678b53f54f863"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-630.html",
+      "sha256": "000bb7f5c50a2875d6d38ef3269227165986adc5cbe465eaab87733449e7f81f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01210-640.html",
+      "sha256": "71dd0e11f7eab741165c8597387e9178d039ac421c4af369e1ed22815d36517e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01220-000.html",
+      "sha256": "ddb1a84cc826ce98cee0e6390f4f222c3c91c35fcbccd4f481d80f3bf01ab618"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01220-001.html",
+      "sha256": "de0125a897cd0d9e62526b7625c43e9b7ed92890213ff097b7660a64ddb59385"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01220-100.html",
+      "sha256": "0ec2644f59d709e135d69b28cdb5ab009006c377dfcbd132134bd15d47827a7e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01220-200.html",
+      "sha256": "7c6cbe3d2155ccf797adfd917ccb598e0a6f206ad4116d6f47939a471040fd4b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01220-250.html",
+      "sha256": "faec168a719f2f4b4685ea103203d69954bfaf04270e51beaffa683a6d85a260"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01220-300.html",
+      "sha256": "26ca60ae959be89b48c49dd0148a5b3bf91eca67dbaae15898aebeaa49b25cee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01300-000.html",
+      "sha256": "3c42a150aa35cc8ce130f804f8e02c231b51d702ba1e8dc4f55d48d7cb52dc87"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01700-000.html",
+      "sha256": "eab06958f56ef1e8443053b13b6b8a7901c1460b624516b7c700547a32b41e85"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01715-000.html",
+      "sha256": "1f899f308e7b45130cf49e8ed72aa1abb7a135c41ae6fc677c2fbad7bdc5c656"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01715-001.html",
+      "sha256": "5da803fb0bc424d9ea8f17d702e9b17110612cfc2bec58a02888e6e9d098ac5e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01715-005.html",
+      "sha256": "51e4c8cb6be504369ceafa64c2c6b7aea26496f95cc6197fe521e3568895e045"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01715-010.html",
+      "sha256": "c464f6868e4cfd5ff03bd4e359d3fa8b1f0f554761cd2712177b79fbd08eede7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01715-015.html",
+      "sha256": "94520b1d597871fccaaa2f2bc5f35f21f8ebb70d651bb684ff029051e1c20843"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01715-020.html",
+      "sha256": "3bc6e0f354462bc675ecb81b7a5316b113c0372316951f01ff73814063362eff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-000.html",
+      "sha256": "4fb76b64a320c186189b1a4c1448555a190e871c99377d95ba51d40e975b6cab"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-005.html",
+      "sha256": "3fba513a281ec2a0f347c145ff14823953d05bed9d25b6f45e21bc23139d7a59"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-010.html",
+      "sha256": "8771ed00bac3c5d5210cc70d2faf4f962f6fef785b5ef944791fdaa80f19b0c5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-015.html",
+      "sha256": "7bbff79998ac823c73d9f654a8aef7843d054539e01ba59fc8c99bd525980d45"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-025.html",
+      "sha256": "acfedeea3c0cd370ec4d6784b7619ea49b6fcb538a480f45226a9b1953b4187a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-030.html",
+      "sha256": "8776c851fd12d64b3ac346cb4be1a345993b0c928409a2009c4aebac61bf0185"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-035.html",
+      "sha256": "74bfe8609349b371282c61af815a7f0edf3d89c49939c6768e5c6be6ccd58586"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-040.html",
+      "sha256": "da3e88cb798b71ea4e8596b22c6b6d0c4e1909e8aecbe0369c2945f2de6c1ec3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-045.html",
+      "sha256": "d6cfbd9da95c7bee747c676c84f7f2f12293fe7f9b532b44963c0d61be979da0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-046.html",
+      "sha256": "77ad645e1f823ab475eb3087cbb455aa6922030374fab34470da1a242203cb41"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-047.html",
+      "sha256": "4d679f8cb4a9e6e478a6980de9a1efd0180161fd2a730e84a73a673ec1dc9253"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-048.html",
+      "sha256": "f24b2c3fc90f87e4ba49ec6ba671f737b76abc3fdc0794507455fbef387bad22"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-050.html",
+      "sha256": "aece15e48a9b20a9d664842e3174d765621aaf01a85a2b4ef427503ae6e927fb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01730-060.html",
+      "sha256": "dadbcddd2381bab39e66914d124b2f245b7f7f7b3cee51ca2f4cd426b67ea86c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01800-000.html",
+      "sha256": "84a4ade73ce37d9cf4192b8a0b79e04705606c8f7abd24531b7ed5ce80c9f7cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-000.html",
+      "sha256": "6ffd457fadb2fea49d494eecf619fe38fb71d2c0138fe5ffe640b7080a0139ff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-005.html",
+      "sha256": "a53e65ae6ec601c811e1e7caa31c1e3207572191bde4b2742194d3828a26f1bd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-010.html",
+      "sha256": "95f12191e2b4ec7e2f20bacfee0480c0a189cb877757a5ab0ddd8e5f5964ddfb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-014.html",
+      "sha256": "70aa5c36a26dbdbea88630421d25ffa8101495289491ac4536895d20f2a67b10"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-040.html",
+      "sha256": "f6d5a4c116408f45cd2c9d444f1679919cb2a643b5945191a47cdf454006d47e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-060.html",
+      "sha256": "3aa834870ae4cbd4c3198bde45d0ba5c588cc1f6375a2675ed68b95921543fd3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-150.html",
+      "sha256": "ccdd9cef0445d6bacae12255b9810db8307e224e08773782d46dc6bd4082b64f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-300.html",
+      "sha256": "368c45f3df9dc1e1435c21ecc7776b7967d3759aa12af32053879b981096edee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-01801-310.html",
+      "sha256": "619255d7f00bc40bf2ea582fb93dc22b99b6f76f95d85312b72451670edd37c0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02000-000.html",
+      "sha256": "33a0190f9f6b1834d9483a5346b0c5c064ece771b08655386b3cb269569a90c1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02002-000.html",
+      "sha256": "88fad8f29365731be5f6e7544c5776a0c415c6610495e556ae4dbda5708940f7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02002-005.html",
+      "sha256": "c8b6be3a94e96d77d83211bc563fc1e78c647fa7dd153789c7ff197a54a4114e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02002-010.html",
+      "sha256": "e93abb606f7c61352e94ca55c6d5671af91912d1811c44f59891276e6691f130"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02002-040.html",
+      "sha256": "78529222f485460a04f0f26fa914b161a2f5eb098b1fa18dbf0859f3bd909165"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02002-060.html",
+      "sha256": "cf94fa17b52c2e8cb0c51e1219f6e54787762f81d6f82016bd34b16c020a46e3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-000.html",
+      "sha256": "8ea1fd3001e81accc1b1c387e813a496ec66ab1b2b2f58a6f6361b4088781c67"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-001.html",
+      "sha256": "a6d5337bdb01c6ea31a7a3bf5a76662eacb33615b97958eb6986465c8cbd415d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-002.html",
+      "sha256": "d4ed68b8c1696d1b829cc1ae9ea3834abe9e454321941aabbc3e7b95a1360765"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-003.html",
+      "sha256": "0ca20c229fe0df98c8f972f0eb8793eb895d51249aee2e01ec74f08ca3493879"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-005.html",
+      "sha256": "25c53ec47d0ad78915468c808de13915312f30d714a118170cac48372ad2c6ff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-006.html",
+      "sha256": "69c450bc93c11a51d5f249dbe6dba8ae8356a7c9b0f99751c78a92b6e38f34f7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-007.html",
+      "sha256": "9c1a328dc2d3e4779f80c2c3a46dccb5da0b7793589b849ffeed60f3746a3876"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-010.html",
+      "sha256": "9625a4a49bec6edc0766d7785df81eb740c230e11a66d6901b663cd6e9468825"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-015.html",
+      "sha256": "e0dcec9c7328c8b5bbbc38b913bf61f7c94e22ed7a0885de8b2eb1e5e8e39bed"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-020.html",
+      "sha256": "70644a9a5d2b46057ec40228d50c1013ce90655abd66860f780af2e079ac471a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-022.html",
+      "sha256": "a243962df48e78ca8659baaadadfaf2faf8a337016f44fe49440ab2150cb2a8e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-023.html",
+      "sha256": "ed02be1aab5e3af78728a4993c997f16dc390bbe12d8480f50af024b4fc8b199"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-024.html",
+      "sha256": "ba6c5deaa11fc01b8c2fcba24df65167f1dd35c6feb177c976e6e29cd821afd4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-025.html",
+      "sha256": "9adf43f488c0f09a9e760a6fcfdb279dc98a0a7f54030f742741a23f88200888"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-030.html",
+      "sha256": "2c7dc5fa44dc56a98344b03d4494eb39408e9f3c2ba2d347015a39512ed84274"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-035.html",
+      "sha256": "ff696c89d9d747c1a9c6118a819e8ae14a59245abb25e71c9d54dc1f158e6eaf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-040.html",
+      "sha256": "fcf18d11424c6e1fe9daef466deb2ba4d5afe636cbf7ec54ed0cf591d257c87d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-045.html",
+      "sha256": "0cb944c5a8eeea9c8b4bd99f5f9b7d76c5aacceeca23ce5b64e092505fe90b42"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02003-050.html",
+      "sha256": "b2e5e3321e7e8b0afcf15645edba680ec4c856e6f97d9632e02be9a17f63437e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-000.html",
+      "sha256": "5cb52084ee492e5ae2106df19053783feadb2603fed2146e043bdc10818e519e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-001.html",
+      "sha256": "c142f688cfedb1db412048b46d470c750ed6065d104b9a4ee717e106de8a1ed3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-005.html",
+      "sha256": "fb1ef136486d3e2fb858236753c6f2c4e939fe40fc61b9f7ca1cc2f3bef59825"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-010.html",
+      "sha256": "6d9daff6d8eaacec0e008887325128f16cc511dd2bd01641152f37d989c579d0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-060.html",
+      "sha256": "26d0d1d244cadd691f30814f9a39ad698ec569a8145c30b7df7b5aa1c8aa2eb6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-100.html",
+      "sha256": "4d3ecba6b0ed92af47df545d9c8c39de55184af4d8d2608f8fb35a955d04565b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-120.html",
+      "sha256": "6baf207d3ad956063e9f8657d2fd25a9234c5d16aa19fe8463c6f635937526b7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02004-130.html",
+      "sha256": "8166cfd944a3bce32eebeae8c819de9c433d352e03650565654276192e36aa32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-000.html",
+      "sha256": "b8d4366fcdf775e2c0839e0e3fc903cbb9da3af619e66003d71243f7823891ae"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-001.html",
+      "sha256": "c7f634e6132376158b82b9d5ec2ba9bb5b60199d0fc104f09fa8825876a14619"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-005.html",
+      "sha256": "a905d51ab5729bd3b2a3a62471360cac0847a89a13788a8c4f57b65322d0da85"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-010.html",
+      "sha256": "64d587dba91fd5264794035511b4b7761b3f678f7fbc78be818bf1f5a09d2298"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-040.html",
+      "sha256": "db669569aad6d63ba45ede4ae60445f60393483e2d88ba2c696dde5f756270b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-100.html",
+      "sha256": "92a3a69703b894dd72c914e9ae0dc423ba311cbec3e4e8bfeacaee495ab3af54"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-200.html",
+      "sha256": "a4bd85271f3a2804383420ffb70d1ab3cd60d943203b20cc15d0a789ef641bd1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-201.html",
+      "sha256": "43a2d755b940588b3f6a0fc4fb60005430e4232cc4380315c5374e9882b8a4f0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-202.html",
+      "sha256": "e7c566c072ab44b578d5445a34e9e72457a52bc427b4e0b6c860a02d956a2531"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-203.html",
+      "sha256": "149f78b639a5f7ba07f7a65e4aee724b7c9e9741f6f4e2982adf5cd42da49c42"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-204.html",
+      "sha256": "1b15704b19611de95326a59875445d7f1a69b0416abfd7176ffef1ecfb186748"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-205.html",
+      "sha256": "756e0e6a25208f93f4ff3f1be206185c2bdbb35e2ab1cbbaaf17c77ce68f0e33"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-210.html",
+      "sha256": "173ab41f7ed0354ab91e3fe9e7ddcf54c3c1f17112d18dfe18f895c219c68126"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-215.html",
+      "sha256": "2de84fee992d57a53bd5c5812b43af19d5ee506de11f24fd3ffab344f566ee5c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02006-220.html",
+      "sha256": "26fc5a7e235b6958f8a6a75eaf088c56773d5d680700410ee989ee92b06a4f9c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02007-000.html",
+      "sha256": "7d5071dd3671945ae04e2c8e6d42ef02f341b939a5cf0f44783d35af6d861018"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02007-001.html",
+      "sha256": "8e9542df48f435e8c08e52944cddc61542827c8df61e9ad0bf204db89a037f92"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02007-010.html",
+      "sha256": "ae288c25905407e99092f3d91a64ed547cc323d40a306b9a299ea39203ffc3f5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02007-015.html",
+      "sha256": "30b6a41433106062e5734afee8637845a7b76b2600bfd2e516172ddad38d63e7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02007-020.html",
+      "sha256": "0293e8493db0d503e7dbf923449088b5da937fe0db3ed424da850f08209e37b9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-000.html",
+      "sha256": "10c8427820f2f17a76a3781918ddcfe9cd97e1ffda4647d745cb6a280a670413"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-001.html",
+      "sha256": "d9ed9a0be3e46832cd297326b073ee5580a8062161c9033276176e10bcbbaa0a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-005.html",
+      "sha256": "7161e871e85e6f2a23dc6012544e4ba30178d33598f37f0294efa4591bc8a926"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-010.html",
+      "sha256": "c49c730b319d6f0b6e7af814ef2fcad96e1221a1312cdd32f33b0ad921660bdb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-015.html",
+      "sha256": "540e4a880058115d3db35e7c22d5c24d4b7ffd3aaa7cefa6670b52965096c9fe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-020.html",
+      "sha256": "015289a2adf565b29c6016bb28f7b39695180c27e628dbd89eb6510675971c43"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-025.html",
+      "sha256": "53cba4cfcc1e5605f0747e3a1f8b83622b859d2a5d751f0cf052ba45897c71bb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-030.html",
+      "sha256": "3637b56e8a02a5957c604fa9e9adb8ffacf9ad47a207a7cc2bb5a0a85929313e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-035.html",
+      "sha256": "8317eef9f965f54487c2ece4078f83f63f36ab4decc71ea7b276c0b77432fec1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-040.html",
+      "sha256": "68247a179cf052b3b1f1a86bc962dd1912b8e506fb4de859920eeea46b57cb7c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-045.html",
+      "sha256": "3d47bf56c353d3181a03eb7d9a0f02dcecaf4628017fddf9e5d6c39bb26a0f3f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-050.html",
+      "sha256": "e1d5e8085f2412477c2bc544c0b04de5db06a293b86b9791052cf088d553720d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-055.html",
+      "sha256": "0f25fb125696205eedf466fb80783eba3ce07a20ec5f2c3bbcfbfb9500f26ad4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-060.html",
+      "sha256": "2f7de1cff01fe544b443151e2026fb01e07409340d5680363d09ff370b1bf2cf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-065.html",
+      "sha256": "dc4be5cd89cb74e7b917e7483d646ce7e2be34279f59c7b1c4d7d319c4a7f28a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02009-070.html",
+      "sha256": "dc192d963a0a9a8fe039f4b61e7908c8083642fcf336550e64e322a29462482c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02100-000.html",
+      "sha256": "3f680849dcfae7d0867634d08fe5d7fce92bfb0007352caf33e151730c424e91"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-000.html",
+      "sha256": "afef1316ba8c134c12dd9c3cc2c773995b73d7e9ab2acf835925fec1c6442b55"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-001.html",
+      "sha256": "eb3a4721ffac03ef88590c07ed58fc1394f663e4031bc4391aae829e4b9c05d2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-002.html",
+      "sha256": "f44c859e532ec73b32fa923fc1c083ce5c4bb52af23719fa51ed9aee6e08da89"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-003.html",
+      "sha256": "5cb9245a0b2f5eb165884d23701a58f4c35dbe03b875af1cdcdcc3f45d725194"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-004.html",
+      "sha256": "e391c2709a1c73db3f2bc5770455bed7bc0c78b787baa2f0eebdeca9b2f58016"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-005.html",
+      "sha256": "cf58b5851cabd01921ba8923c87b462ad2d2f24a4ab997713ce612a0409005a2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-006.html",
+      "sha256": "fc2d19b02449b7080170d92e6bc1d522969e694c97f7bb6c30195bbada5213cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-007.html",
+      "sha256": "7f84c811b1f2879393f6327cc5fdf2042ebb974f0e6161f4432484910f7b77e7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-008.html",
+      "sha256": "e1b9d32a94bec6458a7a95ded367eb05bfba73d9d81c175cfc2cfe2406190376"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-010.html",
+      "sha256": "2c215d71354d7f7281cbf4f101a8c2f3486799f061662f47cb42f4d1887941ee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-020.html",
+      "sha256": "39c8e728884de978eba1fcef1eb94d668d78275cebf11cb30f08e6954fe7ddba"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-025.html",
+      "sha256": "73ffbbac69917be9a0582265f53b14bb0f847eed74d0976b4d6cebb53e72f113"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-055.html",
+      "sha256": "4e98b6d0c649f68c6f958793ad3f3314ad955746e314a5bf78539f25f845558a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02101-065.html",
+      "sha256": "7aa11bd7c6aa01b9df27d37d6a2f0741f2b93434395817ff8c50dd3643d8c461"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02200-000.html",
+      "sha256": "9405923fb7097a42e421ceb5f5a752411058bfa3995854ff47d60aca9e5db60f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-000.html",
+      "sha256": "c81c1bb1d9469e17b0796f64be8ad0b055b7a245e516f24d5034e965a1893313"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-005.html",
+      "sha256": "76926f6ef8a910cb7ba878528cc3261755e8e2b9e4bb811e99814957d46829eb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-007.html",
+      "sha256": "5c823ff576c85e0cf0337a48aa64cdbc81aa9b5fc3193ca86b86a58757957a70"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-010.html",
+      "sha256": "b1c525ca1ae8bea20e3be299acbd9a1bcb893e0daf8053e047cba56d4eadb8cd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-015.html",
+      "sha256": "3b28cb014b38417efb0fe578b75b4c799c634945e4b4e12ca77561e57e65f5f6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-020.html",
+      "sha256": "683a40dc0f402ce340d7e06d06f6ec239aaf83c3261b2763e28203bd229d8ce8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-021.html",
+      "sha256": "aeaed4110ec60b88f6ba40259aa9bee1679ae7b757fd7a6983b577d24667792c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-022.html",
+      "sha256": "60267ae445137c63cf534b8178c6c17b50b8b020029feb43650a7a6f7c6313de"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-023.html",
+      "sha256": "a89191d4dc19016d58f0a1947024f7f55253dfc1b4e1b55f9fc7d1dd09b8da94"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02201-025.html",
+      "sha256": "bdc7d1e7ee59ef4290595ae451993eb1f185c3e820b23c48b998e1f8c4d271bc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02205-000.html",
+      "sha256": "03d3fc7bffddffde49c48df69f02f1ffa7a282bcbed0d554ad52a40c2ef3a402"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02205-001.html",
+      "sha256": "4045e02e82f0739809f3ec7722d8a3b892129501c21c45e4aa0e057c5f3d922a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02205-005.html",
+      "sha256": "ad968abe0c0f36c6b3da8c38a887bc1b32f40ac5e211f87780b78b186a730a17"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-000.html",
+      "sha256": "baeb82acd289d3b45cc0cfab1f1f664373947effa4d802ccd3b28a0c7527ff6c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-001.html",
+      "sha256": "dd4ca31ac761aac7737434ccf28d4f64270452f66728ed9532413721eb9d4fbe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-005.html",
+      "sha256": "4429ee82a5058e2b2e11e21ff167c6361bd8de77cd1ee67fcc791140c833ba30"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-009.html",
+      "sha256": "b8789a558a5cff8549a8f6404cb593e9ef8c95a1e3df9eadaac04092e4d46026"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-010.html",
+      "sha256": "376db918983b5012b22a2ed7f178a392f8159e1767d843c7c7f2176427f52b03"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-011.html",
+      "sha256": "0d11a03148852ad824d3ed751e253dd85bd04e7502c19517dabb763029bc9882"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-012.html",
+      "sha256": "803dec2252dfbf30b89b2952e6516765e2c5cf899d1041882f7925408d323dde"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-013.html",
+      "sha256": "062ea71352491087cc5b6a0f97b62a0044256c05474d1757fece55a644dc92a5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-014.html",
+      "sha256": "a515a8e6f0b35dafc32e76b85ba23e100da58e387ee8f26eb8b422e11fdc0b10"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-015.html",
+      "sha256": "ba0dcd1fa6ad724c84fcdba330857467e30940cd922a7a63e85ee7ad9c3a7635"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-016.html",
+      "sha256": "5f1a4969a492e70aa2b4fd2cc74a3859d7662a48b5617ff101f8fdbf7c3aabd2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-017.html",
+      "sha256": "0e71003890c07418c463a47467d1a1ba2714ef4b1d3600937f6414260e49aaf0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-018.html",
+      "sha256": "f72c714b142d5aab1175a54c73f03d3ac480d6d071aa14c981a5ac744d695b93"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-019.html",
+      "sha256": "a60851e7fe85dde88f0ae233066c2fb800b51c3d8b6f4026d8f2a7f63435a965"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-020.html",
+      "sha256": "cba226c6fc9b1b5cdde1f57d899530e8f24effb96c7589ce26ff067fa02475e1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-021.html",
+      "sha256": "6a94908a0f27ec743232fbdc1e05b896c9981f86593910f3dc8952ddfd18a8cd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-022.html",
+      "sha256": "69fb8ddf60bbf89941ad7cd4be34a5379e9f3dc8664fcc5ab7e0356d4462409a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-025.html",
+      "sha256": "51bf9a0221b20fe0a0162c3dc103feb6841a227811178fe071d924ebbb945648"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-026.html",
+      "sha256": "418815aaac447e1f4e9f8c07db42210cd0e138eea61fa265b1be0949038c5033"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-027.html",
+      "sha256": "33cb6092962ef03a5a7824490106883411669ad93d043775537ae3afead0da66"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-030.html",
+      "sha256": "1c9f3c8fd88761a59db7b7ba05c85bae14778fd13f1f5d620c594a186d122cae"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-031.html",
+      "sha256": "f843b3abaa869a3da9f8063287b0d8b9243aedd8b8a320f44a0f9c9970f6981c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-035.html",
+      "sha256": "e558385c889a251e91b88a98e539d6eb442ccfc6d7cee31b4f0bab50bef8cc58"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-036.html",
+      "sha256": "6f82aecba07524c7a908b565deb8c72e096fa3c845461775c485c2047f5c3172"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-040.html",
+      "sha256": "f97186f2111595a702c32383165c49d002076281023421ebb6f566af7b86908a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-045.html",
+      "sha256": "fdec6529e71c625af6836d75f79cbf53dd6a971544671fd66c275cd46bee2616"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-050.html",
+      "sha256": "94813dff6f9a77d2e27a3c75a919655f11f68b0418d1b01680243c375065f4ce"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-051.html",
+      "sha256": "93963ac565d2ac41cf758dec0ed53e8ede4cf0d2b81578a6636ca62b113cad2a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-052.html",
+      "sha256": "ec658b807ef8c2fd0d37769910b573e6c8019d227922f5e7457cffe87d8a3dbd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-053.html",
+      "sha256": "a6b0d99ef6fb4d97b7e191515531a53e4c1ed60ab4a05ebcbbf37c4610be9f6b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02220-065.html",
+      "sha256": "7e18373b5c32b7bdf7a856a7e463ce34429b8d94a14a949400423cf8aae61737"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02300-000.html",
+      "sha256": "98032e1562329c872b8bec26281518d48b73312a171ed1a6fb31194075919011"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-000.html",
+      "sha256": "afa0467c9dedba671f1c26e38ea5423e393cbc84901fad548ee12c5729b593bd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-001.html",
+      "sha256": "babff944ba972c97836a07d547e1bf622e0203010c235d2cebce965164af3536"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-005.html",
+      "sha256": "310443815d5040d19ed42131eccbe3739c8a99d683deb305e4ae3d47d97fbbd8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-010.html",
+      "sha256": "23c5ad55defb91839e3a2154c87d08426d9e5e86097b5f1ebbe235c9026dc148"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-100.html",
+      "sha256": "7766f578f80fbb5c95e55c4fad09ec5e0bb62ad748d3c1b1daaf690414ee3355"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-105.html",
+      "sha256": "d68ea19869d384de2b210241ddfb11ef42b27f5a9ab11be907640c401aa98da2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-110.html",
+      "sha256": "c7c9f014c46a7f587de4124d96ca10f6026f4928fc7213e9943684ccb8fa2da1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-200.html",
+      "sha256": "251f3f621872c544d19d11b6459f198e8e04b7eca7a190e298a09afeb3ae4b7a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-201.html",
+      "sha256": "37a15370f1dde00d8d2ca27a4e3a45807166c79cae12e5945d46e1736611d2e5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-205.html",
+      "sha256": "c16b93be83673a0af5928062109a2ebdff7e64403fe0dab02a6d379dc3199bb8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-210.html",
+      "sha256": "d133c30f90c6f58c84b28e66c1fbbb3ed2f230e568b05a246d767864b8b2c414"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-215.html",
+      "sha256": "8cfaed8135de7d99b2e898eb670f50b8d4771c14e4a66ac2dde9a8db3e17d11d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-220.html",
+      "sha256": "b1e301c3b30e093d0dd198659784015304b1589c6b35f285da8bea9e40c1f5ae"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-225.html",
+      "sha256": "5d1c789b3384ba064bb85e14250c037c95eb970a93ca1b4c633521c35a858ff3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-230.html",
+      "sha256": "ea917e596d1ef488f8f13a97b660d8810ee241dedc4bf10a50cefc226f78c106"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-235.html",
+      "sha256": "39f21decf0ee8ed976651c310bfe33ce18b4adb14bf0e8a846ffaaf52aaa1f10"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-240.html",
+      "sha256": "b6122eff82445cd9ef38a80026e13fc131fea95866edf1118f45a54f681c59ee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-250.html",
+      "sha256": "cd0b41ba98f9a24ac2e0cedfbc01d5cb31cf3d232e91f3f264a955f2b4b1e5aa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-300.html",
+      "sha256": "d53f32a6de11249a669cf4b22eda7ced8b5b5a2a2cebb1ac83c9b19d8f54dd32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-301.html",
+      "sha256": "a79de8276617fee51276cf61ca9f53a5f01844aa1472547651268d13750ccbbc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-305.html",
+      "sha256": "aab84665161e77ea823fc757374583c4612c09bc547b936226704f41e2f28d77"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-307.html",
+      "sha256": "480f485a6550f7ed04a3d452b36d391de05dca10ca47b9775cdec3c96bedc73c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-310.html",
+      "sha256": "29238d1ad08cb5843f563048d7bb7d906db3718d37a3388ab01a269716b32e5c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-313.html",
+      "sha256": "2c187f85cc7acce7944af436b061a1bacc6eecfc3508aea5c75afe79119225d9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-315.html",
+      "sha256": "d618a2767da04da4021c4aad552feae2279a1cd5769319050c50918c077b376a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-320.html",
+      "sha256": "b98f10a0e1261ffc5fb350265e9f243fc5a1576051b2b727379aa9fb7783136d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-325.html",
+      "sha256": "88047d22c7df219c6b00f1e691a9a17eb332258b9f1619e49568d679a4f482c5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-330.html",
+      "sha256": "58906678b171f8f1467f7c95139346d84db073e073d94020ec8846693f985f06"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-410.html",
+      "sha256": "574d9717292d9806092cd8d2019143a22a3b5cfdbbd294bbdd783ce3a31f99e7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02301-415.html",
+      "sha256": "79cfe5a20a2db9c04ea57f2cf8e0d9767e0c50d46c9e47f544df403dacb16384"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-000.html",
+      "sha256": "73f44c05fbb8b4f5bd7ecf1447747e485c6c79b152937a5e369fdd68535651c6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-006.html",
+      "sha256": "54b009e3a5f4fbe8a0337d3922681ed095ead3ab5c01aaef1b54139ef6867bee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-010.html",
+      "sha256": "37e3545ce1aee032faab38fe87db45cc48ee1c313e8b8b5466e2327cb10ab0b4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-015.html",
+      "sha256": "cd35c54c353a5159e0d1d7009abc7cebad4c46ffad1f69f4908b71f623ca822c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-030.html",
+      "sha256": "91a1dab97038c146c203e351a9dfdceb711495c8594104c6344ca877cc604865"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-040.html",
+      "sha256": "e35bcc7517553a2d7ebfaeadf6b3fe7bf3bf5ce97fea4be007a31bd783d76cf0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-045.html",
+      "sha256": "0a325a6098371973f665cd55b00b26bb6571bc216dce10c06710d81c4d444cd0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-050.html",
+      "sha256": "cbf7079c4a2fde566fb247ce122d407ad4f68b84603143e29e01d1ba356eee9a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-060.html",
+      "sha256": "cb7fe5a89796317b214905e0fe81bdbbcbe59980df88a71ab65de8e8bbc825fe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-200.html",
+      "sha256": "f25b2d709e6b2a097000d8fca8738d088777ca31766d173eb71210eb40aa58b9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-300.html",
+      "sha256": "4a0d07f6839b8e91bc87de3adbf83fac192f38bc427525d698c0e80553002169"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-310.html",
+      "sha256": "5228b046c503bdb054f578f53153adfaf7500236a80b6c377e15b1d1f4ee8f39"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02302-320.html",
+      "sha256": "e774bb7bb0e35b56aab5117ac7b6d04096e99f019ee6641ea1ddcc6d81f939dc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-000.html",
+      "sha256": "72b1d5b32bf7e1de74af47d964d40df4f6f0d7cd988ae90f7edbbf8dd0b75e91"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-001.html",
+      "sha256": "a0fb0b1d3341345842c67126d1a6fb605e37bcb41e88280729440c822bcba865"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-002.html",
+      "sha256": "5df7ed82ad78292a710eb0fc80b5ee2047db222f6d327b5e7412078ed342050d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-003.html",
+      "sha256": "20050466b5f62cd249d3e9475844cb1aabd1ef9c3146d0ef682a2c69b4b09b52"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-010.html",
+      "sha256": "d3484fc7f014bc33380de92baea8e9a279f0bcea5d45960fae3d549e6fcfc66b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-011.html",
+      "sha256": "d8a1ba148768ab75a2e9db3b9e23fb217de2edb71dace6bb0557b834e0bebe04"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-013.html",
+      "sha256": "4616eaad587910630071a004d50c30367c5836f334dab04ccaeae2e1c4b6c3d2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-014.html",
+      "sha256": "fb8ecac2a965fefbf188efa8dfa0a59a7b9a2a15939b1887035a3263b576078c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-015.html",
+      "sha256": "d4026c1ab9cc58da6672e94275acb8403e3070718e972e24f1a80dd892c5dbee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-016.html",
+      "sha256": "461732957a4974f829b7c2de5f5f5bbfc42cec58c03f935a39e1a624f14bc42d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-017.html",
+      "sha256": "1ee8145309821316a6acd104f5c6e7dab56a1e1965eb9c1908a2ab569fa0216c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-018.html",
+      "sha256": "f08f4ad322d416797492b4b91528e8c9e3a680ed81058b20933f5a3c5f5e0786"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-019.html",
+      "sha256": "9c9463e3bfc95fd1dae1ccabac9e82f4b6b9649598dd4716fa263464c142c638"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-021.html",
+      "sha256": "cf9d0c56929633c93fc5f60a2904c665c63f7e7ed2280edb0819f3241011f7b6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-022.html",
+      "sha256": "2d23be8e5312f0ebf561881d294b0d3747677c4490dbb2f3bcccb514e5ce8e66"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-023.html",
+      "sha256": "5ade4275f9773b3e8145748eefab17427de8d024cb69275d6edbb2f9215a0c33"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-024.html",
+      "sha256": "e2bf645d4a7bac49b23355a363b2f5a25e62ef332934ededc73535bf7bafa10d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-030.html",
+      "sha256": "569346ecc4359d5a1d55f10b01dff9095e7eba5a46c1dd7311260aae65fb0afa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-031.html",
+      "sha256": "4b5d413d3bd13ed6cc0bf412c3dcacb003f13c4ea1e35c04ca8b092d75d367b4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-032.html",
+      "sha256": "cc1b57688bfb1fc83421471ac949e5e626d11b10dee44cb530365ffe9f09e090"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-034.html",
+      "sha256": "5fe84d974729200358c7b4e6e60ac6cb0eea7590d74244cf374c42fb3e33ebb1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-036.html",
+      "sha256": "890c272a6b16619ff75c2d78a1b0ace299f1dad856f93de94bfc395bea5cece5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-037.html",
+      "sha256": "315f226a1bf1481ddbf007a466fd21a49890af436d5cfcf87de74e0f9ea5fa09"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-045.html",
+      "sha256": "50377fb88c79ef17966b66ed2f89312a8427ce78cc4e884b5a97144ec59276c7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-046.html",
+      "sha256": "a9feb6b7bb20dd3ec6f2edf22a70d50c7578b9100bbcfaf9902ebb34d7d85ffc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-059.html",
+      "sha256": "263a5fa9cb4fc38b3fd957c9d9b4cdd4c4e8b8b270966ee3a5e3929ed111806c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-060.html",
+      "sha256": "9f9bc74580c0fffff6c53b4e2b144fcc15bed757fe5afb169ce5a91ec58cea32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-062.html",
+      "sha256": "8e6ed67cc93560cfbd2f665492004b3f001c4ccc22d5e7218c1857efc29a76f6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-065.html",
+      "sha256": "c1221a8acba7037d37c958f656c14b3e354805a0ea4b0bd5186469c1936c497d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-070.html",
+      "sha256": "28a167eb104ecc46976b2d411ccfb40ac00487e08bfbf6231ea1f73cecad2eed"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-071.html",
+      "sha256": "ec465e134d72ba0155e3f9bd6e6f88ddd4417823979f363419c3820d0502263b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-072.html",
+      "sha256": "1c72a845105bd16c4fa68bbd1258579c0aa04e7e6b0452aac2be99e51380255c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-073.html",
+      "sha256": "134315eaf763df6e104bc5f26c71a1ab5476b76c04f90d4a35dccfd7027e1dcd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-074.html",
+      "sha256": "de54f4ebfc9fd1eb05a33e819f6326aa8cbf2e969a6d583230ba7b4c7557395e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-082.html",
+      "sha256": "f868e463e0be4da3f1e96dec2775e9fc34bad064d165d0fff48ff00570a03043"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-083.html",
+      "sha256": "a2c34181888e05e4a3ae42493a6156b153303b8ed9e1687ea533c117c523c403"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-084.html",
+      "sha256": "8116d01636821ac2af0eb4f992c150f2d5dcf7ae0d17190f6643a1f745190d0a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-085.html",
+      "sha256": "6f4cb36f531087a22d723e6d0b5b37d97c26074e303db8baa5cd734fc7966bf1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-086.html",
+      "sha256": "26e01ed56583c026a294d0cf97793522ebe7dcfa758c0a7c2acf57cba0cf2005"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-087.html",
+      "sha256": "ac1bb02a2f6e3f9951954700419e93326fc8dd414406dec6f4fceb3cca5dff2d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-088.html",
+      "sha256": "46de10cd836d7f0a129608f37ecf8598f683dbe9ad81527cfee70bf107886a35"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-089.html",
+      "sha256": "c752b3a62c131196b4385e962fd0abf8daf99869030e9e030ec934f8358429a6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-090.html",
+      "sha256": "681dce3a7c0196a64ba0456a879b7ea56741de700d347c8db21024196efcd509"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-091.html",
+      "sha256": "1c92b56edf6b42eadeca6dbe26d773e6f207e11e246aacf96ff4fe7c6c83338a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-092.html",
+      "sha256": "65307735a47be71cca9ec7b7360a0e39eadc28964584cee53ccf9990bcaefadd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-093.html",
+      "sha256": "6b003d94745daf2a7aad3b06f36ce8cfb01a8221459ae932c5ce341328984bbb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-094.html",
+      "sha256": "348749f71564a44122ed63a22f1d269dc7451d1e63711ec949e6c2d5d5b9c211"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-095.html",
+      "sha256": "211b08901f0b28b6913a20f5fa3469867fee3b3f598f556265daf39d62a8ab55"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-096.html",
+      "sha256": "745d9a03974b2000dd84f3235d3ec4280596481662a34a4ac1cd4c0c52449c57"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-097.html",
+      "sha256": "3e3a9dd15d9828de3ccd3b820d49e2c5ed4528e951272f791ea1289199521f8e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-099.html",
+      "sha256": "7e9940d09ddc98267486a6905cac0d50e1471c3d815f517154526036713449f4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-100.html",
+      "sha256": "cefefa99b018197f917fb3281414fb2233c5bb96639bf9f18338af4d91c9b1aa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-101.html",
+      "sha256": "1dfb25d6ff498ddbed842602a79fb7a413a5ace8430e9f2787e7256e02e26e04"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-102.html",
+      "sha256": "2b87916b213d4ff9a46e85fb2939a42febbebe7311cde8963aa5daf26b26c974"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-103.html",
+      "sha256": "109c15a046c23fb6cb62ee262923f43bbbc9806569cf6d866a408575f9c3091f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-104.html",
+      "sha256": "c2ac3b1183a2e6219341edecfb36eab44655b9f042075c73637e60768d2c2b94"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-105.html",
+      "sha256": "fa901fa822d2d80c5da7c76cf98cb2b2f4e2673efed3f1c7c65e1ca4a354d9ea"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-106.html",
+      "sha256": "0a1caff44f63f2cfc3e9f7bda59548f6e0ea3a77870f7d14e0024d1cba80e064"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-107.html",
+      "sha256": "f2ab9f97715401e29e06c7867fecf8aa5f8c821a907ef9427c9ce8c786ce65c7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-108.html",
+      "sha256": "6fb182e8da10574dd32826a2634341d5adfcbfaee4490644842c3256dd00e2c4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-109.html",
+      "sha256": "cf4d8c250ced91b9b3549b52849f1d2eab483f8e87ba18a08f7bc02eb7b5e411"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-110.html",
+      "sha256": "b1f22e5fcc38c19f0c9c3702b3fad8e02dfdfbed664bd541ffcdf9847ca2b2be"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-115.html",
+      "sha256": "fc36079ca3ece793ae89d336c8551f3944df66d5be5ce0193d918420754ad13c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-116.html",
+      "sha256": "3bfc3ff68c0169c24abf0e63609e5c1aaf7fd113930ab88d661c1e339f5b73e9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-117.html",
+      "sha256": "2b717968933cd8bab6d8ee5d2832a07a356729b211cfba7076a5fcc7a6b2393f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-118.html",
+      "sha256": "5a9b619ded4f6643d76b9a8fc6b34a172ceb4626def99595358721f5b77d6779"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-122.html",
+      "sha256": "e9b799285d01379e3dd3aa3c6c614c688950a903724f96059e6384962d20b78d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-123.html",
+      "sha256": "0bfe5070a080c63722050488a375159b361ae723aa3479100a5c1e0daad2721f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-124.html",
+      "sha256": "4c9d2a36cf3d9f9562a952be7d92ca12dc12e05f50ba80c812d585d112b974fc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-806.html",
+      "sha256": "9c0668c02f729da03eadd6fd4d9944761faf37dd92fb595684db4fb61e1d5042"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-807.html",
+      "sha256": "a9bd8477fd5689bebc2c657258b27764aba155533ef2d4031f6f59120097ff0e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-814.html",
+      "sha256": "d8e08af246277dea8226c3f4c62913841a9da4b32fba7c9f3a7f89fa2f5cfb8b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02305-815.html",
+      "sha256": "76e12a97b6aed18e4e308f7bb85e4d6cffd2daae18f273a35e47cdeab0a1b8ff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02306-000.html",
+      "sha256": "0eee5032bbb278d8f1db9f7f30f0a1986a2eb32e9086f8dd058b52aef8111889"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02306-010.html",
+      "sha256": "090f863016e907dac704b056fec963a804b9a7d8152116bfdf3858702c997d83"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02306-020.html",
+      "sha256": "311b24a98497076791e159c1c6aff6a2c738a4bf40b993605db2d8b38e0ccf7b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02306-030.html",
+      "sha256": "7e0bd0d68da2f3bb3511436c132799f2a4bdedc99e4c0da219f4ca99e74cf3a6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02306-703.html",
+      "sha256": "eda68c1513ba74920e96bf5214696b887e77c266764eed040e0a4f30cc104e32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-000.html",
+      "sha256": "b10d82b668e772155eb34a5128de21b90b5df3ba75f7280f3809cd73169a333d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-001.html",
+      "sha256": "0dc46f796cbcf396f9234337bd34bbd819874ed8178b39a3df5ef7a732f8fbcb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-003.html",
+      "sha256": "e797f3310216fc2d5d2817fd7dd0b915530e3ce043029971e058550627cd821a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-005.html",
+      "sha256": "c67ed134f9016fde8e3bbb587bc13fdf26f1b68f54b15643536f17f81d0300e1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-006.html",
+      "sha256": "711ae668e0a73b2696cbe43abe98d305b8081299bb1fb58d82c3ae7c2e0232ac"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-007.html",
+      "sha256": "96da57a778b8a3bd7598e0593f220d97ae91c48813f385581a06fda6e3b6ab37"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-010.html",
+      "sha256": "48312881c28158c63f9150e8d0aceccd69ee68fec8d1b6fce4190591544b7eea"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02309-011.html",
+      "sha256": "190e18519fe0952a1e56f5e5989a03074bec33367fe826b95f548a2ab01962e2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-000.html",
+      "sha256": "00edb0fe53742aea1c612cf0f29d6971bfc113abd809ef81ec085ea99c997bcf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-005.html",
+      "sha256": "53aa3127a3318077b9b4e80574a7c1e6aa60a8ece29efc316779d165355ccd02"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-007.html",
+      "sha256": "4a9ff359519e45373efff5006f49fd9e59e396d57eb7c999bf680eafbe21361e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-015.html",
+      "sha256": "5f1b469d63c7a70524321fc1f64819e467b1f8fc6c7bc97f084b765d475288d0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-017.html",
+      "sha256": "74125544a5b55a8d2a430d86205f43849a6182cdf7b048572803e55255deea7d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-018.html",
+      "sha256": "07553e7ce4ceb9d0f0bcac9e83f0e934919293350bd0db9b1052223ae23b4e22"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-020.html",
+      "sha256": "656d0e7778839fbc1f60b39f295d535f2d1c9fdb143f1111ee0ec4d507c93498"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-021.html",
+      "sha256": "e33c85898ca7bcbec9a07640e24210f9016acf858400d5eabc8888ad15714673"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-030.html",
+      "sha256": "ed05a2c44f3514e78e7b0bfb4134a4aad322f116f1a74f7b40d2a66f463d277b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-040.html",
+      "sha256": "cb0923ad848f3d0f61bac6094943504e4784e95564a6f5520a1913d46911239d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-041.html",
+      "sha256": "8b651d64556ddbe12fdc3debc8433cf9b20d1a523568e2615c03b4d2b8feb66c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-042.html",
+      "sha256": "981e90d46ecfcb9b9b512b1f015c5a82f3dd76487590adc592b425ee921269ef"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-045.html",
+      "sha256": "2034656d6966cc92e7229077de7522c1859d20277dc994cb9ec7afe43a9a14f9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-046.html",
+      "sha256": "16f3874e6e9db1cae78b0f8b1113dfd993493f412c7907cc410b0f1c1577ca2c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-047.html",
+      "sha256": "7badea28b31f217af695d930825930b3a36c29c84c15dcc2efd2572d3be6c7da"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-048.html",
+      "sha256": "74b6218dfd60b50d94ccc443475a1e11a3c2b4aa7efc05459bc329d5c08300ce"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-049.html",
+      "sha256": "886584a5e2addf8afeee3bee08432a75de6ca12756b6d88963496c210fe8f07a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-052.html",
+      "sha256": "fb64c6462e87ed2ce1011c871350ca6f28f87a08947caf5e420a1b6e3f716be0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-055.html",
+      "sha256": "8edb6b8811b685f0cfd502b7dd7a78c83cfd7e4cea0d3b7180d4be9249c28eba"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-056.html",
+      "sha256": "109e2313b621353dce79a493f89254558f2951427411b86add9e7d95ed06c940"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-060.html",
+      "sha256": "86330cad7fb635f58793d8986a39f5035707b3e53527729b5f9558bef8c579a1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-062.html",
+      "sha256": "d6fd8c9bccb0493f289407eee8d10bb58ef9f05713d2f626ab39569fe8e1c239"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-063.html",
+      "sha256": "caf2b4069c4b55e2e9290a05471b8666dbe5cb30247eef832eb6378454e25f59"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-064.html",
+      "sha256": "3d0b7388c86f8851ea58e7052a0a0f91d1f8929f3539115c846c954955858abf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-065.html",
+      "sha256": "a624487b97b3ee760f1ed4f3550b020275a6bfb7944465266d62a9277612c049"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-092.html",
+      "sha256": "5fafc6a83434e2ef6f120290643455bbccb2c1996096f23b49140af37927cd30"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-100.html",
+      "sha256": "b9cd481f0cfe3d2aa12b87cbce4ef8cdd071f0d43f7e4f7f68a0ab44ed32eecd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-200.html",
+      "sha256": "9fa79173d7daa41609dd02fe7c66f753dc75b558aa4bbc083dd089a3af819283"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02310-999.html",
+      "sha256": "d02d93994fbc1942ead1a05839c7889cea8f9ac442902b9625b84f89aa632b6d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02900-000.html",
+      "sha256": "e1262d2a7b4388daaec1cf1cd5b282767253e89b01316738434035967a28060f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02901-000.html",
+      "sha256": "7fe333bc01acba841b0d196271eaa94d5622360a8d8f560b58f03ca8817faf95"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02901-500.html",
+      "sha256": "f8f6b1f665180c7135ba1eeaead3d601dcd55d26b3999b4be2d1d41873da09c8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02901-510.html",
+      "sha256": "fd8d4a0635f4bbd63648ef6d61b12bf5f3f2400bda4a541dbb6cc48d5990ae75"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02901-520.html",
+      "sha256": "af88dbef908d927c394e4383546b7769c4f253ac12453dfa05fc708cfa3990b2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-02901-600.html",
+      "sha256": "5f6ac2fd9473fad4297b767aca5134b6689682561eaa0fe73d8c4b33bd59ece4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04000-000.html",
+      "sha256": "de76e347d9f1c1dfbb82ede8d6a6b5b6188b7bc89c6b67fdfb5e93a21054700d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-000.html",
+      "sha256": "3dd4aae5c05c6b57b7ef2819d84091885fc748cfd5fefb9170bf98ab298e7c90"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-010.html",
+      "sha256": "6abdc7dd7976615ac1383892d6671613125c87d4e8eded3eaa47c62b62f1896d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-012.html",
+      "sha256": "1a18e148a6dc5ff3cc58f4c3e2bd7f9f6b3508efb804fa062f61e1e646be5ce1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-015.html",
+      "sha256": "d1b4c205c117df64099c3d2d10bf01fcb7cbfc1dc8dfda7aa1736415ead75003"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-020.html",
+      "sha256": "1d6aed0a8ec8ed8519ed9a0cb6f8bc21c637c1489bf1ba2ed3a9899800eaac8e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-035.html",
+      "sha256": "9675b1953b69e2707824877607cc0f0d0daf4171c10d009d93dfbe964d664410"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04005-040.html",
+      "sha256": "dc89a747066e55bf2e4e07139a82817cf0313bfe1abca9004800b21b631324c4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04010-000.html",
+      "sha256": "8920b20d6c5e756ae75e9e3ccda752ddff8f07b8aef22941696c59fa3e1e25be"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04010-010.html",
+      "sha256": "1290e52396f9313857239ffbf76a763d8f462b395c93c1692fada529a14c8fd1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04010-020.html",
+      "sha256": "57d1d28b014a745981cbd4936a491202a67f75ee91c6ef83a429420056232fab"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-000.html",
+      "sha256": "f09f2b712b17543f8815fcde3114521f037e27e9634c1b891de59c1edbb2b2f0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-010.html",
+      "sha256": "019670dd6c29b776e53e279ecfe8574f7b19e694e60212417525efbb11dcc01a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-020.html",
+      "sha256": "e3f360116e0d3883faaa7a52dca6bc674c6b4981734f83df8822b68cb822d43d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-030.html",
+      "sha256": "6172bff114b9c6c1cad74f78a760d31e1774ef844898067a763afc4d370664d4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-040.html",
+      "sha256": "805f06b1758bcf99c01de9628c7ddf25b52e83b5336ffcf861dca31bbb1add6e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-050.html",
+      "sha256": "94a505c2c6d9ae41a6d7579b5b7f017ea1d58a190d3856258106e9fb05baca57"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04020-060.html",
+      "sha256": "c6eb94def2354ea17e2dfb7eb8d276641ebf2795ebe361f9c5f424c2f508f139"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-000.html",
+      "sha256": "9960f8e0bb8a5042e97a24d03d7334ad00b250379e468f72b289a59dce40db8b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-010.html",
+      "sha256": "810af117aa84ecd63151939ed4a373c2596b9bbd46d9a09e889eca36b14901c9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-020.html",
+      "sha256": "ac16738b77281dca315fcbe8356bb7bb1bae36f0506d4f176daf57c05fab6012"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-030.html",
+      "sha256": "043b48824b43c728a08041e70d4bc7fcaa404d2764f604194d476b97b3c77816"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-040.html",
+      "sha256": "2b863c3c7e45ea74de173e4c18740f8014a8aec3b53d98f140debafa88614ea5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-050.html",
+      "sha256": "4c13f032a29e33ff32bf084e8ef01611355a1f9003de002dfeae20a80553a384"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-060.html",
+      "sha256": "241af626fb4cdb5f9e4030a946cc071ad40dc2b9aa996aa77882556bc3e99483"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04030-070.html",
+      "sha256": "f3deae3066e592d212dc3b50c0789a967d60bb91ef976b4580da56e7152da42c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-000.html",
+      "sha256": "39bfa2017e940c409c63a367b452039f2b6922e20a52ba5353117b0bec04ecd1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-010.html",
+      "sha256": "a036c2d64d352e603080424ccb376ddd7088069fe7ec86d63c6ddc47501974c1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-020.html",
+      "sha256": "a5dfbc882bf0cec54c9e2c3ade56ab8d25eac526230e5e17d06bfe7be8130f5b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-025.html",
+      "sha256": "b8a90261b3a7fb98839a0160c18c8b388e791e2bf07224960568bf0be017bb86"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-027.html",
+      "sha256": "c44726e4148faf5b62b0101447bf26b370d33e90eec4cae40ef17d05bc303c8a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-028.html",
+      "sha256": "98ed306508e927456536e9352387aba6a24c417f07a5057cc5f4fdc0c39601e4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04040-030.html",
+      "sha256": "1ccc2a16fb07008a3e86edb10cf333a048e768fddfee411cf2358b0b47c35a1d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04050-000.html",
+      "sha256": "aedf8137450178ca9c5871dd73cd2826ae04560fb52cc7a1d233cb6bc4784d79"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04050-010.html",
+      "sha256": "49f0e6ed86842df7b18610289ef7bec530a548b002283c0aa0a5d91296a147b5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04050-020.html",
+      "sha256": "3d22cb4c28000777be4f0d07eed9e381d90517e88ba6277af30fd2cda10f4cbd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04050-030.html",
+      "sha256": "b4733513bd00605777f9ee7db8bf74ef360c836a6a1d7f8739c66884abb44d16"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04050-040.html",
+      "sha256": "ec384496a10fdee87e4b79e08d93eefff4bd96bc20feefdfdd34f759c866f13f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04060-000.html",
+      "sha256": "279255d51fc5fb49f133fb0140c39001f7d5c3a901a4fa90bd3c761dc0cd1fa1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04060-010.html",
+      "sha256": "18a942bd3e055f0e53ffd4a67d207947d37e3249ce6a5c65ed094529a393af5e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-000.html",
+      "sha256": "aa95d523b95e81494cbbaec960acdaba43282f3aecc8b6892068daa34a755de0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-001.html",
+      "sha256": "26f37b6f318d02e81b26afd44e1fe564720bf2147c79b744ecbfbd1acb1cd65a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-005.html",
+      "sha256": "ae426efbca306ddebaf11fcb924badc7250079b66da985843a8b02bd5d75484e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-010.html",
+      "sha256": "0b7931c0af97214db381efd5dbb123865ef09bb1e8b94787181fc2fd26d0ca1e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-015.html",
+      "sha256": "cb965375e60e1225c30e2006477c84b2c151b6764cd5e84e3cdcad86e3560470"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-030.html",
+      "sha256": "85f98699cf00d439e7e1f450f4fcf4d90db897498c3fde133aa3947246b4a6f4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-040.html",
+      "sha256": "06f320d1f4c08d17b2b6f80c87acf73da9a11496d25d47f85b42266fd7952a68"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-050.html",
+      "sha256": "d045e6f9d33577a30dbdf0d37d9eb3a16ac5958eb7f67485c20648ed0b95a478"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-060.html",
+      "sha256": "ab7d79f93dc1466317cce17406bd0af549731d2d34a100366459d34602caec40"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-070.html",
+      "sha256": "21711915bd1c1312e41139f162f42ebfc6671b5bc812255b46f1eca11b8c0cdb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-04070-080.html",
+      "sha256": "5440cd2a6aefb753ac897aa2f347ce33851f6e5025c9223e73931d3403cd2f05"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos00870-025.html",
+      "sha256": "cf4dfd7c83c1401f08da28ea1efa771d9ab4cb628f425f929fd35307ad759016"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01150-110.html",
+      "sha256": "bb1ec4a718d0742bc1cea120c53dcc975ec3b06efdec6d54923b1f2b638cc48a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01210-500.html",
+      "sha256": "b0b74146c639be9780762a456b3a3fb9b5813bebe108739c9a38cc3abd4016fe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01220-300.html",
+      "sha256": "02a4906e51a6e9fe4599746d1fd8ed92a4eff13d2aca45d143d6f9c3a9457357"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01730-048.html",
+      "sha256": "5375f2703eab2bdd13ed64eee48b1594283f356ec002ae6158de7a713c7e26c4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01801-300.html",
+      "sha256": "29915a3ff0de71cbc0237709f841f08939e9d892a783e96f3346e8aa3dbca239"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01801-301.html",
+      "sha256": "a15bff338b332dbad49358a3fe41d9a6266b52bf959eb2d813deaab01d45baaf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01801-302.html",
+      "sha256": "a05f48f7d556ecbe699e6fdfdc5ef67066feed8266e07af396d919a0d3680550"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01801-303.html",
+      "sha256": "243213be01820731732e8c58e3efbf593529179e38bebe8c93b47a49ee313678"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01801-304.html",
+      "sha256": "257d9316599ceec1eb40680625de4651ffd5f7bbd99bcdebedbdaa18badf6687"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos01801-305.html",
+      "sha256": "33d4921aaa61f625bcfd067120cb3e06572f991dff4076add9a04600ddefe327"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02003-001.html",
+      "sha256": "f498da0f716547a6b4304fcf10adb63bb85d221033ee791f4ba921ad17bcad47"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02003-002.html",
+      "sha256": "3fb3666a7e859e3cd284a9b7223bae3700b66d702f52a85d30d0422a696e8916"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02003-003.html",
+      "sha256": "2aafcbc1c578bfd5f06c8eaafd7b96edfeb35608e4928659b89b51dc54bb0228"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02003-004.html",
+      "sha256": "2d9b23b683f75ae93910f52609a38a2efc155df110f6d657f60b59eeb53b18c8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02003-005.html",
+      "sha256": "1b1ad24e21394d5e35b140a72120bad5b354ab9e06cb0a94905b87294661d09f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02003-006.html",
+      "sha256": "cba48c6d51e8bbc553ec53b7a06d9108ce283e09437e8923ad0f7f570f54544c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02220-005.html",
+      "sha256": "2f26fecc08efe446333d48709a8b899b60a7f705d3561eab4826cf30bf4cc6c6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-bos02310-007.html",
+      "sha256": "d90d86feec2ba68c7623625a38db7c2d37bb6ae9b2cf37943e4c7b7e7546cddc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01150-109.html",
+      "sha256": "a6785cb051e0689b499701fa0ce99d9365df4dd83e90103d120cb9374c3f3707"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01210-500.html",
+      "sha256": "577b2990f9c803375079d92381fb6d93d67e28426d7c187b394e34b49de35f21"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01220-300.html",
+      "sha256": "bd341c341cf8849ade8ec9eb849ff074e02587443495b94aedc0c16ba029dc44"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01730-010.html",
+      "sha256": "d8d6ee2514ae189244e45abebea7f9ba4584a61c7fb1699a2c25263d7a93a316"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01730-015.html",
+      "sha256": "3d2a0d044aa23dff75e0f287681451b1632c48b217586e093442056f5919819a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01730-020.html",
+      "sha256": "12c12a611f242717bbea9723d83cdb3e2ba2e7bd8d8e0a2c29d71b85d3d0b9dd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01730-040.html",
+      "sha256": "8f96423cb3ed42b04320411cbec391044462ab20f4fbfc0d619bf46afc3fd70b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01801-001.html",
+      "sha256": "152fa63fc018e70593d672e42cc0c16d2af01d3ad4ca9449dba005981778ee0d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01801-002.html",
+      "sha256": "b61698e53118c56f52d6110fd2e88df8ddc0d9239b6d5ffb5b2b32d6955b3487"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi01801-003.html",
+      "sha256": "46c6d8a22afbb07af7de66dfce03431aec2e6e20171e3a920a6e4b4d2bf1382a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi02003-020.html",
+      "sha256": "5d02928dee7fc42456c1d001474d0860e00b795b7ee2944bf207489eabd46ba9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi02220-005.html",
+      "sha256": "fa696eae84a238186350c04e8e1196f703790d9b40d3c0de8d61665bd1d894a0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi02220-035.html",
+      "sha256": "02c99902b076c1729aaeb11c318032edddda981f45b98d1c8bed8886a0a1d832"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi02220-036.html",
+      "sha256": "85a50c4bec591b14452b9931f95c8acbdbc90205b9d3b553d6054804fa43f795"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi02220-040.html",
+      "sha256": "41cde1c6c04eb04e5d5f81d2b959a402bfc61ee0aec39a3fbd65755b7110ac2c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-chi02302-050.html",
+      "sha256": "4d80227c4d25056a87049ed28cd4cd301fed6de553724ea6a7165d51a8e979b4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01150-111.html",
+      "sha256": "a5512791e927a9113e89c4a6ea218f88e81b721ddccaf3931f7f74e0ae311807"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01730-005.html",
+      "sha256": "e12bf56b3db48fceb152c4683e55f28d59e4adc7c653506747d7c2ce43fa636f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01730-007.html",
+      "sha256": "a85fb561e38c8420ce754bf790a8baf1cdef6ac5133deeeee22c7c963fa99813"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01730-008.html",
+      "sha256": "a1de445e0b98225a4705a9a2ec9ae8c745dc718e9b835a2da4686a17fed19afc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01730-009.html",
+      "sha256": "4b4c2b17232aeff98d87dfe8929d6a2c067be9a312be8cb9ef8653c6a70cb35a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01730-045.html",
+      "sha256": "b3d3bc8b5989e0c8efc350f4ccc0f846ea83897ad9389e175569a42a3f9ccef8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01801-010.html",
+      "sha256": "319e0db6b5937fb8a0c5c7dd3ac86b8fe3797778cc623201a33cb6e0976b3c1e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal01801-040.html",
+      "sha256": "84f1d97a9326375657c3f2f3cc7072478706f3cab6567c5ba47acfc9459be936"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal02003-010.html",
+      "sha256": "5651a53e986787d33c96f2b07fc4beab9431ad83f79650821dfd365aea0e6073"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal02003-020.html",
+      "sha256": "36036e8567c885f57d18b625e6708a16916157e0a3fa7c3c606f462a17cdd915"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal02003-040.html",
+      "sha256": "4be65f5dd352f9ebe1b90c5d2b5da7d9e476cf5d681947f3af89d3a413c23fbc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-dal02220-005.html",
+      "sha256": "bba81693e7f6ef52b9686d636b5bef3d9191874177faed5744d8814f7c8e2e94"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-den01150-110.html",
+      "sha256": "f1e5b2770c2bb735741e4fb8839abe8d13a9606ba66bd2b5ce99d4f07797bf90"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-den01210-500.html",
+      "sha256": "ae48042ad08bd466104205cdbebc403e79be2022579ecaf49db83655687e93fb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-den01220-300.html",
+      "sha256": "bfafc82baa88a28ac712cfb737d40ed3eb7d6c634fad6c25557e47d080a52966"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-den01730-045.html",
+      "sha256": "77206286ec4021294563d12446001694d043c959bac93e6a422b24bfbe0e46ec"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-den02220-045.html",
+      "sha256": "c57d85d82a92d364f13c1a3197efdb0188a0550267a6e5354e99880f51927bb4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-den02302-015.html",
+      "sha256": "74a36d42fcaa7ef2d00363b3aaa53b53d5b3eb7dd58bda9479d83c89cd34c25e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-kc01150-012.html",
+      "sha256": "526f55dcf2b5e3aed13c1903468883d8a7d8a7f5b9dea123e6d940e956cda925"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-kc02002-005.html",
+      "sha256": "35051714bd8802486e054987524df396101e33bb8171833350afe21eb85f5443"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-kc04030-030.html",
+      "sha256": "1df00b1f1b1d2a6dd943acae3722c2372c95f9161aee8525f1e5993e7f7fadd8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny00870-100.html",
+      "sha256": "a7c0fc836f9de0b93fc10f91f7344bbeba770890ee070585383e5b806f90b441"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01150-110.html",
+      "sha256": "ea954a9a11068a40f583faaa3f959ab24c2f043b3765210854d07622ecfb4a4e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-001.html",
+      "sha256": "504f5b33846ba76670431df9aced34b87e4f32a5426eec9c74ca664fc505b71f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-002.html",
+      "sha256": "483f57d3696e3d1af107364125ca7bf05ba2109efd0c9a677a1f635aeaa44522"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-003.html",
+      "sha256": "62faaa85e0935b4c04c0f808b8eb55fb6583a9d4af48c0798f8814b12f3ed11d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-004.html",
+      "sha256": "ea6ecbe47e0ba5f5d25a751169271a3fbb58ea344fb177e7068dbef8b1847da2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-005.html",
+      "sha256": "fcec84f1f95056dfae2987a86ae0ff75e59a380083fe8d71af6543b4ef97e3b6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-006.html",
+      "sha256": "9c8efd2214dde7e01135aab910468e20983ea629e1bcc0e44d4094b1533af8a7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-010.html",
+      "sha256": "6348a4e3aba757efb37ba37d788e756f45a894f08bf42ba4cddf80195c69452c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-101.html",
+      "sha256": "4e7b89dcc847093c5da08ff06a1e4adfcdb5a34b9a9085434eca7cb4bf800b05"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-102.html",
+      "sha256": "a49d3a9298dbb804b80a8f5eddd2b03ba98bfa22e45f8c573cd002f5c5b6fec3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-103.html",
+      "sha256": "a3cbfdd3572dc37784d03513676c17fb3cc5b39e5dbd41b2c78c09b20357f1e2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-104.html",
+      "sha256": "6f836163bd327ddf0feaa3e0a9b3cf3970dd7784d08e8b2e83b31c62ee55bbe7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-105.html",
+      "sha256": "3797467ab63902a18ca62d6269c9462ad226f14b2d18b5de022e4530892b8827"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01730-106.html",
+      "sha256": "9f63deecf9209bbc6456a271654c6eeac19f8f1e2d070f066904ae46a538fd96"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-001.html",
+      "sha256": "11bef1fd93aa6d31a5685a26445333fe595d3a606799feabe8e7af77b933fadc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-002.html",
+      "sha256": "606a63422c2cb66e55b95149630d81e838f2c57f6b7ef362d1f5aa5d14502a98"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-003.html",
+      "sha256": "938a8b4694ab81dcfa986a4a6ab1c05ef5d9cc7aba3a3d5b8938c84df71c91b7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-004.html",
+      "sha256": "ad8528d4abcb8c2d2d75b0795bd1b7d313a979610a9ccf8b776e7d0ccc80139e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-005.html",
+      "sha256": "72d70eb77590a1ebb75818e531d737b5da469caa7810b2fa63ac82653170de8f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-006.html",
+      "sha256": "66452bc65539b5c38e0bb2dadeb141d1ca4efaa1658d4dd97c5a854702520b82"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-101.html",
+      "sha256": "ede63b255c0fd3b662c12b13ad1176c53100b6098c598eab80c1d81ed340298b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-102.html",
+      "sha256": "a86f11661e4bdf96be3c8885cc6fb608ecea05dd9b97213d5d89fc202a803f9c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-103.html",
+      "sha256": "70b5e4752154fd488cabfff0df971b090056c6ffe5a91035bbc943a8de5b7a63"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-104.html",
+      "sha256": "e7f1c59cb74b586d497896241cf74c0390739046e474d276d5b49fb1438d4372"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-105.html",
+      "sha256": "d2b6a2ac69973d0a203eb7a5d4eb523783045ed8d57d4b3209e57c37948ac5c5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-106.html",
+      "sha256": "1cad7dc501c52b12082cc453c5a95dfdf7251cce423c0f2ef6ab175115cfa08f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny01801-107.html",
+      "sha256": "95aeef7516e63abdc832a2ff3f03171c57ad8b1cf622fc7f032bd654784ec874"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-001.html",
+      "sha256": "e0a9f9dbaa28ea658948d573e72ffa726826331bd1a0b139c7162a2017370cb0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-002.html",
+      "sha256": "f7cca04dd6ab2018313fb6ba463b4c9c6dcd3b11f8097da17e470039c66300cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-005.html",
+      "sha256": "691bb7853d79a7885ff5bdb17976f2ed2f65ecfe17628be65f4af0f762fe15c5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-007.html",
+      "sha256": "7b4e3da76af2fdd754317673acc82c9e1d2c6314779d684d2f66156410e82a41"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-010.html",
+      "sha256": "10e27dbb67eff5c8f37925db44523acbb45c6db10ea2c788cb7e18fe001d9dcd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-080.html",
+      "sha256": "4172e8c6662ffdef64536ac1483968b842c53314f77a372331255b20a244d545"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-081.html",
+      "sha256": "bed6d857b9cdde465acc1330b1c5cc2ba7e725060b7c63375b1d9e33de4a57e6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-101.html",
+      "sha256": "d733c53a2df53efbea12c32382b67999f0b2ab461fac359bc9133767aed455ff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-102.html",
+      "sha256": "f727a9b5912b938a538307a58b22150e973f1728b8e6fc267a567cc7828804b0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-106.html",
+      "sha256": "759cd8f5ced0d643919521fba7e79cc9cbc7a258ddc5332c61d35f1a55f42e06"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-107.html",
+      "sha256": "4830b1a7ecee2cb690d93eb9a0e42f14950451dd1f6d159f6f9f64492b694e34"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-110.html",
+      "sha256": "f38dab3bf5abebe4ff2d16ebd714ee92d6a19d69ddff9e5b5cce2ae3cbd67752"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-114.html",
+      "sha256": "a5e8fec9b9c5a2c84cd6d1beaa06c34247f8ae77a4553ce9c775571df5cc03b1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-180.html",
+      "sha256": "e6d70e4b92b841edb65ec24759a3b6d21b82a59179ba38f8d6843c71a8e0110b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02003-181.html",
+      "sha256": "a03cde563a051b33c4b07d737395461baa3d783ee312b42b7c2695005324c30c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02220-025.html",
+      "sha256": "10778dfec0eb3f3ee5caa8b1d79e554265847ac3379be1379b1cb89bf6bcc62e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02302-006.html",
+      "sha256": "7a3b26242d9f8402191f3cf0a6f8cfae9a5a08dcbd8a5d27b3c16c29a7a54ba5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02302-050.html",
+      "sha256": "35ea85b99f0c166bc6dac48c8ed9d4657f769c29b1974affe53f7fef23acb81c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-ny02310-060.html",
+      "sha256": "5575f8e75939902ab234b160b99704bb51406426ce0b7117e367b38afee73859"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-phi01210-500.html",
+      "sha256": "216a36ce1ea101f6a2c10b026afc4c2e30de62ac7a0ff2effba05bf0f1c3eda9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-phi01220-300.html",
+      "sha256": "95d76e38f672886e359bb5adf2305ad20485310bfb02cc2a5aa91c2e7c1152b3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-r00529-020.html",
+      "sha256": "fee2b48355717048c7f0f83deca87d9c0970e4064c94b954c6a739fa9671da07"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sea04050-040.html",
+      "sha256": "a3562b51f449f760c39c4448d5eb186867e2386ff3650c5dabec7c3ea2d84072"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-500.html",
+      "sha256": "9a7612b35f5cf6cf842d4b1582468a0cc9d0c53e90ac5e2812dbbc06fce6b7c2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-510.html",
+      "sha256": "098bc39f7859176b93d3515f0273d3480e268bafd64e423b9043d18238c2f361"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-511.html",
+      "sha256": "1ed05aaf1ae6f2db99da21d9af3ac4f2d682f51fdd9ee5153c67ed10b4a2ebc4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-512.html",
+      "sha256": "0beb617edf7b694a9fe420e6d86959f4dfdaff68c31ae883deca58b9fe64d892"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-513.html",
+      "sha256": "ae9636aa489504f58b76e82ecfc38efa0e7bac8375c102583941078576754308"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-514.html",
+      "sha256": "621f549551532de039854309c39978b0ddba7661ad102c31fa36301dae49c995"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-515.html",
+      "sha256": "476ceac2327f57f7f57db87f72a4372c081431ee8d74f133831d0933807547a6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-516.html",
+      "sha256": "e96df4bc093a9f880672189ec60b1c7e0121ff2d6da31c8f4d8c1b51dad20237"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-517.html",
+      "sha256": "b468ad4b6f7696f6ddc900ee0c5c33da2d8251230fd31470244b7315ed67c74c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-518.html",
+      "sha256": "71c7a004a077bf64b1664e247b6c4f1c0e5906898c9d1c72835397c9ef42d60b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-519.html",
+      "sha256": "529cc28b1d81f616c120747f16f3073ba9d3f2904e9e8571f698dc57e4020e27"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-520.html",
+      "sha256": "3e8c710715d1e1603bd204954ec4d3efb9ce2d3b76901d489762d6fe3ef52ba3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-521.html",
+      "sha256": "bc7423deb1b1ccede48a153d2fb6a1656500a2199ddf6f1321ae373953894045"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-522.html",
+      "sha256": "3a46f860d0e9d24d667fdba168dc2c847d2ca7918d2bc7aee14dedf3150a7025"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-523.html",
+      "sha256": "4885ec1da847c60f71ad8066333b3c7c79f84ae41f1dd09125b64ab34c544cde"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-524.html",
+      "sha256": "204ec46f5483c4edd3f8e3b9938783305cf0185bca884046878422b751fe8fcc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-525.html",
+      "sha256": "8dcadec988eb68f182c522369fb69816ccf084902692837987fd6c0557167e49"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-526.html",
+      "sha256": "eebdcac980ffa55e35b6f2473847d30d553ba468b4a9c9dc4da2cc5378fb71f1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-527.html",
+      "sha256": "e9f8f85f464467589d064285918c39087b0dd5daf496beb3d9ab868ca80f8a74"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-530.html",
+      "sha256": "33ec8370b7637054a1386523b3168f296e8be94618679781fdf94e15e5a91187"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01210-540.html",
+      "sha256": "f9373c91dae154196fcfec0db74484f070d854b137091cfde012db50b04f2d74"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01220-300.html",
+      "sha256": "69bea4767e6ec16ad0e4d1ff8c7ec830f74c843f3f9d555d56acafe2c311d4d0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01220-310.html",
+      "sha256": "707ccb1f69f6d413cf25e25509cc198b6e29b3ea7233dae43a8bdce59237e26b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01220-320.html",
+      "sha256": "7044fa95e4f20cafae0910c63e143fb751c3cb2e4f49c8f47d9b90522ac710b6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01220-330.html",
+      "sha256": "23019570f9cb9f1ff7244f3a161434ab059fafac7822c7b33d02592eb577e12a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf01801-300.html",
+      "sha256": "4a4d44969f642039c97d6ac4b5500f1d9dac4f114d5fe0ee81b2b11383a8a326"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf02003-001.html",
+      "sha256": "b587ca2410b122e549096fd92a0ffcfac02fe607ce862d6bb5994e7c38d77a50"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-13-ssi-poms-si-remainder/official-documents/ssa-poms-si-sf02220-005.html",
+      "sha256": "74e0184bdf65c7045af99088bae07d563d6911f36f81ed4f1d8b94ba186b111f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ssi-poms-si-remainder (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7046,
+    "missing_count": 0,
+    "provision_count": 7046,
+    "source_count": 7046
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-13T20:39:57.332761+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gOBFXCSP8CHHqPzYWchu8+vZZB0RF0hzs56l34n6Dtm5wZbrnZI/rK+9K0HRbLeBvY4ubnfiOj0I4wkZ2LvUCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ssi-poms-si-remainder"
+}

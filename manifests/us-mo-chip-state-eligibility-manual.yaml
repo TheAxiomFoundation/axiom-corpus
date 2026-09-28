@@ -1,0 +1,42 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: mo-dss-magi-appendix-a
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Family MO HealthNet (MAGI) Manual Appendix A: MAGI Income With 5% of FPL Included and CHIP Premium Amounts'
+  source_url: https://dssmanuals.mo.gov/wp-content/uploads/2019/03/MAGIappendix-a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-07-01'
+  citation_path: us-mo/manual/dss/chip/magi-appendix-a
+  request: &id001
+    browser_impersonation: true
+  extraction: &id002
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: policy_manual_appendix_pdf
+    program: CHIP
+    source_discovery_group: us-mo/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: MO HealthNet for Kids (CHIP)
+- source_id: mo-dss-magi-appendix-e
+  jurisdiction: us-mo
+  document_class: manual
+  title: 'Missouri Family MO HealthNet (MAGI) Manual Appendix E: MO HealthNet for Kids CHIP Premium Chart'
+  source_url: https://dssmanuals.mo.gov/wp-content/uploads/2019/05/appendix-e.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-07-01'
+  citation_path: us-mo/manual/dss/chip/magi-appendix-e
+  request: *id001
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: policy_manual_appendix_pdf
+    program: CHIP
+    source_discovery_group: us-mo/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: MO HealthNet for Kids (CHIP)

@@ -1,0 +1,60 @@
+{
+  "documents": [
+    {
+      "source_id": "de-sgb-6-270-until-2016",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/sgb-6/fassung-2005-01-01/270",
+      "title": "§ 270 SGB VI: Kinderzuschuss (01.01.2005–16.11.2016)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/06_SGB_VI/pp_0251_275/0270/0270_2005_01_01.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2005-01-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": ":scope > div",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2005-01-01",
+        "valid_until": "2016-11-16",
+        "source_note": "Official versioned normative text, including archive validity metadata. A version-qualified citation avoids colliding with the current repealed provision in the pinned release; scope is the complete historical section."
+      }
+    },
+    {
+      "source_id": "de-sgb-7-217-until-2020",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/sgb-7/fassung-2015-07-01/217",
+      "title": "§ 217 SGB VII: Bestandsschutz (01.07.2015–30.06.2020)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/07_SGB_VII/0217/0217_2015_07_01.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2015-07-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": ":scope > div",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2015-07-01",
+        "valid_until": "2020-06-30",
+        "source_note": "Official versioned normative text, including archive validity metadata. A version-qualified citation avoids colliding with the current repealed provision in the pinned release; scope is the complete historical section."
+      }
+    }
+  ]
+}

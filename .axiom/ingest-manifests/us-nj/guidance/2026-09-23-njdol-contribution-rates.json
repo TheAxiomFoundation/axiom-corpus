@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/guidance/2026-09-23-njdol-contribution-rates.json",
+      "sha256": "ffddf7c528309590dd33b54b2fbbbe41c0c456fa7014b9ae6cd2cab754d24ed4"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/guidance/2026-09-23-njdol-contribution-rates.json",
+      "sha256": "c914cbe6ef8410e9935f34faf03ec7ad4a1b9e691c9ee0d3ff2c5dfdca20643d"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/guidance/2026-09-23-njdol-contribution-rates.jsonl",
+      "sha256": "215ede1b4b8a2dfa4516474080631539c349befc7b11a6663128743467256ba9"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-09-23-njdol-contribution-rates/official-documents/us-nj-njdol-employer-rate-info.html",
+      "sha256": "c83bf85d56629e40456c2ab45c88e55a9f70eb91804a97ee026c73d851b913a7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "11f5852e8e0785f7ce228f922a699938bd104b70",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-njdol-contribution-rates --manifest manifests/us-nj-njdol-contribution-rates.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-23T19:23:43.649443+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-us-nj-payroll-contributions.md",
+      "sha256": "dafeda7ebf9a62269421f12e9f4c10867a9cf317ba0309cccdc6d9de355c0df8"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nEW/uH2MG/DcuiDmfTK7ILRUJoS2i+sfNq5Ao+YEGM40HzMkcWQQp0eRjFDh3FEeUcB8YpLB44JTYwyQyfvLDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-njdol-contribution-rates"
+}

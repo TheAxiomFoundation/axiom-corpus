@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-west-suffolk/manual/2026-09-05-west-suffolk-council-tax-reduction-2026-2027.json",
+      "sha256": "54cc7cbee8ec094102fa22daeac00cea6d4893547b61aef5936914a5a9bb8454"
+    },
+    {
+      "path": "data/corpus/inventory/uk-west-suffolk/manual/2026-09-05-west-suffolk-council-tax-reduction-2026-2027.json",
+      "sha256": "b7aa990f8fed9cd84597bcac33245bcc423a7774408e44fec03379d8f4e7e321"
+    },
+    {
+      "path": "data/corpus/provisions/uk-west-suffolk/manual/2026-09-05-west-suffolk-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "65fc2e118359a0f9cbe8c190cae64ccb3893a7b7e2a5fa45a88ab2abeb1e0d69"
+    },
+    {
+      "path": "data/corpus/sources/uk-west-suffolk/manual/2026-09-05-west-suffolk-council-tax-reduction-2026-2027/official-documents/west-suffolk-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a88fc17aa8ad72c217d45194342439d35ed6f5f6c053cdb27b5c1464a93f6d22"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9d92c0708536b826f4a78201c38a581dcadf11b4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-west-suffolk-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-west-suffolk-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 211,
+    "missing_count": 0,
+    "provision_count": 211,
+    "source_count": 211
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:27:09.861112+00:00",
+  "jurisdiction": "uk-west-suffolk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2JYspFrqBnyUclcc2JmWdC+oW/QS2/9ydo06m6CP5V+F6uSDR00laoddc6XEwM96tb0Y4yNvnDCm1GzZrnFpBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-west-suffolk-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rushmoor/manual/2026-09-05-rushmoor-council-tax-reduction-2026-2027.json",
+      "sha256": "4985007e4677fa2629b664627a972bd7a18373c434becc426acb93013ec3c58b"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rushmoor/manual/2026-09-05-rushmoor-council-tax-reduction-2026-2027.json",
+      "sha256": "22a276c7d7835d0decd3265361db1350a37e399bf05960a324e2f68a179cf6e2"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rushmoor/manual/2026-09-05-rushmoor-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "83ab8d64add5d05d1a8158499a432a1ece4e56685e10c8a113d80320db9fad60"
+    },
+    {
+      "path": "data/corpus/sources/uk-rushmoor/manual/2026-09-05-rushmoor-council-tax-reduction-2026-2027/official-documents/rushmoor-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a507bf0244b8cfbce2ca0448b8a89fb0f37fc15d2ba588cf759d36a2cdde2367"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-rushmoor-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rushmoor-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 147,
+    "missing_count": 0,
+    "provision_count": 147,
+    "source_count": 147
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:13.699807+00:00",
+  "jurisdiction": "uk-rushmoor",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "waIahz+2j2S8F7SKfbMcHpJfXBboxT+0UiJZI3PTRr+zlll5tC/K2u+jdoaU5sBwt50mm2PwYXqYucPFmLlxCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-rushmoor-council-tax-reduction-2026-2027"
+}

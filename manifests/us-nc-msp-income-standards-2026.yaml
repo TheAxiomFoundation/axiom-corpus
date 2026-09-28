@@ -1,0 +1,28 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-nc-dhb-change-notice-03-26
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'Change Notice for Manual No. 03-26: 2026 Federal Poverty Level Changes (FPL) Income Changes and Cost of Living Adjustment
+    (COLA) Disregard'
+  source_url: https://policies.ncdhhs.gov/document/change-notice-for-manual-no-03-26-2026-federal-poverty-level-changes-fpl-income-changes-and-cost-of-living-adjustment-cola-disregard/
+  download_url: https://policies.ncdhhs.gov/wp-content/uploads/CN-03-26-abd.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-nc/manual/dhb/medicaid/change-notice/cn-03-26
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-nc/manual
+    index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: manual_change_notice
+    document_number: CN 03-26
+    issue_date: '2026-02-03'
+    pointer: us-nc/manual/dhb/medicaid/ma-2252 (selected scope) carries the 2026 dollar chart
+    closure_elements_extra:
+    - MED-ST-4

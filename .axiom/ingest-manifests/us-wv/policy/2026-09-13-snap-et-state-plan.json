@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "de1da8503c85084e2c373f27797033f6c71439d8f136b82c68c5cc122822e663"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "20f4f9acc808124ece811215fbe65f765ebf15ec539f6090f1d945e7a12abf93"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "20416a6d151bc757f8a5bba9c9ed4a2ade8672f195f7c726ac8217c6a7f85325"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/policy/2026-09-13-snap-et-state-plan/official-documents/wv-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "929d4e5f91ca481c6fd905c280d0a5c01e67fdda755dab83af8fb8fd35fb1811"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 120,
+    "missing_count": 0,
+    "provision_count": 120,
+    "source_count": 120
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:31:20.083674+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rENMKeRcENk/x5mkC+vmxeKowp4aH1C0lVwFHznUPbyn2et/3xuOeGDNDXnr5iI9y+4MxLvz/PJbUImuLLanCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

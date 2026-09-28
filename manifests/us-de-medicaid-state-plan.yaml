@@ -1,0 +1,1581 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-de-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=796&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 160
+- source_id: us-de-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=796&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 60
+    index_records_total: 160
+- source_id: us-de-cms-medicaid-state-plan-spa-de-25-0009-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-25-0009: Approval Document (approved December 8, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-25-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-25-0009
+    cms_node_id: '187626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187626
+    approval_date: '2025-12-08'
+    effective_date: '2025-07-01'
+    summary: This amendment proposed to disregard at renewal increases in resources that were determined countable at a Medicaid
+      beneficiary's most recent Medicaid application.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-25-0001-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-25-0001: Approval Document (approved December 8, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-25-0001
+    cms_node_id: '187146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187146
+    approval_date: '2025-12-08'
+    effective_date: '2025-01-01'
+    summary: This amendment is to provide for mandatory coverage for eligible juveniles who are incarcerated in a public institution
+      post-adjudication of charges.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-25-0010-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-25-0010: Approval Document (approved November 25, 2025, effective September 2, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-25-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-09-02'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-25-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-25-0010
+    cms_node_id: '187346'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187346
+    approval_date: '2025-11-25'
+    effective_date: '2025-09-02'
+    summary: This amendment proposes to update the Division of Medicaid and Medical Assistance (DMMA) Title XIX Medicaid State
+      Plan regarding Buy-In, specifically, to provide clarity that DMMA accretes clients to the Buy-In for Part A, as needed,
+      and Part B for all Medicaid programs where a client is dually eligible for Medicare and Medicaid.
+    topics:
+    - Eligibility
+    - Medicaid-Medicare Issues
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-25-0004-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-25-0004: Approval Document (approved June 12, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-25-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-25-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-25-0004
+    cms_node_id: '181336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=181336
+    approval_date: '2025-06-12'
+    effective_date: '2025-01-01'
+    summary: This amendment proposes to support the Delaware Division of Medicaid and Medical Assistance (DMMA) goal of expanding
+      access to coverage, including coverage for those who need immediate care while applying for Medicaid.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-24-0015-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-24-0015: Approval Document (approved March 14, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-24-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-24-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-24-0015
+    cms_node_id: '178201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=178201
+    approval_date: '2025-03-14'
+    effective_date: '2025-01-01'
+    summary: To modify the personal needs allowance amount for individuals residing in long-term care facilities.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-24-0007-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-24-0007: Approval Document (approved August 5, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-24-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-24-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-24-0007
+    cms_node_id: '168001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=168001
+    approval_date: '2024-08-05'
+    effective_date: '2024-07-01'
+    summary: This amendment proposes removing the premiums requirement for participation in the Medicaid Workers with Disabilities
+      (MWD) Program.
+    topics:
+    - Premiums
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-24-0009-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-24-0009: Approval Document (approved June 17, 2024, effective April 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-24-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-04-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-24-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-24-0009
+    cms_node_id: '166521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=166521
+    approval_date: '2024-06-17'
+    effective_date: '2024-04-01'
+    summary: To comply with the current law and revise the Medicaid State Plan to align with the Consolidated Appropriations
+      Act of 2022 and Senate Bill 220 of the 152nd Delaware General Assembly.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-24-0005-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-24-0005: Approval Document (approved May 10, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-24-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-24-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-24-0005
+    cms_node_id: '163971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163971
+    approval_date: '2024-05-10'
+    effective_date: '2024-01-01'
+    summary: This amendment provides 12 months of continuous eligibility to children under age 19 enrolled in Medicaid.
+    topics:
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-23-0005-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-23-0005: Approval Document (approved August 3, 2023, effective December 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-23-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-23-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-23-0005
+    cms_node_id: '151391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151391
+    approval_date: '2023-08-03'
+    effective_date: '2023-12-01'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to align the
+      resumption of premiums with the end of the unwinding period and to assign dates to the temporarily extended suspension
+      of member copays and premiums.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-23-0002-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-23-0002: Approval Document (approved June 23, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-23-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-23-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-23-0002
+    cms_node_id: '150111'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=150111
+    approval_date: '2023-06-23'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-22-0013-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-22-0013: Approval Document (approved January 25, 2023, effective July 11, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-22-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-11'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-22-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-22-0013
+    cms_node_id: '143851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143851
+    approval_date: '2023-01-25'
+    effective_date: '2023-07-11'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to Temporarily
+      extend the suspension of member copays and premiums for six months following the end of the PHE.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-22-0006-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-22-0006: Approval Document (approved November 1, 2022, effective September 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-22-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-09-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-22-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-22-0006
+    cms_node_id: '141311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=141311
+    approval_date: '2022-11-01'
+    effective_date: '2022-09-01'
+    summary: To update Delaware State Plan to bring the state in compliance with the Third-Party Liability Requirements under
+      the Bipartisan Budget Act (BBA) of 2018 and Medicaid Services Investment and Accountability Act (MSIAA) of 2019 practices.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-22-0003-0-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-22-0003-0: Approval Document (approved September 22, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-22-0003-0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-22-0003-0/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-22-0003-0
+    cms_node_id: '140131'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=140131
+    approval_date: '2022-09-22'
+    effective_date: '2022-04-01'
+    summary: To update Delaware State Plan to allow Medicaid recipients institutionalized in long term care facilities to
+      retain an allowance of income to pay for guardianship costs.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-21-0009-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-21-0009: Approval Document (approved December 23, 2021, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-21-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-21-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-21-0009
+    cms_node_id: '133371'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=133371
+    approval_date: '2021-12-23'
+    effective_date: '2022-01-01'
+    summary: modifies the targeting criteria, by maintaining the minimum age as fourteen (14) and removing the maximum age
+      of twenty-five (25).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-20-0001-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-20-0001: Approval Document (approved August 28, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/DE-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-20-0001
+    cms_node_id: '102336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=102336
+    approval_date: '2020-08-28'
+    effective_date: '2020-10-01'
+    summary: Amends Title XIX Medicaid State Plan to add adult dental services
+    topics:
+    - Current State Plan
+    - Dental
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-20-0002-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-20-0002: Approval Document (approved May 27, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-20-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-20-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-20-0002
+    cms_node_id: '98696'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98696
+    approval_date: '2020-05-27'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to suspend all copayments and premiums for all beneficiaries, modify telehealth benefits and allow payment accordingly,
+      adjust the day supply or quantity limit for covered outpatient drugs, expand Prior authorization for medications automatic
+      renewal without clinical review, or time/quantity extensions, and make exceptions to their published Preferred Drug
+      List if drug shortages occur.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Financing & Reimbursement
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-19-0008-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-19-0008: Approval Document (approved March 19, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-19-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-19-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-19-0008
+    cms_node_id: '90971'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=90971
+    approval_date: '2020-03-19'
+    effective_date: '2019-10-01'
+    summary: This SPA updates Optional Eligibility Groups which includes Individuals Eligible for Cash Except for Institutionalization,
+      Individuals in Institutions Eligible under a Special Income Level and Ticket to Work Basic.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-19-006-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-19-006: Approval Document (approved February 6, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-19-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-19-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-19-006
+    cms_node_id: '59161'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=59161
+    approval_date: '2020-02-06'
+    effective_date: '2019-10-01'
+    summary: Proposes to amend the Title XIX Medicaid State Plan regarding DUR provisions included in section 1004 of the
+      SUPPORT for Patients and Communities Act with the effective date of October 1, 2019.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-18-004-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-18-004: Approval Document (approved December 26, 2018, effective July 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-18-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-07-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-18-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-18-004
+    cms_node_id: '7616'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=7616
+    approval_date: '2018-12-26'
+    effective_date: '2018-07-01'
+    summary: Modifies the State Plan to grant Delaware an exception to the Recovery Audit Contracting (RAC) requirements.
+    topics:
+    - Financing & Reimbursement
+    - State Plan Factsheet
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-14-0006-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-14-0006: Approval Document (approved June 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-14-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-14-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-14-0006
+    cms_node_id: '25076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=25076
+    approval_date: '2014-06-26'
+    effective_date: '2014-01-01'
+    summary: Allows hospitals in the state to determine eligibility presumptively under the option. And the state to allow
+      Medicaid coverage for individuals determined presumptively eligible under this provision.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-14-0007-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-14-0007: Approval Document (approved June 6, 2014, effective April 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-14-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-04-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-14-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-14-0007
+    cms_node_id: '34431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34431
+    approval_date: '2014-06-06'
+    effective_date: '2014-04-01'
+    summary: This amendment covers and reimburses all United States Preventive Services Task Force (USPSTF) grade A and B
+      clinical preventive services and approved adult vaccines and their administration recommended by the Advisory Committee
+      on Immunization Practices (ACIP), without cost sharing; and establishes a one percentage point increase in federal medical
+      assistance percentage (FMAP) for these service expenditures whether they are provided in fee-for-service (FFS), managed
+      care or under an alternate benefit plan.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-13-006-mm-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-13-006-MM: Approval Document (approved December 9, 2013, effective January 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-13-006-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-13-006-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-006-MM
+    cms_node_id: '39141'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39141
+    approval_date: '2013-12-09'
+    effective_date: '2013-01-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-13-0010-mm-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-13-0010-MM: Approval Document (approved December 6, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-13-0010-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-13-0010-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0010-MM
+    cms_node_id: '39256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39256
+    approval_date: '2013-12-06'
+    effective_date: '2014-01-01'
+    summary: Modifies eligibility standards and processes to conform to the requirements under the Affordable Care Act, and
+      to exercise available related state options.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-13-0005-mm-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-13-0005 MM: Approval Document (approved December 6, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-13-0005-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-13-0005-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0005 MM
+    cms_node_id: '39261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39261
+    approval_date: '2013-12-06'
+    effective_date: '2014-01-01'
+    summary: Modifies eligibility standards and processes to conform to the requirements under the Affordable Care Act and
+      to exercise available related state options.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-13-0009-mm-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-13-0009-MM: Approval Document (approved November 26, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-13-0009-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-13-0009-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0009-MM
+    cms_node_id: '39146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39146
+    approval_date: '2013-11-26'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Residency Requirements.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-13-0007-mm-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-13-0007-MM: Approval Document (approved November 15, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-13-0007-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-13-0007-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-13-0007-MM
+    cms_node_id: '39901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39901
+    approval_date: '2013-11-15'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Income Methodologies and Designates the Income Options the State is Electing in 2014.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-12-007-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-12-007: Approval Document (approved July 21, 2012, effective May 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-12-007-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-05-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-12-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-12-007
+    cms_node_id: '33281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33281
+    approval_date: '2012-07-21'
+    effective_date: '2012-05-01'
+    summary: Specifically, this SPA updates the income standard to 75% of the Federal Poverty Level (FPL) used in eligibility
+      determinations for low income families with children under Section 1931 of the Social Security Act, and for children
+      under age 21 under 42 CFR §435.222 for whom public agencies are assuming full or partial financial responsibility (e.g.
+      foster children).
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-12-007-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-12-007: Attachment (approved July 21, 2012, effective May 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-12-007-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-05-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-12-007/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-12-007
+    cms_node_id: '33281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33281
+    approval_date: '2012-07-21'
+    effective_date: '2012-05-01'
+    summary: Specifically, this SPA updates the income standard to 75% of the Federal Poverty Level (FPL) used in eligibility
+      determinations for low income families with children under Section 1931 of the Social Security Act, and for children
+      under age 21 under 42 CFR §435.222 for whom public agencies are assuming full or partial financial responsibility (e.g.
+      foster children).
+    topics: *id002
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-12-007-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-12-007: Form CMS-179 (approved July 21, 2012, effective May 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-12-007-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-05-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-12-007/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-12-007
+    cms_node_id: '33281'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33281
+    approval_date: '2012-07-21'
+    effective_date: '2012-05-01'
+    summary: Specifically, this SPA updates the income standard to 75% of the Federal Poverty Level (FPL) used in eligibility
+      determinations for low income families with children under Section 1931 of the Social Security Act, and for children
+      under age 21 under 42 CFR §435.222 for whom public agencies are assuming full or partial financial responsibility (e.g.
+      foster children).
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-de-cms-medicaid-state-plan-spa-de-12-006-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-12-006: Approval Document (approved June 7, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-12-006-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-12-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-12-006
+    cms_node_id: '33286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33286
+    approval_date: '2012-06-07'
+    effective_date: '2012-04-01'
+    summary: Which assure compliance with and implementation of Section 6401 of the Affordable Care Act regarding Medicaid
+      Provider Screening and Enrollment.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-12-006-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-12-006: Attachment (approved June 7, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-12-006-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-12-006/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-12-006
+    cms_node_id: '33286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33286
+    approval_date: '2012-06-07'
+    effective_date: '2012-04-01'
+    summary: Which assure compliance with and implementation of Section 6401 of the Affordable Care Act regarding Medicaid
+      Provider Screening and Enrollment.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-12-006-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-12-006: Form CMS-179 (approved June 7, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-12-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-12-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-12-006
+    cms_node_id: '33286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33286
+    approval_date: '2012-06-07'
+    effective_date: '2012-04-01'
+    summary: Which assure compliance with and implementation of Section 6401 of the Affordable Care Act regarding Medicaid
+      Provider Screening and Enrollment.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-012-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-012: Approval Document (approved March 5, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-012-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-11-012
+    cms_node_id: '33296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33296
+    approval_date: '2012-03-05'
+    effective_date: '2011-10-01'
+    summary: Which you propose to elect to substitute PERM reviews (active and negative) for the State's MEQC traditional
+      reviews during the State's PERM cycle year.
+    topics: &id004
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-012-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-012: Attachment (approved March 5, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-012-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-012/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-11-012
+    cms_node_id: '33296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33296
+    approval_date: '2012-03-05'
+    effective_date: '2011-10-01'
+    summary: Which you propose to elect to substitute PERM reviews (active and negative) for the State's MEQC traditional
+      reviews during the State's PERM cycle year.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-012-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-012: Form CMS-179 (approved March 5, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-012-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-012/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-11-012
+    cms_node_id: '33296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33296
+    approval_date: '2012-03-05'
+    effective_date: '2011-10-01'
+    summary: Which you propose to elect to substitute PERM reviews (active and negative) for the State's MEQC traditional
+      reviews during the State's PERM cycle year.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-010-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-010: Approval Document (approved February 28, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-010-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-11-010
+    cms_node_id: '33306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33306
+    approval_date: '2012-02-28'
+    effective_date: '2011-10-01'
+    summary: This SPA implements the Program of All-Inclusive Care for the Elderly (PACE) program in Delaware as an optional
+      Medicaid State Plan service.
+    topics: &id005
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-010-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-010: Attachment (approved February 28, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-010-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-010/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-11-010
+    cms_node_id: '33306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33306
+    approval_date: '2012-02-28'
+    effective_date: '2011-10-01'
+    summary: This SPA implements the Program of All-Inclusive Care for the Elderly (PACE) program in Delaware as an optional
+      Medicaid State Plan service.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-010-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-010: Form CMS-179 (approved February 28, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-010-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-010/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-11-010
+    cms_node_id: '33306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33306
+    approval_date: '2012-02-28'
+    effective_date: '2011-10-01'
+    summary: This SPA implements the Program of All-Inclusive Care for the Elderly (PACE) program in Delaware as an optional
+      Medicaid State Plan service.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-007-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-007: Approval Document (approved February 10, 2012, effective September 2, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-007-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-02'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-11-007
+    cms_node_id: '33316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33316
+    approval_date: '2012-02-10'
+    effective_date: '2011-09-02'
+    summary: This SPA identifies as a plan service concurrent hospice services for children under age 21 years, pursuant to
+      Section 2302 of the Affordable Care Act.
+    topics: &id006
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-007-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-007: Attachment (approved February 10, 2012, effective September 2, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-007-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-02'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-007/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-11-007
+    cms_node_id: '33316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33316
+    approval_date: '2012-02-10'
+    effective_date: '2011-09-02'
+    summary: This SPA identifies as a plan service concurrent hospice services for children under age 21 years, pursuant to
+      Section 2302 of the Affordable Care Act.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-007-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-007: Form CMS-179 (approved February 10, 2012, effective September 2, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-007-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-02'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-007/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-11-007
+    cms_node_id: '33316'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33316
+    approval_date: '2012-02-10'
+    effective_date: '2011-09-02'
+    summary: This SPA identifies as a plan service concurrent hospice services for children under age 21 years, pursuant to
+      Section 2302 of the Affordable Care Act.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-011-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-011: Approval Document (approved February 8, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-011-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-11-011
+    cms_node_id: '33301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33301
+    approval_date: '2012-02-08'
+    effective_date: '2011-10-01'
+    summary: Which propose to implement Asset Verification System, a system for verifying the assets of aged, blind or disabled
+      applicants for and recipients of Medicaid.
+    topics: &id007
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-011-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-011: Attachment (approved February 8, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-011-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-011/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-11-011
+    cms_node_id: '33301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33301
+    approval_date: '2012-02-08'
+    effective_date: '2011-10-01'
+    summary: Which propose to implement Asset Verification System, a system for verifying the assets of aged, blind or disabled
+      applicants for and recipients of Medicaid.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-011-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-011: Form CMS-179 (approved February 8, 2012, effective October 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-011-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-10-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-011/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-11-011
+    cms_node_id: '33301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33301
+    approval_date: '2012-02-08'
+    effective_date: '2011-10-01'
+    summary: Which propose to implement Asset Verification System, a system for verifying the assets of aged, blind or disabled
+      applicants for and recipients of Medicaid.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-004-approval-document
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-004: Approval Document (approved August 8, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-004-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: DE-11-004
+    cms_node_id: '26706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26706
+    approval_date: '2011-08-08'
+    effective_date: '2011-07-01'
+    summary: Update Delaware's State Plan to exempt Medicare cost sharing benefits paid under the Medicare Savings.
+    topics: &id008
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-004-attachment
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-004: Attachment (approved August 8, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-004-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-004/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: DE-11-004
+    cms_node_id: '26706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26706
+    approval_date: '2011-08-08'
+    effective_date: '2011-07-01'
+    summary: Update Delaware's State Plan to exempt Medicare cost sharing benefits paid under the Medicare Savings.
+    topics: *id008
+    link_label: Attachment
+- source_id: us-de-cms-medicaid-state-plan-spa-de-11-004-form-cms-179
+  jurisdiction: us-de
+  document_class: policy
+  title: 'Delaware Medicaid SPA DE-11-004: Form CMS-179 (approved August 8, 2011, effective July 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/DE/DE-11-004-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-07-01'
+  citation_path: us-de/policy/cms/medicaid-state-plan/spa/de-11-004/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Delaware
+    source_discovery_group: us-de/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: DE-11-004
+    cms_node_id: '26706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=26706
+    approval_date: '2011-08-08'
+    effective_date: '2011-07-01'
+    summary: Update Delaware's State Plan to exempt Medicare cost sharing benefits paid under the Medicare Savings.
+    topics: *id008
+    link_label: Form CMS-179

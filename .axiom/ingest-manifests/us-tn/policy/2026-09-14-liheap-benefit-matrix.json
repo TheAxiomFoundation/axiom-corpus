@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "7bb68f2a3d8b69e0b9000b9eb7f5f7ad5dd0f023e3316d83da84c3ee3f4f7492"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "bd6ce0848f4b0dbce867fbc4ddb469bda6c5d73e0c9288565c6db9f2b137afb3"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/policy/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "e875e35ec88ce8af5103031b86db5243e8ce4ed4954f0462d874926553dc886f"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-tn-liheap-thda-liheap-benefit-matrix-2026.pdf",
+      "sha256": "ff0fca8fb3eb360dae867dc3e1b14651a31ab1068c8910f65f6666428f1184d7"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-tn-liheap-thda-liheap-benefit-matrix-2027.pdf",
+      "sha256": "b9039714d311e6f25eb77927dee9f579c1bf4bac64fd599fb182b017f1b48a92"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-tn-liheap-benefit-matrix-attachments.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T18:10:42.237152+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "feEeQowx2m5ktIZF1emLFE26OJNPmwdrD33cRgfjL1X5Gwj43r9r3RO8Ce1ioPiJxuxOCifgLD3otX5NJ2lcAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

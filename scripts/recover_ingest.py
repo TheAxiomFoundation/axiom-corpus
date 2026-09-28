@@ -17,16 +17,11 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 from xml.etree import ElementTree as ET
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
-from axiom_corpus.corpus.documents import (
-    OfficialDocumentSource,
-    _extract_blocks,
-    _inventory_items,
-    _provision_records,
-)
 from axiom_corpus.corpus.ecfr import (
     EcfrPartTarget,
     iter_ecfr_title_provisions,
@@ -46,6 +41,42 @@ from axiom_corpus.corpus.usc import (
 
 PARSERS = {"uscode-olrc-xml", "ecfr-xml", "federal-register", "html-manual", "pdf"}
 PROVENANCE_KEYS = {"url", "fetched_at", "sha256", "file"}
+
+
+def assert_ecfr_recovery_supported(entry: dict[str, Any], *, base: Path | None = None) -> None:
+    """Reject appendix replay until recovery can preserve its inventory and graphics."""
+    if entry.get("parser") not in {"ecfr-xml", "ecfr:xml"}:
+        return
+
+    def appendix_path(value: object) -> bool:
+        return any(
+            segment.lower().startswith("appendix")
+            for segment in unquote(str(value)).split("/")
+        )
+
+    reason: str | None = None
+    if entry.get("include_appendices"):
+        reason = "include_appendices was requested"
+    elif any(appendix_path(path) for path in entry.get("covers_citation_paths") or []):
+        reason = "the recovery plan requests an appendix citation"
+    if reason is None and base is not None:
+        version_key = "version" if entry["parser"] == "ecfr-xml" else "proposed_version"
+        inventory = CorpusArtifactStore(base).inventory_path(
+            entry["jurisdiction"], entry["document_class"], entry[version_key]
+        )
+        if inventory.exists():
+            items = json.loads(inventory.read_text()).get("items", [])
+            if any(
+                appendix_path(item.get("citation_path"))
+                or (item.get("metadata") or {}).get("kind") == "appendix"
+                for item in items
+            ):
+                reason = "the destination inventory already contains appendices"
+    if reason is not None:
+        raise ValueError(
+            f"eCFR appendix recovery is unsupported: {reason}; "
+            "recovery cannot preserve appendix scope and archived graphics"
+        )
 
 
 @dataclass(frozen=True)
@@ -221,6 +252,7 @@ def _uscode_records(
 def _ecfr_records(
     entry: dict[str, Any], rows: tuple[FetchedFile, ...], source_keys: dict[Path, str]
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    assert_ecfr_recovery_supported(entry)
     if entry["jurisdiction"] != "us" or entry["document_class"] != "regulation":
         raise ValueError("ecfr-xml requires jurisdiction=us and document_class=regulation")
     title = int(entry["title"])
@@ -264,6 +296,13 @@ def _ecfr_records(
 def _document_records(
     entry: dict[str, Any], rows: tuple[FetchedFile, ...], source_keys: dict[Path, str]
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    from axiom_corpus.corpus.documents import (
+        OfficialDocumentSource,
+        _extract_blocks,
+        _inventory_items,
+        _provision_records,
+    )
+
     expected = "html" if entry["parser"] == "html-manual" else "pdf"
     docs = entry.get("documents")
     if not isinstance(docs, list) or len(docs) != len(rows):
@@ -481,6 +520,7 @@ def _federal_register_records(
 def recover(
     entry: dict[str, Any], fetched_dir: Path, *, base: Path, repo: Path, dry_run: bool
 ) -> RecoveryResult:
+    assert_ecfr_recovery_supported(entry, base=base)
     rows = _select_files(entry, load_fetched_files(fetched_dir))
     destination = base
     temporary: tempfile.TemporaryDirectory[str] | None = None

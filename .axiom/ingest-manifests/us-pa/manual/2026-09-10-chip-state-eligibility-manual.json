@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "797315ac39a1f7e8d9b8607ff0c0490a696e91526d489fe47ae50e54092e9fdf"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "28a9c234f77f243673ebf2ae93e0080a0aa49225fd71250a039e70c5c3eb044d"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "e31f01768580a286917defb174e95a89e1a561e1c15b0dc567813b87b48b7622"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-chip-state-eligibility-manual/official-documents/pa-dhs-chip-enrollment-and-benefits-handbook.pdf",
+      "sha256": "b597046dd13384ab0ec8afd64d8544811cbc71a65bc6037309aa661a47752855"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-pa-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T07:15:39.897428+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jtzlx6qK2BkaVF4qo2kMBYswnYAH/3Z1zWnZHQimh1DHrcaOBacnVBxIs3jML3CznUcexDGJQUsTrsmUCyWXCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

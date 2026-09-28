@@ -50,6 +50,11 @@ at the first failure:
    to its SHA-256 R2 key with `If-None-Match: *`. A concurrent `409` or `412`
    converges only when readback proves the existing bytes are identical.
 3. Download every selected R2 object and verify its exact bytes and hash.
+   Steps 2 and 3 run per object on a bounded thread pool
+   (`publish_corpus.py --r2-workers`, default 16); the pool changes only how
+   many objects are in flight, never what is verified, and the first failure
+   stops staging. The signed readback evidence lists keys in artifact order
+   regardless of completion order.
 4. Query prior signed objects for the selected scopes. The controller verifies
    each object with the current Ed25519 public key or an explicitly configured
    legacy verification key. An already released scope is reused only when its
@@ -59,7 +64,10 @@ at the first failure:
    never changes public visibility and never synthesizes missing parents.
 6. Query direct base-table evidence before signing. Exact provision/navigation
    counts and canonical digests of every publisher-controlled projection field
-   must match the locally derived evidence.
+   must match the locally derived evidence. The evidence RPC is per scope,
+   so the controller requests it in chunks of 32 scopes and splits a chunk
+   the gateway rejects (a 504 after it ran too long) in half until it fits;
+   every selected scope must still appear exactly once across all chunks.
 7. Rerun deep validation, prove the artifact and scope identity did not change,
    then build and Ed25519-sign the attested release object. The independently
    configured public key must verify it locally.
@@ -104,6 +112,13 @@ job summary is available. The approved job downloads the same publication
 artifact, re-verifies its identity and signature, and reruns the takeover
 preview immediately before installing the idempotent private upload schema and
 running the transactional activation RPC.
+
+Publication writes one flushed, timestamped progress line to stderr at the
+start and end of every phase (deep validation, release content, R2 staging,
+released-scope lookup, provision and navigation staging, staged evidence,
+signing, release-object upload) with object, scope, and row counts and
+elapsed seconds, and names the phase on failure. These lines are operational
+logging only and never enter signed content.
 
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or

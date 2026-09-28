@@ -21,6 +21,7 @@ from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_USER_AGENT,
     OfficialDocumentManifest,
     OfficialDocumentSource,
+    _browser_impersonation_headers,
     _date_text,
     _download_document,
     _download_document_by_browser_impersonation,
@@ -53,7 +54,7 @@ from axiom_corpus.corpus.documents import (
     google_drive_download_url,
     official_documents_run_id,
 )
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 
 
 def test_google_drive_download_url_converts_file_view():
@@ -1182,6 +1183,23 @@ def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(
             "impersonate": OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
         }
     ]
+
+
+def test_browser_impersonation_headers_follow_the_impersonated_profile():
+    chrome_headers = _browser_impersonation_headers(None, impersonate="chrome120")
+    explicit = _browser_impersonation_headers(
+        {"User-Agent": "custom", "Accept": "text/html"}, impersonate="chrome131"
+    )
+    safari_headers = _browser_impersonation_headers(
+        {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT, "Accept": "text/html"},
+        impersonate="safari17_0",
+    )
+    firefox_headers = _browser_impersonation_headers(None, impersonate="firefox133")
+
+    assert chrome_headers == {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    assert explicit == {"User-Agent": "custom", "Accept": "text/html"}
+    assert safari_headers == {"Accept": "text/html"}
+    assert firefox_headers == {}
 
 
 def test_download_document_can_use_browser_impersonation_directly(monkeypatch):
@@ -4372,3 +4390,81 @@ documents:
     ]
     assert records[1].heading == "9001 Legal Base"
     assert "9060 [273.10(d)(7)] Continuation text." in (records[3].body or "")
+
+
+def test_labeled_sections_slugify_publisher_section_ids_into_grammar_safe_paths(
+    tmp_path: Path,
+) -> None:
+    """Parenthesised and dashed publisher labels become grammar-safe segments.
+
+    The publisher label is kept verbatim in ``section_label`` and, when the
+    path segment had to change, in ``publisher_section_id``.
+    """
+    html_path = tmp_path / "rcsa-income-tax.html"
+    html_path.write_text(
+        """
+<html><body><div class="content">
+  <p>Sec. 12-701(a)(1)-1. Resident of this state.</p>
+  <p>Definition body.</p>
+  <p>Sec. 12-740(a)-1. Returns; who must file.</p>
+  <p>Filing body.</p>
+  <p>Sec. 12-742-1. Plain section.</p>
+  <p>Plain body.</p>
+  <p>Sec. 12-743–1. Dashed section.</p>
+  <p>Dashed body.</p>
+</div></body></html>
+"""
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        rf"""
+documents:
+  - source_id: rcsa-income-tax
+    jurisdiction: us-ct
+    document_class: regulation
+    title: RCSA Title 12 Income Tax
+    source_url: https://example.test/rcsa-income-tax.html
+    citation_path: us-ct/regulation/rcsa/12/income-tax
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: .content
+      segmentation: labeled_sections
+      normalize_citation_segment_dashes: true
+      section_heading_pattern: '^Sec\.\s*(?P<label>12-7\d\d[^\s]*?[-–]\d+)\.\s*(?P<heading>.*)$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-09-14-slug-test",
+    )
+
+    records = load_provisions(report.provisions_path)
+    sections = [record for record in records if record.kind == "section"]
+    assert [record.citation_path for record in sections] == [
+        "us-ct/regulation/rcsa/12/income-tax/12-701-a-1-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-740-a-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-742-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-743-1",
+    ]
+    assert [record.metadata["section_label"] for record in sections] == [
+        "12-701(a)(1)-1",
+        "12-740(a)-1",
+        "12-742-1",
+        "12-743–1",
+    ]
+    assert [record.metadata.get("publisher_section_id") for record in sections] == [
+        "12-701(a)(1)-1",
+        "12-740(a)-1",
+        None,
+        "12-743–1",
+    ]
+    assert all(record.parent_citation_path == records[0].citation_path for record in sections)
+    inventory = load_source_inventory(report.inventory_path)
+    assert [item.citation_path for item in inventory[1:]] == [
+        record.citation_path for record in sections
+    ]
+    assert inventory[2].metadata["publisher_section_id"] == "12-740(a)-1"

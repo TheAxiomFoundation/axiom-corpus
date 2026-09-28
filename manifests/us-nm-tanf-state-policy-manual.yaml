@@ -1,0 +1,597 @@
+version: '2026-09-10'
+documents:
+- source_id: us-nm-srca-nmac-8-102-100
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.100 NMAC Recipient Policies - Definitions and Acronyms
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0100.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/100
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*100\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.100
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '100'
+    official_listing_title: 8.102.100
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-110
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.110 NMAC General Operating Policies - Applications
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0110.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/110
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*110\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.110
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '110'
+    official_listing_title: 8.102.110
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-120
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.120 NMAC Eligibility Policy - Case Administration
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0120.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/120
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*120\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.120
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '120'
+    official_listing_title: 8.102.120
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-230
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.230 NMAC General Financial - Payables and Disbursement
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0230.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/230
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*230\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.230
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '230'
+    official_listing_title: 8.102.230
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-400
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.400 NMAC Recipient Policies - Defining the Assistance Group
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0400.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/400
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*400\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.400
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '400'
+    official_listing_title: 8.102.400
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-410
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.410 NMAC Recipient Policies - General Recipient Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0410.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/410
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*410\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.410
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '410'
+    official_listing_title: 8.102.410
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-420
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.420 NMAC Recipient Policies - Special Recipient Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0420.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/420
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*420\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.420
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '420'
+    official_listing_title: 8.102.420
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-460
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.460 NMAC Recipient Policies - Compliance Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0460.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/460
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*460\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.460
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '460'
+    official_listing_title: 8.102.460
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-461
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.461 NMAC Work Program Activities
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0461.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/461
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*461\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.461
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '461'
+    official_listing_title: 8.102.461
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-462
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.462 NMAC New Mexico Wage Subsidy Program
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0462.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/462
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*462\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.462
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '462'
+    official_listing_title: 8.102.462
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-500
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.500 NMAC Eligibility Policy - General Information
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0500.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/500
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*500\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.500
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '500'
+    official_listing_title: 8.102.500
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-501
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.501 NMAC Transition Bonus Program
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0501.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/501
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*501\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.501
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '501'
+    official_listing_title: 8.102.501
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-510
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.510 NMAC Eligibility Policy - Resources/property
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0510.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/510
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*510\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.510
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '510'
+    official_listing_title: 8.102.510
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-520
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.520 NMAC Eligibility Policy - Income
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0520.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/520
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*520\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.520
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '520'
+    official_listing_title: 8.102.520
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-610
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.610 NMAC Description of Program/benefits - Benefit Delivery
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0610.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/610
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*610\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.610
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '610'
+    official_listing_title: 8.102.610
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-611
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.611 NMAC Education Works Program
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0611.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/611
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*611\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.611
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '611'
+    official_listing_title: 8.102.611
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)
+- source_id: us-nm-srca-nmac-8-102-620
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.102.620 NMAC Description of Program Benefits - Benefit Determination/general
+  source_url: https://www.srca.nm.gov/parts/title08/08.102.0620.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-21'
+  citation_path: us-nm/regulation/nmac/8/102/620
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*102\.\s*620\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Health Care Authority
+    document_subtype: administrative_code_part
+    program: TANF
+    state_program: New Mexico Works (NMW) cash assistance
+    federal_program: TANF
+    manual_landing_page: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    official_publisher: New Mexico State Records Center and Archives
+    nmac_citation: 8.102.620
+    nmac_title: '8'
+    nmac_chapter: '102'
+    nmac_part: '620'
+    official_listing_title: 8.102.620
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_chapter_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/chapter-102-cash-assistance-programs/
+    source_last_modified: '2025-04-21'
+    extraction_note: labeled sections like the us-nm SNAP regulations scope (8.100 and 8.139 parts)

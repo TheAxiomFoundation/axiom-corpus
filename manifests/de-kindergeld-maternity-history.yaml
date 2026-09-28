@@ -1,0 +1,61 @@
+{
+  "documents": [
+    {
+      "source_id": "de-muschg3-2018-01-01",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/muschg-2018/fassung-2018-01-01/3",
+      "title": "§ 3 MuSchG: Schutzfristen vor und nach der Entbindung (Fassung 2018-01-01)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_L-R/MuSchG/0003/0003_2018_01_01.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-10",
+      "expression_date": "2018-01-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": "#StartContent",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2018-01-01",
+        "snapshot_sha256": "8ace5248d4693335363dece0ad38035b126686a89e3844bceb3d238f91e5e116",
+        "source_note": "Complete official version-qualified § 3 text, including all paragraphs. Displayed document dates establish commencement and validity through 31 May 2025.",
+        "valid_until": "2025-05-31"
+      }
+    },
+    {
+      "source_id": "de-muschg3-2025-06-01",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "citation_path": "de/statute/muschg-2018/fassung-2025-06-01/3",
+      "title": "§ 3 MuSchG: Schutzfristen vor und nach der Entbindung (Fassung 2025-06-01)",
+      "source_url": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_L-R/MuSchG/0003/0003_2025_06_01.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-10",
+      "expression_date": "2025-06-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": "#StartContent",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Deutsche Rentenversicherung, rvRecht, Normen und Verträge",
+        "valid_from": "2025-06-01",
+        "snapshot_sha256": "76201945054a678389da88c35b8428ac8f02def9e73766f897c311ff6076467b",
+        "source_note": "Complete official version-qualified § 3 text, including all paragraphs. Displayed document dates establish commencement on 1 June 2025. No end date is displayed; this is not a guarantee against future amendments."
+      }
+    }
+  ]
+}

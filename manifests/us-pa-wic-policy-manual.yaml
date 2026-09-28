@@ -1,0 +1,1060 @@
+version: 2026-09-10-wic-state-policy-manual
+documents:
+- source_id: us-pa-wic-manual-1.00
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.00: Program Management'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.00%20Program%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.00
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.00'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.01
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.01: Local Agency Selection and Disqualification'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.01%20Local%20Agency%20Selection%20and%20Disqualification.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.01'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.02
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.02: Abuse and Fraud Prevention and Investigation'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.02%20Abuse%20and%20Fraud%20Prevention%20and%20Investigation.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.02
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.02'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.03
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.03: Local Agency Monitoring'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.03%20Local%20Agency%20Monitoring.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.03
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.03'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.04
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.04: Confidentiality of Participant Records'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.04%20Confidentiality%20of%20Participant%20Records.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.04
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.04'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.05
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.05: Information System Management'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.05%20Information%20System%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.05
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.05'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.06
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.06: Material Development and/or Requisition'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.06%20Material%20Development%20and%20or%20Requisition.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.06
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.06'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.07
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.07: Civil Rights'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.07%20Civil%20Rights.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.07
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.07'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-1.08
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 1.08: Translation and Interpretation'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/1.08%20Translation%20and%20Interpretation.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/1.08
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '1.08'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-2.00
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 2.00: Proof of Financial Need'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/2.00%20Proof%20of%20Financial%20Need.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/2.00
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '2.00'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-2.01
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 2.01: Local Agency Financial Management'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/2.01%20Local%20Agency%20Financial%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/2.01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '2.01'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-2.02
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 2.02: Cost Allowability for Travel, Incentive Items, Tuition Reimbursement,
+    and Renovations'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/2.02%20Cost%20Allowability%20for%20Travel%20Incentive%20Items%20Tuition%20Reimbursement%20and%20Renovations.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/2.02
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '2.02'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-2.03
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 2.03: Nutrition Education, Breastfeeding Promotion and Support, and
+    Outreach Expenditure Requirements'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/2.03%20Nutrition%20Education%20BF%20Promotion%20and%20Support%20and%20Outreach%20Expenditure%20Requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/2.03
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '2.03'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-2.04
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 2.04: Audit of Local Agencies'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/2.04%20Audit%20of%20Local%20Agencies.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/2.04
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '2.04'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-2.05
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 2.05: Equipment Purchases, Inventory and Disposition'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/2.05%20Equipment%20Purchase%20Inventory%20and%20Disposition.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/2.05
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '2.05'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.00
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.00: Clinic Operations'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.00%20Clinic%20Operations.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.00
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.00'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.01
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.01: Mobile Clinics'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.01%20Mobile%20Clinics.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.01'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.02
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.02: Local Agency Staffing'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.02%20Local%20Agency%20Staffing.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.02
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.02'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.04
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.04: Caseload Management'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.04%20Caseload%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.04
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.04'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.05
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.05: Processing Standards and VOCs'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.05%20Processing%20Standards%20%26%20VOCs.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.05
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.05'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.06
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.06: Program Eligibility'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.06%20Program%20Eligibility.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.06
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.06'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.08
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.08: TeleWIC Services'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.08%20TeleWIC%20Services.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.08
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.08'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.09
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.09: Services to Special Populations'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.09%20Services%20to%20Special%20Populations.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.09
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.09'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.10
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.10: EBT Card Management'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.10%20EBT%20Card%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.10
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.10'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-3.11
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 3.11: Universal Precautions'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/3.11%20Universal%20Precautions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/3.11
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '3.11'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-4.00
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 4.00: Retail Store Management'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/4.00%20Retail%20Store%20Management.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/4.00
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '4.00'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-4.01
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 4.01: Retail Store Quality Assurance'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/4.01%20Retail%20Store%20Quality%20Assurance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/4.01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '4.01'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-4.02
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 4.02: Training of WIC Vendors'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/4.02%20Training%20of%20WIC%20Retail%20Stores.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/4.02
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '4.02'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-4.03
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 4.03: Special Formula Distribution System'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/4.03%20Special%20Formula%20Distribution%20System.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/4.03
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '4.03'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.00
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.00: Nutrition and Risk Assessment'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.00%20Nutrition%20and%20Risk%20Assessment.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.00
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.00'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.01
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.01: Nutrition Education and Counseling'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.01%20Nutrition%20Education%20and%20Counseling.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.01'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.02
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.02: Breastfeeding Promotion and Support'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.02%20Breastfeeding%20Promotion%20and%20Support.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.02
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.02'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.03
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.03: Formula Issuance for Breastfed Infants'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.03%20Formula%20Issuance%20for%20Breastfed%20Infants.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.03
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.03'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.04
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.04: Breastfeeding Peer Counselor Programs'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.04%20Breastfeeding%20Peer%20Counselor%20Programs.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.04
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.04'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.05
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.05: Authorized Foods and Statewide Food List'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.05%20Authorized%20Foods%20and%20Statewide%20Food%20List.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.05
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.05'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.06
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.06: Issuance of Food Packages'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.06%20Issuance%20of%20Food%20Packages.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.06
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.06'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.07
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.07: Food Package Tailoring'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.07%20Food%20Package%20Tailoring.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.07
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.07'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.08
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.08: Infant Formula'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.08%20Infant%20Formula.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.08
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.08'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.09
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.09: Returned Formula Inventory'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.09%20Returned%20Formula%20Inventory.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.09
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.09'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-5.10
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 5.10: Exempt Infant Formula and WIC-Eligible Nutritionals'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/5.10%20Exempt%20Infant%20Formula%20and%20WIC-Eligible%20Nutritionals.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/5.10
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '5.10'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-6.01
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 6.01: Local Agency Outreach Activities'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/6.01SP%20Local%20Agency%20Outreach%20Activities.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/6.01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '6.01'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-6.02
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 6.02: Participant Referral System'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/6.02SP%20Participant%20Referral%20Systems.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/6.02
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '6.02'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-6.03
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 6.03: Referral Agreements for Health Care Services'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/6.03SP%20Referral%20Agreements%20for%20Health%20Care%20Services.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/6.03
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '6.03'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl
+- source_id: us-pa-wic-manual-6.04
+  jurisdiction: us-pa
+  document_class: manual
+  title: 'Pennsylvania WIC Policy and Procedure Manual 6.04: Outreach in Hospitals'
+  source_url: https://wic.health.pa.gov/pawic/documents/PoliciesAndProcedures/6.04SP%20Outreach%20in%20Hospitals.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  citation_path: us-pa/manual/doh/wic/6.04
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Health, Bureau of Women, Infants and Children
+    document_subtype: state_policy_manual_section
+    program: WIC
+    manual: Pennsylvania WIC Policy and Procedure Manual
+    section_label: '6.04'
+    index_url: https://wic.health.pa.gov/pawic/PoliciesAndProcedures.aspx
+    source_discovery_group: us-pa/manual/wic
+    discovered_via: manual-review:wic-agent-queue; state WIC agency manual index page
+    access_note: wic.health.pa.gov stalls urllib3 keep-alive downloads mid-body; fetched with the curl range backend
+  request:
+    range_fetch: true
+    range_backend: curl

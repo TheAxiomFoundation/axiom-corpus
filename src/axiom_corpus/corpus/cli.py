@@ -31,6 +31,7 @@ from axiom_corpus.corpus.anchors import (
     write_anchors_jsonl,
 )
 from axiom_corpus.corpus.anchors_supabase import load_anchors_to_supabase
+from axiom_corpus.corpus.armenia_arlis import extract_armenia_arlis
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.belgium_eli import (
     BelgianELIExtractReport,
@@ -76,6 +77,7 @@ from axiom_corpus.corpus.ingest_manifests import (
     write_signed_ingest_manifest,
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.israel_openlaw import extract_israel_openlaw
 from axiom_corpus.corpus.maryland_comar import extract_maryland_comar
 from axiom_corpus.corpus.models import (
     CorpusManifest,
@@ -279,6 +281,7 @@ from axiom_corpus.corpus.usc import (
     extract_usc,
     extract_usc_directory,
     infer_uslm_title,
+    read_uslm_zip,
     usc_run_id,
 )
 from axiom_corpus.corpus.virginia_vac import extract_virginia_vac
@@ -392,14 +395,19 @@ def _cmd_verify_scope_tracked(args: argparse.Namespace) -> int:
 def _cmd_inventory_ecfr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     run_id = ecfr_run_id(args.version, args.only_title, args.only_part, args.limit)
-    inventory = build_ecfr_inventory(
-        as_of=args.as_of,
-        only_title=args.only_title,
-        only_part=args.only_part,
-        only_sections=tuple(args.section or ()),
-        limit=args.limit,
-        run_id=run_id,
-    )
+    try:
+        inventory = build_ecfr_inventory(
+            as_of=args.as_of,
+            only_title=args.only_title,
+            only_part=args.only_part,
+            only_sections=tuple(args.section or ()),
+            limit=args.limit,
+            run_id=run_id,
+            include_appendices=args.include_appendices,
+        )
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
     out = store.inventory_path("us", DocumentClass.REGULATION, run_id)
     store.write_inventory(out, inventory.items)
     print(
@@ -1223,26 +1231,31 @@ def _single_provision_scope(records: tuple[ProvisionRecord, ...]) -> tuple[str, 
 
 def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
-    expression_date = date.fromisoformat(args.expression_date or args.as_of)
-    graphic_transcriptions = (
-        load_ecfr_graphic_transcriptions(args.graphic_transcriptions)
-        if args.graphic_transcriptions
-        else None
-    )
-    report = extract_ecfr(
-        store,
-        version=args.version,
-        as_of=args.as_of,
-        expression_date=expression_date,
-        source_xml=args.source_xml,
-        only_title=args.only_title,
-        only_part=args.only_part,
-        only_sections=tuple(args.section or ()),
-        limit=args.limit,
-        workers=args.workers,
-        progress_stream=sys.stderr,
-        graphic_transcriptions=graphic_transcriptions,
-    )
+    try:
+        expression_date = date.fromisoformat(args.expression_date or args.as_of)
+        graphic_transcriptions = (
+            load_ecfr_graphic_transcriptions(args.graphic_transcriptions)
+            if args.graphic_transcriptions
+            else None
+        )
+        report = extract_ecfr(
+            store,
+            version=args.version,
+            as_of=args.as_of,
+            expression_date=expression_date,
+            source_xml=args.source_xml,
+            only_title=args.only_title,
+            only_part=args.only_part,
+            only_sections=tuple(args.section or ()),
+            limit=args.limit,
+            workers=args.workers,
+            progress_stream=sys.stderr,
+            graphic_transcriptions=graphic_transcriptions,
+            include_appendices=args.include_appendices,
+        )
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
     print(
         json.dumps(
             {
@@ -1278,9 +1291,18 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
 def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    if args.prior_release_point and not args.source_url:
+        print("--prior-release-point requires --source-url (the release point download URL)")
+        return 2
     try:
+        if args.title:
+            title = args.title
+        elif args.source_zip is not None:
+            title = infer_uslm_title(decode_uslm_bytes(read_uslm_zip(args.source_zip)[1]))
+        else:
+            title = infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes()))
         allowed_citation_paths = _usc_allowed_citation_paths(
-            args.title or infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes())),
+            title,
             sections=args.section,
             citation_paths=args.citation_path,
             include_title=args.include_title,
@@ -1292,12 +1314,14 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         store,
         version=args.version,
         source_xml=args.source_xml,
+        source_zip=args.source_zip,
         title=args.title,
         source_as_of=args.source_as_of,
         expression_date=expression_date,
         source_download_url=args.source_url,
         limit=args.limit,
         allowed_citation_paths=allowed_citation_paths,
+        prior_release_point=args.prior_release_point,
     )
     print(
         json.dumps(
@@ -1414,6 +1438,77 @@ def _uk_legislation_report_json(report: UKLegislationExtractReport) -> dict[str,
             for class_report in report.class_reports
         ],
     }
+
+
+def _cmd_extract_am_arlis(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_armenia_arlis(
+        store,
+        version=args.version,
+        manifest_path=args.manifest,
+        source_dir=args.source_dir,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "document_count": report.document_count,
+                "article_count": report.article_count,
+                "structural_count": report.structural_count,
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete else 2
+
+
+def _cmd_extract_il_openlaw(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_israel_openlaw(
+        store,
+        version=args.version,
+        manifest_path=args.manifest,
+        source_dir=args.source_dir,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "document_count": report.document_count,
+                "section_count": report.section_count,
+                "schedule_item_count": report.schedule_item_count,
+                "navigation_count": report.navigation_count,
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete else 2
 
 
 def _cmd_extract_nz_legislation(args: argparse.Namespace) -> int:
@@ -2496,6 +2591,7 @@ def _cmd_extract_california_code_sections(args: argparse.Namespace) -> int:
         request_delay_seconds=args.delay_seconds,
         timeout_seconds=args.timeout_seconds,
         request_attempts=args.request_attempts,
+        preserve_tables=args.preserve_tables,
     )
     print(
         json.dumps(
@@ -2995,6 +3091,12 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
     if adapter == "massachusetts-general-laws":
+        raw_ma_sections = options.get("only_sections", ())
+        ma_sections = (
+            (str(raw_ma_sections),)
+            if isinstance(raw_ma_sections, str | int | float)
+            else tuple(str(item) for item in raw_ma_sections or ())
+        )
         return extract_massachusetts_general_laws(
             store,
             version=version,
@@ -3004,6 +3106,7 @@ def _extract_state_statute_source(
             only_part=_optional_text(options.get("only_part")),
             only_title=only_title,
             only_chapter=_optional_text(options.get("only_chapter")),
+            only_sections=ma_sections,
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
@@ -3190,6 +3293,10 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             workers=_optional_int(options.get("workers")) or 8,
+            include_subunits=_optional_bool(options.get("include_subunits"), default=False),
+            include_publication_note=_optional_bool(
+                options.get("include_publication_note"), default=True
+            ),
         )
     if adapter == "montana-code":
         return extract_montana_code(
@@ -4133,6 +4240,7 @@ def _cmd_extract_illinois_admin_code(args: argparse.Namespace) -> int:
         source_as_of=args.source_as_of,
         expression_date=expression_date,
         only_title=args.only_title,
+        only_part=args.only_part,
         limit=args.limit,
         workers=args.workers,
         progress_stream=sys.stderr,
@@ -5463,6 +5571,8 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
         "Extract: international",
         (
+            "extract-am-arlis",
+            "extract-il-openlaw",
             "extract-uk-legislation",
             "extract-nz-legislation",
             "extract-nz-district-plan",
@@ -5660,6 +5770,11 @@ def build_parser() -> argparse.ArgumentParser:
     inventory_ecfr.add_argument("--only-title", type=int)
     inventory_ecfr.add_argument("--only-part")
     inventory_ecfr.add_argument(
+        "--include-appendices",
+        action="store_true",
+        help="Include supported part appendices; reject unsupported selected appendix shapes.",
+    )
+    inventory_ecfr.add_argument(
         "--section",
         action="append",
         default=[],
@@ -5716,6 +5831,11 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ecfr_cmd.add_argument("--only-title", type=int)
     extract_ecfr_cmd.add_argument("--only-part")
     extract_ecfr_cmd.add_argument(
+        "--include-appendices",
+        action="store_true",
+        help="Include supported part appendices and their source images; reject unsupported shapes.",
+    )
+    extract_ecfr_cmd.add_argument(
         "--section",
         action="append",
         default=[],
@@ -5740,7 +5860,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_usc_cmd.add_argument("--base", type=Path, required=True)
     extract_usc_cmd.add_argument("--version", required=True)
-    extract_usc_cmd.add_argument("--source-xml", type=Path, required=True)
+    extract_usc_source = extract_usc_cmd.add_mutually_exclusive_group(required=True)
+    extract_usc_source.add_argument("--source-xml", type=Path)
+    extract_usc_source.add_argument(
+        "--source-zip",
+        type=Path,
+        help=(
+            "Single-member OLRC USLM zip; retained byte-for-byte as the inventoried source "
+            "(under olrc/) instead of the extracted XML member."
+        ),
+    )
     extract_usc_cmd.add_argument("--title")
     extract_usc_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_usc_cmd.add_argument("--expression-date")
@@ -5762,6 +5891,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--include-title",
         action="store_true",
         help="Include the title-level provision when section filters are used.",
+    )
+    extract_usc_cmd.add_argument(
+        "--prior-release-point",
+        action="store_true",
+        help=(
+            "The source is a historical OLRC release point: set every row's source_url to "
+            "--source-url (the release point download) instead of the current prelim "
+            "reader page, which displays different text."
+        ),
     )
     extract_usc_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_cmd.set_defaults(func=_cmd_extract_usc)
@@ -5818,6 +5956,54 @@ def build_parser() -> argparse.ArgumentParser:
     extract_uk_cmd.add_argument("--expression-date")
     extract_uk_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_uk_cmd.set_defaults(func=_cmd_extract_uk_legislation)
+
+    extract_am_cmd = sub.add_parser(
+        "extract-am-arlis",
+        help="Extract hash-pinned Armenian legal acts from local ARLIS HTML snapshots.",
+        description=(
+            "Extract hash-pinned Armenian ARLIS statutes or regulations from local HTML "
+            "snapshots."
+        ),
+    )
+    extract_am_cmd.add_argument("--base", type=Path, required=True)
+    extract_am_cmd.add_argument("--version", required=True)
+    extract_am_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        required=True,
+        help="Manifest pinning Armenian ARLIS statutes or regulations and article counts.",
+    )
+    extract_am_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        required=True,
+        help="Directory containing the pinned local ARLIS HTML snapshots.",
+    )
+    extract_am_cmd.set_defaults(func=_cmd_extract_am_arlis)
+
+    extract_il_cmd = sub.add_parser(
+        "extract-il-openlaw",
+        help="Extract hash-pinned Israeli statutes from local ספר החוקים הפתוח HTML snapshots.",
+        description=(
+            "Extract hash-pinned Israeli consolidated statutes from local he.wikisource.org "
+            "OpenLaw HTML snapshots."
+        ),
+    )
+    extract_il_cmd.add_argument("--base", type=Path, required=True)
+    extract_il_cmd.add_argument("--version", required=True)
+    extract_il_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        required=True,
+        help="Manifest pinning Israeli statutes, expression dates, and structural counts.",
+    )
+    extract_il_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        required=True,
+        help="Directory containing the pinned local OpenLaw HTML snapshots.",
+    )
+    extract_il_cmd.set_defaults(func=_cmd_extract_il_openlaw)
 
     extract_nz_cmd = sub.add_parser(
         "extract-nz-legislation",
@@ -6432,6 +6618,14 @@ def build_parser() -> argparse.ArgumentParser:
     extract_california_sections_cmd.add_argument("--delay-seconds", type=float, default=0.25)
     extract_california_sections_cmd.add_argument("--timeout-seconds", type=float, default=60.0)
     extract_california_sections_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_california_sections_cmd.add_argument(
+        "--preserve-tables",
+        action="store_true",
+        help=(
+            "Render each table row as one 'cell | cell' line and keep repeated cells and "
+            "row labels. Off by default so existing scopes rerun unchanged."
+        ),
+    )
     extract_california_sections_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_california_sections_cmd.set_defaults(func=_cmd_extract_california_code_sections)
 
@@ -6542,6 +6736,10 @@ def build_parser() -> argparse.ArgumentParser:
     extract_illinois_admin_code_cmd.add_argument("--source-dir", type=Path)
     extract_illinois_admin_code_cmd.add_argument("--download-dir", type=Path)
     extract_illinois_admin_code_cmd.add_argument("--only-title")
+    extract_illinois_admin_code_cmd.add_argument(
+        "--only-part",
+        help="Part number or comma-separated part numbers within the selected title.",
+    )
     extract_illinois_admin_code_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_illinois_admin_code_cmd.add_argument("--expression-date")
     extract_illinois_admin_code_cmd.add_argument("--limit", type=int)

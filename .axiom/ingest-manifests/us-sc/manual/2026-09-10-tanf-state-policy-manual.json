@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "b7d4973bc3eac434eed4190095f9092ffe6bb5f48ddfbbfe6a57ec14f26ef616"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "228967bc70b97f17ff4dc3b43cb59aeeacf60e5f958b7b1a6b1457da36843a98"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/manual/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "6deeb8b87970da3cc20ac8e5a76d80b1682765861190e339eb0689b2054a8cb7"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-sc-dss-tanf-policy-manual-volume-67.pdf",
+      "sha256": "cac6566b74f52d7a880a79407c302a6d18e2b6a23c0e9eab0dc711b0cbecaae6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 408,
+    "missing_count": 0,
+    "provision_count": 408,
+    "source_count": 408
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:47:33.719327+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oKxfnFvDZnx6ZRI86+YCte1cJyiDsdTIL40ZgbexfoDhPMdpgquoP5l1zZvZ2oi353osd3qkLbZUthV/XvIqCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

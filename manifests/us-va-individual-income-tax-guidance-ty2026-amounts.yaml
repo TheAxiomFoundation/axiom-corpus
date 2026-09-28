@@ -1,0 +1,27 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-va-tax-deductions-ty2026
+  jurisdiction: us-va
+  document_class: guidance
+  title: Deductions (Virginia standard deduction amounts)
+  source_url: https://www.tax.virginia.gov/deductions
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-va/guidance/tax/ty2026/deductions
+  extraction:
+    html_content_selector: section#basic-content
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Taxation
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: null
+    amounts_carried:
+    - standard deduction ($8,750/$17,500)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.tax.virginia.gov/deductions
+    discovered_via: manual-review:tax-agent-queue; index https://www.tax.virginia.gov/deductions (read 2026-09-13)
+    source_note: Undated current page; the 760ES defers the standard deduction to the website.

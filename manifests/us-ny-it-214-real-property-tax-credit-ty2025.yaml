@@ -1,0 +1,53 @@
+version: 2026-09-23-ny-it-214-ty2025
+documents:
+- source_id: us-ny-tax-it-214-ty2025
+  jurisdiction: us-ny
+  document_class: form
+  title: Form IT-214, Claim for Real Property Tax Credit for Homeowners and Renters (2025)
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it214_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-09-23'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-214
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    form_number: IT-214
+    program: individual_income_tax
+    credit: real_property_tax_credit
+    statutory_authority: N.Y. Tax Law § 606(e)
+    tax_year: '2025'
+    pdf_modification_date: '2025-11-17'
+    tables_carried:
+    - Table 1 (line 9 rate by federal adjusted gross income)
+    - 'Table A: Taxpayers age 65 or older (line 20 credit amount)'
+    - 'Table B: Taxpayers under age 65 (line 20 credit amount)'
+    source_family: ny-real-property-tax-credit-ty2025
+    index_url: https://www.tax.ny.gov/forms/income_credit_forms.htm
+    discovered_via: PolicyBench r09 ingestion brief (2026-09-23); IT-214 listed on index https://www.tax.ny.gov/forms/income_credit_forms.htm (read 2026-09-23)
+- source_id: us-ny-tax-it-214-i-ty2025
+  jurisdiction: us-ny
+  document_class: form
+  title: Instructions for Form IT-214, Claim for Real Property Tax Credit for Homeowners and Renters (2025) (IT-214-I)
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it214i.pdf
+  source_format: pdf
+  source_as_of: '2026-09-23'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-214-i
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    form_number: IT-214-I
+    program: individual_income_tax
+    credit: real_property_tax_credit
+    statutory_authority: N.Y. Tax Law § 606(e)
+    tax_year: '2025'
+    pdf_modification_date: '2025-11-17'
+    source_family: ny-real-property-tax-credit-ty2025
+    index_url: https://www.tax.ny.gov/forms/income_credit_forms.htm
+    discovered_via: PolicyBench r09 ingestion brief (2026-09-23); IT-214-I linked from index https://www.tax.ny.gov/forms/income_credit_forms.htm (read 2026-09-23)

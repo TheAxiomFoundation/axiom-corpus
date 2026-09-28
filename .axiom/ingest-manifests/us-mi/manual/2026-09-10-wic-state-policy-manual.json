@@ -1,0 +1,505 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "fdefda34fd4526924b2f9f69e8307bf3bdf34ac7188bee85d078bfc6b50796c2"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "b665bc03791b2cdb2983ac4942a266f7249daf18e6c7dc71840767f22d11d991"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "745dcce634d2d6d3486ddcb96052e7d48e4ac33a3c50fad43757df022267629d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.01.pdf",
+      "sha256": "c657de7442bce43638ab8a01556f42bde8c4ec118cf732644087b722ed22ef25"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.02.pdf",
+      "sha256": "29f6f85c385d833f620f55bb2e4d5978f737191153d2d68a7f94ad4593c9b230"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.03.pdf",
+      "sha256": "6cc59dc8147372f578d20ce597db10cfbc826ae2ffd896a830719eed6d84b060"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.04.pdf",
+      "sha256": "43de6412b4bf64eea48dde8e338309498f55a628c492c5c0ccf4395bb6322c84"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.04a.pdf",
+      "sha256": "50209810986b3cf24f299ec3ba62e7e60a5f595c3aefd5dcafdc0397f8ec50ac"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.04b.pdf",
+      "sha256": "b364d9848a973d47e64c0cd184a59021cf1ed2d5f099ac79bfe07530d8d029d9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.04c.pdf",
+      "sha256": "5fed2d4f3d980fc04f1bcb42d971257ce74224f0b6117023e03e69b2f18bb117"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.05.pdf",
+      "sha256": "d1532ac6a0b51be4b604f90e97a49340a421d8f0f028393ce463aceb0c569b1c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.06.pdf",
+      "sha256": "25f4e06d032d425f7915834856efbb834a50d681124065213b0e936e32613acb"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.07.pdf",
+      "sha256": "2eafacc48ef89cd63da1acd83b31fed41d13276c266938d9c142babb214364c8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.08.pdf",
+      "sha256": "e1fd8e93e0d81a5983353b274dee2536c8168cb3900c89bea5d972336282dbe8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.09.pdf",
+      "sha256": "360643531355e09dfc74011dec3426eee498d0723240f65fc81345280eb9542b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.09a.pdf",
+      "sha256": "b95d0470d8d7de66d44bfbb644edbcfd0468f6f3ed26e4ec03c157c4b7ea7b7c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.10.pdf",
+      "sha256": "4d0f34120e949417c3041b1f2c5da6be89a3ae0e76cb97ba186aecd35adc2b11"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.10a.pdf",
+      "sha256": "8922de82a7b542005d16c344bb25c6e904a3d8772560b5e373cff160b222bdcf"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.11.pdf",
+      "sha256": "3ad4973416140e163084d01528b6c4eb1d8cdb5b3961610b7aeccedf3f20a2a2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-1.12.pdf",
+      "sha256": "53147f3f77dcb8e04e4699095a9c49cbcd5dcade83dd71ac1ba599bb0d10f733"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-10.01.pdf",
+      "sha256": "2d46d42038b7a9ed57df88fdd64de0a9f8f0cf4ce11d5d9e04200e9f3dd948c1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-10.02.pdf",
+      "sha256": "a33aef8906467a9a7dace3a74bcf86841368918b48a3de146c55ef52b96bf319"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-10.02a.pdf",
+      "sha256": "b8546fcc51c013e50a3e7914519b78385dbbc7c5bb17291e4c981e934de1ffa8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-10.03.pdf",
+      "sha256": "607a226f261739d481cb178135ac0eef754c7bf48882ae28757386833cdc6468"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-10.03a.pdf",
+      "sha256": "e591b3aeec082161f1a59552b33aa3f2f01bc47006f0145a1181e01452039c41"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-11.01.pdf",
+      "sha256": "acb49e336eb3d969e3bf98f11c0a6342aa8a4fdb186fbf70f97109b485e5d4e0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-11.02.pdf",
+      "sha256": "ce13c26de6c2538d91aba84b5fd1948db6bea3c7c0371b17fe03d55ede1acc5c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-11.03.pdf",
+      "sha256": "2304f5627c2c8d4c1cee4cecde451cee2b7045fc4152d3c60697a346234638a4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-12.01.pdf",
+      "sha256": "68e304fe59c7271467cab73c6225c56d8cad3d5cdfabab6dc3061e88c4712926"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-12.02.pdf",
+      "sha256": "fea421626d3eb4793baffa6a57a592b13b40bcf243d56b5aaee9c17dcba0f1e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.01.pdf",
+      "sha256": "4e414221dba6a144134b7306453f427f7a84c9ab015cd611bcf28336ab8d915c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.02.pdf",
+      "sha256": "4211896205c58229a26b2269132c6f41adbe2340bb2bcda9e74a02c85c65299e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.03.pdf",
+      "sha256": "0d0eef23f3aa0c98bebb6ff8c2ec93be5a59076f71f20175a74becce3513aab4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.04.pdf",
+      "sha256": "1909de8f88047d147415cc9acc5d155cc5eedc4206f632e02e7e2bb392d972d3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.04a.pdf",
+      "sha256": "1471c3437de9016dfb9910943386493229859313fd9fd6f56c9867ecdeb541b3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.05.pdf",
+      "sha256": "b0c0ff1402edd05c52a2a1f37e1813ab3ec0a4b4244cb8ded37ea582aaea9817"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.06.pdf",
+      "sha256": "a551f7c4549fe2bf3572b043c3bd453d980bbb9432dc6abf3d2de965f46820f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.07.pdf",
+      "sha256": "eefaa8d6ff2c3c8a43518d3ca376b4062ec8073538c6cb24155c7c2b9d0236bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.08.pdf",
+      "sha256": "0b5f77321f7418ef118f6b9aaf694274fc3e5b84f485f1be8a0bfaf084428b22"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.09.pdf",
+      "sha256": "8b67e6f41b6b885f2a31f8caa2c60e0586fc6c2e047bdcc220cbf1c8c111cfad"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.10.pdf",
+      "sha256": "a56bfec5e8401f38ed53efa8ef4e0811cf4826cee38fe0a03bc0dc8eec8de1bd"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.11.pdf",
+      "sha256": "a8f4e255b2f37e31d7df318873e1f5e179eb5f3856740493992ea6a9ec0ec3a0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.12.pdf",
+      "sha256": "dd82363c965d20065fb10796d93a47f401966dfb5b424ad0bc9b7fbcbc0287a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.13.pdf",
+      "sha256": "8ce7a3ae67f61ba94595eeffbde13a69f14a6fb1e585a732d8c93762dfbdc89e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.13a.pdf",
+      "sha256": "e042fe16b7a01df0c70cff53abbf31b8acf49ff19ccdc21f500b45c356c69350"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.13b.pdf",
+      "sha256": "b217c6bfc73ca4aeac506790a4600f45bee2132b4c4e7a14eab87efbccfeecc8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.15.pdf",
+      "sha256": "139ea79dc19dd2eb17f36984f127a9fe8142fb955bd6ae73dd82c372b03ce2a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.16.pdf",
+      "sha256": "4d13dc872a3dedf43500c9aedbe2ad5ac23b6b903356de32a98f1a5da67c9176"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.17.pdf",
+      "sha256": "bae63ba2cc90cb2bc47a372454fba699927c5dbc5eb3a1b60af5d23b2390ece8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.18.pdf",
+      "sha256": "724c6e17788df64ab3b44ddf301523d6b059e4ebb806f3edefde76353e39030c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.19.pdf",
+      "sha256": "a8dd12cd726c8e2bfd0df8a00c3fb3037bb2c53b908c0fd64808752e028f3fa0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.20.pdf",
+      "sha256": "e4c01657fd1de87a354adc9d388e18aec91590ccedcd415d71d1fdbdc3660c1a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.21.pdf",
+      "sha256": "83fdb1e6625560113364f4709eb4861650bd44a22c3866c6e1baae7b194153c2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.22.pdf",
+      "sha256": "341e75a05d1c728d2afabdaee2b88a6c6fae0a53cbd69a8a2a0024784f1aff78"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.22a.pdf",
+      "sha256": "4fb2a5bf4ce21e30aa959990ddbedc8abc00e03b26b9e2aebcad061fb527d3f0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.23.pdf",
+      "sha256": "60e267c0cf195d359fb8e3ef581977afe6bc7bd4ecd6c4200175d5e885494624"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-2.24.pdf",
+      "sha256": "9cc0440ea46b5138fae417382935c10b988f71d7c4ec466e85a4fba55553ed72"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-3.01.pdf",
+      "sha256": "32892464e7547a021f34e1889feabc815cdf97379ab1865a179268cefb77f150"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-3.02.pdf",
+      "sha256": "48de87220694aa064f3bb463f83c49c84e181cd2dc2329906f5b0225423921e3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-3.02a.pdf",
+      "sha256": "f11b03fd8fa0bd8117d766d09eb14ba9cbad27e4139d902767d6681e2308dcdd"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-3.03.pdf",
+      "sha256": "17bbfbcf5e1d1c2682d9b6222e50f053ca55a01acf3d0e475897c878de4f2351"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-3.04.pdf",
+      "sha256": "324ac352ae3f62115a247185ee723ee31325d3724b2944a566a276e7d3ad7c97"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-4.01.pdf",
+      "sha256": "0ce6b15f40cac613b5b28f566f741527e0b12a856dc09e712312b84fa141fda8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-4.02.pdf",
+      "sha256": "2114e56b2aa4ef5995f070022fd3965f343fdf459f97f2d4c35340086a3ad5d7"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-4.03.pdf",
+      "sha256": "2fdc9cac53348bee8a14c26d6038886e9ef68c030ca6c892356d4138f5662b4b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-4.04.pdf",
+      "sha256": "db0191affb4c08c0110c32507e21ae9bebf9ea847a27c69a6c431dde5cec4150"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-4.05.pdf",
+      "sha256": "a8ab309fb0a67a58a3764c4a54735d334d062a02bf8d60af0e00a7e53d08e8b7"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-4.06.pdf",
+      "sha256": "f67e4cba676ba865963c939fbbe2caf70019445c578e331879ba85ce83c16eaa"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.01.pdf",
+      "sha256": "b0f9ecc1275a3f28803451319de0bf5a9d3eb2df7ae80ce5c3134995d4ace7b9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.01a.pdf",
+      "sha256": "ae1e1802275439abc0d8905e935b13988ebe3b4fac3b8b600b7b92a25d16d649"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.01d.pdf",
+      "sha256": "032f169367311cc5bef238a947692756ea27d14db1bc09cb176d94f9902fb47f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.01e.pdf",
+      "sha256": "21b0f653f909bdfd1ec099739846fd74af5fab6715c231d12b841dde8b8ba30b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.02.pdf",
+      "sha256": "a05b0b19ee720c0914b28de126e8e7ee3607fc19f2745e45585ce22ade29bd0d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.03.pdf",
+      "sha256": "f7b4ba2b626374cb22341e4b73368f3a88f975bbb5f5a1097a2254cfd86aec64"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.04.pdf",
+      "sha256": "d298b2ffd46f8420e51d2f5745dbbd1cdfe5f1cecccea816fdf764d0fa13b1ef"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.05.pdf",
+      "sha256": "dd8b32c13ccdce0036fcb46a29500231ba318831e6fe8aaf41f7bb7d6b2ee5af"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.05a.pdf",
+      "sha256": "a6ab6f792d1951f5a22169cd92d4caf297b57bc11ef6b614f6a952896d84f6e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-5.06.pdf",
+      "sha256": "0ca30165cf3a88709ecc3fa26e3f4da13364bdb48674f5d9f649c54f5745118f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.01.pdf",
+      "sha256": "6d20d82637926a59298f2f61c28ac3788164acd870d5035b27d40dbf19a53041"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.02.pdf",
+      "sha256": "e58fe6f9b7a027c3021e8ff7e3be1aa05586925d4e54021be89119d6c1d89b61"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.03.pdf",
+      "sha256": "4f1dbb1746141423324ecf6161bb0f689ec4590e90b69409e1fc8db78ab956e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.04.pdf",
+      "sha256": "d7d108f1f5142b9c51772088e69c9a026e199946acdf394b8652971a99db2430"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.04a.pdf",
+      "sha256": "bf708999191ccd5fe3f9f1536609a586bfd3c918cc075cf191135c54d23bf52e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.05.pdf",
+      "sha256": "1e3630cfe20f49f1fa24643497742f28820b8667c2c07c01c17523d64db6b86c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.06.pdf",
+      "sha256": "3a4395208b3fc09f77a52c7e40388461e2d3fa61f45a9ce25dda1e268eb960c6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-6.06a.pdf",
+      "sha256": "977b7c37ad9945a41717fe0d378ef72424b55693cb12e1a520a7957953957c20"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-7.01.pdf",
+      "sha256": "71faa12054cf15403ce806404ff43396902f48934d092987a98ddc30f945cf09"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-7.02.pdf",
+      "sha256": "8bb6562c661ca09c397ac7c4e4887ff3ef04f997e9c9ce7560ef045d6306dcc6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-7.03.pdf",
+      "sha256": "81e9df5b813a3758839de231514308eec2704f99e96dff5eb1aa0c4f13108516"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-7.03a.pdf",
+      "sha256": "51af2fcc7f3a14e187fc3df6767b17719abc65234f83f261b70954b848949f35"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-7.03b.pdf",
+      "sha256": "c1f4eeb74580502dfc9f566f87c962e0844cfa325c50b8d5e31da202f0bb5c7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-7.04.pdf",
+      "sha256": "15befbd1bf7ab4058a322f6304e64e2a89f63e0bb429f6405769871d4c80d88a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.01.pdf",
+      "sha256": "245ada18872d465bc0d1560ab5ad8b3b44e204fc69aa4007e19b8686a4a727ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.02.pdf",
+      "sha256": "708408d179e8a66d6375e903bc0184c9d4c31cd738aa5f2c77676989f0acace5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.03.pdf",
+      "sha256": "4093ec1feb985f54b6fc18e14d2b81cc206d44fdefe3a4aab90655da4d0bd3f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.04.pdf",
+      "sha256": "a6e02cbe02183328b607ed53967bffdf8f85067aedbdf0e147d1de75f21439b4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.05.pdf",
+      "sha256": "28c2b291577cb4f7994981537962a761f598d027a4de8d99f4226c0e4062d1c1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.06.pdf",
+      "sha256": "b05c57c0f1fa706003defc2fe03fd721e5044127470fd7c376b5b95bd2374275"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.07.pdf",
+      "sha256": "8b7ed1ccea8d4dd4e909bd97fffcd3661e7a1563599d540e74074fd5f83b1681"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.08.pdf",
+      "sha256": "8d0b0e2238851c8f5141d42301197474bc93c0bbd1bf7b7a5f6e650fa32ae464"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.08a.pdf",
+      "sha256": "2e4497fc7a7b406695c69720ebb1bf7991d5f190272599d429128731848c7707"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.09.pdf",
+      "sha256": "1bb8f35b4e51055d55e3cbc8258fb54700596f367688e2bb4e359240646a3061"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.09a.pdf",
+      "sha256": "b55312bbb5e9f466a3f0cdb79e8a426fa3fb067967d8cb3303f98746e10feef9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-8.10.pdf",
+      "sha256": "579d9fed614cdc1e36cde36a179bf49a9f931a2f3894d1cfc958a5acef9fc3e4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.01.pdf",
+      "sha256": "ab196cfc7e9bfc2d4a05194170afcb2f0b617cd77db4f55081dc7911900a6d7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.01a.pdf",
+      "sha256": "f666d1a1c3f112d8759ff5585a8632c969e4ad1be2e6359aadd9a69c9e3e98b3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.01b.pdf",
+      "sha256": "e33957b26195896e0ca6f1ae7d28c1c6bb47fa7b412e789183bf7b4e3abf739a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.01c.pdf",
+      "sha256": "0e0920d79eec6c5869dfab8fc00e433bd8444c9347cb45182033cc5fd039ee8b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.02.pdf",
+      "sha256": "e706ff3d1bb1bd73a08e2343a11cee7606547316c5edb16fc19641667443252b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.02a.pdf",
+      "sha256": "3df3c6e392b8831423fc743ce5904d7f8659801d87872b2ade34d8c6afeb817f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.02b.pdf",
+      "sha256": "7271c2fa03c093a301e66869d955e29a8cda20d0cccc310cc4006fc80ec2e90c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.02c.pdf",
+      "sha256": "96fbee25f0048a29e4c137ee8fa25770962ac10214728638a585df3ccd698cfa"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.02d.pdf",
+      "sha256": "c36d275d55361856879f8645b38a7438deba6ccfadfc931ff1c28594b43d06ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.02f.pdf",
+      "sha256": "6a53ef583885aa0f091b0657fb1a9a31ef9d591373f7851e9df5db31791239eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.03.pdf",
+      "sha256": "99386d7ebf251d4a21d1d5f3bc6937b711b73f1273bd94ed7339bd1118f39e21"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.03a.pdf",
+      "sha256": "10c5c5148acddfc7e05b3f93c32d0e663a73f92a8ff651e7beb7405d0072e740"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.03b.pdf",
+      "sha256": "7348c9d62415dbd53054e14c121a42b1b26412a3865781880e3af5ebca6ebd90"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-09-10-wic-state-policy-manual/official-documents/us-mi-wic-manual-9.03c.pdf",
+      "sha256": "5074d07b73310a79ccca74f3fcffbb5207f28199ba1c99dd96a589906a329584"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-mi-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 230,
+    "missing_count": 0,
+    "provision_count": 230,
+    "source_count": 230
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:59:58.895411+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bLDDtpqrZS/iZqlEvoIXR3NgadlfYAiMa5G7OsQV+rr0RbujPf2b5WhcCXj/uX5Z925D0ez0F6Uza8rKqIiRBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

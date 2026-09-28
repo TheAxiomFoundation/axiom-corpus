@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-liheap-statute-chapter-94-title-42.json",
+      "sha256": "5be3948cdeb0234c1679af736f333beba511da362eb0a4fd28f85db8b4d608d0"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-liheap-statute-chapter-94-title-42.json",
+      "sha256": "b17e51d8ce8b9740386bfcc86ca1f4106fd10ff86259d3b477a198cd883bb33a"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-liheap-statute-chapter-94-title-42.jsonl",
+      "sha256": "0f4205b1e26e266b6617a02de6ac2d7551aee617fecd516a785bb76fc8a7b122"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-liheap-statute-chapter-94-title-42/olrc/xml_usc42@119-103.zip",
+      "sha256": "28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-liheap-statute-chapter-94-title-42 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 269,
+    "missing_count": 0,
+    "provision_count": 269,
+    "source_count": 269
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:55:39.063570+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "J602pvXY5HZT127gHwTCpO2RCjIsUkkRmk5ncyo4uBP2ODjiKTPwIxAPP1q+OLQ/iLC/+lqy04lNS8MgwkuuCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-liheap-statute-chapter-94-title-42"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206.json",
+      "sha256": "0e337760b6494656bddbb29f835bf0b516231fd0dff7675417b8dc161a64e5ff"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206.json",
+      "sha256": "d4662e0b42b810988a26807fcb0eb19326b7c3971dc9ffca4a9077d76cddf88d"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206.jsonl",
+      "sha256": "73e01374b725d6c00c2d87ed86974667a1befda93b6dfdeaff3f69620dd9d2bc"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206/michigan-mcl-chapter-xml/chapter-206.xml",
+      "sha256": "d052a0f49d409b637373225722207e35d66bdf3e7ae7592b3b12696c8a7d446c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206/michigan-mcl-index-html/index.html",
+      "sha256": "cdbc4ff9e0da4087d22dcad440675979a7a5c8329eeb945366a84b7a8953450d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-us-mi-chapter-206 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 308,
+    "missing_count": 0,
+    "provision_count": 308,
+    "source_count": 308
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T16:52:52.728871+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CAaSus8B2AqQRzsmZNxhhdusOObp5aIH/Ni9xWE7tU35F/t5u+Tr9zfsznsUScoKfRiohu7XPFZNs4r6NjWbAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-us-mi-chapter-206"
+}

@@ -1,0 +1,608 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ca-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 20
+    index_records_total: 20
+- source_id: us-ca-cms-chip-state-plan-spa-ca-25-0024-chip-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-25-0024-CHIP: Approval Package (approved July 8, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA-25-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-25-0024-chip/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-25-0024-CHIP
+    cms_node_id: '193886'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=193886
+    approval_date: '2026-07-08'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, California demonstrates compliance with section 5121 of the Consolidated Appropriations Act,
+      2023 (CAA, 2023) by modifying CHIP eligibility requirements for the treatment of incarcerated youth and providing pre-release
+      services to eligible juveniles.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-24-0012-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-24-0012: Approval Package (approved April 17, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA-24-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0012
+    cms_node_id: '178871'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=178871
+    approval_date: '2025-04-17'
+    effective_date: '2025-01-01'
+    summary: This amendment implements a CHIP Health Services Initiative (HSI) to improve the health of low-income children
+      by increasing their access to needed vision screenings, vision services, and glasses through a targeted, school-based
+      initiative.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-24-0046-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-24-0046: Approval Package (approved July 10, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA-24-0046.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0046/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0046
+    cms_node_id: '167541'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=167541
+    approval_date: '2024-07-10'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023). In California,
+      this provision applies to the targeted low-income children and from-conception-to-end-of-pregnancy (FCEP) populations.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-24-0008-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-24-0008: Approval Package (approved April 10, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA-24-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0008/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-24-0008
+    cms_node_id: '164796'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=164796
+    approval_date: '2024-04-10'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing. Additionally, this SPA documents the state’s compliance with the longstanding
+      requirement to cover children’s vaccines under current regulations at 42 CFR §§ 457.410(b)(2) and 457.520(b)(4), which
+      requires states to cover age-appropriate vaccines in accordance with the recommendations of the ACIP without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-22-0068-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-22-0068: Approval Package (approved December 27, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA-22-0068.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-22-0068/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0068
+    cms_node_id: '143726'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=143726
+    approval_date: '2022-12-27'
+    effective_date: '2022-07-01'
+    summary: Through this SPAs, California reduces the amount for premiums and subscriber contributions to $0 and updates
+      the CS21.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-22-0033-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-22-0033: Approval Package (approved September 1, 2022, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA-22-0033.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-22-0033/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0033
+    cms_node_id: '139596'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139596
+    approval_date: '2022-09-01'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-22-0031-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-22-0031: Approval Package (approved May 25, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-22-0031.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-22-0031/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-22-0031
+    cms_node_id: '136061'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=136061
+    approval_date: '2022-05-25'
+    effective_date: '2022-04-01'
+    summary: This SPA provides California with approval to provide 12 months of continuous postpartum coverage to individuals
+      enrolled in its separate CHIP program.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-21-0032-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-21-0032: Approval Package (approved September 14, 2021, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-21-0032.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-21-0032/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-21-0032
+    cms_node_id: '126251'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=126251
+    approval_date: '2021-09-14'
+    effective_date: '2020-07-01'
+    summary: This amendment implements a health services initiative (HSI) to to provide comprehensive coverage during the
+      12-month postpartum period for women whose newborns had been covered as targeted low-income children from conception
+      to birth.
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-19-0036-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-19-0036: Approval Package (approved August 20, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-19-0036.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-19-0036/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-19-0036
+    cms_node_id: '4051'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4051
+    approval_date: '2019-08-20'
+    effective_date: '2019-07-01'
+    summary: Demonstrates compliance with the CHIP managed care regulations.
+    topics:
+    - Current State Plan
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-14-0004-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-14-0004: Approval Package (approved March 18, 2019, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-14-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-14-0004/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-14-0004
+    cms_node_id: '4016'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=4016
+    approval_date: '2019-03-18'
+    effective_date: '2013-10-01'
+    summary: Incorporates the Modified Adjusted Gross Income based eligibility application processing, eligibility screening,
+      and enrollment provisions.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-cspa-19-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-CSPA-19: Approval Package (approved September 7, 2012, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-CSPA-19-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-cspa-19/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-CSPA-19
+    cms_node_id: '1986'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1986
+    approval_date: '2012-09-07'
+    effective_date: '2003-06-01'
+    summary: Proposing to eliminate the Dental Benefit Cap, initiate an Oral Health Initiative, expand the County Children's
+      Health Initiative Program (C-CHIP) program in San Mateo County and remove Alameda County.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-cspa-17-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-CSPA-17: Approval Package (approved July 29, 2010, effective November 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-CSPA-17-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-11-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-cspa-17/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-CSPA-17
+    cms_node_id: '1516'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1516
+    approval_date: '2010-07-29'
+    effective_date: '2009-11-01'
+    summary: Increase cost sharing and limit dental plan choices for enrollees in certain counties.
+    topics:
+    - Cost Sharing
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-cspa-14-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-CSPA-14: Approval Package (approved January 14, 2010, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-CSPA-14-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-cspa-14/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-CSPA-14
+    cms_node_id: '1286'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1286
+    approval_date: '2010-01-14'
+    effective_date: '2003-06-01'
+    summary: Increases premiums, establishes a dental benefit cap, modifies vision benefits.
+    topics: &id002
+    - Premiums
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-cspa-14-final-approved-state-plan
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-CSPA-14: Final Approved State Plan (approved January 14, 2010, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-CSPA-14-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-cspa-14/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CA-CSPA-14
+    cms_node_id: '1286'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1286
+    approval_date: '2010-01-14'
+    effective_date: '2003-06-01'
+    summary: Increases premiums, establishes a dental benefit cap, modifies vision benefits.
+    topics: *id002
+    link_label: Final Approved State Plan
+- source_id: us-ca-cms-chip-state-plan-spa-ca-cspa-15-approval-package
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-CSPA-15: Approval Package (approved December 29, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-CSPA-15-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-cspa-15/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: CA-CSPA-15
+    cms_node_id: '2151'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2151
+    approval_date: '2009-12-29'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion; shifting Medicaid presumptive eligibility costs.
+    topics: &id003
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ca-cms-chip-state-plan-spa-ca-cspa-15-final-approved-state-plan
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP SPA CA-CSPA-15: Final Approved State Plan (approved December 29, 2009, effective April 1, 2009)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-CSPA-15-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-04-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/spa/ca-cspa-15/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CA-CSPA-15
+    cms_node_id: '2151'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2151
+    approval_date: '2009-12-29'
+    effective_date: '2009-04-01'
+    summary: CHIPRA Section 214 - Lawfully Residing Expansion; shifting Medicaid presumptive eligibility costs.
+    topics: *id003
+    link_label: Final Approved State Plan
+- source_id: us-ca-cms-chip-state-plan-compiled-factsheet
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP compiled state plan: Factsheet (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CACurrentFactsheet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/compiled/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: CA
+    cms_node_id: '1711'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1711
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan and Factsheet.
+    topics: &id004
+    - Current State Plan
+    - State Plan Factsheet
+    link_label: Factsheet
+- source_id: us-ca-cms-chip-state-plan-compiled-current-state-plan
+  jurisdiction: us-ca
+  document_class: policy
+  title: 'California CHIP compiled state plan: Current State Plan (approved August 1, 2003, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CACurrentStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ca/policy/cms/chip-state-plan/compiled/current-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: California
+    source_discovery_group: us-ca/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: CA
+    cms_node_id: '1711'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1711
+    approval_date: '2003-08-01'
+    effective_date: '2003-06-01'
+    summary: Current CHIP State Plan and Factsheet.
+    topics: *id004
+    link_label: Current State Plan

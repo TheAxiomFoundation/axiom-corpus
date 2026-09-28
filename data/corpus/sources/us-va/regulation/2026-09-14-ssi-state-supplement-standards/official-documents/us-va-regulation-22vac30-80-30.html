@@ -1,0 +1,490 @@
+    <!-- #region Login -->
+    <!-- #endregion -->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head id="Head1">
+		    <title>22VAC30-80-30. Basic services  in an assisted living facility or an adult foster care home.</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link rel="apple-touch-icon" href="./images/favicon-law16.png" sizes="16x16" />
+		<link rel="apple-touch-icon" href="./images/favicon-law32.png" sizes="32x32" />
+        <script src="/Scripts/session.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/Content/base.css" type="text/css" media="all" />
+		<!--[if lt IE 9 ]><link rel="stylesheet" href="./Content/720_grid.css" type="text/css" /><![endif]-->
+		<link rel="stylesheet" href="/Content/720_grid.css" type="text/css" media="screen and (min-width: 720px)" />
+		<link rel="stylesheet" href="/Content/986_grid.css" type="text/css" media="screen and (min-width: 986px)" />
+		<link rel="stylesheet" href="/Content/1236_grid.css" media="screen and (min-width: 1236px)" />
+		<link rel="stylesheet" href="/Content/font-awesome.min.css" />
+		<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css' />
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT Serif:r,i,400,700" />
+		
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300,300italic,400italic,700italic' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="/Content/jquery.fancybox.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="/Content/jquery.qtip.min.css" type="text/css" media="all" />
+		
+    <meta name='title' content='Title 22. Social Services' /><meta name='VACtitle' content='Title 22. Social Services' /><meta name='agency' content='Agency 30. Department For Aging And Rehabilitative Services' /><meta name='docid' content='2203000800030' /><meta name='collection' content='Virginia Administrative Code' />
+
+		<style type="text/css">.fancybox-margin {margin-right: 0px;}</style>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6YYKCXH17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-F6YYKCXH17');
+        </script>
+        <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+        <script src="/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $('document').ready(function () {
+                $('#print').attr("aria-label", "Print Button");
+                $('#txtsearch-in').attr("aria-label", "Search within the current selection");
+                
+                $("#mobile-menu-toggle").click(function () {
+                    $("#section-menu").toggleClass("open");
+                    $(".mobile-overlay").toggleClass("open");
+                });
+
+                $(".mobile-overlay").click(function () {
+                    $("#section-menu").removeClass("open");
+                    $(".mobile-overlay").removeClass("open");
+                });
+            });
+        </script>
+        <script>
+            $(function () {
+                var searchList = document.getElementById("searchList");
+                if (!searchList.length) {
+                    return;
+                }
+
+                var path = (window.location.pathname || "").toLowerCase();
+                var selectedValue = "all";
+                document.getElementById("searchList").value = "LAW";
+
+                if (path.includes("/admincode")) {
+                    selectedValue = "admin";
+                    document.getElementById("searchBtn").value = "Administrative_Code";
+                } else if (path.includes("/constitution")) {
+                    selectedValue = "constitution";
+                    document.getElementById("searchBtn").value = "Constitution";
+                } else if (path.includes("/vacode")) {
+                    selectedValue = "code";
+                    document.getElementById("searchBtn").value = "Code_of_Virginia";
+                } else if (path.includes("/charters")) {
+                    selectedValue = "charters";
+                    document.getElementById("searchBtn").value = "Charters";
+                } else if (path.includes("/authorities")) {
+                    selectedValue = "authorities";
+                    document.getElementById("searchBtn").value = "Authorities";
+                } else if (path.includes("/compacts")) {
+                    selectedValue = "compacts";
+                    document.getElementById("searchBtn").value = "Compacts";
+                } else if (path.includes("/uncodifiedacts")) {
+                    selectedValue = "uncodified";
+                    document.getElementById("searchBtn").value = "Uncodified_Acts";
+                }
+
+                searchList.querySelectorAll("option").forEach(function(option) {
+                    option.selected = false;
+                });
+                var selectedOption = searchList.querySelector('option[value="' + selectedValue + '"]');
+                if (selectedOption) {
+                    selectedOption.selected = true;
+                }
+            });
+        </script>
+	</head>
+
+<body>
+    <input aria-hidden="true" type="text" style="width:0;height:0;visibility:hidden;position:absolute;left:0;top:0" /> 
+    <input aria-hidden="true" type="password" style="width:0;height:0;visibility:hidden;position:absolute;left:0;top:0" />
+    <input aria-hidden="true" type="hidden" id="hidSignIn" value="0" />
+    
+    
+    <div class="mobile-overlay"></div>
+    <div class="top-bar"></div>
+    <header>
+        <nav>
+            <div class="lis-links-content full">
+                <ul>
+                    <li><a href="https://virginiageneralassembly.gov/">Virginia General Assembly</a> /</li>
+                    <li><a href="https://help.lis.virginia.gov">LIS Learning Center</a> /</li>
+                    <li><a href="https://lis.virginia.gov/privacy">Privacy Policy</a> /</li>
+                    <li><a href="https://lis.virginia.gov">LIS home</a> /</li>
+                    <li><a href="https://lis.virginia.gov/register-account">Register Account</a> /</li>
+                    <li><a href="https://lis.virginia.gov/login">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="grid-wrapper one-and-three halves">
+        
+			<a href="https://lis.virginia.gov" id="logo-link">
+				<img alt="LIS Logo" src="/images/lis_logo.png" /> 
+			</a>
+		
+        <div class="portal-links">
+            <ul>
+                <li>
+                    <a class="txt-blue" href="https://lis.virginia.gov">Session Information</a>
+                </li>
+                <li>
+                    <a class="txt-dark-blue" href="https://lis.virginia.gov/bill-search">Bills & Resolutions</a>
+                </li>
+                <li>
+                    <a class="txt-green" href="https://budget.lis.virginia.gov/default/2025/1">State Budget</a>
+                </li>
+                <li>
+                    <a class="txt-light-green" href="https://law.lis.virginia.gov/">Virginia Law</a>
+                </li>
+                <li>
+                    <a class="txt-orange" href="https://rga.lis.virginia.gov/">Reports to the General Assembly</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu">
+            <i id="mobile-menu-toggle" class="fa fa-bars"></i>
+        </div>
+    </div>
+        
+        
+        <div class="va-law">
+            <div class="grid">
+                <div class="row">
+                    <div class="slot-0-1-2">
+                        <h1><a href="https://law.lis.virginia.gov">Virginia Law</a></h1>
+                    </div>
+                    <div class="slot-3-4-5">
+                        <div class="input-group .search-comp ">
+                            <div class="input-group-btn">
+                                <label for="searchList" class="sr-only">Select Search Type</label>
+                                <select id="searchList" name="searchTypeSelect" class="btn input-sm btn-default dropdown-toggle" aria-label="Select Search Type">
+                                    <option value="all">All</option>
+                                    <option value="code">Code of Virginia</option>
+                                    <option value="admin">Administrative Code</option>
+                                    <option value="constitution">Constitution</option>
+                                    <option value="charters">Charters</option>
+                                    <option value="authorities">Authorities</option>
+                                    <option value="compacts">Compacts</option>
+                                    <option value="uncodified">Uncodified Acts</option>
+                                </select>
+                            </div>
+                            <input aria-label="search input" type="text" id="txtSearch" class="form-control input-sm" placeholder="Search" />
+                            <span class="input-group-btn">
+                                <button aria-label="search button" class="btn btn-sm btn-default" id="searchBtn" type="submit" value="LAW">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="grid">
+            
+	<!-- #region Variables -->
+	<!-- #endregion -->
+	<!-- #region Highlights -->
+	<!-- #endregion -->
+	<!-- #region Build Pages -->
+	<!-- #endregion -->
+
+
+<body class="flipcol  ">
+	<input type="hidden" id="hidST" />
+    <input type="hidden" id="hidToC" value="1" />
+    <input type="hidden" id="hidID" />
+	<input type="hidden" id="hidReg" value="false" />
+	<input type="hidden" id="hidReport" value="0" />
+	<input type="hidden" id="hidSegments" value="22/30/80/30" />
+    <input type="hidden" id="hidPage" value="admincode" />
+    <input type="hidden" id="vacSection" value="22VAC30-80-30" />
+    <input type="hidden" id="bodyWOAnchor" value="&lt;p class=sectind&gt;A. The rate established under the  AG for the ALF setting shall cover the following services: &lt;/p&gt;&lt;p class=sectbi&gt;1. Room and board. &lt;/p&gt;&lt;p class=sectbi2&gt;a. A furnished room in accordance with  22VAC40-73-750; &lt;/p&gt;&lt;p class=sectbi2&gt;b. Housekeeping services based on the needs of the individual; &lt;/p&gt;&lt;p class=sectbi2&gt;c. Meals and snacks provided in accordance with  22VAC40-73-590, including food service, nutrition, number and timing of meals, observance of religious dietary practices, special diets, menus for meals and snacks, and emergency food and water. A minimum of three well-balanced meals shall be provided each day. When a diet is prescribed for an individual by his physician, it shall be prepared and served according to the physician&#39;s orders. Basic and bedtime snacks shall be made available for all individuals desiring them and shall be listed on the daily menu. Unless otherwise ordered in writing by the individual&#39;s physician, the daily menu, including snacks, for each individual shall meet the guidelines of the U.S. Department of Agriculture&#39;s Food  guidance system or the dietary allowances of the Food and Nutritional Board of the National Academy of Sciences, taking into consideration the age, sex, and activity of the resident. Second servings shall be provided, if requested, at no additional charge. At least one meal each day shall include a hot main dish; and&lt;/p&gt;&lt;p class=sectbi2&gt;d. Clean bed linens and towels as needed by the individual and at least once a week. &lt;/p&gt;&lt;p class=sectbi&gt;2. Maintenance and care. &lt;/p&gt;&lt;p class=sectbi2&gt;a. Minimal assistance as defined in  22VAC40-73-10 with personal hygiene including bathing, dressing, oral hygiene, hair grooming and shampooing, care of clothing, shaving, care of toenails and fingernails or arranging for such assistance if the resident&#39;s medical condition precludes facility from providing the service, arranging for haircuts as needed, and care of needs associated with menstruation or occasional bladder or bowel incontinence that occurs less than weekly; &lt;/p&gt;&lt;p class=sectbi2&gt;b. Medication administration as required by licensing regulations including insulin injections; &lt;/p&gt;&lt;p class=sectbi2&gt;c. Provision of personal toiletries including toilet paper; &lt;/p&gt;&lt;p class=sectbi2&gt;d. Minimal assistance with the following: &lt;/p&gt;&lt;p class=sectbi2&gt;(1) Care of personal possessions; &lt;/p&gt;&lt;p class=sectbi2&gt;(2) Care of the personal needs allowance and personal funds if requested by the individual and provider policy allows this practice, and in compliance with  22VAC40-73-80 and  22VAC40-73-90;&lt;/p&gt;&lt;p class=sectbi2&gt;(3) Use of the telephone; &lt;/p&gt;&lt;p class=sectbi2&gt;(4) Arranging nonmedical transportation; &lt;/p&gt;&lt;p class=sectbi2&gt;(5) Obtaining necessary personal items and clothing; &lt;/p&gt;&lt;p class=sectbi2&gt;(6) Making and keeping appointments; and&lt;/p&gt;&lt;p class=sectbi2&gt;(7) Correspondence; &lt;/p&gt;&lt;p class=sectbi2&gt;e. Securing health care and transportation when needed for medical treatment; &lt;/p&gt;&lt;p class=sectbi2&gt;f. Providing social and recreational activities in accordance with  22VAC40-73-520; and&lt;/p&gt;&lt;p class=sectbi2&gt;g. General supervision for safety. &lt;/p&gt;&lt;p class=sectind&gt;B. The AFC provider shall adhere to the standards in 22VAC30-120-40.&lt;/p&gt;" />
+    <input type="hidden" id="authWOAnchor" value="&#167;&#167; 51.5-131 and 51.5-160 of the Code of Virginia." />
+    <input type="hidden" id="historyWOAnchor" value="Former 22VAC40-25-30, derived from VR615-01-51 &#167; 3, eff. February 1, 1996; amended, Virginia Register Volume 23, Issue 20, eff. August 1, 2007; Volume 29, Issue 5, eff. December 5, 2012; amended and renumbered as 22VAC30-80-30, Virginia Register Volume 30, Issue 2, eff. October 23, 2013; amended, Virginia Register Volume 34, Issue 1, eff. October 4, 2017; Volume 35, Issue 10, eff. February 6, 2019." />
+	<div class="grid">
+		<div class="row">
+			<div class="slot-6-7-8">
+				<section id="pageTitle"><h2 class='pg-title'>Administrative Code</h2></section>
+				<section class="breadcrumbs" id="breadcrumbs"><p><a href='/admincode/'>Table of Contents</a></span> &raquo; <a href='/admincode/title22/'>Title 22. Social Services</a> &raquo; <a href='/admincode/title22/agency30/'>Agency 30. Department For Aging And Rehabilitative Services</a> &raquo; <a href='/admincode/title22/agency30/chapter80/'>Chapter 80. Auxiliary Grants Program</a> &raquo; <span class='breadcrumb-inactive'>22VAC30-80-30. Basic services  in an assisted living facility or an adult foster care home.</span></p></section>
+				<section class="content-header-menu" id="menucontainer">
+					<nav class="content-header-menu-left"><ul><li><a title='Section Assessment' href='/admincode/title22/agency30/chapter80/section20/''><i class='fa fa-long-arrow-left'></i></a> Section <a title='Section Basic services in supportive housing settings' href='/admincode/title22/agency30/chapter80/section35/''><i class='fa fa-long-arrow-right'></i></a></li></ul></nav>
+					<div class="scroll_top" aria-hidden="true"><i href="#" class="fa fa-arrow-up"></i></div>
+					<nav class="content-header-menu-middle"><ul><li><span id='printIE' class='printPDF'><a id='A1' onclick='PrintPreview();' title='Print page' href=''><i class='fa fa-print'></i> Print</a></span></li><li><a id='A3' data-section='admincode/22/30/80/30' title='Download PDF' href=''><i class='fa fa-file-text'></i> PDF</a></li><li><a class='fancybox fancybox.iframe' href='/emailForm'><i class='fa fa-envelope'></i> email</a></li></ul></nav>
+							<nav class="content-header-menu-right"></nav>
+
+				</section>
+				<p class="sidenote alert rptCheckbox"><strong>Creating a Report:</strong> Check the sections you'd like to appear in the report, then use the "Create Report" button at the bottom of the page to generate your report. Once the report is generated you'll then have the option to download it as a pdf, print or email the report.</p>
+				<div id="admin_code" class="content">
+					<div id="printStuff"><div id='printHeader'>Virginia Administrative Code<br/>Title 22. Social Services<br/>Agency 30. Department For Aging And Rehabilitative Services<br/>Chapter 80. Auxiliary Grants Program</div><div id='printDate'>9/14/2026</div></div>
+					<!--googleon: index-->
+					<article id='admincode' class="content"><h2>22VAC30-80-30. Basic services  in an assisted living facility or an adult foster care home.</h2><section id='edit14702' class='body' data-table='VACSections' data-field='sectionDocument'><p class=sectind>A. The rate established under the  AG for the ALF setting shall cover the following services: </p>
+<p class=sectbi>1. Room and board. </p>
+<p class=sectbi2>a. A furnished room in accordance with <a href='/admincode/title22/agency40/chapter73/section750/'> 22VAC40-73-750</a>; </p>
+<p class=sectbi2>b. Housekeeping services based on the needs of the individual; </p>
+<p class=sectbi2>c. Meals and snacks provided in accordance with <a href='/admincode/title22/agency40/chapter73/section590/'> 22VAC40-73-590</a>, including food service, nutrition, number and timing of meals, observance of religious dietary practices, special diets, menus for meals and snacks, and emergency food and water. A minimum of three well-balanced meals shall be provided each day. When a diet is prescribed for an individual by his physician, it shall be prepared and served according to the physician's orders. Basic and bedtime snacks shall be made available for all individuals desiring them and shall be listed on the daily menu. Unless otherwise ordered in writing by the individual's physician, the daily menu, including snacks, for each individual shall meet the guidelines of the U.S. Department of Agriculture's Food  guidance system or the dietary allowances of the Food and Nutritional Board of the National Academy of Sciences, taking into consideration the age, sex, and activity of the resident. Second servings shall be provided, if requested, at no additional charge. At least one meal each day shall include a hot main dish; and</p>
+<p class=sectbi2>d. Clean bed linens and towels as needed by the individual and at least once a week. </p>
+<p class=sectbi>2. Maintenance and care. </p>
+<p class=sectbi2>a. Minimal assistance as defined in <a href='/admincode/title22/agency40/chapter73/section10/'> 22VAC40-73-10</a> with personal hygiene including bathing, dressing, oral hygiene, hair grooming and shampooing, care of clothing, shaving, care of toenails and fingernails or arranging for such assistance if the resident's medical condition precludes facility from providing the service, arranging for haircuts as needed, and care of needs associated with menstruation or occasional bladder or bowel incontinence that occurs less than weekly; </p>
+<p class=sectbi2>b. Medication administration as required by licensing regulations including insulin injections; </p>
+<p class=sectbi2>c. Provision of personal toiletries including toilet paper; </p>
+<p class=sectbi2>d. Minimal assistance with the following: </p>
+<p class=sectbi2>(1) Care of personal possessions; </p>
+<p class=sectbi2>(2) Care of the personal needs allowance and personal funds if requested by the individual and provider policy allows this practice, and in compliance with <a href='/admincode/title22/agency40/chapter73/section80/'> 22VAC40-73-80</a> and <a href='/admincode/title22/agency40/chapter73/section90/'> 22VAC40-73-90</a>;</p>
+<p class=sectbi2>(3) Use of the telephone; </p>
+<p class=sectbi2>(4) Arranging nonmedical transportation; </p>
+<p class=sectbi2>(5) Obtaining necessary personal items and clothing; </p>
+<p class=sectbi2>(6) Making and keeping appointments; and</p>
+<p class=sectbi2>(7) Correspondence; </p>
+<p class=sectbi2>e. Securing health care and transportation when needed for medical treatment; </p>
+<p class=sectbi2>f. Providing social and recreational activities in accordance with <a href='/admincode/title22/agency40/chapter73/section520/'> 22VAC40-73-520</a>; and</p>
+<p class=sectbi2>g. General supervision for safety. </p>
+<p class=sectind>B. The AFC provider shall adhere to the standards in <a href='/admincode/title22/agency30/chapter120/section40/'>22VAC30-120-40</a>.</p></section><p class='auth'>Statutory Authority</p><p id='edit13347' class='body auth' data-table='VACAuthoritiesHistoricalNotes' data-field='authority'>&sect;&sect; <a href='/vacode/51.5-131/'>51.5-131</a> and <a href='/vacode/51.5-160/'>51.5-160</a> of the Code of Virginia.</p><p class='history'>Historical Notes</p><p id='edit13347' class='body history' data-table='VACAuthoritiesHistoricalNotes' data-field='historicalNotes'>Former 22VAC40-25-30, derived from VR615-01-51 § 3, eff. February 1, 1996; amended, Virginia Register <a href='http://register.dls.virginia.gov/vol23/iss20/v23i20.pdf'>Volume 23, Issue 20</a>, eff. August 1, 2007; <a href='http://register.dls.virginia.gov/toc.aspx?voliss=29:05'>Volume 29, Issue 5</a>, eff. December 5, 2012; amended and renumbered as 22VAC30-80-30, Virginia Register <a href='http://register.dls.virginia.gov/toc.aspx?voliss=30:02'>Volume 30, Issue 2</a>, eff. October 23, 2013; amended, Virginia Register <a href='http://register.dls.virginia.gov/toc.aspx?voliss=34:01'>Volume 34, Issue 1</a>, eff. October 4, 2017; <a href='http://register.dls.virginia.gov/toc.aspx?voliss=35:10'>Volume 35, Issue 10</a>, eff. February 6, 2019.</p><p></p></article>
+					<!--googleoff: index-->
+					<p id="sidenote1" class="sidenote">Website addresses provided in the Virginia Administrative Code to documents incorporated by reference are for the reader's convenience only, may not necessarily be active or current, and should not be relied upon. To ensure the information incorporated by reference is accurate, the reader is encouraged to use the source document described in the regulation.</p>
+					<p id="sidenote2" class="sidenote">As a service to the public, the Virginia Administrative Code is provided online by the Virginia General Assembly. We are unable to answer legal questions or respond to requests for legal advice, including application of law to specific fact. To understand and protect your legal rights, you should consult an attorney.</p>
+				</div>
+						<nav class="content-footer-menu"><ul><li><a title='Section Assessment' href='/admincode/title22/agency30/chapter80/section20/''><i class='fa fa-long-arrow-left'></i></a> Section <a title='Section Basic services in supportive housing settings' href='/admincode/title22/agency30/chapter80/section35/''><i class='fa fa-long-arrow-right'></i></a></li></ul></nav>
+
+			</div>
+			<div class="slot-9">
+				<nav id="section-menu">
+					<ul class="section-header-menu">
+						<li>
+							<a href="/vacode">Code of Virginia</a>
+						</li>
+						<li class="selected" aria-label="Currently selected page">
+							<a href="/admincode">Administrative Code</a>
+						</li>
+						<li class="sub-menu">
+							<a href="/admincodeagencylist">View by Agency</a>
+						</li>
+						<li class="sub-menu">
+							<a href="http://register.dls.virginia.gov/emergency_regs.shtml">Emergency Regulations</a>
+						</li>
+						<li id='search-box' class="sub-menu">
+							<label class="form-title" for="search-text">VAC# Look Up</label>
+							<div action='/search' id='search-form' method='get' target='_top'>
+								<input aria-label="Section look up input" title="Section look up input" id='search-text' name='q' placeholder='ex.  2VAC5-30-10' type='text' />
+								<button aria-label="Section look up button" title="Section look up button" id='search-button' type='submit'>Go</button>
+							</div>
+						</li>						
+						<li>
+							<a href="/constitution">Constitution of Virginia</a>
+						</li>
+						<li>
+							<a href="/charters">Charters</a>
+						</li>
+						<li>
+							<a href="/authorities">Authorities</a>
+						</li>
+						<li>
+							<a href="/compacts">Compacts</a>
+						</li>
+						<li>
+							<a href="/uncodifiedacts">Uncodified Acts</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript">var siteurl = 'https://law.lis.virginia.gov';</script>
+	<script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+	
+	<script src="/Scripts/responsive.js" type="text/javascript"></script>
+	<script src="/Scripts/modernizer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/jquery.fancybox.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+	<script src="/Scripts/fancybox/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
+	<script src="/Scripts/printThisCoV.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/Scripts/search.js" type="text/javascript"></script>
+    <script src="/Scripts/searchAdmin.js" type="text/javascript"></script>
+    <script src="/Scripts/isFontFaceSupported.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.qtip.js" type="text/javascript"></script>
+    
+	<link rel="stylesheet" href="/Content/msgBoxLight.css" />
+	<script src="/Scripts/jquery.msgBox.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/Scripts/tinymce/tinymce.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/edit.js" type="text/javascript"></script>
+    <script src="/Scripts/AdminInit.js" type="text/javascript"></script>
+    
+    <script src="/Scripts/report.js" type="text/javascript"></script>
+    <script src="/Scripts/default.js" type="text/javascript"></script>
+	<script src="/Scripts/pdf.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		    $('document').ready(function () {
+		        $('#print').click(function () {
+		            $("#admin_code").printThis();
+		            return (false);
+		        });
+
+		        var val = parseInt($.browser.version);
+		        if ($.browser.msie || (val > 7 && val <= 11)) {
+		            //stuff here (like adding an IE10 class to the body or html tag
+		            $(".input-sm").css("margin-top", "1px");
+		        }
+
+		        $('a.fancybox').fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 520
+		        });
+
+		        $("a.single_image").fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 720
+		        });
+
+		        $('.fancybox').attr('href', "/emailForm?parent=admincode/" + $('#hidSegments').val());
+
+		        $('.hdr-read-text a').fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 701,
+		            'autoDimensions': false,
+		            'autoSize': false,
+		            afterClose: function (event, ui) {
+		                //parent.document.getElementById("hidBiP").value = "false";
+		                parent.$("#hidReg").val("false");
+		            }
+		        });
+
+		        var _hidVal = $('#hidReg').val();
+		        if (_hidVal == 'true') {
+		            $('.hdr-read-text a').click();
+		        }
+
+		        $('p.hdr-read-text a').qtip({
+		            content: 'Emergency and Emergency/NORA Regulations',
+		            style: {
+		                textAlign: 'center',
+		                tip: true,
+		                classes: 'qtip-rounded qtip-shadow',
+		            },
+		            position: {
+		                my: 'top center',
+		                at: 'bottom center'
+		            }
+		        });
+
+				$('.outline > dl > dt > input').each(function () {
+					$(this).attr('aria-label', $(this).attr("id") + " checkbox");
+		    	});
+
+				$('.outline > li > input').each(function () {
+					$(this).attr('aria-label', $(this).attr("id") + " checkbox");
+		    	});
+
+				$('h2 > input').each(function () {
+					$(this).attr('aria-label', $(this).attr("id") + " checkbox");
+		    	});
+		    });
+
+		    function PrintPreview() {
+		        printWindow = window.open("", "", "location=1,status=1,scrollbars=1,width=650,height=600");
+		        printWindow.document.write('<!DOCTYPE html><html><head>');
+		        //printWindow.document.write('<link rel="stylesheet" href="./css/base.css" type="text/css" media="all" />');
+		        printWindow.document.write('<style type="text/css">@media print{.no-print, .no-print *{display: none !important;}h6{display:none !important;}#printPages{display:none !important;}}#printDate {display:none !important;}</style>');
+		        printWindow.document.write('<style type="text/css">#printHeader{display:block;font-size:1em;line-height:1.3em;text-align:left;margin-bottom:.8em;}</style>');
+
+		        printWindow.document.write('<style type="text/css">body{color:#444;font-family:"PT Serif",Georgia,serif;line-height:1.3em;font-size: .95em;}h2{margin:0 0 .1em 0;font-weight:normal;line-height:1.2em;font-size:1.4em;letter-spacing:.01em;padding:0 .35em 0 0.25em;}');
+		        printWindow.document.write('.hdr-read-text,.read-text,.rptCheckbox{display:none;}ul .outline{margin-bottom:1em;}ul{list-style:none;}.outline ul{margin-left:1em;}a, a:link{color:#1a73ae;text-decoration:none;}');
+		        printWindow.document.write('b{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;}.number-descrip-list{line-height:1.55em;margin-bottom:1em;height:auto;}');
+		        printWindow.document.write('.number-descrip-list dt {clear: left;float: left;display: table-cell;font-weight: bold;width: 6.75em;}.number-descrip-list dd {padding-bottom: .125em;display: table-cell;}');
+		        printWindow.document.write('.number-descrip-list-outline{margin-left:1em;line-height:1.55em;}.number-descrip-list-outline dt{width:7em;font-weight:bold;}');
+		        printWindow.document.write('.number-descrip-list-outline dd{display:table-cell;padding-bottom:0;}</style>');
+
+		        printWindow.document.write('<style type="text/css">h6 {font-family: "Lato", Helvetica, Arial, sans-serif;font-size: 14px;border-bottom: 1px solid #ddd;padding-bottom: 15px;}');
+		        printWindow.document.write('table{border-collapse: collapse;border-spacing: 0;margin-bottom: 15px;}.printButtons {width: 100%;text-align: right;position: absolute;right: 10px;top: 28px;}</style>');
+		        printWindow.document.write('<style>#printPages{position:absolute;left: 120px;top: 30px;}.hiddenTable {display: none !important;}</style>');
+
+		        printWindow.document.write('</head><body>');
+		        printWindow.document.write('<h6>Print Preview</h6><span id="printPages"></span>')
+		        printWindow.document.write('<div class="printButtons">');
+
+		        //Print and cancel button
+		        printWindow.document.write('<input type="button" id="btnPrint" value="Print" class="no-print" onclick="window.print();window.onfocus=function(){window.close();}" />');
+		        printWindow.document.write('<input type="button" id="btnCancel" value="Cancel" class="no-print" onclick="window.close()" />');
+
+		        printWindow.document.write('</div>');
+
+		        //You can include any data this way.
+		        var _page = '<div id="admincode" class="admincode">' + $('#admincode').html() + '</div>';
+		        printWindow.document.write(_page);
+		        printWindow.document.write('<scr' + 'ipt type="text/javascript">var divHeight;var obj = document.getElementById("admincode");if(obj.offsetHeight){divHeight=obj.offsetHeight;}else if(obj.style.pixelHeight){divHeight=obj.style.pixelHeight;}document.getElementById("printPages").innerHTML="Approximate Number of Pages: " + Math.ceil(divHeight / 850);</sc' + 'ript>');
+		        printWindow.document.write('</body></html>');
+		        printWindow.document.close();
+		        printWindow.focus();
+		    }
+	</script>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+</body>
+        </div>
+        
+        
+        <div class="footer">
+            <nav class="footer-links" style="line-height: 1.4;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div aria-hidden="true" id='generic_login_div' style="display:none;z-index:9999;padding:10px;" class="corners dropshadow">
+                            <h3>Sign In</h3>
+                            <div class='form-row'>
+                                <label id='lblusername' for='username'>Username:&nbsp; </label>
+                                <input type='text' class="user" name='username' placeholder="Username" id='username' />
+                                <label id="userError"></label>
+                            </div>
+                            <div class='form-row'>
+                                <label id='lblpassword' for='password'>Password:&nbsp; </label>
+                                <input type='password' class="pass" name='password' placeholder="Password" id='password' />
+                                <label id="passError"></label>
+                            </div>
+                            <div class='submit-row'>
+                                <input type='button' id="btnLogin" class="button" value='Login' />
+                                <a onclick='hideLogin()' class="hover">Cancel</a>
+                            </div>
+                        </div>
+                        <div id="dialog-modal" style="display:none;"></div>
+                        <span class="col-xs-12 text-center">
+                            <ul>
+                                <li><a href="https://lis.virginia.gov">LIS Home</a></li>
+                                <li><a id="aLIAB" href="https://lis.virginia.gov/register-account">Lobbyist-in-a-Box</a></li>
+                                <li><a href="https://lis.virginia.gov/privacy">Privacy Policy</a></li>
+                                
+                            </ul>
+                            <p>
+                                © Copyright Commonwealth of Virginia,
+                                <script>document.write(new Date().getFullYear())</script>. All rights reserved. Site developed by the <a href="http://dlas.virginia.gov">Division of Legislative Automated Systems (DLAS)</a>.
+                                <a aria-hidden="true" href="" id="signin" onclick="showLogin();return false;">Sign In</a>
+                                
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+</body>
+</html>
+
+<!--[if lt IE 10 ]><script async src="<%: FriendlyUrl.Href("~/Scripts/placeHolder.js" type="text/javascript"></script><![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="~/Scripts/html5shiv.js"></script>
+<script src="~/Scripts/respond.js"></script>
+<![endif]-->
+
+<script src="/Scripts/SwitchMode.js" type="text/javascript"></script>

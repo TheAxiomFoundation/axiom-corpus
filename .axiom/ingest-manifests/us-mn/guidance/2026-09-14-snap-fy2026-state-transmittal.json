@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "7c81d2799c6e8d2bd8832470097936aed37c76433e30fd1e11a03ebc550b3137"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "4efd51a9858db373f68364023845924eeebb1444edf4277a795bae788b19a069"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "32dffdecf0872d270547b17125934f3f1aa825a531e5867e82ea8127483fb5c8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-mn-dhs-combined-manual-description-of-changes-2025-10.pdf",
+      "sha256": "65f18bb70f39e763ff6ca5600ce526d257ccdaf40b712ea6e0d56a0fcfe33143"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-mn-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:54:01.709991+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ul9o0VpUP56Y714+9mms3TqpcrhLlH9jbJ978o+Pcwb6HozLw9wr8WxAedoXib742TpdEsDoHTPt5tLc0zO4Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

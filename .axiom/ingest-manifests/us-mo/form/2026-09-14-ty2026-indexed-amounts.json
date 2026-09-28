@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "da3372cb3de56c904bbf835572a0645e233cbc052c5b79bc2d61dd9051ac2b8c"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "213cdf79724d05493665f123aa54bf2ddd0bc68206c3ac61073ff573deaf0df6"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "22e79c1c3fe4673fa167a389bfd0bdb22cd5bd01fd5cf73fa4569f03b5b8684f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-mo-dor-mo-1040es-ty2026.pdf",
+      "sha256": "660f9c44610bb911f5652c42710cf86d49f693eb151dff35640932e7cae58793"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-mo-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T17:01:12.149925+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8tt9tHNyJS3sGBYSzPFNogoARzc1YCPTf6LJr2r8kA64IY2tmIuX1CHfPk7S36iapuk/gGCc+S1fZWsHLLOeAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

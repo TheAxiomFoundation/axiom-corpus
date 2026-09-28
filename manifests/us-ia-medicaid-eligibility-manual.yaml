@@ -1,0 +1,310 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-ia-medicaid-employees-manual-8-a
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-A Administration'
+  source_url: https://hhs.iowa.gov/media/4007/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-a
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-A
+- source_id: us-ia-medicaid-employees-manual-8-b
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-B Application Processing'
+  source_url: https://hhs.iowa.gov/media/4008/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-b
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-B
+- source_id: us-ia-medicaid-employees-manual-8-c
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-C Nonfinancial Eligibility'
+  source_url: https://hhs.iowa.gov/media/4009/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-c
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-C
+- source_id: us-ia-medicaid-employees-manual-8-d
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-D Resources'
+  source_url: https://hhs.iowa.gov/media/4010/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-d
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-D
+- source_id: us-ia-medicaid-employees-manual-8-e
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-E Income'
+  source_url: https://hhs.iowa.gov/media/4011/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-e
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-E
+- source_id: us-ia-medicaid-employees-manual-8-f
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-F Coverage Groups'
+  source_url: https://hhs.iowa.gov/media/4012/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-f
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-F
+- source_id: us-ia-medicaid-employees-manual-8-g
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-G Case Maintenance'
+  source_url: https://hhs.iowa.gov/media/4013/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-g
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-G
+- source_id: us-ia-medicaid-employees-manual-8-h
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-H Foster Care, Adoption and Guardianship Subsidy'
+  source_url: https://hhs.iowa.gov/media/4014/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-h
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-H
+- source_id: us-ia-medicaid-employees-manual-8-i
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-I Medical Institutions'
+  source_url: https://hhs.iowa.gov/media/4015/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-i
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-I
+- source_id: us-ia-medicaid-employees-manual-8-j
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-J Medically Needy'
+  source_url: https://hhs.iowa.gov/media/4016/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-j
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-J
+- source_id: us-ia-medicaid-employees-manual-8-k
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-K Psychiatric Institutions'
+  source_url: https://hhs.iowa.gov/media/4017/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-k
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-K
+- source_id: us-ia-medicaid-employees-manual-8-l
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-L Aliens'
+  source_url: https://hhs.iowa.gov/media/4018/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-l
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-L
+- source_id: us-ia-medicaid-employees-manual-8-m
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-M Medicaid Services'
+  source_url: https://hhs.iowa.gov/media/4019/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-m
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-M
+- source_id: us-ia-medicaid-employees-manual-8-n
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual, Title 8 Medicaid: Chapter 8-N Home- and Community-Based Waivers'
+  source_url: https://hhs.iowa.gov/media/4020/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ia/manual/hhs/medicaid/employees-manual-8-n
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Iowa HHS Employees' Manual, Title 8 Medicaid
+    manual_index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    source_discovery_group: us-ia/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://hhs.iowa.gov/about/policy-manuals/income-maintenance
+    extraction_granularity: pdf_page
+    chapter: 8-N
