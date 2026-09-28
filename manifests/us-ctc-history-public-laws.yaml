@@ -1,0 +1,25 @@
+# Official session-law sources requested by axiom-corpus#744 (decision d256).
+# Expression dates are enactment dates, not the amendments' tax-year applicability.
+documents:
+  - source_id: PLAW-119publ21
+    jurisdiction: us
+    document_class: statute
+    title: Public Law 119-21 — section 70104 (child tax credit)
+    citation_path: us/statute/pl/119/21
+    source_url: https://www.govinfo.gov/content/pkg/PLAW-119publ21/uslm/PLAW-119publ21.xml
+    source_format: uslm-xml
+    expression_date: '2025-07-04'
+    source_as_of: '2025-07-04'
+    extraction:
+      sections: ['70104']
+  - source_id: PLAW-115publ97
+    jurisdiction: us
+    document_class: statute
+    title: Public Law 115-97 — section 11022 (child tax credit)
+    citation_path: us/statute/pl/115/97
+    source_url: https://www.govinfo.gov/content/pkg/PLAW-115publ97/uslm/PLAW-115publ97.xml
+    source_format: uslm-xml
+    expression_date: '2017-12-22'
+    source_as_of: '2017-12-22'
+    extraction:
+      sections: ['11022']

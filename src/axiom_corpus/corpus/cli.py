@@ -117,6 +117,7 @@ from axiom_corpus.corpus.policyengine_references import (
     write_policyengine_references_jsonl,
     write_policyengine_url_inventory,
 )
+from axiom_corpus.corpus.public_laws import extract_public_laws
 from axiom_corpus.corpus.r2 import (
     DEFAULT_ARTIFACT_PREFIXES,
     DEFAULT_RELEASE_ARTIFACT_PREFIXES,
@@ -4873,6 +4874,34 @@ def _parse_cfr_section_ref(value: str) -> FederalRegisterCfrSectionRef:
     )
 
 
+def _cmd_extract_public_laws(args: argparse.Namespace) -> int:
+    report = extract_public_laws(
+        CorpusArtifactStore(args.base),
+        manifest_path=args.manifest,
+        version=args.version,
+        download_dir=args.download_dir,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": args.version,
+                "document_count": report.document_count,
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete else 2
+
+
 def _cmd_extract_official_documents(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -6955,6 +6984,18 @@ def build_parser() -> argparse.ArgumentParser:
     extract_federal_register_cfr_cmd.add_argument("--source-document-citation-path")
     extract_federal_register_cfr_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_federal_register_cfr_cmd.set_defaults(func=_cmd_extract_federal_register_cfr_sections)
+
+    extract_public_laws_cmd = sub.add_parser(
+        "extract-public-laws",
+        help="Snapshot govinfo public-law USLM and extract selected enacted sections.",
+    )
+    extract_public_laws_cmd.add_argument("--base", type=Path, required=True)
+    extract_public_laws_cmd.add_argument("--version", required=True)
+    extract_public_laws_cmd.add_argument("--manifest", type=Path, required=True)
+    extract_public_laws_cmd.add_argument(
+        "--download-dir", type=Path, help="Replay retained <source_id>.xml package snapshots."
+    )
+    extract_public_laws_cmd.set_defaults(func=_cmd_extract_public_laws)
 
     extract_documents_cmd = sub.add_parser(
         "extract-official-documents",

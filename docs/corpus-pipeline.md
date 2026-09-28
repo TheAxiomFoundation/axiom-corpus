@@ -490,3 +490,30 @@ axiom-corpus-ingest analytics \
 
 `corpus.provision_counts` is a derived-row count surface. It is not a source
 completeness claim; use coverage reports for that.
+
+### Public laws before or alongside USC release points
+
+Use official govinfo USLM snapshots for enacted amending provisions whose text or
+history is needed independently of the codified USC expression:
+
+```bash
+uv run axiom-corpus-ingest extract-public-laws --base data/corpus \
+  --version 2026-09-27-ctc-history-public-laws \
+  --manifest manifests/us-ctc-history-public-laws.yaml
+```
+
+The manifest explicitly selects section numbers with `extraction.sections`.
+`--download-dir <directory>` replays retained `<source_id>.xml` files offline.
+The extractor writes source snapshots, inventory, provisions, and coverage. Paths
+use `us/statute/pl/<congress>/<law-number>/<section>/<subsection>` (for example
+`us/statute/pl/119/21/70104/f`). Quoted replacement text remains inside the
+amending provision; the extractor does not execute amendments against the USC.
+The expression date is the law's enactment date; applicability dates remain in
+the source text for the encoder to interpret.
+
+Historical USC expressions use `extract-usc --prior-release-point`, retaining
+the same USC citation paths with a distinct version and expression date. A
+historical scope cannot share a release with a current scope carrying the same
+paths. See [the CTC history run](ingest-runs/2026-09-27-ctc-history.md) for separate
+draft selectors and the dispatcher signing/publication handoff. Never activate
+a minimal historical scope over the whole `(us, statute)` serving pair.
